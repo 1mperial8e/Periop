@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PESpecializationViewController.h"
 
 @interface PEAppDelegate : UIResponder <UIApplicationDelegate>
 

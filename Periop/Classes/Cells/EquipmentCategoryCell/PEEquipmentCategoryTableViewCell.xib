@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="equipmentCell" rowHeight="129" id="KGk-i7-Jjw" customClass="PEEquipmentCategoryTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
+                        <rect key="frame" x="254" y="0.0" width="66" height="29"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.8862745098" green="0.36862745099999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="Delete">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jFc-FM-p9y"/>
+                            <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Fj-a7-NLy"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tool name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
+                                <rect key="frame" x="20" y="0.0" width="226" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
+                                <rect key="frame" x="254" y="0.0" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="for-mt-FQq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="mzo-Q6-cZb" secondAttribute="trailing" id="PtA-xh-nHT"/>
+                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="R0Q-aQ-Kxe"/>
+                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="b0Q-Mx-kTm"/>
+                    <constraint firstAttribute="bottom" secondItem="mzo-Q6-cZb" secondAttribute="bottom" constant="-1" id="bt1-F5-9A3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonDeleteOutlet" destination="i6B-ut-RVE" id="x0j-qn-U1T"/>
+                <outlet property="contentViewLeftConstraint" destination="R0Q-aQ-Kxe" id="wcG-uc-zUf"/>
+                <outlet property="contentViewRightConstraint" destination="PtA-xh-nHT" id="6e2-kI-XKW"/>
+                <outlet property="equipmentNameLabel" destination="I1s-lw-m1o" id="UuD-By-l75"/>
+                <outlet property="viewWithContent" destination="mzo-Q6-cZb" id="vdn-2M-yBB"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

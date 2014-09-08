@@ -17,7 +17,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    PESpecializationViewController * startScreen = [[PESpecializationViewController alloc] initWithNibName:@"PESpecializationViewController" bundle:nil];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:startScreen];
+    //resize viewController to meat size of windows with navigation controller
+    navController.navigationBar.translucent = NO;
+    navController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+    navController.navigationBar.tintColor = [UIColor whiteColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    self.window.rootViewController = navController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

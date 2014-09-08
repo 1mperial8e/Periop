@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDoctorProfileViewController">
+            <connections>
+                <outlet property="doctorName" destination="D0H-Kj-kVe" id="97a-fh-Fyg"/>
+                <outlet property="doctorPhotoImageView" destination="qbo-4Q-cnG" id="ANu-u4-qYO"/>
+                <outlet property="tableView" destination="oQV-6s-ZsM" id="u2Z-Lf-Upd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Doctor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe">
+                    <rect key="frame" x="20" y="154" width="280" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbo-4Q-cnG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="Oqi-oe-f7T"/>
+                        <constraint firstAttribute="width" constant="320" id="UX5-gu-jSg"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-00-ENp">
+                    <rect key="frame" x="274" y="0.0" width="41" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Photo">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="photoButtons:" destination="-1" eventType="touchUpInside" id="wBS-39-IKh"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c97-2Y-Yg8">
+                    <rect key="frame" x="0.0" y="507" width="320" height="61"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJt-I0-NxL">
+                            <rect key="frame" x="160" y="20" width="160" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Properties">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="propertiesButtons:" destination="-1" eventType="touchUpInside" id="5QO-as-hPu"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7i-sg-dFg">
+                            <rect key="frame" x="0.0" y="20" width="160" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Doctor Details">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="detailsButton:" destination="-1" eventType="touchUpInside" id="ZOu-Nw-ddC"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="TJY-8G-q02"/>
+                        <constraint firstAttribute="height" constant="61" id="Zfl-MI-dao"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="j3L-Yy-IuD"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="61" id="tAc-n6-KZG"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oQV-6s-ZsM">
+                    <rect key="frame" x="0.0" y="258" width="320" height="241"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="UPI-X9-WjQ"/>
+                    </constraints>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="c97-2Y-Yg8" secondAttribute="bottom" id="01x-PQ-fIB"/>
+                <constraint firstAttribute="bottom" secondItem="c97-2Y-Yg8" secondAttribute="bottom" id="24k-S5-A2n"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2uj-d1-J4R"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="4DP-g9-Ns2"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4zK-zd-Jpp"/>
+                <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="5bm-zX-EjW"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HTb-OK-11m"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JlW-Tp-iY1"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="centerX" secondItem="D0H-Kj-kVe" secondAttribute="centerX" id="PPF-I9-ohi"/>
+                <constraint firstAttribute="trailing" secondItem="qbo-4Q-cnG" secondAttribute="trailing" id="Rhg-7g-c14"/>
+                <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="XNF-4K-3UD"/>
+                <constraint firstAttribute="trailing" secondItem="oQV-6s-ZsM" secondAttribute="trailing" id="dOm-Ed-py0"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="qbo-4Q-cnG" secondAttribute="bottom" constant="8" symbolic="YES" id="gW7-RR-um6"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="huH-je-hHN"/>
+                <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="kV7-EZ-7oU"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="68" id="lcQ-MZ-tTe"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="Shd-00-ENp" secondAttribute="top" id="q2s-eI-R4I"/>
+                <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" constant="5" id="wCc-ZX-ZyL"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="znK-6p-Tgt"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
