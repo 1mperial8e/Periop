@@ -6,21 +6,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notesCell" rowHeight="100" id="KGk-i7-Jjw" customClass="PENotesTableViewCell">
+        <tableViewCell contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="115" selectionStyle="default" indentationWidth="10" reuseIdentifier="notesCell" rowHeight="100" id="KGk-i7-Jjw" customClass="PENotesTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Some text here" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSM-E4-qD5">
-                        <rect key="frame" x="20" y="30" width="280" height="64"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjU-dD-kUI">
+                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjU-dD-kUI">
                         <rect key="frame" x="194" y="64" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="1">
@@ -30,7 +23,7 @@
                             <action selector="photButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nZW-V7-PNz"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmv-Pq-oV7">
+                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmv-Pq-oV7">
                         <rect key="frame" x="232" y="64" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="2">
@@ -40,7 +33,7 @@
                             <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KGI-P7-JSW"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW4-J2-flR">
+                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW4-J2-flR">
                         <rect key="frame" x="270" y="64" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="3">
@@ -50,16 +43,40 @@
                             <action selector="editButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cUO-8I-yEG"/>
                         </connections>
                     </button>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TimeStamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSl-V5-HZX">
-                        <rect key="frame" x="0.0" y="1" width="88" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="88" placeholderIntrinsicHeight="21" text="TimeStamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSl-V5-HZX">
+                        <rect key="frame" x="0.0" y="1" width="320" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.40392156862745099" green="0.67843137254901964" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="282" placeholderIntrinsicHeight="26" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-EH-tXJ">
+                        <rect key="frame" x="20" y="30" width="280" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Hmv-Pq-oV7" firstAttribute="leading" secondItem="PjU-dD-kUI" secondAttribute="trailing" constant="8" id="3Ov-jM-oEa"/>
+                    <constraint firstAttribute="bottom" secondItem="Hmv-Pq-oV7" secondAttribute="bottom" constant="20" id="4gX-cG-sLe"/>
+                    <constraint firstItem="QW4-J2-flR" firstAttribute="leading" secondItem="Hmv-Pq-oV7" secondAttribute="trailing" constant="8" id="5P8-Ts-Wi7"/>
+                    <constraint firstItem="TPV-EH-tXJ" firstAttribute="top" secondItem="sSl-V5-HZX" secondAttribute="bottom" constant="8" id="5hi-22-a4k"/>
+                    <constraint firstItem="sSl-V5-HZX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8WY-co-4Qa"/>
+                    <constraint firstAttribute="bottom" secondItem="QW4-J2-flR" secondAttribute="bottom" constant="20" id="9gl-YJ-bQv"/>
+                    <constraint firstAttribute="trailing" secondItem="QW4-J2-flR" secondAttribute="trailing" constant="20" id="BAM-iD-014"/>
+                    <constraint firstItem="Hmv-Pq-oV7" firstAttribute="top" secondItem="TPV-EH-tXJ" secondAttribute="bottom" constant="8" id="FNv-YB-5J3"/>
+                    <constraint firstAttribute="trailing" secondItem="sSl-V5-HZX" secondAttribute="trailing" id="Iah-ya-pCI"/>
+                    <constraint firstItem="sSl-V5-HZX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="KNf-22-pGT"/>
+                    <constraint firstItem="TPV-EH-tXJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="OvG-6L-qra"/>
+                    <constraint firstAttribute="bottom" secondItem="PjU-dD-kUI" secondAttribute="bottom" constant="20" id="YWE-sP-W0d"/>
+                    <constraint firstItem="PjU-dD-kUI" firstAttribute="top" secondItem="TPV-EH-tXJ" secondAttribute="bottom" constant="8" id="ZPo-KW-xth"/>
+                    <constraint firstAttribute="trailing" secondItem="TPV-EH-tXJ" secondAttribute="trailing" constant="20" id="u7R-oG-st8"/>
+                    <constraint firstItem="QW4-J2-flR" firstAttribute="top" secondItem="TPV-EH-tXJ" secondAttribute="bottom" constant="8" id="vBN-cs-9rr"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="textView" destination="cSM-E4-qD5" id="Lx6-o3-u7Y"/>
+                <outlet property="label" destination="TPV-EH-tXJ" id="sG8-3y-NSJ"/>
                 <outlet property="titleLabel" destination="sSl-V5-HZX" id="rjj-zV-Wmd"/>
             </connections>
         </tableViewCell>

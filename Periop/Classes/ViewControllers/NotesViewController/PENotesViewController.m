@@ -98,13 +98,48 @@
         cell = [[PENotesTableViewCell alloc] init];
     }
     //make textview rounded
-    cell.textView.layer.cornerRadius = 4;
-    cell.textView.layer.borderColor = [[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1] CGColor];
-    cell.textView.layer.borderWidth = 1.0;
-    cell.textView.text = [NSString stringWithFormat:@"Notes number %d", [indexPath row]];
+    cell.label.layer.cornerRadius = 4;
+    cell.label.layer.borderColor = [[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1] CGColor];
+    cell.label.layer.borderWidth = 1.0;
+    cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+//set height for each row
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self heightForBasicCellAtIndexPath:indexPath];
+}
+
+#pragma mark - DynamicHeightOfCell
+//configure cell - in this case - just set textView.text
+//also used for calculation dimension for each cell
+- (PENotesTableViewCell*)configureCell: (PENotesTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath{
+    cell.label.text = [NSString stringWithFormat:@"Notes number %d", [indexPath row]];
+    if (indexPath.row ==1){
+        cell.label.text = @"biggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbiggggbigggg Text";
+    }
+    return cell;
+}
+
+
+//return height for cell
+- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath{
+    static PENotesTableViewCell * sizingCell = nil;
+    static dispatch_once_t  token;
+    dispatch_once(&token, ^{
+        sizingCell = [self.tableViewNotes dequeueReusableCellWithIdentifier:@"notesCell"];
+    });
+    [self configureCell:sizingCell atIndexPath:indexPath];
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    //will make each label update its preferredMaxLayoutWidth property.
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableViewNotes.bounds), 0.0f);
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
+}
 
 
 @end
