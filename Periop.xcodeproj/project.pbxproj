@@ -647,8 +647,8 @@
 			isa = PBXGroup;
 			children = (
 				EDCD584C19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.h */,
-				EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */,
 				EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */,
+				EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */,
 			);
 			path = PatientPostioningPreviewCell;
 			sourceTree = "<group>";

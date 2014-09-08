@@ -104,13 +104,13 @@
     //PEEquipmentCategoryTableViewCellDelegate
     cell.delegate = self;
     if ([self.cellCurrentlyEditing containsObject:indexPath]){
-        [cell openCell];
+        [cell setCellSwiped];
     }
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 11;
+    return 7;
 }
 
 #pragma mark - UITableViewDelegate
@@ -124,34 +124,17 @@
     [self.navigationController pushViewController:toolDetailsView animated:YES];
 }
 
-#pragma mark - method for showing Delete Button - variant 2
-
-/*
-//method number 2
-//handling deleting of object
-- (void) tableView : (UITableView*) tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (editingStyle == UITableViewCellEditingStyleDelete){
-        //action on delete
-        NSLog(@"delete action");
-    }
-    else{
-        NSLog(@"err");
-    }
-}
-*/
-
-
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
 
-- (void)buttonAction{
+- (void)buttonDeleteAction{
     NSLog(@"inside button action from delegate PEEquipmentCategoryTableViewCellDelegate");
 }
 
-- (void)cellDidClose:(UITableViewCell *)cell{
+- (void)cellDidSwipedIn:(UITableViewCell *)cell{
     [self.cellCurrentlyEditing removeObject:[self.tableView indexPathForCell:cell]];
 }
 
-- (void)cellDidOpen:(UITableViewCell *)cell{
+- (void)cellDidSwipedOut:(UITableViewCell *)cell{
     NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
 }

@@ -11,11 +11,13 @@
 @protocol PEEquipmentCategoryTableViewCellDelegate <NSObject>
 
 @optional
-//delegated method - add more if you want to use for few buttons
-- (void)buttonAction;
-//methods for storing current state of cells
-- (void) cellDidOpen:(UITableViewCell*)cell;
-- (void) cellDidClose:(UITableViewCell *)cell;
+//buttonAction
+- (void)buttonDeleteAction;
+
+//method for closing cell with swipe
+- (void)cellDidSwipedIn: (UITableViewCell*)cell;
+//method for opening cell with swipe
+- (void)cellDidSwipedOut:(UITableViewCell *)cell;
 
 @end
 
@@ -26,8 +28,8 @@
 
 //property for delegate
 @property (weak, nonatomic) id <PEEquipmentCategoryTableViewCellDelegate> delegate;
-//mathod that allow delegate to change state of cell
-- (void)openCell;
+//method that allow delegate to change state of cell
+- (void)setCellSwiped;
 
 
 @end

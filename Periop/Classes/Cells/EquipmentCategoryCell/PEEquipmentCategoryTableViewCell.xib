@@ -58,8 +58,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="buttonDeleteOutlet" destination="i6B-ut-RVE" id="x0j-qn-U1T"/>
-                <outlet property="contentViewLeftConstraint" destination="R0Q-aQ-Kxe" id="wcG-uc-zUf"/>
-                <outlet property="contentViewRightConstraint" destination="PtA-xh-nHT" id="6e2-kI-XKW"/>
                 <outlet property="equipmentNameLabel" destination="I1s-lw-m1o" id="UuD-By-l75"/>
                 <outlet property="viewWithContent" destination="mzo-Q6-cZb" id="vdn-2M-yBB"/>
             </connections>
