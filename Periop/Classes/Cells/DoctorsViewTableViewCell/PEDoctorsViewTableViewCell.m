@@ -58,7 +58,7 @@
         [UIView animateWithDuration:0.2 animations:^{
         self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width*2.8, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
                 self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
             } completion:^(BOOL finished) {
                 self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);

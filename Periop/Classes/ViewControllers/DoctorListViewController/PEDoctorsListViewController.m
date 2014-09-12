@@ -50,10 +50,11 @@
     self.labelToShowOnNavigationBar = navigationLabel;
     
     //create button for menu
-    UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
+    UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
     self.navigationBarAddBarButton = addDoctorButton;
     //create button for menu
     UIBarButtonItem * menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(menuButton:)];
+    menuButton.width=60.0;
     self.navigationBarMenuButton = menuButton;
     
     //navigation backButton
@@ -120,17 +121,20 @@
 #pragma mark - IBActions
 
 - (IBAction)addDoctorButton:(id)sender{
-    PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
-    addEditDoctorView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self.navigationController pushViewController:addEditDoctorView animated:YES];
+    if ([self.tableView indexPathForSelectedRow]){
+        PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
+        addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
+        [self.navigationController pushViewController:addEditDoctorView animated:NO];
+    }
 }
 
 - (IBAction)menuButton:(id)sender{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
     menuController.navController = self.navigationController;
-    menuController.textToShow = @"Surgeons List";
-    [self presentViewController:menuController animated:YES completion:nil];
+    menuController.sizeOfFontInNavLabel = self.labelToShowOnNavigationBar.font.pointSize;
+    menuController.textToShow = @"Surgeon List";
+    menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
+    [self presentViewController:menuController animated:NO completion:nil];
 }
 
 #pragma mark - PEDoctorsViewTableViewCellDelegate
@@ -147,5 +151,6 @@
 - (void)buttonDeleteAction {
     NSLog(@"delete action");
 }
+
 
 @end

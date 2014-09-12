@@ -46,6 +46,7 @@
     
     //create button for menu
     UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(menuButton:)];
+    menuBarButton.width=60.0;
     //add button to navigation bar
     self.navigationItem.leftBarButtonItem=menuBarButton;
 
@@ -70,10 +71,11 @@
 
 - (IBAction)menuButton:(id)sender{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
     menuController.navController = self.navigationController;
+    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = @"Terms & Conditions";
-    [self presentViewController:menuController animated:YES completion:nil];
+    menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
+    [self presentViewController:menuController animated:NO completion:nil];
 }
 
 @end

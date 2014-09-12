@@ -10,7 +10,7 @@
 #import "PEMenuViewController.h"
 
 
-@interface PESpecializationViewController : UIViewController
+@interface PESpecialisationViewController : UIViewController
 
 
 @end

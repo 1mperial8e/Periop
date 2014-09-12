@@ -12,5 +12,10 @@
 
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) NSString * textToShow;
+@property (assign, nonatomic) NSInteger buttonPositionY;
+@property (assign, nonatomic) BOOL isButtonVisible;
+@property (assign, nonatomic) CGFloat sizeOfFontInNavLabel;
+@property (weak, nonatomic) IBOutlet UIView *viewSelection;
+@property (weak, nonatomic) IBOutlet UIButton *specializationButton;
 
 @end

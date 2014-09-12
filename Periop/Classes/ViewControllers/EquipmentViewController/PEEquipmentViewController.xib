@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEEquipmentViewController">
             <connections>
+                <outlet property="addNewButton" destination="0kO-fo-aZs" id="UND-CV-0jq"/>
+                <outlet property="emailButton" destination="Xrl-pi-xee" id="OFZ-jz-G0r"/>
                 <outlet property="tableView" destination="OnU-NU-AdJ" id="rEr-hF-MlU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,7 +22,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-fo-aZs">
-                            <rect key="frame" x="-3" y="0.0" width="160" height="36"/>
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.60392156862745094" green="0.88627450980392153" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Add New">
@@ -31,7 +33,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-pi-xee">
-                            <rect key="frame" x="163" y="0.0" width="160" height="36"/>
+                            <rect key="frame" x="160" y="0.0" width="160" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666669999997" alpha="0.66000000000000003" colorSpace="calibratedWhite"/>
                             <state key="normal" title="E-mail">

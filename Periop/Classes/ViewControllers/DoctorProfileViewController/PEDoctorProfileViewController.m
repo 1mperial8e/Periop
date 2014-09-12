@@ -8,6 +8,8 @@
 
 #import "PEDoctorProfileViewController.h"
 #import "PEAddEditDoctorViewController.h"
+#import "PENotesViewController.h"
+#import "PEMediaSelect.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -77,16 +79,44 @@
 #pragma mark - IBActions 
 
 - (IBAction)propButton:(id)sender{
-
+    PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
+    addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
+    [self.navigationController pushViewController:addEditDoctorView animated:NO];
 }
 
-- (IBAction)photoButtons:(id)sender {
-}
 
 - (IBAction)propertiesButtons:(id)sender {
+    PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
+    notesView.navigationLabelText = @"Doctors Notes";
+    [self.navigationController pushViewController:notesView animated:NO];
 }
 
 - (IBAction)detailsButton:(id)sender {
+}
+
+- (IBAction)photoButtons:(id)sender {
+    CGRect position = self.doctorPhotoImageView.frame;
+    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect * view = array[0];
+    view.frame = position;
+    view.tag = 35;
+    [self.view addSubview:view];
+}
+
+#pragma mark - XIB Action
+
+//methods from xib view
+- (IBAction)albumPhoto:(id)sender {
+    NSLog(@"albumPhoto from Op");
+}
+
+- (IBAction)cameraPhoto:(id)sender {
+    NSLog(@"camera Photo from Op");
+}
+
+- (IBAction)tapOnView:(id)sender {
+    NSLog(@"tap on View");
+    [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource
@@ -111,8 +141,5 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"Specialization";
 }
-
-
-
 
 @end

@@ -9,6 +9,7 @@
 #import "PEEquipmentViewController.h"
 #import "PEEquipmentCategoryTableViewCell.h"
 #import "PEToolsDetailsViewController.h"
+#import "PEAddNewToolViewController.h"
 
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 //prop for storing set of cell
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
+@property (weak, nonatomic) IBOutlet UIButton *addNewButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
 @end
 
@@ -47,7 +50,7 @@
     self.navigationBarLabel = navigationLabel;
     
     //add buttons
-    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"X" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
     //navigation backButton
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -59,6 +62,26 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
     //init set for storing currently edited cell
     self.cellCurrentlyEditing = [NSMutableSet new];
+    
+    //set gradient baclground to procedure button
+    CAGradientLayer * buttonAddLayer = [CAGradientLayer layer];
+    buttonAddLayer.frame = self.addNewButton.layer.bounds;
+    NSArray * colorArrayProcedure = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:249/255.0 green:236/255.0 blue:254/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:234/255.0 green:240/255.0 blue:254/255.0 alpha:1.0f].CGColor, nil];
+    buttonAddLayer.colors = colorArrayProcedure;
+    NSArray* location = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0f], [NSNumber numberWithFloat:1.0f], nil];
+    buttonAddLayer.locations = location;
+    buttonAddLayer.cornerRadius = self.addNewButton.layer.cornerRadius;
+    [self.addNewButton.layer addSublayer:buttonAddLayer];
+    
+    //set gradient baclground to doctors button
+    CAGradientLayer * sendMailLayer = [CAGradientLayer layer];
+    sendMailLayer.frame = self.emailButton.layer.bounds;
+    NSArray * colorArrayDoctors = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:160/255.0 green:227/255.0 blue:205/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:139/255.0 green:222/255.0 blue:205/255.0 alpha:1.0f].CGColor, nil];
+    sendMailLayer.colors = colorArrayDoctors;
+    sendMailLayer.locations = location;
+    sendMailLayer.cornerRadius = self.emailButton.layer.cornerRadius;
+    [self.emailButton.layer addSublayer:sendMailLayer];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +103,8 @@
 #pragma mark - IBActions
 
 - (IBAction)addNewButton:(id)sender {
+    PEAddNewToolViewController * addNewTool = [[PEAddNewToolViewController alloc] initWithNibName:@"PEAddNewToolViewController" bundle:nil];
+    [self.navigationController pushViewController:addNewTool animated:NO];
 }
 
 - (IBAction)eMailButton:(id)sender {
@@ -121,7 +146,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PEToolsDetailsViewController * toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
-    [self.navigationController pushViewController:toolDetailsView animated:YES];
+    [self.navigationController pushViewController:toolDetailsView animated:NO];
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate

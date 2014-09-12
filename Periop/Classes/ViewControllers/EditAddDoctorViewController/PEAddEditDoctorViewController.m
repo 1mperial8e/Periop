@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+#import "PEMediaSelect.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PEEditAddDoctorTableViewCell.h"
 #import "PEProceduresTableViewCell.h"
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addPhotoFromGalery;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
 
@@ -42,7 +43,12 @@
     UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
     navigationLabel.backgroundColor = [UIColor clearColor];
     navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.text = @"Add Surgeon";
+    if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
+        navigationLabel.text=self.navigationLabelDescription;
+    }
+    else{
+        navigationLabel.text = @"Add Surgeon";
+    }
     navigationLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel = navigationLabel;
     
@@ -82,6 +88,32 @@
 -(IBAction)saveButton :(id)sender{
     
 }
+- (IBAction)addPhoto:(id)sender {
+    CGRect position = self.imageView.frame;
+    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect * view = array[0];
+    view.frame = position;
+    view.tag = 35;
+    [self.view addSubview:view];
+}
+
+#pragma mark - XIB Action
+
+//methods from xib view
+- (IBAction)albumPhoto:(id)sender {
+    NSLog(@"albumPhoto from Op");
+}
+
+- (IBAction)cameraPhoto:(id)sender {
+    NSLog(@"camera Photo from Op");
+}
+
+- (IBAction)tapOnView:(id)sender {
+    NSLog(@"tap on View");
+    [[self.view viewWithTag:35] removeFromSuperview];
+}
+
+
 
 #pragma mark - UITableViewDataSource
 

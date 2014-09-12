@@ -9,6 +9,7 @@
 #import "PEPatientPositioningViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEPatientPostioningPreviewCollectionView.h"
+#import "PEMediaSelect.h"
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *previewCollectionView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (weak, nonatomic) IBOutlet UIView *rootView;
 
 @end
 
@@ -96,7 +98,30 @@
 }
 
 - (IBAction)operationWithPhotoButton:(id)sender {
+    CGRect position = self.rootView.frame;
+    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect * view = array[0];
+    view.frame = position;
+    view.tag = 35;
+    [self.view addSubview:view];
 }
+
+#pragma mark - XIB Action
+
+//methods from xib view
+- (IBAction)albumPhoto:(id)sender {
+    NSLog(@"albumPhoto from Op");
+}
+
+- (IBAction)cameraPhoto:(id)sender {
+    NSLog(@"camera Photo from Op");
+}
+
+- (IBAction)tapOnView:(id)sender {
+    NSLog(@"tap on View");
+    [[self.view viewWithTag:35] removeFromSuperview];
+}
+
 
 #pragma mark - UICollectionViewDataSource
 

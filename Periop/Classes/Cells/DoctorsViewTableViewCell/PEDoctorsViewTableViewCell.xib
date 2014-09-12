@@ -42,6 +42,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="buttonDelete" destination="MpU-KX-xJe" id="D7Q-fu-Ktg"/>
                 <outlet property="deleteButton" destination="MpU-KX-xJe" id="35c-v1-HDg"/>
                 <outlet property="doctorNameLabel" destination="nbG-od-zVc" id="dqX-e0-eW8"/>
                 <outlet property="viewDoctorsNameView" destination="2mM-c1-3Mz" id="7IR-6f-lsL"/>

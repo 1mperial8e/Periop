@@ -10,4 +10,6 @@
 
 @interface PEAddEditDoctorViewController : UIViewController
 
+@property (copy,nonatomic)NSString * navigationLabelDescription;
+
 @end

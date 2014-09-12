@@ -14,7 +14,6 @@
 		8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8474906D19B8459E0013C446 /* InfoPlist.strings */; };
 		8474907119B8459E0013C446 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474907019B8459E0013C446 /* main.m */; };
 		8474907519B8459E0013C446 /* PEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474907419B8459E0013C446 /* PEAppDelegate.m */; };
-		8474907819B8459E0013C446 /* Periop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8474907619B8459E0013C446 /* Periop.xcdatamodeld */; };
 		8474907A19B8459E0013C446 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8474907919B8459E0013C446 /* Images.xcassets */; };
 		8474908119B8459E0013C446 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474908019B8459E0013C446 /* XCTest.framework */; };
 		8474908219B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
@@ -36,6 +35,10 @@
 		ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B319BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib */; };
 		ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */; };
 		ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */; };
+		ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED350F3019C0979500512663 /* PECoreDataManager.m */; };
+		ED50B5A719C0BA8800167994 /* PeriopDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED50B5A519C0BA8800167994 /* PeriopDataBase.xcdatamodeld */; };
+		ED5DB58019C32C3100FDD358 /* PEMediaSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */; };
+		ED5DB58219C32C5F00FDD358 /* PEMediaSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */; };
 		EDA7DFEC19BAD745002A70E8 /* PEDoctorsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFEA19BAD744002A70E8 /* PEDoctorsViewTableViewCell.m */; };
 		EDA7DFED19BAD745002A70E8 /* PEDoctorsViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFEB19BAD744002A70E8 /* PEDoctorsViewTableViewCell.xib */; };
 		EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFF019BAE5EA002A70E8 /* PEAboutUsViewController.m */; };
@@ -54,10 +57,13 @@
 		EDC91ED619B9C9F700212F24 /* PEEquipmentCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC91ED419B9C9F700212F24 /* PEEquipmentCategoryTableViewCell.xib */; };
 		EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91ED919B9E3A200212F24 /* PEToolsDetailsViewController.m */; };
 		EDC91EDC19B9E3A200212F24 /* PEToolsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC91EDA19B9E3A200212F24 /* PEToolsDetailsViewController.xib */; };
+		EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD17D519C18BD900BA36C9 /* PEObjectDescription.m */; };
+		EDCD17D919C1B16800BA36C9 /* SomeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD17D819C1B16800BA36C9 /* SomeEntity.m */; };
+		EDCD17DC19C1B16900BA36C9 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD17DB19C1B16900BA36C9 /* Entity.m */; };
 		EDCD57CC19B8741600EC7AF1 /* PEDownloadingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57C219B8741600EC7AF1 /* PEDownloadingScreenViewController.m */; };
 		EDCD57CD19B8741600EC7AF1 /* PEDownloadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57C319B8741600EC7AF1 /* PEDownloadingScreenViewController.xib */; };
-		EDCD57CE19B8741600EC7AF1 /* PESpecializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57C619B8741600EC7AF1 /* PESpecializationViewController.m */; };
-		EDCD57CF19B8741600EC7AF1 /* PESpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57C719B8741600EC7AF1 /* PESpecializationViewController.xib */; };
+		EDCD57CE19B8741600EC7AF1 /* PESpecialisationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57C619B8741600EC7AF1 /* PESpecialisationViewController.m */; };
+		EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */; };
 		EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57CA19B8741600EC7AF1 /* PESplashViewController.m */; };
 		EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57CB19B8741600EC7AF1 /* PESplashViewController.xib */; };
 		EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57D819B874DE00EC7AF1 /* PEMenuViewController.m */; };
@@ -106,7 +112,6 @@
 		8474907219B8459E0013C446 /* Periop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Periop-Prefix.pch"; sourceTree = "<group>"; };
 		8474907319B8459E0013C446 /* PEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEAppDelegate.h; sourceTree = "<group>"; };
 		8474907419B8459E0013C446 /* PEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEAppDelegate.m; sourceTree = "<group>"; };
-		8474907719B8459E0013C446 /* Periop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Periop.xcdatamodel; sourceTree = "<group>"; };
 		8474907919B8459E0013C446 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8474907F19B8459E0013C446 /* PeriopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeriopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474908019B8459E0013C446 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -134,6 +139,12 @@
 		ED0D30B719BA14E1001F8411 /* PEProceduresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEProceduresTableViewCell.h; sourceTree = "<group>"; };
 		ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEProceduresTableViewCell.m; sourceTree = "<group>"; };
 		ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEProceduresTableViewCell.xib; sourceTree = "<group>"; };
+		ED350F2F19C0979500512663 /* PECoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECoreDataManager.h; sourceTree = "<group>"; };
+		ED350F3019C0979500512663 /* PECoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECoreDataManager.m; sourceTree = "<group>"; };
+		ED50B5A619C0BA8800167994 /* PeriopDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeriopDataBase.xcdatamodel; sourceTree = "<group>"; };
+		ED5DB57E19C32C3100FDD358 /* PEMediaSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMediaSelect.h; sourceTree = "<group>"; };
+		ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMediaSelect.m; sourceTree = "<group>"; };
+		ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEMediaSelect.xib; sourceTree = "<group>"; };
 		EDA7DFE919BAD744002A70E8 /* PEDoctorsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsViewTableViewCell.h; sourceTree = "<group>"; };
 		EDA7DFEA19BAD744002A70E8 /* PEDoctorsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsViewTableViewCell.m; sourceTree = "<group>"; };
 		EDA7DFEB19BAD744002A70E8 /* PEDoctorsViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -161,12 +172,18 @@
 		EDC91ED819B9E3A200212F24 /* PEToolsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEToolsDetailsViewController.h; sourceTree = "<group>"; };
 		EDC91ED919B9E3A200212F24 /* PEToolsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEToolsDetailsViewController.m; sourceTree = "<group>"; };
 		EDC91EDA19B9E3A200212F24 /* PEToolsDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEToolsDetailsViewController.xib; sourceTree = "<group>"; };
+		EDCD17D419C18BD900BA36C9 /* PEObjectDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEObjectDescription.h; sourceTree = "<group>"; };
+		EDCD17D519C18BD900BA36C9 /* PEObjectDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEObjectDescription.m; sourceTree = "<group>"; };
+		EDCD17D719C1B16800BA36C9 /* SomeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomeEntity.h; sourceTree = "<group>"; };
+		EDCD17D819C1B16800BA36C9 /* SomeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeEntity.m; sourceTree = "<group>"; };
+		EDCD17DA19C1B16900BA36C9 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		EDCD17DB19C1B16900BA36C9 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		EDCD57C119B8741600EC7AF1 /* PEDownloadingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDownloadingScreenViewController.h; sourceTree = "<group>"; };
 		EDCD57C219B8741600EC7AF1 /* PEDownloadingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDownloadingScreenViewController.m; sourceTree = "<group>"; };
 		EDCD57C319B8741600EC7AF1 /* PEDownloadingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDownloadingScreenViewController.xib; sourceTree = "<group>"; };
-		EDCD57C519B8741600EC7AF1 /* PESpecializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESpecializationViewController.h; sourceTree = "<group>"; };
-		EDCD57C619B8741600EC7AF1 /* PESpecializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESpecializationViewController.m; sourceTree = "<group>"; };
-		EDCD57C719B8741600EC7AF1 /* PESpecializationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PESpecializationViewController.xib; sourceTree = "<group>"; };
+		EDCD57C519B8741600EC7AF1 /* PESpecialisationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESpecialisationViewController.h; sourceTree = "<group>"; };
+		EDCD57C619B8741600EC7AF1 /* PESpecialisationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESpecialisationViewController.m; sourceTree = "<group>"; };
+		EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PESpecialisationViewController.xib; sourceTree = "<group>"; };
 		EDCD57C919B8741600EC7AF1 /* PESplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESplashViewController.h; sourceTree = "<group>"; };
 		EDCD57CA19B8741600EC7AF1 /* PESplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESplashViewController.m; sourceTree = "<group>"; };
 		EDCD57CB19B8741600EC7AF1 /* PESplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PESplashViewController.xib; sourceTree = "<group>"; };
@@ -265,11 +282,11 @@
 		8474906A19B8459E0013C446 /* Periop */ = {
 			isa = PBXGroup;
 			children = (
+				ED50B59E19C0A4FD00167994 /* CoreData */,
 				EDCD57A519B8479100EC7AF1 /* Classes */,
 				8474907319B8459E0013C446 /* PEAppDelegate.h */,
 				8474907419B8459E0013C446 /* PEAppDelegate.m */,
 				8474907919B8459E0013C446 /* Images.xcassets */,
-				8474907619B8459E0013C446 /* Periop.xcdatamodeld */,
 				8474906B19B8459E0013C446 /* Supporting Files */,
 			);
 			path = Periop;
@@ -384,6 +401,42 @@
 			path = ProceduresTableViewCell;
 			sourceTree = "<group>";
 		};
+		ED19143319C30C8B004C6850 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				ED19143419C30C9F004C6850 /* PEMediaSelectView */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
+		ED19143419C30C9F004C6850 /* PEMediaSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				ED5DB57E19C32C3100FDD358 /* PEMediaSelect.h */,
+				ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */,
+				ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */,
+			);
+			path = PEMediaSelectView;
+			sourceTree = "<group>";
+		};
+		ED350F2E19C096E900512663 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED350F2F19C0979500512663 /* PECoreDataManager.h */,
+				ED350F3019C0979500512663 /* PECoreDataManager.m */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		ED50B59E19C0A4FD00167994 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				EDCD17D219C1777800BA36C9 /* TODeleteGroup */,
+				ED50B5A519C0BA8800167994 /* PeriopDataBase.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		EDA7DFE819BAD744002A70E8 /* DoctorsViewTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,9 +527,31 @@
 			path = ToolDetailsViewController;
 			sourceTree = "<group>";
 		};
+		EDCD17D219C1777800BA36C9 /* TODeleteGroup */ = {
+			isa = PBXGroup;
+			children = (
+				EDCD17DA19C1B16900BA36C9 /* Entity.h */,
+				EDCD17DB19C1B16900BA36C9 /* Entity.m */,
+				EDCD17D719C1B16800BA36C9 /* SomeEntity.h */,
+				EDCD17D819C1B16800BA36C9 /* SomeEntity.m */,
+			);
+			path = TODeleteGroup;
+			sourceTree = "<group>";
+		};
+		EDCD17D319C18BAA00BA36C9 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				EDCD17D419C18BD900BA36C9 /* PEObjectDescription.h */,
+				EDCD17D519C18BD900BA36C9 /* PEObjectDescription.m */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		EDCD57A519B8479100EC7AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				ED19143319C30C8B004C6850 /* UIViews */,
+				EDCD17D319C18BAA00BA36C9 /* DataModel */,
 				EDCD57E219B8814500EC7AF1 /* Cells */,
 				EDCD57A619B8479100EC7AF1 /* Managers */,
 				EDCD57A719B8479100EC7AF1 /* ViewControllers */,
@@ -487,6 +562,7 @@
 		EDCD57A619B8479100EC7AF1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				ED350F2E19C096E900512663 /* DataManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -531,9 +607,9 @@
 		EDCD57C419B8741600EC7AF1 /* SpecialisationViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EDCD57C519B8741600EC7AF1 /* PESpecializationViewController.h */,
-				EDCD57C619B8741600EC7AF1 /* PESpecializationViewController.m */,
-				EDCD57C719B8741600EC7AF1 /* PESpecializationViewController.xib */,
+				EDCD57C519B8741600EC7AF1 /* PESpecialisationViewController.h */,
+				EDCD57C619B8741600EC7AF1 /* PESpecialisationViewController.m */,
+				EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */,
 			);
 			path = SpecialisationViewController;
 			sourceTree = "<group>";
@@ -758,7 +834,8 @@
 				EDA7DFFF19BAEA4A002A70E8 /* PEFeedbackViewController.xib in Resources */,
 				EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */,
 				EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */,
-				EDCD57CF19B8741600EC7AF1 /* PESpecializationViewController.xib in Resources */,
+				EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */,
+				ED5DB58219C32C5F00FDD358 /* PEMediaSelect.xib in Resources */,
 				EDCD583E19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib in Resources */,
 				ED0D2FB419BA0762001F8411 /* PEAddEditDoctorViewController.xib in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
@@ -799,7 +876,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCD17DC19C1B16900BA36C9 /* Entity.m in Sources */,
 				ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */,
+				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
@@ -811,7 +890,6 @@
 				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
-				8474907819B8459E0013C446 /* Periop.xcdatamodeld in Sources */,
 				EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
@@ -819,11 +897,15 @@
 				EDA7DFFE19BAEA4A002A70E8 /* PEFeedbackViewController.m in Sources */,
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
+				EDCD17D919C1B16800BA36C9 /* SomeEntity.m in Sources */,
+				ED5DB58019C32C3100FDD358 /* PEMediaSelect.m in Sources */,
 				EDCD57E619B881F200EC7AF1 /* PESpecialisationCollectionViewCell.m in Sources */,
 				EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */,
 				ED0D2FAD19BA0367001F8411 /* PEDoctorsProfileTableViewCell.m in Sources */,
+				ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */,
+				ED50B5A719C0BA8800167994 /* PeriopDataBase.xcdatamodeld in Sources */,
 				ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */,
-				EDCD57CE19B8741600EC7AF1 /* PESpecializationViewController.m in Sources */,
+				EDCD57CE19B8741600EC7AF1 /* PESpecialisationViewController.m in Sources */,
 				EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */,
 				ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */,
 				EDCD57CC19B8741600EC7AF1 /* PEDownloadingScreenViewController.m in Sources */,
@@ -1044,13 +1126,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8474907619B8459E0013C446 /* Periop.xcdatamodeld */ = {
+		ED50B5A519C0BA8800167994 /* PeriopDataBase.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8474907719B8459E0013C446 /* Periop.xcdatamodel */,
+				ED50B5A619C0BA8800167994 /* PeriopDataBase.xcdatamodel */,
 			);
-			currentVersion = 8474907719B8459E0013C446 /* Periop.xcdatamodel */;
-			path = Periop.xcdatamodeld;
+			currentVersion = ED50B5A619C0BA8800167994 /* PeriopDataBase.xcdatamodel */;
+			path = PeriopDataBase.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

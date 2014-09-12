@@ -26,6 +26,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *doctorNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *viewDoctorsNameView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonDelete;
 
 @property (strong, nonatomic) id <PEDoctorsViewTableViewCellDelegate> delegate;
 //method for protocol PEDoctorsViewTableViewCellDelegate

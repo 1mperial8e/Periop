@@ -19,8 +19,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-lh-IV7">
-                            <rect key="frame" x="0.0" y="-6" width="160" height="264"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-lh-IV7">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Preperation">
@@ -31,7 +31,7 @@
                                 <action selector="preparationButton:" destination="-1" eventType="touchUpInside" id="sS4-3z-g5R"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-75-YrX">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-75-YrX">
                             <rect key="frame" x="160" y="0.0" width="160" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Operation Room">
@@ -41,8 +41,8 @@
                                 <action selector="operationRoomButton:" destination="-1" eventType="touchUpInside" id="VCa-2p-NZc"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3dj-2r-FcK">
-                            <rect key="frame" x="0.0" y="264" width="160" height="265"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3dj-2r-FcK">
+                            <rect key="frame" x="0.0" y="264" width="161" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Patient Positioning">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,8 +51,8 @@
                                 <action selector="patientPositioningButton:" destination="-1" eventType="touchUpInside" id="KqG-Re-eIS"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U9-ml-JxM">
-                            <rect key="frame" x="173" y="264" width="160" height="264"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U9-ml-JxM">
+                            <rect key="frame" x="159" y="264" width="161" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Notes">
@@ -63,10 +63,14 @@
                                 <action selector="notesButton:" destination="-1" eventType="touchUpInside" id="v7f-oM-Er3"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-aO-QN2">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-aO-QN2">
                             <rect key="frame" x="80" y="184" width="160" height="160"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="160" id="FrL-fM-4c3"/>
+                                <constraint firstAttribute="height" constant="160" id="feb-X4-oyf"/>
+                            </constraints>
                             <state key="normal" title="Equipment">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -77,7 +81,28 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="Ewi-5u-FNU"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="width" secondItem="3dj-2r-FcK" secondAttribute="width" id="1Gt-wK-6GG"/>
+                        <constraint firstAttribute="bottom" secondItem="0U9-ml-JxM" secondAttribute="bottom" id="2TA-B0-Bfu"/>
+                        <constraint firstAttribute="centerY" secondItem="xJU-aO-QN2" secondAttribute="centerY" id="5lS-fD-TVc"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="6Tl-6a-ZOh"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="width" secondItem="0U9-ml-JxM" secondAttribute="width" id="Dg4-rA-Xw4"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="height" secondItem="3dj-2r-FcK" secondAttribute="height" id="ERr-N3-tPW"/>
+                        <constraint firstItem="ekE-75-YrX" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="Hfa-XR-2e7"/>
+                        <constraint firstAttribute="trailing" secondItem="0U9-ml-JxM" secondAttribute="trailing" id="I9q-1z-Eo9"/>
+                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="Kx2-gy-doy"/>
+                        <constraint firstItem="0U9-ml-JxM" firstAttribute="leading" secondItem="3dj-2r-FcK" secondAttribute="trailing" id="Mw7-PW-Zdv"/>
+                        <constraint firstAttribute="centerX" secondItem="xJU-aO-QN2" secondAttribute="centerX" id="TD3-dR-sF4"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="width" secondItem="ekE-75-YrX" secondAttribute="width" id="Ur7-EK-NQo"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="height" secondItem="ekE-75-YrX" secondAttribute="height" id="Z9m-v3-SSL"/>
+                        <constraint firstAttribute="bottom" secondItem="3dj-2r-FcK" secondAttribute="bottom" id="aOc-Am-H0n"/>
+                        <constraint firstItem="ekE-75-YrX" firstAttribute="leading" secondItem="SSn-lh-IV7" secondAttribute="trailing" id="bes-tE-ov2"/>
+                        <constraint firstItem="0U9-ml-JxM" firstAttribute="leading" secondItem="3dj-2r-FcK" secondAttribute="trailing" id="hAO-Kf-lVL"/>
+                        <constraint firstAttribute="trailing" secondItem="ekE-75-YrX" secondAttribute="trailing" id="hwQ-XQ-2me"/>
+                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="n3u-aZ-C5p"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="height" secondItem="0U9-ml-JxM" secondAttribute="height" id="pg4-ow-Usu"/>
+                        <constraint firstItem="SSn-lh-IV7" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="rei-UM-vNI"/>
+                        <constraint firstItem="ekE-75-YrX" firstAttribute="leading" secondItem="SSn-lh-IV7" secondAttribute="trailing" id="uNa-Ph-1Kf"/>
+                        <constraint firstItem="3dj-2r-FcK" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="vfO-F7-zdn"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mna-v9-mOd">

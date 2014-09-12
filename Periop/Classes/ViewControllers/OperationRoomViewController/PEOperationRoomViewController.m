@@ -8,6 +8,7 @@
 
 #import "PEOperationRoomViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
+#import "PEMediaSelect.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
+
 
 @end
 
@@ -108,6 +110,35 @@
     return cell;
 
 }
+
+#pragma mark - IBActions
+- (IBAction)photoButton:(id)sender {
+
+    CGRect position = self.collectionView.frame;
+    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect * view = array[0];
+    view.frame = position;
+    view.tag = 35;
+    [self.view addSubview:view];
+    
+}
+
+#pragma mark - XIB Action
+
+//methods from xib view
+- (IBAction)albumPhoto:(id)sender {
+    NSLog(@"albumPhoto from Op");
+}
+
+- (IBAction)cameraPhoto:(id)sender {
+    NSLog(@"camera Photo from Op");
+}
+
+- (IBAction)tapOnView:(id)sender {
+     NSLog(@"tap on View");
+    [[self.view viewWithTag:35] removeFromSuperview];
+}
+
 
 
 @end

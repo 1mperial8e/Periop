@@ -41,7 +41,7 @@
     UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
     //set text aligment - center
     navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.text =@"Procedure Name";
+    navigationLabel.text =self.navigationLabelText;
     //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     navigationLabel.textColor = [UIColor whiteColor];
@@ -82,7 +82,7 @@
 
 - (IBAction)addNewNotes :(id)sender{
     PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
-    [self.navigationController pushViewController:addEditNote animated:YES];
+    [self.navigationController pushViewController:addEditNote animated:NO];
 }
 
 #pragma marl - TableViewDataSource

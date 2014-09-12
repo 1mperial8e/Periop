@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Entity" representedClassName="Entity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="someEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SomeEntity" inverseName="toEntity" inverseEntity="SomeEntity" syncable="YES"/>
+        <relationship name="thisEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity" inverseName="thisEntity" inverseEntity="Entity" syncable="YES"/>
+    </entity>
+    <entity name="SomeEntity" representedClassName="SomeEntity" syncable="YES">
+        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attribute2" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entity" inverseName="someEntity" inverseEntity="Entity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Entity" positionX="-27" positionY="18" width="128" height="88"/>
+        <element name="SomeEntity" positionX="18" positionY="72" width="128" height="103"/>
+    </elements>
+</model>

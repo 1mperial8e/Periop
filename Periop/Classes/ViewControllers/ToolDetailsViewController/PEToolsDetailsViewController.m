@@ -9,6 +9,7 @@
 #import "PEToolsDetailsViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEAddNewToolViewController.h"
+#import "PEMediaSelect.h"
 
 @interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -49,7 +50,7 @@
     //q-ty of lines - 0 - many lines allowed
     navigationLabel.numberOfLines = 0;
     //set text
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Preperation"];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Name"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
                               value:[UIFont systemFontOfSize:16.0]
@@ -67,7 +68,7 @@
     navigationLabel.textColor = [UIColor whiteColor];
     
     //create button for menu
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@":" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
+    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
     //add button to navigation bar
     self.navigationItem.rightBarButtonItem=propButton;
     
@@ -95,13 +96,37 @@
 
 #pragma mark - IBActions
 
-- (IBAction)photoButton:(id)sender {
+- (IBAction)propButton:(id)sender {
+    
 }
 
-- (IBAction)propButton:(id)sender {
-    PEAddNewToolViewController * addNewTool = [[PEAddNewToolViewController alloc] initWithNibName:@"PEAddNewToolViewController" bundle:nil];
-    [self.navigationController pushViewController:addNewTool animated:YES];
+- (IBAction)photoButton:(id)sender {
+    CGRect position = self.collectionView.frame;
+    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect * view = array[0];
+    view.frame = position;
+    view.tag = 35;
+    [self.view addSubview:view];
 }
+
+#pragma mark - XIB Action
+
+//methods from xib view
+- (IBAction)albumPhoto:(id)sender {
+    NSLog(@"albumPhoto from Op");
+}
+
+- (IBAction)cameraPhoto:(id)sender {
+    NSLog(@"camera Photo from Op");
+}
+
+- (IBAction)tapOnView:(id)sender {
+    NSLog(@"tap on View");
+    [[self.view viewWithTag:35] removeFromSuperview];
+}
+
+
+
 
 #pragma mark - UICollectionViewDataSource
 
