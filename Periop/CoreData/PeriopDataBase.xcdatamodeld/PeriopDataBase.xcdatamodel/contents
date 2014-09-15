@@ -1,18 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Entity" representedClassName="Entity" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="someEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SomeEntity" inverseName="toEntity" inverseEntity="SomeEntity" syncable="YES"/>
-        <relationship name="thisEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity" inverseName="thisEntity" inverseEntity="Entity" syncable="YES"/>
+    <entity name="Doctors" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="specialityCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="doctor" inverseEntity="Note" syncable="YES"/>
+        <relationship name="procedure" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="doctors" inverseEntity="Procedure" syncable="YES"/>
+        <relationship name="specialisation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Specialisation" inverseName="doctors" inverseEntity="Specialisation" syncable="YES"/>
     </entity>
-    <entity name="SomeEntity" representedClassName="SomeEntity" syncable="YES">
-        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="attribute1" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="attribute2" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="toEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entity" inverseName="someEntity" inverseEntity="Entity" syncable="YES"/>
+    <entity name="EquipmentsTool" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="equipments" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="Note" syncable="YES">
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="textDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctors" inverseName="notes" inverseEntity="Doctors" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="notes" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="OperationRoom" syncable="YES">
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="stepDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stepName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="operationRooms" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="PatientPostioning" syncable="YES">
+        <attribute name="patientDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="patientPostioning" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="Preparation" syncable="YES">
+        <attribute name="preparationText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="preparation" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="Procedure" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="procedureID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="procedure" inverseEntity="Doctors" syncable="YES"/>
+        <relationship name="equipments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EquipmentsTool" inverseName="procedure" inverseEntity="EquipmentsTool" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="procedure" inverseEntity="Note" syncable="YES"/>
+        <relationship name="operationRooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OperationRoom" inverseName="procedure" inverseEntity="OperationRoom" syncable="YES"/>
+        <relationship name="patientPostioning" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientPostioning" inverseName="procedure" inverseEntity="PatientPostioning" syncable="YES"/>
+        <relationship name="preparation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preparation" inverseName="procedure" inverseEntity="Preparation" syncable="YES"/>
+        <relationship name="specialization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Specialisation" inverseName="procedures" inverseEntity="Specialisation" syncable="YES"/>
+    </entity>
+    <entity name="Specialisation" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="specID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="specialisation" inverseEntity="Doctors" syncable="YES"/>
+        <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Entity" positionX="-27" positionY="18" width="128" height="88"/>
-        <element name="SomeEntity" positionX="18" positionY="72" width="128" height="103"/>
+        <element name="Note" positionX="-162" positionY="-18" width="128" height="118"/>
+        <element name="PatientPostioning" positionX="-351" positionY="144" width="128" height="88"/>
+        <element name="Preparation" positionX="-405" positionY="243" width="128" height="73"/>
+        <element name="OperationRoom" positionX="34" positionY="185" width="128" height="103"/>
+        <element name="EquipmentsTool" positionX="-326" positionY="-18" width="128" height="148"/>
+        <element name="Doctors" positionX="34" positionY="-18" width="128" height="133"/>
+        <element name="Procedure" positionX="-137" positionY="180" width="128" height="178"/>
+        <element name="Specialisation" positionX="214" positionY="230" width="128" height="103"/>
+        <element name="User" positionX="243" positionY="-9" width="128" height="60"/>
     </elements>
 </model>

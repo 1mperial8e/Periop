@@ -10,6 +10,7 @@
 
 @interface PESplashViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageLogo;
+@property (weak, nonatomic) IBOutlet UILabel *downloadingLabel;
 
 @end
 #pragma mark - Lifecycle

@@ -44,8 +44,11 @@
     self.navigationBarLabel = navigationLabel;
     
     //create button for menu
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(menuButton:)];
-    menuBarButton.width=60.0;
+    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
     //add button to navigation bar
     self.navigationItem.leftBarButtonItem=menuBarButton;
     //create button for menu

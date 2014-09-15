@@ -17,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    PESpecialisationViewController * startScreen = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecializationViewController" bundle:nil];
+    PESpecialisationViewController * startScreen = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:startScreen];
     //resize viewController to meat size of windows with navigation controller
     navController.navigationBar.translucent = NO;

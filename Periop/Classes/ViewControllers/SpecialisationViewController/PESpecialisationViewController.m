@@ -11,12 +11,6 @@
 #import "PEProcedureListViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#warning - JUST FOR CHECKING DATAMANAGER -TO DELETE
-#import "PECoreDataManager.h"
-#import "SomeEntity.h"
-#import "Entity.h"
-#import "PEObjectDescription.h"
-
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
@@ -59,9 +53,11 @@
     self.navigationBarLabel = navigationLabel;
     
     //create button for menu
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(menuButton:)];
-    //set menuBar width for correct position of Menu button in Menu controller
-    menuBarButton.width=60.0;
+    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
 
     //add button to navigation bar
     self.navigationItem.leftBarButtonItem=menuBarButton;
@@ -71,6 +67,8 @@
     
     self.collectionView.delegate= (id)self;
     self.collectionView.dataSource = (id)self;
+    
+    
     
 #warning - TO delete
     /*
@@ -168,9 +166,11 @@
 }
 
 - (IBAction)mySpesialisationButton:(id)sender {
+    NSLog(@"1");
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender {
+    NSLog(@"2");
 }
 
 #pragma mark - CollectionViewDelegate
@@ -183,6 +183,7 @@
 }
 
 #pragma mark - CollectionViewDataSource
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return 7;
 }
