@@ -56,18 +56,14 @@
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="specialisation" inverseEntity="Doctors" syncable="YES"/>
         <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <elements>
-        <element name="Note" positionX="-162" positionY="-18" width="128" height="118"/>
-        <element name="PatientPostioning" positionX="-351" positionY="144" width="128" height="88"/>
-        <element name="Preparation" positionX="-405" positionY="243" width="128" height="73"/>
-        <element name="OperationRoom" positionX="34" positionY="185" width="128" height="103"/>
-        <element name="EquipmentsTool" positionX="-326" positionY="-18" width="128" height="148"/>
-        <element name="Doctors" positionX="34" positionY="-18" width="128" height="133"/>
-        <element name="Procedure" positionX="-137" positionY="180" width="128" height="178"/>
-        <element name="Specialisation" positionX="214" positionY="230" width="128" height="103"/>
-        <element name="User" positionX="243" positionY="-9" width="128" height="60"/>
+        <element name="Doctors" positionX="63" positionY="-18" width="128" height="133"/>
+        <element name="EquipmentsTool" positionX="-333" positionY="-180" width="128" height="148"/>
+        <element name="Note" positionX="-18" positionY="-207" width="128" height="118"/>
+        <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="103"/>
+        <element name="PatientPostioning" positionX="-333" positionY="-27" width="128" height="88"/>
+        <element name="Preparation" positionX="-333" positionY="71" width="128" height="73"/>
+        <element name="Procedure" positionX="-110" positionY="-45" width="128" height="178"/>
+        <element name="Specialisation" positionX="79" positionY="162" width="128" height="103"/>
     </elements>
 </model>
