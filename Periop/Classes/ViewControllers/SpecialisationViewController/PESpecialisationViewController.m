@@ -53,14 +53,7 @@
     self.navigationBarLabel = navigationLabel;
     
     //create button for menu
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
 
-    //add button to navigation bar
-    self.navigationItem.leftBarButtonItem=menuBarButton;
     
     //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
@@ -153,16 +146,17 @@
 #pragma mark - IBActions
 
 - (IBAction)menuButton:(id)sender{
-    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    //call to menu
     [self.navigationBarLabel removeFromSuperview];
+    
+    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = @"Specialisations";
-    menuController.navController = self.navigationController;
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.isButtonVisible = true;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:menuController animated:NO completion:nil];
+    
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
 - (IBAction)mySpesialisationButton:(id)sender {
@@ -178,8 +172,8 @@
 //on cell clicked
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //create new view and show it
-    PEProcedureListViewController * selectedProcedure = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
-    [self.navigationController pushViewController:selectedProcedure animated:NO];
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.selectedViewController = rootController.viewControllers[5];
 }
 
 #pragma mark - CollectionViewDataSource
