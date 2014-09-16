@@ -163,8 +163,9 @@
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.isButtonVisible = true;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:menuController animated:NO completion:nil];
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
 - (IBAction)mySpesialisationButton:(id)sender {
@@ -179,7 +180,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //create new view and show it
     PEProcedureListViewController * selectedProcedure = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
-    [self.navigationController pushViewController:selectedProcedure animated:NO];
+    [self.navigationController pushViewController:selectedProcedure animated:YES];
 }
 
 #pragma mark - CollectionViewDataSource

@@ -94,7 +94,7 @@
     newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    PESpecialisationViewController * spesalisationView = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecializationViewController" bundle:nil];
+    PESpecialisationViewController * spesalisationView = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
     [self.navController pushViewController:spesalisationView animated:NO];
     [self createAnimationWithKey:@"hideMenuToSpecialization"];
 }
@@ -108,6 +108,8 @@
     newCenterForView.y +=78;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.selectedViewController = rootController.viewControllers[1];
     
     [self createAnimationWithKey:@"hideMenuToSurgeons"];
 }
@@ -184,25 +186,24 @@
     self.view.layer.position= toPoint;
 }
 
-- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    if (anim==[self.view.layer animationForKey:@"hideMenuToMenu"]){
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if (anim==[self.view.layer animationForKey:@"hideMenuToMenu"]) {
         [self.view.layer removeAnimationForKey:@"hideMenuToMenu"];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToSpecialization"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToSpecialization"];
+        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        rootController.selectedViewController = rootController.viewControllers[0];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToSurgeons"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToSurgeons"];
-        PEDoctorsListViewController * doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
-        doctorsView.textToShow = SURGEON_LIST_NAME;
-        doctorsView.isButtonRequired = true;
-        [self dismissViewControllerAnimated:NO completion:nil];
-        [self.navController pushViewController:doctorsView animated:NO];
+         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToAbout"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToAbout"];
-        PEAboutUsViewController * aboutView = [[PEAboutUsViewController alloc] initWithNibName:@"PEAboutUsViewController" bundle:nil];
+        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        rootController.selectedViewController = rootController.viewControllers[2];
         [self dismissViewControllerAnimated:NO completion:nil];
-        [self.navController pushViewController:aboutView animated:NO];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToTerms"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToTerms"];
         PETermsAndConditionViewController * termsAndConditionView = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];

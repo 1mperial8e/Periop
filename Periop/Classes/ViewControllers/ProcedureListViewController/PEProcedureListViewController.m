@@ -135,7 +135,7 @@
 - (IBAction)addNewDoctor:(id)sender{
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
-    [self.navigationController pushViewController:addEditDoctorView animated:NO];
+    [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 
 #pragma mark - TableViewDataSource
@@ -166,11 +166,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.navigationBarLabel.text isEqualToString:@"Procedure Name"]){
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
-    [   self.navigationController pushViewController:procedureOptionVIew animated:NO];
-    }
-    if ([self.navigationBarLabel.text isEqualToString:@"Doctors Name"]){
+    [   self.navigationController pushViewController:procedureOptionVIew animated:YES];
+    } else if ([self.navigationBarLabel.text isEqualToString:@"Doctors Name"]){
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
-        [self.navigationController pushViewController:doctorsView animated:NO];
+        [self.navigationController pushViewController:doctorsView animated:YES];
     }
 }
 
