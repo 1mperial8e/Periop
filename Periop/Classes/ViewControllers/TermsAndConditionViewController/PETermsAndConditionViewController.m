@@ -74,11 +74,13 @@
 
 - (IBAction)menuButton:(id)sender{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.navController = self.navigationController;
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = @"Terms & Conditions";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    [self presentViewController:menuController animated:NO completion:nil];
+    
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
 @end

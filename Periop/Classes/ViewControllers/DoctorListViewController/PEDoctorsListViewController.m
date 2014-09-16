@@ -117,7 +117,7 @@
     if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]){
         [cell setCellSwiped];
     }
-    cell.doctorNameLabel.text = [NSString stringWithFormat:@"Doctor number %d", [indexPath row]];
+    cell.doctorNameLabel.text = [NSString stringWithFormat:@"Doctor number %i", (int)[indexPath row]];
     return cell;
 }
 
@@ -133,11 +133,13 @@
 
 - (IBAction)menuButton:(id)sender{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.navController = self.navigationController;
     menuController.sizeOfFontInNavLabel = self.labelToShowOnNavigationBar.font.pointSize;
     menuController.textToShow = @"Surgeon List";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    [self presentViewController:menuController animated:NO completion:nil];
+    
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
 #pragma mark - PEDoctorsViewTableViewCellDelegate

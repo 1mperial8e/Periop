@@ -124,7 +124,7 @@
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
-    cell.equipmentNameLabel.text = [NSString stringWithFormat:@"Tool number %d", [indexPath row]];
+    cell.equipmentNameLabel.text = [NSString stringWithFormat:@"Tool number %i", (int)[indexPath row]];
     
     //PEEquipmentCategoryTableViewCellDelegate
     cell.delegate = self;

@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#define ANIMATION_DURATION 0.3f
 #define ABOUT_US_NAME @"About Us"
 #define SURGEON_LIST_NAME @"Surgeon List"
 #define TERMS_COND_NAME @"Terms & Conditions"
 #define FEEDBACK_NAME @"Feedback"
+
+static CGFloat const MVCAnimationDuration = 0.3f;
+static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEMenuViewController.h"
@@ -29,25 +31,17 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
 
+@property (weak, nonatomic) UITabBarController *tabBarController;
+
 @end
 
 @implementation PEMenuViewController
 
 #pragma mark - Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // self.navigationController.navigationBar.hidden = YES;
     self.menuTitleLabel.text=self.textToShow;
     if (self.isButtonVisible){
         self.viewWithButtons.hidden = NO;
@@ -60,16 +54,17 @@
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;
     self.viewSelection.hidden = YES;
    
+    self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
 }
 
 - (void)viewDidLayoutSubviews
 {
     CGPoint newCenter = self.view.center;
-    newCenter.y -=self.view.frame.size.height;
-    newCenter.y+=self.buttonPositionY + [UIApplication sharedApplication].statusBarFrame.size.height;
+    newCenter.y -= self.view.frame.size.height;
+    newCenter.y+= self.buttonPositionY + [UIApplication sharedApplication].statusBarFrame.size.height;
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.duration = ANIMATION_DURATION;
+    animation.duration = MVCAnimationDuration;
     animation.fromValue = [NSValue valueWithCGPoint:newCenter];
     animation.toValue = [NSValue valueWithCGPoint:self.view.center];
     animation.removedOnCompletion = NO;
@@ -79,76 +74,65 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - IBActions
 
 - (IBAction)specialisationButton:(id)sender {
     self.menuTitleLabel.text = @"Specialisation";
     
-    //set new center for point on menuView
-    CGPoint newCenterForView = self.specializationButton.center;
-    newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
+    CGPoint newCenterForView = ((UIButton *)sender).center;
+    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    PESpecialisationViewController * spesalisationView = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
-    [self.navController pushViewController:spesalisationView animated:NO];
+    
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
     [self createAnimationWithKey:@"hideMenuToSpecialisation"];
 }
 
 - (IBAction)suggestionListButton:(id)sender {
     self.menuTitleLabel.text = SURGEON_LIST_NAME;
     
-    //set new center for point on menuView
-    CGPoint newCenterForView = self.specializationButton.center;
-    newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=75;
+    CGPoint newCenterForView = ((UIButton *)sender).center;
+    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-    rootController.selectedViewController = rootController.viewControllers[1];
     
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
     [self createAnimationWithKey:@"hideMenuToSurgeons"];
 }
 
 - (IBAction)aboutUsButton:(id)sender {
     self.menuTitleLabel.text = ABOUT_US_NAME;
-    //set new center for point on menuView
-    CGPoint newCenterForView = self.specializationButton.center;
-    newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=150;
+    
+    CGPoint newCenterForView = ((UIButton *)sender).center;
+    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
     
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
     [self createAnimationWithKey:@"hideMenuToAbout"];
 }
 
 - (IBAction)termsAndConditionsButton:(id)sender {
     self.menuTitleLabel.text= TERMS_COND_NAME;
     
-    //set new center for point on menuView
-    CGPoint newCenterForView = self.specializationButton.center;
-    newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=225;
+    CGPoint newCenterForView = ((UIButton *)sender).center;
+    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-
+    
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
     [self createAnimationWithKey:@"hideMenuToTerms"];
 }
 
 - (IBAction)feedbackButton:(id)sender {
-    self.menuTitleLabel.text= FEEDBACK_NAME;
-    //set new center for point on menuView
-    CGPoint newCenterForView = self.specializationButton.center;
-    newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=300;
+    self.menuTitleLabel.text = FEEDBACK_NAME;
+    
+    CGPoint newCenterForView = ((UIButton *)sender).center;
+    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-
+    
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
     [self createAnimationWithKey:@"hideMenuToFeedback"];
 }
 
@@ -173,7 +157,7 @@
     
     //create animation
     CABasicAnimation * animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
-    animationToHide.duration = ANIMATION_DURATION;
+    animationToHide.duration = MVCAnimationDuration;
     animationToHide.fromValue = [NSValue valueWithCGPoint:self.view.center];
     animationToHide.toValue = [NSValue valueWithCGPoint:toPoint];
     //do not complete
@@ -192,29 +176,21 @@
     if (anim==[self.view.layer animationForKey:@"hideMenuToMenu"]) {
         [self.view.layer removeAnimationForKey:@"hideMenuToMenu"];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToSpecialization"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToSpecialization"];
-        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        rootController.selectedViewController = rootController.viewControllers[0];
+    } else if (anim==[self.view.layer animationForKey:@"hideMenuToSpecialisation"]){
+        [self.view.layer removeAnimationForKey:@"hideMenuToSpecialisation"];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToSurgeons"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToSurgeons"];
          [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToAbout"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToAbout"];
-        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        rootController.selectedViewController = rootController.viewControllers[2];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToTerms"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToTerms"];
-        PETermsAndConditionViewController * termsAndConditionView = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
-        [self.navController pushViewController:termsAndConditionView animated:NO];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToFeedback"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToFeedback"];
-        PEFeedbackViewController * feedbackView = [[PEFeedbackViewController alloc] initWithNibName:@"PEFeedbackViewController" bundle:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
-        [self.navController pushViewController:feedbackView animated:NO];
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];
         

@@ -11,6 +11,7 @@
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"
+#import "PEProcedureListViewController.h"
 
 @implementation PEAppDelegate
 
@@ -27,7 +28,7 @@
     UINavigationController * specializationNavController = [self navControllerWithRootViewController:specializationController];
     
     PEFeedbackViewController *feedbackController = [[PEFeedbackViewController alloc] initWithNibName:@"PEFeedbackViewController" bundle:nil];
-    UINavigationController * feedbacknNavController = [self navControllerWithRootViewController:feedbackController];
+    UINavigationController * feedbackNavController = [self navControllerWithRootViewController:feedbackController];
     
     PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
     UINavigationController * termsNavController = [self navControllerWithRootViewController:termsController];
@@ -38,8 +39,11 @@
     PEAboutUsViewController *aboutUsController = [[PEAboutUsViewController alloc] initWithNibName:@"PEAboutUsViewController" bundle:nil];
     UINavigationController *aboutUsNavController = [self navControllerWithRootViewController:aboutUsController];
     
+    PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
+    UINavigationController *procedureListNavController = [self navControllerWithRootViewController:procedureListController];
+    
     UITabBarController *tabController = [[UITabBarController alloc] init];
-    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbacknNavController];
+    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController, procedureListNavController];
     tabController.tabBar.hidden = YES;
     
     self.window.rootViewController = tabController;
@@ -158,6 +162,14 @@
     navController.navigationBar.translucent = NO;
     navController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
     navController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:vievController action:NSSelectorFromString(@"menuButton:") forControlEvents:UIControlEventTouchUpInside];
+    
+    vievController.navigationItem.leftBarButtonItem=menuBarButton;    
     return navController;
 }
 

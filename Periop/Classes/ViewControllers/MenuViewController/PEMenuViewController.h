@@ -10,7 +10,6 @@
 
 @interface PEMenuViewController : UIViewController
 
-@property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) NSString * textToShow;
 @property (assign, nonatomic) NSInteger buttonPositionY;
 @property (assign, nonatomic) BOOL isButtonVisible;

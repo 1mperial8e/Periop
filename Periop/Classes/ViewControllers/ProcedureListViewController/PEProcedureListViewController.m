@@ -28,24 +28,9 @@
 
 #pragma mark - Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //create button for menu
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //dimensions of navigationbar
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
@@ -55,21 +40,14 @@
     navigationLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel = navigationLabel;
     navigationLabel.text = @"Procedure Name";
-    //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     navigationLabel.textColor = [UIColor whiteColor];
     navigationLabel.layer.zPosition = 0;
     [self.navigationController.navigationBar addSubview:navigationLabel];
-    //add button to navigation bar
-    self.navigationItem.leftBarButtonItem=menuBarButton;
-    self.navigationController.navigationBar.translucent = NO;
     
+    //add button to navigation bar
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
-    
-    //navigation backButton
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     //set delegate and dataSource for tableView
     self.tableView.delegate = self;
@@ -106,23 +84,17 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - IBActions
 
 - (IBAction)menuButton:(id)sender {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    menuController.navController = self.navigationController;
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = @"Procedure Name";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-   
-    [self presentViewController:menuController animated:NO completion:nil];
+    
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
 - (IBAction)procedureButton:(id)sender {
@@ -160,7 +132,7 @@
     else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%d ", indexPath.row ];
+    cell.textLabel.text = [NSString stringWithFormat:@"%i ", (int)indexPath.row ];
     return cell;
     
 }
