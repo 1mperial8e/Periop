@@ -59,6 +59,7 @@
     }
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;
     self.viewSelection.hidden = YES;
+   
 }
 
 - (void)viewDidLayoutSubviews
@@ -96,7 +97,7 @@
     self.viewSelection.hidden = NO;
     PESpecialisationViewController * spesalisationView = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
     [self.navController pushViewController:spesalisationView animated:NO];
-    [self createAnimationWithKey:@"hideMenuToSpecialization"];
+    [self createAnimationWithKey:@"hideMenuToSpecialisation"];
 }
 
 - (IBAction)suggestionListButton:(id)sender {
@@ -105,7 +106,7 @@
     //set new center for point on menuView
     CGPoint newCenterForView = self.specializationButton.center;
     newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=78;
+    newCenterForView.y +=75;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
@@ -119,7 +120,7 @@
     //set new center for point on menuView
     CGPoint newCenterForView = self.specializationButton.center;
     newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=156;
+    newCenterForView.y +=150;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
     
@@ -132,7 +133,7 @@
     //set new center for point on menuView
     CGPoint newCenterForView = self.specializationButton.center;
     newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=234;
+    newCenterForView.y +=225;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
 
@@ -144,7 +145,7 @@
     //set new center for point on menuView
     CGPoint newCenterForView = self.specializationButton.center;
     newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-    newCenterForView.y +=312;
+    newCenterForView.y +=300;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
 
@@ -221,25 +222,25 @@
         if ([self.menuTitleLabel.text isEqualToString:SURGEON_LIST_NAME]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=78;
+            newCenterForView.y +=75;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
         } else if ([self.menuTitleLabel.text isEqualToString:ABOUT_US_NAME]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=156;
+            newCenterForView.y +=150;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
         } else if ([self.menuTitleLabel.text isEqualToString:TERMS_COND_NAME]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=234;
+            newCenterForView.y +=225;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
         } else if ([self.menuTitleLabel.text isEqualToString:FEEDBACK_NAME]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=312;
+            newCenterForView.y +=300;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
         } else if ([self.menuTitleLabel.text isEqualToString:@"Specialisations"]){
@@ -248,11 +249,7 @@
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
         }
-
     }
-    
-    
-    
 }
 
 

@@ -9,8 +9,6 @@
 #import "PECoreDataManager.h"
 #import <CoreData/CoreData.h>
 
-#import "Entity.h"
-
 @implementation PECoreDataManager
 
 @synthesize managedObjectContext = _managedObjectContext;
