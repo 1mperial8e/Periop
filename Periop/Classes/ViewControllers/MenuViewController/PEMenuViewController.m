@@ -12,7 +12,7 @@ static NSString* const MVCAboutUs = @"About Us";
 static NSString* const MVCSurgeonList = @"Surgeon List";
 static NSString* const MVCTermsAndCond = @"Terms & Conditions";
 static NSString* const MVCFeedback = @"Feedback";
-static NSString* const MVCSpecialisation = @"Specialisation";
+static NSString* const MVCSpecialisation = @"Specialisations";
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEMenuViewController.h"
@@ -42,15 +42,15 @@ static NSString* const MVCSpecialisation = @"Specialisation";
 {
     [super viewDidLoad];
     self.menuTitleLabel.text=self.textToShow;
+    
     if (self.isButtonVisible){
         self.viewWithButtons.hidden = NO;
     }
     else{
         self.viewWithButtons.hidden = YES;
     }
-    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;
-    self.viewSelection.hidden = YES;
-   
+    
+    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
 }
 
@@ -74,63 +74,73 @@ static NSString* const MVCSpecialisation = @"Specialisation";
 #pragma mark - IBActions
 
 - (IBAction)specialisationButton:(id)sender {
-    self.menuTitleLabel.text = MVCSpecialisation;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
-    [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCSpecialisation] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSpecialisation]){
+        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    } else {
+        self.menuTitleLabel.text = MVCSpecialisation;
+        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
+    }
 }
 
 - (IBAction)suggestionListButton:(id)sender {
-    self.menuTitleLabel.text = MVCSurgeonList;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
-    [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCSurgeonList] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSurgeonList]){
+        [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    } else {
+        self.menuTitleLabel.text = MVCSurgeonList;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
+        [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    }
 }
 
 - (IBAction)aboutUsButton:(id)sender {
-    self.menuTitleLabel.text = MVCAboutUs;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
-    [self createAnimationWithKey:@"hideMenuToAbout"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCAboutUs] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCAboutUs]){
+        [self createAnimationWithKey:@"hideMenuToAbout"];
+    } else {
+        self.menuTitleLabel.text = MVCAboutUs;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
+        [self createAnimationWithKey:@"hideMenuToAbout"];
+    }
 }
 
 - (IBAction)termsAndConditionsButton:(id)sender {
-    self.menuTitleLabel.text= MVCTermsAndConditions;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
-    [self createAnimationWithKey:@"hideMenuToTerms"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCTermsAndConditions] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCTermsAndConditions]){
+        [self createAnimationWithKey:@"hideMenuToTerms"];
+    } else {
+        self.menuTitleLabel.text= MVCTermsAndConditions;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
+        [self createAnimationWithKey:@"hideMenuToTerms"];
+    }
 }
 
 - (IBAction)feedbackButton:(id)sender {
-    self.menuTitleLabel.text = MVCFeedback;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
-    [self createAnimationWithKey:@"hideMenuToFeedback"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCFeedback] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCFeedback]){
+        [self createAnimationWithKey:@"hideMenuToFeedback"];
+    } else {
+        self.menuTitleLabel.text = MVCFeedback;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
+        [self createAnimationWithKey:@"hideMenuToFeedback"];
+    }
 }
 
 - (IBAction)menuButton:(id)sender {

@@ -46,7 +46,6 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
-
 #pragma mark - IBAction
 
 - (IBAction)menuButton:(id)sender{
