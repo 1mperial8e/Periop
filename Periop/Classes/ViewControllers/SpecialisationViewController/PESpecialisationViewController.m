@@ -27,15 +27,6 @@
 
 #pragma mark - Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,9 +42,6 @@
     //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel = navigationLabel;
-    
-    //create button for menu
-
     
     //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
@@ -137,12 +125,6 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - IBActions
 
 - (IBAction)menuButton:(id)sender{
@@ -169,9 +151,7 @@
 
 #pragma mark - CollectionViewDelegate
 
-//on cell clicked
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //create new view and show it
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.selectedViewController = rootController.viewControllers[5];
 }

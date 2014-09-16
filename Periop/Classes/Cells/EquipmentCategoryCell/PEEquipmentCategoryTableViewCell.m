@@ -29,11 +29,8 @@
     [super setSelected:selected animated:animated];
 }
 
-//fixing issue with not remembeering of cell's state
-//close all cells during flipping tableView
 - (void)prepareForReuse{
     [super prepareForReuse];
-    //close all cells before showing
     self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
 
    }
@@ -66,7 +63,6 @@
     [UIView animateWithDuration:0 animations:^{
         self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
     } completion:^(BOOL finished) {
-        //call to delegate remove objects from list of opened cells
         [self.delegate cellDidSwipedIn:self];
     }];
     
@@ -83,12 +79,10 @@
 }
 
 - (IBAction)deleteButton:(id)sender {
-    //PEEquipmentCategoryTableViewCellDelegate delegate usage
     [self.delegate buttonDeleteAction];
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate & panRecognizer
-//this method must open cell if called
 - (void) setCellSwiped{
     self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
 }

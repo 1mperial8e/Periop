@@ -40,13 +40,11 @@
     return 15;
 }
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PECollectionViewCellItemCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewInternalCell" forIndexPath:indexPath];
     if (!cell){
         cell =[[PECollectionViewCellItemCell alloc] init];
     }
-
     return cell;
 }
 

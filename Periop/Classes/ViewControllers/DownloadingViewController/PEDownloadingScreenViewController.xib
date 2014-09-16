@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDownloadingScreenViewController">
             <connections>
-                <outlet property="activityIndicatorDownloading" destination="EOb-h1-3hq" id="aiI-FB-yD2"/>
                 <outlet property="logoImage" destination="nUA-v2-jlg" id="XMe-Ft-y5g"/>
                 <outlet property="titleLabel" destination="fR2-zQ-D1X" id="TBw-AG-AxP"/>
                 <outlet property="view" destination="yen-X2-AHD" id="g7T-sq-h75"/>
@@ -29,12 +28,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="EOb-h1-3hq">
-                        <rect key="frame" x="142" y="215" width="37" height="37"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </activityIndicatorView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUA-v2-jlg">
-                        <rect key="frame" x="20" y="316" width="280" height="128"/>
+                        <rect key="frame" x="20" y="124" width="280" height="128"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>

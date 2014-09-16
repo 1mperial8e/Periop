@@ -96,7 +96,6 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9yE-nT-Dbe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Dcs-9f-bDz"/>
                 <constraint firstAttribute="trailing" secondItem="9yE-nT-Dbe" secondAttribute="trailing" constant="20" id="G6O-Zf-06s"/>
