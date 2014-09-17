@@ -133,7 +133,6 @@
                 <constraint firstAttribute="trailing" secondItem="mna-v9-mOd" secondAttribute="trailing" id="j2X-t4-y4d"/>
                 <constraint firstItem="v8N-j5-Wjr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pq5-xJ-dWH"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

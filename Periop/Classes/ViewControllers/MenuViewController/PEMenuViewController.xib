@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -10,7 +10,7 @@
                 <outlet property="menuTitleLabel" destination="ldq-4E-VpH" id="x6d-AG-aoW"/>
                 <outlet property="specializationButton" destination="ZLS-Dt-KAq" id="HAI-yb-TSf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewSelection" destination="rZd-aA-63M" id="xOd-CZ-uPG"/>
+                <outlet property="viewSelection" destination="rZd-aA-63M" id="IfQ-mX-mo2"/>
                 <outlet property="viewWithButtons" destination="0uR-qA-hUZ" id="Oxg-Wh-M9h"/>
             </connections>
         </placeholder>
@@ -27,7 +27,7 @@
                             <rect key="frame" x="0.0" y="81" width="320" height="324"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZd-aA-63M">
+                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZd-aA-63M">
                                     <rect key="frame" x="22" y="12" width="6" height="6"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

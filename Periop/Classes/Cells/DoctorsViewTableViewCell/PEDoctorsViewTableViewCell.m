@@ -28,8 +28,6 @@
     [super setSelected:selected animated:animated];
 }
 
-//fixing issue with not remembeering of cell's state
-//close all cells during flipping tableView
 - (void)prepareForReuse{
     [super prepareForReuse];
     //close all cells before showing
@@ -75,7 +73,6 @@
         //call to delegate remove objects from list of opened cells
         [self.delegate cellDidSwipedIn:self];
     }];
-
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -84,10 +81,8 @@
     return YES;
 }
 
-
 #pragma mark - PEDoctorsViewTableViewCellDelegate
 
-//this method must open cell if called
 - (void) setCellSwiped{
     self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
 }

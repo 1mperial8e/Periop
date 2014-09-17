@@ -23,33 +23,17 @@
 
 @implementation PEToolsDetailsViewController
 
-
 #pragma mark - Lifecycle
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
-    //dimensions of navigationbar
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    //add label to navigation Bar
     UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    //set text aligment - center
     navigationLabel.textAlignment = NSTextAlignmentCenter;
-    //q-ty of lines - 0 - many lines allowed
     navigationLabel.numberOfLines = 0;
-    //set text
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Name"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -59,17 +43,13 @@
     NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:@"\nProcedureName"];
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
-    
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     navigationLabel.attributedText = stringForLabelTop;
     self.navigationBarLabel = navigationLabel;
-    //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     navigationLabel.textColor = [UIColor whiteColor];
     
-    //create button for menu
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
-    //add button to navigation bar
     self.navigationItem.rightBarButtonItem=propButton;
     
     self.collectionView.dataSource = self;
@@ -86,12 +66,6 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - IBActions

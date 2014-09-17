@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#define ABOUT_US_NAME @"About Us"
-#define SURGEON_LIST_NAME @"Surgeon List"
-#define TERMS_COND_NAME @"Terms & Conditions"
-#define FEEDBACK_NAME @"Feedback"
-
 static CGFloat const MVCAnimationDuration = 0.3f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
+static NSString* const MVCAboutUs = @"About Us";
+static NSString* const MVCSurgeonList = @"Surgeon List";
+static NSString* const MVCTermsAndCond = @"Terms & Conditions";
+static NSString* const MVCFeedback = @"Feedback";
+static NSString* const MVCSpecialisation = @"Specialisations";
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEMenuViewController.h"
@@ -28,7 +28,6 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 @property (assign, nonatomic) CGPoint centerOfScreen;
 @property (assign, nonatomic) CGPoint sizeOfScreen;
 @property (weak, nonatomic) IBOutlet UIView *viewWithButtons;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
 
 @property (weak, nonatomic) UITabBarController *tabBarController;
@@ -46,15 +45,12 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     
     if (self.isButtonVisible) {
         self.viewWithButtons.hidden = NO;
-        self.buttonConstraint.constant = 20.0f;
     }
     else{
         self.viewWithButtons.hidden = YES;
-        self.buttonConstraint.constant = 0;
     }
-    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;
-    self.viewSelection.hidden = YES;
-   
+    
+    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
 }
 
@@ -84,9 +80,13 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
-    [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCSpecialisation] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSpecialisation]){
+        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    } else {
+        self.menuTitleLabel.text = MVCSpecialisation;
+        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
+    }
 }
 
 - (IBAction)suggestionListButton:(id)sender
@@ -97,9 +97,13 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
-    [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCSurgeonList] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSurgeonList]){
+        [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    } else {
+        self.menuTitleLabel.text = MVCSurgeonList;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
+        [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    }
 }
 
 - (IBAction)aboutUsButton:(id)sender
@@ -110,9 +114,13 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
-    [self createAnimationWithKey:@"hideMenuToAbout"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCAboutUs] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCAboutUs]){
+        [self createAnimationWithKey:@"hideMenuToAbout"];
+    } else {
+        self.menuTitleLabel.text = MVCAboutUs;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
+        [self createAnimationWithKey:@"hideMenuToAbout"];
+    }
 }
 
 - (IBAction)termsAndConditionsButton:(id)sender
@@ -123,9 +131,13 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
-    [self createAnimationWithKey:@"hideMenuToTerms"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCTermsAndConditions] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCTermsAndConditions]){
+        [self createAnimationWithKey:@"hideMenuToTerms"];
+    } else {
+        self.menuTitleLabel.text= MVCTermsAndConditions;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
+        [self createAnimationWithKey:@"hideMenuToTerms"];
+    }
 }
 
 - (IBAction)feedbackButton:(id)sender
@@ -136,9 +148,13 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    
-    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
-    [self createAnimationWithKey:@"hideMenuToFeedback"];
+    if ([self.menuTitleLabel.text isEqualToString:MVCFeedback] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCFeedback]){
+        [self createAnimationWithKey:@"hideMenuToFeedback"];
+    } else {
+        self.menuTitleLabel.text = MVCFeedback;
+        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
+        [self createAnimationWithKey:@"hideMenuToFeedback"];
+    }
 }
 
 - (IBAction)menuButton:(id)sender
@@ -198,32 +214,31 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];
         
-        //set white view near name of opened viewcontroller
-        if ([self.menuTitleLabel.text isEqualToString:SURGEON_LIST_NAME]){
+        if ([self.menuTitleLabel.text isEqualToString:MVCSurgeonList]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
             newCenterForView.y +=75;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
-        } else if ([self.menuTitleLabel.text isEqualToString:ABOUT_US_NAME]){
+        } else if ([self.menuTitleLabel.text isEqualToString:MVCAboutUs]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
             newCenterForView.y +=150;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
-        } else if ([self.menuTitleLabel.text isEqualToString:TERMS_COND_NAME]){
+        } else if ([self.menuTitleLabel.text isEqualToString:MVCTermsAndConditions]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
             newCenterForView.y +=225;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
-        } else if ([self.menuTitleLabel.text isEqualToString:FEEDBACK_NAME]){
+        } else if ([self.menuTitleLabel.text isEqualToString:MVCFeedback]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
             newCenterForView.y +=300;
             self.viewSelection.center = newCenterForView;
             self.viewSelection.hidden = NO;
-        } else if ([self.menuTitleLabel.text isEqualToString:@"Specialisations"]){
+        } else if ([self.menuTitleLabel.text isEqualToString:MVCSpecialisation]){
             CGPoint newCenterForView = self.specializationButton.center;
             newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
             self.viewSelection.center = newCenterForView;

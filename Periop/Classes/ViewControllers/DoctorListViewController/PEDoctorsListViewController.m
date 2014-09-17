@@ -28,28 +28,22 @@
 
 #pragma mark - LifeCycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //add label
+
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
     UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
     navigationLabel.backgroundColor = [UIColor clearColor];
     navigationLabel.textColor = [UIColor whiteColor];
     navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.text = self.textToShow;
+    if (self.textToShow && self.textToShow.length!=0){
+        navigationLabel.text = self.textToShow;
+    } else {
+        navigationLabel.text = @"Surgeon List";
+    }
     self.labelToShowOnNavigationBar = navigationLabel;
     
-    //create button for menu
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
     self.navigationBarAddBarButton = addDoctorButton;
     
@@ -64,7 +58,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsViewTableViewCell" bundle:nil]  forCellReuseIdentifier:@"doctorsCell"];
     
-    //init mutableSet
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
 }
 
@@ -93,7 +86,6 @@
     if (!cell){
         cell = [[PEDoctorsViewTableViewCell alloc] init];
     }
-    //set delegate to cell
     cell.delegate = self;
     if ( indexPath.row % 2){
         cell.viewDoctorsNameView.backgroundColor = [UIColor colorWithRed:236/255.0 green:248/255.0 blue:251/255.0 alpha:1.0f];
@@ -111,11 +103,9 @@
 #pragma mark - IBActions
 
 - (IBAction)addDoctorButton:(id)sender{
-    if ([self.tableView indexPathForSelectedRow]){
         PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
         addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
         [self.navigationController pushViewController:addEditDoctorView animated:NO];
-    }
 }
 
 - (IBAction)menuButton:(id)sender{

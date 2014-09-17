@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-//prop for storing set of cell
+
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -27,20 +27,11 @@
 
 #pragma mark - LifeCycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    //add label
+
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
     UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
     navigationLabel.backgroundColor = [UIColor clearColor];
@@ -49,10 +40,8 @@
     navigationLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel = navigationLabel;
     
-    //add buttons
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
-    //navigation backButton
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
@@ -60,10 +49,8 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
-    //init set for storing currently edited cell
     self.cellCurrentlyEditing = [NSMutableSet new];
     
-    //set gradient baclground to procedure button
     CAGradientLayer * buttonAddLayer = [CAGradientLayer layer];
     buttonAddLayer.frame = self.addNewButton.layer.bounds;
     NSArray * colorArrayProcedure = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:249/255.0 green:236/255.0 blue:254/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:234/255.0 green:240/255.0 blue:254/255.0 alpha:1.0f].CGColor, nil];
@@ -73,7 +60,6 @@
     buttonAddLayer.cornerRadius = self.addNewButton.layer.cornerRadius;
     [self.addNewButton.layer addSublayer:buttonAddLayer];
     
-    //set gradient baclground to doctors button
     CAGradientLayer * sendMailLayer = [CAGradientLayer layer];
     sendMailLayer.frame = self.emailButton.layer.bounds;
     NSArray * colorArrayDoctors = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:160/255.0 green:227/255.0 blue:205/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:139/255.0 green:222/255.0 blue:205/255.0 alpha:1.0f].CGColor, nil];
@@ -81,13 +67,6 @@
     sendMailLayer.locations = location;
     sendMailLayer.cornerRadius = self.emailButton.layer.cornerRadius;
     [self.emailButton.layer addSublayer:sendMailLayer];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -126,7 +105,6 @@
     }
     cell.equipmentNameLabel.text = [NSString stringWithFormat:@"Tool number %i", (int)[indexPath row]];
     
-    //PEEquipmentCategoryTableViewCellDelegate
     cell.delegate = self;
     if ([self.cellCurrentlyEditing containsObject:indexPath]){
         [cell setCellSwiped];
