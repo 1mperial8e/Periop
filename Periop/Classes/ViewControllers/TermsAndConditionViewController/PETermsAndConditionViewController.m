@@ -20,59 +20,35 @@
 
 #pragma mark - LifeCycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    //add label to navigation Bar
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    //set text aligment - center
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
     
+    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
+    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    navigationLabel.textAlignment = NSTextAlignmentCenter;
     navigationLabel.text = @"Terms & Conditions";
     navigationLabel.textColor = [UIColor whiteColor];
-    //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel = navigationLabel;
-    
-    //create button for menu
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
-    //add button to navigation bar
-    self.navigationItem.leftBarButtonItem=menuBarButton;
-
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)menuButton:(id)sender{
+- (IBAction)menuButton:(id)sender
+{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = @"Terms & Conditions";

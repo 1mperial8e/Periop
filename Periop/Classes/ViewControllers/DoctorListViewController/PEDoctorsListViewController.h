@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PEDoctorsListViewController : UIViewController
 
 @property (strong, nonatomic) NSString * textToShow;

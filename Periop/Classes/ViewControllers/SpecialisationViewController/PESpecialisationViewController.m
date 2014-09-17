@@ -27,35 +27,18 @@
 
 #pragma mark - Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    //add label to navigation Bar
     UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    //set text aligment - center
     navigationLabel.textAlignment = NSTextAlignmentCenter;
-
     navigationLabel.text = @"Specialisations";
     navigationLabel.textColor = [UIColor whiteColor];
-    //background
     navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel = navigationLabel;
     
-    //create button for menu
-
-    
-    //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate= (id)self;
@@ -127,25 +110,22 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - IBActions
 
-- (IBAction)menuButton:(id)sender{
+- (IBAction)menuButton:(id)sender
+{
     [self.navigationBarLabel removeFromSuperview];
     
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
@@ -159,37 +139,37 @@
     [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
-- (IBAction)mySpesialisationButton:(id)sender {
+- (IBAction)mySpesialisationButton:(id)sender
+{
     NSLog(@"1");
 }
 
-- (IBAction)moreSpecialisationButton:(id)sender {
+- (IBAction)moreSpecialisationButton:(id)sender
+{
     NSLog(@"2");
 }
 
 #pragma mark - CollectionViewDelegate
 
-//on cell clicked
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //create new view and show it
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.selectedViewController = rootController.viewControllers[5];
 }
 
 #pragma mark - CollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return 7;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     
     return cell;
 }
-
-
 
 @end

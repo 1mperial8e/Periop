@@ -53,7 +53,7 @@
     navigationLabel.backgroundColor = [UIColor clearColor];
     //navigation backButton
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
+
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -66,13 +66,7 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
 #pragma mark - IBActions
-}
 
 - (IBAction)preparationButton:(id)sender {
     PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];

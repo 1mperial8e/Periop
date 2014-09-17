@@ -43,7 +43,8 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 {
     [super viewDidLoad];
     self.menuTitleLabel.text=self.textToShow;
-    if (self.isButtonVisible){
+    
+    if (self.isButtonVisible) {
         self.viewWithButtons.hidden = NO;
         self.buttonConstraint.constant = 20.0f;
     }
@@ -71,12 +72,12 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     animation.delegate = self;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [self.view.layer addAnimation:animation forKey:@"showMenu"];
-    
 }
 
 #pragma mark - IBActions
 
-- (IBAction)specialisationButton:(id)sender {
+- (IBAction)specialisationButton:(id)sender
+{
     self.menuTitleLabel.text = @"Specialisation";
     
     CGPoint newCenterForView = ((UIButton *)sender).center;
@@ -88,7 +89,8 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     [self createAnimationWithKey:@"hideMenuToSpecialisation"];
 }
 
-- (IBAction)suggestionListButton:(id)sender {
+- (IBAction)suggestionListButton:(id)sender
+{
     self.menuTitleLabel.text = SURGEON_LIST_NAME;
     
     CGPoint newCenterForView = ((UIButton *)sender).center;
@@ -100,7 +102,8 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     [self createAnimationWithKey:@"hideMenuToSurgeons"];
 }
 
-- (IBAction)aboutUsButton:(id)sender {
+- (IBAction)aboutUsButton:(id)sender
+{
     self.menuTitleLabel.text = ABOUT_US_NAME;
     
     CGPoint newCenterForView = ((UIButton *)sender).center;
@@ -112,7 +115,8 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     [self createAnimationWithKey:@"hideMenuToAbout"];
 }
 
-- (IBAction)termsAndConditionsButton:(id)sender {
+- (IBAction)termsAndConditionsButton:(id)sender
+{
     self.menuTitleLabel.text= TERMS_COND_NAME;
     
     CGPoint newCenterForView = ((UIButton *)sender).center;
@@ -124,7 +128,8 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     [self createAnimationWithKey:@"hideMenuToTerms"];
 }
 
-- (IBAction)feedbackButton:(id)sender {
+- (IBAction)feedbackButton:(id)sender
+{
     self.menuTitleLabel.text = FEEDBACK_NAME;
     
     CGPoint newCenterForView = ((UIButton *)sender).center;
@@ -136,44 +141,43 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
     [self createAnimationWithKey:@"hideMenuToFeedback"];
 }
 
-- (IBAction)menuButton:(id)sender {
+- (IBAction)menuButton:(id)sender
+{
     [self createAnimationWithKey:@"hideMenuToMenu"];
 }
 
-- (IBAction)mySpesializationButton:(id)sender {
+- (IBAction)mySpesializationButton:(id)sender
+{
     
 }
 
-- (IBAction)moreSpecialisationButton:(id)sender {
+- (IBAction)moreSpecialisationButton:(id)sender
+{
     
 }
 
 #pragma mark - Animation
 
-- (void)createAnimationWithKey: (NSString*) key{
-    self.navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+- (void)createAnimationWithKey:(NSString*)key
+{
     CGPoint  toPoint = self.view.center;
-    toPoint.y -=self.view.frame.size.height-self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
+    toPoint.y -= self.view.frame.size.height-self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    //create animation
     CABasicAnimation * animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
     animationToHide.duration = MVCAnimationDuration;
     animationToHide.fromValue = [NSValue valueWithCGPoint:self.view.center];
     animationToHide.toValue = [NSValue valueWithCGPoint:toPoint];
-    //do not complete
     animationToHide.removedOnCompletion = NO;
-    //set delegate
     animationToHide.delegate = self;
     animationToHide.timingFunction =[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    //set key for animation
+    
     [self.view.layer addAnimation:animationToHide forKey:key];
-    //after animation finished remove layer
     self.view.layer.position= toPoint;
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if (anim==[self.view.layer animationForKey:@"hideMenuToMenu"]) {
+    if (anim == [self.view.layer animationForKey:@"hideMenuToMenu"]) {
         [self.view.layer removeAnimationForKey:@"hideMenuToMenu"];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToSpecialisation"]){
@@ -227,6 +231,5 @@ static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
         }
     }
 }
-
 
 @end

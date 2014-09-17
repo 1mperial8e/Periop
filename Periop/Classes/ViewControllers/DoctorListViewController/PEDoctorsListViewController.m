@@ -52,13 +52,6 @@
     //create button for menu
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
     self.navigationBarAddBarButton = addDoctorButton;
-    //create button for menu
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationBarMenuButton = menuBarButton;
     
     //navigation backButton
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -73,12 +66,6 @@
     
     //init mutableSet
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -6,9 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "PESpecialisationViewController.h"
-
 @interface PEAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
