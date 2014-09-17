@@ -168,6 +168,8 @@
 		EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */; };
 		EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */; };
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
+		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
+		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +380,10 @@
 		EDD0598219BAC1F8007C0DE8 /* PEDoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsListViewController.h; sourceTree = "<group>"; };
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
+		EDEC8EF919C9D22100066BA5 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPurchaseManager.h; sourceTree = "<group>"; };
+		EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPurchaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -822,6 +828,7 @@
 		EDCD57A619B8479100EC7AF1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EDEC8EF819C9D1E700066BA5 /* InAppPurchaseManager */,
 				ED350F2E19C096E900512663 /* DataManager */,
 			);
 			path = Managers;
@@ -1007,6 +1014,17 @@
 				EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */,
 			);
 			path = DoctorListViewController;
+			sourceTree = "<group>";
+		};
+		EDEC8EF819C9D1E700066BA5 /* InAppPurchaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				EDEC8EF919C9D22100066BA5 /* IAPHelper.h */,
+				EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */,
+				EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */,
+				EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */,
+			);
+			path = InAppPurchaseManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1239,6 +1257,7 @@
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
 				ED5DB58019C32C3100FDD358 /* PEMediaSelect.m in Sources */,
+				EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */,
 				EDCD57E619B881F200EC7AF1 /* PESpecialisationCollectionViewCell.m in Sources */,
 				EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */,
 				ED0D2FAD19BA0367001F8411 /* PEDoctorsProfileTableViewCell.m in Sources */,
@@ -1254,6 +1273,7 @@
 				ED0D2FC319BA0F42001F8411 /* PECollectionViewCellItemCell.m in Sources */,
 				EDCD583719B8B30800EC7AF1 /* PEPreperationViewController.m in Sources */,
 				EDCD585719B8C8B500EC7AF1 /* PENotesViewController.m in Sources */,
+				EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

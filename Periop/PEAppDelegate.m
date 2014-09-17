@@ -14,10 +14,14 @@
 #import "PEProcedureListViewController.h"
 #import "PESpecialisationViewController.h"
 
+#import  "PEPurchaseManager.h"
+
 @implementation PEAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [PEPurchaseManager sharedManager];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
