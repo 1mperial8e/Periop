@@ -61,11 +61,11 @@
     self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
    
     if (self.arrayWithSpecialisations.count>0){
-        for (Specialisation * specs in self.arrayWithSpecialisations){
+     /*   for (Specialisation * specs in self.arrayWithSpecialisations){
             NSLog(@"Spec name - %@", specs.name);
             NSLog(@"Spec id - %@", specs.specID);
             NSLog(@"Spec photo Name - %@", specs.photoName);
-        }
+        }*/
     } else {
         PEPlistParser * parser = [[PEPlistParser alloc] init];
         [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {

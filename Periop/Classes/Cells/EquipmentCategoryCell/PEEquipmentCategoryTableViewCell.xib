@@ -13,14 +13,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
                         <rect key="frame" x="226" y="0.0" width="94" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.8901960784313725" green="0.32941176470588235" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="94" id="8TN-DD-MFb"/>
-                            <constraint firstAttribute="height" constant="46" id="Wss-vW-rJd"/>
-                        </constraints>
                         <state key="normal" image="Delete.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -29,26 +25,19 @@
                             <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Fj-a7-NLy"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tool name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
                                 <rect key="frame" x="20" y="8" width="195" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="195" id="Dl0-Ae-YTF"/>
-                                    <constraint firstAttribute="width" constant="195" id="d6q-nA-CoU"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
                                 <rect key="frame" x="223" y="0.0" width="97" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="v0l-Tw-wKX"/>
-                                </constraints>
                                 <state key="normal" image="Check_Inactive.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -59,26 +48,8 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="miv-Tt-JSS" secondAttribute="trailing" id="76B-vo-xex"/>
-                            <constraint firstItem="I1s-lw-m1o" firstAttribute="leading" secondItem="mzo-Q6-cZb" secondAttribute="leading" constant="20" id="F5s-pf-fq8"/>
-                            <constraint firstAttribute="bottom" secondItem="I1s-lw-m1o" secondAttribute="bottom" constant="8" id="H6l-2f-K7l"/>
-                            <constraint firstItem="miv-Tt-JSS" firstAttribute="top" secondItem="mzo-Q6-cZb" secondAttribute="top" id="KXH-AB-PEr"/>
-                            <constraint firstItem="miv-Tt-JSS" firstAttribute="leading" secondItem="I1s-lw-m1o" secondAttribute="trailing" constant="8" id="Q8q-0z-jAI"/>
-                            <constraint firstItem="I1s-lw-m1o" firstAttribute="top" secondItem="mzo-Q6-cZb" secondAttribute="top" constant="8" id="cUG-5K-bQS"/>
-                            <constraint firstAttribute="bottom" secondItem="miv-Tt-JSS" secondAttribute="bottom" id="ct6-zv-G41"/>
-                        </constraints>
                     </view>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="mzo-Q6-cZb" secondAttribute="trailing" id="2dl-yO-1gQ"/>
-                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CaZ-N8-GBU"/>
-                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PD1-jT-kuk"/>
-                    <constraint firstAttribute="bottom" secondItem="i6B-ut-RVE" secondAttribute="bottom" id="Yd2-hI-YPg"/>
-                    <constraint firstAttribute="bottom" secondItem="mzo-Q6-cZb" secondAttribute="bottom" id="cnY-52-ILk"/>
-                    <constraint firstAttribute="trailing" secondItem="i6B-ut-RVE" secondAttribute="trailing" id="oAL-Fq-t3I"/>
-                    <constraint firstItem="i6B-ut-RVE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qWW-TU-gAp"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="buttonDeleteOutlet" destination="i6B-ut-RVE" id="x0j-qn-U1T"/>

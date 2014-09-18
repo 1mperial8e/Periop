@@ -513,5 +513,431 @@
 			<string>Check all diathermy /bovie connections facilitate connections</string>
 		</array>
 	</dict>
+	<dict>
+		<key>ProcedureID</key>
+		<string>S0902</string>
+		<key>Procedure/Operation Title</key>
+		<string>Open Inguinal hernia Repair</string>
+		<key>Tools</key>
+		<dict>
+			<key>Prosthesis</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string>4&quot;x6&quot; Polyprolene</string>
+					<key>Tool Name</key>
+					<string>Hernia Mesh</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Equipment</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Diathermy /Bovie Unit</string>
+					<key>Tool Quantity</key>
+					<string></string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Dressing</key>
+			<array>
+				<dict>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Name</key>
+					<string>Steristrip</string>
+					<key>Tool Spec</key>
+					<string>1/2 &quot;</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>medium</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Name</key>
+					<string>Opsite</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Sutures</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string>24 cc</string>
+					<key>Tool Quantity</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>3/0 Monocryl</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>26 t</string>
+					<key>Tool Name</key>
+					<string>2/0 Vicryl</string>
+					<key>Tool Quantity</key>
+					<string>2</string>
+					<key>Tool Photo ID</key>
+					<string>S0902T0901</string>
+				</dict>
+			</array>
+			<key>Solutions</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Chlorhexidine</string>
+					<key>Tool Quantity</key>
+					<string></string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>10mls</string>
+					<key>Tool Name</key>
+					<string>Marcain 0.5% with adrenaline</string>
+					<key>Tool Quantity</key>
+					<string></string>
+					<key>Tool Photo ID</key>
+					<string>S0902T0801</string>
+				</dict>
+			</array>
+			<key>Disposables</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Tacking device</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>21g</string>
+					<key>Tool Name</key>
+					<string>Injection Needle</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>18g</string>
+					<key>Tool Name</key>
+					<string>Blunt Needle</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>10 mls</string>
+					<key>Tool Name</key>
+					<string>Syringe</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Insulated Diathermy Tip</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Scratch pad</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Monopolar Diathermy</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string>S0902T0707</string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Needle mat</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>large</string>
+					<key>Tool Name</key>
+					<string>Plastics</string>
+					<key>Tool Quantity</key>
+					<string>2</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Raytec</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>10</string>
+					<key>Tool Name</key>
+					<string></string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>15</string>
+					<key>Tool Name</key>
+					<string>Blade</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Holloware</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Bowl 5&quot;</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Sharps dish</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Kidney dish</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Bowl/Basin Set</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Prep set</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Extra Instruments/Equipment</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Moynihans</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Czerny</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string>medium</string>
+					<key>Tool Name</key>
+					<string>Mollison</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string>S0902T0503</string>
+				</dict>
+			</array>
+			<key>Instrument Tray</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>General Tray</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Drapes</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Mayo</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Single Gown</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Gown Pack</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Medium</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Major</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Prep Solution</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string></string>
+					<key>Tool Name</key>
+					<string>Povidone Iodine</string>
+					<key>Tool Quantity</key>
+					<string>1</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>Gloves</key>
+			<array>
+				<dict>
+					<key>Tool Spec</key>
+					<string>7.5 check size</string>
+					<key>Tool Name</key>
+					<string>Latex Free</string>
+					<key>Tool Quantity</key>
+					<string>2</string>
+					<key>Tool Photo ID</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<key>Patient Positioning</key>
+		<array>
+			<string>Supine with arms by patients side and or arm board</string>
+			<string>Pressure Area &amp; Patient Supports- Padded arm boards, heal supports, jel mattress,  patient strap</string>
+			<string>Sequential Compression Devices as required</string>
+			<string>Warming Devices as required</string>
+		</array>
+		<key>Operation Room</key>
+		<array>
+			<string>Diathermy/Bovie machine positioned at patients feet or side </string>
+			<string>Suction Plume Unit available</string>
+			<string>Suction available</string>
+			<string>Mayo stand optional </string>
+		</array>
+		<key>Preparation</key>
+		<array>
+			<string>Prep from the umbilicus to mid chest, down to pubis region prepping from the inside to out in a circular motion</string>
+			<string>Square Drape </string>
+			<string>Check Mesh and tacking device with Surgeon </string>
+			<string>Instrument nurse/tech to stand on opposite side to surgeon</string>
+		</array>
+	</dict>
 </array>
 </plist>

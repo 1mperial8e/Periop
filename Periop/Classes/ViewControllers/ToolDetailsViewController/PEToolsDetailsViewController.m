@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSInteger const TDVCAnimationDuration = 0.2f;
+
 #import "PEToolsDetailsViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEAddNewToolViewController.h"
@@ -15,7 +17,7 @@
 #import "EquipmentsTool.h"
 
 
-@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
@@ -24,8 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) UIBarButtonItem * rightBarButton;
 
 @property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (assign, nonatomic) CGRect keyboardRect;
 
 @end
 
@@ -37,6 +41,8 @@
 {
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
@@ -59,12 +65,17 @@
     
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
+    self.rightBarButton = editButton;
     self.navigationItem.rightBarButtonItem=editButton;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
     [self setSelectedObjectToView];
+    
+    self.nameTextField.delegate = self;
+    self.specificationTextField.delegate = self;
+    self.quantityTextField.delegate = self;
     
     self.pageControll.numberOfPages = 10;
 }
@@ -82,9 +93,22 @@
 #pragma mark - IBActions
 
 - (IBAction)editButton:(id)sender {
+    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
     self.nameTextField.enabled = true;
     self.specificationTextField.enabled = true;
     self.quantityTextField.enabled = true;
+}
+
+- (IBAction)saveButton:(id)sender{
+    self.navigationItem.rightBarButtonItem = self.rightBarButton;
+    self.nameTextField.enabled = false;
+    self.specificationTextField.enabled = false;
+    self.quantityTextField.enabled = false;
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        [self resignFirstResponder];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
 }
 
 - (IBAction)photoButton:(id)sender {
@@ -123,6 +147,29 @@
     cell.backgroundColor = [UIColor redColor];
     self.pageControll.currentPage = [indexPath row];
     return cell;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        [textField resignFirstResponder];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
+    
+    return YES;
+}
+
+#pragma mark - Notifcation
+
+- (void)keyboardWillChange:(NSNotification *)notification {
+    self.keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.keyboardRect = [self.view convertRect:self.keyboardRect fromView:nil];
+    
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height+self.quantityTextField.frame.size.height);
+    }];
 }
 
 #pragma mark - Private
