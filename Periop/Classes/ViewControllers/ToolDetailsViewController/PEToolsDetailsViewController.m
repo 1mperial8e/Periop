@@ -31,9 +31,10 @@
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.numberOfLines = 0;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
+    
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Name"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -44,10 +45,7 @@
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    navigationLabel.attributedText = stringForLabelTop;
-    self.navigationBarLabel = navigationLabel;
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
+
     
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
     self.navigationItem.rightBarButtonItem=propButton;

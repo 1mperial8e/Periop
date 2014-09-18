@@ -15,9 +15,6 @@
 
 @implementation PENotesTableViewCell
 
-#pragma mark - LifeCycle
-
-
 #pragma mark - IBActions
 
 - (IBAction)photButton:(id)sender {

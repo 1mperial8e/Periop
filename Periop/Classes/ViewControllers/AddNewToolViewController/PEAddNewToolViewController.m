@@ -26,12 +26,11 @@
 {
     [super viewDidLoad];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.text =@"Procedure Name";
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.text =@"Procedure Name";
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
     [self.navigationItem setHidesBackButton:YES];
     
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];

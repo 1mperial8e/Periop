@@ -13,6 +13,7 @@
 #import "PECoreDataManager.h"
 
 #import "PEPlistParser.h"
+#import "PESpecialisationManager.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -22,8 +23,11 @@
 
 #warning - JUST FOR CHECKING DATAMANAGER -TO DELETE
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
+//@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
+
 @property (strong, nonatomic) NSArray * arrayWithSpecialisations;
+@property (strong, nonatomic) PESpecialisationManager * manager;
+
 
 @end
 
@@ -36,18 +40,12 @@
     [super viewDidLoad];
     
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    //add label to navigation Bar
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    //set text aligment - center
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-
-    navigationLabel.text = @"Specialisations";
-    navigationLabel.textColor = [UIColor whiteColor];
-    //background
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.text = @"Specialisations";
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     
-    //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate= (id)self;
@@ -57,6 +55,7 @@
     self.collectionView.backgroundView = backgroundImage;
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.manager = [PESpecialisationManager sharedManager];
     
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
@@ -73,7 +72,6 @@
             
         }];
     }
-    
     
 #warning - TO delete
     //singleton for dataManager
@@ -176,9 +174,15 @@
 #pragma mark - CollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    self.manager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    self.manager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
+    
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.selectedViewController = rootController.viewControllers[5];
 }
+
 
 #pragma mark - CollectionViewDataSource
 

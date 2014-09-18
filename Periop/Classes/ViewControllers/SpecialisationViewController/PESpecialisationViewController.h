@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PEMenuViewController.h"
-
+#import "Specialisation.h"
 
 @interface PESpecialisationViewController : UIViewController
-
 
 @end

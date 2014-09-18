@@ -8,6 +8,4 @@
 
 @interface PEProcedureListViewController : UIViewController
 
-@property (strong, nonatomic) NSArray* arrayWithSpecialisation;
-
 @end

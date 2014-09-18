@@ -54,8 +54,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
 }
 
-- (void)viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews{
     CGPoint newCenter = self.view.center;
     newCenter.y -= self.view.frame.size.height;
     newCenter.y+= self.buttonPositionY + [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -68,7 +67,6 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     animation.delegate = self;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [self.view.layer addAnimation:animation forKey:@"showMenu"];
-    
 }
 
 #pragma mark - IBActions
