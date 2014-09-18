@@ -477,7 +477,7 @@
 				<dict>
 					<key>Tool Spec</key>
 					<string>7.5 check size</string>
-					<key>New item</key>
+					<key>Tool Name</key>
 					<string>Latex Free</string>
 					<key>Tool Quantity</key>
 					<string></string>

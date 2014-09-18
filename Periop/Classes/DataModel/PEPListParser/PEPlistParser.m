@@ -132,20 +132,21 @@
         
         NSArray* keys = [dicWithTools allKeys];
         for (int i=0; i< keys.count; i++){
-            NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
-            EquipmentsTool * newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            
-            newTool.createdDate = [NSDate date];
-            newTool.category = keys[i];
-            
+
             for (NSDictionary *category in [dicWithTools valueForKey:keys[i]]){
+                NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+                EquipmentsTool * newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                
+                newTool.createdDate = [NSDate date];
+                newTool.category = keys[i];
                 newTool.quantity = [category valueForKey:@"Tool Quantity"];
                 newTool.name = [category valueForKey:@"Tool Name"];
                 newTool.type = [category valueForKey:@"Tool Spec"];
                 newTool.photo = [category valueForKey:@"Tool Photo ID"];
+                
+                newTool.procedure = currentProcedure;
+                [currentProcedure addEquipmentsObject:newTool];
             }
-            newTool.procedure = currentProcedure;
-            [currentProcedure addEquipmentsObject:newTool];
         }
 
         [newSpecialisation addProceduresObject:currentProcedure];
