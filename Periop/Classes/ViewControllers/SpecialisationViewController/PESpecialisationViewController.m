@@ -10,6 +10,9 @@
 #import "PESpecialisationCollectionViewCell.h"
 #import "PEProcedureListViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PECoreDataManager.h"
+
+#import "PEPlistParser.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -20,6 +23,7 @@
 #warning - JUST FOR CHECKING DATAMANAGER -TO DELETE
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
+@property (strong, nonatomic) NSArray * arrayWithSpecialisations;
 
 @end
 
@@ -49,14 +53,34 @@
     self.collectionView.delegate= (id)self;
     self.collectionView.dataSource = (id)self;
     
+    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
+    self.collectionView.backgroundView = backgroundImage;
+    
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+   
+    if (self.arrayWithSpecialisations.count>0){
+        for (Specialisation * specs in self.arrayWithSpecialisations){
+            NSLog(@"Spec name - %@", specs.name);
+            NSLog(@"Spec id - %@", specs.specID);
+            NSLog(@"Spec photo Name - %@", specs.photoName);
+        }
+    } else {
+        PEPlistParser * parser = [[PEPlistParser alloc] init];
+        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
+            
+        }];
+    }
     
     
 #warning - TO delete
-    /*
     //singleton for dataManager
     //PECoreDataManager * dataManager = [PECoreDataManager sharedManager];
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    
+    //self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+
+    /*
     //remove
     //1.create required entity
     Entity * obj;
@@ -159,14 +183,18 @@
 #pragma mark - CollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 7;
+    if (self.arrayWithSpecialisations.count>0){
+        return self.arrayWithSpecialisations.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blueColor];
-    
+    cell.backgroundColor = [UIColor clearColor];
+    cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
     return cell;
 }
 
