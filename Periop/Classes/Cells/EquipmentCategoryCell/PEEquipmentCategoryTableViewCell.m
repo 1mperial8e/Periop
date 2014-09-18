@@ -12,6 +12,7 @@
 @interface PEEquipmentCategoryTableViewCell() <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonDeleteOutlet;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
 @end
 
@@ -21,6 +22,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self initGestrudeRecognizer];
 }
 
@@ -31,6 +33,7 @@
 
 - (void)prepareForReuse{
     [super prepareForReuse];
+    [self.checkButton setSelected:NO];
     self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
 
    }
@@ -76,6 +79,13 @@
 #pragma mark - IBActions
 
 - (IBAction)checkButton:(id)sender {
+    if (![self.checkButton isSelected]){
+        self.checkButton.selected = true;
+        [self.delegate cellChecked:self];
+    } else {
+        self.checkButton.selected = false;
+        [self.delegate cellUnchecked:self];
+    }
 }
 
 - (IBAction)deleteButton:(id)sender {
@@ -83,8 +93,13 @@
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate & panRecognizer
+
 - (void) setCellSwiped{
     self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
+}
+
+-(void)cellSetChecked{
+    self.checkButton.selected = true;
 }
 
 @end

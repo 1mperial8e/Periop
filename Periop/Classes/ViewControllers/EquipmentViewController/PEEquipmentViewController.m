@@ -28,6 +28,8 @@
 @property (strong, nonatomic) NSArray * arrayWithCategorisedToolsArrays;
 @property (strong, nonatomic) NSArray * categoryTools;
 
+@property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
+
 @end
 
 @implementation PEEquipmentViewController
@@ -61,6 +63,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
     self.cellCurrentlyEditing = [NSMutableSet new];
+    self.cellWithCheckedButtons = [NSMutableSet new];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -104,6 +107,10 @@
     if ([self.cellCurrentlyEditing containsObject:indexPath]){
         [cell setCellSwiped];
     }
+    if ([self.cellWithCheckedButtons containsObject:indexPath]){
+         [cell cellSetChecked];
+    }
+
     return cell;
 }
 
@@ -135,6 +142,15 @@
 - (void)cellDidSwipedOut:(UITableViewCell *)cell{
     NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
+}
+
+- (void)cellChecked:(UITableViewCell *)cell{
+    NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
+    [self.cellWithCheckedButtons addObject:currentlyEditedIndexPath];
+}
+
+- (void)cellUnchecked:(UITableViewCell *)cell{
+    [self.cellWithCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
 }
 
 #pragma mark - Private

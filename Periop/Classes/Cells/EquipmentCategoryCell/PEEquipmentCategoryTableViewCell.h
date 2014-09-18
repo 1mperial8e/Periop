@@ -14,10 +14,11 @@
 //buttonAction
 - (void)buttonDeleteAction;
 
-//method for closing cell with swipe
 - (void)cellDidSwipedIn: (UITableViewCell*)cell;
-//method for opening cell with swipe
 - (void)cellDidSwipedOut:(UITableViewCell *)cell;
+
+- (void)cellChecked:(UITableViewCell*)cell;
+- (void)cellUnchecked:(UITableViewCell*)cell;
 
 @end
 
@@ -30,6 +31,6 @@
 @property (weak, nonatomic) id <PEEquipmentCategoryTableViewCellDelegate> delegate;
 //method that allow delegate to change state of cell
 - (void)setCellSwiped;
-
+- (void)cellSetChecked;
 
 @end
