@@ -13,6 +13,7 @@
 @implementation Preparation
 
 @dynamic preparationText;
+@dynamic stepName;
 @dynamic procedure;
 
 @end

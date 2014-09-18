@@ -37,6 +37,7 @@
     </entity>
     <entity name="Preparation" representedClassName="Preparation" syncable="YES">
         <attribute name="preparationText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stepName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="preparation" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="Procedure" representedClassName="Procedure" syncable="YES">
@@ -63,7 +64,7 @@
         <element name="Note" positionX="-18" positionY="-207" width="128" height="118"/>
         <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="103"/>
         <element name="PatientPostioning" positionX="-333" positionY="-27" width="128" height="88"/>
-        <element name="Preparation" positionX="-333" positionY="71" width="128" height="75"/>
+        <element name="Preparation" positionX="-333" positionY="71" width="128" height="88"/>
         <element name="Procedure" positionX="-110" positionY="-45" width="128" height="180"/>
         <element name="Specialisation" positionX="79" positionY="162" width="128" height="118"/>
     </elements>

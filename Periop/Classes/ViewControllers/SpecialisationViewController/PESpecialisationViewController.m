@@ -26,7 +26,7 @@
 //@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
 
 @property (strong, nonatomic) NSArray * arrayWithSpecialisations;
-@property (strong, nonatomic) PESpecialisationManager * manager;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 
 @end
@@ -55,7 +55,7 @@
     self.collectionView.backgroundView = backgroundImage;
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    self.manager = [PESpecialisationManager sharedManager];
+    self.specManager = [PESpecialisationManager sharedManager];
     
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
@@ -71,6 +71,8 @@
         [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
             
         }];
+        self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+        [self.collectionView reloadData];
     }
     
 #warning - TO delete
@@ -176,8 +178,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
-    self.manager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
-    self.manager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
+    self.specManager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.selectedViewController = rootController.viewControllers[5];
@@ -187,7 +189,7 @@
 #pragma mark - CollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (self.arrayWithSpecialisations.count>0){
+    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
         return self.arrayWithSpecialisations.count;
     } else {
         return 1;
@@ -197,8 +199,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
+    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
+        cell.backgroundColor = [UIColor clearColor];
+        cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
+    }
     return cell;
 }
 

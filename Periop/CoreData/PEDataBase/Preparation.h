@@ -14,6 +14,7 @@
 @interface Preparation : NSManagedObject
 
 @property (nonatomic, retain) NSString * preparationText;
+@property (nonatomic, retain) NSString * stepName;
 @property (nonatomic, retain) Procedure *procedure;
 
 @end

@@ -105,23 +105,28 @@
             pp.procedure = currentProcedure;
             [currentProcedure addPatientPostioningObject:pp];
         }
-        for (NSString* preparation in [dicWithProcedure valueForKey:@"Preparation"]){
+        
+        NSArray *preparation = (NSArray *)[dicWithProcedure valueForKey:@"Preparation"];
+        [preparation enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             NSEntityDescription * preparationEntity = [NSEntityDescription entityForName:@"Preparation" inManagedObjectContext:self.managedObjectContext];
             Preparation * prep = [[Preparation alloc] initWithEntity:preparationEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            prep.preparationText = preparation;
+            prep.stepName = [NSString stringWithFormat:@"Step %i", idx + 1];
+            prep.preparationText = (NSString*)obj;
             prep.procedure = currentProcedure;
             [currentProcedure addPreparationObject:prep];
-        }
-        int i=1;
-        for (NSString* opRoom in [dicWithProcedure valueForKey:@"Operation Room"]){
+            
+        }];
+        
+        NSArray *operationRoomArray = (NSArray *)[dicWithProcedure valueForKey:@"Operation Room"];
+        [operationRoomArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
             OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            opR.stepName = [NSString stringWithFormat:@"Step %i", i];
-            opR.stepDescription = opRoom;
+            opR.stepName = [NSString stringWithFormat:@"Step %i", idx + 1];
+            opR.stepDescription = (NSString *)obj;
             opR.procedure = currentProcedure;
             [currentProcedure addOperationRoomsObject:opR];
-            i++;
-        }
+ 
+        }];
         
         NSDictionary * dicWithTools = [dicWithProcedure valueForKey:@"Tools"];
         

@@ -19,8 +19,10 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) PESpecialisationManager * manager;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+
+@property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
 
 @end
 
@@ -31,8 +33,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
     
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
@@ -47,7 +55,6 @@
     NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:@"\nProcedureName"];
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
    
-    
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     self.navigationBarLabel.attributedText = stringForLabelTop;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
@@ -56,9 +63,6 @@
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
-    
-    self.manager = [PESpecialisationManager sharedManager];
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -74,7 +78,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  [self.manager.currentProcedure.preparation count];
+    return  [self.specManager.currentProcedure.preparation count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,8 +102,8 @@
 
 - (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath{
     
-    cell.labelStep.text = [NSString stringWithFormat:@"Step %i", (int)[indexPath row]];
-    cell.labelPreparationText.text = ((Preparation*)([self.manager.currentProcedure.preparation allObjects][indexPath.row])).preparationText;
+    cell.labelStep.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).stepName;    
+    cell.labelPreparationText.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).preparationText;
     return cell;
 }
 
@@ -116,6 +120,19 @@
     sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 0.0f);
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
+}
+
+#pragma marks - Private
+
+
+- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * firstObject = [(Preparation*)obj1 stepName];
+        NSString * secondObject = [(Preparation*)obj2 stepName];
+        return [firstObject compare:secondObject];
+    }];
+    return sortedArray;
 }
 
 

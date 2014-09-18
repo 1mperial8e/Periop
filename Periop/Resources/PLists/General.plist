@@ -486,7 +486,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>Preparation</key>
+		<key>Patient Positioning</key>
 		<array>
 			<string>Supine with arms by patients side and or arm board</string>
 			<string>Pressure Area &amp; Patient Supports- Padded arm boards, heal supports, jel mattress,  patient strap</string>
@@ -502,12 +502,15 @@
 			<string>IV Pressure Device/bag on Standby</string>
 			<string>Mayo table</string>
 		</array>
-		<key>Patient Positioning</key>
+		<key>Preparation</key>
 		<array>
-			<string>Supine with arms by patients side and or arm board</string>
-			<string>Pressure Area &amp; Patient Supports- Padded arm boards, heal supports, jel mattress,  patient strap</string>
-			<string>Warming blanket as required</string>
+			<string>Prep from the Umbilicus to mid chest region down to the pubis region </string>
+			<string>Square Drape</string>
+			<string>Check Mesh and tacking device with Surgeon</string>
 			<string>Sequential Compression Devices as required</string>
+			<string>Warm IV irrigation available</string>
+			<string>Have open setup available</string>
+			<string>Check all diathermy /bovie connections facilitate connections</string>
 		</array>
 	</dict>
 </array>

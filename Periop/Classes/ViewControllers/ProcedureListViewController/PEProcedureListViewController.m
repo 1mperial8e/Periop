@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *doctorsButton;
 @property (weak, nonatomic) IBOutlet UIButton *procedureButton;
 
-@property (strong, nonatomic) PESpecialisationManager * manager;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
@@ -57,7 +57,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.manager = [PESpecialisationManager sharedManager];
+    self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
 }
@@ -104,8 +104,8 @@
 #pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.manager.currentSpecialisation!=nil){
-        return [self.manager.currentSpecialisation.procedures count];
+    if (self.specManager.currentSpecialisation!=nil){
+        return [self.specManager.currentSpecialisation.procedures count];
     } else {
         return 1;
     }
@@ -124,7 +124,7 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
-    cell.textLabel.text = ((Procedure*)[self.manager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
+    cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
     
     return cell;
 }
@@ -135,8 +135,8 @@
     
     if ([self.navigationBarLabel.text isEqualToString:@"Procedure Name"]){
         NSEntityDescription * sprocEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
-        self.manager.currentProcedure  = [[Procedure alloc] initWithEntity:sprocEntity insertIntoManagedObjectContext:self.managedObjectContext];
-        self.manager.currentProcedure = [self.manager.currentSpecialisation.procedures allObjects][indexPath.row];
+        self.specManager.currentProcedure  = [[Procedure alloc] initWithEntity:sprocEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
         
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:NO];

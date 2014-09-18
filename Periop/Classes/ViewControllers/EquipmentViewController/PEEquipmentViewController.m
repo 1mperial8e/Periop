@@ -11,6 +11,9 @@
 #import "PEToolsDetailsViewController.h"
 #import "PEAddNewToolViewController.h"
 
+#import "EquipmentsTool.h"
+#import "PESpecialisationManager.h"
+
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
 
@@ -20,6 +23,8 @@
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
