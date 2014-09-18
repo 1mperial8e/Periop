@@ -11,13 +11,21 @@
 #import "PEAddNewToolViewController.h"
 #import "PEMediaSelect.h"
 
+#import "PESpecialisationManager.h"
+#import "EquipmentsTool.h"
+
+
 @interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *specificationlabel;
-@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
+
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) UILabel    * navigationBarLabel;
+@property (strong, nonatomic) UILabel * navigationBarLabel;
+
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -28,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.specManager = [PESpecialisationManager sharedManager];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
@@ -45,13 +54,17 @@
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
-
+    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
+    self.navigationBarLabel.attributedText = stringForLabelTop;
     
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
-    self.navigationItem.rightBarButtonItem=propButton;
+    UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    editButton.image = [UIImage imageNamed:@"Edit"];
+    self.navigationItem.rightBarButtonItem=editButton;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    [self setSelectedObjectToView];
     
     self.pageControll.numberOfPages = 10;
 }
@@ -68,8 +81,10 @@
 
 #pragma mark - IBActions
 
-- (IBAction)propButton:(id)sender {
-    
+- (IBAction)editButton:(id)sender {
+    self.nameTextField.enabled = true;
+    self.specificationTextField.enabled = true;
+    self.quantityTextField.enabled = true;
 }
 
 - (IBAction)photoButton:(id)sender {
@@ -97,9 +112,6 @@
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
-
-
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -113,5 +125,12 @@
     return cell;
 }
 
+#pragma mark - Private
+
+- (void)setSelectedObjectToView {
+    self.nameTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).name;
+    self.specificationTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).category;
+    self.quantityTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).quantity;
+}
 
 @end

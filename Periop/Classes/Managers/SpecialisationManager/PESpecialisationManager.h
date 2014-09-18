@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Specialisation.h"
 #import "Procedure.h"
+#import "EquipmentsTool.h"
 
 @interface PESpecialisationManager : NSObject
 
 @property (strong, nonatomic) Specialisation * currentSpecialisation;
 @property (strong, nonatomic) Procedure * currentProcedure;
+@property (strong, nonatomic) EquipmentsTool * currentEquipment;
 
 + (id) sharedManager;
 

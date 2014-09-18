@@ -13,13 +13,12 @@
 
 #import "EquipmentsTool.h"
 #import "PESpecialisationManager.h"
-
+#import "PECoreDataManager.h"
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -27,8 +26,8 @@
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSArray * arrayWithCategorisedToolsArrays;
 @property (strong, nonatomic) NSArray * categoryTools;
-
 @property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
 
@@ -42,6 +41,7 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     self.arrayWithCategorisedToolsArrays = [self sortArrayByCategoryAttribute:[self.specManager.currentProcedure.equipments allObjects]];
     self.categoryTools = [self categoryType:[self.specManager.currentProcedure.equipments allObjects]];
@@ -125,6 +125,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentEquipment = [[EquipmentsTool alloc]initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
+    
     PEToolsDetailsViewController * toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
     [self.navigationController pushViewController:toolDetailsView animated:NO];
 }
