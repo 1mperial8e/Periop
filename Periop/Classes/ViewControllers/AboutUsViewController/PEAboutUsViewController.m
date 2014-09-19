@@ -25,12 +25,11 @@
     [super viewDidLoad];
     
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.text = @"About Us";
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.text = @"About Us";
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -40,14 +40,12 @@
     [super viewDidLoad];
     
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.text = @"Specialisations";
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.text = @"Specialisations";
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     
-    //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate= (id)self;
@@ -196,18 +194,25 @@
 
 #pragma mark - CollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-    rootController.selectedViewController = rootController.viewControllers[5];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
+
+    PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
+    [self.navigationController pushViewController:procedureListController animated:NO];
 }
 
 
 #pragma mark - CollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 7;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
+        return self.arrayWithSpecialisations.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
