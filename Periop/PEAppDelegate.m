@@ -14,6 +14,7 @@
 #import "PEAboutUsViewController.h"
 #import "PEProcedureListViewController.h"
 #import "PESpecialisationViewController.h"
+#import "PECameraRollManager.h"
 
 #import  "PEPurchaseManager.h"
 
@@ -49,6 +50,8 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
     
     return YES;
 }

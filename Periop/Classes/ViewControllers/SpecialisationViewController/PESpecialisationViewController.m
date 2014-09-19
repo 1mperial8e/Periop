@@ -78,17 +78,17 @@
         [self.collectionView reloadData];
     }
     
-    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
-    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
-    newSpec.name = @"New Spec";
-    newSpec.specID = @"S43498573";
-    newSpec.photoName = @"General_Large";
-    NSError * error = nil;
-    if (![newSpec.managedObjectContext save:&error]){
-        NSLog(@"%@", error.localizedDescription);
-    }
-    
-    
+//    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+//    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
+//    newSpec.name = @"New Spec";
+//    newSpec.specID = @"S43498573";
+//    newSpec.photoName = @"General_Large";
+//    NSError * error = nil;
+//    if (![newSpec.managedObjectContext save:&error]){
+//        NSLog(@"%@", error.localizedDescription);
+//    }
+//    
+//    
 #warning - TO delete
     //singleton for dataManager
     //PECoreDataManager * dataManager = [PECoreDataManager sharedManager];

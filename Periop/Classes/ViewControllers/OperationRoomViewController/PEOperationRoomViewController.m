@@ -14,6 +14,7 @@
 #import "PESpecialisationManager.h"
 #import "OperationRoom.h"
 #import "Procedure.h"
+#import "PEAlbumViewController.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
@@ -158,7 +159,8 @@
 #pragma mark - XIB Action
 
 - (IBAction)albumPhoto:(id)sender {
-    NSLog(@"albumPhoto from Op");
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender {
