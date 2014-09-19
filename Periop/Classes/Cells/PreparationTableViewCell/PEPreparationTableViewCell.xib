@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="70" selectionStyle="default" indentationWidth="10" reuseIdentifier="preparationCell" rowHeight="70" id="KGk-i7-Jjw" customClass="PEPreparationTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="21" text="Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tht-NG-tGm">
+                        <rect key="frame" x="20" y="0.0" width="280" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-L4-GNf">
+                        <rect key="frame" x="20" y="29" width="280" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hhx-L4-GNf" firstAttribute="top" secondItem="Tht-NG-tGm" secondAttribute="bottom" constant="8" id="3uL-C5-Xy7"/>
+                    <constraint firstAttribute="bottom" secondItem="Hhx-L4-GNf" secondAttribute="bottom" constant="20" id="Bn4-ha-xpF"/>
+                    <constraint firstItem="Hhx-L4-GNf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="JDw-yq-C4C"/>
+                    <constraint firstItem="Tht-NG-tGm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WDT-Y3-m7D"/>
+                    <constraint firstItem="Tht-NG-tGm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="YvD-uA-V3z"/>
+                    <constraint firstAttribute="trailing" secondItem="Hhx-L4-GNf" secondAttribute="trailing" constant="20" id="e3U-cy-nf0"/>
+                    <constraint firstItem="Hhx-L4-GNf" firstAttribute="top" secondItem="Tht-NG-tGm" secondAttribute="bottom" constant="8" id="kqc-h9-0vf"/>
+                    <constraint firstAttribute="trailing" secondItem="Tht-NG-tGm" secondAttribute="trailing" constant="20" id="lXg-D3-p6I"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelPreparationText" destination="Hhx-L4-GNf" id="f8r-s2-suk"/>
+                <outlet property="labelStep" destination="Tht-NG-tGm" id="hgU-Tt-jUq"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

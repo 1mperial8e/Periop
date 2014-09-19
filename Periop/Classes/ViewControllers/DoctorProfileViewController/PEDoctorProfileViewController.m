@@ -29,12 +29,11 @@
     [super viewDidLoad];
 
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.text = @"Procedure Name";
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.text = @"Procedure Name";
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
     self.navigationItem.rightBarButtonItem=propButton;

@@ -6,18 +6,31 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSInteger const TDVCAnimationDuration = 0.2f;
+
 #import "PEToolsDetailsViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEAddNewToolViewController.h"
 #import "PEMediaSelect.h"
 
-@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *specificationlabel;
-@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+#import "PESpecialisationManager.h"
+#import "EquipmentsTool.h"
+#import "PECoreDataManager.h"
+
+
+@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
+
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) UILabel    * navigationBarLabel;
+@property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) UIBarButtonItem * rightBarButton;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (assign, nonatomic) CGRect keyboardRect;
 
 @end
 
@@ -28,12 +41,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.numberOfLines = 0;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
+    
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Name"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -44,16 +62,22 @@
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    navigationLabel.attributedText = stringForLabelTop;
-    self.navigationBarLabel = navigationLabel;
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
+    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
+    self.navigationBarLabel.attributedText = stringForLabelTop;
     
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
-    self.navigationItem.rightBarButtonItem=propButton;
+    UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    editButton.image = [UIImage imageNamed:@"Edit"];
+    self.rightBarButton = editButton;
+    self.navigationItem.rightBarButtonItem=editButton;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    [self setSelectedObjectToView];
+    
+    self.nameTextField.delegate = self;
+    self.specificationTextField.delegate = self;
+    self.quantityTextField.delegate = self;
     
     self.pageControll.numberOfPages = 10;
 }
@@ -70,8 +94,48 @@
 
 #pragma mark - IBActions
 
-- (IBAction)propButton:(id)sender {
+- (IBAction)editButton:(id)sender {
+    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    self.nameTextField.enabled = true;
+    self.specificationTextField.enabled = true;
+    self.quantityTextField.enabled = true;
+}
+
+- (IBAction)saveButton:(id)sender{
+    self.navigationItem.rightBarButtonItem = self.rightBarButton;
+    self.nameTextField.enabled = false;
+    self.specificationTextField.enabled = false;
+    self.quantityTextField.enabled = false;
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        [self resignFirstResponder];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
     
+//    NSEntityDescription * equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+//    EquipmentsTool * modEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
+//    
+//    modEquipment = ((EquipmentsTool*)self.specManager.currentEquipment);
+//    modEquipment.name = self.nameTextField.text;
+//    modEquipment.category = self.specificationTextField.text;
+//    modEquipment.quantity = self.quantityTextField.text;
+//    modEquipment.createdDate = [NSDate date];
+//    
+//    NSError * saveError = nil;
+//    if (![modEquipment.managedObjectContext save:&saveError]){
+//        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
+//    }
+    
+    ((EquipmentsTool*)self.specManager.currentEquipment).name = self.nameTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).category = self.specificationTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).quantity = self.quantityTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).createdDate = [NSDate date];
+                                                                      
+    NSError * saveError = nil;
+    if (![self.managedObjectContext save:&saveError]){
+        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
+    }
+
 }
 
 - (IBAction)photoButton:(id)sender {
@@ -99,9 +163,6 @@
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
-
-
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -115,5 +176,35 @@
     return cell;
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        [textField resignFirstResponder];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
+    
+    return YES;
+}
+
+#pragma mark - Notifcation
+
+- (void)keyboardWillChange:(NSNotification *)notification {
+    self.keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.keyboardRect = [self.view convertRect:self.keyboardRect fromView:nil];
+    
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height+self.quantityTextField.frame.size.height);
+    }];
+}
+
+#pragma mark - Private
+
+- (void)setSelectedObjectToView {
+    self.nameTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).name;
+    self.specificationTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).category;
+    self.quantityTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).quantity;
+}
 
 @end

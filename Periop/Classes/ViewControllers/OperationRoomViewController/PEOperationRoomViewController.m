@@ -9,15 +9,22 @@
 #import "PEOperationRoomViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEMediaSelect.h"
+#import "PEPreparationTableViewCell.h"
 
-@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+#import "PESpecialisationManager.h"
+#import "OperationRoom.h"
+#import "Procedure.h"
+
+@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (weak, nonatomic) IBOutlet UITextView *operationTextView;
-@property (weak, nonatomic) IBOutlet UILabel *stepsLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
 
 @end
 
@@ -28,16 +35,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRooms allObjects]];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
+    
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.numberOfLines = 0;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -48,14 +63,14 @@
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    navigationLabel.attributedText = stringForLabelTop;
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel.attributedText = stringForLabelTop;
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     self.pageController.numberOfPages = 10;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -68,7 +83,6 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -80,6 +94,54 @@
     cell.backgroundColor = [UIColor greenColor];
     self.pageController.currentPage = [indexPath row];
     return cell;
+}
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return  [self.specManager.currentProcedure.operationRooms count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PEPreparationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+    if (!cell){
+        cell = [[PEPreparationTableViewCell alloc] init];
+    }
+    cell = [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self heightForBasicCellAtIndexPath:indexPath];
+}
+
+#pragma mark - DynamicHeightOfCell
+
+- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath{
+    
+    cell.labelStep.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
+    cell.labelPreparationText.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
+    
+    return cell;
+}
+
+- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath{
+    static PEPreparationTableViewCell * sizingCell = nil;
+    static dispatch_once_t  token;
+    dispatch_once(&token, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+    });
+    [self configureCell:sizingCell atIndexPath:indexPath];
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 0.0f);
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
 }
 
 #pragma mark - IBActions
@@ -107,5 +169,19 @@
      NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
 }
+
+#pragma marks - Private
+
+
+- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * firstObject = [(OperationRoom*)obj1 stepName];
+        NSString * secondObject = [(OperationRoom*)obj2 stepName];
+        return [firstObject compare:secondObject];
+    }];
+    return sortedArray;
+}
+
 
 @end

@@ -33,16 +33,15 @@
     [super viewDidLoad];
 
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
+    self.labelToShowOnNavigationBar = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.labelToShowOnNavigationBar.backgroundColor = [UIColor clearColor];
+    self.labelToShowOnNavigationBar.textColor = [UIColor whiteColor];
+    self.labelToShowOnNavigationBar.textAlignment = NSTextAlignmentCenter;
     if (self.textToShow && self.textToShow.length!=0){
-        navigationLabel.text = self.textToShow;
+        self.labelToShowOnNavigationBar.text = self.textToShow;
     } else {
-        navigationLabel.text = @"Surgeon List";
+        self.labelToShowOnNavigationBar.text = @"Surgeon List";
     }
-    self.labelToShowOnNavigationBar = navigationLabel;
     
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
     self.navigationBarAddBarButton = addDoctorButton;

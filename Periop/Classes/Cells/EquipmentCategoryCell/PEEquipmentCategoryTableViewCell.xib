@@ -7,17 +7,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="equipmentCell" rowHeight="129" id="KGk-i7-Jjw" customClass="PEEquipmentCategoryTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
-                        <rect key="frame" x="254" y="0.0" width="66" height="29"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
+                        <rect key="frame" x="226" y="0.0" width="94" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.8862745098" green="0.36862745099999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Delete">
+                        <color key="backgroundColor" red="0.8901960784313725" green="0.32941176470588235" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" image="Delete.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -25,22 +25,23 @@
                             <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Fj-a7-NLy"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tool name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
-                                <rect key="frame" x="20" y="0.0" width="226" height="30"/>
+                                <rect key="frame" x="20" y="8" width="195" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
-                                <rect key="frame" x="254" y="0.0" width="66" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
+                                <rect key="frame" x="223" y="0.0" width="97" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="OK">
+                                <state key="normal" image="Check_Inactive.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="Check_Active.png"/>
                                 <connections>
                                     <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="for-mt-FQq"/>
                                 </connections>
@@ -49,18 +50,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="mzo-Q6-cZb" secondAttribute="trailing" id="PtA-xh-nHT"/>
-                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="R0Q-aQ-Kxe"/>
-                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="b0Q-Mx-kTm"/>
-                    <constraint firstAttribute="bottom" secondItem="mzo-Q6-cZb" secondAttribute="bottom" constant="-1" id="bt1-F5-9A3"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="buttonDeleteOutlet" destination="i6B-ut-RVE" id="x0j-qn-U1T"/>
+                <outlet property="checkButton" destination="miv-Tt-JSS" id="9cR-nG-Wun"/>
                 <outlet property="equipmentNameLabel" destination="I1s-lw-m1o" id="UuD-By-l75"/>
                 <outlet property="viewWithContent" destination="mzo-Q6-cZb" id="vdn-2M-yBB"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Check_Active.png" width="26" height="24"/>
+        <image name="Check_Inactive.png" width="26" height="24"/>
+        <image name="Delete.png" width="24" height="24"/>
+    </resources>
 </document>

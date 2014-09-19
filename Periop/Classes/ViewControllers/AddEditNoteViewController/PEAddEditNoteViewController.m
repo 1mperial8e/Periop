@@ -27,12 +27,11 @@
 {
     [super viewDidLoad];
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.text = @"New Note";
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.text = @"New Note";
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
 
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"X" style:UIBarButtonItemStyleBordered target:self action:@selector(closeButton:)];
     self.navigationItem.leftBarButtonItem = closeButton;

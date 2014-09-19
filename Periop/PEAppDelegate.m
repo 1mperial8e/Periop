@@ -15,10 +15,14 @@
 #import "PEProcedureListViewController.h"
 #import "PESpecialisationViewController.h"
 
+#import  "PEPurchaseManager.h"
+
 @implementation PEAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [PEPurchaseManager sharedManager];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
@@ -36,17 +40,10 @@
     
     PEAboutUsViewController *aboutUsController = [[PEAboutUsViewController alloc] initWithNibName:@"PEAboutUsViewController" bundle:nil];
     UINavigationController *aboutUsNavController = [self navControllerWithRootViewController:aboutUsController];
-    
-    PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
-    UINavigationController *procedureListNavController = [self navControllerWithRootViewController:procedureListController];
-    
+
     UITabBarController *tabController = [[UITabBarController alloc] init];
-    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController, procedureListNavController];
+    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController];
     tabController.tabBar.hidden = YES;
-    
-    tabController.moreNavigationController.navigationBar.translucent = NO;
-    tabController.moreNavigationController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
-    tabController.moreNavigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     self.window.rootViewController = tabController;
     

@@ -31,12 +31,11 @@
     [super viewDidLoad];
     self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width/2;
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel = navigationLabel;
-    navigationLabel.text = @"Procedure";
-    navigationLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.text = @"Procedure";
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
 
 }

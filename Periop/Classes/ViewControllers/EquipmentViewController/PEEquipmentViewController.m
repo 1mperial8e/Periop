@@ -11,15 +11,23 @@
 #import "PEToolsDetailsViewController.h"
 #import "PEAddNewToolViewController.h"
 
+#import "EquipmentsTool.h"
+#import "PESpecialisationManager.h"
+#import "PECoreDataManager.h"
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+
+@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSArray * arrayWithCategorisedToolsArrays;
+@property (strong, nonatomic) NSArray * categoryTools;
+@property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
 
@@ -31,14 +39,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    self.arrayWithCategorisedToolsArrays = [self sortArrayByCategoryAttribute:[self.specManager.currentProcedure.equipments allObjects]];
+    self.categoryTools = [self categoryType:[self.specManager.currentProcedure.equipments allObjects]];
 
     CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    UILabel * navigationLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
-    navigationLabel.backgroundColor = [UIColor clearColor];
-    navigationLabel.textColor = [UIColor whiteColor];
-    navigationLabel.text = @"Procedure Name";
-    navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel = navigationLabel;
+    self.navigationBarLabel= [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.text = @"Procedure Name";
+    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
@@ -50,23 +63,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
     self.cellCurrentlyEditing = [NSMutableSet new];
-    
-    CAGradientLayer * buttonAddLayer = [CAGradientLayer layer];
-    buttonAddLayer.frame = self.addNewButton.layer.bounds;
-    NSArray * colorArrayProcedure = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:249/255.0 green:236/255.0 blue:254/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:234/255.0 green:240/255.0 blue:254/255.0 alpha:1.0f].CGColor, nil];
-    buttonAddLayer.colors = colorArrayProcedure;
-    NSArray* location = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0f], [NSNumber numberWithFloat:1.0f], nil];
-    buttonAddLayer.locations = location;
-    buttonAddLayer.cornerRadius = self.addNewButton.layer.cornerRadius;
-    [self.addNewButton.layer addSublayer:buttonAddLayer];
-    
-    CAGradientLayer * sendMailLayer = [CAGradientLayer layer];
-    sendMailLayer.frame = self.emailButton.layer.bounds;
-    NSArray * colorArrayDoctors = [NSArray arrayWithObjects:(id)[UIColor colorWithRed:160/255.0 green:227/255.0 blue:205/255.0 alpha:1.0f].CGColor,(id)[UIColor colorWithRed:139/255.0 green:222/255.0 blue:205/255.0 alpha:1.0f].CGColor, nil];
-    sendMailLayer.colors = colorArrayDoctors;
-    sendMailLayer.locations = location;
-    sendMailLayer.cornerRadius = self.emailButton.layer.cornerRadius;
-    [self.emailButton.layer addSublayer:sendMailLayer];
+    self.cellWithCheckedButtons = [NSMutableSet new];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -95,7 +92,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+   return ((NSArray*)self.arrayWithCategorisedToolsArrays[section]).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -103,26 +100,36 @@
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
-    cell.equipmentNameLabel.text = [NSString stringWithFormat:@"Tool number %i", (int)[indexPath row]];
+
+    cell.equipmentNameLabel.text = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
     
     cell.delegate = self;
     if ([self.cellCurrentlyEditing containsObject:indexPath]){
         [cell setCellSwiped];
     }
+    if ([self.cellWithCheckedButtons containsObject:indexPath]){
+         [cell cellSetChecked];
+    }
+
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 7;
+    return self.arrayWithCategorisedToolsArrays.count;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Equipment Category";
+    return (NSString*)self.categoryTools[section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentEquipment = [[EquipmentsTool alloc]initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
+    
     PEToolsDetailsViewController * toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
     [self.navigationController pushViewController:toolDetailsView animated:NO];
 }
@@ -140,6 +147,39 @@
 - (void)cellDidSwipedOut:(UITableViewCell *)cell{
     NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
+}
+
+- (void)cellChecked:(UITableViewCell *)cell{
+    NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
+    [self.cellWithCheckedButtons addObject:currentlyEditedIndexPath];
+}
+
+- (void)cellUnchecked:(UITableViewCell *)cell{
+    [self.cellWithCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
+}
+
+#pragma mark - Private
+
+- (NSArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray{
+    NSMutableArray * arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
+    NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
+    NSArray * uniqueCategory = [toolsWithCounts allObjects];
+    
+    for (int i=0; i< uniqueCategory.count; i++){
+        NSMutableArray * categoryArray = [[NSMutableArray alloc] init];
+        for (EquipmentsTool * equipment in objectsArray) {
+            if ([equipment.category isEqualToString:[NSString stringWithFormat:@"%@", uniqueCategory[i]] ]) {
+                [categoryArray addObject:equipment];
+            }
+        }
+        [arrayWithCategorisedArrays addObject:categoryArray];
+    }
+    return arrayWithCategorisedArrays;
+}
+
+- (NSArray* )categoryType: (NSArray*)objectsArray{
+    NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
+    return [toolsWithCounts allObjects];
 }
 
 @end

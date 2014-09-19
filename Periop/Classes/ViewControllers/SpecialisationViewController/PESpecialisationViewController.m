@@ -10,6 +10,10 @@
 #import "PESpecialisationCollectionViewCell.h"
 #import "PEProcedureListViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PECoreDataManager.h"
+
+#import "PEPlistParser.h"
+#import "PESpecialisationManager.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -19,7 +23,11 @@
 
 #warning - JUST FOR CHECKING DATAMANAGER -TO DELETE
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
+//@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
+
+@property (strong, nonatomic) NSArray * arrayWithSpecialisations;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
+
 
 @end
 
@@ -45,14 +53,50 @@
     self.collectionView.delegate= (id)self;
     self.collectionView.dataSource = (id)self;
     
+    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
+    self.collectionView.backgroundView = backgroundImage;
+    
+    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.specManager = [PESpecialisationManager sharedManager];
+    
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+   
+    if (self.arrayWithSpecialisations.count>0){
+     /*   for (Specialisation * specs in self.arrayWithSpecialisations){
+            NSLog(@"Spec name - %@", specs.name);
+            NSLog(@"Spec id - %@", specs.specID);
+            NSLog(@"Spec photo Name - %@", specs.photoName);
+        }*/
+    } else {
+        PEPlistParser * parser = [[PEPlistParser alloc] init];
+        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
+            
+        }];
+        self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+        [self.collectionView reloadData];
+    }
+    
+    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
+    newSpec.name = @"New Spec";
+    newSpec.specID = @"S43498573";
+    newSpec.photoName = @"General_Large";
+    NSError * error = nil;
+    if (![newSpec.managedObjectContext save:&error]){
+        NSLog(@"%@", error.localizedDescription);
+    }
     
     
 #warning - TO delete
-    /*
     //singleton for dataManager
     //PECoreDataManager * dataManager = [PECoreDataManager sharedManager];
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    
+    //self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+
+    /*
     //remove
     //1.create required entity
     Entity * obj;
@@ -158,6 +202,7 @@
     rootController.selectedViewController = rootController.viewControllers[5];
 }
 
+
 #pragma mark - CollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -168,8 +213,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blueColor];
-    
+    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
+        cell.backgroundColor = [UIColor clearColor];
+        cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
+    }
     return cell;
 }
 
