@@ -23,9 +23,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
-
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
@@ -82,19 +82,22 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.pageControll.numberOfPages = 10;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)editButton:(id)sender {
+- (IBAction)editButton:(id)sender
+{
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     self.nameTextField.enabled = true;
@@ -102,7 +105,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.quantityTextField.enabled = true;
 }
 
-- (IBAction)saveButton:(id)sender{
+- (IBAction)saveButton:(id)sender
+{
     self.navigationItem.rightBarButtonItem = self.rightBarButton;
     self.nameTextField.enabled = false;
     self.specificationTextField.enabled = false;
@@ -138,7 +142,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 }
 
-- (IBAction)photoButton:(id)sender {
+- (IBAction)photoButton:(id)sender
+{
     CGRect position = self.collectionView.frame;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
@@ -150,26 +155,31 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #pragma mark - XIB Action
 
 //methods from xib view
-- (IBAction)albumPhoto:(id)sender {
+- (IBAction)albumPhoto:(id)sender
+{
     NSLog(@"albumPhoto from Op");
 }
 
-- (IBAction)cameraPhoto:(id)sender {
+- (IBAction)cameraPhoto:(id)sender
+{
     NSLog(@"camera Photo from Op");
 }
 
-- (IBAction)tapOnView:(id)sender {
+- (IBAction)tapOnView:(id)sender
+{
     NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return 10;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];
     self.pageControll.currentPage = [indexPath row];
@@ -180,7 +190,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
         [textField resignFirstResponder];
         self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
@@ -190,18 +200,20 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 #pragma mark - Notifcation
 
-- (void)keyboardWillChange:(NSNotification *)notification {
+- (void)keyboardWillChange:(NSNotification *)notification
+{
     self.keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.keyboardRect = [self.view convertRect:self.keyboardRect fromView:nil];
     
-    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
         self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height+self.quantityTextField.frame.size.height);
     }];
 }
 
 #pragma mark - Private
 
-- (void)setSelectedObjectToView {
+- (void)setSelectedObjectToView
+{
     self.nameTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).name;
     self.specificationTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).category;
     self.quantityTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).quantity;

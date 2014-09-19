@@ -18,11 +18,11 @@
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
+@property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSArray * arrayWithCategorisedToolsArrays;
 @property (strong, nonatomic) NSArray * categoryTools;
@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView reloadData];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -66,36 +67,45 @@
     self.cellWithCheckedButtons = [NSMutableSet new];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void) viewWillDisappear:(BOOL)animated{
+- (void) viewWillDisappear:(BOOL)animated
+{
     [super   viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)addNewButton:(id)sender {
+- (IBAction)addNewButton:(id)sender
+{
     PEAddNewToolViewController * addNewTool = [[PEAddNewToolViewController alloc] initWithNibName:@"PEAddNewToolViewController" bundle:nil];
     [self.navigationController pushViewController:addNewTool animated:NO];
 }
 
-- (IBAction)eMailButton:(id)sender {
+- (IBAction)eMailButton:(id)sender
+{
+    
 }
 
-- (IBAction)clearAll:(id)sender {
+- (IBAction)clearAll:(id)sender
+{
+    
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
    return ((NSArray*)self.arrayWithCategorisedToolsArrays[section]).count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     PEEquipmentCategoryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"equipmentCell" forIndexPath:indexPath];
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
@@ -104,27 +114,30 @@
     cell.equipmentNameLabel.text = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
     
     cell.delegate = self;
-    if ([self.cellCurrentlyEditing containsObject:indexPath]){
+    if ([self.cellCurrentlyEditing containsObject:indexPath]) {
         [cell setCellSwiped];
     }
-    if ([self.cellWithCheckedButtons containsObject:indexPath]){
+    if ([self.cellWithCheckedButtons containsObject:indexPath]) {
          [cell cellSetChecked];
     }
 
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.arrayWithCategorisedToolsArrays.count;
 }
 
 #pragma mark - UITableViewDelegate
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
     return (NSString*)self.categoryTools[section];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
     self.specManager.currentEquipment = [[EquipmentsTool alloc]initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -136,11 +149,13 @@
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
 
-- (void)buttonDeleteAction{
+- (void)buttonDeleteAction
+{
     NSLog(@"inside button action from delegate PEEquipmentCategoryTableViewCellDelegate");
 }
 
-- (void)cellDidSwipedIn:(UITableViewCell *)cell{
+- (void)cellDidSwipedIn:(UITableViewCell *)cell
+{
     [self.cellCurrentlyEditing removeObject:[self.tableView indexPathForCell:cell]];
 }
 
@@ -149,18 +164,21 @@
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
 }
 
-- (void)cellChecked:(UITableViewCell *)cell{
+- (void)cellChecked:(UITableViewCell *)cell
+{
     NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellWithCheckedButtons addObject:currentlyEditedIndexPath];
 }
 
-- (void)cellUnchecked:(UITableViewCell *)cell{
+- (void)cellUnchecked:(UITableViewCell *)cell
+{
     [self.cellWithCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
 }
 
 #pragma mark - Private
 
-- (NSArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray{
+- (NSArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray
+{
     NSMutableArray * arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     NSArray * uniqueCategory = [toolsWithCounts allObjects];
@@ -177,7 +195,8 @@
     return arrayWithCategorisedArrays;
 }
 
-- (NSArray* )categoryType: (NSArray*)objectsArray{
+- (NSArray* )categoryType: (NSArray*)objectsArray
+{
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     return [toolsWithCounts allObjects];
 }

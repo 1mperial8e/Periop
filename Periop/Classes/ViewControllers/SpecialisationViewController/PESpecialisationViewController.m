@@ -14,6 +14,7 @@
 
 #import "PEPlistParser.h"
 #import "PESpecialisationManager.h"
+#import "PEObjectDescription.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -21,13 +22,11 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 
-#warning - JUST FOR CHECKING DATAMANAGER -TO DELETE
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-//@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
-
 @property (strong, nonatomic) NSArray * arrayWithSpecialisations;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 
+//@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
 
 @end
 
@@ -62,37 +61,25 @@
     
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
-   
-    if (self.arrayWithSpecialisations.count>0){
-     /*   for (Specialisation * specs in self.arrayWithSpecialisations){
-            NSLog(@"Spec name - %@", specs.name);
-            NSLog(@"Spec id - %@", specs.specID);
-            NSLog(@"Spec photo Name - %@", specs.photoName);
-        }*/
-    } else {
+
+    if (self.arrayWithSpecialisations.count<=0){
         PEPlistParser * parser = [[PEPlistParser alloc] init];
         [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
-            
-        }];
+            }];
         self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }
     
-    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
-    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
-    newSpec.name = @"New Spec";
-    newSpec.specID = @"S43498573";
-    newSpec.photoName = @"General_Large";
-    NSError * error = nil;
-    if (![newSpec.managedObjectContext save:&error]){
-        NSLog(@"%@", error.localizedDescription);
-    }
+//    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+//    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
+//    newSpec.name = @"New Spec";
+//    newSpec.specID = @"S43498573";
+//    newSpec.photoName = @"Cardiothoracic_Large";
+//    NSError * error = nil;
+//    if (![newSpec.managedObjectContext save:&error]) {
+//        NSLog(@"%@", error.localizedDescription);
+//    }
     
-    
-#warning - TO delete
-    //singleton for dataManager
-    //PECoreDataManager * dataManager = [PECoreDataManager sharedManager];
-    //self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
 
     /*
     //remove
@@ -151,21 +138,29 @@
     [PECoreDataManager removeFromDB:objToDelete withManagedObject:obj1];
     */
     
+//    Specialisation * spec;
+//    PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:@"General"];
+//    [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
+//    [self.collectionView reloadData];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)menuButton:(id)sender{
+- (IBAction)menuButton:(id)sender
+{
     [self.navigationBarLabel removeFromSuperview];
     
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
@@ -179,22 +174,22 @@
     [rootController presentViewController:menuController animated:NO completion:nil];
 }
 
-- (IBAction)mySpesialisationButton:(id)sender {
+- (IBAction)mySpesialisationButton:(id)sender
+{
     NSLog(@"1");
 }
 
-- (IBAction)moreSpecialisationButton:(id)sender {
+- (IBAction)moreSpecialisationButton:(id)sender
+{
     NSLog(@"2");
 }
 
 #pragma mark - CollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
-    self.specManager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     self.specManager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
-
+    
     PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
     [self.navigationController pushViewController:procedureListController animated:NO];
 }
@@ -202,7 +197,8 @@
 
 #pragma mark - CollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
         return self.arrayWithSpecialisations.count;
     } else {
@@ -210,8 +206,8 @@
     }
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
     if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
         cell.backgroundColor = [UIColor clearColor];
