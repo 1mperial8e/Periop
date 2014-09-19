@@ -13,13 +13,12 @@
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate>
 
-@property (strong, nonatomic) UIBarButtonItem * navigationBarAddBarButton;
-@property (strong, nonatomic) UIBarButtonItem * navigationBarMenuButton;
-@property (strong, nonatomic) UILabel * labelToShowOnNavigationBar;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-//place to store set of opened cells
+@property (strong, nonatomic) UIBarButtonItem * navigationBarAddBarButton;
+@property (strong, nonatomic) UIBarButtonItem * navigationBarMenuButton;
+@property (strong, nonatomic) UILabel * labelToShowOnNavigationBar;
 @property (strong, nonatomic) NSMutableSet * currentlySwipedAndOpenesCells;
 
 @end
@@ -32,8 +31,11 @@
 {
     [super viewDidLoad];
 
-    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    self.labelToShowOnNavigationBar = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
+    self.labelToShowOnNavigationBar = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.labelToShowOnNavigationBar.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
+    self.labelToShowOnNavigationBar.minimumScaleFactor = 0.5;
+    self.labelToShowOnNavigationBar.adjustsFontSizeToFitWidth = YES;
     self.labelToShowOnNavigationBar.backgroundColor = [UIColor clearColor];
     self.labelToShowOnNavigationBar.textColor = [UIColor whiteColor];
     self.labelToShowOnNavigationBar.textAlignment = NSTextAlignmentCenter;
@@ -59,39 +61,43 @@
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.labelToShowOnNavigationBar];
     self.navigationItem.rightBarButtonItem = self.navigationBarAddBarButton;
-    if (self.isButtonRequired){
+    if (self.isButtonRequired) {
         self.navigationItem.leftBarButtonItem = self.navigationBarMenuButton;
     }
 }
 
-- (void) viewWillDisappear:(BOOL)animated{
+- (void) viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     [self.labelToShowOnNavigationBar removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 25;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     PEDoctorsViewTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsCell" forIndexPath:indexPath];
-    if (!cell){
+    if (!cell) {
         cell = [[PEDoctorsViewTableViewCell alloc] init];
     }
     cell.delegate = self;
-    if ( indexPath.row % 2){
+    if ( indexPath.row % 2) {
         cell.viewDoctorsNameView.backgroundColor = [UIColor colorWithRed:236/255.0 green:248/255.0 blue:251/255.0 alpha:1.0f];
-    }
-    else {
+    } else {
         cell.viewDoctorsNameView.backgroundColor = [UIColor whiteColor];
     }
-    if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]){
+    if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
         [cell setCellSwiped];
     }
     cell.doctorNameLabel.text = [NSString stringWithFormat:@"Doctor number %i", (int)[indexPath row]];
@@ -100,13 +106,15 @@
 
 #pragma mark - IBActions
 
-- (IBAction)addDoctorButton:(id)sender{
-        PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
-        addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
-        [self.navigationController pushViewController:addEditDoctorView animated:NO];
+- (IBAction)addDoctorButton:(id)sender
+{
+    PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
+    addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
+    [self.navigationController pushViewController:addEditDoctorView animated:NO];
 }
 
-- (IBAction)menuButton:(id)sender{
+- (IBAction)menuButton:(id)sender
+{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.sizeOfFontInNavLabel = self.labelToShowOnNavigationBar.font.pointSize;
     menuController.textToShow = @"Surgeon List";
@@ -119,18 +127,20 @@
 
 #pragma mark - PEDoctorsViewTableViewCellDelegate
 
-- (void)cellDidSwipedOut:(UITableViewCell *)cell{
+- (void)cellDidSwipedOut:(UITableViewCell *)cell
+{
     NSIndexPath * currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
     [self.currentlySwipedAndOpenesCells addObject:currentOpenedCellIndexPath];
 }
 
-- (void)cellDidSwipedIn:(UITableViewCell *)cell{
+- (void)cellDidSwipedIn:(UITableViewCell *)cell
+{
     [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
 }
 
-- (void)buttonDeleteAction {
+- (void)buttonDeleteAction
+{
     NSLog(@"delete action");
 }
-
 
 @end

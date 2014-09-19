@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-
 @property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
 
 @end
@@ -42,8 +41,11 @@
     
     self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
     
-    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
+    self.navigationBarLabel.minimumScaleFactor = 0.5;
+    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Preperation"];
@@ -52,7 +54,7 @@
                   value:[UIFont systemFontOfSize:16.0]
                   range:NSMakeRange(0, stringForLabelTop.length)];
     
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:@"\nProcedureName"];
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
    
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
@@ -65,52 +67,57 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return  [self.specManager.currentProcedure.preparation count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     PEPreparationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
-    if (!cell){
+    if (!cell) {
         cell = [[PEPreparationTableViewCell alloc] init];
     }
-    //cell.textLabel.text = [NSString stringWithFormat:@"Preperation %d ", indexPath.row ];
      cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;    
 }
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [self heightForBasicCellAtIndexPath:indexPath];
 }
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath{
-    
+- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+{
     cell.labelStep.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).stepName;    
     cell.labelPreparationText.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).preparationText;
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath{
+- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+{
     static PEPreparationTableViewCell * sizingCell = nil;
     static dispatch_once_t  token;
-    dispatch_once(&token, ^{
+    dispatch_once(&token, ^ {
         sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
@@ -125,7 +132,8 @@
 #pragma marks - Private
 
 
-- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort{
+- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
+{
     NSArray * sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString * firstObject = [(Preparation*)obj1 stepName];
@@ -134,6 +142,5 @@
     }];
     return sortedArray;
 }
-
 
 @end

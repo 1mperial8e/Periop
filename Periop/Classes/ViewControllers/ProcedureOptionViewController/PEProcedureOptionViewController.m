@@ -14,11 +14,15 @@
 #import "PENotesViewController.h"
 #import "PEEquipmentViewController.h"
 #import "PEDoctorsListViewController.h"
+#import "Procedure.h"
+#import "PESpecialisationManager.h"
 
 @interface PEProcedureOptionViewController ()
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
+
+@property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -29,15 +33,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width/2;
-    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    
+    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.text = @"Procedure";
+    self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
+    self.navigationBarLabel.minimumScaleFactor = 0.5;
+    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
+
+    self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width/2;
 }
 
 - (void) viewWillAppear:(BOOL)animated{

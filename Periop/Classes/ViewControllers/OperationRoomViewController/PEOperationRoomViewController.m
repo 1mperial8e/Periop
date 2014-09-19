@@ -17,12 +17,12 @@
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
 
@@ -49,8 +49,11 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
     
-    CGPoint center = CGPointMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, center.x, center.y)];
+    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.navigationBarLabel.minimumScaleFactor = 0.5;
+    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
@@ -59,7 +62,7 @@
                               value:[UIFont systemFontOfSize:16.0]
                               range:NSMakeRange(0, stringForLabelTop.length)];
     
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:@"\nProcedureName"];
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
@@ -73,23 +76,27 @@
     
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return 10;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor greenColor];
     self.pageController.currentPage = [indexPath row];
@@ -99,12 +106,13 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return  [self.specManager.currentProcedure.operationRooms count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     PEPreparationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
     if (!cell){
         cell = [[PEPreparationTableViewCell alloc] init];
@@ -115,24 +123,25 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [self heightForBasicCellAtIndexPath:indexPath];
 }
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath{
-    
+- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+{
     cell.labelStep.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
     cell.labelPreparationText.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
-    
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath{
+- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+{
     static PEPreparationTableViewCell * sizingCell = nil;
     static dispatch_once_t  token;
-    dispatch_once(&token, ^{
+    dispatch_once(&token, ^ {
         sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
@@ -146,7 +155,8 @@
 
 #pragma mark - IBActions
 
-- (IBAction)photoButton:(id)sender {
+- (IBAction)photoButton:(id)sender
+{
     CGRect position = self.collectionView.frame;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
@@ -157,23 +167,26 @@
 
 #pragma mark - XIB Action
 
-- (IBAction)albumPhoto:(id)sender {
+- (IBAction)albumPhoto:(id)sender
+{
     NSLog(@"albumPhoto from Op");
 }
 
-- (IBAction)cameraPhoto:(id)sender {
+- (IBAction)cameraPhoto:(id)sender
+{
     NSLog(@"camera Photo from Op");
 }
 
-- (IBAction)tapOnView:(id)sender {
+- (IBAction)tapOnView:(id)sender
+{
      NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma marks - Private
 
-
-- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort{
+- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
+{
     NSArray * sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString * firstObject = [(OperationRoom*)obj1 stepName];
@@ -182,6 +195,5 @@
     }];
     return sortedArray;
 }
-
 
 @end
