@@ -89,7 +89,7 @@
 }
 
 - (IBAction)deleteButton:(id)sender {
-    [self.delegate buttonDeleteAction];
+    [self.delegate buttonDeleteAction:self];
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate & panRecognizer

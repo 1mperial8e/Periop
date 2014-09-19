@@ -71,6 +71,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -137,7 +138,6 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
-    
     return cell;
 }
 

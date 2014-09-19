@@ -18,7 +18,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "PECoreDataManager.h"
 
 
-@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
+@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UITextInputTraits>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
@@ -81,6 +81,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.nameTextField.delegate = self;
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
+    self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
     
     self.pageControll.numberOfPages = 10;
 }
@@ -114,24 +115,10 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.nameTextField.enabled = false;
     self.specificationTextField.enabled = false;
     self.quantityTextField.enabled = false;
-    [UIView animateWithDuration:TDVCAnimationDuration animations:^{
-        [self resignFirstResponder];
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
+        [self.view endEditing:YES];
         self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
-    
-//    NSEntityDescription * equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
-//    EquipmentsTool * modEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
-//    
-//    modEquipment = ((EquipmentsTool*)self.specManager.currentEquipment);
-//    modEquipment.name = self.nameTextField.text;
-//    modEquipment.category = self.specificationTextField.text;
-//    modEquipment.quantity = self.quantityTextField.text;
-//    modEquipment.createdDate = [NSDate date];
-//    
-//    NSError * saveError = nil;
-//    if (![modEquipment.managedObjectContext save:&saveError]){
-//        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
-//    }
     
     ((EquipmentsTool*)self.specManager.currentEquipment).name = self.nameTextField.text;
     ((EquipmentsTool*)self.specManager.currentEquipment).category = self.specificationTextField.text;
@@ -142,7 +129,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
     }
-
 }
 
 - (IBAction)photoButton:(id)sender

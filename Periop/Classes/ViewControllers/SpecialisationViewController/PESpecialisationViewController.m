@@ -152,6 +152,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

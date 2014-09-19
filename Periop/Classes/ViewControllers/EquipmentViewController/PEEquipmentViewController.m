@@ -24,8 +24,8 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSArray * arrayWithCategorisedToolsArrays;
-@property (strong, nonatomic) NSArray * categoryTools;
+@property (strong, nonatomic) NSMutableArray * arrayWithCategorisedToolsArrays;
+@property (strong, nonatomic) NSMutableArray * categoryTools;
 @property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
@@ -74,11 +74,12 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    [self.tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [super   viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
@@ -113,7 +114,6 @@
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
-
     cell.equipmentNameLabel.text = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
     
     cell.delegate = self;
@@ -129,7 +129,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.arrayWithCategorisedToolsArrays.count;
+    return self.categoryTools.count;
 }
 
 #pragma mark - UITableViewDelegate
@@ -149,9 +149,32 @@
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
 
-- (void)buttonDeleteAction
+- (void)buttonDeleteAction:(UITableViewCell*)cell
 {
-    NSLog(@"inside button action from delegate PEEquipmentCategoryTableViewCellDelegate");
+    NSIndexPath * currentIndex = [self.tableView indexPathForCell:cell];
+    EquipmentsTool *eq = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[currentIndex.section])[currentIndex.row]);
+    [self.specManager.currentProcedure removeEquipmentsObject:eq];
+    NSError * deleteError = nil;
+    if (![self.managedObjectContext save:&deleteError]) {
+        NSLog(@"Cant delete object - %@", deleteError.localizedDescription);
+    } else {
+        NSLog(@"Delete success for relationShip");
+        [self.managedObjectContext deleteObject:eq];
+        NSLog(@"Delete success from DB");
+    }
+    
+    [self.cellCurrentlyEditing removeObject:currentIndex];
+    [self.cellWithCheckedButtons removeObject:currentIndex];
+
+    NSArray * currentArray = self.arrayWithCategorisedToolsArrays[currentIndex.section];
+  //  [ removeObject:eq];
+    [self.categoryTools removeObjectAtIndex:currentIndex.section];
+    NSInteger  sectionArray = [self.arrayWithCategorisedToolsArrays[currentIndex.section] count];
+    if ( sectionArray== 0){
+//        [self.arrayWithCategorisedToolsArrays removeObject:self.arrayWithCategorisedToolsArrays[currentIndex.section]];
+    }
+    
+        [self.tableView reloadData];
 }
 
 - (void)cellDidSwipedIn:(UITableViewCell *)cell
@@ -177,7 +200,7 @@
 
 #pragma mark - Private
 
-- (NSArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray
+- (NSMutableArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray
 {
     NSMutableArray * arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
@@ -195,10 +218,9 @@
     return arrayWithCategorisedArrays;
 }
 
-- (NSArray* )categoryType: (NSArray*)objectsArray
+- (NSMutableArray* )categoryType: (NSArray*)objectsArray
 {
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
-    return [toolsWithCounts allObjects];
+    return [NSMutableArray arrayWithArray:[toolsWithCounts allObjects]];
 }
-
 @end

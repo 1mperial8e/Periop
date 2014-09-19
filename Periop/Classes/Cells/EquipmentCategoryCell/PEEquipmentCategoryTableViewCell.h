@@ -12,9 +12,9 @@
 
 @optional
 //buttonAction
-- (void)buttonDeleteAction;
+- (void)buttonDeleteAction:(UITableViewCell*)cell;
 
-- (void)cellDidSwipedIn: (UITableViewCell*)cell;
+- (void)cellDidSwipedIn:(UITableViewCell*)cell;
 - (void)cellDidSwipedOut:(UITableViewCell *)cell;
 
 - (void)cellChecked:(UITableViewCell*)cell;
