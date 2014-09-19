@@ -10,6 +10,7 @@
 #import "PEMenuViewController.h"
 
 @interface PEFeedbackViewController ()
+
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 
 @end
@@ -36,19 +37,22 @@
     self.navigationItem.rightBarButtonItem=sendButton;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBAction
 
-- (IBAction)menuButton:(id)sender{
+- (IBAction)menuButton:(id)sender
+{
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow= @"Feedback";
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;

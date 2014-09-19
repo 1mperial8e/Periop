@@ -7,12 +7,14 @@
 //
 
 #import "PEAppDelegate.h"
+#import "PESpecialisationViewController.h"
 #import "PEFeedbackViewController.h"
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"
 #import "PEProcedureListViewController.h"
 #import "PESpecialisationViewController.h"
+#import "PECameraRollManager.h"
 
 #import  "PEPurchaseManager.h"
 
@@ -48,7 +50,9 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
+    
+    [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
+    
     return YES;
 }
 
@@ -67,7 +71,7 @@
     UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     [button addTarget:vievController action:NSSelectorFromString(@"menuButton:") forControlEvents:UIControlEventTouchUpInside];
     
-    vievController.navigationItem.leftBarButtonItem=menuBarButton;    
+    vievController.navigationItem.leftBarButtonItem = menuBarButton;
     return navController;
 }
 

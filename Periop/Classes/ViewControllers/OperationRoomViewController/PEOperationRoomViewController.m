@@ -14,6 +14,7 @@
 #import "PESpecialisationManager.h"
 #import "OperationRoom.h"
 #import "Procedure.h"
+#import "PEAlbumViewController.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
