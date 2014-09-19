@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEMenuViewController">
             <connections>
+                <outlet property="bottomButtonsView" destination="ZAK-P5-2S5" id="0kZ-3u-A55"/>
                 <outlet property="menuButton" destination="nS9-eq-ccV" id="YTV-0x-2e7"/>
                 <outlet property="menuTitleLabel" destination="ldq-4E-VpH" id="x6d-AG-aoW"/>
                 <outlet property="specializationButton" destination="ZLS-Dt-KAq" id="HAI-yb-TSf"/>
@@ -19,12 +20,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obp-eV-k1F">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obp-eV-k1F">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="538"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93k-Eg-Zv4">
-                            <rect key="frame" x="0.0" y="81" width="320" height="324"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93k-Eg-Zv4">
+                            <rect key="frame" x="0.0" y="107" width="320" height="324"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZd-aA-63M">
@@ -95,10 +96,17 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="324" id="ry3-U2-rql"/>
+                            </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nS9-eq-ccV">
-                            <rect key="frame" x="15" y="503" width="24" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nS9-eq-ccV">
+                            <rect key="frame" x="16" y="504" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="6Lh-Ts-XUj"/>
+                                <constraint firstAttribute="height" constant="24" id="WFV-vU-Hax"/>
+                            </constraints>
                             <state key="normal" image="Menu.png">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,17 +115,31 @@
                                 <action selector="menuButton:" destination="-1" eventType="touchUpInside" id="4XK-am-ay5"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specialisations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldq-4E-VpH">
-                            <rect key="frame" x="0.0" y="503" width="320" height="24"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialisations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldq-4E-VpH">
+                            <rect key="frame" x="0.0" y="504" width="320" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="O1s-Sh-pSr"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="nS9-eq-ccV" firstAttribute="leading" secondItem="obp-eV-k1F" secondAttribute="leading" constant="16" id="7zO-34-OZO"/>
+                        <constraint firstAttribute="centerX" secondItem="93k-Eg-Zv4" secondAttribute="centerX" id="Hgc-cJ-i8P"/>
+                        <constraint firstAttribute="bottom" secondItem="nS9-eq-ccV" secondAttribute="bottom" constant="10" id="PLk-Nt-go7"/>
+                        <constraint firstItem="93k-Eg-Zv4" firstAttribute="leading" secondItem="obp-eV-k1F" secondAttribute="leading" id="S8S-4W-nQS"/>
+                        <constraint firstAttribute="centerY" secondItem="93k-Eg-Zv4" secondAttribute="centerY" id="gwn-WH-2f3"/>
+                        <constraint firstItem="ldq-4E-VpH" firstAttribute="leading" secondItem="obp-eV-k1F" secondAttribute="leading" id="lp2-aX-fvh"/>
+                        <constraint firstAttribute="trailing" secondItem="93k-Eg-Zv4" secondAttribute="trailing" id="oC1-ZY-Qa7"/>
+                        <constraint firstAttribute="trailing" secondItem="ldq-4E-VpH" secondAttribute="trailing" id="pFq-DH-MS7"/>
+                        <constraint firstAttribute="bottom" secondItem="ldq-4E-VpH" secondAttribute="bottom" constant="10" id="vsE-tB-Kjh"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0uR-qA-hUZ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uR-qA-hUZ">
                     <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -148,9 +170,21 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="ZAK-P5-2S5"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0uR-qA-hUZ" secondAttribute="bottom" id="041-xg-Xvg"/>
+                <constraint firstItem="0uR-qA-hUZ" firstAttribute="top" secondItem="obp-eV-k1F" secondAttribute="bottom" id="DHs-dr-Nff"/>
+                <constraint firstAttribute="trailing" secondItem="0uR-qA-hUZ" secondAttribute="trailing" id="Pud-5K-C8g"/>
+                <constraint firstAttribute="trailing" secondItem="obp-eV-k1F" secondAttribute="trailing" id="aUf-WW-Nyb"/>
+                <constraint firstItem="obp-eV-k1F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="b5I-ln-kj3"/>
+                <constraint firstItem="obp-eV-k1F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="etv-RJ-8Sa"/>
+                <constraint firstItem="0uR-qA-hUZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ii6-CY-aeR"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

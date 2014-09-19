@@ -43,18 +43,6 @@
     UITabBarController *tabController = [[UITabBarController alloc] init];
     tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController, procedureListNavController];
     tabController.tabBar.hidden = YES;
-
-    tabController.moreNavigationController.navigationBar.translucent = NO;
-    tabController.moreNavigationController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
-    tabController.moreNavigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:tabController.moreNavigationController.topViewController action:NSSelectorFromString(@"menuButton:") forControlEvents:UIControlEventTouchUpInside];
-    
-    tabController.moreNavigationController.navigationItem.leftBarButtonItem = menuBarButton;
     
     tabController.moreNavigationController.navigationBar.translucent = NO;
     tabController.moreNavigationController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
@@ -65,15 +53,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    return YES;
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
-}
-
     return YES;
 }
 

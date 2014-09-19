@@ -39,6 +39,7 @@
     navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel = navigationLabel;
     
+    //Register a nib file for use in creating new collection view cells.
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate= (id)self;

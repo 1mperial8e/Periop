@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static CGFloat const MVCAnimationDuration = 0.3f;
+static CGFloat const MVCAnimationDuration = 0.5f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 static NSString* const MVCAboutUs = @"About Us";
 static NSString* const MVCSurgeonList = @"Surgeon List";
@@ -29,6 +29,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 @property (assign, nonatomic) CGPoint sizeOfScreen;
 @property (weak, nonatomic) IBOutlet UIView *viewWithButtons;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsView;
 
 @property (weak, nonatomic) UITabBarController *tabBarController;
 
@@ -45,9 +46,11 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     
     if (self.isButtonVisible) {
         self.viewWithButtons.hidden = NO;
+        self.bottomButtonsView.constant = 30.0f;
     }
     else{
         self.viewWithButtons.hidden = YES;
+        self.bottomButtonsView.constant = 0.0f;
     }
     
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
@@ -72,10 +75,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 
 #pragma mark - IBActions
 
-- (IBAction)specialisationButton:(id)sender
-{
-    self.menuTitleLabel.text = @"Specialisation";
-    
+- (IBAction)specialisationButton:(id)sender {
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -91,8 +91,6 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 
 - (IBAction)suggestionListButton:(id)sender
 {
-    self.menuTitleLabel.text = SURGEON_LIST_NAME;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -108,8 +106,6 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 
 - (IBAction)aboutUsButton:(id)sender
 {
-    self.menuTitleLabel.text = ABOUT_US_NAME;
-    
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -122,11 +118,8 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         [self createAnimationWithKey:@"hideMenuToAbout"];
     }
 }
-
-- (IBAction)termsAndConditionsButton:(id)sender
-{
-    self.menuTitleLabel.text= TERMS_COND_NAME;
     
+- (IBAction)termsAndConditionsButton:(id)sender {
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -140,10 +133,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     }
 }
 
-- (IBAction)feedbackButton:(id)sender
-{
-    self.menuTitleLabel.text = FEEDBACK_NAME;
-    
+- (IBAction)feedbackButton:(id)sender {
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -160,11 +150,6 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 - (IBAction)menuButton:(id)sender
 {
     [self createAnimationWithKey:@"hideMenuToMenu"];
-}
-
-- (IBAction)mySpesializationButton:(id)sender
-{
-    
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender

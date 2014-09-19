@@ -32,6 +32,7 @@
     self.navigationBarLabel = navigationLabel;
     
     UIBarButtonItem * sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendButton:)];
+    sendButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem=sendButton;
 }
 
@@ -55,8 +56,7 @@
     menuController.textToShow= @"Feedback";
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    
-    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;    
     rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
     [rootController presentViewController:menuController animated:NO completion:nil];
 }
