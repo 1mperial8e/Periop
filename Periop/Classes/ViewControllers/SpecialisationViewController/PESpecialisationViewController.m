@@ -54,6 +54,9 @@
     UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
     self.collectionView.backgroundView = backgroundImage;
     
+    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
@@ -74,6 +77,17 @@
         self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }
+    
+    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
+    newSpec.name = @"New Spec";
+    newSpec.specID = @"S43498573";
+    newSpec.photoName = @"General_Large";
+    NSError * error = nil;
+    if (![newSpec.managedObjectContext save:&error]){
+        NSLog(@"%@", error.localizedDescription);
+    }
+    
     
 #warning - TO delete
     //singleton for dataManager
@@ -180,9 +194,9 @@
     NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     self.specManager.currentSpecialisation  = [[Specialisation alloc] initWithEntity:specEntity insertIntoManagedObjectContext:self.managedObjectContext];
     self.specManager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
-    
-    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-    rootController.selectedViewController = rootController.viewControllers[5];
+
+    PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
+    [self.navigationController pushViewController:procedureListController animated:NO];
 }
 
 
@@ -205,7 +219,5 @@
     }
     return cell;
 }
-
-
 
 @end

@@ -15,6 +15,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 #import "PESpecialisationManager.h"
 #import "EquipmentsTool.h"
+#import "PECoreDataManager.h"
 
 
 @interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
@@ -27,7 +28,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
-
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (assign, nonatomic) CGRect keyboardRect;
 
@@ -41,6 +42,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
@@ -109,6 +111,31 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         [self resignFirstResponder];
         self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
+    
+//    NSEntityDescription * equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+//    EquipmentsTool * modEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
+//    
+//    modEquipment = ((EquipmentsTool*)self.specManager.currentEquipment);
+//    modEquipment.name = self.nameTextField.text;
+//    modEquipment.category = self.specificationTextField.text;
+//    modEquipment.quantity = self.quantityTextField.text;
+//    modEquipment.createdDate = [NSDate date];
+//    
+//    NSError * saveError = nil;
+//    if (![modEquipment.managedObjectContext save:&saveError]){
+//        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
+//    }
+    
+    ((EquipmentsTool*)self.specManager.currentEquipment).name = self.nameTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).category = self.specificationTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).quantity = self.quantityTextField.text;
+    ((EquipmentsTool*)self.specManager.currentEquipment).createdDate = [NSDate date];
+                                                                      
+    NSError * saveError = nil;
+    if (![self.managedObjectContext save:&saveError]){
+        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
+    }
+
 }
 
 - (IBAction)photoButton:(id)sender {
