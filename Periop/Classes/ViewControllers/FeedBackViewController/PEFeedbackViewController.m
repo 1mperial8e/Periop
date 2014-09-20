@@ -30,7 +30,6 @@
     self.navigationBarLabel.text = @"Feedback";
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-
     
     UIBarButtonItem * sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendButton:)];
     sendButton.tintColor = [UIColor whiteColor];

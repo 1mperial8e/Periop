@@ -72,17 +72,6 @@
         self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }
-    
-//    NSEntityDescription * newSpecialisation = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
-//    Specialisation * newSpec = [[Specialisation alloc] initWithEntity:newSpecialisation insertIntoManagedObjectContext:self.managedObjectContext];
-//    newSpec.name = @"New Spec";
-//    newSpec.specID = @"S43498573";
-//    newSpec.photoName = @"Cardiothoracic_Large";
-//    NSError * error = nil;
-//    if (![newSpec.managedObjectContext save:&error]) {
-//        NSLog(@"%@", error.localizedDescription);
-//    }
-    
 
     /*
     //remove

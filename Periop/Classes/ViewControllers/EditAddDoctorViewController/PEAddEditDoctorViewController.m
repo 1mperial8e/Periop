@@ -10,15 +10,19 @@
 #import "PEAddEditDoctorViewController.h"
 #import "PEEditAddDoctorTableViewCell.h"
 #import "PEProceduresTableViewCell.h"
+#import "PEAlbumViewController.h"
+#import "Procedure.h"
+#import "PESpecialisationManager.h"
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 
 @end
 
@@ -29,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
@@ -84,7 +91,9 @@
 
 //methods from xib view
 - (IBAction)albumPhoto:(id)sender {
-    NSLog(@"albumPhoto from Op");
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender {

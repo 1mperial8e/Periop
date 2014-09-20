@@ -168,8 +168,11 @@
 
 #pragma mark - XIB Action
 
-- (IBAction)albumPhoto:(id)sender {
-    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+- (IBAction)albumPhoto:(id)sender
+{
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil]; 
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    albumViewController.sender = [self class];
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 

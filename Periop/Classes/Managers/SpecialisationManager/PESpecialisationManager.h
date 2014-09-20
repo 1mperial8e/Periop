@@ -10,6 +10,7 @@
 #import "Specialisation.h"
 #import "Procedure.h"
 #import "EquipmentsTool.h"
+#import "OperationRoom.h"
 
 @interface PESpecialisationManager : NSObject
 

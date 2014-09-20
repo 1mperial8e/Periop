@@ -12,7 +12,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEAddNewToolViewController.h"
 #import "PEMediaSelect.h"
-
+#import "PEAlbumViewController.h"
 #import "PESpecialisationManager.h"
 #import "EquipmentsTool.h"
 #import "PECoreDataManager.h"
@@ -143,10 +143,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 #pragma mark - XIB Action
 
-//methods from xib view
 - (IBAction)albumPhoto:(id)sender
 {
-    NSLog(@"albumPhoto from Op");
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender

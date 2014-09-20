@@ -135,6 +135,8 @@
                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 initPhoto.photoName = [category valueForKey:@"Tool Photo ID"];
                 
+                //initPhoto.photoName = UIImagePNGRepresentation((UIImage*)[category valueForKey:@"Tool Photo ID"]);
+                
                 [newTool addPhotoObject:initPhoto];
                 newTool.procedure = currentProcedure;
                 [currentProcedure addEquipmentsObject:newTool];

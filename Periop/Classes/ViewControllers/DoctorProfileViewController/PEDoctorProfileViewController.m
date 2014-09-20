@@ -10,13 +10,18 @@
 #import "PEAddEditDoctorViewController.h"
 #import "PENotesViewController.h"
 #import "PEMediaSelect.h"
+#import "PEAlbumViewController.h"
+#import "PESpecialisationManager.h"
+#import "Procedure.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UILabel *doctorName;
 @property (weak, nonatomic) IBOutlet UIImageView *doctorPhotoImageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -27,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
 
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -49,35 +56,42 @@
     self.tableView.dataSource = self;
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions 
 
-- (IBAction)propButton:(id)sender{
+- (IBAction)propButton:(id)sender
+{
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
     [self.navigationController pushViewController:addEditDoctorView animated:NO];
 }
 
 
-- (IBAction)propertiesButtons:(id)sender {
+- (IBAction)propertiesButtons:(id)sender
+{
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Doctors Notes";
     [self.navigationController pushViewController:notesView animated:NO];
 }
 
-- (IBAction)detailsButton:(id)sender {
+- (IBAction)detailsButton:(id)sender
+{
+    
 }
 
-- (IBAction)photoButtons:(id)sender {
+- (IBAction)photoButtons:(id)sender
+{
     CGRect position = self.doctorPhotoImageView.frame;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
@@ -89,8 +103,11 @@
 #pragma mark - XIB Action
 
 //methods from xib view
-- (IBAction)albumPhoto:(id)sender {
-    NSLog(@"albumPhoto from Op");
+- (IBAction)albumPhoto:(id)sender
+{
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender {
@@ -114,14 +131,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
-    if (!cell){
+    if (!cell) {
         cell = [[UITableViewCell alloc] init];
     }
     cell.textLabel.text = @"Procedure";
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
     return @"Specialization";
 }
 

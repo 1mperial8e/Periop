@@ -31,7 +31,8 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)prepareForReuse{
+- (void)prepareForReuse
+{
     [super prepareForReuse];
     [self.checkButton setSelected:NO];
     self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
@@ -39,7 +40,8 @@
 
 #pragma mark - Gestrude
 
-- (void)initGestrudeRecognizer{
+- (void)initGestrudeRecognizer
+{
     UISwipeGestureRecognizer * leftGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
     leftGestrudeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     UISwipeGestureRecognizer * rightGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
@@ -48,11 +50,12 @@
     [self addGestureRecognizer:leftGestrudeRecognizer];
 }
 
-- (IBAction)swipeLeft:(id)sender{
+- (IBAction)swipeLeft:(id)sender
+{
     [UIView animateWithDuration:0.2 animations:^{
         self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width*2.8, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 animations:^ {
             self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
         } completion:^(BOOL finished) {
             self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
@@ -62,8 +65,9 @@
     }];
 }
 
-- (IBAction)swipeRight:(id)sender{
-    [UIView animateWithDuration:0 animations:^{
+- (IBAction)swipeRight:(id)sender
+{
+    [UIView animateWithDuration:0 animations:^ {
         self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
     } completion:^(BOOL finished) {
         [self.delegate cellDidSwipedIn:self];
@@ -72,15 +76,17 @@
 }
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
     return YES;
 }
 
 #pragma mark - IBActions
 
-- (IBAction)checkButton:(id)sender {
+- (IBAction)checkButton:(id)sender
+{
     if ([sender tag]==2){
-        if (![self.checkButton isSelected]){
+        if (![self.checkButton isSelected]) {
             self.checkButton.selected = true;
             [self.delegate cellChecked:self];
         } else {
@@ -90,17 +96,20 @@
     }
 }
 
-- (IBAction)deleteButton:(id)sender {
+- (IBAction)deleteButton:(id)sender
+{
     [self.delegate buttonDeleteAction:self];
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate & panRecognizer
 
-- (void) setCellSwiped{
+- (void) setCellSwiped
+{
     self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
 }
 
--(void)cellSetChecked{
+-(void)cellSetChecked
+{
     self.checkButton.selected = true;
 }
 

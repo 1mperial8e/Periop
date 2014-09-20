@@ -12,6 +12,7 @@
 #import "PEMediaSelect.h"
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
+#import "PEAlbumViewController.h"
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -21,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIView *rootView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.specManager = [PESpecialisationManager sharedManager];
     
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
@@ -95,7 +96,10 @@
 
 - (IBAction)albumPhoto:(id)sender
 {
-    NSLog(@"albumPhoto from Op");
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    [self.navigationController pushViewController:albumViewController animated:YES];
+
 }
 
 - (IBAction)cameraPhoto:(id)sender
@@ -114,7 +118,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (collectionView.tag ==1) {
         return 5;
-    } else{
+    } else {
         return 10;
     }
 }
