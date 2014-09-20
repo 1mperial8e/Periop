@@ -8,6 +8,4 @@
 
 @interface PEAlbumViewController : UIViewController
 
-@property (strong, nonatomic) NSString *titleText;
-
 @end

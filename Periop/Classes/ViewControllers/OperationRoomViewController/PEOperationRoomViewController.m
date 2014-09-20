@@ -168,9 +168,9 @@
 
 #pragma mark - XIB Action
 
-- (IBAction)albumPhoto:(id)sender
-{
-    NSLog(@"albumPhoto from Op");
+- (IBAction)albumPhoto:(id)sender {
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender

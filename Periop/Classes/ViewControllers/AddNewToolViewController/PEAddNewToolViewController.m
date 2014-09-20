@@ -79,7 +79,7 @@
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
 #warning to change after adding comboBox
-        newEquipment.category = self.categoryTools[0];
+        newEquipment.category = @"!New Category";
         [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
         NSError * saveError = nil;
         if (![self.managedObjectContext save:&saveError]) {
@@ -91,6 +91,7 @@
         self.qtyTextBox.text =@"";
         self.specTextBox.text = @"";
         [self.view endEditing:YES];
+
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
