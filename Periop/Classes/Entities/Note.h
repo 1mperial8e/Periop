@@ -2,7 +2,7 @@
 //  Note.h
 //  Periop
 //
-//  Created by Kirill on 9/17/14.
+//  Created by Kirill on 9/20/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -13,10 +13,10 @@
 
 @interface Note : NSManagedObject
 
-@property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * textDescription;
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) Doctors *doctor;
 @property (nonatomic, retain) Procedure *procedure;
+@property (nonatomic, retain) NSManagedObject *photo;
 
 @end

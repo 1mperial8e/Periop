@@ -2,23 +2,23 @@
 //  Doctors.h
 //  Periop
 //
-//  Created by Kirill on 9/17/14.
+//  Created by Kirill on 9/20/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Note, Procedure, Specialisation;
+@class Note, Photo, Procedure, Specialisation;
 
 @interface Doctors : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * specialityCode;
 @property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) NSSet *procedure;
 @property (nonatomic, retain) NSSet *specialisation;
+@property (nonatomic, retain) Photo *photo;
 @end
 
 @interface Doctors (CoreDataGeneratedAccessors)

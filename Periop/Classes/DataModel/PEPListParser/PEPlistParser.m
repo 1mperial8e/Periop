@@ -16,6 +16,7 @@
 #import "PatientPostioning.h"
 #import "Note.h"
 #import "Preparation.h"
+#import "Photo.h"
 
 @interface PEPlistParser()
 
@@ -129,7 +130,12 @@
                 newTool.quantity = [category valueForKey:@"Tool Quantity"];
                 newTool.name = [category valueForKey:@"Tool Name"];
                 newTool.type = [category valueForKey:@"Tool Spec"];
-                newTool.photo = [category valueForKey:@"Tool Photo ID"];
+                
+                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                initPhoto.photoName = [category valueForKey:@"Tool Photo ID"];
+                
+                [newTool addPhotoObject:initPhoto];
                 newTool.procedure = currentProcedure;
                 [currentProcedure addEquipmentsObject:newTool];
             }
