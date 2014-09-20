@@ -81,6 +81,9 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    
+    [self.cellWithCheckedButtons  removeAllObjects];
+    [self.cellCurrentlyEditing removeAllObjects];
 }
 
 #pragma mark - IBActions
