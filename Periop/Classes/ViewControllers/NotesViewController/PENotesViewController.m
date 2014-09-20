@@ -13,6 +13,7 @@
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
 #import "PEAlbumViewController.h"
+#import "Note.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -44,14 +45,12 @@
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
-                                   //initWithTitle:@"+" style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     [self.tableViewNotes registerNib:[UINib nibWithNibName:@"PENotesTableViewCell" bundle:nil] forCellReuseIdentifier:@"notesCell"];
-    
     self.tableViewNotes.delegate = self;
     self.tableViewNotes.dataSource = self;
 }
@@ -61,6 +60,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    [self.tableViewNotes reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -81,8 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return 5;
+    return self.specManager.currentProcedure.notes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,10 +109,11 @@
 
 - (PENotesTableViewCell*)configureCell: (PENotesTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.label.text = [NSString stringWithFormat:@"Notes number %d", [indexPath row]];
-    if (indexPath.row ==1) {
-        cell.label.text = @"biggggbiggg gbiggggb iggggbiggggb iggggbig gggbiggggbig ggbiggggbiggggbigg ggbiggggbigg ggbiggggbiggggbigggg biggggbiggggbigg ggbiggggbiggggbig gggbiggggbiggggbiggggbiggggbiggggb iggggbi ggggbigg  ggbiggggbig gggbigggg Text";
-    }
+//    cell.label.text = [NSString stringWithFormat:@"Notes number %d", [indexPath row]];
+//    if (indexPath.row ==1) {
+//        cell.label.text = @"biggggbiggg gbiggggb iggggbiggggb iggggbig gggbiggggbig ggbiggggbiggggbigg ggbiggggbigg ggbiggggbiggggbigggg biggggbiggggbigg ggbiggggbiggggbig gggbiggggbiggggbiggggbiggggbiggggb iggggbi ggggbigg  ggbiggggbig gggbigggg Text";
+//    }
+    cell.label.text = ((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
     cell.delegate = self;
     return cell;
 }
