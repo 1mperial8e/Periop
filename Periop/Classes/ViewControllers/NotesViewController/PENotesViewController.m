@@ -15,6 +15,7 @@
 #import "PEAlbumViewController.h"
 #import "Note.h"
 #import "PECoreDataManager.h"
+#import "Doctors.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -43,7 +44,11 @@
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
+    if (self.specManager.isProcedureSelected) {
+        self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
+    } else {
+        self.navigationBarLabel.text = ((Doctors*)self.specManager.currentDoctor).name;
+    }
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     
@@ -77,6 +82,7 @@
 - (IBAction)addNewNotes :(id)sender
 {
     PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
+    addEditNote.isEditNote = false;
     [self.navigationController pushViewController:addEditNote animated:NO];
 }
 
@@ -84,7 +90,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.specManager.currentProcedure.notes.count;
+    if (self.specManager.isProcedureSelected) {
+        return self.specManager.currentProcedure.notes.count;
+    } else
+        return self.specManager.currentDoctor.notes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,8 +121,13 @@
 
 - (PENotesTableViewCell*)configureCell: (PENotesTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.label.text = ((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
-    cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
+    if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]!=nil) {
+        cell.label.text = ((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
+        cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
+    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]!=nil) {
+        cell.label.text = ((Note*)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
+        cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
+    }
     cell.delegate = self;
     return cell;
 }
@@ -139,11 +153,20 @@
 - (void) deleteNotesButtonPress:(UITableViewCell *)cell
 {
     NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
-    self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
-    NSError * deleteError = nil;
-    [self.managedObjectContext deleteObject:self.specManager.currentNote];
-    if (![self.managedObjectContext save:&deleteError]) {
-        NSLog(@"Cant delete note - %@", deleteError.localizedDescription);
+    if (self.specManager.isProcedureSelected) {
+        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+        NSError * deleteError = nil;
+        [self.managedObjectContext deleteObject:self.specManager.currentNote];
+        if (![self.managedObjectContext save:&deleteError]) {
+            NSLog(@"Cant delete note from Procedure - %@", deleteError.localizedDescription);
+        }
+    } else {
+        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+        NSError * deleteError = nil;
+        [self.managedObjectContext deleteObject:self.specManager.currentNote];
+        if (![self.managedObjectContext save:&deleteError]) {
+            NSLog(@"Cant delete note from Doctor - %@", deleteError.localizedDescription);
+        }
     }
     [self.tableViewNotes reloadData];
 }
@@ -157,10 +180,15 @@
 {
     NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
-    self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+    if (self.specManager.isProcedureSelected) {
+        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+    } else {
+        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+    }
     addEditNote.noteTextToShow = self.specManager.currentNote.textDescription;
     addEditNote.timeToShow = [self dateFormatter:self.specManager.currentNote.timeStamp];
-    [self.navigationController pushViewController:addEditNote animated:NO];
+    addEditNote.isEditNote = true;
+    [self.navigationController pushViewController:addEditNote animated:YES];
 }
 
 #pragma mark - Private

@@ -17,12 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Doctor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe">
-                    <rect key="frame" x="20" y="154" width="280" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbo-4Q-cnG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,10 +25,22 @@
                         <constraint firstAttribute="width" constant="320" id="UX5-gu-jSg"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-00-ENp">
-                    <rect key="frame" x="274" y="0.0" width="41" height="30"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Doctor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe">
+                    <rect key="frame" x="20" y="154" width="280" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Photo">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-00-ENp">
+                    <rect key="frame" x="272" y="0.0" width="48" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="Tuy-QX-cPv"/>
+                        <constraint firstAttribute="height" constant="48" id="zbA-XJ-G1N"/>
+                    </constraints>
+                    <state key="normal" image="Upload_Photo_Button_2.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -48,7 +54,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJt-I0-NxL">
                             <rect key="frame" x="160" y="20" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Properties">
+                            <state key="normal" title="Notes">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -58,7 +64,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7i-sg-dFg">
                             <rect key="frame" x="0.0" y="20" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Doctor Details">
+                            <state key="normal" title="Specialisations">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -92,6 +98,7 @@
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="4DP-g9-Ns2"/>
                 <constraint firstItem="qbo-4Q-cnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4zK-zd-Jpp"/>
                 <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="5bm-zX-EjW"/>
+                <constraint firstItem="Shd-00-ENp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7So-XK-Uyn"/>
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HTb-OK-11m"/>
                 <constraint firstItem="oQV-6s-ZsM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JlW-Tp-iY1"/>
                 <constraint firstItem="qbo-4Q-cnG" firstAttribute="centerX" secondItem="D0H-Kj-kVe" secondAttribute="centerX" id="PPF-I9-ohi"/>
@@ -102,12 +109,14 @@
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="huH-je-hHN"/>
                 <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="kV7-EZ-7oU"/>
                 <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="68" id="lcQ-MZ-tTe"/>
-                <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="Shd-00-ENp" secondAttribute="top" id="q2s-eI-R4I"/>
-                <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" constant="5" id="wCc-ZX-ZyL"/>
+                <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" id="lwS-60-mof"/>
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="znK-6p-Tgt"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="Upload_Photo_Button_2.png" width="30" height="30"/>
+    </resources>
 </document>

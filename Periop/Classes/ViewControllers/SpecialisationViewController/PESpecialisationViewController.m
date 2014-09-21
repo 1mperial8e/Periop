@@ -38,6 +38,9 @@
 {
     [super viewDidLoad];
     
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.specManager = [PESpecialisationManager sharedManager];
+    
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
@@ -58,21 +61,9 @@
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
-    
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    self.specManager = [PESpecialisationManager sharedManager];
-    
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
 
-    if (self.arrayWithSpecialisations.count<=0){
-        PEPlistParser * parser = [[PEPlistParser alloc] init];
-        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
-            }];
-        self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
-        [self.collectionView reloadData];
-    }
-
+    [self initWithData];
+    
     /*
     //remove
     //1.create required entity
@@ -81,36 +72,6 @@
     PEObjectDescription * objectToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Entity" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:@"hello24" ];
     //3. call to method
     [PECoreDataManager removeFromDB:objectToDelete withManagedObject:obj];
-
-    //add
-   
-//    NSEntityDescription * entity1 = [NSEntityDescription entityForName:@"Entity" inManagedObjectContext:self.managedObjectContext];
-//    NSManagedObject * item = [[NSManagedObject alloc] initWithEntity:entity1 insertIntoManagedObjectContext:self.managedObjectContext];
-//    [item setValue:@"hello24" forKey:@"name"];
-//    NSError * error2 =nil;
-//    [item.managedObjectContext save:&error2];
-    
-    
-    //create main entity
-    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Entity" inManagedObjectContext:self.managedObjectContext];
-    Entity * newEntity = [[Entity alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    newEntity.name = @"Hello i;m entity with relationships";
-    //create new same type entity
-    Entity * oneMoreEntity = [[Entity alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    oneMoreEntity.name=@"internal entity";
-    
-    //create another entity
-    NSEntityDescription * newSomeEntity = [NSEntityDescription entityForName:@"SomeEntity" inManagedObjectContext:self.managedObjectContext];
-    SomeEntity * someNewEntity = [[SomeEntity alloc] initWithEntity:newSomeEntity insertIntoManagedObjectContext:self.managedObjectContext];
-    someNewEntity.attribute = @"attribute1";
-    someNewEntity.attribute1 = @"attribute2";
-    someNewEntity.attribute2 = @"attribute3";
-    
-    //set relationship between all created entities
-    [newEntity addSomeEntityObject:someNewEntity];
-    [newEntity addThisEntityObject:oneMoreEntity];
-    NSError * errosSave =nil;
-    [newEntity.managedObjectContext save:&errosSave];
     
     //search all
     //1. create object description
@@ -209,6 +170,22 @@
         cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
     }
     return cell;
+}
+
+#pragma mark Private
+
+- (void)initWithData
+{
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+    
+    if (self.arrayWithSpecialisations.count<=0){
+        PEPlistParser * parser = [[PEPlistParser alloc] init];
+        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
+        }];
+        self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+        [self.collectionView reloadData];
+    }
 }
 
 @end

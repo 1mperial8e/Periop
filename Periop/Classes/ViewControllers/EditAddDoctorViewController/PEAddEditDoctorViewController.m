@@ -13,8 +13,10 @@
 #import "PEAlbumViewController.h"
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
+#import "PECoreDataManager.h"
+#import "Doctors.h"
 
-@interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -23,6 +25,7 @@
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
 
@@ -35,6 +38,7 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -45,8 +49,7 @@
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
         self.navigationBarLabel.text=self.navigationLabelDescription;
-    }
-    else{
+    } else {
         self.navigationBarLabel.text = @"Add Surgeon";
     }
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
@@ -61,24 +64,40 @@
  
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEditAddDoctorTableViewCell" bundle:nil] forCellReuseIdentifier:@"tableViewCellWithCollection"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
+    self.nameTextField.delegate = self;
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
 #pragma mark - IBActions
 
--(IBAction)saveButton :(id)sender{
+-(IBAction)saveButton :(id)sender
+{
+    NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
+    Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    newDoc.name = self.nameTextField.text;
     
+    [newDoc addSpecialisationObject:self.specManager.currentSpecialisation];
+    NSError * saveError = nil;
+    if (![self.managedObjectContext save:&saveError]) {
+        NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)addPhoto:(id)sender {
+
+- (IBAction)addPhoto:(id)sender
+{
     CGRect position = self.imageView.frame;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
@@ -89,69 +108,77 @@
 
 #pragma mark - XIB Action
 
-//methods from xib view
-- (IBAction)albumPhoto:(id)sender {
+- (IBAction)albumPhoto:(id)sender
+{
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
     albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
-- (IBAction)cameraPhoto:(id)sender {
-    NSLog(@"camera Photo from Op");
+- (IBAction)cameraPhoto:(id)sender
+{
+    NSLog(@"camera Photo");
 }
 
-- (IBAction)tapOnView:(id)sender {
-    NSLog(@"tap on View");
+- (IBAction)tapOnView:(id)sender
+{
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
-
+- (IBAction)addPhotoFromCamera:(id)sender
+{
+    
+}
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
-}
-- (IBAction)addPhotoFromCamera:(id)sender {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([indexPath row]==0 && indexPath.section ==0) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == 0 && indexPath.section == 0) {
         PEEditAddDoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCellWithCollection" forIndexPath: indexPath];
-        if (!cell){
+        if (!cell) {
             cell = [[PEEditAddDoctorTableViewCell alloc] init];
         }
         return cell;
-    }
-    else {
+    } else {
         PEProceduresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"proceduresCell" forIndexPath: indexPath];
-        if (!cell){
+        if (!cell) {
             cell = [[PEProceduresTableViewCell alloc] init];
         }
         return cell;
     }
-
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([indexPath row]==0 && indexPath.section ==0){
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == 0 && indexPath.section == 0) {
         return 128.0;
-    }
-    else {
+    } else {
         return 64.0;
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
     return @"Procedures";
 }
 
+#pragma mark - UITextFieldDelegate
 
-
-
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

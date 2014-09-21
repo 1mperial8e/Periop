@@ -92,16 +92,26 @@
 
 - (IBAction)saveUpdateNote :(id)sender
 {
-    NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
-    Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
-    newNote.textDescription = self.textViewNotes.text;
-    newNote.timeStamp = [NSDate date];
+    if (self.isEditNote) {
+            self.specManager.currentNote.textDescription = self.textViewNotes.text;
+            self.specManager.currentNote.timeStamp = [NSDate date];
+    } else {
+        NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+        Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        newNote.textDescription = self.textViewNotes.text;
+        newNote.timeStamp = [NSDate date];
+        if (self.specManager.isProcedureSelected) {
+            [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
+        } else {
+            [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
+        }
+    }
     
-    [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
-        NSLog(@"Cant add new Note to procedure - %@", saveError.localizedDescription);
+        NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -120,7 +130,13 @@
 - (IBAction)albumPhoto:(id)sender
 {
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
-    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    
+    if (self.specManager.isProcedureSelected) {
+        albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    } else {
+        albumViewController.navigationLabelText = ((Doctors*)(self.specManager.currentDoctor)).name;
+    }
+    
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 

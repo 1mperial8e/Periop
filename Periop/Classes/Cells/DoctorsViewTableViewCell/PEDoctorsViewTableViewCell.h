@@ -12,7 +12,7 @@
 
 @optional
 //buttonAction
-- (void)buttonDeleteAction;
+- (void)buttonDeleteAction:(UITableViewCell*)cell;
 
 //method for closing cell with swipe
 - (void)cellDidSwipedIn: (UITableViewCell*)cell;

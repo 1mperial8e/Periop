@@ -10,6 +10,10 @@
 #import "PEDoctorsViewTableViewCell.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PEMenuViewController.h"
+#import "PEObjectDescription.h"
+#import "PESpecialisationManager.h"
+#import "PECoreDataManager.h"
+#import "Doctors.h"
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate>
 
@@ -20,6 +24,9 @@
 @property (strong, nonatomic) UIBarButtonItem * navigationBarMenuButton;
 @property (strong, nonatomic) UILabel * labelToShowOnNavigationBar;
 @property (strong, nonatomic) NSMutableSet * currentlySwipedAndOpenesCells;
+@property (strong, nonatomic) NSMutableArray * arrayWithAllDocators;
+@property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -30,6 +37,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsViewTableViewCell" bundle:nil]  forCellReuseIdentifier:@"doctorsCell"];
 
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.labelToShowOnNavigationBar = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -52,11 +64,8 @@
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.searchBar.tintColor = [UIColor whiteColor];
-
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsViewTableViewCell" bundle:nil]  forCellReuseIdentifier:@"doctorsCell"];
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
 }
@@ -69,6 +78,8 @@
     if (self.isButtonRequired) {
         self.navigationItem.leftBarButtonItem = self.navigationBarMenuButton;
     }
+    [self initWithData];
+    [self.tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -81,12 +92,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 25;
+    return self.arrayWithAllDocators.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     PEDoctorsViewTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEDoctorsViewTableViewCell alloc] init];
@@ -100,7 +110,8 @@
     if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
         [cell setCellSwiped];
     }
-    cell.doctorNameLabel.text = [NSString stringWithFormat:@"Doctor number %i", (int)[indexPath row]];
+    
+    cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDocators[indexPath.row])).name;
     return cell;
 }
 
@@ -138,9 +149,25 @@
     [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
 }
 
-- (void)buttonDeleteAction
+- (void)buttonDeleteAction:(UITableViewCell*)cell
 {
     NSLog(@"delete action");
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    [self.managedObjectContext deleteObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
+    NSError * deleteError = nil;
+    if (![self.managedObjectContext save:&deleteError]) {
+        NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
+    }
+    [self.arrayWithAllDocators removeObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Private 
+
+- (void) initWithData
+{
+    PEObjectDescription * objectToSearch = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext      withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
+    self.arrayWithAllDocators = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
 }
 
 @end

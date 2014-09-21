@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet NSString *timeToShow;
 @property (weak, nonatomic) IBOutlet NSString *noteTextToShow;
+@property (assign, nonatomic) BOOL isEditNote;
 
 @end

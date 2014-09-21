@@ -13,7 +13,7 @@
 #import "PEDoctorProfileViewController.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PESpecialisationViewController.h"
-
+#import "Doctors.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import "Procedure.h"
@@ -29,7 +29,6 @@
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) UIBarButtonItem * navigationBarAddDoctorButton;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (assign, nonatomic) BOOL isProcedureSelected;
 
 @end
 
@@ -40,7 +39,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.isProcedureSelected = true;
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    self.specManager.isProcedureSelected = true;
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -53,7 +56,7 @@
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.layer.zPosition = 0;
     
-    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -61,10 +64,6 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    self.specManager = [PESpecialisationManager sharedManager];
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -82,30 +81,20 @@
 
 #pragma mark - IBActions
 
-- (IBAction)menuButton:(id)sender
-{
-    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
-    menuController.textToShow = @"Procedure Name";
-    menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    
-    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-    rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [rootController presentViewController:menuController animated:NO completion:nil];
-}
-
 - (IBAction)procedureButton:(id)sender
 {
     self.navigationBarLabel.text = @"Procedure Name";
-    self.isProcedureSelected = true;
+    self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
+    [self.tableView reloadData];
 }
 
 - (IBAction)doctorButton:(id)sender
 {
-    self.isProcedureSelected = false;
+    self.specManager.isProcedureSelected = false;
     self.navigationBarLabel.text = @"Doctors Name";
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
+    [self.tableView reloadData];
 }
 
 - (IBAction)addNewDoctor:(id)sender
@@ -119,10 +108,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.specManager.currentSpecialisation!=nil) {
+    if (self.specManager.isProcedureSelected) {
         return [self.specManager.currentSpecialisation.procedures count];
     } else {
-        return 1;
+        return [self.specManager.currentSpecialisation.doctors count];
     }
 }
 
@@ -132,12 +121,18 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
+    
     if ( indexPath.row % 2){
         cell.contentView.backgroundColor = [UIColor colorWithRed:236/255.0 green:248/255.0 blue:251/255.0 alpha:1.0f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
-    cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
+    
+    if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
+        cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
+    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
+        cell.textLabel.text = ((Doctors*)[self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]).name;
+    }
     return cell;
 }
 
@@ -145,13 +140,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isProcedureSelected) {
+    if (self.specManager.isProcedureSelected) {
         self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
-        
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:NO];
         
     } else {
+        self.specManager.currentDoctor = [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row];
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
         [self.navigationController pushViewController:doctorsView animated:NO];
     }

@@ -13,6 +13,7 @@
 #import "PEAlbumViewController.h"
 #import "PESpecialisationManager.h"
 #import "Procedure.h"
+#import "Specialisation.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -34,6 +35,8 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
 
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -42,18 +45,21 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.text = @"Procedure Name";
+    self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
+    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
+
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.doctorName.text = self.specManager.currentDoctor.name;
+    self.doctorName.minimumScaleFactor = 0.5;
+    self.doctorName.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -102,7 +108,6 @@
 
 #pragma mark - XIB Action
 
-//methods from xib view
 - (IBAction)albumPhoto:(id)sender
 {
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
@@ -110,26 +115,30 @@
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
-- (IBAction)cameraPhoto:(id)sender {
+- (IBAction)cameraPhoto:(id)sender
+{
     NSLog(@"camera Photo from Op");
 }
 
-- (IBAction)tapOnView:(id)sender {
-    NSLog(@"tap on View");
+- (IBAction)tapOnView:(id)sender
+{
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 4;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc] init];

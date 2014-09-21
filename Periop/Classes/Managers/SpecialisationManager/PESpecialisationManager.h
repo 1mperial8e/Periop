@@ -21,6 +21,8 @@
 @property (strong, nonatomic) Note * currentNote;
 @property (strong, nonatomic) Doctors * currentDoctor;
 
+@property (assign, nonatomic) BOOL isProcedureSelected;
+
 + (id) sharedManager;
 
 @end
