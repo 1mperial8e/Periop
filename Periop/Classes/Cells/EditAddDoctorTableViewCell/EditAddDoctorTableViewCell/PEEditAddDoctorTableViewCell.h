@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PEEditAddDoctorTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

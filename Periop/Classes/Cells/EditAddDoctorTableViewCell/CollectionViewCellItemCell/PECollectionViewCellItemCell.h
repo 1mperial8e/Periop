@@ -10,5 +10,4 @@
 
 @interface PECollectionViewCellItemCell : UICollectionViewCell
 
-
 @end

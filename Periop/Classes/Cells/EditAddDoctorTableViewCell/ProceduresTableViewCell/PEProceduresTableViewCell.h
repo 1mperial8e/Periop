@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PEProceduresTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *procedureName;
 
 @end

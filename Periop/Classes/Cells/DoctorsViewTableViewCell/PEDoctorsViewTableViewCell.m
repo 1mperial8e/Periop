@@ -34,7 +34,6 @@
     self.viewDoctorsNameView.frame = CGRectMake(0, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
 }
 
-
 #pragma mark - IBActions
 
 - (IBAction)deleteDoctorButtons:(id)sender

@@ -10,6 +10,7 @@
 
 @interface PEAddEditDoctorViewController : UIViewController
 
-@property (copy,nonatomic)NSString * navigationLabelDescription;
+@property (copy, nonatomic) NSString * navigationLabelDescription;
+@property (assign, nonatomic) BOOL isEditedDoctor;
 
 @end

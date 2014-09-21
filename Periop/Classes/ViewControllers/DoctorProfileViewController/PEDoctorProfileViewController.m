@@ -48,7 +48,7 @@
     self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(propButton:)];
+    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
 
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -57,7 +57,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.doctorName.text = self.specManager.currentDoctor.name;
     self.doctorName.minimumScaleFactor = 0.5;
     self.doctorName.adjustsFontSizeToFitWidth = YES;
 }
@@ -65,6 +64,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.doctorName.text = self.specManager.currentDoctor.name;
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
@@ -76,10 +76,11 @@
 
 #pragma mark - IBActions 
 
-- (IBAction)propButton:(id)sender
+- (IBAction)editButton:(id)sender
 {
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
+    addEditDoctorView.isEditedDoctor = true;
     [self.navigationController pushViewController:addEditDoctorView animated:NO];
 }
 

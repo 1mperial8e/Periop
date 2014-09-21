@@ -40,6 +40,10 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEEditAddDoctorTableViewCell" bundle:nil] forCellReuseIdentifier:@"tableViewCellWithCollection"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
+    self.nameTextField.delegate = self;
+    
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
@@ -61,10 +65,7 @@
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
- 
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEEditAddDoctorTableViewCell" bundle:nil] forCellReuseIdentifier:@"tableViewCellWithCollection"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
-    self.nameTextField.delegate = self;
+    self.nameTextField.text = self.specManager.currentDoctor.name;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -83,11 +84,15 @@
 
 -(IBAction)saveButton :(id)sender
 {
-    NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
-    Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
-    newDoc.name = self.nameTextField.text;
-    
-    [newDoc addSpecialisationObject:self.specManager.currentSpecialisation];
+    if (self.isEditedDoctor) {
+        self.specManager.currentDoctor.name = self.nameTextField.text;
+    } else {
+        NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
+        Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        newDoc.name = self.nameTextField.text;
+#warning add spec - crash if add from surgeon list
+        [newDoc addSpecialisationObject:self.specManager.currentSpecialisation];
+    }
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]) {
         NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);

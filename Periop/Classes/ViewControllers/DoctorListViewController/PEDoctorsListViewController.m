@@ -121,6 +121,7 @@
 {
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
+    addEditDoctorView.isEditedDoctor = false;
     [self.navigationController pushViewController:addEditDoctorView animated:NO];
 }
 
@@ -158,6 +159,7 @@
     if (![self.managedObjectContext save:&deleteError]) {
         NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
     }
+    [self.currentlySwipedAndOpenesCells removeObject:indexPath];
     [self.arrayWithAllDocators removeObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
     [self.tableView reloadData];
 }
