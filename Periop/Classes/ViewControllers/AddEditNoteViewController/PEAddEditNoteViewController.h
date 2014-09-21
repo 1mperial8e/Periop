@@ -10,4 +10,7 @@
 
 @interface PEAddEditNoteViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet NSString *timeToShow;
+@property (weak, nonatomic) IBOutlet NSString *noteTextToShow;
+
 @end

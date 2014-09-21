@@ -14,17 +14,18 @@
 #import "Procedure.h"
 #import "Doctors.h"
 #import "Note.h"
+#import "PEAlbumViewController.h"
 
 @interface PEAddEditNoteViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *cornerLabel;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
-@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) PESpecialisationManager * specManger;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -36,7 +37,7 @@
 {
     [super viewDidLoad];
     
-    self.specManger = [PESpecialisationManager sharedManager];
+    self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
@@ -65,12 +66,20 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.noteTextToShow.length>0){
+        self.textViewNotes.text = self.noteTextToShow;
+    }
+    if (self.timeToShow.length>0){
+        self.timeStamp.text = self.timeToShow;
+    } else {
+        self.timeStamp.text = [self dateFormatter:[NSDate date]];
+    }
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [super   viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
@@ -88,11 +97,12 @@
     newNote.textDescription = self.textViewNotes.text;
     newNote.timeStamp = [NSDate date];
     
-    [((Procedure*)(self.specManger.currentProcedure)) addNotesObject:newNote];
+    [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note to procedure - %@", saveError.localizedDescription);
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)photoButton:(id)sender
@@ -109,18 +119,30 @@
 
 - (IBAction)albumPhoto:(id)sender
 {
-    NSLog(@"albumPhoto from Op");
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo from Op");
+    NSLog(@"camera Photo ");
 }
 
 - (IBAction)tapOnView:(id)sender
 {
-    NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
+}
+
+#pragma mark - Private
+
+- (NSString*)dateFormatter: (NSDate*)dateToFormatt
+{
+    NSDateFormatter * dateFormatterTimePart = [[NSDateFormatter alloc] init];
+    [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];
+    NSDateFormatter * dateFormatterDayPart = [[NSDateFormatter alloc] init];
+    [dateFormatterDayPart setDateFormat:@"aaa"];
+    return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
 }
 
 @end

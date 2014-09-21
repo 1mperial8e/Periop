@@ -14,6 +14,7 @@
 #import "PESpecialisationManager.h"
 #import "PEAlbumViewController.h"
 #import "Note.h"
+#import "PECoreDataManager.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -21,6 +22,7 @@
 
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) UILabel* navigationBarLabel;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
 
@@ -33,6 +35,7 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -109,11 +112,8 @@
 
 - (PENotesTableViewCell*)configureCell: (PENotesTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {
-//    cell.label.text = [NSString stringWithFormat:@"Notes number %d", [indexPath row]];
-//    if (indexPath.row ==1) {
-//        cell.label.text = @"biggggbiggg gbiggggb iggggbiggggb iggggbig gggbiggggbig ggbiggggbiggggbigg ggbiggggbigg ggbiggggbiggggbigggg biggggbiggggbigg ggbiggggbiggggbig gggbiggggbiggggbiggggbiggggbiggggb iggggbi ggggbigg  ggbiggggbig gggbigggg Text";
-//    }
     cell.label.text = ((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
+    cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
     cell.delegate = self;
     return cell;
 }
@@ -138,7 +138,14 @@
 
 - (void) deleteNotesButtonPress:(UITableViewCell *)cell
 {
-    NSLog(@"delete Button");
+    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+    NSError * deleteError = nil;
+    [self.managedObjectContext deleteObject:self.specManager.currentNote];
+    if (![self.managedObjectContext save:&deleteError]) {
+        NSLog(@"Cant delete note - %@", deleteError.localizedDescription);
+    }
+    [self.tableViewNotes reloadData];
 }
 
 - (void) addPhotoButtonPress:(UITableViewCell *)cell
@@ -148,8 +155,23 @@
 
 - (void) editNoteButtonPress:(UITableViewCell *)cell
 {
-    NSLog(@"edit Button");
+    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
+    self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+    addEditNote.noteTextToShow = self.specManager.currentNote.textDescription;
+    addEditNote.timeToShow = [self dateFormatter:self.specManager.currentNote.timeStamp];
+    [self.navigationController pushViewController:addEditNote animated:NO];
 }
 
+#pragma mark - Private
+
+- (NSString*)dateFormatter: (NSDate*)dateToFormatt
+{
+    NSDateFormatter * dateFormatterTimePart = [[NSDateFormatter alloc] init];
+    [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];
+    NSDateFormatter * dateFormatterDayPart = [[NSDateFormatter alloc] init];
+    [dateFormatterDayPart setDateFormat:@"aaa"];
+    return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
+}
 
 @end
