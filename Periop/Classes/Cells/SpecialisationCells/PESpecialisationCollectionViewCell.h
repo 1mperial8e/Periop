@@ -6,10 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PESpecialisationCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageCell;
+@property (weak, nonatomic) IBOutlet UIImageView *specialisationIconImageView;
 
 @end

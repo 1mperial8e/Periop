@@ -83,7 +83,7 @@
 {
     PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
     addEditNote.isEditNote = false;
-    [self.navigationController pushViewController:addEditNote animated:NO];
+    [self.navigationController pushViewController:addEditNote animated:YES];
 }
 
 #pragma marl - TableViewDataSource

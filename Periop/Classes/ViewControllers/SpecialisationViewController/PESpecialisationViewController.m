@@ -21,10 +21,14 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
+@property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
+@property (weak, nonatomic) IBOutlet UIButton *moreSpecialisationsButton;
 
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSArray * arrayWithSpecialisations;
+@property (strong, nonatomic) NSArray * specialisationsArray;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
+
+@property (assign, nonatomic) BOOL isMyspecializations;
 
 //@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
 
@@ -40,13 +44,14 @@
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
+    self.isMyspecializations = YES;
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.text = @"Specialisations";
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
@@ -103,7 +108,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self.collectionView reloadData];
 }
 
@@ -122,7 +127,7 @@
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = @"Specialisations";
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
-    menuController.isButtonVisible = true;
+    menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
@@ -132,22 +137,26 @@
 
 - (IBAction)mySpesialisationButton:(id)sender
 {
-    NSLog(@"1");
+    self.isMyspecializations = YES;
+    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
 {
-    NSLog(@"2");
+    self.isMyspecializations = NO;
+    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
 }
 
 #pragma mark - CollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.specManager.currentSpecialisation = self.arrayWithSpecialisations[indexPath.row];
+    self.specManager.currentSpecialisation = self.specialisationsArray[indexPath.row];
     
     PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
-    [self.navigationController pushViewController:procedureListController animated:NO];
+    [self.navigationController pushViewController:procedureListController animated:YES];
 }
 
 
@@ -155,8 +164,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
-        return self.arrayWithSpecialisations.count;
+    if (self.specialisationsArray && self.specialisationsArray.count > 0) {
+        return self.specialisationsArray.count;
     } else {
         return 1;
     }
@@ -165,25 +174,25 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
-    if ( self.arrayWithSpecialisations!=nil && self.arrayWithSpecialisations.count>0){
+    if (self.specialisationsArray && self.specialisationsArray.count > 0) {
         cell.backgroundColor = [UIColor clearColor];
-        cell.imageCell.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecialisations[indexPath.row]).photoName];
+        cell.specialisationIconImageView.image = [UIImage imageNamed:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
     }
     return cell;
 }
 
-#pragma mark Private
+#pragma mark - Private
 
 - (void)initWithData
 {
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     
-    if (self.arrayWithSpecialisations.count<=0){
+    if (self.specialisationsArray.count <= 0) {
         PEPlistParser * parser = [[PEPlistParser alloc] init];
         [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
         }];
-        self.arrayWithSpecialisations = [PECoreDataManager getAllEntities:searchedObject];
+        self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }
 }

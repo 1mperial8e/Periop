@@ -101,7 +101,7 @@
 {
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
-    [self.navigationController pushViewController:addEditDoctorView animated:NO];
+    [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 
 #pragma mark - TableViewDataSource
@@ -143,12 +143,12 @@
     if (self.specManager.isProcedureSelected) {
         self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
-        [self.navigationController pushViewController:procedureOptionVIew animated:NO];
+        [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
     } else {
         self.specManager.currentDoctor = [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row];
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
-        [self.navigationController pushViewController:doctorsView animated:NO];
+        [self.navigationController pushViewController:doctorsView animated:YES];
     }
 }
 

@@ -81,7 +81,7 @@
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
     addEditDoctorView.isEditedDoctor = true;
-    [self.navigationController pushViewController:addEditDoctorView animated:NO];
+    [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 
 
@@ -89,7 +89,7 @@
 {
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Doctors Notes";
-    [self.navigationController pushViewController:notesView animated:NO];
+    [self.navigationController pushViewController:notesView animated:YES];
 }
 
 - (IBAction)detailsButton:(id)sender

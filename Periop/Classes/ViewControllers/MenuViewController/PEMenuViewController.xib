@@ -6,10 +6,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEMenuViewController">
             <connections>
-                <outlet property="bottomButtonsView" destination="ZAK-P5-2S5" id="0kZ-3u-A55"/>
+                <outlet property="aboutUsButton" destination="UAJ-Sf-kbB" id="zui-Kh-y2H"/>
+                <outlet property="bottomButtonsViewHeight" destination="ZAK-P5-2S5" id="jtX-gg-e9m"/>
+                <outlet property="feedbackButton" destination="fOG-jN-nTQ" id="kfM-W2-zsQ"/>
                 <outlet property="menuButton" destination="nS9-eq-ccV" id="YTV-0x-2e7"/>
                 <outlet property="menuTitleLabel" destination="ldq-4E-VpH" id="x6d-AG-aoW"/>
-                <outlet property="specializationButton" destination="ZLS-Dt-KAq" id="HAI-yb-TSf"/>
+                <outlet property="moreSpecialisationsButton" destination="xGt-yK-zou" id="REe-p8-80s"/>
+                <outlet property="mySpecialisationsButton" destination="NXL-z8-avC" id="odh-Jy-ot3"/>
+                <outlet property="specialisationButton" destination="ZLS-Dt-KAq" id="TbG-ot-vYX"/>
+                <outlet property="surgeonListButton" destination="a7P-PZ-fdt" id="lnc-0N-UQ8"/>
+                <outlet property="termsButton" destination="rAc-mi-ctp" id="eVK-iP-Ike"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewSelection" destination="rZd-aA-63M" id="IfQ-mX-mo2"/>
                 <outlet property="viewWithButtons" destination="0uR-qA-hUZ" id="Oxg-Wh-M9h"/>
@@ -143,24 +149,22 @@
                     <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXL-z8-avC">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXL-z8-avC">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.98039215686274506" green="0.96470588235294119" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="My Specialisations">
+                            <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="mySpesializationButton:" destination="-1" eventType="touchUpInside" id="BBF-Ab-UaF"/>
+                                <action selector="mySpecialisationButton:" destination="-1" eventType="touchUpInside" id="d8x-aY-TZl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGt-yK-zou">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGt-yK-zou">
                             <rect key="frame" x="160" y="0.0" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="More Specialisations">
+                            <state key="normal">
                                 <color key="titleColor" red="0.36862745098039218" green="0.58039215686274503" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -169,16 +173,20 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="ZAK-P5-2S5"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="0uR-qA-hUZ" secondAttribute="bottom" id="041-xg-Xvg"/>
+                <constraint firstItem="obp-eV-k1F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4BM-Ml-5k0"/>
+                <constraint firstItem="obp-eV-k1F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BT1-W2-yXU"/>
                 <constraint firstItem="0uR-qA-hUZ" firstAttribute="top" secondItem="obp-eV-k1F" secondAttribute="bottom" id="DHs-dr-Nff"/>
+                <constraint firstAttribute="trailing" secondItem="obp-eV-k1F" secondAttribute="trailing" id="J3a-61-wS1"/>
+                <constraint firstItem="0uR-qA-hUZ" firstAttribute="top" secondItem="obp-eV-k1F" secondAttribute="bottom" id="Oul-Wk-icl"/>
                 <constraint firstAttribute="trailing" secondItem="0uR-qA-hUZ" secondAttribute="trailing" id="Pud-5K-C8g"/>
                 <constraint firstAttribute="trailing" secondItem="obp-eV-k1F" secondAttribute="trailing" id="aUf-WW-Nyb"/>
                 <constraint firstItem="obp-eV-k1F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="b5I-ln-kj3"/>
