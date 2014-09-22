@@ -6,14 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static CGFloat const MVCAnimationDuration = 0.5f;
-static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
-static NSString* const MVCAboutUs = @"About Us";
-static NSString* const MVCSurgeonList = @"Surgeon List";
-static NSString* const MVCTermsAndCond = @"Terms & Conditions";
-static NSString* const MVCFeedback = @"Feedback";
-static NSString* const MVCSpecialisation = @"Specialisations";
-
 #import <QuartzCore/QuartzCore.h>
 #import "PEMenuViewController.h"
 #import "PEDoctorsListViewController.h"
@@ -22,6 +14,14 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 #import "PETermsAndConditionViewController.h"
 #import "PEFeedbackViewController.h"
 
+static CGFloat const MVCAnimationDuration = 0.5f;
+static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
+static NSString* const MVCAboutUs = @"About Us";
+static NSString* const MVCSurgeonList = @"Surgeon List";
+static NSString* const MVCTermsAndCond = @"Terms & Conditions";
+static NSString* const MVCFeedback = @"Feedback";
+static NSString* const MVCSpecialisation = @"Specialisations";
+
 @interface PEMenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
@@ -29,7 +29,15 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 @property (assign, nonatomic) CGPoint sizeOfScreen;
 @property (weak, nonatomic) IBOutlet UIView *viewWithButtons;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsViewHeight;
+@property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
+@property (weak, nonatomic) IBOutlet UIButton *moreSpecialisationsButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *specialisationButton;
+@property (weak, nonatomic) IBOutlet UIButton *surgeonListButton;
+@property (weak, nonatomic) IBOutlet UIButton *aboutUsButton;
+@property (weak, nonatomic) IBOutlet UIButton *termsButton;
+@property (weak, nonatomic) IBOutlet UIButton *feedbackButton;
 
 @property (weak, nonatomic) UITabBarController *tabBarController;
 
@@ -42,16 +50,9 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.menuTitleLabel.text=self.textToShow;
+    self.menuTitleLabel.text = self.textToShow;
     
-    if (self.isButtonVisible) {
-        self.viewWithButtons.hidden = NO;
-        self.bottomButtonsView.constant = 30.0f;
-    }
-    else{
-        self.viewWithButtons.hidden = YES;
-        self.bottomButtonsView.constant = 0.0f;
-    }
+    [self setupButtons];
     
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
@@ -101,6 +102,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
         [self createAnimationWithKey:@"hideMenuToSurgeons"];
     }
+    [self hideBottomButtons];
 }
 
 - (IBAction)aboutUsButton:(id)sender
@@ -116,6 +118,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
         [self createAnimationWithKey:@"hideMenuToAbout"];
     }
+    [self hideBottomButtons];
 }
     
 - (IBAction)termsAndConditionsButton:(id)sender {
@@ -130,6 +133,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
         [self createAnimationWithKey:@"hideMenuToTerms"];
     }
+    [self hideBottomButtons];
 }
 
 - (IBAction)feedbackButton:(id)sender {
@@ -144,6 +148,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
         [self createAnimationWithKey:@"hideMenuToFeedback"];
     }
+    [self hideBottomButtons];
 }
 
 - (IBAction)menuButton:(id)sender
@@ -151,9 +156,16 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     [self createAnimationWithKey:@"hideMenuToMenu"];
 }
 
+- (IBAction)mySpecialisationButton:(id)sender
+{
+    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+}
+
 - (IBAction)moreSpecialisationButton:(id)sender
 {
-    
+    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
 }
 
 #pragma mark - Animation
@@ -173,6 +185,19 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     
     [self.view.layer addAnimation:animationToHide forKey:key];
     self.view.layer.position= toPoint;
+}
+
+- (void)hideBottomButtons
+{
+    if (self.bottomButtonsViewHeight.constant > 0) {
+        CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacity.removedOnCompletion = YES;
+        opacity.duration = MVCAnimationDuration / 2;
+        opacity.fromValue = @1;
+        opacity.toValue = @0;
+        [self.viewWithButtons.layer addAnimation:opacity forKey:nil];
+        self.viewWithButtons.layer.opacity = 0;
+    }
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
@@ -198,37 +223,52 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];
         
+        CGPoint center;
         if ([self.menuTitleLabel.text isEqualToString:MVCSurgeonList]){
-            CGPoint newCenterForView = self.specializationButton.center;
-            newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=75;
-            self.viewSelection.center = newCenterForView;
-            self.viewSelection.hidden = NO;
+            center = self.surgeonListButton.center;
         } else if ([self.menuTitleLabel.text isEqualToString:MVCAboutUs]){
-            CGPoint newCenterForView = self.specializationButton.center;
-            newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=150;
-            self.viewSelection.center = newCenterForView;
-            self.viewSelection.hidden = NO;
+            center = self.aboutUsButton.center;
         } else if ([self.menuTitleLabel.text isEqualToString:MVCTermsAndConditions]){
-            CGPoint newCenterForView = self.specializationButton.center;
-            newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=225;
-            self.viewSelection.center = newCenterForView;
-            self.viewSelection.hidden = NO;
+            center = self.termsButton.center;
         } else if ([self.menuTitleLabel.text isEqualToString:MVCFeedback]){
-            CGPoint newCenterForView = self.specializationButton.center;
-            newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            newCenterForView.y +=300;
-            self.viewSelection.center = newCenterForView;
-            self.viewSelection.hidden = NO;
+            center = self.feedbackButton.center;
         } else if ([self.menuTitleLabel.text isEqualToString:MVCSpecialisation]){
-            CGPoint newCenterForView = self.specializationButton.center;
-            newCenterForView.x = newCenterForView.x - self.specializationButton.frame.size.width/2-16;
-            self.viewSelection.center = newCenterForView;
-            self.viewSelection.hidden = NO;
+            center = self.specialisationButton.center;
+        }
+        center.x = self.specialisationButton.frame.origin.x / 2;
+        self.viewSelection.center = center;
+        self.viewSelection.hidden = NO;
+
+    }
+}
+
+#pragma mark - Private
+
+- (void)setupButtons
+{
+    if ([self.textToShow isEqualToString:@"Specialisations"]) {
+        self.viewWithButtons.hidden = NO;
+        self.bottomButtonsViewHeight.constant = 30.0f;
+        if (self.isButtonMySpecializations) {
+            [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+            [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+        } else {
+            [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+            [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
         }
     }
+    else{
+        self.viewWithButtons.hidden = YES;
+        self.bottomButtonsViewHeight.constant = 0.0f;
+    }
+    
+    UIFont *menuButtonFont = [UIFont fontWithName:@"MuseoSans-100" size:22.5];
+    
+    self.specialisationButton.titleLabel.font = menuButtonFont;
+    self.surgeonListButton.titleLabel.font = menuButtonFont;
+    self.aboutUsButton.titleLabel.font = menuButtonFont;
+    self.feedbackButton.titleLabel.font = menuButtonFont;
+    self.termsButton.titleLabel.font = menuButtonFont;
 }
 
 @end

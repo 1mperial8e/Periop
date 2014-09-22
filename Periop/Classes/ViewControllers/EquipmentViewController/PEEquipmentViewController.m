@@ -152,7 +152,7 @@
     self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
     
     PEToolsDetailsViewController * toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
-    [self.navigationController pushViewController:toolDetailsView animated:NO];
+    [self.navigationController pushViewController:toolDetailsView animated:YES];
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate

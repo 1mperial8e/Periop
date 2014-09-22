@@ -67,35 +67,35 @@
 
 - (IBAction)preparationButton:(id)sender {
     PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
-    [self.navigationController pushViewController:preperationView animated:NO];
+    [self.navigationController pushViewController:preperationView animated:YES];
 }
 
 - (IBAction)operationRoomButton:(id)sender {
     PEOperationRoomViewController * operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
-    [self.navigationController pushViewController:operationRoomView animated:NO];
+    [self.navigationController pushViewController:operationRoomView animated:YES];
 }
 
 - (IBAction)equipmentButton:(id)sender {
     PEEquipmentViewController * equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
-    [self.navigationController pushViewController:equipmentView animated:NO];
+    [self.navigationController pushViewController:equipmentView animated:YES];
 
 }
 
 - (IBAction)patientPositioningButton:(id)sender {
     PEPatientPositioningViewController * patientPositioningView = [[PEPatientPositioningViewController alloc] initWithNibName:@"PEPatientPositioningViewController" bundle:nil];
-    [self.navigationController pushViewController:patientPositioningView animated:NO];
+    [self.navigationController pushViewController:patientPositioningView animated:YES];
 }
 
 - (IBAction)notesButton:(id)sender {
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Procedure Notes";
-    [self.navigationController pushViewController:notesView animated:NO];
+    [self.navigationController pushViewController:notesView animated:YES];
 }
 
 - (IBAction)doctorsButton:(id)sender {
     PEDoctorsListViewController * doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
     doctorsView.textToShow = @"Procedure Name";
     doctorsView.isButtonRequired = false;
-    [self.navigationController pushViewController:doctorsView animated:NO];
+    [self.navigationController pushViewController:doctorsView animated:YES];
 }
 @end
