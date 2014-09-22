@@ -20,7 +20,7 @@
 - (void)awakeFromNib
 {
     [self.collectionView registerNib:[UINib nibWithNibName:@"CollectionViewCellItemCell" bundle:nil] forCellWithReuseIdentifier:@"collectionViewInternalCell"];
-    
+#warning  set controller with Doctor for dataSource and delegate
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
 }

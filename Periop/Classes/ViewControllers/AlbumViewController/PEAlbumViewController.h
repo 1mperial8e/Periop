@@ -9,6 +9,7 @@
 @interface PEAlbumViewController : UIViewController
 
 @property (strong, nonatomic) NSString* navigationLabelText;
-@property (strong, nonatomic) Class sender;
+
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithCurrentPhoto;
 
 @end

@@ -10,7 +10,4 @@
 
 @implementation PEPatientPostioningPreviewCollectionView
 
-#pragma mark - Lifecycle
-
-
 @end

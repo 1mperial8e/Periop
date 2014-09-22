@@ -2,7 +2,7 @@
 //  Procedure.m
 //  Periop
 //
-//  Created by Kirill on 9/20/14.
+//  Created by Kirill on 9/22/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -23,7 +23,7 @@
 @dynamic doctors;
 @dynamic equipments;
 @dynamic notes;
-@dynamic operationRooms;
+@dynamic operationRoom;
 @dynamic patientPostioning;
 @dynamic preparation;
 @dynamic specialization;
