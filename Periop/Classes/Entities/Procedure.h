@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSSet *equipments;
 @property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) OperationRoom *operationRoom;
-@property (nonatomic, retain) NSSet *patientPostioning;
+@property (nonatomic, retain) PatientPostioning *patientPostioning;
 @property (nonatomic, retain) NSSet *preparation;
 @property (nonatomic, retain) Specialisation *specialization;
 @end
@@ -40,11 +40,6 @@
 - (void)removeNotesObject:(Note *)value;
 - (void)addNotes:(NSSet *)values;
 - (void)removeNotes:(NSSet *)values;
-
-- (void)addPatientPostioningObject:(PatientPostioning *)value;
-- (void)removePatientPostioningObject:(PatientPostioning *)value;
-- (void)addPatientPostioning:(NSSet *)values;
-- (void)removePatientPostioning:(NSSet *)values;
 
 - (void)addPreparationObject:(Preparation *)value;
 - (void)removePreparationObject:(Preparation *)value;

@@ -51,6 +51,7 @@
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.text = @"Procedure Name";
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];

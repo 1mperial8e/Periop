@@ -43,7 +43,8 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -61,6 +62,7 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -101,13 +103,21 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.sortedArrayWithPhotos.count;
+    if (self.sortedArrayWithPhotos.count>0) {
+        return self.sortedArrayWithPhotos.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-    cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+    if (self.sortedArrayWithPhotos.count >0) {
+        cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+    } else {
+        cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
+    }
     
     self.pageController.currentPage = [indexPath row];
     return cell;

@@ -89,13 +89,19 @@
         currentProcedure.procedureID = [dicWithProcedure valueForKey:@"ProcedureID"];
         currentProcedure.name = [dicWithProcedure valueForKey:@"Procedure/Operation Title"];
         
-        for (NSString* patientPostioning in [dicWithProcedure valueForKey:@"Patient Positioning"]) {
-            NSEntityDescription * patientEntity = [NSEntityDescription entityForName:@"PatientPostioning" inManagedObjectContext:self.managedObjectContext];
-            PatientPostioning * pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            pp.patientDescription = patientPostioning;
-            pp.procedure = currentProcedure;
-            [currentProcedure addPatientPostioningObject:pp];
-        }
+        NSEntityDescription * patientEntity = [NSEntityDescription entityForName:@"PatientPostioning" inManagedObjectContext:self.managedObjectContext];
+        PatientPostioning * pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        NSArray * patientPostionning = (NSArray*)[dicWithProcedure valueForKey:@"Patient Positioning"];
+        [patientPostionning enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSEntityDescription * stepEntity = [NSEntityDescription entityForName:@"Steps" inManagedObjectContext:self.managedObjectContext];
+            Steps * newStep = [[Steps alloc] initWithEntity:stepEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            newStep.stepName = [NSString stringWithFormat:@"Step %i", idx + 1];
+            newStep.stepDescription = (NSString *)obj;
+            [pp addStepsObject:newStep];
+        }];
+        pp.procedure = currentProcedure;
+        currentProcedure.patientPostioning = pp;
         
         NSArray *preparation = (NSArray *)[dicWithProcedure valueForKey:@"Preparation"];
         [preparation enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -139,9 +145,6 @@
                 NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 initPhoto.photoName = [category valueForKey:@"Tool Photo ID"];
-                
-                //initPhoto.photoName = UIImagePNGRepresentation((UIImage*)[category valueForKey:@"Tool Photo ID"]);
-                
                 [newTool addPhotoObject:initPhoto];
                 newTool.procedure = currentProcedure;
                 [currentProcedure addEquipmentsObject:newTool];

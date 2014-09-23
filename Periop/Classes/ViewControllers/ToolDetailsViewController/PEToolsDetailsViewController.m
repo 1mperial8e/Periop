@@ -16,15 +16,15 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "PESpecialisationManager.h"
 #import "EquipmentsTool.h"
 #import "PECoreDataManager.h"
+#import "Photo.h"
 
 
-@interface PEToolsDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UITextInputTraits>
+@interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *equipmentPhoto;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
@@ -48,11 +48,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
@@ -75,22 +75,26 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.rightBarButton = editButton;
     self.navigationItem.rightBarButtonItem=editButton;
     
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    
     [self setSelectedObjectToView];
     
     self.nameTextField.delegate = self;
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
-    
-    self.pageControll.numberOfPages = 10;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
+        self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
+    } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
+        self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
+    }
+    
+    [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
@@ -135,7 +139,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (IBAction)photoButton:(id)sender
 {
-    CGRect position = self.collectionView.frame;
+    CGRect position = self.equipmentPhoto.frame;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
     view.frame = position;
@@ -159,23 +163,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (IBAction)tapOnView:(id)sender
 {
-    NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
-}
-
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
-    self.pageControll.currentPage = [indexPath row];
-    return cell;
 }
 
 #pragma mark - UITextFieldDelegate

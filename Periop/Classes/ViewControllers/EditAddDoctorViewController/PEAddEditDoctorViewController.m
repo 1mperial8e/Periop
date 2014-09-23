@@ -51,6 +51,7 @@
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
         self.navigationBarLabel.text=self.navigationLabelDescription;
     } else {

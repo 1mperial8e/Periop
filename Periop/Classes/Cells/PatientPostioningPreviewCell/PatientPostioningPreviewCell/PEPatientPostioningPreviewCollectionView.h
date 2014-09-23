@@ -10,4 +10,6 @@
 
 @interface PEPatientPostioningPreviewCollectionView : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+
 @end

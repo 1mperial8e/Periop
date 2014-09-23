@@ -13,16 +13,18 @@
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
 #import "PEAlbumViewController.h"
+#import "Photo.h"
+#import "PatientPostioning.h"
 
-@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *postedCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UICollectionView *previewCollectionView;
-@property (weak, nonatomic) IBOutlet UIView *rootView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
 
 @end
 
@@ -35,7 +37,7 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     [self.previewCollectionView registerNib:[UINib nibWithNibName:@"PatientPostioningPreviewCell" bundle:nil] forCellWithReuseIdentifier:@"PatientCell"];
@@ -47,6 +49,7 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
@@ -66,15 +69,21 @@
     
     self.postedCollectionView.delegate = self;
     self.postedCollectionView.dataSource = self;
+    
     self.previewCollectionView.delegate = self;
     self.previewCollectionView.dataSource = self;
-    self.pageControll.numberOfPages = 5;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    [[self.view viewWithTag:35] removeFromSuperview];
+    self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
+    self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
+    [self.postedCollectionView reloadData];
+    [self.previewCollectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -85,10 +94,10 @@
 
 - (IBAction)operationWithPhotoButton:(id)sender
 {
-    CGRect position = self.rootView.frame;
+    CGRect size = self.view.bounds;
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
-    view.frame = position;
+    view.frame = size;
     view.tag = 35;
     [self.view addSubview:view];
 }
@@ -110,32 +119,58 @@
 
 - (IBAction)tapOnView:(id)sender
 {
-    NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (collectionView.tag ==1) {
-        return 5;
+    if (self.sortedArrayWithPhotos.count >0) {
+        return self.sortedArrayWithPhotos.count;
     } else {
-        return 10;
+        return 1;
     }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (collectionView.tag==1) {
+    if ([collectionView isEqual:self.postedCollectionView]) {
         PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor greenColor];
-        self.pageControll.currentPage = [indexPath row];
+        if (self.sortedArrayWithPhotos.count>0) {
+            cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+            self.pageControll.currentPage = [indexPath row];
+        } else {
+            cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
+        }
         return cell;
     } else {
         PEPatientPostioningPreviewCollectionView * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PatientCell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor blueColor];
+        if (self.sortedArrayWithPhotos.count>0) {
+            cell.image.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        } else {
+            cell.image.image = [UIImage imageNamed:@"Place_Holder"];
+        }
         return cell;
     }
+}
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma marks - Private
+
+- (NSMutableArray *)sortedArrayWithPhotos: (NSArray*)arrayToSort
+{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber * firstObject = [(Photo*)obj1 photoNumber];
+        NSNumber *  secondObject = [(Photo*)obj2 photoNumber];
+        return [firstObject compare:secondObject];
+    }];
+    return [NSMutableArray arrayWithArray:sortedArray];
 }
 
 @end

@@ -44,6 +44,7 @@
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     if (self.specManager.isProcedureSelected) {
         self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
     } else {

@@ -8,6 +8,7 @@
 
 #import "Steps.h"
 #import "OperationRoom.h"
+#import "PatientPostioning.h"
 
 
 @implementation Steps
@@ -15,5 +16,6 @@
 @dynamic stepDescription;
 @dynamic stepName;
 @dynamic operationRoom;
+@dynamic patientPostioning;
 
 @end

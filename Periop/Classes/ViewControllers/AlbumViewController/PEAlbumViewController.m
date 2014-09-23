@@ -13,6 +13,8 @@
 #import "PEOperationRoomViewController.h"
 #import "PECoreDataManager.h"
 #import "Photo.h"
+#import "PatientPostioning.h"
+#import "Note.h"
 
 @interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -50,6 +52,7 @@
     self.navigationLabel.textColor = [UIColor whiteColor];
     self.navigationLabel.minimumScaleFactor = 0.5;
     self.navigationLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationLabel.text = self.navigationLabelText;
     self.selectedPhotos = [[NSMutableArray alloc] init];
@@ -121,9 +124,19 @@
                 [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
                 rewriteCounter++;
             }
+        } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
+            if ([self.specManager.currentEquipment.photo allObjects].count>0) {
+                [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
+            }
+            newPhoto.equiomentTool = self.specManager.currentEquipment;
+            newPhoto.photoNumber=@(0);
+            [self.specManager.currentEquipment addPhotoObject:newPhoto];
+        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEPatientPositioningViewController"]) {
+                newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
+                newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
+                [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
         }
-#warning to implement save photo for others controllers
-        
+#warning to implement save photo for notes and patient Postionning        
     }
     NSError * error = nil;
     if (![self.managedObjectContext save:&error]) {

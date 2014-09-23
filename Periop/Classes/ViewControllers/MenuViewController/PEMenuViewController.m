@@ -51,6 +51,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 {
     [super viewDidLoad];
     self.menuTitleLabel.text = self.textToShow;
+    self.menuTitleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     
     [self setupButtons];
     

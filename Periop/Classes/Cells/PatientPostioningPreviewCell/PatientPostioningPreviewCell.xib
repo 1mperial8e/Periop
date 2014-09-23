@@ -6,20 +6,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fVg-Aq-2RD">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fVg-Aq-2RD" customClass="PEPatientPostioningPreviewCollectionView">
             <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="euS-KD-l8p">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euS-KD-l8p">
                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstItem="euS-KD-l8p" firstAttribute="top" secondItem="fVg-Aq-2RD" secondAttribute="top" id="1OA-lq-HOI"/>
+                <constraint firstItem="euS-KD-l8p" firstAttribute="leading" secondItem="fVg-Aq-2RD" secondAttribute="leading" id="6c5-XX-edv"/>
+                <constraint firstAttribute="bottom" secondItem="euS-KD-l8p" secondAttribute="bottom" id="c07-qH-7eP"/>
+                <constraint firstAttribute="trailing" secondItem="euS-KD-l8p" secondAttribute="trailing" id="g1D-S2-kpI"/>
+            </constraints>
+            <connections>
+                <outlet property="image" destination="euS-KD-l8p" id="91j-s3-oxq"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>
