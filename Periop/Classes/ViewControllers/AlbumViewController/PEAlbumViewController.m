@@ -18,10 +18,11 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
 
-@property (strong , nonatomic) NSMutableArray *selectedPhotos;
+@property (strong, nonatomic) NSMutableArray *selectedPhotos;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) UILabel * navigationLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (assign, nonatomic) NSInteger allowedCountOfSelectedCells;
 
 @end
 
@@ -34,6 +35,7 @@
     [super viewDidLoad];
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.specManager = [PESpecialisationManager sharedManager];
     
     [self.photosCollectionView registerNib:[UINib nibWithNibName:@"PeAlbumCell" bundle:nil] forCellWithReuseIdentifier:@"albumCell"];
     self.photosCollectionView.allowsMultipleSelection = YES;
@@ -51,6 +53,8 @@
     self.navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationLabel.text = self.navigationLabelText;
     self.selectedPhotos = [[NSMutableArray alloc] init];
+    
+    self.allowedCountOfSelectedCells = [self getAllowedCountOfSelectedCells];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,7 +88,7 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return !(collectionView.indexPathsForSelectedItems.count > 9);
+    return !(collectionView.indexPathsForSelectedItems.count > self.allowedCountOfSelectedCells);
 }
 
 #pragma mark - Private
@@ -95,23 +99,46 @@
         ALAsset *asset = [PECameraRollManager sharedInstance].assets[idxPath.row];
         [self.selectedPhotos addObject:[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage]];
     }
-    //for operationRoom Only
-    if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
-        for (UIImage * image in self.selectedPhotos){
-            NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-            Photo * newPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            NSData * imageData = UIImagePNGRepresentation(image);
-#warning Choose varian of action with photo
-            //save Image To DB? or copy only file Path?
-            //newPhoto.photoName =
+    
+    NSInteger counter = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
+    NSInteger rewriteCounter = 0;
+    
+    for (UIImage * image in self.selectedPhotos) {
+        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+        Photo * newPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        NSData * imageData = UIImageJPEGRepresentation(image, 1.0);
+        newPhoto.photoData = imageData;
+        
+        if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
+            if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
+                newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+                newPhoto.photoNumber = @(counter++);
+                [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+            } else {
+                [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
+                newPhoto.photoNumber = @(rewriteCounter);
+                newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+                [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+                rewriteCounter++;
+            }
         }
+#warning to implement save photo for others controllers
+        
     }
-    
-    
-    
-    // selected photos contains UIImage objects of all photos that was selected
-    
+    NSError * error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant save photo ot DB - %@", error.localizedDescription);
+    }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (NSInteger)getAllowedCountOfSelectedCells
+{
+    if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
+        return  4;
+    } else {
+        return 30;
+    }
 }
 
 @end

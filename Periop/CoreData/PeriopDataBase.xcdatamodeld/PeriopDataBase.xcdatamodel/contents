@@ -25,10 +25,9 @@
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="notes" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="OperationRoom" representedClassName="OperationRoom" syncable="YES">
-        <attribute name="stepDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stepName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="photo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="operationRoom" inverseEntity="Photo" syncable="YES"/>
-        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="operationRooms" inverseEntity="Procedure" syncable="YES"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="operationRoom" inverseEntity="Procedure" syncable="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Steps" inverseName="operationRoom" inverseEntity="Steps" syncable="YES"/>
     </entity>
     <entity name="PatientPostioning" representedClassName="PatientPostioning" syncable="YES">
         <attribute name="patientDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,7 +35,9 @@
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="patientPostioning" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctors" inverseName="photo" inverseEntity="Doctors" syncable="YES"/>
         <relationship name="equiomentTool" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EquipmentsTool" inverseName="photo" inverseEntity="EquipmentsTool" syncable="YES"/>
         <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="photo" inverseEntity="Note" syncable="YES"/>
@@ -54,7 +55,7 @@
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="procedure" inverseEntity="Doctors" syncable="YES"/>
         <relationship name="equipments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EquipmentsTool" inverseName="procedure" inverseEntity="EquipmentsTool" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="procedure" inverseEntity="Note" syncable="YES"/>
-        <relationship name="operationRooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OperationRoom" inverseName="procedure" inverseEntity="OperationRoom" syncable="YES"/>
+        <relationship name="operationRoom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OperationRoom" inverseName="procedure" inverseEntity="OperationRoom" syncable="YES"/>
         <relationship name="patientPostioning" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientPostioning" inverseName="procedure" inverseEntity="PatientPostioning" syncable="YES"/>
         <relationship name="preparation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Preparation" inverseName="procedure" inverseEntity="Preparation" syncable="YES"/>
         <relationship name="specialization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Specialisation" inverseName="procedures" inverseEntity="Specialisation" syncable="YES"/>
@@ -66,15 +67,21 @@
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="specialisation" inverseEntity="Doctors" syncable="YES"/>
         <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
     </entity>
+    <entity name="Steps" representedClassName="Steps" syncable="YES">
+        <attribute name="stepDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stepName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="operationRoom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OperationRoom" inverseName="steps" inverseEntity="OperationRoom" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Doctors" positionX="63" positionY="-18" width="128" height="133"/>
         <element name="EquipmentsTool" positionX="-333" positionY="-180" width="128" height="148"/>
         <element name="Note" positionX="-18" positionY="-207" width="128" height="118"/>
-        <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="103"/>
+        <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="88"/>
         <element name="PatientPostioning" positionX="-333" positionY="-27" width="128" height="88"/>
+        <element name="Photo" positionX="-135" positionY="-63" width="128" height="163"/>
         <element name="Preparation" positionX="-333" positionY="71" width="128" height="88"/>
-        <element name="Procedure" positionX="-110" positionY="-45" width="128" height="180"/>
+        <element name="Procedure" positionX="-110" positionY="-45" width="128" height="178"/>
         <element name="Specialisation" positionX="79" positionY="162" width="128" height="118"/>
-        <element name="Photo" positionX="-135" positionY="-63" width="128" height="133"/>
+        <element name="Steps" positionX="-135" positionY="-63" width="128" height="88"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  Procedure.h
 //  Periop
 //
-//  Created by Kirill on 9/20/14.
+//  Created by Kirill on 9/22/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSSet *doctors;
 @property (nonatomic, retain) NSSet *equipments;
 @property (nonatomic, retain) NSSet *notes;
-@property (nonatomic, retain) NSSet *operationRooms;
+@property (nonatomic, retain) OperationRoom *operationRoom;
 @property (nonatomic, retain) NSSet *patientPostioning;
 @property (nonatomic, retain) NSSet *preparation;
 @property (nonatomic, retain) Specialisation *specialization;
@@ -40,11 +40,6 @@
 - (void)removeNotesObject:(Note *)value;
 - (void)addNotes:(NSSet *)values;
 - (void)removeNotes:(NSSet *)values;
-
-- (void)addOperationRoomsObject:(OperationRoom *)value;
-- (void)removeOperationRoomsObject:(OperationRoom *)value;
-- (void)addOperationRooms:(NSSet *)values;
-- (void)removeOperationRooms:(NSSet *)values;
 
 - (void)addPatientPostioningObject:(PatientPostioning *)value;
 - (void)removePatientPostioningObject:(PatientPostioning *)value;

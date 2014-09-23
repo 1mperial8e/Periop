@@ -20,6 +20,7 @@
 @interface PEProcedureOptionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -48,7 +49,7 @@
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
-
+    
     self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width/2;
 }
 

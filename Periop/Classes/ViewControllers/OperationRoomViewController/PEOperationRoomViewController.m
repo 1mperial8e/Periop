@@ -10,11 +10,12 @@
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEMediaSelect.h"
 #import "PEPreparationTableViewCell.h"
-
+#import "Steps.h"
 #import "PESpecialisationManager.h"
 #import "OperationRoom.h"
 #import "Procedure.h"
 #import "PEAlbumViewController.h"
+#import "Photo.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
 
 @end
 
@@ -41,10 +43,12 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRooms allObjects]];
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     
@@ -73,14 +77,18 @@
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
-    self.pageController.numberOfPages = 10;
     
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.operationRoom.photo allObjects]];
+    self.pageController.numberOfPages = self.sortedArrayWithPhotos.count;
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -93,23 +101,23 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.sortedArrayWithPhotos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
+    cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+    
     self.pageController.currentPage = [indexPath row];
     return cell;
 }
-
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  [self.specManager.currentProcedure.operationRooms count];
+    return  [self.specManager.currentProcedure.operationRoom.steps count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,8 +141,8 @@
 
 - (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.labelStep.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
-    cell.labelPreparationText.text = ((OperationRoom*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
+    cell.labelStep.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
+    cell.labelPreparationText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
     return cell;
 }
 
@@ -170,9 +178,9 @@
 
 - (IBAction)albumPhoto:(id)sender
 {
-    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil]; 
+    PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
     albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
-    albumViewController.sender = [self class];
+    albumViewController.sortedArrayWithCurrentPhoto = self.sortedArrayWithPhotos;
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
@@ -183,7 +191,6 @@
 
 - (IBAction)tapOnView:(id)sender
 {
-     NSLog(@"tap on View");
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 
@@ -193,11 +200,22 @@
 {
     NSArray * sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(OperationRoom*)obj1 stepName];
-        NSString * secondObject = [(OperationRoom*)obj2 stepName];
+        NSString * firstObject = [(Steps*)obj1 stepName];
+        NSString * secondObject = [(Steps*)obj2 stepName];
         return [firstObject compare:secondObject];
     }];
     return sortedArray;
+}
+
+- (NSMutableArray *)sortedArrayWithPhotos: (NSArray*)arrayToSort
+{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber * firstObject = [(Photo*)obj1 photoNumber];
+        NSNumber *  secondObject = [(Photo*)obj2 photoNumber];
+        return [firstObject compare:secondObject];
+    }];
+    return [NSMutableArray arrayWithArray:sortedArray];
 }
 
 @end

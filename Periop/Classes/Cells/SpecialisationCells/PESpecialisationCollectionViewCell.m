@@ -16,5 +16,9 @@
 
 #pragma mark - Lifecycle
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+}
 
 @end

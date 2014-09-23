@@ -6,26 +6,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OperationRoomViewCell" id="5g5-uu-R4n" customClass="PEOperationRoomCollectionViewCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RmB-WY-8fG" customClass="PEOperationRoomCollectionViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVo-WL-6yg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AK5-rt-UZa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <constraints>
-                <constraint firstItem="dVo-WL-6yg" firstAttribute="top" secondItem="5g5-uu-R4n" secondAttribute="top" id="8VA-uw-Dig"/>
-                <constraint firstAttribute="trailing" secondItem="dVo-WL-6yg" secondAttribute="trailing" id="dDa-i5-Yai"/>
-                <constraint firstAttribute="bottom" secondItem="dVo-WL-6yg" secondAttribute="bottom" id="mf9-Om-I9T"/>
-                <constraint firstItem="dVo-WL-6yg" firstAttribute="leading" secondItem="5g5-uu-R4n" secondAttribute="leading" id="z35-B0-Oby"/>
-            </constraints>
+            <connections>
+                <outlet property="operationRoomImage" destination="AK5-rt-UZa" id="BnA-EI-GId"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

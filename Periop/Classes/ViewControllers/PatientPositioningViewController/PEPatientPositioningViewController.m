@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     [self.previewCollectionView registerNib:[UINib nibWithNibName:@"PatientPostioningPreviewCell" bundle:nil] forCellWithReuseIdentifier:@"PatientCell"];

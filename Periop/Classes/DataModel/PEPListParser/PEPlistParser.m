@@ -17,6 +17,7 @@
 #import "Note.h"
 #import "Preparation.h"
 #import "Photo.h"
+#import "Steps.h"
 
 @interface PEPlistParser()
 
@@ -106,15 +107,19 @@
             [currentProcedure addPreparationObject:prep];
         }];
         
+        NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
+        OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        
         NSArray *operationRoomArray = (NSArray *)[dicWithProcedure valueForKey:@"Operation Room"];
         [operationRoomArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-            NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
-            OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            opR.stepName = [NSString stringWithFormat:@"Step %i", idx + 1];
-            opR.stepDescription = (NSString *)obj;
-            opR.procedure = currentProcedure;
-            [currentProcedure addOperationRoomsObject:opR];
+            NSEntityDescription * stepEntity = [NSEntityDescription entityForName:@"Steps" inManagedObjectContext:self.managedObjectContext];
+            Steps * newStep = [[Steps alloc] initWithEntity:stepEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            newStep.stepName = [NSString stringWithFormat:@"Step %i", idx + 1];
+            newStep.stepDescription = (NSString *)obj;
+            [opR addStepsObject:newStep];
         }];
+        opR.procedure = currentProcedure;
+        currentProcedure.operationRoom = opR;
         
         NSDictionary * dicWithTools = [dicWithProcedure valueForKey:@"Tools"];
         
