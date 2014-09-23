@@ -43,7 +43,10 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    self.specManager.isProcedureSelected = true;
+    self.specManager.isProcedureSelected = YES;
+    
+    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -87,6 +90,8 @@
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
+    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
 }
 
 - (IBAction)doctorButton:(id)sender
@@ -95,6 +100,8 @@
     self.navigationBarLabel.text = @"Doctors Name";
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
+    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Active"] forState:UIControlStateNormal];
 }
 
 - (IBAction)addNewDoctor:(id)sender
@@ -123,16 +130,20 @@
     }
     
     if ( indexPath.row % 2){
-        cell.contentView.backgroundColor = [UIColor colorWithRed:236/255.0 green:248/255.0 blue:251/255.0 alpha:1.0f];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:(231.0/255.0) green:(245.0/255.0) blue:(250.0/255.0) alpha:1.0f];
+        cell.textLabel.textColor = [UIColor colorWithRed:(29.0/255.0) green:(130.0/255.0) blue:(215.0/255.0) alpha:1.0f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
+    UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
         cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
         cell.textLabel.text = ((Doctors*)[self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]).name;
     }
+    cell.textLabel.font = cellFont;
+    
     return cell;
 }
 

@@ -27,6 +27,7 @@
 		8474908E19B8459E0013C446 /* PeriopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474908D19B8459E0013C446 /* PeriopTests.m */; };
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
+		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
@@ -229,6 +230,7 @@
 		8474908D19B8459E0013C446 /* PeriopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeriopTests.m; sourceTree = "<group>"; };
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
+		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			children = (
 				84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */,
 				84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */,
+				8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1316,6 +1319,7 @@
 				ED9C69DF19C720E80022C1A8 /* Gynaecology_Small_Active@2x.png in Resources */,
 				ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */,
 				ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */,
+				8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */,
 				EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */,
 				ED9C69E119C720E80022C1A8 /* Gynaecology_Small_Inactive@2x.png in Resources */,
 				EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */,
