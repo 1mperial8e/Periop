@@ -11,17 +11,21 @@
 #import "EquipmentsTool.h"
 #import "PECoreDataManager.h"
 #import "Procedure.h"
+#import "UIDropDownList.h"
 
-@interface PEAddNewToolViewController () <UITextInputTraits>
+@interface PEAddNewToolViewController () <UITextInputTraits, UIDropDownListDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *specTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *qtyTextBox;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * categoryTools;
+@property (strong, nonatomic) UIDropDownList *dropDownList;
+@property (strong, nonatomic) NSLayoutConstraint *dropDownListHeight;
 
 @end
 
@@ -54,6 +58,8 @@
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     self.qtyTextBox.keyboardType = UIKeyboardTypeNumberPad;
+    
+    [self createDropDownList];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -102,12 +108,124 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - UIDropDownListDelegate
+
+- (void)dropDownList:(UIDropDownList *)dropDownList didSelectItemAtIndex:(NSInteger)idx
+{
+    
+}
+
+- (void)dropDownList:(UIDropDownList *)dropDownList willOpenWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
+{
+    if (animation) {
+        [UIView animateWithDuration:animation.duration animations:^{
+            self.dropDownListHeight.constant = bounds.size.height;
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
+- (void)dropDownList:(UIDropDownList *)dropDownList willCloseWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
+{
+    if (animation) {
+        [UIView animateWithDuration:animation.duration animations:^{
+            self.dropDownListHeight.constant = bounds.size.height;
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
 #pragma mark - Private 
 
 - (NSArray*)getArrayWithAvaliableCategories : (NSArray* )objectsArray
 {
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     return [toolsWithCounts allObjects];
+}
+
+- (void)createDropDownList
+{
+    self.dropDownList = [[UIDropDownList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0)];
+    self.dropDownList.items = @[@"Prosthesis", @"Equipment", @"Dressing", @"Sutures", @"Solutions", @"Disposables", @"Holloware", @"Extra Instruments/Equipment", @"Instrument Tray", @"Drapes", @"Prep Solution", @"Gloves"];
+    [self.dropDownList setBackgroundColor:[UIColor colorWithRed:(147.0/255.0) green:(227.0/255.0) blue:(185.0/255.0) alpha:1.0f]];
+    self.dropDownList.titleLabel.textColor = [UIColor whiteColor];
+    self.dropDownList.separateColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0f];
+    self.dropDownList.titleLabel.text = @"Equipment Category";
+    self.dropDownList.titleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, self.dropDownList.frame.size.height - 1, self.dropDownList.frame.size.width, 0.5f)];
+    separator.backgroundColor = [UIColor whiteColor];
+    [self.dropDownList addSubview:separator];
+    self.dropDownList.numberOfItemsToDraw = 4;
+    self.dropDownList.itemBackColor = [UIColor whiteColor];
+    self.dropDownList.itemLabelTextColor = [UIColor colorWithRed:(28.0/255.0) green:(28.0/255.0) blue:(28.0/255.0) alpha:1.0f];
+    self.dropDownList.itemLabelFont = [UIFont fontWithName:@"MuseoSans-300" size:15.0];
+    self.dropDownList.itemHeight = 30.0f;
+    self.dropDownList.delegate = self;
+    
+    self.dropDownList.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.dropDownListHeight = [NSLayoutConstraint constraintWithItem:self.dropDownList
+                                                           attribute:NSLayoutAttributeHeight
+                                                           relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                              toItem:nil
+                                                           attribute:NSLayoutAttributeHeight
+                                                          multiplier:1.0
+                                                            constant:self.dropDownList.frame.size.height];
+    
+    [self.dropDownList addConstraint:self.dropDownListHeight];
+    
+    [self.view addSubview:self.dropDownList];
+    [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:self.dropDownList
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1.0
+                                                              constant:0.0],
+                                [NSLayoutConstraint constraintWithItem:self.dropDownList
+                                                             attribute:NSLayoutAttributeLeading
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeLeading
+                                                            multiplier:1.0
+                                                              constant:0.0],
+                                [NSLayoutConstraint constraintWithItem:self.dropDownList
+                                                             attribute:NSLayoutAttributeTrailing
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeTrailing
+                                                            multiplier:1.0
+                                                              constant:0.0]]];
+    
+    UIView *container = self.containerView;
+    [self.containerView removeFromSuperview];
+    container.translatesAutoresizingMaskIntoConstraints = NO;
+    CGRect frame = container.frame;
+    frame.origin.x = self.dropDownList.frame.size.height;
+    container.frame = frame;
+    [self.view addSubview:container];
+    
+    [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:container
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.dropDownList
+                                                             attribute:NSLayoutAttributeBottom
+                                                            multiplier:1.0
+                                                              constant:0.0],
+                                [NSLayoutConstraint constraintWithItem:container
+                                                             attribute:NSLayoutAttributeLeading
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeLeading
+                                                            multiplier:1.0
+                                                              constant:0.0],
+                                [NSLayoutConstraint constraintWithItem:container
+                                                             attribute:NSLayoutAttributeTrailing
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeTrailing
+                                                            multiplier:1.0
+                                                              constant:0.0]]];
 }
 
 @end
