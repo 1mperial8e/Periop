@@ -105,7 +105,7 @@
     if (self.cellWithCheckedButtons) {
         NSArray * arrWithIndexPath = [self.cellWithCheckedButtons allObjects];
         for (int i=0; i<arrWithIndexPath.count; i++) {
-            [self deleteSlectedItem:[self.cellWithCheckedButtons allObjects][0] withSwipedCell:NO];
+            [self deleteSlectedItem:[self.cellWithCheckedButtons allObjects][0]];
         }
     }
 }
@@ -161,7 +161,7 @@
 - (void)buttonDeleteAction:(UITableViewCell*)cell
 {
     NSIndexPath * currentIndex = [self.tableView indexPathForCell:cell];
-    [self deleteSlectedItem:currentIndex withSwipedCell:YES];
+    [self deleteSlectedItem:currentIndex];
 }
 
 - (void)cellDidSwipedIn:(UITableViewCell *)cell
@@ -211,7 +211,7 @@
     return [NSMutableArray arrayWithArray:[toolsWithCounts allObjects]];
 }
 
-- (void)deleteSlectedItem: (NSIndexPath*)indexPathToDelete withSwipedCell:(BOOL)swiping
+- (void)deleteSlectedItem: (NSIndexPath*)indexPathToDelete
 {
     EquipmentsTool *eq = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
     [self.specManager.currentProcedure removeEquipmentsObject:eq];
@@ -220,7 +220,7 @@
     if(![self.managedObjectContext save:&saveDeletedObjectsError]) {
         NSLog(@"Cant delete from DB, error : %@", saveDeletedObjectsError.localizedDescription);
     }
-    if (swiping) {
+    if ([self.cellCurrentlyEditing containsObject:indexPathToDelete]) {
         [self.cellCurrentlyEditing removeObject:indexPathToDelete];
     }
     if ([self.cellWithCheckedButtons containsObject:indexPathToDelete]) {

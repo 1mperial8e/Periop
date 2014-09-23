@@ -85,14 +85,12 @@
 
 - (IBAction)checkButton:(id)sender
 {
-    if ([sender tag]==2){
-        if (![self.checkButton isSelected]) {
-            self.checkButton.selected = true;
-            [self.delegate cellChecked:self];
-        } else {
-            self.checkButton.selected = false;
-            [self.delegate cellUnchecked:self];
-        }
+    if (![self.checkButton isSelected]) {
+        self.checkButton.selected = true;
+        [self.delegate cellChecked:self];
+    } else {
+        self.checkButton.selected = false;
+        [self.delegate cellUnchecked:self];
     }
 }
 
