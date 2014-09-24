@@ -135,6 +135,10 @@
                 newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
                 newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
                 [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
+        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"]) {
+            newPhoto.doctor = self.specManager.currentDoctor;
+            newPhoto.photoNumber = @(0);
+            self.specManager.currentDoctor.photo = newPhoto;            
         }
 #warning to implement save photo for notes and patient Postionning and Doctors       
     }

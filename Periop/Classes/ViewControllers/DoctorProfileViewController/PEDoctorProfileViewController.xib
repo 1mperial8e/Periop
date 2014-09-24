@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDoctorProfileViewController">
             <connections>
+                <outlet property="collectionView" destination="YIM-zE-PPM" id="daI-BZ-AWI"/>
                 <outlet property="doctorName" destination="D0H-Kj-kVe" id="97a-fh-Fyg"/>
                 <outlet property="doctorPhotoImageView" destination="qbo-4Q-cnG" id="ANu-u4-qYO"/>
                 <outlet property="tableView" destination="oQV-6s-ZsM" id="u2Z-Lf-Upd"/>
@@ -26,10 +27,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Doctor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe">
-                    <rect key="frame" x="20" y="154" width="280" height="36"/>
+                    <rect key="frame" x="20" y="134" width="280" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="Ufi-l5-UZy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -81,7 +85,7 @@
                     </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oQV-6s-ZsM">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oQV-6s-ZsM">
                     <rect key="frame" x="0.0" y="258" width="320" height="241"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,6 +93,22 @@
                         <constraint firstAttribute="width" constant="320" id="UPI-X9-WjQ"/>
                     </constraints>
                 </tableView>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YIM-zE-PPM">
+                    <rect key="frame" x="20" y="188" width="280" height="62"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="62" id="OIE-8O-UId"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="15" id="WbM-LW-CL2">
+                        <size key="itemSize" width="42" height="42"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -100,16 +120,19 @@
                 <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="5bm-zX-EjW"/>
                 <constraint firstItem="Shd-00-ENp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7So-XK-Uyn"/>
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HTb-OK-11m"/>
+                <constraint firstItem="YIM-zE-PPM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="JTp-te-TX6"/>
                 <constraint firstItem="oQV-6s-ZsM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JlW-Tp-iY1"/>
-                <constraint firstItem="qbo-4Q-cnG" firstAttribute="centerX" secondItem="D0H-Kj-kVe" secondAttribute="centerX" id="PPF-I9-ohi"/>
+                <constraint firstItem="YIM-zE-PPM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="18" id="P2g-Sw-lHA"/>
                 <constraint firstAttribute="trailing" secondItem="qbo-4Q-cnG" secondAttribute="trailing" id="Rhg-7g-c14"/>
                 <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="XNF-4K-3UD"/>
                 <constraint firstAttribute="trailing" secondItem="oQV-6s-ZsM" secondAttribute="trailing" id="dOm-Ed-py0"/>
                 <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="qbo-4Q-cnG" secondAttribute="bottom" constant="8" symbolic="YES" id="gW7-RR-um6"/>
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="huH-je-hHN"/>
+                <constraint firstAttribute="trailing" secondItem="YIM-zE-PPM" secondAttribute="trailing" constant="20" id="inp-hp-bJs"/>
                 <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="kV7-EZ-7oU"/>
-                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="68" id="lcQ-MZ-tTe"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="YIM-zE-PPM" secondAttribute="bottom" constant="8" id="laP-A6-duj"/>
                 <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" id="lwS-60-mof"/>
+                <constraint firstAttribute="trailing" secondItem="D0H-Kj-kVe" secondAttribute="trailing" constant="20" id="q64-z5-uIv"/>
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="znK-6p-Tgt"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

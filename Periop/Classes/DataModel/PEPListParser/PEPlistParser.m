@@ -47,56 +47,66 @@
     NSEntityDescription * specialisationEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     Specialisation * newSpecialisation = [[Specialisation alloc] initWithEntity:specialisationEntity insertIntoManagedObjectContext:self.managedObjectContext];
     
-    if ([pListName isEqualToString:@"ENT - Ear, Nose & Throat"]){
+    if ([pListName isEqualToString:@"ENT"]){
         newSpecialisation.specID = @"S01";
         newSpecialisation.photoName = @"ENT_Large";
         newSpecialisation.activeButtonPhotoName = @"ENT_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"ENT_Small_Inactive";
+        newSpecialisation.smallIconName = @"ENT_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Gyneacology"]){
         newSpecialisation.specID = @"S02";
         newSpecialisation.photoName = @"Gyneacology_Large";
         newSpecialisation.activeButtonPhotoName = @"Gyneacology_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Gyneacology_Small_Inactive";
+        newSpecialisation.smallIconName = @"Gyneacology_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Obstetric"]){
         newSpecialisation.specID = @"S03";
         newSpecialisation.photoName = @"Obstetric_Large";
         newSpecialisation.activeButtonPhotoName = @"Obstetric_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Obstetric_Small_Inactive";
+        newSpecialisation.smallIconName = @"Obstetric_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Opthalmology"]){
         newSpecialisation.specID = @"S04";
         newSpecialisation.photoName = @"Opthalmology";
         newSpecialisation.activeButtonPhotoName = @"Opthalmology_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Opthalmology_Small_Inactive";
+        newSpecialisation.smallIconName = @"Opthalmology_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Cardiothoracic"]){
         newSpecialisation.photoName = @"Cardiothoracic_Large";
         newSpecialisation.specID = @"S05";
         newSpecialisation.activeButtonPhotoName = @"Cardiothoracic_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Cardiothoracic_Small_Inactive";
+        newSpecialisation.smallIconName = @"Cardiothoracic_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Orthopeadic"]){
         newSpecialisation.specID = @"S06";
         newSpecialisation.photoName = @"Orthopeadic_Large";
         newSpecialisation.activeButtonPhotoName = @"Orthopeadic_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Orthopeadic_Small_Inactive";
+        newSpecialisation.smallIconName = @"Orthopeadic_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Plastic"]){
         newSpecialisation.specID = @"S07";
         newSpecialisation.photoName = @"Plastic_Large";
         newSpecialisation.activeButtonPhotoName = @"Plastic_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Plastic_Small_Inactive";
+        newSpecialisation.smallIconName = @"Plastic_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Cosmetic"]){
         newSpecialisation.specID = @"S08";
         newSpecialisation.photoName = @"Cosmetic_Large";
         newSpecialisation.activeButtonPhotoName = @"Cosmetic_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Cosmetic_Small_Inactive";
+        newSpecialisation.smallIconName = @"Cosmetic_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"General"]){
         newSpecialisation.specID = @"S09";
         newSpecialisation.photoName = @"General_Large";
         newSpecialisation.activeButtonPhotoName = @"General_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"General_Small_Inactive";
+        newSpecialisation.smallIconName = @"General_Specialisation_Icon_-_Small";
     } else if ([pListName isEqualToString:@"Colorectal"]){
         newSpecialisation.specID = @"S10";
         newSpecialisation.photoName = @"Colorectal_Large";
         newSpecialisation.activeButtonPhotoName = @"Colorectal_Small_Active";
         newSpecialisation.inactiveButtonPhotoName =@"Colorectal_Small_Inactive";
+        newSpecialisation.smallIconName = @"Colorectal_Specialisation_Icon_-_Small";
     }
 
     newSpecialisation.name = pListName;

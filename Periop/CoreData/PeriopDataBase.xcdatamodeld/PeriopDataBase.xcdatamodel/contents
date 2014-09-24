@@ -66,6 +66,7 @@
         <attribute name="inactiveButtonPhotoName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smallIconName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="specID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="specialisation" inverseEntity="Doctors" syncable="YES"/>
         <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
@@ -85,7 +86,7 @@
         <element name="Photo" positionX="-135" positionY="-63" width="128" height="163"/>
         <element name="Preparation" positionX="-333" positionY="71" width="128" height="88"/>
         <element name="Procedure" positionX="-110" positionY="-45" width="128" height="178"/>
-        <element name="Specialisation" positionX="79" positionY="162" width="128" height="150"/>
+        <element name="Specialisation" positionX="79" positionY="162" width="128" height="165"/>
         <element name="Steps" positionX="-135" positionY="-63" width="128" height="105"/>
     </elements>
 </model>

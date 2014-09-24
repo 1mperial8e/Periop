@@ -94,6 +94,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
@@ -103,6 +104,10 @@
 {
     if (self.isEditedDoctor) {
         self.specManager.currentDoctor.name = self.nameTextField.text;
+        //TODO - add showing only required cells
+        //1.set all relationship visually - in viewWillAppear
+        //2.remove all relationship for pocedures and specs - here
+        //3.save updated relationships - here
     } else {
         NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
         Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -280,16 +285,7 @@
 
 - (void)getRequestedProceduresForSpecialisations: (NSArray* )filteredArray
 {
-    //arr2 - all procedures
     NSMutableArray * grouppedProcedures = [[NSMutableArray alloc] init];
-    
-    //1.sort filtered array
-    //2. filtered array - count of section
-    //3. resulted array with sorted proc - count of rows in section
-    //4. name of title - from filtered array
-    //5. title for rows - from array with sorted proc
-    
-    //1
     if (filteredArray.count>0){
         [filteredArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSString *ob1 = obj1;
@@ -301,7 +297,6 @@
                 NSMutableArray * arrayWithProc = [[NSMutableArray alloc] init];
                 NSArray *arrWithAllProceduresForCurrentSpec = [((Specialisation*)self.avaliableSpecs[j]).procedures allObjects];
                 for (Procedure * proc in arrWithAllProceduresForCurrentSpec) {
-                    //here put filter by name
                     if ([proc.specialization.name isEqualToString:((NSString*)filteredArray[i])] ) {
                         [arrayWithProc addObject:proc];
                     }
@@ -320,7 +315,6 @@
 
 - (void)getDoctorsSpecAndProcedures
 {
-    //ARRAY WITH SORTED A-Z ALL SPEC FOR CURRENT DOCTOR
     self.doctorsSpec = [self.specManager.currentDoctor.specialisation allObjects];
     
     [self.doctorsSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -329,7 +323,6 @@
         return [firstObject compare:secondObject];
     }];
     
-    //ARRAY WITH SORTED A-Z ARRAY WITH PROC FOR EACH SPEC
     NSMutableArray * arrayWithArraysOfProceduresForCurrentDoctor = [[NSMutableArray alloc] init];
     
     for (int i=0; i<self.doctorsSpec.count; i++) {

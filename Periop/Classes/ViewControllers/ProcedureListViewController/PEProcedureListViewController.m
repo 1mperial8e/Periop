@@ -139,15 +139,14 @@
         cell.textLabel.textColor = [UIColor colorWithRed:(29.0/255.0) green:(130.0/255.0) blue:(215.0/255.0) alpha:1.0f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor blackColor];
     }
     
     UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
         cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
-//        cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
         cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
-        //cell.textLabel.text = ((Doctors*)[self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]).name;
     }
     cell.textLabel.font = cellFont;
     
@@ -164,7 +163,6 @@
                 self.specManager.currentProcedure = proc;
             }
         }
-       // self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
@@ -174,7 +172,6 @@
                 self.specManager.currentDoctor = doc;
             }
         }
-       // self.specManager.currentDoctor = [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row];
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
         [self.navigationController pushViewController:doctorsView animated:YES];
     }

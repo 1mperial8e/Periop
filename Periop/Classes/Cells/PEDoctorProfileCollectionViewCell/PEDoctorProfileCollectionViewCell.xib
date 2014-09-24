@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="doctorProfileCollectionViewCell" id="56D-Sq-l8d" customClass="PEDoctorProfileCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="07w-UY-O3C">
+                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="Mkg-S4-ZcE"/>
+                            <constraint firstAttribute="width" constant="42" id="vTH-KP-Dqx"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="07w-UY-O3C" firstAttribute="leading" secondItem="56D-Sq-l8d" secondAttribute="leading" id="Fng-hF-wTf"/>
+                <constraint firstAttribute="trailing" secondItem="07w-UY-O3C" secondAttribute="trailing" id="TIe-kE-c2o"/>
+                <constraint firstItem="07w-UY-O3C" firstAttribute="top" secondItem="56D-Sq-l8d" secondAttribute="top" id="X0Z-Zn-Et2"/>
+                <constraint firstAttribute="bottom" secondItem="07w-UY-O3C" secondAttribute="bottom" id="x6Y-63-k2t"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="07w-UY-O3C" id="msQ-bI-ruc"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>
