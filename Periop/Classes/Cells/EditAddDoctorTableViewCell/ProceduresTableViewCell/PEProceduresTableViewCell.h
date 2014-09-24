@@ -11,5 +11,6 @@
 @interface PEProceduresTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *procedureName;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
 @end

@@ -122,7 +122,7 @@
 {
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
-    addEditDoctorView.isEditedDoctor = false;
+    addEditDoctorView.isEditedDoctor = NO;
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 

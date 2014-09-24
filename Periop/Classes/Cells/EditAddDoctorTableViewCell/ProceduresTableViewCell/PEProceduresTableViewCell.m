@@ -12,9 +12,16 @@
 
 #pragma mark - IBActions
 
-- (IBAction)checkProcedure:(id)sender
+- (void)prepareForReuse
 {
-    
+    [super prepareForReuse];
+    self.checkButton.selected = self.selected;
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    self.checkButton.selected = selected;
 }
 
 @end

@@ -86,10 +86,10 @@
 - (IBAction)checkButton:(id)sender
 {
     if (![self.checkButton isSelected]) {
-        self.checkButton.selected = true;
+        self.checkButton.selected = YES;
         [self.delegate cellChecked:self];
     } else {
-        self.checkButton.selected = false;
+        self.checkButton.selected = NO;
         [self.delegate cellUnchecked:self];
     }
 }
@@ -108,7 +108,7 @@
 
 -(void)cellSetChecked
 {
-    self.checkButton.selected = true;
+    self.checkButton.selected = YES;
 }
 
 @end

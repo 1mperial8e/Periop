@@ -76,7 +76,9 @@
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.nameTextField.text = self.specManager.currentDoctor.name;
+    if (self.isEditedDoctor) {
+        self.nameTextField.text = self.specManager.currentDoctor.name;
+    }
     
     [self getAvaliableSpecs];
     [self getDoctorsSpecAndProcedures];
@@ -106,8 +108,18 @@
         Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newDoc.name = self.nameTextField.text;
         newDoc.createdDate = [NSDate date];
-#warning add spec - crash if add from surgeon list
-        [newDoc addSpecialisationObject:self.specManager.currentSpecialisation];
+        for (NSIndexPath * currIndexPath in self.tableView.indexPathsForSelectedRows) {
+            for (int i = 1; i<self.tableView.numberOfSections; i++) {
+                BOOL isSpecAdded = NO;
+                if (currIndexPath.section==i) {
+                    [newDoc addProcedureObject:(Procedure*)self.allGrouppedProcedures[currIndexPath.section - 1 ][currIndexPath.row]];
+                    if (!isSpecAdded) {
+                        [newDoc addSpecialisationObject:((Procedure*)self.allGrouppedProcedures[currIndexPath.section - 1][currIndexPath.row]).specialization];
+                        isSpecAdded = YES;
+                    }
+                }
+            }
+        }
     }
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]) {
@@ -176,7 +188,7 @@
         if (!cell) {
             cell = [[PEProceduresTableViewCell alloc] init];
         }
-        cell.textLabel.text = ((Procedure *)self.allGrouppedProcedures[indexPath.section - 1 ][indexPath.row]).name;
+        cell.procedureName.text = ((Procedure *)self.allGrouppedProcedures[indexPath.section - 1 ][indexPath.row]).name;
         return cell;
     }
 }
@@ -186,7 +198,7 @@
     if ([indexPath row] == 0 && indexPath.section == 0) {
         return 130;
     } else {
-        return 64.0;
+        return 66;
     }
 }
 
@@ -202,9 +214,25 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        return @"Procedures";
+        return @"Specialisation";
     } else {
         return ((NSString*)self.requestedSpecs[section - 1 ]);
+    }
+}
+
+#pragma mark - UITbaleViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section>0) {
+        ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = YES;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section>0) {
+        ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = NO;
     }
 }
 
