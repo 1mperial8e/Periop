@@ -29,6 +29,8 @@
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) UIBarButtonItem * navigationBarAddDoctorButton;
 @property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithProcedures;
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithDoctors;
 
 @end
 
@@ -75,6 +77,8 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
     [self.tableView reloadData];
+    self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
+    self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -139,9 +143,11 @@
     
     UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
-        cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
+        cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
+//        cell.textLabel.text = ((Procedure*)[self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]).name;
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
-        cell.textLabel.text = ((Doctors*)[self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]).name;
+        cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
+        //cell.textLabel.text = ((Doctors*)[self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]).name;
     }
     cell.textLabel.font = cellFont;
     
@@ -153,15 +159,50 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.specManager.isProcedureSelected) {
-        self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
+        for (Procedure* proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            if ([((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
+                self.specManager.currentProcedure = proc;
+            }
+        }
+       // self.specManager.currentProcedure = [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row];
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
     } else {
-        self.specManager.currentDoctor = [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row];
+        for (Doctors* doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
+            if ([((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
+                self.specManager.currentDoctor = doc;
+            }
+        }
+       // self.specManager.currentDoctor = [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row];
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
         [self.navigationController pushViewController:doctorsView animated:YES];
     }
 }
+
+#pragma marks - Private
+
+- (NSMutableArray *)sortedArrayWitProcedures: (NSArray*)arrayToSort
+{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * firstObject = [(Procedure*)obj1 name];
+        NSString *  secondObject = [(Procedure*)obj2 name];
+        return [firstObject compare:secondObject];
+    }];
+    return [NSMutableArray arrayWithArray:sortedArray];
+}
+
+- (NSMutableArray *)sortedArrayWitDoctors: (NSArray*)arrayToSort
+{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * firstObject = [(Doctors*)obj1 name];
+        NSString *  secondObject = [(Doctors*)obj2 name];
+        return [firstObject compare:secondObject];
+    }];
+    return [NSMutableArray arrayWithArray:sortedArray];
+}
+
 
 @end

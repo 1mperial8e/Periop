@@ -13,4 +13,6 @@
 @property (copy, nonatomic) NSString * navigationLabelDescription;
 @property (assign, nonatomic) BOOL isEditedDoctor;
 
+//@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewForCell;
+
 @end

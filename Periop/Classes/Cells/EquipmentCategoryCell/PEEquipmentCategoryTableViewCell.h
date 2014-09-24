@@ -10,7 +10,7 @@
 
 @protocol PEEquipmentCategoryTableViewCellDelegate <NSObject>
 
-@optional
+@required
 //buttonAction
 - (void)buttonDeleteAction:(UITableViewCell*)cell;
 

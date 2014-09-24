@@ -192,6 +192,8 @@
         PEPlistParser * parser = [[PEPlistParser alloc] init];
         [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
         }];
+        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
+        }];
         self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }

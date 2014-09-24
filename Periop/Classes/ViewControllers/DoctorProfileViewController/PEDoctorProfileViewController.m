@@ -24,6 +24,9 @@
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 
+//@property (strong, nonatomic) NSArray * doctorsSpec;
+//@property (strong, nonatomic) NSArray * doctorsProcedures;
+
 @end
 
 @implementation PEDoctorProfileViewController

@@ -10,4 +10,8 @@
 
 @interface PECollectionViewCellItemCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *inactiveImageViewWithLogo;
+@property (weak, nonatomic) IBOutlet UIImageView *activeImageViewWithLogo;
+@property (weak, nonatomic) IBOutlet UILabel *labelNameOfSpec;
+
 @end

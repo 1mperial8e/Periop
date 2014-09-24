@@ -179,18 +179,19 @@
 		EDD0244719D0B8A60023F46D /* Steps.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0244619D0B8A60023F46D /* Steps.m */; };
 		EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */; };
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
+		EDD4BDE619D29E520087D8CE /* Cardiothoracic.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDE519D29E520087D8CE /* Cardiothoracic.plist */; };
+		EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDE819D2A8D40087D8CE /* Doctors.m */; };
 		EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */; };
 		EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */; };
 		EDDA09B119CA16BD003480C2 /* PEPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDA09B019CA16BD003480C2 /* PEPlistParser.m */; };
 		EDDA09B419CA17CC003480C2 /* General.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDDA09B319CA17CC003480C2 /* General.plist */; };
+		EDDB8FEE19D1805C0006BEE5 /* Specialisation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDB8FED19D1805C0006BEE5 /* Specialisation.m */; };
 		EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */; };
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
-		EDEACF0119CDC9F900286E06 /* Doctors.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEF019CDC9F900286E06 /* Doctors.m */; };
 		EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */; };
 		EDEACF0319CDC9F900286E06 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEF419CDC9F900286E06 /* Note.m */; };
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
-		EDEACF0919CDC9F900286E06 /* Specialisation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACF0019CDC9F900286E06 /* Specialisation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
 /* End PBXBuildFile section */
@@ -421,27 +422,28 @@
 		EDD0598219BAC1F8007C0DE8 /* PEDoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsListViewController.h; sourceTree = "<group>"; };
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
+		EDD4BDE519D29E520087D8CE /* Cardiothoracic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cardiothoracic.plist; sourceTree = "<group>"; };
+		EDD4BDE719D2A8D40087D8CE /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctors.h; path = Periop/Classes/Entities/Doctors.h; sourceTree = SOURCE_ROOT; };
+		EDD4BDE819D2A8D40087D8CE /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctors.m; path = Periop/Classes/Entities/Doctors.m; sourceTree = SOURCE_ROOT; };
 		EDD5C9C419D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEOperationRoomCollectionViewCell.h; sourceTree = "<group>"; };
 		EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEOperationRoomCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEOperationRoomCollectionViewCell.xib; sourceTree = "<group>"; };
 		EDDA09AF19CA16BD003480C2 /* PEPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPlistParser.h; sourceTree = "<group>"; };
 		EDDA09B019CA16BD003480C2 /* PEPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPlistParser.m; sourceTree = "<group>"; };
 		EDDA09B319CA17CC003480C2 /* General.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = General.plist; sourceTree = "<group>"; };
+		EDDB8FEC19D1805C0006BEE5 /* Specialisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialisation.h; sourceTree = "<group>"; };
+		EDDB8FED19D1805C0006BEE5 /* Specialisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialisation.m; sourceTree = "<group>"; };
 		EDDDEF7019CAD42B007BEDE4 /* PESpecialisationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESpecialisationManager.h; sourceTree = "<group>"; };
 		EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESpecialisationManager.m; sourceTree = "<group>"; };
 		EDDDEF7419CAE168007BEDE4 /* PEPreparationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPreparationTableViewCell.h; sourceTree = "<group>"; };
 		EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPreparationTableViewCell.m; sourceTree = "<group>"; };
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
-		EDEACEEF19CDC9F900286E06 /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Doctors.h; sourceTree = "<group>"; };
-		EDEACEF019CDC9F900286E06 /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Doctors.m; sourceTree = "<group>"; };
 		EDEACEF119CDC9F900286E06 /* EquipmentsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentsTool.h; sourceTree = "<group>"; };
 		EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentsTool.m; sourceTree = "<group>"; };
 		EDEACEF319CDC9F900286E06 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		EDEACEF419CDC9F900286E06 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		EDEACEFB19CDC9F900286E06 /* Preparation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preparation.h; sourceTree = "<group>"; };
 		EDEACEFC19CDC9F900286E06 /* Preparation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preparation.m; sourceTree = "<group>"; };
-		EDEACEFF19CDC9F900286E06 /* Specialisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialisation.h; sourceTree = "<group>"; };
-		EDEACF0019CDC9F900286E06 /* Specialisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialisation.m; sourceTree = "<group>"; };
 		EDEC8EF919C9D22100066BA5 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPurchaseManager.h; sourceTree = "<group>"; };
@@ -1146,6 +1148,7 @@
 		EDDA09B219CA17BE003480C2 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
+				EDD4BDE519D29E520087D8CE /* Cardiothoracic.plist */,
 				EDDA09B319CA17CC003480C2 /* General.plist */,
 			);
 			path = PLists;
@@ -1173,6 +1176,10 @@
 		EDEACEEE19CDC9F900286E06 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				EDD4BDE719D2A8D40087D8CE /* Doctors.h */,
+				EDD4BDE819D2A8D40087D8CE /* Doctors.m */,
+				EDDB8FEC19D1805C0006BEE5 /* Specialisation.h */,
+				EDDB8FED19D1805C0006BEE5 /* Specialisation.m */,
 				EDD0244519D0B8A60023F46D /* Steps.h */,
 				EDD0244619D0B8A60023F46D /* Steps.m */,
 				EDD0244219D0B8A40023F46D /* PatientPostioning.h */,
@@ -1183,16 +1190,12 @@
 				ED18513519D01CE70021E1EB /* Photo.m */,
 				ED18513119D008610021E1EB /* OperationRoom.h */,
 				ED18513219D008610021E1EB /* OperationRoom.m */,
-				EDEACEEF19CDC9F900286E06 /* Doctors.h */,
-				EDEACEF019CDC9F900286E06 /* Doctors.m */,
 				EDEACEF119CDC9F900286E06 /* EquipmentsTool.h */,
 				EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */,
 				EDEACEF319CDC9F900286E06 /* Note.h */,
 				EDEACEF419CDC9F900286E06 /* Note.m */,
 				EDEACEFB19CDC9F900286E06 /* Preparation.h */,
 				EDEACEFC19CDC9F900286E06 /* Preparation.m */,
-				EDEACEFF19CDC9F900286E06 /* Specialisation.h */,
-				EDEACF0019CDC9F900286E06 /* Specialisation.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1293,6 +1296,7 @@
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */,
+				EDD4BDE619D29E520087D8CE /* Cardiothoracic.plist in Resources */,
 				ED9C69D519C720E80022C1A8 /* General_Large@2x.png in Resources */,
 				ED9C697D19C720E80022C1A8 /* Doctors@2x.png in Resources */,
 				ED9C696F19C720E80022C1A8 /* Camera_@2x.png in Resources */,
@@ -1438,7 +1442,7 @@
 				847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */,
 				EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */,
 				EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */,
-				EDEACF0119CDC9F900286E06 /* Doctors.m in Sources */,
+				EDDB8FEE19D1805C0006BEE5 /* Specialisation.m in Sources */,
 				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
@@ -1456,6 +1460,7 @@
 				EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */,
 				ED18513319D008610021E1EB /* OperationRoom.m in Sources */,
 				EDD0244419D0B8A40023F46D /* PatientPostioning.m in Sources */,
+				EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */,
 				EDCD57E619B881F200EC7AF1 /* PESpecialisationCollectionViewCell.m in Sources */,
 				EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */,
 				ED0D2FAD19BA0367001F8411 /* PEDoctorsProfileTableViewCell.m in Sources */,
@@ -1472,7 +1477,6 @@
 				EDA7DFEC19BAD745002A70E8 /* PEDoctorsViewTableViewCell.m in Sources */,
 				EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */,
 				ED0D2FC319BA0F42001F8411 /* PECollectionViewCellItemCell.m in Sources */,
-				EDEACF0919CDC9F900286E06 /* Specialisation.m in Sources */,
 				EDCD583719B8B30800EC7AF1 /* PEPreperationViewController.m in Sources */,
 				ED21660C19CC3022005E821B /* PeriopDataBase.xcdatamodeld in Sources */,
 				EDD0244719D0B8A60023F46D /* Steps.m in Sources */,

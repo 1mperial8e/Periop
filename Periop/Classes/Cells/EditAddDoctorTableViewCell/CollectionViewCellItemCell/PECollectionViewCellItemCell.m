@@ -10,11 +10,16 @@
 
 @implementation PECollectionViewCellItemCell
 
-#pragma mark - IBAction
-
-- (IBAction)checkButton:(id)sender
+- (void)prepareForReuse
 {
-    
+    [super prepareForReuse];
+    self.activeImageViewWithLogo.hidden = !self.selected;
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    self.activeImageViewWithLogo.hidden = !selected;
 }
 
 @end

@@ -2,7 +2,7 @@
 //  Doctors.h
 //  Periop
 //
-//  Created by Kirill on 9/20/14.
+//  Created by Kirill on 9/24/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -15,10 +15,11 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * specialityCode;
+@property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSSet *notes;
+@property (nonatomic, retain) Photo *photo;
 @property (nonatomic, retain) NSSet *procedure;
 @property (nonatomic, retain) NSSet *specialisation;
-@property (nonatomic, retain) Photo *photo;
 @end
 
 @interface Doctors (CoreDataGeneratedAccessors)

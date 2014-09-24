@@ -123,7 +123,7 @@
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
-    cell.equipmentNameLabel.text = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
+    cell.equipmentNameLabel.text = ((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
     
     cell.delegate = self;
     if ([self.cellCurrentlyEditing containsObject:indexPath]) {
@@ -191,7 +191,11 @@
 {
     NSMutableArray * arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
-    NSArray * uniqueCategory = [toolsWithCounts allObjects];
+    NSArray * uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString* categotyOne = (NSString*)obj1;
+        NSString* categotyTwo = (NSString*)obj2;
+        return [categotyOne compare:categotyTwo];
+    }];
     
     for (int i=0; i< uniqueCategory.count; i++){
         NSMutableArray * categoryArray = [[NSMutableArray alloc] init];

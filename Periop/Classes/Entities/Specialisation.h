@@ -2,7 +2,7 @@
 //  Specialisation.h
 //  Periop
 //
-//  Created by Kirill on 9/20/14.
+//  Created by Kirill on 9/23/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * photoName;
 @property (nonatomic, retain) NSString * specID;
+@property (nonatomic, retain) NSString * activeButtonPhotoName;
+@property (nonatomic, retain) NSString * inactiveButtonPhotoName;
 @property (nonatomic, retain) NSSet *doctors;
 @property (nonatomic, retain) NSSet *procedures;
 @end

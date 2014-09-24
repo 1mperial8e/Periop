@@ -13,19 +13,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-qw-vxQ">
-                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arJ-01-inv" userLabel="inactiveImage">
+                        <rect key="frame" x="12" y="6" width="42" height="42"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fat-hL-3SO" userLabel="activeImage">
+                        <rect key="frame" x="12" y="6" width="42" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="checkButton:" destination="bik-sk-A9c" eventType="touchUpInside" id="3d8-lL-oe4"/>
-                        </connections>
-                    </button>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZ0-US-VNq">
+                        <rect key="frame" x="0.0" y="48" width="64" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <size key="customSize" width="162" height="170"/>
+            <connections>
+                <outlet property="activeImageViewWithLogo" destination="fat-hL-3SO" id="RLR-Ev-dXK"/>
+                <outlet property="inactiveImageViewWithLogo" destination="arJ-01-inv" id="uW2-kD-C9m"/>
+                <outlet property="labelNameOfSpec" destination="oZ0-US-VNq" id="soV-8W-oxk"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

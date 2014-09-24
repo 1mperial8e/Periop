@@ -44,6 +44,8 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.tableView.delegate = self;
