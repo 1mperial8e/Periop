@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *equipmentNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *viewWithContent;
 
+@property (strong, nonatomic) NSDate *createdDate;
+
 //property for delegate
 @property (weak, nonatomic) id <PEEquipmentCategoryTableViewCellDelegate> delegate;
 //method that allow delegate to change state of cell

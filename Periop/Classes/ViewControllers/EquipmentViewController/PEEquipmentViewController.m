@@ -212,7 +212,7 @@
             return [categotyOne compare:categotyTwo];
         }];
         
-        [arrayWithCategorisedArrays addObject:sortedCategoryArray];
+        [arrayWithCategorisedArrays addObject:[sortedCategoryArray mutableCopy]];
     }
     return arrayWithCategorisedArrays;
 }
