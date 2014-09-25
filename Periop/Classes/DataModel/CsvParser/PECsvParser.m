@@ -152,9 +152,17 @@
                 
                 NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                initPhoto.photoName = colum[6];
-                initPhoto.equiomentTool = newTool;
-                [newTool addPhotoObject:initPhoto];
+                NSString *photoName = (NSString *)colum[6];
+                if ([photoName rangeOfString:@"http"].location == NSNotFound) {
+                    UIImage *photo = [UIImage imageNamed:photoName];
+                    if (photo) {
+                        initPhoto.photoName = colum[6];
+                        initPhoto.equiomentTool = newTool;
+                        [newTool addPhotoObject:initPhoto];
+                    }
+                } else {
+                    // to download photo and check; if yes save in initPhoto.photoData
+                }
                 
                 newTool.quantity = colum[5];
                 newTool.type = colum[4];
@@ -225,8 +233,17 @@
                     for (int i=0; i<steps.count; i++) {
                         NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                         Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                        initPhoto.photoName = steps[i];
-                        [opR addPhotoObject:initPhoto];
+                        
+                        NSString *photoName = (NSString *)steps[i];
+                        if ([photoName rangeOfString:@"http"].location == NSNotFound) {
+                            UIImage *photo = [UIImage imageNamed:photoName];
+                            if (photo) {
+                                initPhoto.photoName = steps[i];
+                                [opR addPhotoObject:initPhoto];
+                            }
+                        } else {
+                            // to download photo and check; if yes save in initPhoto.photoData
+                        }
                     }
                 }
                     break;

@@ -55,6 +55,7 @@
     self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationLabel.text = self.navigationLabelText;
+    self.navigationLabel.numberOfLines = 0;
     self.selectedPhotos = [[NSMutableArray alloc] init];
     
     self.allowedCountOfSelectedCells = [self getAllowedCountOfSelectedCells];
@@ -139,6 +140,9 @@
             newPhoto.doctor = self.specManager.currentDoctor;
             newPhoto.photoNumber = @(0);
             self.specManager.currentDoctor.photo = newPhoto;
+        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"]) {
+            newPhoto.photoNumber = @(0);
+            self.specManager.photoObject = newPhoto;
         }
 #warning to implement save photo for notes and patient Postionning and Doctors Edit      
     }
@@ -153,6 +157,8 @@
 {
     if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
         return  4;
+    } else if([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"]) {
+        return 0;
     } else {
         return 30;
     }

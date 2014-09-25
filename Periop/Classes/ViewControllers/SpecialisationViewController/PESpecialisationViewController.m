@@ -55,6 +55,7 @@
     self.navigationBarLabel.text = @"Specialisations";
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.numberOfLines = 0;
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     

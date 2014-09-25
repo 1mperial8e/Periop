@@ -61,6 +61,7 @@
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.layer.zPosition = 0;
+    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
@@ -149,7 +150,7 @@
         cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
     }
     cell.textLabel.font = cellFont;
-    
+    cell.textLabel.numberOfLines = 0;
     return cell;
 }
 

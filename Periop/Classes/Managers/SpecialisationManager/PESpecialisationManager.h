@@ -12,16 +12,19 @@
 #import "EquipmentsTool.h"
 #import "OperationRoom.h"
 #import "Doctors.h"
+#import "Photo.h"
 
 @interface PESpecialisationManager : NSObject
 
-@property (strong, nonatomic) Specialisation * currentSpecialisation;
-@property (strong, nonatomic) Procedure * currentProcedure;
-@property (strong, nonatomic) EquipmentsTool * currentEquipment;
-@property (strong, nonatomic) Note * currentNote;
-@property (strong, nonatomic) Doctors * currentDoctor;
+@property (strong, nonatomic) Specialisation *currentSpecialisation;
+@property (strong, nonatomic) Procedure *currentProcedure;
+@property (strong, nonatomic) EquipmentsTool *currentEquipment;
+@property (strong, nonatomic) Note *currentNote;
+@property (strong, nonatomic) Doctors *currentDoctor;
 
 @property (assign, nonatomic) BOOL isProcedureSelected;
+@property (strong, nonatomic) Photo *photoObject;
+
 
 + (id) sharedManager;
 

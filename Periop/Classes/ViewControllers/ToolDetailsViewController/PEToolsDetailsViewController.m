@@ -73,6 +73,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
+
     self.navigationItem.rightBarButtonItem=editButton;
     
     [self setSelectedObjectToView];
@@ -84,14 +85,28 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 }
 
+//- (CGFloat) getWidthOfUiBarButton: (UIBarButtonItem *)button
+//{
+//    UIView *view = [button valueForKey:@"view"];
+//    CGRect barButtonFrame;
+//    if (view) {
+//        barButtonFrame = [view frame];
+//    } else {
+//        barButtonFrame = CGRectZero;
+//    }
+//    return barButtonFrame.size.width;
+//}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
-        self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
-    } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
-        self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
+    if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
+            self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
+        } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
+            self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
+        }
     }
     
     [[self.view viewWithTag:35] removeFromSuperview];

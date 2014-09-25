@@ -17,6 +17,7 @@
 #import "Doctors.h"
 #import "PECollectionViewCellItemCell.h"
 #import "Specialisation.h"
+#import "Photo.h"
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
@@ -57,6 +58,7 @@
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.numberOfLines = 0;
     if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
         self.navigationBarLabel.text=self.navigationLabelDescription;
     } else {
@@ -83,6 +85,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    self.specManager.photoObject = nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -92,6 +95,12 @@
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
+        if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
+                self.imageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
+        }
+    }
+    if (self.specManager.photoObject) {
+        self.imageView.image = [UIImage imageWithData:self.specManager.photoObject.photoData];
     }
 }
 
@@ -112,6 +121,9 @@
         }
         self.specManager.currentDoctor.name = self.nameTextField.text;
         self.specManager.currentDoctor.createdDate = [NSDate date];
+        if (self.imageView.image) {
+            self.specManager.currentDoctor.photo = self.specManager.photoObject;
+        }
         
         for (Specialisation * spec in allSpecs) {
             BOOL isAdded = NO;
@@ -131,8 +143,15 @@
         NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
         Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
-        newDoc.name = self.nameTextField.text;
+        if (self.nameTextField.text.length >0) {
+            newDoc.name = self.nameTextField.text;
+        } else {
+            newDoc.name = @"No name Doctor";
+        }
         newDoc.createdDate = [NSDate date];
+        if (self.imageView.image) {
+            newDoc.photo = self.specManager.photoObject;
+        }
         
         for (Specialisation * spec in allSpecs) {
             BOOL isAdded = NO;
@@ -175,7 +194,11 @@
 - (IBAction)albumPhoto:(id)sender
 {
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
-    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    if (!self.isEditedDoctor) {
+        albumViewController.navigationLabelText = @"Add photo";
+    } else {
+        albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentDoctor)).name;
+    }
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 

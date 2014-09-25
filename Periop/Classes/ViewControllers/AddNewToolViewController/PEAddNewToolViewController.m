@@ -50,6 +50,7 @@
     self.navigationBarLabel.text =((EquipmentsTool*)self.specManager.currentProcedure).name;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.numberOfLines = 0;
     [self.navigationItem setHidesBackButton:YES];
     
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
@@ -85,21 +86,25 @@
         newEquipment.quantity = self.qtyTextBox.text;
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
-#warning to change after adding comboBox
-        newEquipment.category = @"!New Category";
-        [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
-        NSError * saveError = nil;
-        if (![self.managedObjectContext save:&saveError]) {
-            NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
+        if ([self.dropDownList.titleLabel.text isEqualToString:@"Equipment Category"]) {
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"Select category" otherButtonTitles:nil];
+            [alertView show];
         } else {
-            NSLog(@"New tool \"%@\" added successfully", newEquipment.name);
-        }
-        self.nameTextBox.text=@"";
-        self.qtyTextBox.text =@"";
-        self.specTextBox.text = @"";
-        [self.view endEditing:YES];
+            newEquipment.category = self.dropDownList.titleLabel.text;
+            [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
+            NSError * saveError = nil;
+            if (![self.managedObjectContext save:&saveError]) {
+                NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
+            } else {
+                NSLog(@"New tool \"%@\" added successfully", newEquipment.name);
+            }
+            self.nameTextBox.text=@"";
+            self.qtyTextBox.text =@"";
+            self.specTextBox.text = @"";
+            [self.view endEditing:YES];
 
-        [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -146,7 +151,7 @@
 - (void)createDropDownList
 {
     self.dropDownList = [[UIDropDownList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0)];
-    self.dropDownList.items = @[@"Prosthesis", @"Equipment", @"Dressing", @"Sutures", @"Solutions", @"Disposables", @"Holloware", @"Extra Instruments/Equipment", @"Instrument Tray", @"Drapes", @"Prep Solution", @"Gloves"];
+    self.dropDownList.items = @[@"Disposables", @"Drapes", @"Dressing", @"Equipment", @"Extra Instruments/Equipment", @"Gloves", @"Holloware", @"Instrument Tray",  @"Prep Solution", @"Prosthesis", @"Solutions", @"Sutures"];
     [self.dropDownList setBackgroundColor:[UIColor colorWithRed:(147.0/255.0) green:(227.0/255.0) blue:(185.0/255.0) alpha:1.0f]];
     self.dropDownList.titleLabel.textColor = [UIColor whiteColor];
     self.dropDownList.separateColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0f];

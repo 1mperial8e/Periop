@@ -46,6 +46,7 @@
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.minimumScaleFactor = 0.5;
+    self.navigationBarLabel.numberOfLines = 0;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;

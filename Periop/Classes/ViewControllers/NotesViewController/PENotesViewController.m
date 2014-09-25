@@ -52,6 +52,7 @@
     }
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
+    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;

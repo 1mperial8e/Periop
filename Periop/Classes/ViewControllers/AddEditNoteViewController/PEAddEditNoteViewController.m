@@ -50,6 +50,7 @@
     self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.text = @"New Note";
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
 
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(closeButton:)];
     self.navigationItem.leftBarButtonItem = closeButton;

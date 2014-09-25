@@ -44,7 +44,7 @@
     self.specManager = [PESpecialisationManager sharedManager];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 3,  navBarSize.height)];
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
@@ -53,6 +53,7 @@
     self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
@@ -204,7 +205,14 @@
                 [categoryArray addObject:equipment];
             }
         }
-        [arrayWithCategorisedArrays addObject:categoryArray];
+        
+        NSArray * sortedCategoryArray = [categoryArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString* categotyOne = [(EquipmentsTool*)obj1 name];
+            NSString* categotyTwo = [(EquipmentsTool*)obj2 name];
+            return [categotyOne compare:categotyTwo];
+        }];
+        
+        [arrayWithCategorisedArrays addObject:sortedCategoryArray];
     }
     return arrayWithCategorisedArrays;
 }
@@ -212,7 +220,12 @@
 - (NSMutableArray* )categoryType: (NSArray*)objectsArray
 {
     NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
-    return [NSMutableArray arrayWithArray:[toolsWithCounts allObjects]];
+    NSArray * uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString* categotyOne = (NSString*)obj1;
+        NSString* categotyTwo = (NSString*)obj2;
+        return [categotyOne compare:categotyTwo];
+    }];
+    return [NSMutableArray arrayWithArray:uniqueCategory];
 }
 
 - (void)deleteSlectedItem: (NSIndexPath*)indexPathToDelete

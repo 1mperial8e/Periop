@@ -55,6 +55,7 @@
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
@@ -86,7 +87,8 @@
     [self getDoctorsSpecAndProcedures];
     
     self.doctorName.text = self.specManager.currentDoctor.name;
-    if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
+    
+    if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     }
     [self.tableView reloadData];
@@ -97,6 +99,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    self.specManager.photoObject = nil;
 }
 
 #pragma mark - IBActions 
@@ -137,7 +140,7 @@
 - (IBAction)albumPhoto:(id)sender
 {
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
-    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentDoctor)).name;
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 

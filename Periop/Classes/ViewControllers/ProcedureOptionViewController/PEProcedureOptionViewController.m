@@ -20,7 +20,6 @@
 @interface PEProcedureOptionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
-@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -47,6 +46,7 @@
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;

@@ -52,6 +52,7 @@
     self.labelToShowOnNavigationBar.textColor = [UIColor whiteColor];
     self.labelToShowOnNavigationBar.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.labelToShowOnNavigationBar.textAlignment = NSTextAlignmentCenter;
+    self.labelToShowOnNavigationBar.numberOfLines = 0;
     if (self.textToShow && self.textToShow.length!=0){
         self.labelToShowOnNavigationBar.text = self.textToShow;
     } else {
