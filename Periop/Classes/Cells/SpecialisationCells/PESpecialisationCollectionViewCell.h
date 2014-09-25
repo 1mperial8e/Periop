@@ -10,4 +10,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *specialisationIconImageView;
 
+@property (copy, nonatomic) NSString * specName;
+
 @end

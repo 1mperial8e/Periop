@@ -144,7 +144,7 @@
             newPhoto.photoNumber = @(0);
             self.specManager.photoObject = newPhoto;
         }
-#warning to implement save photo for notes and patient Postionning and Doctors Edit      
+#warning to implement save photo for notes and patient Postionning    
     }
     NSError * error = nil;
     if (![self.managedObjectContext save:&error]) {

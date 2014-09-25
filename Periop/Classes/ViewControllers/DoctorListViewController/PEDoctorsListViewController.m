@@ -70,6 +70,7 @@
     self.tableView.dataSource = self;
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
+    self.arrayWithAllDocators = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -103,12 +104,15 @@
     if (!cell) {
         cell = [[PEDoctorsViewTableViewCell alloc] init];
     }
-    cell.delegate = self;
-    if ( indexPath.row % 2) {
-        cell.viewDoctorsNameView.backgroundColor = [UIColor colorWithRed:236/255.0 green:248/255.0 blue:251/255.0 alpha:1.0f];
+    
+    if ( indexPath.row % 2){
+        cell.viewDoctorsNameView.backgroundColor = [UIColor colorWithRed:(231.0/255.0) green:(245.0/255.0) blue:(250.0/255.0) alpha:1.0f];
+        cell.doctorNameLabel.textColor = [UIColor colorWithRed:(73.0/255.0) green:(159.0/255.0) blue:(225.0/255.0) alpha:1.0f];
     } else {
         cell.viewDoctorsNameView.backgroundColor = [UIColor whiteColor];
+        cell.doctorNameLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
     }
+    
     if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
         [cell setCellSwiped];
     }
@@ -171,7 +175,33 @@
 - (void) initWithData
 {
     PEObjectDescription * objectToSearch = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext      withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
-    self.arrayWithAllDocators = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
+    
+    if (self.specManager.currentProcedure.name!=nil) {
+        NSArray * allDoctorsArray = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
+        NSMutableArray * requiredDoctors = [[NSMutableArray alloc] init];
+        for (Doctors * doctor in allDoctorsArray) {
+            for (Procedure * proceduresOfDoctor in [doctor.procedure allObjects]){
+                if ([proceduresOfDoctor.procedureID isEqualToString:self.specManager.currentProcedure.procedureID]) {
+                    if (![requiredDoctors containsObject:doctor]) {
+                        [requiredDoctors addObject:doctor];
+                    }
+                }
+            }
+        }
+        NSArray * sorted = [requiredDoctors sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString * name1 = [(Doctors*)obj1 name];
+            NSString * name2 = [(Doctors*)obj2 name];
+            return [name1 compare:name2];
+        }];
+        self.arrayWithAllDocators= [sorted mutableCopy];
+    } else {
+        NSArray * sorted = [[PECoreDataManager getAllEntities:objectToSearch] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString * name1 = [(Doctors*)obj1 name];
+            NSString * name2 = [(Doctors*)obj2 name];
+            return [name1 compare:name2];
+        }];
+        self.arrayWithAllDocators= [sorted mutableCopy];
+    }
 }
 
 @end

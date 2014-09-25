@@ -200,6 +200,7 @@
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
+		EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -463,6 +464,7 @@
 		EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPurchaseManager.h; sourceTree = "<group>"; };
 		EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPurchaseManager.m; sourceTree = "<group>"; };
+		EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpecialisationPicsAndCode.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1186,6 +1188,7 @@
 		EDDA09B219CA17BE003480C2 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
+				EDF3C82419D45F4C0006F641 /* Specialisations */,
 				EDD4BDE519D29E520087D8CE /* Cardiothoracic.plist */,
 				EDDA09B319CA17CC003480C2 /* General.plist */,
 			);
@@ -1265,6 +1268,14 @@
 				EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */,
 			);
 			path = InAppPurchaseManager;
+			sourceTree = "<group>";
+		};
+		EDF3C82419D45F4C0006F641 /* Specialisations */ = {
+			isa = PBXGroup;
+			children = (
+				EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */,
+			);
+			path = Specialisations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1397,6 +1408,7 @@
 				ED5DB58219C32C5F00FDD358 /* PEMediaSelect.xib in Resources */,
 				ED9C696719C720E80022C1A8 /* Album@2x.png in Resources */,
 				ED9C698F19C720E80022C1A8 /* Menu_Dividers@2x.png in Resources */,
+				EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */,
 				EDCD583E19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib in Resources */,
 				ED9C69A119C720E80022C1A8 /* Pagination_Active@2x.png in Resources */,
 				EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */,

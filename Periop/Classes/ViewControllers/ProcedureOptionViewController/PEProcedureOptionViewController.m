@@ -95,7 +95,7 @@
 
 - (IBAction)doctorsButton:(id)sender {
     PEDoctorsListViewController * doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
-    doctorsView.textToShow = @"Procedure Name";
+    doctorsView.textToShow = self.specManager.currentProcedure.name;
     doctorsView.isButtonRequired = false;
     [self.navigationController pushViewController:doctorsView animated:YES];
 }
