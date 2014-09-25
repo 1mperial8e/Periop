@@ -154,7 +154,7 @@
     if (![self.managedObjectContext save:&saveError]) {
         NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
     } else {
-        NSLog (@"Doctor added successfully");
+        NSLog (@"Success");
     }
     
     [self.navigationController popViewControllerAnimated:YES];

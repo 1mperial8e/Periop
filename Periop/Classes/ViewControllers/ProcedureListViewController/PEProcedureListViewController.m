@@ -139,7 +139,7 @@
         cell.textLabel.textColor = [UIColor colorWithRed:(73.0/255.0) green:(159.0/255.0) blue:(225.0/255.0) alpha:1.0f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
     }
     
     UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];

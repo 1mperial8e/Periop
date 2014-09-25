@@ -11,7 +11,7 @@
 #import "PEProcedureListViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PECoreDataManager.h"
-
+#import "PECsvParser.h"
 #import "PEPlistParser.h"
 #import "PESpecialisationManager.h"
 #import "PEObjectDescription.h"
@@ -189,11 +189,14 @@
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     
     if (self.specialisationsArray.count <= 0) {
-        PEPlistParser * parser = [[PEPlistParser alloc] init];
-        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
-        }];
-        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
-        }];
+        PECsvParser * parser = [[PECsvParser alloc] init];
+        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
+#warning parsing
+//        PEPlistParser * parser = [[PEPlistParser alloc] init];
+//        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
+//        }];
+//        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
+//        }];
         self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
     }
