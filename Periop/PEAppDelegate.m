@@ -12,7 +12,6 @@
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"
-#import "PEProcedureListViewController.h"
 #import "PESpecialisationViewController.h"
 #import "PECameraRollManager.h"
 

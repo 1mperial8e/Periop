@@ -52,7 +52,7 @@
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
+    self.navigationBarLabel.center = CGPointMake(navBarSize.width / 2, navBarSize.height / 2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
@@ -136,7 +136,7 @@
     
     if ( indexPath.row % 2){
         cell.contentView.backgroundColor = [UIColor colorWithRed:(231.0/255.0) green:(245.0/255.0) blue:(250.0/255.0) alpha:1.0f];
-        cell.textLabel.textColor = [UIColor colorWithRed:(29.0/255.0) green:(130.0/255.0) blue:(215.0/255.0) alpha:1.0f];
+        cell.textLabel.textColor = [UIColor colorWithRed:(73.0/255.0) green:(159.0/255.0) blue:(225.0/255.0) alpha:1.0f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.textLabel.textColor = [UIColor blackColor];

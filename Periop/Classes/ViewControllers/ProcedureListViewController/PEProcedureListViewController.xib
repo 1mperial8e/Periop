@@ -19,18 +19,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-41-Idg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="533"/>
+                <searchBar contentMode="center" searchBarStyle="minimal" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="a8V-ks-AsR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="ZrB-Hf-BCh"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KMU-7L-29a"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-41-Idg">
+                    <rect key="frame" x="0.0" y="32" width="320" height="501"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" id="a8V-ks-AsR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <outlet property="delegate" destination="-1" id="KMU-7L-29a"/>
-                        </connections>
-                    </searchBar>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heW-aq-Kek">
                     <rect key="frame" x="0.0" y="532" width="320" height="36"/>
@@ -68,12 +74,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Ka4-41-Idg" secondAttribute="trailing" id="4jq-mK-fz9"/>
                 <constraint firstAttribute="bottom" secondItem="heW-aq-Kek" secondAttribute="bottom" id="8X6-y4-BBR"/>
                 <constraint firstItem="Ka4-41-Idg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9QS-hN-wac"/>
                 <constraint firstItem="heW-aq-Kek" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9UC-EE-hm9"/>
-                <constraint firstItem="Ka4-41-Idg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aBN-Py-LOo"/>
+                <constraint firstAttribute="trailing" secondItem="Ka4-41-Idg" secondAttribute="trailing" id="Aem-dt-RxM"/>
+                <constraint firstItem="a8V-ks-AsR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PhF-qJ-NXM"/>
+                <constraint firstItem="Ka4-41-Idg" firstAttribute="top" secondItem="a8V-ks-AsR" secondAttribute="bottom" id="drj-jB-Lhi"/>
+                <constraint firstAttribute="trailing" secondItem="a8V-ks-AsR" secondAttribute="trailing" id="g5t-5d-QDQ"/>
                 <constraint firstAttribute="trailing" secondItem="heW-aq-Kek" secondAttribute="trailing" id="l5p-kt-2xV"/>
+                <constraint firstItem="a8V-ks-AsR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pzv-cG-0Br"/>
                 <constraint firstAttribute="bottom" secondItem="Ka4-41-Idg" secondAttribute="bottom" constant="35" id="ujm-pf-BGp"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
