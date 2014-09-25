@@ -16,6 +16,7 @@
 #import "Procedure.h"
 #import "PEAlbumViewController.h"
 #import "Photo.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
@@ -44,7 +45,8 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-
+    self.collectionView.layer.borderWidth = 0.0f;
+    self.tableView.layer.borderWidth = 0.0f;
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     

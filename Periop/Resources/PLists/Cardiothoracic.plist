@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0901</string>
+		<string>S09011</string>
 		<key>Procedure/Operation Title</key>
-		<string>Laparoscopic Inguinal Hernia Repair </string>
+		<string>Laparoscopic Inguinal Hernia Repair  S090911</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -515,9 +515,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0902</string>
+		<string>S09021</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09021</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -941,9 +941,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0903</string>
+		<string>S09031</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09041</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -1367,9 +1367,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0904</string>
+		<string>S09041</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09051</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -1793,9 +1793,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0905</string>
+		<string>S09051</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09061</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -2219,9 +2219,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0906</string>
+		<string>S09061</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09071</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -2645,9 +2645,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0907</string>
+		<string>S09071</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09081</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -3071,9 +3071,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0908</string>
+		<string>S09081</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09091</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -3497,9 +3497,9 @@
 	</dict>
 	<dict>
 		<key>ProcedureID</key>
-		<string>S0909</string>
+		<string>S09091</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S09111</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>

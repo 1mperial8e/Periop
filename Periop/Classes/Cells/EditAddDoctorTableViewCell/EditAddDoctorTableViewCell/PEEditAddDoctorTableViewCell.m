@@ -80,6 +80,11 @@
 {
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.arrayWithSpecObjects = [PECoreDataManager getAllEntities:searchedObject];
+    [self.arrayWithSpecObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * o1 = [(Specialisation*)obj1 name];
+        NSString * o2 = [(Specialisation*)obj2 name];
+        return [o1 compare:o2];
+    }];
 }
 
 @end

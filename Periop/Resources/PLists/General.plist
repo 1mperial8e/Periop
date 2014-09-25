@@ -6,7 +6,7 @@
 		<key>ProcedureID</key>
 		<string>S0901</string>
 		<key>Procedure/Operation Title</key>
-		<string>Laparoscopic Inguinal Hernia Repair </string>
+		<string>Laparoscopic Inguinal Hernia Repair  S0901</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -517,7 +517,7 @@
 		<key>ProcedureID</key>
 		<string>S0902</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0902</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -943,7 +943,7 @@
 		<key>ProcedureID</key>
 		<string>S0903</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0903</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -1369,7 +1369,7 @@
 		<key>ProcedureID</key>
 		<string>S0904</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0904</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -1795,7 +1795,7 @@
 		<key>ProcedureID</key>
 		<string>S0905</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0905</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -2221,7 +2221,7 @@
 		<key>ProcedureID</key>
 		<string>S0906</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0906</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -2647,7 +2647,7 @@
 		<key>ProcedureID</key>
 		<string>S0907</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0907</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -3073,7 +3073,7 @@
 		<key>ProcedureID</key>
 		<string>S0908</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0908</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>
@@ -3499,7 +3499,7 @@
 		<key>ProcedureID</key>
 		<string>S0909</string>
 		<key>Procedure/Operation Title</key>
-		<string>Open Inguinal hernia Repair</string>
+		<string>Open Inguinal hernia Repair S0909</string>
 		<key>Tools</key>
 		<dict>
 			<key>Prosthesis</key>

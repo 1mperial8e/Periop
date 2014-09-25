@@ -15,6 +15,7 @@
 #import "PEAlbumViewController.h"
 #import "Photo.h"
 #import "PatientPostioning.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -73,6 +74,8 @@
     self.previewCollectionView.delegate = self;
     self.previewCollectionView.dataSource = self;
     
+    self.previewCollectionView.layer.borderWidth = 0.0f;
+    self.postedCollectionView.layer.borderWidth = 0.0f;
 }
 
 - (void) viewWillAppear:(BOOL)animated

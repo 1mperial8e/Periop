@@ -14,10 +14,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tID-wu-wBZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                        <rect key="frame" x="0.0" y="1" width="320" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ulx-L5-46A">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="128" id="WWO-Ze-Kfv"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ulx-L5-46A">
                             <size key="itemSize" width="64" height="64"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -27,11 +30,10 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="centerX" secondItem="tID-wu-wBZ" secondAttribute="centerX" id="AVA-bn-aLf"/>
-                    <constraint firstItem="tID-wu-wBZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fOd-Vj-wuE"/>
-                    <constraint firstAttribute="bottom" secondItem="tID-wu-wBZ" secondAttribute="bottom" constant="-1" id="guO-6H-CHu"/>
-                    <constraint firstAttribute="centerY" secondItem="tID-wu-wBZ" secondAttribute="centerY" id="jLF-6Q-oW7"/>
-                    <constraint firstAttribute="trailing" secondItem="tID-wu-wBZ" secondAttribute="trailing" id="szg-Xe-6vc"/>
+                    <constraint firstAttribute="centerX" secondItem="tID-wu-wBZ" secondAttribute="centerX" id="ACV-x8-MpZ"/>
+                    <constraint firstItem="tID-wu-wBZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Rbr-fY-Wup"/>
+                    <constraint firstAttribute="trailing" secondItem="tID-wu-wBZ" secondAttribute="trailing" id="tlk-eS-aDD"/>
+                    <constraint firstAttribute="centerY" secondItem="tID-wu-wBZ" secondAttribute="centerY" id="yvr-ap-HYK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

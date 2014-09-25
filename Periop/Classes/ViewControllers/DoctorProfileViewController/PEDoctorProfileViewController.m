@@ -17,6 +17,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PEDoctorProfileCollectionViewCell.h"
 #import "Photo.h"
+#import "PEObjectDescription.h"
+#import "PECoreDataManager.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -27,7 +29,7 @@
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * doctorsSpec;
 @property (strong, nonatomic) NSArray * doctorsProcedures;
 
@@ -41,8 +43,6 @@
 {
     [super viewDidLoad];
     
-    self.specManager = [PESpecialisationManager sharedManager];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEDoctorProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"doctorProfileCollectionViewCell"];
 
@@ -54,7 +54,6 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
@@ -77,7 +76,10 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     [super viewWillAppear:animated];
+    self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
     [[self.view viewWithTag:35] removeFromSuperview];
     
@@ -87,6 +89,8 @@
     if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     }
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -101,7 +105,7 @@
 {
     PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
-    addEditDoctorView.isEditedDoctor = true;
+    addEditDoctorView.isEditedDoctor = YES;
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 
@@ -195,7 +199,14 @@
 
 - (void)getDoctorsSpecAndProcedures
 {
-    self.doctorsSpec = [self.specManager.currentDoctor.specialisation allObjects];
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
+    NSArray * allDoctors = [PECoreDataManager getAllEntities:searchedObject];
+    
+    for (Doctors * doctor in allDoctors) {
+        if ([doctor.createdDate isEqualToDate:self.specManager.currentDoctor.createdDate]){
+            self.doctorsSpec = [doctor.specialisation allObjects];
+        }
+    }
     
     [self.doctorsSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString * firstObject = [(Specialisation*)obj1 name];
@@ -212,6 +223,13 @@
                 [arrayWithProc addObject:proc];
             }
         }
+        
+        [arrayWithProc sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString* o1 = [(Procedure*)obj1 name];
+            NSString* o2 = [(Procedure*)obj2 name];
+            return [o1 compare:o2];
+        }];
+        
         [arrayWithArraysOfProceduresForCurrentDoctor addObject:arrayWithProc];
     }
     self.doctorsProcedures = arrayWithArraysOfProceduresForCurrentDoctor;

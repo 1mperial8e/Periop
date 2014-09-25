@@ -10,7 +10,13 @@
 
 @implementation PEProceduresTableViewCell
 
-#pragma mark - IBActions
+#pragma mark - LifeCycle
+
+- (void)awakeFromNib
+{
+    self.procedureName.adjustsFontSizeToFitWidth = YES;
+    self.procedureName.minimumScaleFactor = 0.5;
+}
 
 - (void)prepareForReuse
 {

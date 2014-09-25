@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *procedureName;
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
+@property (strong, nonatomic) NSString * procedureID;
+
 @end

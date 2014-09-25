@@ -10,6 +10,10 @@
 
 @implementation PEDoctorsProfileTableViewCell
 
-
+- (void)awakeFromNib
+{
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    self.textLabel.minimumScaleFactor = 0.5;
+}
 
 @end
