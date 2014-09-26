@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -7,7 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEProcedureOptionViewController">
             <connections>
-                <outlet property="equipmentButton" destination="xJU-aO-QN2" id="8Qb-wO-z08"/>
+                <outlet property="equipmentButton" destination="xJU-aO-QN2" id="5Ch-ez-SCg"/>
+                <outlet property="notesButton" destination="0U9-ml-JxM" id="MXT-gw-bY0"/>
+                <outlet property="operationRoomButton" destination="ekE-75-YrX" id="0Db-Wk-GrB"/>
+                <outlet property="patientPostioningButton" destination="3dj-2r-FcK" id="fRp-2Z-sLJ"/>
+                <outlet property="preparationButton" destination="SSn-lh-IV7" id="Iuq-9Q-hez"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,111 +20,123 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-j5-Wjr">
-                    <rect key="frame" x="0.0" y="0.0" width="322" height="532"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-j5-Wjr" userLabel="Container">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-lh-IV7">
-                            <rect key="frame" x="0.0" y="0.0" width="161" height="266"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-ZV-aTw" userLabel="Background Image View">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Preperation">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="preparationButton:" destination="-1" eventType="touchUpInside" id="sS4-3z-g5R"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-75-YrX">
-                            <rect key="frame" x="161" y="0.0" width="161" height="266"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu_Overlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="vxJ-LU-8Zo" userLabel="Shade Image View">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Operation Room">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="operationRoomButton:" destination="-1" eventType="touchUpInside" id="VCa-2p-NZc"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3dj-2r-FcK">
-                            <rect key="frame" x="0.0" y="266" width="161" height="266"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86x-bw-GjL" userLabel="ButtonsContainer">
+                            <rect key="frame" x="12" y="119" width="296" height="294"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Patient Positioning">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="patientPositioningButton:" destination="-1" eventType="touchUpInside" id="KqG-Re-eIS"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U9-ml-JxM">
-                            <rect key="frame" x="161" y="266" width="161" height="266"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Notes">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="notesButton:" destination="-1" eventType="touchUpInside" id="v7f-oM-Er3"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-aO-QN2">
-                            <rect key="frame" x="81" y="186" width="160" height="160"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="sight_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-fg-W5g" userLabel="Pricel">
+                                    <rect key="frame" x="0.0" y="0.0" width="296" height="294"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSn-lh-IV7">
+                                    <rect key="frame" x="0.0" y="0.0" width="148" height="147"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Preperation">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="preparationButton:" destination="-1" eventType="touchUpInside" id="sS4-3z-g5R"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-75-YrX">
+                                    <rect key="frame" x="147" y="0.0" width="147" height="147"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Operation Room">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="operationRoomButton:" destination="-1" eventType="touchUpInside" id="VCa-2p-NZc"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3dj-2r-FcK">
+                                    <rect key="frame" x="0.0" y="147" width="147" height="147"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Patient Positioning">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="patientPositioningButton:" destination="-1" eventType="touchUpInside" id="KqG-Re-eIS"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U9-ml-JxM">
+                                    <rect key="frame" x="147" y="147" width="147" height="147"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Notes">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="notesButton:" destination="-1" eventType="touchUpInside" id="v7f-oM-Er3"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-aO-QN2">
+                                    <rect key="frame" x="98" y="97" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="xJU-aO-QN2" secondAttribute="height" multiplier="1:1" id="ZRE-zF-6B7"/>
+                                        <constraint firstAttribute="height" constant="100" id="vE9-wg-6iQ"/>
+                                    </constraints>
+                                    <state key="normal" title="Equipment">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="equipmentButton:" destination="-1" eventType="touchUpInside" id="gy6-XA-1bD"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="160" id="7Ol-Wo-gVb"/>
-                                <constraint firstAttribute="width" constant="160" id="E5M-JA-Pah"/>
-                                <constraint firstAttribute="width" secondItem="xJU-aO-QN2" secondAttribute="height" multiplier="1:1" id="VR7-CG-EWo"/>
+                                <constraint firstItem="2WS-fg-W5g" firstAttribute="leading" secondItem="86x-bw-GjL" secondAttribute="leading" id="8tV-UT-5NV"/>
+                                <constraint firstAttribute="width" secondItem="86x-bw-GjL" secondAttribute="height" multiplier="1:1" id="LVA-ve-aug"/>
+                                <constraint firstAttribute="bottom" secondItem="2WS-fg-W5g" secondAttribute="bottom" id="fXu-lC-eXt"/>
+                                <constraint firstAttribute="centerX" secondItem="xJU-aO-QN2" secondAttribute="centerX" id="slP-Pr-s5j"/>
+                                <constraint firstAttribute="trailing" secondItem="2WS-fg-W5g" secondAttribute="trailing" id="spj-1Y-BNr"/>
+                                <constraint firstAttribute="centerY" secondItem="xJU-aO-QN2" secondAttribute="centerY" id="uf8-qE-t5Q"/>
+                                <constraint firstItem="2WS-fg-W5g" firstAttribute="top" secondItem="86x-bw-GjL" secondAttribute="top" id="vgX-ZA-KiD"/>
                             </constraints>
-                            <state key="normal" title="Equipment">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="equipmentButton:" destination="-1" eventType="touchUpInside" id="gy6-XA-1bD"/>
-                            </connections>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="height" secondItem="ekE-75-YrX" secondAttribute="height" id="0DJ-0T-qmA"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="width" secondItem="SSn-lh-IV7" secondAttribute="width" id="1O5-AX-Xuo"/>
-                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="2Ln-DA-GZg"/>
-                        <constraint firstAttribute="bottom" secondItem="0U9-ml-JxM" secondAttribute="bottom" id="3x4-CF-ZNJ"/>
-                        <constraint firstItem="ekE-75-YrX" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="6n5-RH-lAJ"/>
-                        <constraint firstAttribute="bottom" secondItem="3dj-2r-FcK" secondAttribute="bottom" id="9SM-d8-ztu"/>
-                        <constraint firstAttribute="trailing" secondItem="ekE-75-YrX" secondAttribute="trailing" id="BAP-St-6hO"/>
-                        <constraint firstItem="SSn-lh-IV7" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="BPc-kb-sMb"/>
-                        <constraint firstItem="ekE-75-YrX" firstAttribute="leading" secondItem="SSn-lh-IV7" secondAttribute="trailing" id="D6J-5Z-sv1"/>
-                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="DH7-ku-JhQ"/>
-                        <constraint firstItem="SSn-lh-IV7" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="DO5-Df-BKn"/>
-                        <constraint firstItem="ekE-75-YrX" firstAttribute="leading" secondItem="SSn-lh-IV7" secondAttribute="trailing" id="ELd-Vk-6Z9"/>
-                        <constraint firstAttribute="centerY" secondItem="xJU-aO-QN2" secondAttribute="centerY" id="Jjd-6z-Kab"/>
-                        <constraint firstAttribute="bottom" secondItem="0U9-ml-JxM" secondAttribute="bottom" id="Q1g-sC-0hM"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="height" secondItem="0U9-ml-JxM" secondAttribute="height" id="QgM-Ty-QWk"/>
-                        <constraint firstAttribute="centerX" secondItem="xJU-aO-QN2" secondAttribute="centerX" id="VH7-Vg-EET"/>
-                        <constraint firstItem="SSn-lh-IV7" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="WAq-od-ATK"/>
-                        <constraint firstItem="ekE-75-YrX" firstAttribute="leading" secondItem="SSn-lh-IV7" secondAttribute="trailing" id="Wtr-E4-r0l"/>
-                        <constraint firstItem="SSn-lh-IV7" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="Zkj-7e-qjm"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="height" secondItem="SSn-lh-IV7" secondAttribute="height" id="Zkm-mg-mDj"/>
-                        <constraint firstItem="SSn-lh-IV7" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="csT-Lt-rjU"/>
-                        <constraint firstAttribute="trailing" secondItem="0U9-ml-JxM" secondAttribute="trailing" id="d9i-xQ-v1K"/>
-                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="gZb-QR-Uap"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="width" secondItem="ekE-75-YrX" secondAttribute="width" id="j5x-sl-NUY"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="top" secondItem="SSn-lh-IV7" secondAttribute="bottom" id="kwb-fo-JTg"/>
-                        <constraint firstItem="0U9-ml-JxM" firstAttribute="top" secondItem="ekE-75-YrX" secondAttribute="bottom" id="nJ8-c5-NPt"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="width" secondItem="0U9-ml-JxM" secondAttribute="width" id="q09-1q-xtR"/>
-                        <constraint firstItem="ekE-75-YrX" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="rIB-B4-xPu"/>
-                        <constraint firstItem="3dj-2r-FcK" firstAttribute="top" secondItem="SSn-lh-IV7" secondAttribute="bottom" id="v4v-ci-aC6"/>
-                        <constraint firstItem="0U9-ml-JxM" firstAttribute="leading" secondItem="3dj-2r-FcK" secondAttribute="trailing" id="ws8-D7-SUB"/>
+                        <constraint firstAttribute="centerX" secondItem="86x-bw-GjL" secondAttribute="centerX" id="8Cn-E4-Pyj"/>
+                        <constraint firstItem="RkG-ZV-aTw" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="8ZX-Yw-fHC"/>
+                        <constraint firstItem="RkG-ZV-aTw" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="O8X-Cb-Q7s"/>
+                        <constraint firstAttribute="bottom" secondItem="RkG-ZV-aTw" secondAttribute="bottom" id="PNh-rn-UA9"/>
+                        <constraint firstAttribute="centerY" secondItem="86x-bw-GjL" secondAttribute="centerY" id="ZIy-fH-3iq"/>
+                        <constraint firstAttribute="trailing" secondItem="RkG-ZV-aTw" secondAttribute="trailing" id="aQ8-pO-AMY"/>
+                        <constraint firstItem="vxJ-LU-8Zo" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="hCd-xu-1ZQ"/>
+                        <constraint firstAttribute="trailing" secondItem="vxJ-LU-8Zo" secondAttribute="trailing" id="j8q-AC-qrd"/>
+                        <constraint firstItem="vxJ-LU-8Zo" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="z96-2l-Y1X"/>
+                        <constraint firstAttribute="bottom" secondItem="vxJ-LU-8Zo" secondAttribute="bottom" id="zAN-CK-eQk"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mna-v9-mOd">
-                    <rect key="frame" x="0.0" y="532" width="322" height="36"/>
+                    <rect key="frame" x="0.0" y="532" width="320" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="Bxu-tx-T2C"/>
+                        <constraint firstAttribute="height" constant="36" id="oq6-Qh-pb9"/>
                     </constraints>
                     <state key="normal" title="Doctors" image="Doctors.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,18 +149,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="v8N-j5-Wjr" firstAttribute="trailing" secondItem="mna-v9-mOd" secondAttribute="trailing" id="Mw8-sV-q61"/>
-                <constraint firstItem="mna-v9-mOd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UNw-HW-aMu"/>
-                <constraint firstAttribute="bottom" secondItem="mna-v9-mOd" secondAttribute="bottom" id="YVD-pz-G93"/>
-                <constraint firstItem="v8N-j5-Wjr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bx2-4w-tG3"/>
-                <constraint firstItem="v8N-j5-Wjr" firstAttribute="leading" secondItem="mna-v9-mOd" secondAttribute="leading" id="dag-BK-2yc"/>
-                <constraint firstAttribute="trailing" secondItem="mna-v9-mOd" secondAttribute="trailing" id="fPS-9H-1pz"/>
-                <constraint firstItem="mna-v9-mOd" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="bottom" id="jgu-9C-Qao"/>
+                <constraint firstAttribute="trailing" secondItem="mna-v9-mOd" secondAttribute="trailing" id="Lng-Gf-RSO"/>
+                <constraint firstItem="mna-v9-mOd" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="bottom" id="Maa-fy-Jlu"/>
+                <constraint firstItem="v8N-j5-Wjr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Oyh-jQ-hXu"/>
+                <constraint firstItem="mna-v9-mOd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PGr-VX-lip"/>
+                <constraint firstItem="v8N-j5-Wjr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aYf-2w-9QF"/>
+                <constraint firstAttribute="bottom" secondItem="mna-v9-mOd" secondAttribute="bottom" id="ngG-Hm-VNG"/>
+                <constraint firstAttribute="trailing" secondItem="v8N-j5-Wjr" secondAttribute="trailing" id="rMp-CE-xK4"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="Background.png" width="320" height="573"/>
         <image name="Doctors.png" width="320" height="38"/>
+        <image name="Menu_Overlay.png" width="320" height="466"/>
+        <image name="sight_img.png" width="294" height="294"/>
     </resources>
 </document>

@@ -11,6 +11,15 @@
 		842BF2AF19CC568200AFCA42 /* PEAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842BF2AD19CC568200AFCA42 /* PEAlbumViewController.xib */; };
 		842BF2B319CC583500AFCA42 /* PEAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BF2B219CC583500AFCA42 /* PEAlbumCell.m */; };
 		842BF2B519CC587D00AFCA42 /* PeAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842BF2B419CC587D00AFCA42 /* PeAlbumCell.xib */; };
+		842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8DF019D57AE400D0DAC7 /* PECameraViewController.m */; };
+		842C8DF319D57AE400D0DAC7 /* PECameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842C8DF119D57AE400D0DAC7 /* PECameraViewController.xib */; };
+		842C8DFC19D57C2000D0DAC7 /* PEMediaSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8DF719D57C2000D0DAC7 /* PEMediaSelect.m */; };
+		842C8DFD19D57C2000D0DAC7 /* PEMediaSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842C8DF819D57C2000D0DAC7 /* PEMediaSelect.xib */; };
+		842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8DFB19D57C2000D0DAC7 /* UIDropDownList.m */; };
+		842C8E0219D57C4C00D0DAC7 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */; };
+		842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */; };
+		842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */; };
+		842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */; };
 		8474906319B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
 		8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906419B8459E0013C446 /* CoreGraphics.framework */; };
 		8474906719B8459E0013C446 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906619B8459E0013C446 /* UIKit.framework */; };
@@ -28,7 +37,6 @@
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
 		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
-		84B977CF19D1899900872093 /* UIDropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B977CE19D1899900872093 /* UIDropDownList.m */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
@@ -50,8 +58,6 @@
 		ED18513619D01CE70021E1EB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513519D01CE70021E1EB /* Photo.m */; };
 		ED21660C19CC3022005E821B /* PeriopDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED21660A19CC3022005E821B /* PeriopDataBase.xcdatamodeld */; };
 		ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED350F3019C0979500512663 /* PECoreDataManager.m */; };
-		ED5DB58019C32C3100FDD358 /* PEMediaSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */; };
-		ED5DB58219C32C5F00FDD358 /* PEMediaSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */; };
 		ED9C696119C720E70022C1A8 /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68BC19C720E70022C1A8 /* Add@2x.png */; };
 		ED9C696319C720E70022C1A8 /* Add_Photo_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */; };
 		ED9C696519C720E80022C1A8 /* Add_Photo_to_Note_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */; };
@@ -222,6 +228,20 @@
 		842BF2B119CC583500AFCA42 /* PEAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAlbumCell.h; sourceTree = "<group>"; };
 		842BF2B219CC583500AFCA42 /* PEAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAlbumCell.m; sourceTree = "<group>"; };
 		842BF2B419CC587D00AFCA42 /* PeAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeAlbumCell.xib; sourceTree = "<group>"; };
+		842C8DEF19D57AE400D0DAC7 /* PECameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraViewController.h; sourceTree = "<group>"; };
+		842C8DF019D57AE400D0DAC7 /* PECameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraViewController.m; sourceTree = "<group>"; };
+		842C8DF119D57AE400D0DAC7 /* PECameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PECameraViewController.xib; sourceTree = "<group>"; };
+		842C8DF619D57C2000D0DAC7 /* PEMediaSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMediaSelect.h; sourceTree = "<group>"; };
+		842C8DF719D57C2000D0DAC7 /* PEMediaSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMediaSelect.m; sourceTree = "<group>"; };
+		842C8DF819D57C2000D0DAC7 /* PEMediaSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEMediaSelect.xib; sourceTree = "<group>"; };
+		842C8DFA19D57C2000D0DAC7 /* UIDropDownList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDropDownList.h; sourceTree = "<group>"; };
+		842C8DFB19D57C2000D0DAC7 /* UIDropDownList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDropDownList.m; sourceTree = "<group>"; };
+		842C8E0019D57C4C00D0DAC7 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
+		842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
+		842C8E0519D5892100D0DAC7 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@2x.png"; sourceTree = "<group>"; };
+		842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@3x.png"; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8474906419B8459E0013C446 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -242,8 +262,6 @@
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
 		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
-		84B977CD19D1899900872093 /* UIDropDownList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDropDownList.h; sourceTree = "<group>"; };
-		84B977CE19D1899900872093 /* UIDropDownList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDropDownList.m; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
@@ -277,9 +295,6 @@
 		ED21660B19CC3022005E821B /* PeriopDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeriopDataBase.xcdatamodel; sourceTree = "<group>"; };
 		ED350F2F19C0979500512663 /* PECoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECoreDataManager.h; sourceTree = "<group>"; };
 		ED350F3019C0979500512663 /* PECoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECoreDataManager.m; sourceTree = "<group>"; };
-		ED5DB57E19C32C3100FDD358 /* PEMediaSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMediaSelect.h; sourceTree = "<group>"; };
-		ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMediaSelect.m; sourceTree = "<group>"; };
-		ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEMediaSelect.xib; sourceTree = "<group>"; };
 		ED9C68BC19C720E70022C1A8 /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Photo_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Photo_to_Note_Button@2x.png"; sourceTree = "<group>"; };
@@ -518,6 +533,71 @@
 			path = AlbumCell;
 			sourceTree = "<group>";
 		};
+		842C8DEE19D57AC600D0DAC7 /* CameraViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842C8DEF19D57AE400D0DAC7 /* PECameraViewController.h */,
+				842C8DF019D57AE400D0DAC7 /* PECameraViewController.m */,
+				842C8DF119D57AE400D0DAC7 /* PECameraViewController.xib */,
+			);
+			path = CameraViewController;
+			sourceTree = "<group>";
+		};
+		842C8DF419D57C2000D0DAC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				842C8DFF19D57C3900D0DAC7 /* AVPreviewView */,
+				842C8DF519D57C2000D0DAC7 /* PEMediaSelectView */,
+				842C8DF919D57C2000D0DAC7 /* UIDropDownList */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		842C8DF519D57C2000D0DAC7 /* PEMediaSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				842C8DF619D57C2000D0DAC7 /* PEMediaSelect.h */,
+				842C8DF719D57C2000D0DAC7 /* PEMediaSelect.m */,
+				842C8DF819D57C2000D0DAC7 /* PEMediaSelect.xib */,
+			);
+			path = PEMediaSelectView;
+			sourceTree = "<group>";
+		};
+		842C8DF919D57C2000D0DAC7 /* UIDropDownList */ = {
+			isa = PBXGroup;
+			children = (
+				842C8DFA19D57C2000D0DAC7 /* UIDropDownList.h */,
+				842C8DFB19D57C2000D0DAC7 /* UIDropDownList.m */,
+			);
+			path = UIDropDownList;
+			sourceTree = "<group>";
+		};
+		842C8DFF19D57C3900D0DAC7 /* AVPreviewView */ = {
+			isa = PBXGroup;
+			children = (
+				842C8E0019D57C4C00D0DAC7 /* AVCamPreviewView.h */,
+				842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */,
+			);
+			path = AVPreviewView;
+			sourceTree = "<group>";
+		};
+		842C8E0319D5890400D0DAC7 /* Categoties */ = {
+			isa = PBXGroup;
+			children = (
+				842C8E0419D5892100D0DAC7 /* UIImage+fixOrientation */,
+			);
+			path = Categoties;
+			sourceTree = "<group>";
+		};
+		842C8E0419D5892100D0DAC7 /* UIImage+fixOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				842C8E0519D5892100D0DAC7 /* UIImage+fixOrientation.h */,
+				842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */,
+			);
+			path = "UIImage+fixOrientation";
+			sourceTree = "<group>";
+		};
 		8474905619B8459E0013C446 = {
 			isa = PBXGroup;
 			children = (
@@ -599,15 +679,6 @@
 				847E937A19CC47EF00665240 /* PECameraRollManager.m */,
 			);
 			path = CameraRollManager;
-			sourceTree = "<group>";
-		};
-		84B977CC19D1898800872093 /* UIDropDownList */ = {
-			isa = PBXGroup;
-			children = (
-				84B977CD19D1899900872093 /* UIDropDownList.h */,
-				84B977CE19D1899900872093 /* UIDropDownList.m */,
-			);
-			path = UIDropDownList;
 			sourceTree = "<group>";
 		};
 		84D65BE419D03CD0001C6E5C /* Fonts */ = {
@@ -769,6 +840,8 @@
 		ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */ = {
 			isa = PBXGroup;
 			children = (
+				842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */,
+				842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */,
 				ED9C68BC19C720E70022C1A8 /* Add@2x.png */,
 				ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */,
 				ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */,
@@ -965,8 +1038,9 @@
 		EDCD57A519B8479100EC7AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				842C8E0319D5890400D0DAC7 /* Categoties */,
+				842C8DF419D57C2000D0DAC7 /* Views */,
 				EDEACEEE19CDC9F900286E06 /* Entities */,
-				ED19143319C30C8B004C6850 /* UIViews */,
 				EDCD17D319C18BAA00BA36C9 /* DataModel */,
 				EDCD57E219B8814500EC7AF1 /* Cells */,
 				EDCD57A619B8479100EC7AF1 /* Managers */,
@@ -1342,6 +1416,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Thinkmobiles;
 				TargetAttributes = {
+					8474905E19B8459E0013C446 = {
+						DevelopmentTeam = 6V5J5WQA79;
+					};
 					8474907E19B8459E0013C446 = {
 						TestTargetID = 8474905E19B8459E0013C446;
 					};
@@ -1389,6 +1466,7 @@
 				ED9C69F119C720E80022C1A8 /* Opthomology_Small_Inactive@2x.png in Resources */,
 				ED9C69D319C720E80022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png in Resources */,
 				ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */,
+				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
 				ED9C697319C720E80022C1A8 /* Check_Active@2x.png in Resources */,
 				ED9C69B719C720E80022C1A8 /* Cardiothoracic_Small_Active@2x.png in Resources */,
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
@@ -1411,6 +1489,7 @@
 				ED9C69DF19C720E80022C1A8 /* Gynaecology_Small_Active@2x.png in Resources */,
 				ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */,
 				EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */,
+				842C8DF319D57AE400D0DAC7 /* PECameraViewController.xib in Resources */,
 				ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */,
 				8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */,
 				EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */,
@@ -1422,7 +1501,6 @@
 				ED9C69A919C720E80022C1A8 /* Procedures_Tab_Active@2x.png in Resources */,
 				ED9C69E519C720E80022C1A8 /* Obstetric_Large@2x.png in Resources */,
 				ED9C697119C720E80022C1A8 /* Cancel_Search@2x.png in Resources */,
-				ED5DB58219C32C5F00FDD358 /* PEMediaSelect.xib in Resources */,
 				ED9C696719C720E80022C1A8 /* Album@2x.png in Resources */,
 				ED9C698F19C720E80022C1A8 /* Menu_Dividers@2x.png in Resources */,
 				EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */,
@@ -1458,12 +1536,14 @@
 				EDC91EDC19B9E3A200212F24 /* PEToolsDetailsViewController.xib in Resources */,
 				ED9C697F19C720E80022C1A8 /* Doctors_Tab_Active@2x.png in Resources */,
 				ED9C69C519C720E80022C1A8 /* Cosemetic_Large@2x.png in Resources */,
+				842C8DFD19D57C2000D0DAC7 /* PEMediaSelect.xib in Resources */,
 				ED9C698D19C720E80022C1A8 /* Menu@2x.png in Resources */,
 				EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */,
 				ED9C69AB19C720E80022C1A8 /* Procedures_Tab_Inactive@2x.png in Resources */,
 				ED9C6A0119C720E80022C1A8 /* Plastic_Small_Inactive@2x.png in Resources */,
 				ED9C698919C720E80022C1A8 /* Flash@2x.png in Resources */,
 				ED9C697919C720E80022C1A8 /* Delete@2x.png in Resources */,
+				842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */,
 				EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */,
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
@@ -1516,7 +1596,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B977CF19D1899900872093 /* UIDropDownList.m in Sources */,
 				EDDA09B119CA16BD003480C2 /* PEPlistParser.m in Sources */,
 				ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */,
 				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
@@ -1527,6 +1606,7 @@
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
 				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
+				842C8DFC19D57C2000D0DAC7 /* PEMediaSelect.m in Sources */,
 				EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */,
 				EDC91ED519B9C9F700212F24 /* PEEquipmentCategoryTableViewCell.m in Sources */,
 				847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */,
@@ -1537,6 +1617,7 @@
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
 				EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */,
+				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
@@ -1546,7 +1627,8 @@
 				EDA7DFFE19BAEA4A002A70E8 /* PEFeedbackViewController.m in Sources */,
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
-				ED5DB58019C32C3100FDD358 /* PEMediaSelect.m in Sources */,
+				842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */,
+				842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */,
 				ED18513619D01CE70021E1EB /* Photo.m in Sources */,
 				EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */,
 				ED18513319D008610021E1EB /* OperationRoom.m in Sources */,
@@ -1561,6 +1643,7 @@
 				EDCD57CE19B8741600EC7AF1 /* PESpecialisationViewController.m in Sources */,
 				EDEACF0319CDC9F900286E06 /* Note.m in Sources */,
 				EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */,
+				842C8E0219D57C4C00D0DAC7 /* AVCamPreviewView.m in Sources */,
 				ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */,
 				842BF2AE19CC568200AFCA42 /* PEAlbumViewController.m in Sources */,
 				EDCD57CC19B8741600EC7AF1 /* PEDownloadingScreenViewController.m in Sources */,
@@ -1631,7 +1714,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1649,6 +1733,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1669,7 +1754,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1680,6 +1766,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1690,11 +1777,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1704,11 +1793,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
