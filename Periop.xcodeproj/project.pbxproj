@@ -18,6 +18,8 @@
 		842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8DFB19D57C2000D0DAC7 /* UIDropDownList.m */; };
 		842C8E0219D57C4C00D0DAC7 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */; };
 		842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */; };
+		842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */; };
+		842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */; };
 		8474906319B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
 		8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906419B8459E0013C446 /* CoreGraphics.framework */; };
 		8474906719B8459E0013C446 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906619B8459E0013C446 /* UIKit.framework */; };
@@ -236,6 +238,8 @@
 		842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		842C8E0519D5892100D0DAC7 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@2x.png"; sourceTree = "<group>"; };
+		842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@3x.png"; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8474906419B8459E0013C446 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -802,6 +806,8 @@
 		ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */ = {
 			isa = PBXGroup;
 			children = (
+				842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */,
+				842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */,
 				ED9C68BC19C720E70022C1A8 /* Add@2x.png */,
 				ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */,
 				ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */,
@@ -1425,6 +1431,7 @@
 				ED9C69F119C720E80022C1A8 /* Opthomology_Small_Inactive@2x.png in Resources */,
 				ED9C69D319C720E80022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png in Resources */,
 				ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */,
+				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
 				ED9C697319C720E80022C1A8 /* Check_Active@2x.png in Resources */,
 				ED9C69B719C720E80022C1A8 /* Cardiothoracic_Small_Active@2x.png in Resources */,
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
@@ -1501,6 +1508,7 @@
 				ED9C6A0119C720E80022C1A8 /* Plastic_Small_Inactive@2x.png in Resources */,
 				ED9C698919C720E80022C1A8 /* Flash@2x.png in Resources */,
 				ED9C697919C720E80022C1A8 /* Delete@2x.png in Resources */,
+				842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */,
 				EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */,
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
