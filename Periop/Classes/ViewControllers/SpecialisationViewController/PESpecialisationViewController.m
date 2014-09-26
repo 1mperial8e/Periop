@@ -29,8 +29,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * specialisationsArray;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSArray *sortedArrayWithKeys;
-
+@property (strong, nonatomic) NSMutableDictionary * moreSpecialisationSpecs;
 @property (assign, nonatomic) BOOL isMyspecializations;
 
 //@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
@@ -114,6 +113,9 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self.collectionView reloadData];
+    if (self.specManager.currentProcedure!=nil) {
+        self.specManager.currentProcedure = nil;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -153,7 +155,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     self.isMyspecializations = NO;
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
-    self.specialisationsArray = [self allSpecs];
+    [self allSpecs];
     [self.collectionView reloadData];
 }
 
@@ -166,7 +168,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
-        NSLog(@"Selected specs - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName );
+        NSLog(@"Selected specs - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName);
     }
 }
 
@@ -174,10 +176,10 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.specialisationsArray && self.specialisationsArray.count > 0) {
-            return self.specialisationsArray.count;
+    if (self.isMyspecializations) {
+        return self.specialisationsArray.count;
     } else {
-        return 1;
+        return [self.moreSpecialisationSpecs allKeys].count;
     }
 }
 
@@ -191,8 +193,13 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
             cell.specialisationIconImageView.image = [UIImage imageNamed:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
-            cell.specialisationIconImageView.image = [UIImage imageNamed:self.specialisationsArray[indexPath.row]];
-            cell.specName = self.sortedArrayWithKeys[indexPath.row];
+            NSArray * all = [[self.moreSpecialisationSpecs allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSString * str1 = (NSString*)obj1;
+                NSString * str2 = (NSString*)obj2;
+                return [str1 compare:str2];
+            }];
+            cell.specialisationIconImageView.image = [UIImage imageNamed:[self.moreSpecialisationSpecs valueForKey:all[indexPath.row]]];
+            cell.specName = all[indexPath.row];
         }
     }
     return cell;
@@ -204,7 +211,6 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 {
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
-    
     if (self.specialisationsArray.count <= 0) {
         PECsvParser * parser = [[PECsvParser alloc] init];
         [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
@@ -222,31 +228,19 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     }
 }
 
-- (NSArray*) allSpecs
+- (void) allSpecs
 {
-    NSMutableArray * arrayWithAllSpecsPhoto = [[NSMutableArray alloc] init];
-    
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:pListName ofType:@"plist" ]];
-    
     NSArray * arrKeys = [pList allKeys];
-    self.sortedArrayWithKeys = [arrKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * str1 = (NSString*)obj1;
-        NSString * str2 = (NSString*)obj2;
-        return [str1 compare:str2];
-    }];
-    
-    for (int i=0; i<self.sortedArrayWithKeys.count; i++) {
-        NSDictionary * dic = [pList valueForKey:arrKeys[i]];
+    NSMutableArray * arrayWithAllSpecsPhoto = [[NSMutableArray alloc] init];
+    for (int i=0; i<arrKeys.count; i++) {
+        NSDictionary *dic = [pList valueForKey:arrKeys[i]];
         [arrayWithAllSpecsPhoto addObject:[dic valueForKey:@"photoName"]];
     }
-    
-    NSArray * sortedPics = [arrayWithAllSpecsPhoto sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * str1 = (NSString*)obj1;
-        NSString * str2 = (NSString*)obj2;
-        return [str1 compare:str2];
-    }];
-    
-    return sortedPics;
+    self.moreSpecialisationSpecs = [[NSMutableDictionary alloc] init];
+    for (int i=0; i<arrKeys.count; i++) {
+        [self.moreSpecialisationSpecs setValue:arrayWithAllSpecsPhoto[i] forKey:arrKeys[i]];
+    }
 }
 
 - (NSArray*) avaliableSpecs
