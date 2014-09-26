@@ -1063,6 +1063,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				842C8DEE19D57AC600D0DAC7 /* CameraViewController */,
 				ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */,
 				842BF2AA19CC566700AFCA42 /* AlbumViewController */,
 				EDA7DFFA19BAEA3A002A70E8 /* FeedBackViewController */,

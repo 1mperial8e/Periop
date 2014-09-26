@@ -19,6 +19,7 @@
 #import "Specialisation.h"
 #import "Photo.h"
 #import "PEViewPhotoViewController.h"
+#import "PECameraViewController.h"
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 

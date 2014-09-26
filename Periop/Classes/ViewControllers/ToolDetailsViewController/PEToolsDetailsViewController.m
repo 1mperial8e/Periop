@@ -74,6 +74,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
+    
+    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
 
     self.navigationItem.rightBarButtonItem=editButton;
     
