@@ -25,8 +25,6 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 @interface PEMenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
-@property (assign, nonatomic) CGPoint centerOfScreen;
-@property (assign, nonatomic) CGPoint sizeOfScreen;
 @property (weak, nonatomic) IBOutlet UIView *viewWithButtons;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsViewHeight;

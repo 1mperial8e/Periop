@@ -17,6 +17,7 @@
 #import "PEAlbumViewController.h"
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PEViewPhotoViewController.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
@@ -102,6 +103,23 @@
     [super viewDidDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+    if (self.sortedArrayWithPhotos.count >0) {
+        viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+    }
+    [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+}
+
 
 #pragma mark - UICollectionViewDataSource
 

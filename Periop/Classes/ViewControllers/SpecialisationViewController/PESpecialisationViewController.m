@@ -124,6 +124,11 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     [self.navigationBarLabel removeFromSuperview];
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)menuButton:(id)sender

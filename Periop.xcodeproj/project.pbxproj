@@ -44,6 +44,8 @@
 		ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B319BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib */; };
 		ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */; };
 		ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */; };
+		ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */; };
+		ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */; };
 		ED18513319D008610021E1EB /* OperationRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513219D008610021E1EB /* OperationRoom.m */; };
 		ED18513619D01CE70021E1EB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513519D01CE70021E1EB /* Photo.m */; };
 		ED21660C19CC3022005E821B /* PeriopDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED21660A19CC3022005E821B /* PeriopDataBase.xcdatamodeld */; };
@@ -265,6 +267,9 @@
 		ED0D30B719BA14E1001F8411 /* PEProceduresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEProceduresTableViewCell.h; sourceTree = "<group>"; };
 		ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEProceduresTableViewCell.m; sourceTree = "<group>"; };
 		ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEProceduresTableViewCell.xib; sourceTree = "<group>"; };
+		ED1379C019D54A9F00EF517F /* PEViewPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEViewPhotoViewController.h; sourceTree = "<group>"; };
+		ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEViewPhotoViewController.m; sourceTree = "<group>"; };
+		ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEViewPhotoViewController.xib; sourceTree = "<group>"; };
 		ED18513119D008610021E1EB /* OperationRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationRoom.h; path = Periop/Classes/Entities/OperationRoom.h; sourceTree = SOURCE_ROOT; };
 		ED18513219D008610021E1EB /* OperationRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationRoom.m; path = Periop/Classes/Entities/OperationRoom.m; sourceTree = SOURCE_ROOT; };
 		ED18513419D01CE70021E1EB /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
@@ -695,6 +700,16 @@
 			path = ProceduresTableViewCell;
 			sourceTree = "<group>";
 		};
+		ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED1379C019D54A9F00EF517F /* PEViewPhotoViewController.h */,
+				ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */,
+				ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */,
+			);
+			path = ViewPhotoViewController;
+			sourceTree = "<group>";
+		};
 		ED19143319C30C8B004C6850 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +989,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */,
 				842BF2AA19CC566700AFCA42 /* AlbumViewController */,
 				EDA7DFFA19BAEA3A002A70E8 /* FeedBackViewController */,
 				EDA7DFF419BAE840002A70E8 /* TermsAndConditionViewController */,
@@ -1361,6 +1377,7 @@
 				EDDA09B419CA17CC003480C2 /* General.plist in Resources */,
 				ED9C696B19C720E80022C1A8 /* Background@2x.png in Resources */,
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
+				ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */,
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */,
 				EDD4BDE619D29E520087D8CE /* Cardiothoracic.plist in Resources */,
@@ -1504,6 +1521,7 @@
 				ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */,
 				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
 				EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */,
+				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
