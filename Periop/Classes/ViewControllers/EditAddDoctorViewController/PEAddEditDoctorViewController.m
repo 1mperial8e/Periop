@@ -18,6 +18,7 @@
 #import "PECollectionViewCellItemCell.h"
 #import "Specialisation.h"
 #import "Photo.h"
+#import "PECameraViewController.h"
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
@@ -189,7 +190,7 @@
     [self.view addSubview:view];
 }
 
-#pragma mark - XIB Action
+#pragma mark - UIAction
 
 - (IBAction)albumPhoto:(id)sender
 {
@@ -204,7 +205,8 @@
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

@@ -19,10 +19,14 @@
 
 @interface PEProcedureOptionViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
-
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
+
+@property (weak, nonatomic) IBOutlet UIButton *preparationButton;
+@property (weak, nonatomic) IBOutlet UIButton *operationRoomButton;
+@property (weak, nonatomic) IBOutlet UIButton *patientPostioningButton;
+@property (weak, nonatomic) IBOutlet UIButton *notesButton;
+@property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
 
 @end
 
@@ -47,6 +51,8 @@
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.numberOfLines = 0;
+    
+    [self setupButtons];
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -99,4 +105,26 @@
     doctorsView.isButtonRequired = false;
     [self.navigationController pushViewController:doctorsView animated:YES];
 }
+
+#pragma mark - Private
+
+- (void)setupButtons
+{
+    UIFont *buttonsFont = [UIFont fontWithName:@"MuseoSans-500" size:17.0];
+    self.operationRoomButton.titleLabel.font = buttonsFont;
+    self.preparationButton.titleLabel.font = buttonsFont;
+    self.patientPostioningButton.titleLabel.font = buttonsFont;
+    self.notesButton.titleLabel.font = buttonsFont;
+    self.equipmentButton.titleLabel.font = buttonsFont;
+    
+    self.operationRoomButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.preparationButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.patientPostioningButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.notesButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.equipmentButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.operationRoomButton setTitle:@"Operating\n Room" forState:UIControlStateNormal];
+    [self.patientPostioningButton setTitle:@"Patient\n Positioning" forState:UIControlStateNormal];
+}
+
 @end
