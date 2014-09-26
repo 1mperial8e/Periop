@@ -17,6 +17,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "EquipmentsTool.h"
 #import "PECoreDataManager.h"
 #import "Photo.h"
+#import "PEViewPhotoViewController.h"
 
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
@@ -82,20 +83,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    [self.equipmentPhoto addGestureRecognizer:tap];
 
 }
-
-//- (CGFloat) getWidthOfUiBarButton: (UIBarButtonItem *)button
-//{
-//    UIView *view = [button valueForKey:@"view"];
-//    CGRect barButtonFrame;
-//    if (view) {
-//        barButtonFrame = [view frame];
-//    } else {
-//        barButtonFrame = CGRectZero;
-//    }
-//    return barButtonFrame.size.width;
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -107,6 +99,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
         }
+    } else {
+        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder.png"];
     }
     
     [[self.view viewWithTag:35] removeFromSuperview];
@@ -161,6 +155,19 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     view.tag = 35;
     [self.view addSubview:view];
 }
+
+- (void)tapOnPicture:(UITapGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"Touched Image");
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+            viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
+        }
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+    }
+}
+
 
 #pragma mark - XIB Action
 

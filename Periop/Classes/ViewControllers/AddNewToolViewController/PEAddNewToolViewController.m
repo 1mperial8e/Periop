@@ -87,7 +87,7 @@
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
         if ([self.dropDownList.titleLabel.text isEqualToString:@"Equipment Category"]) {
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"Select category" otherButtonTitles:nil];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         } else {
             newEquipment.category = self.dropDownList.titleLabel.text;

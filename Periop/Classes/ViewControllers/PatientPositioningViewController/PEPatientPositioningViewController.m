@@ -16,6 +16,7 @@
 #import "Photo.h"
 #import "PatientPostioning.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PEViewPhotoViewController.h"
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -162,6 +163,17 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+    if (self.sortedArrayWithPhotos.count >0) {
+        viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+    }
+    [self.navigationController pushViewController:viewPhotoControleller animated:YES];
 }
 
 #pragma marks - Private

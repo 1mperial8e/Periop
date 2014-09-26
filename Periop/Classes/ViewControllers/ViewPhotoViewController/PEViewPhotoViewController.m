@@ -9,6 +9,7 @@
 #import "PEViewPhotoViewController.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDatamanager.h"
+#import "PatientPostioning.h"
 
 @interface PEViewPhotoViewController ()
 
@@ -101,9 +102,28 @@
                     [self.specManager.currentProcedure.operationRoom removePhotoObject:imageToDelete];
                 }
             }
+        } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEPatientPositioningViewController"]) {
+            for (Photo * imageToDelete in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
+                if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
+                    [self.specManager.currentProcedure.patientPostioning removePhotoObject:imageToDelete];
+                }
+            }
+        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
+            for (Photo * imageToDelete in [self.specManager.currentEquipment.photo allObjects]) {
+                if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
+                    [self.specManager.currentEquipment removePhotoObject:imageToDelete];
+                }
+            }
+        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEDoctorProfileViewController"]) {
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
+                self.specManager.currentDoctor.photo = nil;
+            }
+        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEAddEditDoctorViewController"]) {
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
+                self.specManager.currentDoctor.photo = nil;
+            }
         }
-        
-        
+
         NSError* removeError = nil;
         if (![self.managedObjectContext save:&removeError]) {
             NSLog(@"Cant remove image - %@", removeError.localizedDescription);
