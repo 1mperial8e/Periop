@@ -104,10 +104,8 @@
 - (IBAction)clearAll:(id)sender
 {
     if (self.cellWithCheckedButtons) {
-        NSArray * arrWithIndexPath = [self.cellWithCheckedButtons allObjects];
-        for (int i=0; i<arrWithIndexPath.count; i++) {
-            [self deleteSlectedItem:[self.cellWithCheckedButtons allObjects][0]];
-        }
+        [self.cellWithCheckedButtons removeAllObjects];
+        [self.tableView reloadData];
     }
 }
 

@@ -59,11 +59,9 @@
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    //self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width / 2;
-    
+//    self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width / 2;
 //    CAShapeLayer *circleLayer;
 //    circleLayer = [CAShapeLayer layer];
-//    
 //    circleLayer.bounds = CGRectMake(0.0f, 0.0f, self.equipmentButton.frame.size.width, self.equipmentButton.frame.size.height);
 //    circleLayer.position = CGPointMake(CGRectGetMidX(self.equipmentButton.bounds),CGRectGetMidY(self.equipmentButton.bounds));
 //    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, CGRectGetWidth(self.equipmentButton.frame), CGRectGetHeight(self.equipmentButton.frame))];
@@ -72,7 +70,6 @@
 //    circleLayer.fillColor = [UIColor blackColor].CGColor;
 //    circleLayer.lineWidth = 2.0;
 //    [self.equipmentButton.layer insertSublayer:circleLayer atIndex:0];
-//    
 //    self.equipmentButton.layer.mask = circleLayer;    
 }
 
@@ -86,20 +83,6 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
-}
-
-#pragma mark - IBActions
-
-- (IBAction)preparationButton:(id)sender
-{
-    PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
-    [self.navigationController pushViewController:preperationView animated:YES];
-}
-
-- (IBAction)operationRoomButton:(id)sender
-{
-    PEOperationRoomViewController * operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
-    [self.navigationController pushViewController:operationRoomView animated:YES];
 }
 
 #pragma mark - Equipment Rounded Button
@@ -134,6 +117,20 @@
 {
     PEEquipmentViewController * equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
     [self.navigationController pushViewController:equipmentView animated:YES];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)preparationButton:(id)sender
+{
+    PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
+    [self.navigationController pushViewController:preperationView animated:YES];
+}
+
+- (IBAction)operationRoomButton:(id)sender
+{
+    PEOperationRoomViewController * operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
+    [self.navigationController pushViewController:operationRoomView animated:YES];
 }
 
 - (IBAction)patientPositioningButton:(id)sender
