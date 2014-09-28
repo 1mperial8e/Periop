@@ -93,9 +93,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma marks - IBActions
 
 - (IBAction)operationWithPhotoButton:(id)sender
 {
@@ -160,7 +167,6 @@
     }
 }
 
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
@@ -169,11 +175,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-    if (self.sortedArrayWithPhotos.count >0) {
-        viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+    if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        if (self.sortedArrayWithPhotos.count >0) {
+            viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+        }
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
-    [self.navigationController pushViewController:viewPhotoControleller animated:YES];
 }
 
 #pragma marks - Private

@@ -19,7 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PEViewPhotoViewController.h"
 
-@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
+@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
@@ -100,7 +100,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
@@ -113,11 +113,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-    if (self.sortedArrayWithPhotos.count >0) {
-        viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+    if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamed:@"Place_Holder"] hash]) {
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        if (self.sortedArrayWithPhotos.count >0) {
+            viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+        }
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
-    [self.navigationController pushViewController:viewPhotoControleller animated:YES];
 }
 
 

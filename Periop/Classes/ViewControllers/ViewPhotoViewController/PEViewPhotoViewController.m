@@ -40,8 +40,6 @@
     self.navigationLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationLabel.minimumScaleFactor = 0.5;
-    self.navigationLabel.adjustsFontSizeToFitWidth = YES;
     self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationLabel.text = @"View Photo";

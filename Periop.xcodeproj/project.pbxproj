@@ -200,6 +200,7 @@
 		EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */; };
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
+		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDE9CA1B19D4028700150754 /* General.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA1919D4028700150754 /* General.csv */; };
 		EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9CA1F19D402E900150754 /* PECsvParser.m */; };
 		EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA2119D4214F00150754 /* General_Tools.csv */; };
@@ -470,6 +471,8 @@
 		EDDDEF7419CAE168007BEDE4 /* PEPreparationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPreparationTableViewCell.h; sourceTree = "<group>"; };
 		EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPreparationTableViewCell.m; sourceTree = "<group>"; };
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
+		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
+		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDE9CA1919D4028700150754 /* General.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General.csv; sourceTree = "<group>"; };
 		EDE9CA1E19D402E900150754 /* PECsvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECsvParser.h; sourceTree = "<group>"; };
 		EDE9CA1F19D402E900150754 /* PECsvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECsvParser.m; sourceTree = "<group>"; };
@@ -781,25 +784,6 @@
 			path = ViewPhotoViewController;
 			sourceTree = "<group>";
 		};
-		ED19143319C30C8B004C6850 /* UIViews */ = {
-			isa = PBXGroup;
-			children = (
-				84B977CC19D1898800872093 /* UIDropDownList */,
-				ED19143419C30C9F004C6850 /* PEMediaSelectView */,
-			);
-			path = UIViews;
-			sourceTree = "<group>";
-		};
-		ED19143419C30C9F004C6850 /* PEMediaSelectView */ = {
-			isa = PBXGroup;
-			children = (
-				ED5DB57E19C32C3100FDD358 /* PEMediaSelect.h */,
-				ED5DB57F19C32C3100FDD358 /* PEMediaSelect.m */,
-				ED5DB58119C32C5F00FDD358 /* PEMediaSelect.xib */,
-			);
-			path = PEMediaSelectView;
-			sourceTree = "<group>";
-		};
 		ED350F2E19C096E900512663 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1022,7 @@
 		EDCD57A519B8479100EC7AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EDDEDCD919D6FE6500B0EDAC /* UIButtons */,
 				842C8E0319D5890400D0DAC7 /* Categoties */,
 				842C8DF419D57C2000D0DAC7 /* Views */,
 				EDEACEEE19CDC9F900286E06 /* Entities */,
@@ -1303,6 +1288,15 @@
 				EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */,
 			);
 			path = PreparationTableViewCell;
+			sourceTree = "<group>";
+		};
+		EDDEDCD919D6FE6500B0EDAC /* UIButtons */ = {
+			isa = PBXGroup;
+			children = (
+				EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */,
+				EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */,
+			);
+			path = UIButtons;
 			sourceTree = "<group>";
 		};
 		EDE9CA1819D4027500150754 /* CSV */ = {
@@ -1621,6 +1615,7 @@
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
+				EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
 				ED0D30B419BA11B9001F8411 /* PEEditAddDoctorTableViewCell.m in Sources */,
 				842BF2B319CC583500AFCA42 /* PEAlbumCell.m in Sources */,

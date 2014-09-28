@@ -116,6 +116,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     [self.navigationBarLabel removeFromSuperview];
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)editButton:(id)sender
@@ -161,13 +166,15 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Touched Image");
-        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
-            viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
+    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+        if (gesture.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"Touched Image");
+            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+                viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
+            }
+            [self.navigationController pushViewController:viewPhotoControleller animated:YES];
         }
-        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
 

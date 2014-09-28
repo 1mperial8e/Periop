@@ -76,13 +76,20 @@
     } else {
         self.timeStamp.text = [self dateFormatter:[NSDate date]];
     }
+    [self.textViewNotes becomeFirstResponder];
+    [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions
@@ -124,6 +131,7 @@
     PEMediaSelect * view = array[0];
     view.frame = position;
     view.tag = 35;
+    [self.textViewNotes endEditing:YES];
     [self.view addSubview:view];
 }
 
@@ -149,6 +157,7 @@
 
 - (IBAction)tapOnView:(id)sender
 {
+    [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 

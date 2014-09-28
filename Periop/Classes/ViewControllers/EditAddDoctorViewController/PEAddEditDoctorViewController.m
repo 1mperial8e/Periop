@@ -112,6 +112,11 @@
     }
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture

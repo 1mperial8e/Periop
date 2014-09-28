@@ -45,7 +45,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 

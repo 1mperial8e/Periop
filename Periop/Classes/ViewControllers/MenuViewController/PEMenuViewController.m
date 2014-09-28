@@ -159,12 +159,14 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self createAnimationWithKey:@"hideMenuToMenuMySpecialisation"];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    [self createAnimationWithKey:@"hideMenuToMenuMoreSpecialisation"];
 }
 
 #pragma mark - Animation
@@ -218,6 +220,12 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToFeedback"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToFeedback"];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMoreSpecialisation"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"moreSpecButton" object:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMySpecialisation"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mySpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];

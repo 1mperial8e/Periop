@@ -75,6 +75,11 @@
     [self.navigationBarLabel removeFromSuperview];
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)saveButton:(id)sender
