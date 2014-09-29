@@ -104,10 +104,10 @@
 		ED9C69B719C720E80022C1A8 /* Cardiothoracic_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */; };
 		ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */; };
 		ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */; };
-		ED9C69BD19C720E80022C1A8 /* Colorectal_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */; };
-		ED9C69BF19C720E80022C1A8 /* Colorectal_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */; };
-		ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */; };
-		ED9C69C319C720E80022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */; };
+		ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */; };
+		ED9C69BF19C720E80022C1A8 /* Gastrointestina_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */; };
+		ED9C69C119C720E80022C1A8 /* Gastrointestina_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */; };
+		ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69C519C720E80022C1A8 /* Cosemetic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */; };
 		ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */; };
 		ED9C69C919C720E80022C1A8 /* Cosmetic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */; };
@@ -341,10 +341,10 @@
 		ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Small_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Small_Active@2x.png"; sourceTree = "<group>"; };
-		ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Small_Active@2x.png"; sourceTree = "<group>"; };
+		ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosemetic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Small_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
@@ -878,10 +878,10 @@
 				ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */,
 				ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */,
 				ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */,
-				ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */,
-				ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */,
-				ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */,
-				ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */,
+				ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */,
+				ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */,
+				ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */,
+				ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */,
 				ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */,
 				ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */,
 				ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */,
@@ -1469,7 +1469,7 @@
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
 				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
 				ED9C69DF19C720E80022C1A8 /* Gynaecology_Small_Active@2x.png in Resources */,
-				ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */,
+				ED9C69C119C720E80022C1A8 /* Gastrointestina_Small_Inactive@2x.png in Resources */,
 				EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */,
 				842C8DF319D57AE400D0DAC7 /* PECameraViewController.xib in Resources */,
 				ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */,
@@ -1497,7 +1497,7 @@
 				ED0D2FB419BA0762001F8411 /* PEAddEditDoctorViewController.xib in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
 				ED9C698519C720E80022C1A8 /* Edit_Info@2x.png in Resources */,
-				ED9C69BD19C720E80022C1A8 /* Colorectal_Large@2x.png in Resources */,
+				ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */,
 				ED9C699119C720E80022C1A8 /* Menu_Overlay@2x.png in Resources */,
 				EDC91ECA19B9BBC000212F24 /* PEAddEditNoteViewController.xib in Resources */,
 				ED9C696D19C720E80022C1A8 /* Bin_Icon@2x.png in Resources */,
@@ -1531,7 +1531,7 @@
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
 				ED0D2FAE19BA0367001F8411 /* PEDoctorsProfileTableViewCell.xib in Resources */,
 				EDCD585219B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib in Resources */,
-				ED9C69C319C720E80022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png in Resources */,
+				ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDCD57DB19B874DE00EC7AF1 /* PEMenuViewController.xib in Resources */,
 				ED9C69F919C720E80022C1A8 /* Orthopeadic_Small_Inactive@2x.png in Resources */,
 				ED9C69EB19C720E80022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png in Resources */,
@@ -1551,7 +1551,7 @@
 				EDC91ED019B9C33E00212F24 /* PEEquipmentViewController.xib in Resources */,
 				ED9C69B519C720E80022C1A8 /* Cardiothoracic_Large@2x.png in Resources */,
 				ED9C699719C720E80022C1A8 /* My_Specialisations_Active@2x.png in Resources */,
-				ED9C69BF19C720E80022C1A8 /* Colorectal_Small_Active@2x.png in Resources */,
+				ED9C69BF19C720E80022C1A8 /* Gastrointestina_Small_Active@2x.png in Resources */,
 				ED9C697B19C720E80022C1A8 /* Divider@2x.png in Resources */,
 				ED0D2FA819B9FDF8001F8411 /* PEDoctorProfileViewController.xib in Resources */,
 				EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */,

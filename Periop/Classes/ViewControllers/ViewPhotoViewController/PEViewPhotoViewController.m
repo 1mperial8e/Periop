@@ -10,6 +10,7 @@
 #import "PESpecialisationManager.h"
 #import "PECoreDatamanager.h"
 #import "PatientPostioning.h"
+#import "Note.h"
 
 @interface PEViewPhotoViewController ()
 
@@ -119,6 +120,11 @@
         } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEAddEditDoctorViewController"]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
                 self.specManager.currentDoctor.photo = nil;
+            }
+        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PENotesViewController"]) {
+            
+            if ([((Photo*)self.specManager.currentNote.photo).photoData isEqualToData:self.photoToShow.photoData]) {
+                self.specManager.currentNote.photo = nil;
             }
         }
 

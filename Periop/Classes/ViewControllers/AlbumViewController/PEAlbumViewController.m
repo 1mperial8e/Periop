@@ -125,6 +125,10 @@
                 [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
                 rewriteCounter++;
             }
+            NSError * error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+            }
         } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
             if ([self.specManager.currentEquipment.photo allObjects].count>0) {
                 [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
@@ -132,24 +136,44 @@
             newPhoto.equiomentTool = self.specManager.currentEquipment;
             newPhoto.photoNumber=@(0);
             [self.specManager.currentEquipment addPhotoObject:newPhoto];
+            NSError * error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Cant save chnages with photos toolsDetails DB - %@", error.localizedDescription);
+            }
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEPatientPositioningViewController"]) {
                 newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
                 newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
                 [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
+                NSError * error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
+                }
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"]) {
             newPhoto.doctor = self.specManager.currentDoctor;
             newPhoto.photoNumber = @(0);
             self.specManager.currentDoctor.photo = newPhoto;
+            NSError * error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
+            }
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"]) {
             newPhoto.photoNumber = @(0);
             self.specManager.photoObject = newPhoto;
+        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
+            newPhoto.photoNumber = @(0);
+            
+//            if (self.specManager.currentNote!=nil) {
+//               // newPhoto.note = self.specManager.currentNote;
+////                self.specManager.currentNote.photo = newPhoto;
+//            }
+            self.specManager.photoObject = newPhoto;
+            
         }
-#warning to implement save photo for notes and patient Postionning    
     }
-    NSError * error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save photo ot DB - %@", error.localizedDescription);
-    }
+//    NSError * error = nil;
+//    if (![self.managedObjectContext save:&error]) {
+//        NSLog(@"Cant save photo ot DB - %@", error.localizedDescription);
+//    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -157,11 +181,11 @@
 {
     if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
         return  4;
-    } else if([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"]) {
+    } else if([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
         return 0;
     } else {
         return 30;
-    }
+    }    
 }
 
 @end

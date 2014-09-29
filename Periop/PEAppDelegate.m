@@ -8,7 +8,6 @@
 
 #import "PEAppDelegate.h"
 #import "PESpecialisationViewController.h"
-#import "PEFeedbackViewController.h"
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"

@@ -2,18 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Colorectal</key>
+	<key>Gastrointestina</key>
 	<dict>
 		<key>specID</key>
 		<string>S10</string>
 		<key>photoName</key>
-		<string>Colorectal_Large</string>
+		<string>Gastrointestina_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Colorectal_Small_Active</string>
+		<string>Gastrointestina_Small_Active</string>
 		<key>inactiveButtonPhotoName</key>
-		<string>Colorectal_Small_Inactive</string>
+		<string>Gastrointestina_Small_Inactive</string>
 		<key>smallIconName</key>
-		<string>Colorectal_Specialisation_Icon_-_Small</string>
+		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
 	</dict>
 	<key>General</key>
 	<dict>
