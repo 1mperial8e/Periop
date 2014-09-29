@@ -10,6 +10,11 @@
 
 @implementation PEPreparationTableViewCell
 
-
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    self.labelStep.font = [UIFont fontWithName:@"MuseoSans-500" size:20.0f];
+    self.labelPreparationText.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
+}
 
 @end

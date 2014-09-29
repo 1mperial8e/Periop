@@ -12,15 +12,9 @@
 
 - (void)awakeFromNib
 {
-    self.labelStepName.font = [UIFont fontWithName:@"MuseoSans_700.otf" size:17.5f];
-    self.labelContent.font = [UIFont fontWithName:@"MuseoSans-300.otf" size:13.5f];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [super awakeFromNib];
+    self.labelStepName.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelContent.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "Doctors.h"
 #import "Note.h"
 #import "PEAlbumViewController.h"
+#import "PECameraViewController.h"
 
 @interface PEAddEditNoteViewController ()
 
@@ -164,6 +165,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo ");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

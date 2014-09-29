@@ -21,6 +21,7 @@
 #import "PECoreDataManager.h"
 #import "PEViewPhotoViewController.h"
 #import "Doctors.h"
+#import "PECameraViewController.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -174,6 +175,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

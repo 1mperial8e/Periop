@@ -18,6 +18,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "PECoreDataManager.h"
 #import "Photo.h"
 #import "PEViewPhotoViewController.h"
+#import "PECameraViewController.h"
 
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
@@ -191,6 +192,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

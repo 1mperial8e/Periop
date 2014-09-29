@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PEPreparationTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *labelStep;
 @property (weak, nonatomic) IBOutlet UILabel *labelPreparationText;
 

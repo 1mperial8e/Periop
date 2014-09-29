@@ -18,6 +18,7 @@
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PEViewPhotoViewController.h"
+#import "PECameraViewController.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
 
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *labelSteps;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -40,8 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.specManager = [PESpecialisationManager sharedManager];
+    
+    self.labelSteps.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -221,6 +224,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

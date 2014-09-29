@@ -18,6 +18,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PEViewPhotoViewController.h"
 #import "Steps.h"
+#import "PECameraViewController.h"
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate>
 
@@ -130,6 +131,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender
