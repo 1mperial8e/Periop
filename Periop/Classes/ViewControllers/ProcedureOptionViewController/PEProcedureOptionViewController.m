@@ -88,7 +88,7 @@
 #pragma mark - Equipment Rounded Button
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+{   
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.equipmentButton];
@@ -101,6 +101,19 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    touches = [event touchesForView:self.equipmentButton];
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.equipmentButton];
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
+    if (distance < self.equipmentButton.frame.size.width/2) {
+        [self.equipmentButton setHighlighted:NO];
+        [self performSelector:@selector(goToEquipmentViewController)];
+    }
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];

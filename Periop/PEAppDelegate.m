@@ -14,8 +14,13 @@
 #import "PEAboutUsViewController.h"
 #import "PESpecialisationViewController.h"
 #import "PECameraRollManager.h"
-
 #import  "PEPurchaseManager.h"
+
+@interface PEAppDelegate() 
+
+@property (strong, nonatomic) UITabBarController * tabBarController;
+
+@end
 
 @implementation PEAppDelegate
 
@@ -29,9 +34,6 @@
     PESpecialisationViewController * specializationController = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
     UINavigationController * specializationNavController = [self navControllerWithRootViewController:specializationController];
     
-    PEFeedbackViewController *feedbackController = [[PEFeedbackViewController alloc] initWithNibName:@"PEFeedbackViewController" bundle:nil];
-    UINavigationController * feedbackNavController = [self navControllerWithRootViewController:feedbackController];
-    
     PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
     UINavigationController * termsNavController = [self navControllerWithRootViewController:termsController];
     
@@ -42,7 +44,7 @@
     UINavigationController *aboutUsNavController = [self navControllerWithRootViewController:aboutUsController];
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
-    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController];
+    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController];
     tabController.tabBar.hidden = YES;
 
     self.window.rootViewController = tabController;
