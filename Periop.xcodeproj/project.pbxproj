@@ -146,6 +146,8 @@
 		EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFF119BAE5EA002A70E8 /* PEAboutUsViewController.xib */; };
 		EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFF619BAE853002A70E8 /* PETermsAndConditionViewController.m */; };
 		EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFF719BAE853002A70E8 /* PETermsAndConditionViewController.xib */; };
+		EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */; };
+		EDBCF12D19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */; };
 		EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */; };
 		EDC91EC419B9B17F00212F24 /* PENotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */; };
 		EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC719B9BBC000212F24 /* PEAddEditNoteViewController.m */; };
@@ -177,8 +179,6 @@
 		EDCD583E19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD583C19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib */; };
 		EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD584719B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m */; };
 		EDCD584A19B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */; };
-		EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */; };
-		EDCD585219B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */; };
 		EDCD585719B8C8B500EC7AF1 /* PENotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */; };
 		EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */; };
 		EDD0244119D0B77B0023F46D /* Procedure.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0244019D0B77B0023F46D /* Procedure.m */; };
@@ -386,6 +386,10 @@
 		EDA7DFF519BAE853002A70E8 /* PETermsAndConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETermsAndConditionViewController.h; sourceTree = "<group>"; };
 		EDA7DFF619BAE853002A70E8 /* PETermsAndConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETermsAndConditionViewController.m; sourceTree = "<group>"; };
 		EDA7DFF719BAE853002A70E8 /* PETermsAndConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETermsAndConditionViewController.xib; sourceTree = "<group>"; };
+		EDBCF12919D983BB0054C464 /* PEPatientPositioningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPatientPositioningTableViewCell.h; sourceTree = "<group>"; };
+		EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPatientPositioningTableViewCell.m; sourceTree = "<group>"; };
+		EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPatientPositioningTableViewCell.xib; sourceTree = "<group>"; };
+		EDBCF13019D986CF0054C464 /* MuseoSans_700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_700.otf; sourceTree = "<group>"; };
 		EDC91EC019B9B17E00212F24 /* PENotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesTableViewCell.h; sourceTree = "<group>"; };
 		EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesTableViewCell.m; sourceTree = "<group>"; };
 		EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesTableViewCell.xib; sourceTree = "<group>"; };
@@ -433,9 +437,6 @@
 		EDCD584619B8C1ED00EC7AF1 /* PEPatientPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPatientPositioningViewController.h; sourceTree = "<group>"; };
 		EDCD584719B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPatientPositioningViewController.m; sourceTree = "<group>"; };
 		EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPatientPositioningViewController.xib; sourceTree = "<group>"; };
-		EDCD584C19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPatientPostioningPreviewCollectionView.h; path = PatientPostioningPreviewCell/PEPatientPostioningPreviewCollectionView.h; sourceTree = "<group>"; };
-		EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEPatientPostioningPreviewCollectionView.m; path = PatientPostioningPreviewCell/PEPatientPostioningPreviewCollectionView.m; sourceTree = "<group>"; };
-		EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientPostioningPreviewCell.xib; sourceTree = "<group>"; };
 		EDCD585419B8C8B500EC7AF1 /* PENotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesViewController.h; sourceTree = "<group>"; };
 		EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesViewController.m; sourceTree = "<group>"; };
 		EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesViewController.xib; sourceTree = "<group>"; };
@@ -686,6 +687,7 @@
 		84D65BE419D03CD0001C6E5C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				EDBCF13019D986CF0054C464 /* MuseoSans_700.otf */,
 				84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */,
 				84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */,
 				8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */,
@@ -948,6 +950,16 @@
 			path = TermsAndConditionViewController;
 			sourceTree = "<group>";
 		};
+		EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCF12919D983BB0054C464 /* PEPatientPositioningTableViewCell.h */,
+				EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */,
+				EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */,
+			);
+			path = PEPatientPositioningTableViewCell;
+			sourceTree = "<group>";
+		};
 		EDC91EBF19B9B16A00212F24 /* NotesTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,6 +1128,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
 				EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */,
 				842BF2B019CC57EB00AFCA42 /* AlbumCell */,
 				EDDDEF7319CAE14E007BEDE4 /* PreparationTableViewCell */,
@@ -1124,7 +1137,6 @@
 				ED0D2FA919BA033E001F8411 /* PEDoctorsProfileTableViewCell */,
 				EDC91ED119B9C9DD00212F24 /* EquipmentCategoryCell */,
 				EDC91EBF19B9B16A00212F24 /* NotesTableViewCell */,
-				EDCD584B19B8C54000EC7AF1 /* PatientPostioningPreviewCell */,
 				EDCD583F19B8B86B00EC7AF1 /* OperationRoomCell */,
 				EDCD57E319B8818200EC7AF1 /* SpecialisationCells */,
 			);
@@ -1189,16 +1201,6 @@
 				EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */,
 			);
 			path = PatientPositioningViewController;
-			sourceTree = "<group>";
-		};
-		EDCD584B19B8C54000EC7AF1 /* PatientPostioningPreviewCell */ = {
-			isa = PBXGroup;
-			children = (
-				EDCD584C19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.h */,
-				EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */,
-				EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */,
-			);
-			path = PatientPostioningPreviewCell;
 			sourceTree = "<group>";
 		};
 		EDCD585319B8C89100EC7AF1 /* NotesViewController */ = {
@@ -1530,7 +1532,6 @@
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
 				ED0D2FAE19BA0367001F8411 /* PEDoctorsProfileTableViewCell.xib in Resources */,
-				EDCD585219B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib in Resources */,
 				ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDCD57DB19B874DE00EC7AF1 /* PEMenuViewController.xib in Resources */,
 				ED9C69F919C720E80022C1A8 /* Orthopeadic_Small_Inactive@2x.png in Resources */,
@@ -1547,6 +1548,7 @@
 				ED9C699519C720E80022C1A8 /* More_Specialisations_Inactive@2x.png in Resources */,
 				ED9C696119C720E70022C1A8 /* Add@2x.png in Resources */,
 				ED9C69DD19C720E80022C1A8 /* Gynaecology_Large@2x.png in Resources */,
+				EDBCF12D19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib in Resources */,
 				ED9C696519C720E80022C1A8 /* Add_Photo_to_Note_Button@2x.png in Resources */,
 				EDC91ED019B9C33E00212F24 /* PEEquipmentViewController.xib in Resources */,
 				ED9C69B519C720E80022C1A8 /* Cardiothoracic_Large@2x.png in Resources */,
@@ -1585,6 +1587,7 @@
 				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
+				EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
 				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
@@ -1598,7 +1601,6 @@
 				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
-				EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */,
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
