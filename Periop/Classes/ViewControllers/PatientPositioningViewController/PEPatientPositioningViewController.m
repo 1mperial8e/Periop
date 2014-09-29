@@ -151,7 +151,7 @@
 {
     PEPatientPositioningTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[PEPatientPositioningTableViewCell alloc] init];
+        cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"patientPositioningStepsCell"];
     }
     
     [self configureCell:cell atIndexPath:indexPath];

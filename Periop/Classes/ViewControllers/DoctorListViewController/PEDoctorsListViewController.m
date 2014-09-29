@@ -15,10 +15,11 @@
 #import "PECoreDataManager.h"
 #import "Doctors.h"
 
-@interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate>
+@interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate, UISearchDisplayDelegate>
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property (strong, nonatomic) UIBarButtonItem * navigationBarAddBarButton;
 @property (strong, nonatomic) UIBarButtonItem * navigationBarMenuButton;
@@ -27,6 +28,8 @@
 @property (strong, nonatomic) NSMutableArray * arrayWithAllDocators;
 @property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSArray *searchResult;
+@property (assign, nonatomic) BOOL isSearchTable;
 
 @end
 
@@ -38,6 +41,7 @@
 {
     [super viewDidLoad];
     
+    self.isSearchTable = NO;
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
@@ -65,7 +69,6 @@
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    self.searchBar.tintColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -91,18 +94,40 @@
     [self.labelToShowOnNavigationBar removeFromSuperview];
 }
 
+#pragma mark - Search & UISearchDisplayDelegate
+
+- (void)searchedResult: (NSString*)searchText scope:(NSArray*)scope
+{
+    NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+        self.searchResult = [self.arrayWithAllDocators filteredArrayUsingPredicate:resultPredicat];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self searchedResult:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    return YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+    [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayWithAllDocators.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.searchResult.count;
+    } else {
+        return self.arrayWithAllDocators.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorsViewTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsCell" forIndexPath:indexPath];
+    PEDoctorsViewTableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"doctorsCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[PEDoctorsViewTableViewCell alloc] init];
+        cell = [[PEDoctorsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"doctorsCell"];
     }
     
     if ( indexPath.row % 2){
@@ -113,12 +138,25 @@
         cell.doctorNameLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
     }
     cell.delegate = self;
-    if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
-        [cell setCellSwiped];
-    }
     
-    cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDocators[indexPath.row])).name;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        self.isSearchTable = YES;
+        cell.doctorNameLabel.text = ((Doctors*)self.searchResult[indexPath.row]).name;
+    } else {
+        self.isSearchTable = NO;
+        if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
+            [cell setCellSwiped];
+        }
+        cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDocators[indexPath.row])).name;
+    }
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 46;
 }
 
 #pragma mark - IBActions
@@ -147,34 +185,49 @@
 
 - (void)cellDidSwipedOut:(UITableViewCell *)cell
 {
-    NSIndexPath * currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
-    [self.currentlySwipedAndOpenesCells addObject:currentOpenedCellIndexPath];
+    if (!self.isSearchTable) {
+        NSIndexPath * currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
+        [self.currentlySwipedAndOpenesCells addObject:currentOpenedCellIndexPath];
+    }
 }
 
 - (void)cellDidSwipedIn:(UITableViewCell *)cell
 {
-    [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
+    if (!self.isSearchTable)  {
+        [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
+    }
 }
 
 - (void)buttonDeleteAction:(UITableViewCell*)cell
 {
-    NSLog(@"delete action");
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    [self.managedObjectContext deleteObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
+    
+    if (self.isSearchTable)  {
+        [self.managedObjectContext deleteObject:((Doctors*)self.searchResult[indexPath.row])];
+        [self initWithData];
+        [self.tableView reloadData];
+        [self.searchDisplayController.searchResultsTableView reloadData];
+        self.searchBar.text = self.searchBar.text;
+    } else {
+        NSLog(@"delete action");
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+        [self.managedObjectContext deleteObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
+        [self.currentlySwipedAndOpenesCells removeObject:indexPath];
+        [self.arrayWithAllDocators removeObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
+        [self.tableView reloadData];
+    }
+    
     NSError * deleteError = nil;
     if (![self.managedObjectContext save:&deleteError]) {
         NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
     }
-    [self.currentlySwipedAndOpenesCells removeObject:indexPath];
-    [self.arrayWithAllDocators removeObject:(Doctors*)(self.arrayWithAllDocators[indexPath.row])];
-    [self.tableView reloadData];
 }
 
-#pragma mark - Private 
+#pragma mark - Private
 
 - (void) initWithData
 {
-    PEObjectDescription * objectToSearch = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext      withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
+    PEObjectDescription * objectToSearch = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
     
     if (self.specManager.currentProcedure.name!=nil) {
         NSArray * allDoctorsArray = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
@@ -200,7 +253,7 @@
             NSString * name2 = [(Doctors*)obj2 name];
             return [name1 compare:name2];
         }];
-        self.arrayWithAllDocators= [sorted mutableCopy];
+        self.arrayWithAllDocators = [sorted mutableCopy];
     }
 }
 

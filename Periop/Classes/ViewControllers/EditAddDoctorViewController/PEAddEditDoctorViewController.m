@@ -148,7 +148,7 @@
         }
         self.specManager.currentDoctor.name = self.nameTextField.text;
         self.specManager.currentDoctor.createdDate = [NSDate date];
-        if (self.imageView.image) {
+        if (self.imageView.image && self.specManager.photoObject!=nil) {
             self.specManager.currentDoctor.photo = self.specManager.photoObject;
         }
         
