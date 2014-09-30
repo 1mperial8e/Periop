@@ -1196,6 +1196,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EDD9588E19DACA50002D3D39 /* OperationTableViewCell */,
 				84AF77B319DAEBBA009F2B98 /* TutorialCell */,
 				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
 				EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */,
