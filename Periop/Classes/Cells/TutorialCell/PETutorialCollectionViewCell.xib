@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TutorialCell" id="4QZ-DT-Iia" customClass="PETutorialCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-04-I9g">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="ooM-04-I9g" firstAttribute="top" secondItem="4QZ-DT-Iia" secondAttribute="top" id="85n-Te-M6m"/>
+                <constraint firstAttribute="trailing" secondItem="ooM-04-I9g" secondAttribute="trailing" id="9am-te-UgX"/>
+                <constraint firstItem="ooM-04-I9g" firstAttribute="leading" secondItem="4QZ-DT-Iia" secondAttribute="leading" id="CUq-HZ-4Yh"/>
+                <constraint firstAttribute="bottom" secondItem="ooM-04-I9g" secondAttribute="bottom" id="G6s-V1-q7G"/>
+            </constraints>
+            <size key="customSize" width="81" height="86"/>
+            <connections>
+                <outlet property="tutorialImageView" destination="ooM-04-I9g" id="CCb-m8-h3q"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

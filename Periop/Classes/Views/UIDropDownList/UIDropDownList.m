@@ -214,11 +214,9 @@ static CGFloat const DLAnimationDuration = 0.15f;
             if (self.isOpened) {
                 self.isOpened = NO;
                 [self closeList];
-                return;
             } else {
                 self.isOpened = YES;
                 [self openList];
-                return;
             }
         }
     }
