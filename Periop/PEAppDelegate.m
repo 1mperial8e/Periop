@@ -25,7 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [PEPurchaseManager saveDefaultsToUserDefault:@"generalProductsIdentifier"];
     [PEPurchaseManager sharedManager];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;

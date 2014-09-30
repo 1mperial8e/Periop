@@ -16,12 +16,15 @@
 #import "PESpecialisationManager.h"
 #import "PEObjectDescription.h"
 #import "PETutorialViewController.h"
+#import "PEPurchaseManager.h"
+#import <StoreKit/StoreKit.h>
 
-static NSString * const pListName = @"SpecialisationPicsAndCode";
+static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
-@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
+@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 @property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
@@ -30,8 +33,11 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * specialisationsArray;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSMutableDictionary * moreSpecialisationSpecs;
+@property (strong, nonatomic) NSMutableDictionary *moreSpecialisationSpecs;
+@property (strong, nonatomic) NSMutableDictionary *identifiers;
 @property (assign, nonatomic) BOOL isMyspecializations;
+@property (copy, nonatomic) NSString *selectedSpecToReset;
+@property (strong, nonatomic) PEPurchaseManager *purchaseManager;
 
 //@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
 
@@ -44,6 +50,8 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.purchaseManager = [PEPurchaseManager sharedManager];
     
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     if (![def integerForKey:TVCShowTutorial]) {
@@ -59,7 +67,6 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
-    
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -84,39 +91,6 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 
     [self initWithData];
-    
-    /*
-    //remove
-    //1.create required entity
-    Entity * obj;
-    //2. create object description
-    PEObjectDescription * objectToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Entity" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:@"hello24" ];
-    //3. call to method
-    [PECoreDataManager removeFromDB:objectToDelete withManagedObject:obj];
-    
-    //search all
-    //1. create object description
-    PEObjectDescription * searchObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Entity" withSortDescriptorKey:@"name"];
-    //2. call to method with returned array
-    NSArray * result2 = [PECoreDataManager getAllEntities:searchObject];
-    //3. do some cool stuff with result
-    for (Entity * item in result2){
-        NSLog(@"Item is - %@", item.name);
-        NSLog(@"Internal entity q-ty- %i", item.someEntity.count);
-    }
-    
-    Entity * obj1;
-    //2. create object description
-    PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Entity" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:@"TODelete" ];
-    //3. call to method
-    [PECoreDataManager removeFromDB:objToDelete withManagedObject:obj1];
-    */
-    
-//    Specialisation * spec;
-//    PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:@"General"];
-//    [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
-//    [self.collectionView reloadData];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -174,6 +148,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
     [self allSpecs];
+    [self allIdentifiers];
     [self.collectionView reloadData];
 }
 
@@ -186,7 +161,30 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
-        NSLog(@"Selected specs - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName);
+        NSLog(@"Selected specs - %@, identifier - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName,((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier);
+        
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
+            NSString * message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
+            self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Redownload" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            [alerView show];
+        } else {
+            [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
+                if (success) {
+                    NSString * requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
+                    for (SKProduct * product in products) {
+                        if ([product.productIdentifier isEqualToString:requestedProductIdentifier]) {
+                            [self.purchaseManager buyProduct:product];
+                            if ([self.purchaseManager productPurchased:product.productIdentifier]) {
+                                NSLog(@"start to update DB with new spec...");
+                                //to download new specs
+                            }
+                        }
+                    }
+                }
+            }];
+        }
     }
 }
 
@@ -218,9 +216,36 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
             }];
             cell.specialisationIconImageView.image = [UIImage imageNamed:[self.moreSpecialisationSpecs valueForKey:all[indexPath.row]]];
             cell.specName = all[indexPath.row];
+            cell.productIdentifier = [self.identifiers valueForKey:all[indexPath.row]];;
         }
     }
     return cell;
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0) {
+        NSLog(@"canceled");
+    } else {
+        if (self.selectedSpecToReset!=nil) {
+            NSLog(@"Finding and remove selected spec...");
+            Specialisation * spec;
+            PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:self.selectedSpecToReset];
+            [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
+            
+            NSLog(@"Parsing selected spec and update DB...");
+            PECsvParser * parser = [[PECsvParser alloc] init];
+            NSString * toolsString = [NSString stringWithFormat:@"%@_Tools", self.selectedSpecToReset];
+            [parser parseCsv:self.selectedSpecToReset withCsvToolsFileName:toolsString];
+            self.selectedSpecToReset = nil;
+            [self initWithData];
+            [self.collectionView reloadData];
+            
+            NSLog(@"Done successfuly!");
+        }
+    }
 }
 
 #pragma mark - Private
@@ -233,13 +258,11 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         PECsvParser * parser = [[PECsvParser alloc] init];
         [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
         
-        
 //        PEPlistParser * parser = [[PEPlistParser alloc] init];
 //        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
 //        }];
 //        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
 //        }];
-        
         
         self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
         [self.collectionView reloadData];
@@ -248,7 +271,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 
 - (void) allSpecs
 {
-    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:pListName ofType:@"plist" ]];
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     NSArray * arrKeys = [pList allKeys];
     NSMutableArray * arrayWithAllSpecsPhoto = [[NSMutableArray alloc] init];
     for (int i=0; i<arrKeys.count; i++) {
@@ -258,6 +281,21 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     self.moreSpecialisationSpecs = [[NSMutableDictionary alloc] init];
     for (int i=0; i<arrKeys.count; i++) {
         [self.moreSpecialisationSpecs setValue:arrayWithAllSpecsPhoto[i] forKey:arrKeys[i]];
+    }
+}
+
+- (void) allIdentifiers
+{
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    NSArray * arrKeys = [pList allKeys];
+    NSMutableArray * arrayWithAllIdentifiers = [[NSMutableArray alloc] init];
+    for (int i=0; i<arrKeys.count; i++) {
+        NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+        [arrayWithAllIdentifiers addObject:[dic valueForKey:@"productIdentifier"]];
+    }
+    self.identifiers = [[NSMutableDictionary alloc] init];
+    for (int i=0; i<arrKeys.count; i++) {
+        [self.identifiers setValue:arrayWithAllIdentifiers[i] forKey:arrKeys[i]];
     }
 }
 

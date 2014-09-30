@@ -14,6 +14,8 @@
 		<string>Gastrointestina_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>General</key>
 	<dict>
@@ -27,6 +29,8 @@
 		<string>General_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>General_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>generalProductsIdentifier</string>
 	</dict>
 	<key>Cosmetic</key>
 	<dict>
@@ -40,6 +44,8 @@
 		<string>Cosmetic_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>osmetic_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Plastic</key>
 	<dict>
@@ -53,6 +59,8 @@
 		<string>Plastic_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Plastic_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Orthopeadic</key>
 	<dict>
@@ -66,6 +74,8 @@
 		<string>Orthopeadic_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Orthopeadic_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Cardiothoracic</key>
 	<dict>
@@ -79,6 +89,8 @@
 		<string>Cardiothoracic_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Cardiothoracic_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Opthalmology</key>
 	<dict>
@@ -92,6 +104,8 @@
 		<string>Opthalmology_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Opthalmology_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Obstetric</key>
 	<dict>
@@ -105,6 +119,8 @@
 		<string>Obstetric_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Obstetric_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>Gyneacology</key>
 	<dict>
@@ -118,6 +134,8 @@
 		<string>Gyneacology_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>Gyneacology_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 	<key>ENT</key>
 	<dict>
@@ -131,6 +149,8 @@
 		<string>ENT_Small_Inactive</string>
 		<key>smallIconName</key>
 		<string>ENT_Specialisation_Icon_-_Small</string>
+		<key>productIdentifier</key>
+		<string>toChange</string>
 	</dict>
 </dict>
 </plist>

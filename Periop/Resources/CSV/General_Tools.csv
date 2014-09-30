@@ -318,7 +318,7 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Equipment;Specimen container;small-formalin;1;S0906T1105
 ;;Equipment;Specimen bag;;1;S0906T1106
 ;;Prosthesis;;;;
-S0907; Mastectomy Simple;Gloves;Latex ;8,5;2;
+S0907;Mastectomy Simple;Gloves;Latex;8,5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0907T0201
 ;;Drapes;Major Pack;;1;S0907T0301
 ;;Drapes;Gowns ;Large;2;S0907T0302

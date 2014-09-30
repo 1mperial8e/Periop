@@ -24,4 +24,6 @@ typedef void (^RequestProductCompletitionHandler)(BOOL success, NSArray* product
 //restoring already purchased products
 - (void)restoreCompleteTransactions;
 
+- (void) provideContentForProductIdentifier: (NSString*)productIdentifier;
+
 @end

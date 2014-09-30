@@ -14,10 +14,15 @@
     static id sharedManager = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        NSSet * productsIdentifiers = [NSSet setWithObjects:@"identifier1", @"identifier2", @"identifier3", nil];
+        NSSet * productsIdentifiers = [NSSet setWithObjects:@"generalProductsIdentifier", @"identifier1", @"identifier2", nil];
         sharedManager = [[PEPurchaseManager alloc] initWithProductsIdentifieer:productsIdentifiers];
     });
     return sharedManager;
+}
+
++ (void) saveDefaultsToUserDefault: (NSString*)productIdentifier{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

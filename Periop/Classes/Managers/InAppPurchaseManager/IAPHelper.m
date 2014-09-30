@@ -90,7 +90,6 @@ NSString * const  IAPHelperProductPurchasedNotification = @"IAHelperProductPurch
     {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:{
-                //do something if purchasing successfull
                 [self completeTransaction:transaction];
                 break;
             }
