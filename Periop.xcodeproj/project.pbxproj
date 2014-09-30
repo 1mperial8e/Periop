@@ -1739,7 +1739,7 @@
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1755,7 +1755,7 @@
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

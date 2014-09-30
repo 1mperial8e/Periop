@@ -135,7 +135,6 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 				UIImage *image = [[UIImage alloc] initWithData:imageData];
                 image = [image fixOrientation];
-                [self performSegueWithIdentifier:@"goToAddTextFromCamera" sender:self];
 			}
             [self.takePhotoButton setEnabled:YES];
 		}];
