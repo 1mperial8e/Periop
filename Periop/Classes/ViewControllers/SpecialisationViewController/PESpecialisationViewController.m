@@ -15,6 +15,7 @@
 #import "PEPlistParser.h"
 #import "PESpecialisationManager.h"
 #import "PEObjectDescription.h"
+#import "PETutorialViewController.h"
 
 static NSString * const pListName = @"SpecialisationPicsAndCode";
 
@@ -43,6 +44,14 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    if (![def integerForKey:TVCShowTutorial]) {
+        PETutorialViewController *tutorialController = [[PETutorialViewController alloc] initWithNibName:@"PETutorialViewController" bundle:nil];
+        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [rootController presentViewController:tutorialController animated:NO completion:nil];
+    }
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];

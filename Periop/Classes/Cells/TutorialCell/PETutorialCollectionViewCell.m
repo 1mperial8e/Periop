@@ -6,15 +6,10 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import "PESpecialisationCollectionViewCell.h"
+#import "PETutorialCollectionViewCell.h"
 
-@implementation PESpecialisationCollectionViewCell
+@implementation PETutorialCollectionViewCell
 
 #pragma mark - Lifecycle
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
 
 @end

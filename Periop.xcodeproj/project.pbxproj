@@ -37,7 +37,19 @@
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
 		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
+		84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */; };
+		84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */; };
+		84AF77AD19DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */; };
+		84AF77AE19DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */; };
+		84AF77AF19DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */; };
+		84AF77B019DAEA77009F2B98 /* tutorialPage_2-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A819DAEA77009F2B98 /* tutorialPage_2-iphone5@2x.png */; };
+		84AF77B119DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A919DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png */; };
+		84AF77B219DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77AA19DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png */; };
+		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
+		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
+		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
+		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
 		ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2FA519B9FDF8001F8411 /* PEDoctorProfileViewController.m */; };
@@ -262,8 +274,22 @@
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
 		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
+		84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone4.png"; sourceTree = "<group>"; };
+		84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone5.png"; sourceTree = "<group>"; };
+		84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_1-iphone4@2x.png"; sourceTree = "<group>"; };
+		84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_1-iphone5@2x.png"; sourceTree = "<group>"; };
+		84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_2-iphone4@2x.png"; sourceTree = "<group>"; };
+		84AF77A819DAEA77009F2B98 /* tutorialPage_2-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_2-iphone5@2x.png"; sourceTree = "<group>"; };
+		84AF77A919DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_3-iphone4@2x.png"; sourceTree = "<group>"; };
+		84AF77AA19DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_3-iphone5@2x.png"; sourceTree = "<group>"; };
+		84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialCollectionViewCell.m; sourceTree = "<group>"; };
+		84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialCollectionViewCell.xib; sourceTree = "<group>"; };
+		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
+		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
+		84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialViewController.m; sourceTree = "<group>"; };
+		84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialViewController.xib; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
 		ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddNewToolViewController.m; sourceTree = "<group>"; };
 		ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddNewToolViewController.xib; sourceTree = "<group>"; };
@@ -684,6 +710,31 @@
 			path = CameraRollManager;
 			sourceTree = "<group>";
 		};
+		84AF77A219DAEA77009F2B98 /* TutorialScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */,
+				84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */,
+				84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */,
+				84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */,
+				84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */,
+				84AF77A819DAEA77009F2B98 /* tutorialPage_2-iphone5@2x.png */,
+				84AF77A919DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png */,
+				84AF77AA19DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png */,
+			);
+			path = TutorialScreen;
+			sourceTree = "<group>";
+		};
+		84AF77B319DAEBBA009F2B98 /* TutorialCell */ = {
+			isa = PBXGroup;
+			children = (
+				84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */,
+				84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */,
+				84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */,
+			);
+			path = TutorialCell;
+			sourceTree = "<group>";
+		};
 		84D65BE419D03CD0001C6E5C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +744,16 @@
 				8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		84FBDD0B19DAC2BC006C66DA /* TutorialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */,
+				84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */,
+				84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */,
+			);
+			path = TutorialViewController;
 			sourceTree = "<group>";
 		};
 		ED0D2F9D19B9F39B001F8411 /* AddNewToolViewController */ = {
@@ -816,6 +877,7 @@
 		ED9C68B919C720B20022C1A8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				84AF77A219DAEA77009F2B98 /* TutorialScreen */,
 				ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */,
 				ED9C690F19C720E70022C1A8 /* Assets - Surgical Specialties */,
 			);
@@ -1049,6 +1111,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84FBDD0B19DAC2BC006C66DA /* TutorialViewController */,
 				842C8DEE19D57AC600D0DAC7 /* CameraViewController */,
 				ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */,
 				842BF2AA19CC566700AFCA42 /* AlbumViewController */,
@@ -1128,6 +1191,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				84AF77B319DAEBBA009F2B98 /* TutorialCell */,
 				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
 				EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */,
 				842BF2B019CC57EB00AFCA42 /* AlbumCell */,
@@ -1440,6 +1504,7 @@
 				ED9C696B19C720E80022C1A8 /* Background@2x.png in Resources */,
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
 				ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */,
+				84AF77B019DAEA77009F2B98 /* tutorialPage_2-iphone5@2x.png in Resources */,
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */,
 				EDD4BDE619D29E520087D8CE /* Cardiothoracic.plist in Resources */,
@@ -1466,6 +1531,7 @@
 				ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */,
 				ED9C699B19C720E80022C1A8 /* Notes_Tab_Active@2x.png in Resources */,
 				ED9C69C919C720E80022C1A8 /* Cosmetic_Small_Inactive@2x.png in Resources */,
+				84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */,
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
 				EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */,
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
@@ -1479,6 +1545,8 @@
 				EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */,
 				ED9C69E119C720E80022C1A8 /* Gynaecology_Small_Inactive@2x.png in Resources */,
 				EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */,
+				84AF77AE19DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png in Resources */,
+				84AF77B219DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png in Resources */,
 				ED9C69D719C720E80022C1A8 /* General_Small_Active@2x.png in Resources */,
 				ED9C698B19C720E80022C1A8 /* Header@2x.png in Resources */,
 				ED9C69F519C720E80022C1A8 /* Orthopaedic_Large@2x.png in Resources */,
@@ -1498,6 +1566,7 @@
 				ED9C69FF19C720E80022C1A8 /* Plastic_Small_Active@2x.png in Resources */,
 				ED0D2FB419BA0762001F8411 /* PEAddEditDoctorViewController.xib in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
+				84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5.png in Resources */,
 				ED9C698519C720E80022C1A8 /* Edit_Info@2x.png in Resources */,
 				ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */,
 				ED9C699119C720E80022C1A8 /* Menu_Overlay@2x.png in Resources */,
@@ -1509,6 +1578,7 @@
 				ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */,
 				ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */,
 				ED9C69EF19C720E80022C1A8 /* Opthomology_Small_Active@2x.png in Resources */,
+				84AF77AF19DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png in Resources */,
 				ED9C69CD19C720E80022C1A8 /* ENT_Large@2x.png in Resources */,
 				ED9C698119C720E80022C1A8 /* Doctors_Tab_Inactive@2x.png in Resources */,
 				EDCD583219B8ABF700EC7AF1 /* PEProcedureOptionViewController.xib in Resources */,
@@ -1540,7 +1610,9 @@
 				ED9C69CB19C720E80022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png in Resources */,
 				8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */,
 				EDC91ED619B9C9F700212F24 /* PEEquipmentCategoryTableViewCell.xib in Resources */,
+				84AF77B119DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png in Resources */,
 				ED0D2FC019BA0F2F001F8411 /* CollectionViewCellItemCell.xib in Resources */,
+				84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */,
 				ED9C69AD19C720E80022C1A8 /* Search_Bar@2x.png in Resources */,
 				ED9C696319C720E70022C1A8 /* Add_Photo_Small@2x.png in Resources */,
 				8474907A19B8459E0013C446 /* Images.xcassets in Resources */,
@@ -1556,9 +1628,11 @@
 				ED9C69BF19C720E80022C1A8 /* Gastrointestina_Small_Active@2x.png in Resources */,
 				ED9C697B19C720E80022C1A8 /* Divider@2x.png in Resources */,
 				ED0D2FA819B9FDF8001F8411 /* PEDoctorProfileViewController.xib in Resources */,
+				84AF77AD19DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png in Resources */,
 				EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */,
 				ED9C69D119C720E80022C1A8 /* ENT_Small_Inactive@2x.png in Resources */,
 				ED9C69E719C720E80022C1A8 /* Obstetric_Small_Active@2x.png in Resources */,
+				84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */,
 				ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDCD584A19B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib in Resources */,
 				ED9C69D919C720E80022C1A8 /* General_Small_Inactive@2x.png in Resources */,
@@ -1600,6 +1674,7 @@
 				EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */,
 				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
+				84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
@@ -1611,6 +1686,7 @@
 				EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */,
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
+				84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */,
 				842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */,
 				842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */,
 				ED18513619D01CE70021E1EB /* Photo.m in Sources */,
