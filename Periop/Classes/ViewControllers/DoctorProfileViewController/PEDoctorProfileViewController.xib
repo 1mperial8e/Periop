@@ -9,6 +9,8 @@
                 <outlet property="collectionView" destination="YIM-zE-PPM" id="daI-BZ-AWI"/>
                 <outlet property="doctorName" destination="D0H-Kj-kVe" id="97a-fh-Fyg"/>
                 <outlet property="doctorPhotoImageView" destination="qbo-4Q-cnG" id="ANu-u4-qYO"/>
+                <outlet property="notesButton" destination="ZJt-I0-NxL" id="Ptl-1B-laN"/>
+                <outlet property="specsButton" destination="W7i-sg-dFg" id="eFA-bI-fvA"/>
                 <outlet property="tableView" destination="oQV-6s-ZsM" id="u2Z-Lf-Upd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,29 +21,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qbo-4Q-cnG">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="250" id="hMZ-jS-jwt"/>
+                        <constraint firstAttribute="height" constant="237" id="iTR-8I-yqm"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Doctor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe">
-                    <rect key="frame" x="20" y="134" width="280" height="36"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Kj-kVe" userLabel="Label - Name of Docor">
+                    <rect key="frame" x="15" y="151" width="290" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="aMI-N6-Y3x"/>
+                        <constraint firstAttribute="height" constant="25" id="spG-sN-F9L"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="35"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-00-ENp">
-                    <rect key="frame" x="272" y="0.0" width="48" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-00-ENp" userLabel="Button - Take photo">
+                    <rect key="frame" x="278" y="15" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="5xi-te-vGC"/>
-                        <constraint firstAttribute="width" constant="48" id="fwA-NX-UCZ"/>
+                        <constraint firstAttribute="height" constant="32" id="4oa-Gl-Bnh"/>
+                        <constraint firstAttribute="width" constant="32" id="Rhk-as-bUh"/>
                     </constraints>
                     <state key="normal" image="Upload_Photo_Button_2.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,24 +52,24 @@
                         <action selector="photoButtons:" destination="-1" eventType="touchUpInside" id="wBS-39-IKh"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c97-2Y-Yg8">
-                    <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c97-2Y-Yg8" userLabel="View - buttons holder">
+                    <rect key="frame" x="0.0" y="530" width="320" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJt-I0-NxL">
-                            <rect key="frame" x="160" y="0.0" width="160" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJt-I0-NxL" userLabel="Button - Notes">
+                            <rect key="frame" x="160" y="0.0" width="160" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Notes">
+                            <state key="normal" image="Notes_Tab_Inactive.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="propertiesButtons:" destination="-1" eventType="touchUpInside" id="5QO-as-hPu"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7i-sg-dFg">
-                            <rect key="frame" x="-8" y="0.0" width="160" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7i-sg-dFg" userLabel="Button - Specs">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Specialisations">
+                            <state key="normal" image="Procedures_Tab_Active.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -77,24 +79,24 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Nz7-C8-1R8"/>
+                        <constraint firstAttribute="height" constant="38" id="eVo-V3-yDx"/>
                     </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oQV-6s-ZsM">
-                    <rect key="frame" x="0.0" y="258" width="320" height="272"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="36" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oQV-6s-ZsM" userLabel="TableView - procedures list">
+                    <rect key="frame" x="0.0" y="236" width="320" height="294"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YIM-zE-PPM">
-                    <rect key="frame" x="20" y="188" width="280" height="62"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YIM-zE-PPM" userLabel="Collection View - specs">
+                    <rect key="frame" x="15" y="184" width="290" height="42"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="62" id="e9k-i2-px3"/>
+                        <constraint firstAttribute="height" constant="42" id="Yau-20-gUa"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z9h-MS-Jb6">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="Z9h-MS-Jb6">
                         <size key="itemSize" width="42" height="42"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -105,31 +107,33 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="0Xv-ME-cyE"/>
-                <constraint firstItem="YIM-zE-PPM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="4xy-SN-SgS"/>
-                <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9J5-87-sGO"/>
-                <constraint firstAttribute="trailing" secondItem="YIM-zE-PPM" secondAttribute="trailing" constant="20" id="Aau-cC-ezN"/>
-                <constraint firstItem="qbo-4Q-cnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bsv-pe-jfq"/>
-                <constraint firstAttribute="bottom" secondItem="c97-2Y-Yg8" secondAttribute="bottom" id="DhJ-Oa-C1L"/>
-                <constraint firstAttribute="trailing" secondItem="oQV-6s-ZsM" secondAttribute="trailing" id="HMr-LZ-piG"/>
-                <constraint firstItem="oQV-6s-ZsM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="N4a-u5-2jy"/>
-                <constraint firstItem="YIM-zE-PPM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="18" id="OLC-Ny-Qf8"/>
-                <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="QhS-24-7vE"/>
-                <constraint firstAttribute="trailing" secondItem="qbo-4Q-cnG" secondAttribute="trailing" id="U3M-Uf-ZgL"/>
-                <constraint firstItem="Shd-00-ENp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XA6-i8-rH7"/>
-                <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" id="eMw-ZX-dA1"/>
-                <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" constant="8" id="mmd-vm-6bs"/>
-                <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nMK-ih-9bZ"/>
-                <constraint firstItem="D0H-Kj-kVe" firstAttribute="top" secondItem="Shd-00-ENp" secondAttribute="bottom" constant="86" id="owY-oa-jwf"/>
-                <constraint firstAttribute="trailing" secondItem="D0H-Kj-kVe" secondAttribute="trailing" constant="20" id="uDI-ds-MIW"/>
-                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="YIM-zE-PPM" secondAttribute="bottom" constant="8" id="xFq-25-4SX"/>
+                <constraint firstItem="D0H-Kj-kVe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="151" id="0td-Rx-hvP"/>
+                <constraint firstAttribute="trailing" secondItem="qbo-4Q-cnG" secondAttribute="trailing" id="6I1-2H-oTd"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="top" secondItem="oQV-6s-ZsM" secondAttribute="bottom" id="6aU-gp-3rF"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7px-3J-tSP"/>
+                <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D4J-mK-8nh"/>
+                <constraint firstItem="Shd-00-ENp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="FmJ-OG-Gmm"/>
+                <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="M5j-Me-RqD"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ns1-bh-jGS"/>
+                <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="YIM-zE-PPM" secondAttribute="bottom" constant="10" id="OD5-fs-bMz"/>
+                <constraint firstItem="YIM-zE-PPM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Rbo-7w-VKY"/>
+                <constraint firstAttribute="bottom" secondItem="c97-2Y-Yg8" secondAttribute="bottom" id="biI-JZ-erx"/>
+                <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bnj-No-QnN"/>
+                <constraint firstAttribute="trailing" secondItem="D0H-Kj-kVe" secondAttribute="trailing" constant="15" id="d1X-m1-ifW"/>
+                <constraint firstItem="YIM-zE-PPM" firstAttribute="top" secondItem="D0H-Kj-kVe" secondAttribute="bottom" constant="8" id="eHb-Jx-z7z"/>
+                <constraint firstAttribute="trailing" secondItem="YIM-zE-PPM" secondAttribute="trailing" constant="15" id="gdH-3y-Gla"/>
+                <constraint firstAttribute="trailing" secondItem="c97-2Y-Yg8" secondAttribute="trailing" id="jOj-db-pNY"/>
+                <constraint firstAttribute="trailing" secondItem="Shd-00-ENp" secondAttribute="trailing" constant="10" id="rDW-AC-GRP"/>
+                <constraint firstAttribute="trailing" secondItem="oQV-6s-ZsM" secondAttribute="trailing" id="tON-eq-3x5"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="Notes_Tab_Inactive.png" width="320" height="38"/>
         <image name="Place_Holder.png" width="320" height="238"/>
+        <image name="Procedures_Tab_Active.png" width="160" height="38"/>
         <image name="Upload_Photo_Button_2.png" width="30" height="30"/>
     </resources>
 </document>

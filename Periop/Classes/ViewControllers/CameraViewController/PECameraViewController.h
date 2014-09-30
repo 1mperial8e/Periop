@@ -8,4 +8,6 @@
 
 @interface PECameraViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithCurrentPhoto;
+
 @end

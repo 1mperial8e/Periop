@@ -10,6 +10,9 @@
 #import "AVCamPreviewView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+fixOrientation.h"
+#import "PESpecialisationManager.h"
+#import "PECoreDataManager.h"
+#import "Photo.h"
 
 static void *CapturingStillImageContext = &CapturingStillImageContext;
 static void *RecordingContext = &RecordingContext;
@@ -34,6 +37,9 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 @property (nonatomic) id runtimeErrorHandlingObserver;
 @property (nonatomic) AVCaptureFlashMode currentFlashMode;
 
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation PECameraViewController
@@ -41,6 +47,9 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
 	AVCaptureSession *session = [[AVCaptureSession alloc] init];
 	[self setSession:session];
@@ -135,7 +144,13 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 				UIImage *image = [[UIImage alloc] initWithData:imageData];
                 image = [image fixOrientation];
-                [self performSegueWithIdentifier:@"goToAddTextFromCamera" sender:self];
+                
+                UIImageView *photoToShow = [[UIImageView alloc] initWithFrame:self.view.bounds];
+                photoToShow.image = image;
+                [self.view addSubview:photoToShow];
+                [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hidePhotoView:) userInfo:nil repeats:NO];
+                [self createPhotoObjectToStore:image];
+                
 			}
             [self.takePhotoButton setEnabled:YES];
 		}];
@@ -157,6 +172,39 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 }
 
 #pragma mark - Private
+
+- (void) hidePhotoView: (NSTimer*)currentTimer
+{
+    [currentTimer invalidate];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (void) createPhotoObjectToStore: (UIImage*)imageToStore
+{
+    NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    Photo * newPhotoObject = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    newPhotoObject.photoData = UIImageJPEGRepresentation(imageToStore, 1.0);
+    
+    self.specManager.photoObject = newPhotoObject;
+    if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
+        if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
+            newPhotoObject.operationRoom = self.specManager.currentProcedure.operationRoom;
+            newPhotoObject.photoNumber = @([[self.specManager.currentProcedure.operationRoom.photo allObjects] count]+1);
+            [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhotoObject];
+        } else {
+            [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[0]];
+            newPhotoObject.photoNumber = @(0);
+            newPhotoObject.operationRoom = self.specManager.currentProcedure.operationRoom;
+            [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhotoObject];
+        }
+        NSError * error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+        }
+    }
+    
+    //todo - for others controllers - after tryying on phone code above
+}
 
 - (void)checkDeviceAuthorizationStatus
 {

@@ -29,12 +29,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *doctorPhotoImageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *notesButton;
+@property (weak, nonatomic) IBOutlet UIButton *specsButton;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSArray * doctorsSpec;
-@property (strong, nonatomic) NSArray * doctorsProcedures;
+@property (strong, nonatomic) UILabel *navigationBarLabel;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *doctorsSpec;
+@property (strong, nonatomic) NSArray *doctorsProcedures;
 
 @end
 
@@ -45,9 +47,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.doctorName.font = [UIFont fontWithName:@"MuseoSans-500" size:35.0f];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEDoctorProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"doctorProfileCollectionViewCell"];
+    
+    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
 
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -143,6 +150,8 @@
 
 - (IBAction)propertiesButtons:(id)sender
 {
+    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Doctors Notes";
     [self.navigationController pushViewController:notesView animated:YES];
@@ -150,7 +159,8 @@
 
 - (IBAction)detailsButton:(id)sender
 {
-    
+    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Active"] forState:UIControlStateNormal];
 }
 
 - (IBAction)photoButtons:(id)sender
@@ -206,9 +216,30 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(15, 0, self.view.frame.size.width-15, 35);
+    myLabel.backgroundColor = [UIColor whiteColor];
+    myLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    myLabel.textColor = [UIColor colorWithRed:73/255.0 green:159/255.0 blue:225/255.0 alpha:1.0f];
+    myLabel.text = ((Procedure*)self.doctorsSpec[section]).name;
+
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    UIView * separatorView = [[UIView alloc] init];
+    separatorView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0f];
+    separatorView.frame = CGRectMake(0, myLabel.frame.size.height, 320, 1);
+
+    [headerView addSubview:separatorView];
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return ((Procedure*)self.doctorsSpec[section]).name;
+    return 37;
 }
 
 #pragma mark - UICollectionViewDataSource

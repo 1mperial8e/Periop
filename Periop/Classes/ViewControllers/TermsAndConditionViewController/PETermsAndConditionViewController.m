@@ -32,6 +32,8 @@
     self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
+    
+    self.textView.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
 }
 
 - (void)viewWillAppear:(BOOL)animated

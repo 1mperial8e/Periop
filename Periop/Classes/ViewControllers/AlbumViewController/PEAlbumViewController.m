@@ -161,19 +161,10 @@
             self.specManager.photoObject = newPhoto;
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
             newPhoto.photoNumber = @(0);
-            
-//            if (self.specManager.currentNote!=nil) {
-//               // newPhoto.note = self.specManager.currentNote;
-////                self.specManager.currentNote.photo = newPhoto;
-//            }
             self.specManager.photoObject = newPhoto;
-            
         }
     }
-//    NSError * error = nil;
-//    if (![self.managedObjectContext save:&error]) {
-//        NSLog(@"Cant save photo ot DB - %@", error.localizedDescription);
-//    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

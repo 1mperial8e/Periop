@@ -38,6 +38,9 @@
 {
     [super viewDidLoad];
     
+    self.timeStamp.font = [UIFont fontWithName:@"MuseoSans-500" size:12.0f];
+    self.textViewNotes.font = [UIFont fontWithName:@"MuseoSans-500" size:11.5f];
+    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     

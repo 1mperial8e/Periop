@@ -225,6 +225,7 @@
 {
     NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    cameraView.sortedArrayWithCurrentPhoto = self.sortedArrayWithPhotos;
     [self presentViewController:cameraView animated:YES completion:nil];
 }
 

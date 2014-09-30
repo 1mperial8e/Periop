@@ -10,4 +10,6 @@
 
 @interface PEDoctorsProfileTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
 @end

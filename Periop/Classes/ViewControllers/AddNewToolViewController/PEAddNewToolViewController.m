@@ -20,6 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *qtyTextBox;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *specLabel;
+@property (weak, nonatomic) IBOutlet UILabel *qtyLabel;
+
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
@@ -38,6 +42,15 @@
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    self.nameLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.specLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.qtyLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.nameTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.specTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.qtyTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    
+    
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;

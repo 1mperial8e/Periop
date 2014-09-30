@@ -12,8 +12,7 @@
 
 - (void)awakeFromNib
 {
-    self.textLabel.adjustsFontSizeToFitWidth = YES;
-    self.textLabel.minimumScaleFactor = 0.5;
+    self.textLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:17.5f];
 }
 
 @end
