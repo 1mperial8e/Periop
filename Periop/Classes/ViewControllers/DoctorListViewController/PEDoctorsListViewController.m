@@ -14,6 +14,7 @@
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import "Doctors.h"
+#import "UIImage+fixOrientation.h"
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate, UISearchDisplayDelegate>
 
@@ -42,6 +43,9 @@
     [super viewDidLoad];
     
     self.isSearchTable = NO;
+    
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
@@ -74,6 +78,7 @@
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
     self.arrayWithAllDocators = [[NSMutableArray alloc] init];
+    [self customizingSearchBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,6 +91,7 @@
     }
     [self initWithData];
     [self.tableView reloadData];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -110,6 +116,45 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
+}
+
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 75/255.0 green:157/255.0 blue:225/255.0 alpha: 1.0f]]
+                                                forBarPosition:0
+                                                    barMetrics:UIBarMetricsDefault];
+}
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha: 1.0f]]
+                                                forBarPosition:0
+                                                    barMetrics:UIBarMetricsDefault];
+}
+
+- (void)customizingSearchBar
+{
+    [self.searchBar setBackgroundImage:[[UIImage alloc]init]];
+    
+    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
+    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    
+    NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
+    for(int i =0; i<[searchBarSubViews count]; i++) {
+        if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
+            UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
+            [search setFont:[UIFont fontWithName:@"MuseoSans-500" size:12.5]];
+            [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
+            search.placeholder = @"Search";
+            search.backgroundColor = [UIColor whiteColor];
+            search.layer.borderColor = [[UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1.0f] CGColor];
+            search.layer.borderWidth = 1.0f;
+            search.layer.cornerRadius = 8.0f;
+            search.alpha =1.0f;
+            search.leftViewMode = UITextFieldViewModeNever;
+        }
+    }
+    
 }
 
 #pragma mark - UITableViewDataSource

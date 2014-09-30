@@ -9,5 +9,6 @@
 @interface UIImage (fixOrientation)
 
 - (UIImage *)fixOrientation;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 @end

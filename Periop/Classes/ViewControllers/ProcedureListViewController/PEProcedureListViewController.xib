@@ -16,27 +16,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-Uo-mKY">
+                <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-Uo-mKY">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="6HA-C6-DUf"/>
-                    </constraints>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                    </scopeButtonTitles>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Cx4-dN-bbD"/>
                     </connections>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-41-Idg">
-                    <rect key="frame" x="0.0" y="44" width="320" height="489"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-41-Idg" userLabel="TableVIew - doctors/Procedure list">
+                    <rect key="frame" x="0.0" y="44" width="320" height="424"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heW-aq-Kek">
-                    <rect key="frame" x="0.0" y="532" width="320" height="36"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heW-aq-Kek" userLabel="View - Buttons Holder">
+                    <rect key="frame" x="0.0" y="468" width="320" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSY-0Q-Cbe">
@@ -66,24 +69,27 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="KBu-i9-qBq"/>
                         <constraint firstAttribute="height" constant="36" id="M3P-OD-IXQ"/>
                         <constraint firstAttribute="width" constant="320" id="WBF-gh-tWI"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="36" id="qp2-Q9-Pcj"/>
                     </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Ka4-41-Idg" secondAttribute="bottom" constant="35" id="4zO-xF-qae"/>
-                <constraint firstItem="Ka4-41-Idg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6SR-sn-p6V"/>
-                <constraint firstItem="uTX-Uo-mKY" firstAttribute="leading" secondItem="Ka4-41-Idg" secondAttribute="leading" id="7g5-ce-Bq1"/>
-                <constraint firstAttribute="trailing" secondItem="Ka4-41-Idg" secondAttribute="trailing" id="EhH-0v-idV"/>
-                <constraint firstItem="Ka4-41-Idg" firstAttribute="top" secondItem="uTX-Uo-mKY" secondAttribute="bottom" id="LQn-zZ-7OW"/>
-                <constraint firstAttribute="trailing" secondItem="heW-aq-Kek" secondAttribute="trailing" id="PzO-NF-r8d"/>
-                <constraint firstItem="uTX-Uo-mKY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xjy-Ep-lVG"/>
-                <constraint firstItem="heW-aq-Kek" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mdJ-th-VhX"/>
-                <constraint firstAttribute="bottom" secondItem="heW-aq-Kek" secondAttribute="bottom" id="uBA-ff-kkP"/>
-                <constraint firstItem="uTX-Uo-mKY" firstAttribute="trailing" secondItem="Ka4-41-Idg" secondAttribute="trailing" id="ulF-N1-GPc"/>
+                <constraint firstAttribute="trailing" secondItem="Ka4-41-Idg" secondAttribute="trailing" id="8fV-pp-s45"/>
+                <constraint firstAttribute="trailing" secondItem="heW-aq-Kek" secondAttribute="trailing" id="B2z-3H-fl9"/>
+                <constraint firstAttribute="trailing" secondItem="uTX-Uo-mKY" secondAttribute="trailing" id="ByT-uB-k56"/>
+                <constraint firstItem="Ka4-41-Idg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D7l-nv-Omp"/>
+                <constraint firstItem="Ka4-41-Idg" firstAttribute="top" secondItem="uTX-Uo-mKY" secondAttribute="bottom" id="Grb-nn-vqk"/>
+                <constraint firstItem="heW-aq-Kek" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="M5s-m9-ReS"/>
+                <constraint firstAttribute="bottom" secondItem="heW-aq-Kek" secondAttribute="bottom" id="MYg-Hk-bHo"/>
+                <constraint firstItem="Ka4-41-Idg" firstAttribute="top" secondItem="uTX-Uo-mKY" secondAttribute="bottom" id="N8R-pb-Vfr"/>
+                <constraint firstItem="heW-aq-Kek" firstAttribute="top" secondItem="Ka4-41-Idg" secondAttribute="bottom" id="V2N-r6-XFd"/>
+                <constraint firstItem="uTX-Uo-mKY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fKM-Zc-QOD"/>
+                <constraint firstItem="uTX-Uo-mKY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wVZ-Kl-oUI"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <searchDisplayController id="vQy-IH-ZQ0">
