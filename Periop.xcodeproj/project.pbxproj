@@ -194,6 +194,8 @@
 		EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */; };
 		EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */; };
 		EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */; };
+		EDD9589219DACA71002D3D39 /* PEOperationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD9589019DACA71002D3D39 /* PEOperationTableViewCell.m */; };
+		EDD9589319DACA71002D3D39 /* PEOperationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD9589119DACA71002D3D39 /* PEOperationTableViewCell.xib */; };
 		EDDA09B119CA16BD003480C2 /* PEPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDA09B019CA16BD003480C2 /* PEPlistParser.m */; };
 		EDDA09B419CA17CC003480C2 /* General.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDDA09B319CA17CC003480C2 /* General.plist */; };
 		EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */; };
@@ -461,6 +463,9 @@
 		EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEOperationRoomCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEOperationRoomCollectionViewCell.xib; sourceTree = "<group>"; };
 		EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EDD9588F19DACA71002D3D39 /* PEOperationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEOperationTableViewCell.h; sourceTree = "<group>"; };
+		EDD9589019DACA71002D3D39 /* PEOperationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEOperationTableViewCell.m; sourceTree = "<group>"; };
+		EDD9589119DACA71002D3D39 /* PEOperationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEOperationTableViewCell.xib; sourceTree = "<group>"; };
 		EDDA09AF19CA16BD003480C2 /* PEPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPlistParser.h; sourceTree = "<group>"; };
 		EDDA09B019CA16BD003480C2 /* PEPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPlistParser.m; sourceTree = "<group>"; };
 		EDDA09B319CA17CC003480C2 /* General.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = General.plist; sourceTree = "<group>"; };
@@ -1128,6 +1133,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EDD9588E19DACA50002D3D39 /* OperationTableViewCell */,
 				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
 				EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */,
 				842BF2B019CC57EB00AFCA42 /* AlbumCell */,
@@ -1231,6 +1237,16 @@
 				EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */,
 			);
 			path = PEDoctorProfileCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		EDD9588E19DACA50002D3D39 /* OperationTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDD9588F19DACA71002D3D39 /* PEOperationTableViewCell.h */,
+				EDD9589019DACA71002D3D39 /* PEOperationTableViewCell.m */,
+				EDD9589119DACA71002D3D39 /* PEOperationTableViewCell.xib */,
+			);
+			path = OperationTableViewCell;
 			sourceTree = "<group>";
 		};
 		EDDA09AD19CA163F003480C2 /* PEObjectDescription */ = {
@@ -1528,6 +1544,7 @@
 				ED9C698919C720E80022C1A8 /* Flash@2x.png in Resources */,
 				ED9C697919C720E80022C1A8 /* Delete@2x.png in Resources */,
 				842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */,
+				EDD9589319DACA71002D3D39 /* PEOperationTableViewCell.xib in Resources */,
 				EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */,
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
@@ -1604,6 +1621,7 @@
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
+				EDD9589219DACA71002D3D39 /* PEOperationTableViewCell.m in Sources */,
 				EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
 				ED0D30B419BA11B9001F8411 /* PEEditAddDoctorTableViewCell.m in Sources */,
