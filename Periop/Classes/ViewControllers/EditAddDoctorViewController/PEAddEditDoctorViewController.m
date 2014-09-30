@@ -300,6 +300,36 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(15, 0, self.view.frame.size.width-15, 35);
+    myLabel.backgroundColor = [UIColor whiteColor];
+    myLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    myLabel.textColor = [UIColor colorWithRed:73/255.0 green:159/255.0 blue:225/255.0 alpha:1.0f];
+    if (section==0) {
+        myLabel.text = @"Specialisation";
+    } else {
+        myLabel.text = [self.requestedSpecsWithProc allKeys][section - 1];
+    }
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    UIView * separatorView = [[UIView alloc] init];
+    separatorView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0f];
+    separatorView.frame = CGRectMake(0, myLabel.frame.size.height, 320, 1);
+    
+    [headerView addSubview:separatorView];
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 37;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath row] == 0 && indexPath.section == 0) {

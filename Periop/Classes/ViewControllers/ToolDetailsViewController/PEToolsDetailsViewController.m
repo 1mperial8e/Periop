@@ -27,6 +27,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *equipmentPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *labelName;
+@property (weak, nonatomic) IBOutlet UILabel *labelSpec;
+@property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
@@ -43,6 +46,15 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.labelName.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelSpec.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelQuantity.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    
+    self.nameTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.specificationTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.quantityTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     

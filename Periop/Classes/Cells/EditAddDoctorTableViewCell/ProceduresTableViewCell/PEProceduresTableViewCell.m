@@ -14,8 +14,7 @@
 
 - (void)awakeFromNib
 {
-    self.procedureName.adjustsFontSizeToFitWidth = YES;
-    self.procedureName.minimumScaleFactor = 0.5;
+    self.procedureName.font = [UIFont fontWithName:@"MuseoSans-300" size:17.5f];
 }
 
 - (void)prepareForReuse

@@ -7,6 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEToolsDetailsViewController">
             <connections>
                 <outlet property="equipmentPhoto" destination="0MR-TG-QGp" id="4Og-Rn-C8q"/>
+                <outlet property="labelName" destination="o3f-NX-Scj" id="tUt-Y3-nfw"/>
+                <outlet property="labelQuantity" destination="0cc-pu-NrX" id="4a5-Sw-iZP"/>
+                <outlet property="labelSpec" destination="9qF-ms-gc2" id="aOM-Kp-Rr7"/>
                 <outlet property="nameTextField" destination="bdN-RK-EeY" id="Qsz-Mo-Fkf"/>
                 <outlet property="quantityTextField" destination="tIT-4j-2yd" id="X0i-xz-geY"/>
                 <outlet property="specificationTextField" destination="AZF-CF-b1Q" id="fzv-QT-SAs"/>
@@ -18,13 +21,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-TG-QGp">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-TG-QGp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="236" id="8oF-6x-cZ5"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="org-dX-zlR">
-                    <rect key="frame" x="272" y="0.0" width="48" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="org-dX-zlR" userLabel="Button - take photo">
+                    <rect key="frame" x="281" y="15" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="Cql-Tc-FZb"/>
+                        <constraint firstAttribute="width" constant="32" id="KDm-a7-6gh"/>
+                    </constraints>
                     <state key="normal" image="Add_Photo_Small.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -32,59 +42,59 @@
                         <action selector="photoButton:" destination="-1" eventType="touchUpInside" id="Ega-c5-INl"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGb-U6-Jpl">
-                    <rect key="frame" x="0.0" y="250" width="320" height="318"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGb-U6-Jpl" userLabel="View - holder">
+                    <rect key="frame" x="0.0" y="236" width="320" height="332"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3f-NX-Scj">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3f-NX-Scj" userLabel="Label - Name">
                             <rect key="frame" x="25" y="12" width="280" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6E-qQ-FDh">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6E-qQ-FDh" userLabel="View - separator_underName">
                             <rect key="frame" x="5" y="43" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLM-HE-mkB">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLM-HE-mkB" userLabel="View - separator _underSpec">
                             <rect key="frame" x="5" y="105" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGe-1h-vVZ">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGe-1h-vVZ" userLabel="View - separator underQuantity">
                             <rect key="frame" x="5" y="172" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-ms-gc2">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-ms-gc2" userLabel="Label - Spec">
                             <rect key="frame" x="25" y="76" width="280" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-pu-NrX">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-pu-NrX" userLabel="Label - Quantity">
                             <rect key="frame" x="25" y="143" width="280" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-RK-EeY">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-RK-EeY" userLabel="TextField - Name">
                             <rect key="frame" x="25" y="43" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-CF-b1Q">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-CF-b1Q" userLabel="TextField - Spec">
                             <rect key="frame" x="25" y="105" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIT-4j-2yd">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIT-4j-2yd" userLabel="TextField - Quantity">
                             <rect key="frame" x="25" y="172" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -95,6 +105,17 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0MR-TG-QGp" secondAttribute="trailing" id="2Sg-10-EoW"/>
+                <constraint firstItem="org-dX-zlR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="Bec-2G-sZ7"/>
+                <constraint firstAttribute="trailing" secondItem="org-dX-zlR" secondAttribute="trailing" constant="7" id="FS7-NB-jR1"/>
+                <constraint firstItem="0MR-TG-QGp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="H93-4v-5eP"/>
+                <constraint firstItem="tGb-U6-Jpl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Lt7-qf-IoO"/>
+                <constraint firstAttribute="trailing" secondItem="tGb-U6-Jpl" secondAttribute="trailing" id="UZt-23-wAW"/>
+                <constraint firstItem="0MR-TG-QGp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hxv-ba-kLp"/>
+                <constraint firstAttribute="bottom" secondItem="tGb-U6-Jpl" secondAttribute="bottom" id="lSY-QM-6eG"/>
+                <constraint firstItem="tGb-U6-Jpl" firstAttribute="top" secondItem="0MR-TG-QGp" secondAttribute="bottom" id="zoh-6J-5T4"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
