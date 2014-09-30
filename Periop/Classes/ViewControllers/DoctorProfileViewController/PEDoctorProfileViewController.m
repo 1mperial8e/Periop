@@ -22,6 +22,7 @@
 #import "PEViewPhotoViewController.h"
 #import "Doctors.h"
 #import "PECameraViewController.h"
+#import "PEDoctorsProfileTableViewCell.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -208,11 +209,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
+    PEDoctorsProfileTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[UITableViewCell alloc] init];
+        cell = [[PEDoctorsProfileTableViewCell alloc] init];
     }
-    cell.textLabel.text = ((Procedure*)self.doctorsProcedures[indexPath.section][indexPath.row]).name;
+    cell.doctorsNameLabel.text = ((Procedure*)self.doctorsProcedures[indexPath.section][indexPath.row]).name;
     return cell;
 }
 

@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib
 {
-    self.textLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:17.5f];
+    self.doctorsNameLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:17.5f];
 }
 
 @end

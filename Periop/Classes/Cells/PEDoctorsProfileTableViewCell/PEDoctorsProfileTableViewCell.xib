@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7w-Fc-cve" userLabel="Label - procedure name">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7w-Fc-cve" userLabel="Label - procedure name">
                         <rect key="frame" x="15" y="9" width="290" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -29,6 +29,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="doctorsNameLabel" destination="f7w-Fc-cve" id="3RF-i5-PfL"/>
                 <outlet property="textLabel" destination="f7w-Fc-cve" id="9UZ-A6-OA7"/>
             </connections>
         </tableViewCell>
