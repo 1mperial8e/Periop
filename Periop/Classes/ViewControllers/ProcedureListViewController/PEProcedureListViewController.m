@@ -17,8 +17,9 @@
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import "Procedure.h"
+#import "UIImage+fixOrientation.h"
 
-@interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -32,6 +33,8 @@
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithProcedures;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithDoctors;
 
+@property (strong, nonatomic) NSArray *searchResult;
+
 @end
 
 @implementation PEProcedureListViewController
@@ -41,6 +44,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -71,6 +76,9 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.tableView.layer.borderWidth = 0.0f;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -80,11 +88,12 @@
     [self.tableView reloadData];
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
+    [self customizingSearchBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
@@ -117,11 +126,74 @@
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
 
+#pragma mark - Search & UISearchDisplayDelegate
+
+- (void)searchedResult: (NSString*)searchText scope:(NSArray*)scope
+{
+    NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    if (self.specManager.isProcedureSelected) {
+        self.searchResult = [[self.specManager.currentSpecialisation.procedures allObjects] filteredArrayUsingPredicate:resultPredicat];
+    } else {
+        self.searchResult = [[self.specManager.currentSpecialisation.doctors allObjects] filteredArrayUsingPredicate:resultPredicat];
+    }
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self searchedResult:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    return YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+    [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
+}
+
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 75/255.0 green:157/255.0 blue:225/255.0 alpha: 1.0f]]
+                                                forBarPosition:0
+                                                    barMetrics:UIBarMetricsDefault];
+}
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha: 1.0f]]
+                                                forBarPosition:0
+                                                    barMetrics:UIBarMetricsDefault];
+}
+
+- (void)customizingSearchBar
+{
+    [self.searchBar setBackgroundImage:[[UIImage alloc]init]];
+
+    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
+    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    
+    NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
+    for(int i =0; i<[searchBarSubViews count]; i++) {
+        if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
+            UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
+            [search setFont:[UIFont fontWithName:@"MuseoSans-500" size:12.5]];
+            [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
+            search.placeholder = @"Search";
+            search.backgroundColor = [UIColor whiteColor];
+            search.layer.borderColor = [[UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1.0f] CGColor];
+            search.layer.borderWidth = 1.0f;
+            search.layer.cornerRadius = 8.0f;
+            search.alpha =1.0f;
+            search.leftViewMode = UITextFieldViewModeNever;
+        }
+    }
+    
+}
+
 #pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.specManager.isProcedureSelected) {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.searchResult.count;
+    } else if (self.specManager.isProcedureSelected) {
         return [self.specManager.currentSpecialisation.procedures count];
     } else {
         return [self.specManager.currentSpecialisation.doctors count];
@@ -130,7 +202,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell  =[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
@@ -145,9 +217,17 @@
     
     UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
-        cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            cell.textLabel.text = ((Procedure*)self.searchResult[indexPath.row]).name;
+        } else {
+            cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
+        }
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
-        cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            cell.textLabel.text = ((Doctors*)self.searchResult[indexPath.row]).name;
+        } else {
+            cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
+        }
     }
     cell.textLabel.font = cellFont;
     cell.textLabel.numberOfLines = 0;
@@ -159,24 +239,40 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.specManager.isProcedureSelected) {
-        for (Procedure* proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
-            if ([((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
-                self.specManager.currentProcedure = proc;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+             self.specManager.currentProcedure = (Procedure*)self.searchResult[indexPath.row];
+        } else {
+            for (Procedure* proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
+                if ([((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
+                    self.specManager.currentProcedure = proc;
+                }
             }
         }
+        
         PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
     } else {
-        for (Doctors* doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
-            if ([((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
-                self.specManager.currentDoctor = doc;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            self.specManager.currentDoctor = (Doctors*)self.searchResult[indexPath.row];
+        } else {
+            for (Doctors* doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
+                if ([((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
+                    self.specManager.currentDoctor = doc;
+                }
             }
         }
+        
         PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
         [self.navigationController pushViewController:doctorsView animated:YES];
     }
 }
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 53;
+}
+
 
 #pragma marks - Private
 

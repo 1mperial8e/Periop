@@ -21,7 +21,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEy-eI-TI3">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9o-4y-xKb">

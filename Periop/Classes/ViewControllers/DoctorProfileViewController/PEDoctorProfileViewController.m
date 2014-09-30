@@ -19,6 +19,9 @@
 #import "Photo.h"
 #import "PEObjectDescription.h"
 #import "PECoreDataManager.h"
+#import "PEViewPhotoViewController.h"
+#import "Doctors.h"
+#import "PECameraViewController.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -72,6 +75,9 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.layer.borderWidth = 0.0f;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    [self.doctorPhotoImageView addGestureRecognizer:tap];
 
 }
 
@@ -90,7 +96,10 @@
     
     if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
+    } else {
+        self.doctorPhotoImageView.image = [UIImage imageNamed:@"Place_Holder.png"];
     }
+    
     [self.tableView reloadData];
     [self.collectionView reloadData];
 }
@@ -102,7 +111,26 @@
     self.specManager.photoObject = nil;
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions 
+
+- (void)tapOnPicture:(UITapGestureRecognizer *)gesture
+{
+    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamed:@"Place_Holder.png"] hash]) {
+        if (gesture.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"Touched Image");
+            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            if (self.specManager.currentDoctor.photo.photoData!=nil) {
+                viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;
+            }
+            [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+        }
+    }
+}
 
 - (IBAction)editButton:(id)sender
 {
@@ -147,6 +175,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

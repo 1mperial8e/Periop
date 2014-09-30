@@ -12,21 +12,19 @@
 #import "PESpecialisationViewController.h"
 #import "PEAboutUsViewController.h"
 #import "PETermsAndConditionViewController.h"
-#import "PEFeedbackViewController.h"
+#import <MessageUI/MessageUI.h>
 
 static CGFloat const MVCAnimationDuration = 0.5f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
-static NSString* const MVCAboutUs = @"About Us";
-static NSString* const MVCSurgeonList = @"Surgeon List";
-static NSString* const MVCTermsAndCond = @"Terms & Conditions";
-static NSString* const MVCFeedback = @"Feedback";
-static NSString* const MVCSpecialisation = @"Specialisations";
+static NSString *const MVCAboutUs = @"About Us";
+static NSString *const MVCSurgeonList = @"Surgeon List";
+static NSString *const MVCTermsAndCond = @"Terms & Conditions";
+static NSString *const MVCFeedback = @"Feedback";
+static NSString *const MVCSpecialisation = @"Specialisations";
 
-@interface PEMenuViewController ()
+@interface PEMenuViewController () <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *menuTitleLabel;
-@property (assign, nonatomic) CGPoint centerOfScreen;
-@property (assign, nonatomic) CGPoint sizeOfScreen;
 @property (weak, nonatomic) IBOutlet UIView *viewWithButtons;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsViewHeight;
@@ -40,6 +38,7 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 @property (weak, nonatomic) IBOutlet UIButton *feedbackButton;
 
 @property (weak, nonatomic) UITabBarController *tabBarController;
+@property (assign, nonatomic) BOOL isFeedbackPresented;
 
 @end
 
@@ -54,24 +53,31 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     self.menuTitleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
     
     [self setupButtons];
-    
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    
+    self.isFeedbackPresented = NO;
 }
 
 - (void)viewDidLayoutSubviews{
-    CGPoint newCenter = self.view.center;
-    newCenter.y -= self.view.frame.size.height;
-    newCenter.y+= self.buttonPositionY + [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.duration = MVCAnimationDuration;
-    animation.fromValue = [NSValue valueWithCGPoint:newCenter];
-    animation.toValue = [NSValue valueWithCGPoint:self.view.center];
-    animation.removedOnCompletion = NO;
-    animation.delegate = self;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    [self.view.layer addAnimation:animation forKey:@"showMenu"];
+    [super viewDidLayoutSubviews];
+    
+    if (!self.isFeedbackPresented) {
+        CGPoint newCenter = self.view.center;
+        newCenter.y -= self.view.frame.size.height;
+        newCenter.y+= self.buttonPositionY + [UIApplication sharedApplication].statusBarFrame.size.height;
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        animation.duration = MVCAnimationDuration;
+        animation.fromValue = [NSValue valueWithCGPoint:newCenter];
+        animation.toValue = [NSValue valueWithCGPoint:self.view.center];
+        animation.removedOnCompletion = NO;
+        animation.delegate = self;
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        [self.view.layer addAnimation:animation forKey:@"showMenu"];
+        self.isFeedbackPresented = YES;
+    }
 }
 
 #pragma mark - IBActions
@@ -81,13 +87,9 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    if ([self.menuTitleLabel.text isEqualToString:MVCSpecialisation] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSpecialisation]){
-        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
-    } else {
-        self.menuTitleLabel.text = MVCSpecialisation;
-        [self createAnimationWithKey:@"hideMenuToSpecialisation"];
-        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
-    }
+    self.menuTitleLabel.text = MVCSpecialisation;
+    [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
 }
 
 - (IBAction)suggestionListButton:(id)sender
@@ -96,13 +98,9 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    if ([self.menuTitleLabel.text isEqualToString:MVCSurgeonList] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCSurgeonList]){
-        [self createAnimationWithKey:@"hideMenuToSurgeons"];
-    } else {
-        self.menuTitleLabel.text = MVCSurgeonList;
-        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
-        [self createAnimationWithKey:@"hideMenuToSurgeons"];
-    }
+    self.menuTitleLabel.text = MVCSurgeonList;
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
+    [self createAnimationWithKey:@"hideMenuToSurgeons"];
     [self hideBottomButtons];
 }
 
@@ -112,13 +110,9 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    if ([self.menuTitleLabel.text isEqualToString:MVCAboutUs] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCAboutUs]){
-        [self createAnimationWithKey:@"hideMenuToAbout"];
-    } else {
-        self.menuTitleLabel.text = MVCAboutUs;
-        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
-        [self createAnimationWithKey:@"hideMenuToAbout"];
-    }
+    self.menuTitleLabel.text = MVCAboutUs;
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
+    [self createAnimationWithKey:@"hideMenuToAbout"];
     [self hideBottomButtons];
 }
     
@@ -127,13 +121,9 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    if ([self.menuTitleLabel.text isEqualToString:MVCTermsAndConditions] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCTermsAndConditions]){
-        [self createAnimationWithKey:@"hideMenuToTerms"];
-    } else {
-        self.menuTitleLabel.text= MVCTermsAndConditions;
-        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
-        [self createAnimationWithKey:@"hideMenuToTerms"];
-    }
+    self.menuTitleLabel.text= MVCTermsAndConditions;
+    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
+    [self createAnimationWithKey:@"hideMenuToTerms"];
     [self hideBottomButtons];
 }
 
@@ -142,14 +132,31 @@ static NSString* const MVCSpecialisation = @"Specialisations";
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
-    if ([self.menuTitleLabel.text isEqualToString:MVCFeedback] && [((UIButton *)sender).titleLabel.text isEqualToString:MVCFeedback]){
-        [self createAnimationWithKey:@"hideMenuToFeedback"];
+    self.menuTitleLabel.text = MVCFeedback;
+    
+    if ([MFMailComposeViewController canSendMail]) {
+        [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [UIColor whiteColor], NSForegroundColorAttributeName,  nil]];
+        
+        MFMailComposeViewController * mailController = [[MFMailComposeViewController alloc] init];
+        mailController.mailComposeDelegate = self;
+        [mailController setSubject:@"Feedback"];
+        NSString * message = @"Feedback :";
+        [mailController setMessageBody:message isHTML:NO];
+        PEMenuViewController *menuController = self;
+        [menuController presentViewController:mailController animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+            menuController.viewSelection.hidden = YES;
+        }];
+        self.isFeedbackPresented = YES;
+        menuController.viewSelection.hidden = NO;
+        
     } else {
-        self.menuTitleLabel.text = MVCFeedback;
-        self.tabBarController.selectedViewController = self.tabBarController.viewControllers[4];
-        [self createAnimationWithKey:@"hideMenuToFeedback"];
+        UIAlertView * alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alerMail show];
     }
-    [self hideBottomButtons];
 }
 
 - (IBAction)menuButton:(id)sender
@@ -161,12 +168,14 @@ static NSString* const MVCSpecialisation = @"Specialisations";
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self createAnimationWithKey:@"hideMenuToMenuMySpecialisation"];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    [self createAnimationWithKey:@"hideMenuToMenuMoreSpecialisation"];
 }
 
 #pragma mark - Animation
@@ -220,6 +229,11 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"hideMenuToFeedback"]){
         [self.view.layer removeAnimationForKey:@"hideMenuToFeedback"];
+    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMoreSpecialisation"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"moreSpecButton" object:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMySpecialisation"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mySpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];
@@ -239,8 +253,44 @@ static NSString* const MVCSpecialisation = @"Specialisations";
         center.x = self.specialisationButton.frame.origin.x / 2;
         self.viewSelection.center = center;
         self.viewSelection.hidden = NO;
-
     }
+}
+
+#pragma mark - MailComposerDelegate
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    if (result) {
+        switch (result) {
+            case MFMailComposeResultSent:
+                NSLog(@"You sent the email.");
+                break;
+            case MFMailComposeResultSaved:
+                NSLog(@"You saved a draft of this email");
+                break;
+            case MFMailComposeResultCancelled:
+                NSLog(@"You cancelled sending this email.");
+                break;
+            case MFMailComposeResultFailed:
+                NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+                break;
+            default:
+                NSLog(@"An error occurred when trying to compose this email");
+                break;
+        }
+    }
+    if (error) {
+        NSLog(@"Error to send mail - %@", error.localizedDescription);
+    }
+    PEMenuViewController *menuController = self;
+    [menuController dismissViewControllerAnimated:YES completion:^ {
+        CGPoint center;
+        center = menuController.feedbackButton.center;
+        center.x = menuController.feedbackButton.frame.origin.x / 2;
+        menuController.viewSelection.center = center;
+        menuController.viewSelection.hidden = NO;
+    }];
+    
 }
 
 #pragma mark - Private

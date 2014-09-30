@@ -14,8 +14,9 @@
 #import "EquipmentsTool.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
+#import <MessageUI/MessageUI.h>
 
-@interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate>
+@interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
@@ -28,6 +29,7 @@
 @property (strong, nonatomic) NSMutableArray * categoryTools;
 @property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (strong, nonatomic) MFMailComposeViewController * mailController;
 
 @end
 
@@ -66,6 +68,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
     self.cellCurrentlyEditing = [NSMutableSet new];
     self.cellWithCheckedButtons = [NSMutableSet new];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -79,7 +82,7 @@
     [self.tableView reloadData];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
@@ -96,19 +99,71 @@
     [self.navigationController pushViewController:addNewTool animated:YES];
 }
 
-- (IBAction)eMailButton:(id)sender
-{
-    
-}
-
 - (IBAction)clearAll:(id)sender
 {
     if (self.cellWithCheckedButtons) {
-        NSArray * arrWithIndexPath = [self.cellWithCheckedButtons allObjects];
-        for (int i=0; i<arrWithIndexPath.count; i++) {
-            [self deleteSlectedItem:[self.cellWithCheckedButtons allObjects][0]];
+        [self.cellWithCheckedButtons removeAllObjects];
+        [self.tableView reloadData];
+    }
+}
+
+- (IBAction)eMailButton:(id)sender
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:                                                               
+                                                              [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+        
+        self.mailController = [[MFMailComposeViewController alloc] init];
+        self.mailController.mailComposeDelegate = self;
+        
+        [self.mailController setSubject:@"Equipment list"];
+        
+        NSMutableString * message = [[NSMutableString alloc] init];
+        for (NSIndexPath * indexWithSelectedCells in self.cellWithCheckedButtons) {
+            [message appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).name];
+            [message appendString:@"\n"];
+        }
+        
+        [self.mailController setMessageBody:message isHTML:NO];
+        [self presentViewController:self.mailController animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
+    } else {
+        UIAlertView * alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alerMail show];
+    }
+    
+}
+
+#pragma mark - MailComposerDelegate
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    if (result) {
+        switch (result) {
+            case MFMailComposeResultSent:
+                NSLog(@"You sent the email.");
+                break;
+            case MFMailComposeResultSaved:
+                NSLog(@"You saved a draft of this email");
+                break;
+            case MFMailComposeResultCancelled:
+                NSLog(@"You cancelled sending this email.");
+                break;
+            case MFMailComposeResultFailed:
+                NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+                break;
+            default:
+                NSLog(@"An error occurred when trying to compose this email");
+                break;
         }
     }
+    if (error) {
+        NSLog(@"Error to send mail - %@", error.localizedDescription);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

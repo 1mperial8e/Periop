@@ -12,6 +12,7 @@
 @interface PEAboutUsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 
 @end
@@ -42,7 +43,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];    
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 

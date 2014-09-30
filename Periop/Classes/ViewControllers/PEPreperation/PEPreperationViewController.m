@@ -77,7 +77,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
 
@@ -109,7 +109,7 @@
 #pragma mark - DynamicHeightOfCell
 
 - (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
-{
+{    
     cell.labelStep.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).stepName;    
     cell.labelPreparationText.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).preparationText;
     return cell;

@@ -17,6 +17,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "EquipmentsTool.h"
 #import "PECoreDataManager.h"
 #import "Photo.h"
+#import "PEViewPhotoViewController.h"
+#import "PECameraViewController.h"
 
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
@@ -73,6 +75,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
+    
+    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
 
     self.navigationItem.rightBarButtonItem=editButton;
     
@@ -82,20 +87,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    [self.equipmentPhoto addGestureRecognizer:tap];
 
 }
-
-//- (CGFloat) getWidthOfUiBarButton: (UIBarButtonItem *)button
-//{
-//    UIView *view = [button valueForKey:@"view"];
-//    CGRect barButtonFrame;
-//    if (view) {
-//        barButtonFrame = [view frame];
-//    } else {
-//        barButtonFrame = CGRectZero;
-//    }
-//    return barButtonFrame.size.width;
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -107,6 +103,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
         }
+    } else {
+        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder.png"];
     }
     
     [[self.view viewWithTag:35] removeFromSuperview];
@@ -117,6 +115,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions
@@ -162,6 +165,21 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     [self.view addSubview:view];
 }
 
+- (void)tapOnPicture:(UITapGestureRecognizer *)gesture
+{
+    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+        if (gesture.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"Touched Image");
+            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+                viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
+            }
+            [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+        }
+    }
+}
+
+
 #pragma mark - XIB Action
 
 - (IBAction)albumPhoto:(id)sender
@@ -174,6 +192,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

@@ -16,6 +16,7 @@
 #import "Note.h"
 #import "PECoreDataManager.h"
 #import "Doctors.h"
+#import "PEViewPhotoViewController.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -75,8 +76,13 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions
@@ -175,7 +181,18 @@
 
 - (void) addPhotoButtonPress:(UITableViewCell *)cell
 {
-    NSLog(@"add Button");
+    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    if (self.specManager.isProcedureSelected) {
+        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+    } else {
+        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+    }
+    
+    if ([UIImage imageWithData:((Photo*)self.specManager.currentNote.photo).photoData]!= nil) {
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentNote.photo;
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+    }
 }
 
 - (void) editNoteButtonPress:(UITableViewCell *)cell

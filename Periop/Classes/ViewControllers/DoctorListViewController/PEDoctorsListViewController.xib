@@ -6,7 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDoctorsListViewController">
             <connections>
-                <outlet property="searchBar" destination="oQP-ar-7Nm" id="t7m-8d-XzH"/>
+                <outlet property="searchBar" destination="XCm-Rc-sOK" id="rXa-6u-nk8"/>
+                <outlet property="searchDisplayController" destination="HqF-3D-OeI" id="INi-lo-TlJ"/>
                 <outlet property="tableView" destination="d7p-39-J8k" id="kqa-26-IAC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,17 +17,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="oQP-ar-7Nm">
+                <searchBar contentMode="redraw" searchBarStyle="prominent" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCm-Rc-sOK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="Zmr-rm-tQO"/>
-                        <constraint firstAttribute="height" constant="44" id="oA6-iA-Uza"/>
-                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Tur-6p-tGw"/>
+                    </connections>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d7p-39-J8k">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d7p-39-J8k" userLabel="TableView - Doctors List">
                     <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,16 +39,25 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="d7p-39-J8k" firstAttribute="top" secondItem="oQP-ar-7Nm" secondAttribute="bottom" id="66x-B0-8AC"/>
                 <constraint firstItem="d7p-39-J8k" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L36-0y-8g4"/>
                 <constraint firstAttribute="trailing" secondItem="d7p-39-J8k" secondAttribute="trailing" id="L5h-bU-E6Z"/>
-                <constraint firstItem="oQP-ar-7Nm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LKo-aR-ECH"/>
-                <constraint firstItem="oQP-ar-7Nm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Mt5-dV-96t"/>
+                <constraint firstItem="d7p-39-J8k" firstAttribute="top" secondItem="XCm-Rc-sOK" secondAttribute="bottom" id="nDx-An-Myl"/>
                 <constraint firstAttribute="bottom" secondItem="d7p-39-J8k" secondAttribute="bottom" id="pCY-xC-Elp"/>
-                <constraint firstAttribute="trailing" secondItem="oQP-ar-7Nm" secondAttribute="trailing" id="ra8-D7-jQd"/>
+                <constraint firstItem="XCm-Rc-sOK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tq9-7t-wU8"/>
+                <constraint firstAttribute="trailing" secondItem="XCm-Rc-sOK" secondAttribute="trailing" id="vi8-da-AdK"/>
+                <constraint firstItem="XCm-Rc-sOK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ziN-wX-dL8"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <searchDisplayController id="HqF-3D-OeI">
+            <connections>
+                <outlet property="delegate" destination="-1" id="K0y-NT-AAA"/>
+                <outlet property="searchBar" destination="XCm-Rc-sOK" id="78p-F9-jfb"/>
+                <outlet property="searchContentsController" destination="-1" id="LZI-wk-zpM"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="OvT-LT-EzU"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="Cnj-Dz-624"/>
+            </connections>
+        </searchDisplayController>
     </objects>
 </document>

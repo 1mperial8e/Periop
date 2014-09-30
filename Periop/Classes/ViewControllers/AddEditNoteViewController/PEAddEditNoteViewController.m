@@ -15,6 +15,7 @@
 #import "Doctors.h"
 #import "Note.h"
 #import "PEAlbumViewController.h"
+#import "PECameraViewController.h"
 
 @interface PEAddEditNoteViewController ()
 
@@ -76,19 +77,28 @@
     } else {
         self.timeStamp.text = [self dateFormatter:[NSDate date]];
     }
+    [self.textViewNotes becomeFirstResponder];
+    [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    self.specManager.photoObject = nil;
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions
 
 - (IBAction)closeButton :(id)sender
 {
+    self.specManager.photoObject = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -97,18 +107,28 @@
     if (self.isEditNote) {
             self.specManager.currentNote.textDescription = self.textViewNotes.text;
             self.specManager.currentNote.timeStamp = [NSDate date];
+            self.specManager.currentNote.photo = self.specManager.photoObject;
+            ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newNote.textDescription = self.textViewNotes.text;
         newNote.timeStamp = [NSDate date];
+        
+        if (self.specManager.photoObject!=nil) {
+            NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+            Photo * notesPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            notesPhoto = self.specManager.photoObject;
+            notesPhoto.note = newNote;
+            newNote.photo = notesPhoto;
+        }
+        
         if (self.specManager.isProcedureSelected) {
             [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
         } else {
             [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
         }
     }
-    
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
@@ -124,6 +144,7 @@
     PEMediaSelect * view = array[0];
     view.frame = position;
     view.tag = 35;
+    [self.textViewNotes endEditing:YES];
     [self.view addSubview:view];
 }
 
@@ -138,17 +159,19 @@
     } else {
         albumViewController.navigationLabelText = ((Doctors*)(self.specManager.currentDoctor)).name;
     }
-    
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo ");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender
 {
+    [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
 }
 

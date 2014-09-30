@@ -8,14 +8,18 @@
 
 #import "PEAppDelegate.h"
 #import "PESpecialisationViewController.h"
-#import "PEFeedbackViewController.h"
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"
 #import "PESpecialisationViewController.h"
 #import "PECameraRollManager.h"
-
 #import  "PEPurchaseManager.h"
+
+@interface PEAppDelegate() 
+
+@property (strong, nonatomic) UITabBarController * tabBarController;
+
+@end
 
 @implementation PEAppDelegate
 
@@ -29,9 +33,6 @@
     PESpecialisationViewController * specializationController = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
     UINavigationController * specializationNavController = [self navControllerWithRootViewController:specializationController];
     
-    PEFeedbackViewController *feedbackController = [[PEFeedbackViewController alloc] initWithNibName:@"PEFeedbackViewController" bundle:nil];
-    UINavigationController * feedbackNavController = [self navControllerWithRootViewController:feedbackController];
-    
     PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
     UINavigationController * termsNavController = [self navControllerWithRootViewController:termsController];
     
@@ -42,7 +43,7 @@
     UINavigationController *aboutUsNavController = [self navControllerWithRootViewController:aboutUsController];
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
-    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController, feedbackNavController];
+    tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController];
     tabController.tabBar.hidden = YES;
 
     self.window.rootViewController = tabController;
@@ -74,5 +75,37 @@
     return navController;
 }
 
+#pragma mark - Rotation
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    UIViewController *currentViewController = [self topViewController];
+    if ([currentViewController respondsToSelector:NSSelectorFromString(@"canRotate")]) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIViewController*)topViewController
+{
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController
+{
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
+}
 
 @end

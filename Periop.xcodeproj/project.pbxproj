@@ -18,6 +18,8 @@
 		842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8DFB19D57C2000D0DAC7 /* UIDropDownList.m */; };
 		842C8E0219D57C4C00D0DAC7 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */; };
 		842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */; };
+		842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */; };
+		842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */; };
 		8474906319B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
 		8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906419B8459E0013C446 /* CoreGraphics.framework */; };
 		8474906719B8459E0013C446 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906619B8459E0013C446 /* UIKit.framework */; };
@@ -50,6 +52,8 @@
 		ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B319BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib */; };
 		ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */; };
 		ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */; };
+		ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */; };
+		ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */; };
 		ED18513319D008610021E1EB /* OperationRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513219D008610021E1EB /* OperationRoom.m */; };
 		ED18513619D01CE70021E1EB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513519D01CE70021E1EB /* Photo.m */; };
 		ED21660C19CC3022005E821B /* PeriopDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED21660A19CC3022005E821B /* PeriopDataBase.xcdatamodeld */; };
@@ -100,10 +104,10 @@
 		ED9C69B719C720E80022C1A8 /* Cardiothoracic_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */; };
 		ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */; };
 		ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */; };
-		ED9C69BD19C720E80022C1A8 /* Colorectal_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */; };
-		ED9C69BF19C720E80022C1A8 /* Colorectal_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */; };
-		ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */; };
-		ED9C69C319C720E80022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */; };
+		ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */; };
+		ED9C69BF19C720E80022C1A8 /* Gastrointestina_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */; };
+		ED9C69C119C720E80022C1A8 /* Gastrointestina_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */; };
+		ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69C519C720E80022C1A8 /* Cosemetic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */; };
 		ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */; };
 		ED9C69C919C720E80022C1A8 /* Cosmetic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */; };
@@ -142,8 +146,8 @@
 		EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFF119BAE5EA002A70E8 /* PEAboutUsViewController.xib */; };
 		EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFF619BAE853002A70E8 /* PETermsAndConditionViewController.m */; };
 		EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFF719BAE853002A70E8 /* PETermsAndConditionViewController.xib */; };
-		EDA7DFFE19BAEA4A002A70E8 /* PEFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFFC19BAEA4A002A70E8 /* PEFeedbackViewController.m */; };
-		EDA7DFFF19BAEA4A002A70E8 /* PEFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFFD19BAEA4A002A70E8 /* PEFeedbackViewController.xib */; };
+		EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */; };
+		EDBCF12D19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */; };
 		EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */; };
 		EDC91EC419B9B17F00212F24 /* PENotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */; };
 		EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC719B9BBC000212F24 /* PEAddEditNoteViewController.m */; };
@@ -175,8 +179,6 @@
 		EDCD583E19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD583C19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib */; };
 		EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD584719B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m */; };
 		EDCD584A19B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */; };
-		EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */; };
-		EDCD585219B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */; };
 		EDCD585719B8C8B500EC7AF1 /* PENotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */; };
 		EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */; };
 		EDD0244119D0B77B0023F46D /* Procedure.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0244019D0B77B0023F46D /* Procedure.m */; };
@@ -191,11 +193,13 @@
 		EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDF119D2E43C0087D8CE /* Specialisation.m */; };
 		EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */; };
 		EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */; };
+		EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */; };
 		EDDA09B119CA16BD003480C2 /* PEPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDA09B019CA16BD003480C2 /* PEPlistParser.m */; };
 		EDDA09B419CA17CC003480C2 /* General.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDDA09B319CA17CC003480C2 /* General.plist */; };
 		EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */; };
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
+		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDE9CA1B19D4028700150754 /* General.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA1919D4028700150754 /* General.csv */; };
 		EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9CA1F19D402E900150754 /* PECsvParser.m */; };
 		EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA2119D4214F00150754 /* General_Tools.csv */; };
@@ -236,6 +240,8 @@
 		842C8E0119D57C4C00D0DAC7 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		842C8E0519D5892100D0DAC7 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@2x.png"; sourceTree = "<group>"; };
+		842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@3x.png"; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8474906419B8459E0013C446 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -279,6 +285,9 @@
 		ED0D30B719BA14E1001F8411 /* PEProceduresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEProceduresTableViewCell.h; sourceTree = "<group>"; };
 		ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEProceduresTableViewCell.m; sourceTree = "<group>"; };
 		ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEProceduresTableViewCell.xib; sourceTree = "<group>"; };
+		ED1379C019D54A9F00EF517F /* PEViewPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEViewPhotoViewController.h; sourceTree = "<group>"; };
+		ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEViewPhotoViewController.m; sourceTree = "<group>"; };
+		ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEViewPhotoViewController.xib; sourceTree = "<group>"; };
 		ED18513119D008610021E1EB /* OperationRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationRoom.h; path = Periop/Classes/Entities/OperationRoom.h; sourceTree = SOURCE_ROOT; };
 		ED18513219D008610021E1EB /* OperationRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationRoom.m; path = Periop/Classes/Entities/OperationRoom.m; sourceTree = SOURCE_ROOT; };
 		ED18513419D01CE70021E1EB /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
@@ -332,10 +341,10 @@
 		ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Small_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Small_Active@2x.png"; sourceTree = "<group>"; };
-		ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Small_Active@2x.png"; sourceTree = "<group>"; };
+		ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosemetic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Small_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
@@ -377,9 +386,10 @@
 		EDA7DFF519BAE853002A70E8 /* PETermsAndConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETermsAndConditionViewController.h; sourceTree = "<group>"; };
 		EDA7DFF619BAE853002A70E8 /* PETermsAndConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETermsAndConditionViewController.m; sourceTree = "<group>"; };
 		EDA7DFF719BAE853002A70E8 /* PETermsAndConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETermsAndConditionViewController.xib; sourceTree = "<group>"; };
-		EDA7DFFB19BAEA4A002A70E8 /* PEFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEFeedbackViewController.h; sourceTree = "<group>"; };
-		EDA7DFFC19BAEA4A002A70E8 /* PEFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEFeedbackViewController.m; sourceTree = "<group>"; };
-		EDA7DFFD19BAEA4A002A70E8 /* PEFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEFeedbackViewController.xib; sourceTree = "<group>"; };
+		EDBCF12919D983BB0054C464 /* PEPatientPositioningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPatientPositioningTableViewCell.h; sourceTree = "<group>"; };
+		EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPatientPositioningTableViewCell.m; sourceTree = "<group>"; };
+		EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPatientPositioningTableViewCell.xib; sourceTree = "<group>"; };
+		EDBCF13019D986CF0054C464 /* MuseoSans_700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_700.otf; sourceTree = "<group>"; };
 		EDC91EC019B9B17E00212F24 /* PENotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesTableViewCell.h; sourceTree = "<group>"; };
 		EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesTableViewCell.m; sourceTree = "<group>"; };
 		EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesTableViewCell.xib; sourceTree = "<group>"; };
@@ -427,9 +437,6 @@
 		EDCD584619B8C1ED00EC7AF1 /* PEPatientPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPatientPositioningViewController.h; sourceTree = "<group>"; };
 		EDCD584719B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPatientPositioningViewController.m; sourceTree = "<group>"; };
 		EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPatientPositioningViewController.xib; sourceTree = "<group>"; };
-		EDCD584C19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPatientPostioningPreviewCollectionView.h; path = PatientPostioningPreviewCell/PEPatientPostioningPreviewCollectionView.h; sourceTree = "<group>"; };
-		EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEPatientPostioningPreviewCollectionView.m; path = PatientPostioningPreviewCell/PEPatientPostioningPreviewCollectionView.m; sourceTree = "<group>"; };
-		EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientPostioningPreviewCell.xib; sourceTree = "<group>"; };
 		EDCD585419B8C8B500EC7AF1 /* PENotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesViewController.h; sourceTree = "<group>"; };
 		EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesViewController.m; sourceTree = "<group>"; };
 		EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesViewController.xib; sourceTree = "<group>"; };
@@ -453,6 +460,7 @@
 		EDD5C9C419D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEOperationRoomCollectionViewCell.h; sourceTree = "<group>"; };
 		EDD5C9C519D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEOperationRoomCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD5C9C719D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEOperationRoomCollectionViewCell.xib; sourceTree = "<group>"; };
+		EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EDDA09AF19CA16BD003480C2 /* PEPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPlistParser.h; sourceTree = "<group>"; };
 		EDDA09B019CA16BD003480C2 /* PEPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPlistParser.m; sourceTree = "<group>"; };
 		EDDA09B319CA17CC003480C2 /* General.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = General.plist; sourceTree = "<group>"; };
@@ -461,6 +469,8 @@
 		EDDDEF7419CAE168007BEDE4 /* PEPreparationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPreparationTableViewCell.h; sourceTree = "<group>"; };
 		EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPreparationTableViewCell.m; sourceTree = "<group>"; };
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
+		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
+		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDE9CA1919D4028700150754 /* General.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General.csv; sourceTree = "<group>"; };
 		EDE9CA1E19D402E900150754 /* PECsvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECsvParser.h; sourceTree = "<group>"; };
 		EDE9CA1F19D402E900150754 /* PECsvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECsvParser.m; sourceTree = "<group>"; };
@@ -483,6 +493,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */,
 				8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */,
 				8474906919B8459E0013C446 /* CoreData.framework in Frameworks */,
 				8474906719B8459E0013C446 /* UIKit.framework in Frameworks */,
@@ -611,6 +622,7 @@
 		8474906119B8459E0013C446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */,
 				8474906219B8459E0013C446 /* Foundation.framework */,
 				8474906419B8459E0013C446 /* CoreGraphics.framework */,
 				8474906619B8459E0013C446 /* UIKit.framework */,
@@ -675,6 +687,7 @@
 		84D65BE419D03CD0001C6E5C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				EDBCF13019D986CF0054C464 /* MuseoSans_700.otf */,
 				84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */,
 				84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */,
 				8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */,
@@ -762,6 +775,16 @@
 			path = ProceduresTableViewCell;
 			sourceTree = "<group>";
 		};
+		ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED1379C019D54A9F00EF517F /* PEViewPhotoViewController.h */,
+				ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */,
+				ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */,
+			);
+			path = ViewPhotoViewController;
+			sourceTree = "<group>";
+		};
 		ED350F2E19C096E900512663 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +825,8 @@
 		ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */ = {
 			isa = PBXGroup;
 			children = (
+				842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */,
+				842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */,
 				ED9C68BC19C720E70022C1A8 /* Add@2x.png */,
 				ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */,
 				ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */,
@@ -855,10 +880,10 @@
 				ED9C691319C720E70022C1A8 /* Cardiothoracic_Small_Active@2x.png */,
 				ED9C691519C720E70022C1A8 /* Cardiothoracic_Small_Inactive@2x.png */,
 				ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */,
-				ED9C691919C720E70022C1A8 /* Colorectal_Large@2x.png */,
-				ED9C691B19C720E70022C1A8 /* Colorectal_Small_Active@2x.png */,
-				ED9C691D19C720E70022C1A8 /* Colorectal_Small_Inactive@2x.png */,
-				ED9C691F19C720E70022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png */,
+				ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */,
+				ED9C691B19C720E70022C1A8 /* Gastrointestina_Small_Active@2x.png */,
+				ED9C691D19C720E70022C1A8 /* Gastrointestina_Small_Inactive@2x.png */,
+				ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */,
 				ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */,
 				ED9C692319C720E70022C1A8 /* Cosmetic_Small_Active@2x.png */,
 				ED9C692519C720E70022C1A8 /* Cosmetic_Small_Inactive@2x.png */,
@@ -925,14 +950,14 @@
 			path = TermsAndConditionViewController;
 			sourceTree = "<group>";
 		};
-		EDA7DFFA19BAEA3A002A70E8 /* FeedBackViewController */ = {
+		EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				EDA7DFFB19BAEA4A002A70E8 /* PEFeedbackViewController.h */,
-				EDA7DFFC19BAEA4A002A70E8 /* PEFeedbackViewController.m */,
-				EDA7DFFD19BAEA4A002A70E8 /* PEFeedbackViewController.xib */,
+				EDBCF12919D983BB0054C464 /* PEPatientPositioningTableViewCell.h */,
+				EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */,
+				EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */,
 			);
-			path = FeedBackViewController;
+			path = PEPatientPositioningTableViewCell;
 			sourceTree = "<group>";
 		};
 		EDC91EBF19B9B16A00212F24 /* NotesTableViewCell */ = {
@@ -998,6 +1023,7 @@
 		EDCD57A519B8479100EC7AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EDDEDCD919D6FE6500B0EDAC /* UIButtons */,
 				842C8E0319D5890400D0DAC7 /* Categoties */,
 				842C8DF419D57C2000D0DAC7 /* Views */,
 				EDEACEEE19CDC9F900286E06 /* Entities */,
@@ -1024,8 +1050,8 @@
 			isa = PBXGroup;
 			children = (
 				842C8DEE19D57AC600D0DAC7 /* CameraViewController */,
+				ED1379BF19D54A7D00EF517F /* ViewPhotoViewController */,
 				842BF2AA19CC566700AFCA42 /* AlbumViewController */,
-				EDA7DFFA19BAEA3A002A70E8 /* FeedBackViewController */,
 				EDA7DFF419BAE840002A70E8 /* TermsAndConditionViewController */,
 				EDA7DFEE19BAE5CD002A70E8 /* AboutUsViewController */,
 				EDD0598119BAC1E8007C0DE8 /* DoctorListViewController */,
@@ -1102,6 +1128,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
 				EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */,
 				842BF2B019CC57EB00AFCA42 /* AlbumCell */,
 				EDDDEF7319CAE14E007BEDE4 /* PreparationTableViewCell */,
@@ -1110,7 +1137,6 @@
 				ED0D2FA919BA033E001F8411 /* PEDoctorsProfileTableViewCell */,
 				EDC91ED119B9C9DD00212F24 /* EquipmentCategoryCell */,
 				EDC91EBF19B9B16A00212F24 /* NotesTableViewCell */,
-				EDCD584B19B8C54000EC7AF1 /* PatientPostioningPreviewCell */,
 				EDCD583F19B8B86B00EC7AF1 /* OperationRoomCell */,
 				EDCD57E319B8818200EC7AF1 /* SpecialisationCells */,
 			);
@@ -1175,16 +1201,6 @@
 				EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */,
 			);
 			path = PatientPositioningViewController;
-			sourceTree = "<group>";
-		};
-		EDCD584B19B8C54000EC7AF1 /* PatientPostioningPreviewCell */ = {
-			isa = PBXGroup;
-			children = (
-				EDCD584C19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.h */,
-				EDCD584D19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m */,
-				EDCD585119B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib */,
-			);
-			path = PatientPostioningPreviewCell;
 			sourceTree = "<group>";
 		};
 		EDCD585319B8C89100EC7AF1 /* NotesViewController */ = {
@@ -1262,6 +1278,15 @@
 				EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */,
 			);
 			path = PreparationTableViewCell;
+			sourceTree = "<group>";
+		};
+		EDDEDCD919D6FE6500B0EDAC /* UIButtons */ = {
+			isa = PBXGroup;
+			children = (
+				EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */,
+				EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */,
+			);
+			path = UIButtons;
 			sourceTree = "<group>";
 		};
 		EDE9CA1819D4027500150754 /* CSV */ = {
@@ -1414,6 +1439,7 @@
 				EDDA09B419CA17CC003480C2 /* General.plist in Resources */,
 				ED9C696B19C720E80022C1A8 /* Background@2x.png in Resources */,
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
+				ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */,
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */,
 				EDD4BDE619D29E520087D8CE /* Cardiothoracic.plist in Resources */,
@@ -1425,6 +1451,7 @@
 				ED9C69F119C720E80022C1A8 /* Opthomology_Small_Inactive@2x.png in Resources */,
 				ED9C69D319C720E80022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png in Resources */,
 				ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */,
+				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
 				ED9C697319C720E80022C1A8 /* Check_Active@2x.png in Resources */,
 				ED9C69B719C720E80022C1A8 /* Cardiothoracic_Small_Active@2x.png in Resources */,
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
@@ -1435,7 +1462,6 @@
 				EDCD57CD19B8741600EC7AF1 /* PEDownloadingScreenViewController.xib in Resources */,
 				ED9C699919C720E80022C1A8 /* My_Specialisations_Inactive@2x.png in Resources */,
 				ED9C69A519C720E80022C1A8 /* Photo_Added@2x.png in Resources */,
-				EDA7DFFF19BAEA4A002A70E8 /* PEFeedbackViewController.xib in Resources */,
 				ED9C69CF19C720E80022C1A8 /* ENT_Small_Active@2x.png in Resources */,
 				ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */,
 				ED9C699B19C720E80022C1A8 /* Notes_Tab_Active@2x.png in Resources */,
@@ -1445,7 +1471,7 @@
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
 				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
 				ED9C69DF19C720E80022C1A8 /* Gynaecology_Small_Active@2x.png in Resources */,
-				ED9C69C119C720E80022C1A8 /* Colorectal_Small_Inactive@2x.png in Resources */,
+				ED9C69C119C720E80022C1A8 /* Gastrointestina_Small_Inactive@2x.png in Resources */,
 				EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */,
 				842C8DF319D57AE400D0DAC7 /* PECameraViewController.xib in Resources */,
 				ED9C69C719C720E80022C1A8 /* Cosmetic_Small_Active@2x.png in Resources */,
@@ -1473,7 +1499,7 @@
 				ED0D2FB419BA0762001F8411 /* PEAddEditDoctorViewController.xib in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
 				ED9C698519C720E80022C1A8 /* Edit_Info@2x.png in Resources */,
-				ED9C69BD19C720E80022C1A8 /* Colorectal_Large@2x.png in Resources */,
+				ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */,
 				ED9C699119C720E80022C1A8 /* Menu_Overlay@2x.png in Resources */,
 				EDC91ECA19B9BBC000212F24 /* PEAddEditNoteViewController.xib in Resources */,
 				ED9C696D19C720E80022C1A8 /* Bin_Icon@2x.png in Resources */,
@@ -1501,12 +1527,12 @@
 				ED9C6A0119C720E80022C1A8 /* Plastic_Small_Inactive@2x.png in Resources */,
 				ED9C698919C720E80022C1A8 /* Flash@2x.png in Resources */,
 				ED9C697919C720E80022C1A8 /* Delete@2x.png in Resources */,
+				842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */,
 				EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */,
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
 				8474906F19B8459E0013C446 /* InfoPlist.strings in Resources */,
 				ED0D2FAE19BA0367001F8411 /* PEDoctorsProfileTableViewCell.xib in Resources */,
-				EDCD585219B8C5C800EC7AF1 /* PatientPostioningPreviewCell.xib in Resources */,
-				ED9C69C319C720E80022C1A8 /* Colorectal_Specialisation_Icon_-_Small@2x.png in Resources */,
+				ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDCD57DB19B874DE00EC7AF1 /* PEMenuViewController.xib in Resources */,
 				ED9C69F919C720E80022C1A8 /* Orthopeadic_Small_Inactive@2x.png in Resources */,
 				ED9C69EB19C720E80022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png in Resources */,
@@ -1522,11 +1548,12 @@
 				ED9C699519C720E80022C1A8 /* More_Specialisations_Inactive@2x.png in Resources */,
 				ED9C696119C720E70022C1A8 /* Add@2x.png in Resources */,
 				ED9C69DD19C720E80022C1A8 /* Gynaecology_Large@2x.png in Resources */,
+				EDBCF12D19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib in Resources */,
 				ED9C696519C720E80022C1A8 /* Add_Photo_to_Note_Button@2x.png in Resources */,
 				EDC91ED019B9C33E00212F24 /* PEEquipmentViewController.xib in Resources */,
 				ED9C69B519C720E80022C1A8 /* Cardiothoracic_Large@2x.png in Resources */,
 				ED9C699719C720E80022C1A8 /* My_Specialisations_Active@2x.png in Resources */,
-				ED9C69BF19C720E80022C1A8 /* Colorectal_Small_Active@2x.png in Resources */,
+				ED9C69BF19C720E80022C1A8 /* Gastrointestina_Small_Active@2x.png in Resources */,
 				ED9C697B19C720E80022C1A8 /* Divider@2x.png in Resources */,
 				ED0D2FA819B9FDF8001F8411 /* PEDoctorProfileViewController.xib in Resources */,
 				EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */,
@@ -1557,8 +1584,10 @@
 				ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */,
 				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
 				EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */,
+				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
+				EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
 				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
@@ -1572,15 +1601,14 @@
 				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
-				EDCD584E19B8C58300EC7AF1 /* PEPatientPostioningPreviewCollectionView.m in Sources */,
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
 				EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */,
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
+				EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
 				ED0D30B419BA11B9001F8411 /* PEEditAddDoctorTableViewCell.m in Sources */,
 				842BF2B319CC583500AFCA42 /* PEAlbumCell.m in Sources */,
 				EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */,
-				EDA7DFFE19BAEA4A002A70E8 /* PEFeedbackViewController.m in Sources */,
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
 				842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */,

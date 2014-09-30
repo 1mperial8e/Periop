@@ -18,6 +18,7 @@
 #import "PECollectionViewCellItemCell.h"
 #import "Specialisation.h"
 #import "Photo.h"
+#import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
@@ -80,6 +81,9 @@
     if (self.isEditedDoctor) {
         [self getProcedureIdForSelectedDoctor];
     }
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    [self.imageView addGestureRecognizer:tap];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -98,14 +102,36 @@
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
                 self.imageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
+        } else {
+            self.imageView.image = [UIImage imageNamed:@"Place_Holder.png"];
         }
     }
+    
     if (self.specManager.photoObject) {
         self.imageView.image = [UIImage imageWithData:self.specManager.photoObject.photoData];
     }
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - IBActions
+
+- (void)tapOnPicture:(UITapGestureRecognizer *)gesture
+{
+    if ([self.imageView.image hash] != [[UIImage imageNamed:@"Place_Holder.png"] hash]) {
+        if (gesture.state == UIGestureRecognizerStateEnded && self.isEditedDoctor) {
+            NSLog(@"Touched Image");
+            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            if (self.specManager.currentDoctor.photo.photoData!=nil) {
+                viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;
+            }
+            [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+        }
+    }
+}
 
 -(IBAction)saveButton :(id)sender
 {
@@ -122,7 +148,7 @@
         }
         self.specManager.currentDoctor.name = self.nameTextField.text;
         self.specManager.currentDoctor.createdDate = [NSDate date];
-        if (self.imageView.image) {
+        if (self.imageView.image && self.specManager.photoObject!=nil) {
             self.specManager.currentDoctor.photo = self.specManager.photoObject;
         }
         

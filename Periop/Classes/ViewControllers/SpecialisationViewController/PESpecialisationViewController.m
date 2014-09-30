@@ -48,6 +48,10 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
     self.specManager = [PESpecialisationManager sharedManager];
     self.isMyspecializations = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
+    
+    
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
@@ -120,8 +124,13 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions

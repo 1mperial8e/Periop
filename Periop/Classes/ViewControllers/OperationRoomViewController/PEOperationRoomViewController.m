@@ -17,13 +17,16 @@
 #import "PEAlbumViewController.h"
 #import "Photo.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PEViewPhotoViewController.h"
+#import "PECameraViewController.h"
 
-@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
+@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *labelSteps;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -39,8 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.specManager = [PESpecialisationManager sharedManager];
+    
+    self.labelSteps.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -99,9 +103,28 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamed:@"Place_Holder"] hash]) {
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        if (self.sortedArrayWithPhotos.count >0) {
+            viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+        }
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+    }
+}
+
 
 #pragma mark - UICollectionViewDataSource
 
@@ -201,6 +224,8 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender

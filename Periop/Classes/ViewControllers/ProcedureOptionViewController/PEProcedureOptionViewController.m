@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *equipmentButton;
 
+@property (assign, nonatomic) CGFloat distance;
+
 @end
 
 @implementation PEProcedureOptionViewController
@@ -57,49 +59,108 @@
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width/2;
+//    self.equipmentButton.layer.cornerRadius = self.equipmentButton.frame.size.width / 2;
+//    CAShapeLayer *circleLayer;
+//    circleLayer = [CAShapeLayer layer];
+//    circleLayer.bounds = CGRectMake(0.0f, 0.0f, self.equipmentButton.frame.size.width, self.equipmentButton.frame.size.height);
+//    circleLayer.position = CGPointMake(CGRectGetMidX(self.equipmentButton.bounds),CGRectGetMidY(self.equipmentButton.bounds));
+//    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, CGRectGetWidth(self.equipmentButton.frame), CGRectGetHeight(self.equipmentButton.frame))];
+//    [circleLayer setPath:path.CGPath];
+//    circleLayer.strokeColor = [UIColor clearColor].CGColor;
+//    circleLayer.fillColor = [UIColor blackColor].CGColor;
+//    circleLayer.lineWidth = 2.0;
+//    [self.equipmentButton.layer insertSublayer:circleLayer atIndex:0];
+//    self.equipmentButton.layer.mask = circleLayer;    
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+}
+
+#pragma mark - Equipment Rounded Button
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{   
+    touches = [event touchesForView:self.equipmentButton];
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.equipmentButton];
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
+    if (distance < self.equipmentButton.frame.size.width/2) {
+        NSLog (@"touch began inside");
+        [self.equipmentButton setHighlighted:YES];
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    touches = [event touchesForView:self.equipmentButton];
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.equipmentButton];
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
+    if (distance < self.equipmentButton.frame.size.width/2) {
+        [self.equipmentButton setHighlighted:NO];
+        [self performSelector:@selector(goToEquipmentViewController)];
+    }
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    touches = [event touchesForView:self.equipmentButton];
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.equipmentButton];
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
+    if (distance < self.equipmentButton.frame.size.width/2) {
+        [self.equipmentButton setHighlighted:NO];
+        [self performSelector:@selector(goToEquipmentViewController)];
+    }
+}
+
+- (void) goToEquipmentViewController
+{
+    PEEquipmentViewController * equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
+    [self.navigationController pushViewController:equipmentView animated:YES];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)preparationButton:(id)sender {
+- (IBAction)preparationButton:(id)sender
+{
     PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
     [self.navigationController pushViewController:preperationView animated:YES];
 }
 
-- (IBAction)operationRoomButton:(id)sender {
+- (IBAction)operationRoomButton:(id)sender
+{
     PEOperationRoomViewController * operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
     [self.navigationController pushViewController:operationRoomView animated:YES];
 }
 
-- (IBAction)equipmentButton:(id)sender {
-    PEEquipmentViewController * equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
-    [self.navigationController pushViewController:equipmentView animated:YES];
-
-}
-
-- (IBAction)patientPositioningButton:(id)sender {
+- (IBAction)patientPositioningButton:(id)sender
+{
     PEPatientPositioningViewController * patientPositioningView = [[PEPatientPositioningViewController alloc] initWithNibName:@"PEPatientPositioningViewController" bundle:nil];
     [self.navigationController pushViewController:patientPositioningView animated:YES];
 }
 
-- (IBAction)notesButton:(id)sender {
+- (IBAction)notesButton:(id)sender
+{
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Procedure Notes";
     [self.navigationController pushViewController:notesView animated:YES];
 }
 
-- (IBAction)doctorsButton:(id)sender {
+- (IBAction)doctorsButton:(id)sender
+{
     PEDoctorsListViewController * doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
     doctorsView.textToShow = self.specManager.currentProcedure.name;
     doctorsView.isButtonRequired = false;
@@ -125,6 +186,13 @@
     
     [self.operationRoomButton setTitle:@"Operating\n Room" forState:UIControlStateNormal];
     [self.patientPostioningButton setTitle:@"Patient\n Positioning" forState:UIControlStateNormal];
+}
+
+- (CGFloat) distanceBetweenTwoPoints: (CGPoint) point1 toPoint:(CGPoint) point2
+{
+    CGFloat dx = point2.x - point1.x;
+    CGFloat dy = point2.y - point1.y;
+    return sqrt(dx*dx + dy*dy );
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "PEPatientPositioningViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
-#import "PEPatientPostioningPreviewCollectionView.h"
+#import "PEPatientPositioningTableViewCell.h"
 #import "PEMediaSelect.h"
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
@@ -16,16 +16,20 @@
 #import "Photo.h"
 #import "PatientPostioning.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PEViewPhotoViewController.h"
+#import "Steps.h"
+#import "PECameraViewController.h"
 
-@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *postedCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
-@property (weak, nonatomic) IBOutlet UICollectionView *previewCollectionView;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
 
 @property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
+@property (strong, nonatomic) NSMutableArray * sortedArrayWithPatientPositioning;
 
 @end
 
@@ -41,7 +45,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
-    [self.previewCollectionView registerNib:[UINib nibWithNibName:@"PatientPostioningPreviewCell" bundle:nil] forCellWithReuseIdentifier:@"PatientCell"];
+    [self.tableViewPatient registerNib:[UINib nibWithNibName:@"PEPatientPositioningTableViewCell" bundle:nil] forCellReuseIdentifier:@"patientPositioningStepsCell"];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -72,11 +76,12 @@
     self.postedCollectionView.delegate = self;
     self.postedCollectionView.dataSource = self;
     
-    self.previewCollectionView.delegate = self;
-    self.previewCollectionView.dataSource = self;
+    self.tableViewPatient.delegate = self;
+    self.tableViewPatient.dataSource = self;
     
-    self.previewCollectionView.layer.borderWidth = 0.0f;
+    self.tableViewPatient.layer.borderWidth = 0.0f;
     self.postedCollectionView.layer.borderWidth = 0.0f;
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -85,16 +90,24 @@
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
     [[self.view viewWithTag:35] removeFromSuperview];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
+    self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
-    [self.previewCollectionView reloadData];
+    [self.tableViewPatient reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
 }
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma marks - IBActions
 
 - (IBAction)operationWithPhotoButton:(id)sender
 {
@@ -113,17 +126,70 @@
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
     albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
     [self.navigationController pushViewController:albumViewController animated:YES];
-
 }
 
 - (IBAction)cameraPhoto:(id)sender
 {
     NSLog(@"camera Photo from Op");
+    PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    [self presentViewController:cameraView animated:YES completion:nil];
 }
 
 - (IBAction)tapOnView:(id)sender
 {
     [[self.view viewWithTag:35] removeFromSuperview];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[self.specManager.currentProcedure.patientPostioning.steps allObjects] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PEPatientPositioningTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"patientPositioningStepsCell"];
+    }
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self heightForBasicCellAtIndexPath:indexPath];
+}
+
+#pragma mark - DynamicHeightOfCell
+
+- (PEPatientPositioningTableViewCell*)configureCell: (PEPatientPositioningTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    cell.labelStepName.text = ((Steps*)self.sortedArrayWithPatientPositioning[indexPath.row]).stepName;
+    cell.labelContent.text = ((Steps*)self.sortedArrayWithPatientPositioning[indexPath.row]).stepDescription;
+    
+    return cell;
+}
+
+- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+{
+    static PEPatientPositioningTableViewCell * sizingCell = nil;
+    static dispatch_once_t  token;
+    dispatch_once(&token, ^ {
+        sizingCell = [self.tableViewPatient dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell"];
+    });
+    [self configureCell:sizingCell atIndexPath:indexPath];
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableViewPatient.bounds), 0.0f);
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height ;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -138,30 +204,31 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([collectionView isEqual:self.postedCollectionView]) {
-        PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-        if (self.sortedArrayWithPhotos.count>0) {
-            cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
-            self.pageControll.currentPage = [indexPath row];
-        } else {
-            cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
-        }
-        return cell;
+    PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
+    if (self.sortedArrayWithPhotos.count>0) {
+        cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        self.pageControll.currentPage = [indexPath row];
     } else {
-        PEPatientPostioningPreviewCollectionView * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PatientCell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor blueColor];
-        if (self.sortedArrayWithPhotos.count>0) {
-            cell.image.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
-        } else {
-            cell.image.image = [UIImage imageNamed:@"Place_Holder"];
-        }
-        return cell;
+        cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
     }
+    return cell;
 }
-
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        if (self.sortedArrayWithPhotos.count >0) {
+            viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
+        }
+        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
+    }
 }
 
 #pragma marks - Private
@@ -172,6 +239,17 @@
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSNumber * firstObject = [(Photo*)obj1 photoNumber];
         NSNumber *  secondObject = [(Photo*)obj2 photoNumber];
+        return [firstObject compare:secondObject];
+    }];
+    return [NSMutableArray arrayWithArray:sortedArray];
+}
+
+- (NSMutableArray*) sortedArrayWithPatientPos: (NSArray * ) arrayToSort
+{
+    NSArray * sortedArray;
+    sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * firstObject = [(Steps*)obj1 stepName ];
+        NSString *  secondObject = [(Steps*)obj2 stepName];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
