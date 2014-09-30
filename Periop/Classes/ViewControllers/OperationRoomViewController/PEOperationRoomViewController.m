@@ -9,7 +9,7 @@
 #import "PEOperationRoomViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEMediaSelect.h"
-#import "PEPreparationTableViewCell.h"
+#import "PEOperationTableViewCell.h"
 #import "Steps.h"
 #import "PESpecialisationManager.h"
 #import "OperationRoom.h"
@@ -61,7 +61,7 @@
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEOperationTableViewCell" bundle:nil] forCellReuseIdentifier:@"operationTableViewCell"];
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -159,9 +159,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEPreparationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+    PEOperationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
     if (!cell){
-        cell = [[PEPreparationTableViewCell alloc] init];
+        cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"operationTableViewCell"];
     }
     cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -176,7 +176,7 @@
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+- (PEOperationTableViewCell *)configureCell: (PEOperationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.labelStep.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
     cell.labelPreparationText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
@@ -185,10 +185,10 @@
 
 - (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
 {
-    static PEPreparationTableViewCell * sizingCell = nil;
+    static PEOperationTableViewCell * sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     

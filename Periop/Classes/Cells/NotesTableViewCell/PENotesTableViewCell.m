@@ -14,6 +14,14 @@
 
 @implementation PENotesTableViewCell
 
+#pragma mark - LifeCycle
+
+- (void) awakeFromNib
+{
+    self.titleLabel.font = [UIFont fontWithName:@"MuseoSans-500" size:14.5f];
+    self.label.font = [UIFont fontWithName:@"MuseoSans-300" size:12.5f];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)photButton:(id)sender

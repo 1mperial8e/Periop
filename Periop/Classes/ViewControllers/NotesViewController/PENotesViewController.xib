@@ -15,13 +15,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QCJ-RR-vgr">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QCJ-RR-vgr">
+                    <rect key="frame" x="0.0" y="11" width="320" height="557"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="QCJ-RR-vgr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="11N-qr-HjN"/>
+                <constraint firstAttribute="bottom" secondItem="QCJ-RR-vgr" secondAttribute="bottom" id="LZw-gI-uEb"/>
+                <constraint firstItem="QCJ-RR-vgr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="gCP-Ho-6ZS"/>
+                <constraint firstAttribute="trailing" secondItem="QCJ-RR-vgr" secondAttribute="trailing" id="xQO-jw-Sue"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
