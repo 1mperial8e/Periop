@@ -8,6 +8,18 @@
 
 @interface PECameraViewController : UIViewController
 
+typedef enum RequestedController : NSInteger RequestedController;
+
+enum RequsetedController: NSInteger {
+    OperationRoomViewController,
+    DoctorsViewControllerAdd,
+    DoctorsViewControllerProfile,
+    EquipmentsToolViewController,
+    NotesViewControllerAdd,
+    PatientPostioningViewController
+};
+
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithCurrentPhoto;
+@property (assign, nonatomic) RequestedController request;
 
 @end

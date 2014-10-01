@@ -159,6 +159,7 @@
 {
     NSLog(@"camera Photo ");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    cameraView.request = NotesViewControllerAdd;
     [self presentViewController:cameraView animated:YES completion:nil];
 }
 

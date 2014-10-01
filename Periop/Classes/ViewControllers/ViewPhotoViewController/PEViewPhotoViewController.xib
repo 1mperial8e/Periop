@@ -16,6 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-6i-XGO" userLabel="ImageToShow ImageView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNa-8m-45z" userLabel="BottomHolderVIew">
                     <rect key="frame" x="0.0" y="531" width="320" height="37"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +29,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="Pj0-5r-R3Z"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="cJQ-CZ-8bY"/>
                                 <constraint firstAttribute="width" constant="32" id="kQV-9s-LkK"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="rjQ-uf-uiC"/>
                             </constraints>
                             <state key="normal" image="Bin_Icon.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,26 +43,17 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="37" id="37b-0j-dvQ"/>
-                        <constraint firstItem="wOi-9N-3t3" firstAttribute="top" secondItem="PNa-8m-45z" secondAttribute="top" constant="3" id="Zul-HG-w9e"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="mYc-5d-Ym4"/>
-                        <constraint firstAttribute="trailing" secondItem="wOi-9N-3t3" secondAttribute="trailing" constant="15" id="pFF-mD-lgY"/>
+                        <constraint firstAttribute="trailing" secondItem="wOi-9N-3t3" secondAttribute="trailing" constant="15" id="Hua-1i-Tzi"/>
+                        <constraint firstAttribute="height" constant="37" id="gfG-57-B5s"/>
+                        <constraint firstAttribute="bottom" secondItem="wOi-9N-3t3" secondAttribute="bottom" constant="2" id="h1g-4e-UWU"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-6i-XGO" userLabel="ImageToShow ImageView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="531"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="PNa-8m-45z" firstAttribute="top" secondItem="qVa-6i-XGO" secondAttribute="bottom" id="082-NN-yAt"/>
-                <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="89D-NJ-VjO"/>
-                <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="JKE-m8-mCw"/>
-                <constraint firstAttribute="trailing" secondItem="qVa-6i-XGO" secondAttribute="trailing" id="X9c-UT-aTh"/>
-                <constraint firstItem="qVa-6i-XGO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="in5-q2-2vo"/>
-                <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="qbN-Wb-huy"/>
-                <constraint firstItem="qVa-6i-XGO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sf1-0v-Mh9"/>
+                <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="EbG-QC-MTF"/>
+                <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nCf-ie-FzM"/>
+                <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="xpz-K9-GIg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

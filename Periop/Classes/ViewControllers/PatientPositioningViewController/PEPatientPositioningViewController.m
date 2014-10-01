@@ -114,6 +114,7 @@
 {
     NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    cameraView.request = PatientPostioningViewController;
     [self presentViewController:cameraView animated:YES completion:nil];
 }
 

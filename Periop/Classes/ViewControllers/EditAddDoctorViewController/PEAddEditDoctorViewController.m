@@ -21,6 +21,13 @@
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 
+
+static NSInteger const AEDTitleForRowHeight = 37;
+static NSInteger const AEDHeightForSpecRow = 130;
+static NSInteger const AEDHeightForAllRows = 37;
+static NSInteger const AEDTagForView = 100;
+static NSString *const AEDTitleNameSpec = @"Specialisations";
+
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -161,7 +168,7 @@
         NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
         Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
-        if (self.nameTextField.text.length >0) {
+        if (!self.nameTextField.text.length) {
             newDoc.name = self.nameTextField.text;
         } else {
             newDoc.name = @"No name Doctor";
@@ -203,7 +210,7 @@
     NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect * view = array[0];
     view.frame = position;
-    view.tag = 35;
+    view.tag = AEDTagForView;
     [self.view addSubview:view];
 }
 
@@ -223,6 +230,7 @@
 - (IBAction)cameraPhoto:(id)sender
 {
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    cameraView.request = DoctorsViewControllerAdd;
     [self presentViewController:cameraView animated:YES completion:nil];
 }
 
@@ -264,7 +272,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 ){
+    if (!section){
         return 1;
     } else {
         NSArray * keys = [self.requestedSpecsWithProc allKeys];
@@ -275,19 +283,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([[self.requestedSpecsWithProc allKeys] count]==0) {
+    if (![[self.requestedSpecsWithProc allKeys] count]) {
         return 1;
     } else {
         return [[self.requestedSpecsWithProc allKeys] count] + 1;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section==0) {
-        return @"Specialisation";
-    } else {
-        return [self.requestedSpecsWithProc allKeys][section - 1 ];
     }
 }
 
@@ -299,17 +298,18 @@
     myLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
     myLabel.textColor = [UIColor colorWithRed:73/255.0 green:159/255.0 blue:225/255.0 alpha:1.0f];
     if (section==0) {
-        myLabel.text = @"Specialisation";
+        myLabel.text = AEDTitleNameSpec;
     } else {
         myLabel.text = [self.requestedSpecsWithProc allKeys][section - 1];
     }
     
     UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:myLabel];
     
     UIView * separatorView = [[UIView alloc] init];
     separatorView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0f];
-    separatorView.frame = CGRectMake(0, myLabel.frame.size.height, 320, 1);
+    separatorView.frame = CGRectMake(0, myLabel.frame.size.height, self.view.frame.size.width, 1);
     
     [headerView addSubview:separatorView];
     
@@ -318,15 +318,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 37;
+    return AEDTitleForRowHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row] == 0 && indexPath.section == 0) {
-        return 130;
+    if (![indexPath row] && !indexPath.section) {
+        return AEDHeightForSpecRow;
     } else {
-        return 66;
+        return AEDHeightForAllRows;
     }
 }
 
@@ -334,7 +334,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section>0 ) {
+    if (indexPath.section) {
         ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = YES;
         NSArray * keys = [self.requestedSpecsWithProc allKeys];
         NSArray * procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
@@ -344,7 +344,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section>0) {
+    if (indexPath.section) {
         ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = NO;
         NSArray * keys = [self.requestedSpecsWithProc allKeys];
         NSArray * procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
