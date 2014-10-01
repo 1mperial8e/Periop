@@ -58,7 +58,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
@@ -115,9 +115,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
         }
-    } else {
-        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder.png"];
-    }
+   }
     
     [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
@@ -233,7 +231,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.keyboardRect = [self.view convertRect:self.keyboardRect fromView:nil];
     
     [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
-        self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height+self.quantityTextField.frame.size.height);
+        self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height);
     }];
 }
 
