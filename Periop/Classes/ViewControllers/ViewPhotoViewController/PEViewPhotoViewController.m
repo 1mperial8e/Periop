@@ -33,7 +33,9 @@
     [super viewDidLoad];
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    self.specManager = [PESpecialisationManager sharedManager];    
+    self.specManager = [PESpecialisationManager sharedManager];
+    
+    self.navigationController.navigationBar.translucent = YES;
     
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     self.navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
@@ -81,6 +83,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationLabel removeFromSuperview];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - Rotation
@@ -99,18 +102,21 @@
             for (Photo * imageToDelete in [self.specManager.currentProcedure.operationRoom.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentProcedure.operationRoom removePhotoObject:imageToDelete];
+                    [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
         } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEPatientPositioningViewController"]) {
             for (Photo * imageToDelete in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentProcedure.patientPostioning removePhotoObject:imageToDelete];
+                    [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
         } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
             for (Photo * imageToDelete in [self.specManager.currentEquipment.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentEquipment removePhotoObject:imageToDelete];
+                    [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
         } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEDoctorProfileViewController"]) {

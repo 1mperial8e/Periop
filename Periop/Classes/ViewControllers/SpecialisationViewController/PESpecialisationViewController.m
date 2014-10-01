@@ -52,6 +52,9 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
     [super viewDidLoad];
     
     self.purchaseManager = [PEPurchaseManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.specManager = [PESpecialisationManager sharedManager];
+    self.isMyspecializations = YES;
     
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     if (![def integerForKey:TVCShowTutorial]) {
@@ -60,11 +63,7 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [rootController presentViewController:tutorialController animated:NO completion:nil];
     }
-    
-    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    self.specManager = [PESpecialisationManager sharedManager];
-    self.isMyspecializations = YES;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
     
@@ -226,7 +225,7 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex==0) {
+    if (!buttonIndex) {
         NSLog(@"canceled");
     } else {
         if (self.selectedSpecToReset!=nil) {

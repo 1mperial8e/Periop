@@ -86,6 +86,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    self.specManager.photoObject = nil;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

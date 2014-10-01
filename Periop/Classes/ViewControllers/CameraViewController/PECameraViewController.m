@@ -13,6 +13,8 @@
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import "Photo.h"
+#import "PatientPostioning.h"
+#import "Note.h"
 
 static void *CapturingStillImageContext = &CapturingStillImageContext;
 static void *RecordingContext = &RecordingContext;
@@ -186,7 +188,8 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     newPhotoObject.photoData = UIImageJPEGRepresentation(imageToStore, 1.0);
     
     self.specManager.photoObject = newPhotoObject;
-    if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
+
+    if (self.request == OperationRoomViewController) {
         if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
             newPhotoObject.operationRoom = self.specManager.currentProcedure.operationRoom;
             newPhotoObject.photoNumber = @([[self.specManager.currentProcedure.operationRoom.photo allObjects] count]+1);
@@ -199,9 +202,50 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
         }
         NSError * error = nil;
         if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+            NSLog(@"Cant save camera photo for operationRoom DB  - %@", error.localizedDescription);
         }
+    } else if (self.request == PatientPostioningViewController) {
+        newPhotoObject.patientPositioning = self.specManager.currentProcedure.patientPostioning;
+        newPhotoObject.photoNumber = @([[self.specManager.currentProcedure.patientPostioning.photo allObjects] count] + 1);
+        [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhotoObject];
+        NSError * error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save camera photo for patientPostioning DB  - %@", error.localizedDescription);
+        }
+    } else  if (self.request == EquipmentsToolViewController) {
+        if ([[self.specManager.currentEquipment.photo allObjects] count] > 0) {
+            [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
+            [self.specManager.currentEquipment removePhotoObject:[self.specManager.currentEquipment.photo allObjects][0]];
+        }
+        newPhotoObject.equiomentTool = self.specManager.currentEquipment;
+        newPhotoObject.photoNumber = @(0);
+        [self.specManager.currentEquipment addPhotoObject:newPhotoObject];
+        
+        NSError * error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save camera photo for equipment DB  - %@", error.localizedDescription);
+        }
+    } else if (self.request == NotesViewControllerAdd ) {
+        newPhotoObject.photoNumber = @(0);
+        self.specManager.photoObject = newPhotoObject;
+    } else if (self.request == DoctorsViewControllerProfile) {
+        newPhotoObject.doctor = self.specManager.currentDoctor;
+        newPhotoObject.photoNumber = @(0);
+        self.specManager.currentDoctor.photo = newPhotoObject;
+        NSError * error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save camera photo for doctorsProfile DB - %@", error.localizedDescription);
+        }
+    } else if (self.request == DoctorsViewControllerAdd) {
+        newPhotoObject.photoNumber = @(0);
+        self.specManager.photoObject = newPhotoObject;
     }
+    
+    
+    
+    
+    
+
     
     //todo - for others controllers - after tryying on phone code above
 }

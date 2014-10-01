@@ -127,6 +127,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
+    self.specManager.photoObject = nil;
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -203,8 +204,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
+    cameraView.request = EquipmentsToolViewController;
     [self presentViewController:cameraView animated:YES completion:nil];
 }
 
