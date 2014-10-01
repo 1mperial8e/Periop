@@ -121,16 +121,22 @@
             }
         } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEDoctorProfileViewController"]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
+                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEAddEditDoctorViewController"]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
+                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PENotesViewController"]) {
             
             if ([((Photo*)self.specManager.currentNote.photo).photoData isEqualToData:self.photoToShow.photoData]) {
+                if (self.specManager.currentNote.photo) {
+                    [self.managedObjectContext deleteObject:(Photo*)self.specManager.currentNote.photo];
+                }
                 self.specManager.currentNote.photo = nil;
+                
             }
         }
 

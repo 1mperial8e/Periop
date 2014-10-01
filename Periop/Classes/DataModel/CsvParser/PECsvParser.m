@@ -102,8 +102,12 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                 NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 NSString *photoName = (NSString *)colum[6];
-                if ([photoName rangeOfString:@"http"].location == NSNotFound) {
-                    UIImage *photo = [UIImage imageNamed:photoName];
+                
+                //save name of photo if exist
+                if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
+                    NSBundle* bundle = [NSBundle mainBundle];
+                    NSString *imagePath = [bundle pathForResource:photoName ofType:@"jpg"];
+                    UIImage* photo = [UIImage imageWithContentsOfFile:imagePath];
                     if (photo) {
                         initPhoto.photoName = colum[6];
                         initPhoto.equiomentTool = newTool;
@@ -111,6 +115,14 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                     }
                 } else {
                     // to download photo and check; if yes save in initPhoto.photoData
+                    NSURL * url = [NSURL URLWithString:photoName];
+                    NSData * urlData = [NSData dataWithContentsOfURL:url];
+                    //UIImage * downloadedImage = [UIImage imageWithData:urlData];
+                    if (urlData) {
+                        initPhoto.photoData = UIImageJPEGRepresentation([UIImage imageWithData:urlData], 1.0f);
+                        initPhoto.equiomentTool = newTool;
+                        [newTool addPhotoObject:initPhoto];
+                    }
                 }
                 
                 newTool.quantity = colum[5];

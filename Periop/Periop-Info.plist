@@ -44,5 +44,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UILaunchImageFile</key>
+	<string></string>
 </dict>
 </plist>

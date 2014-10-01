@@ -160,6 +160,13 @@
             newPhoto.photoNumber = @(0);
             self.specManager.photoObject = newPhoto;
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
+            if (self.specManager.currentNote.photo) {
+                [self.managedObjectContext deleteObject:self.specManager.currentNote.photo];
+                NSError * error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    NSLog(@"Cant delete photo from note - %@", error.localizedDescription);
+                }
+            }
             newPhoto.photoNumber = @(0);
             self.specManager.photoObject = newPhoto;
         }

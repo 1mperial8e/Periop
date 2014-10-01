@@ -198,6 +198,8 @@
 		EDD0244719D0B8A60023F46D /* Steps.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0244619D0B8A60023F46D /* Steps.m */; };
 		EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */; };
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
+		EDD2A61F19DC046900A73C5E /* S0901T0401.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD2A55F19DC046800A73C5E /* S0901T0401.png */; };
+		EDD2A62019DC046900A73C5E /* S0901T0701.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDD2A56019DC046800A73C5E /* S0901T0701.jpg */; };
 		EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDE819D2A8D40087D8CE /* Doctors.m */; };
 		EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */; };
 		EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */; };
@@ -477,6 +479,8 @@
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
 		EDD2A55B19DBF46500A73C5E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		EDD2A55F19DC046800A73C5E /* S0901T0401.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S0901T0401.png; sourceTree = "<group>"; };
+		EDD2A56019DC046800A73C5E /* S0901T0701.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0901T0701.jpg; sourceTree = "<group>"; };
 		EDD4BDE719D2A8D40087D8CE /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctors.h; path = Periop/Classes/Entities/Doctors.h; sourceTree = SOURCE_ROOT; };
 		EDD4BDE819D2A8D40087D8CE /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctors.m; path = Periop/Classes/Entities/Doctors.m; sourceTree = SOURCE_ROOT; };
 		EDD4BDEB19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorProfileCollectionViewCell.h; sourceTree = "<group>"; };
@@ -882,6 +886,7 @@
 		ED9C68B919C720B20022C1A8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EDD2A55C19DC045200A73C5E /* ToolsPhoto */,
 				84AF77A219DAEA77009F2B98 /* TutorialScreen */,
 				ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */,
 				ED9C690F19C720E70022C1A8 /* Assets - Surgical Specialties */,
@@ -1301,6 +1306,31 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		EDD2A55C19DC045200A73C5E /* ToolsPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				EDD2A55D19DC046800A73C5E /* General */,
+			);
+			path = ToolsPhoto;
+			sourceTree = "<group>";
+		};
+		EDD2A55D19DC046800A73C5E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EDD2A55E19DC046800A73C5E /* S0901 */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		EDD2A55E19DC046800A73C5E /* S0901 */ = {
+			isa = PBXGroup;
+			children = (
+				EDD2A55F19DC046800A73C5E /* S0901T0401.png */,
+				EDD2A56019DC046800A73C5E /* S0901T0701.jpg */,
+			);
+			path = S0901;
+			sourceTree = "<group>";
+		};
 		EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1550,6 +1580,7 @@
 				ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */,
 				ED9C699B19C720E80022C1A8 /* Notes_Tab_Active@2x.png in Resources */,
 				ED9C69C919C720E80022C1A8 /* Cosmetic_Small_Inactive@2x.png in Resources */,
+				EDD2A62019DC046900A73C5E /* S0901T0701.jpg in Resources */,
 				84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */,
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
 				EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */,
@@ -1635,6 +1666,7 @@
 				84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */,
 				ED9C69AD19C720E80022C1A8 /* Search_Bar@2x.png in Resources */,
 				ED9C696319C720E70022C1A8 /* Add_Photo_Small@2x.png in Resources */,
+				EDD2A61F19DC046900A73C5E /* S0901T0401.png in Resources */,
 				8474907A19B8459E0013C446 /* Images.xcassets in Resources */,
 				EDE9CA1B19D4028700150754 /* General.csv in Resources */,
 				ED9C699519C720E80022C1A8 /* More_Specialisations_Inactive@2x.png in Resources */,

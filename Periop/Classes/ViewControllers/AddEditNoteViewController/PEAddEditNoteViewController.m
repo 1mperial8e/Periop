@@ -111,7 +111,7 @@
             self.specManager.currentNote.textDescription = self.textViewNotes.text;
             self.specManager.currentNote.timeStamp = [NSDate date];
             self.specManager.currentNote.photo = self.specManager.photoObject;
-            ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
+        ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -132,6 +132,7 @@
             [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
         }
     }
+    self.specManager.photoObject = nil;
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);

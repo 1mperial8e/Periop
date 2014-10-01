@@ -115,7 +115,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
         }
-   }
+    } else {
+        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder"];
+    }
     
     [[self.view viewWithTag:35] removeFromSuperview];
     [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
