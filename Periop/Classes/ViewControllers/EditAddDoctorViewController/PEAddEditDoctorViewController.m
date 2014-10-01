@@ -94,7 +94,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     }
     ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
     
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:AEDTagForView] removeFromSuperview];
     
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
