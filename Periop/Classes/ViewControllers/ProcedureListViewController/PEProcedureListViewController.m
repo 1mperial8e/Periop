@@ -29,7 +29,6 @@
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) UIBarButtonItem * navigationBarAddDoctorButton;
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithProcedures;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithDoctors;
 
@@ -55,19 +54,6 @@
     [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width / 2, navBarSize.height / 2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.text = @"Procedure Name";
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.layer.zPosition = 0;
-    self.navigationBarLabel.numberOfLines = 0;
-    
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
     
@@ -78,30 +64,26 @@
     self.tableView.dataSource = self;
     
     self.tableView.layer.borderWidth = 0.0f;
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Procedure Name";
+    
     [self.tableView reloadData];
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
     [self customizingSearchBar];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-}
-
 #pragma mark - IBActions
 
 - (IBAction)procedureButton:(id)sender
 {
-    self.navigationBarLabel.text = @"Procedure Name";
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Procedure Name";
+    
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
@@ -111,8 +93,9 @@
 
 - (IBAction)doctorButton:(id)sender
 {
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Doctors Name";
+    
     self.specManager.isProcedureSelected = false;
-    self.navigationBarLabel.text = @"Doctors Name";
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];

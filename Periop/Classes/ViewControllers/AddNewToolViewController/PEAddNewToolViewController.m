@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *specLabel;
 @property (weak, nonatomic) IBOutlet UILabel *qtyLabel;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * categoryTools;
@@ -50,20 +49,7 @@
     self.specTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
     self.qtyTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
     
-    
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.text =((EquipmentsTool*)self.specManager.currentProcedure).name;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.numberOfLines = 0;
     [self.navigationItem setHidesBackButton:YES];
     
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
@@ -79,13 +65,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((EquipmentsTool*)self.specManager.currentProcedure).name;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

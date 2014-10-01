@@ -6,13 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PEAddEditDoctorViewController : UIViewController
 
 @property (copy, nonatomic) NSString * navigationLabelDescription;
 @property (assign, nonatomic) BOOL isEditedDoctor;
-
-//@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewForCell;
 
 @end

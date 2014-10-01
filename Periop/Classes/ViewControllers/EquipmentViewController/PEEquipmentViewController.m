@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableArray * arrayWithCategorisedToolsArrays;
@@ -45,18 +44,6 @@
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 3,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    
     UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -74,7 +61,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
     
     self.arrayWithCategorisedToolsArrays = [self sortArrayByCategoryAttribute:[self.specManager.currentProcedure.equipments allObjects]];
     self.categoryTools = [self categoryType:[self.specManager.currentProcedure.equipments allObjects]];
@@ -85,8 +73,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    
+
     [self.cellWithCheckedButtons  removeAllObjects];
     [self.cellCurrentlyEditing removeAllObjects];
 }

@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
-@property (strong, nonatomic) UILabel *navigationLabel;
 @property (strong, nonatomic) CAGradientLayer *gradient;
 
 @end
@@ -34,16 +33,6 @@
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];    
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    
-    self.navigationLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationLabel.text = @"View Photo";
     
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -71,16 +60,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationItem.titleView = self.navigationLabel ;
-    if (self.photoToShow!=nil) {
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"View Photo";
+    
+    if (self.photoToShow) {
         self.imageView.image = [UIImage imageWithData:self.photoToShow.photoData];
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationLabel removeFromSuperview];
 }
 
 #pragma mark - Rotation

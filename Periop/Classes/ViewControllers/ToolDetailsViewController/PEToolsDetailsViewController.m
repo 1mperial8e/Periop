@@ -31,7 +31,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpec;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -62,28 +61,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool*)self.specManager.currentEquipment).name]];
-    
-    [stringForLabelTop addAttribute:NSFontAttributeName
-                              value:[UIFont systemFontOfSize:16.0]
-                              range:NSMakeRange(0, stringForLabelTop.length)];
-    
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
-    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
-    
-    [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
-    self.navigationBarLabel.attributedText = stringForLabelTop;
-    
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
@@ -109,6 +86,20 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewWillAppear:animated];
     
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool*)self.specManager.currentEquipment).name]];
+    
+    [stringForLabelTop addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:16.0]
+                              range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    
+    [stringForLabelTop appendAttributedString:stringForLabelBottom];
+    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
     if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
         if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
             self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
@@ -118,13 +109,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
    }
     
     [[self.view viewWithTag:35] removeFromSuperview];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations

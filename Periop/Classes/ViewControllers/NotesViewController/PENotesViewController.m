@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotes;
 
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) UILabel* navigationBarLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
@@ -38,22 +37,6 @@
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    if (self.specManager.isProcedureSelected) {
-        self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
-    } else {
-        self.navigationBarLabel.text = ((Doctors*)self.specManager.currentDoctor).name;
-    }
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.numberOfLines = 0;
     
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -70,14 +53,16 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    NSString *textForHeader;
+    if (self.specManager.isProcedureSelected) {
+        textForHeader = ((Procedure*)self.specManager.currentProcedure).name;
+    } else {
+        textForHeader = ((Doctors*)self.specManager.currentDoctor).name;
+    }
+    ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
+    
     [self.tableViewNotes reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations

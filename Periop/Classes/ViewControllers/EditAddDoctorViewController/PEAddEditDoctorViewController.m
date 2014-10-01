@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSMutableDictionary * requestedSpecsWithProc;
@@ -52,22 +51,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
     self.nameTextField.delegate = self;
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.numberOfLines = 0;
-    if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
-        self.navigationBarLabel.text=self.navigationLabelDescription;
-    } else {
-        self.navigationBarLabel.text = @"Add Surgeon";
-    }
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem=saveButton;
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -89,15 +72,23 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
     self.specManager.photoObject = nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSString *textForHeader;
+    if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
+        textForHeader = self.navigationLabelDescription;
+    } else {
+        textForHeader = @"Add Surgeon";
+    }
+    ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
+    
     [[self.view viewWithTag:35] removeFromSuperview];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {

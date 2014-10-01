@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Photo.h"
 
 @interface PEViewPhotoViewController : UIViewController

@@ -22,7 +22,6 @@
 
 @property (strong, nonatomic) NSMutableArray *selectedPhotos;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) UILabel * navigationLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (assign, nonatomic) NSInteger allowedCountOfSelectedCells;
 
@@ -44,18 +43,6 @@
     
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Close"] style:UIBarButtonItemStylePlain target:self action:@selector(choosingComplete)];
     self.navigationItem.leftBarButtonItem = closeButton;
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationLabel.minimumScaleFactor = 0.5;
-    self.navigationLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationLabel.text = self.navigationLabelText;
-    self.navigationLabel.numberOfLines = 0;
     self.selectedPhotos = [[NSMutableArray alloc] init];
     
     self.allowedCountOfSelectedCells = [self getAllowedCountOfSelectedCells];
@@ -64,13 +51,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationLabel removeFromSuperview];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.navigationLabelText;
 }
 
 #pragma mark - UICollectionViewDataSource

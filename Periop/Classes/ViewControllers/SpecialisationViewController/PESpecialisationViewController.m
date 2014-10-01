@@ -23,8 +23,6 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 @property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
@@ -67,17 +65,8 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.text = @"Specialisations";
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.numberOfLines = 0;
+
+    //self.navigationBarLabel.text = @"Specialisations";
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
@@ -96,19 +85,15 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Specialisations";
+    
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self.collectionView reloadData];
     if (self.specManager.currentProcedure!=nil) {
         self.specManager.currentProcedure = nil;
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -120,11 +105,8 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 - (IBAction)menuButton:(id)sender
 {
-    [self.navigationBarLabel removeFromSuperview];
-    
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = @"Specialisations";
-    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
     

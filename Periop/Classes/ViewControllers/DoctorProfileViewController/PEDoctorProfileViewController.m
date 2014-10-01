@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *specsButton;
 
-@property (strong, nonatomic) UILabel *navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *doctorsSpec;
@@ -57,17 +56,6 @@
     [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
 
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
 
@@ -86,17 +74,18 @@
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.doctorPhotoImageView addGestureRecognizer:tap];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
+    
+    [[self.view viewWithTag:35] removeFromSuperview];
+    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    [super viewWillAppear:animated];
-    self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-    [[self.view viewWithTag:35] removeFromSuperview];
     
     [self getDoctorsSpecAndProcedures];
     
@@ -110,13 +99,6 @@
     
     [self.tableView reloadData];
     [self.collectionView reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    self.specManager.photoObject = nil;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

@@ -6,10 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PEPatientPositioningViewController : UIViewController
-
-
 
 @end

@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithPatientPositioning;
@@ -47,29 +46,6 @@
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     [self.tableViewPatient registerNib:[UINib nibWithNibName:@"PEPatientPositioningTableViewCell" bundle:nil] forCellReuseIdentifier:@"patientPositioningStepsCell"];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
-    
-    [stringForLabelTop addAttribute:NSFontAttributeName
-                              value:[UIFont systemFontOfSize:16.0]
-                              range:NSMakeRange(0, stringForLabelTop.length)];
-    
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
-    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
-    
-    [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    self.navigationBarLabel.attributedText = stringForLabelTop;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
@@ -87,19 +63,25 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
+    
+    [stringForLabelTop addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:16.0]
+                              range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    
+    [stringForLabelTop appendAttributedString:stringForLabelBottom];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
     [[self.view viewWithTag:35] removeFromSuperview];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
     self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
     [self.tableViewPatient reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations
