@@ -52,7 +52,7 @@
     self.navigationLabel.textColor = [UIColor whiteColor];
     self.navigationLabel.minimumScaleFactor = 0.5;
     self.navigationLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.navigationLabel.backgroundColor = [UIColor clearColor];
     self.navigationLabel.text = self.navigationLabelText;
     self.navigationLabel.numberOfLines = 0;

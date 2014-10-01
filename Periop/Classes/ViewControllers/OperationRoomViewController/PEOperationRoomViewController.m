@@ -44,7 +44,7 @@
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    self.labelSteps.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelSteps.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -70,7 +70,7 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName

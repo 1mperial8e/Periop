@@ -52,7 +52,7 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;

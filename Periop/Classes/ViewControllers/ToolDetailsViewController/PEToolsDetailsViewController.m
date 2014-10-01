@@ -47,13 +47,13 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewDidLoad];
     
-    self.labelName.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.labelSpec.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.labelQuantity.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelSpec.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelQuantity.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     
-    self.nameTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.specificationTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.quantityTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.specificationTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.quantityTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -66,7 +66,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;
@@ -109,7 +109,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewWillAppear:animated];
     
-    if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+    if ([[self.specManager.currentEquipment.photo allObjects] count]) {
         if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
             self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
@@ -180,9 +180,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"Touched Image");
             PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-            if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+            if ([[self.specManager.currentEquipment.photo allObjects] count]) {
                 viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
             }
             [self.navigationController pushViewController:viewPhotoControleller animated:YES];

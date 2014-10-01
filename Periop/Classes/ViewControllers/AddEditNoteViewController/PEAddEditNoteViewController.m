@@ -38,8 +38,8 @@
 {
     [super viewDidLoad];
     
-    self.timeStamp.font = [UIFont fontWithName:@"MuseoSans-500" size:12.0f];
-    self.textViewNotes.font = [UIFont fontWithName:@"MuseoSans-500" size:11.5f];
+    self.timeStamp.font = [UIFont fontWithName:FONT_MuseoSans500 size:12.0f];
+    self.textViewNotes.font = [UIFont fontWithName:FONT_MuseoSans500 size:11.5f];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -51,7 +51,7 @@
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.navigationBarLabel.text = @"New Note";
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.numberOfLines = 0;

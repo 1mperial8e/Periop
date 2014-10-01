@@ -18,8 +18,8 @@
 
 - (void) awakeFromNib
 {
-    self.titleLabel.font = [UIFont fontWithName:@"MuseoSans-500" size:14.5f];
-    self.label.font = [UIFont fontWithName:@"MuseoSans-300" size:12.5f];
+    self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:14.5f];
+    self.label.font = [UIFont fontWithName:FONT_MuseoSans300 size:12.5f];
 }
 
 #pragma mark - IBActions

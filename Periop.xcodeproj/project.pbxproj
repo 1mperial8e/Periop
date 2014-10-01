@@ -476,6 +476,7 @@
 		EDD0598219BAC1F8007C0DE8 /* PEDoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsListViewController.h; sourceTree = "<group>"; };
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
+		EDD2A55B19DBF46500A73C5E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		EDD4BDE719D2A8D40087D8CE /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctors.h; path = Periop/Classes/Entities/Doctors.h; sourceTree = SOURCE_ROOT; };
 		EDD4BDE819D2A8D40087D8CE /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctors.m; path = Periop/Classes/Entities/Doctors.m; sourceTree = SOURCE_ROOT; };
 		EDD4BDEB19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorProfileCollectionViewCell.h; sourceTree = "<group>"; };
@@ -678,6 +679,7 @@
 		8474906B19B8459E0013C446 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EDD2A55719DBF40E00A73C5E /* Constants */,
 				8474906C19B8459E0013C446 /* Periop-Info.plist */,
 				8474906D19B8459E0013C446 /* InfoPlist.strings */,
 				8474907019B8459E0013C446 /* main.m */,
@@ -1289,6 +1291,14 @@
 				EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */,
 			);
 			path = DoctorListViewController;
+			sourceTree = "<group>";
+		};
+		EDD2A55719DBF40E00A73C5E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EDD2A55B19DBF46500A73C5E /* Constants.h */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */ = {

@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const PLVCProcedureName = @"Procedure Name";
+static NSString *const PLVCDoctorsName = @"Doctors Name";
+
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
 #import "PEMenuViewController.h"
@@ -61,8 +64,8 @@
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationBarLabel.minimumScaleFactor = 0.5;
     self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
-    self.navigationBarLabel.text = @"Procedure Name";
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
+    self.navigationBarLabel.text = PLVCProcedureName;
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.layer.zPosition = 0;
@@ -101,7 +104,7 @@
 
 - (IBAction)procedureButton:(id)sender
 {
-    self.navigationBarLabel.text = @"Procedure Name";
+    self.navigationBarLabel.text = PLVCProcedureName;
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
@@ -112,7 +115,7 @@
 - (IBAction)doctorButton:(id)sender
 {
     self.specManager.isProcedureSelected = false;
-    self.navigationBarLabel.text = @"Doctors Name";
+    self.navigationBarLabel.text = PLVCDoctorsName;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
@@ -173,7 +176,7 @@
     for(int i =0; i<[searchBarSubViews count]; i++) {
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
             UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
-            [search setFont:[UIFont fontWithName:@"MuseoSans-500" size:12.5]];
+            [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
             [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
             search.placeholder = @"Search";
             search.backgroundColor = [UIColor whiteColor];
@@ -215,7 +218,7 @@
         cell.textLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
     }
     
-    UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
+    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell.textLabel.text = ((Procedure*)self.searchResult[indexPath.row]).name;

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const TACTermsAndConditions = @"Terms & Conditions";
+
 #import "PETermsAndConditionViewController.h"
 #import "PEMenuViewController.h"
 
@@ -28,12 +30,12 @@
     self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
     self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.text = @"Terms & Conditions";
-    self.navigationBarLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.navigationBarLabel.text = TACTermsAndConditions;
+    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.navigationBarLabel.textColor = [UIColor whiteColor];
     self.navigationBarLabel.backgroundColor = [UIColor clearColor];
     
-    self.textView.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
+    self.textView.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,7 +56,7 @@
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
-    menuController.textToShow = @"Terms & Conditions";
+    menuController.textToShow = TACTermsAndConditions;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;

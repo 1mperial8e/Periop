@@ -13,8 +13,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.labelStepName.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.labelContent.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
+    self.labelStepName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelContent.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
 @end

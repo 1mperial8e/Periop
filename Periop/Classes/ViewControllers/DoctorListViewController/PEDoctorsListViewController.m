@@ -58,7 +58,7 @@
     self.labelToShowOnNavigationBar.adjustsFontSizeToFitWidth = YES;
     self.labelToShowOnNavigationBar.backgroundColor = [UIColor clearColor];
     self.labelToShowOnNavigationBar.textColor = [UIColor whiteColor];
-    self.labelToShowOnNavigationBar.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.labelToShowOnNavigationBar.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.labelToShowOnNavigationBar.textAlignment = NSTextAlignmentCenter;
     self.labelToShowOnNavigationBar.numberOfLines = 0;
     if (self.textToShow && self.textToShow.length!=0){
@@ -143,7 +143,7 @@
     for(int i =0; i<[searchBarSubViews count]; i++) {
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
             UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
-            [search setFont:[UIFont fontWithName:@"MuseoSans-500" size:12.5]];
+            [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
             [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
             search.placeholder = @"Search";
             search.backgroundColor = [UIColor whiteColor];
