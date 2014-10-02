@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *addNewButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableArray * arrayWithCategorisedToolsArrays;
@@ -74,7 +73,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
     
     self.arrayWithCategorisedToolsArrays = [self sortArrayByCategoryAttribute:[self.specManager.currentProcedure.equipments allObjects]];
     self.categoryTools = [self categoryType:[self.specManager.currentProcedure.equipments allObjects]];
@@ -85,8 +85,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    
+
     [self.cellWithCheckedButtons  removeAllObjects];
     [self.cellCurrentlyEditing removeAllObjects];
 }

@@ -47,6 +47,7 @@
 		84AF77B219DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77AA19DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png */; };
 		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
 		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
+		84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B49319DC2E2400BF8D07 /* PENavigationController.m */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
@@ -175,8 +176,6 @@
 		EDCD57CD19B8741600EC7AF1 /* PEDownloadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57C319B8741600EC7AF1 /* PEDownloadingScreenViewController.xib */; };
 		EDCD57CE19B8741600EC7AF1 /* PESpecialisationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57C619B8741600EC7AF1 /* PESpecialisationViewController.m */; };
 		EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */; };
-		EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57CA19B8741600EC7AF1 /* PESplashViewController.m */; };
-		EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57CB19B8741600EC7AF1 /* PESplashViewController.xib */; };
 		EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57D819B874DE00EC7AF1 /* PEMenuViewController.m */; };
 		EDCD57DB19B874DE00EC7AF1 /* PEMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD57D919B874DE00EC7AF1 /* PEMenuViewController.xib */; };
 		EDCD57E019B87D0E00EC7AF1 /* PEProcedureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD57DE19B87D0E00EC7AF1 /* PEProcedureListViewController.m */; };
@@ -288,6 +287,8 @@
 		84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialCollectionViewCell.m; sourceTree = "<group>"; };
 		84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
+		84B1B49219DC2E2400BF8D07 /* PENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENavigationController.h; sourceTree = "<group>"; };
+		84B1B49319DC2E2400BF8D07 /* PENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENavigationController.m; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
@@ -442,9 +443,6 @@
 		EDCD57C519B8741600EC7AF1 /* PESpecialisationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESpecialisationViewController.h; sourceTree = "<group>"; };
 		EDCD57C619B8741600EC7AF1 /* PESpecialisationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESpecialisationViewController.m; sourceTree = "<group>"; };
 		EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PESpecialisationViewController.xib; sourceTree = "<group>"; };
-		EDCD57C919B8741600EC7AF1 /* PESplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESplashViewController.h; sourceTree = "<group>"; };
-		EDCD57CA19B8741600EC7AF1 /* PESplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESplashViewController.m; sourceTree = "<group>"; };
-		EDCD57CB19B8741600EC7AF1 /* PESplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PESplashViewController.xib; sourceTree = "<group>"; };
 		EDCD57D719B874DE00EC7AF1 /* PEMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMenuViewController.h; sourceTree = "<group>"; };
 		EDCD57D819B874DE00EC7AF1 /* PEMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMenuViewController.m; sourceTree = "<group>"; };
 		EDCD57D919B874DE00EC7AF1 /* PEMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEMenuViewController.xib; sourceTree = "<group>"; };
@@ -742,6 +740,15 @@
 				84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */,
 			);
 			path = TutorialCell;
+			sourceTree = "<group>";
+		};
+		84B1B49119DC2DD300BF8D07 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				84B1B49219DC2E2400BF8D07 /* PENavigationController.h */,
+				84B1B49319DC2E2400BF8D07 /* PENavigationController.m */,
+			);
+			path = NavigationController;
 			sourceTree = "<group>";
 		};
 		84D65BE419D03CD0001C6E5C /* Fonts */ = {
@@ -1121,6 +1128,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84B1B49119DC2DD300BF8D07 /* NavigationController */,
 				EDA7DFEE19BAE5CD002A70E8 /* AboutUsViewController */,
 				EDC91EC519B9BB9A00212F24 /* AddEditNoteViewController */,
 				ED0D2F9D19B9F39B001F8411 /* AddNewToolViewController */,
@@ -1139,7 +1147,6 @@
 				EDCD57DC19B87CF800EC7AF1 /* ProcedureListViewController */,
 				EDCD582D19B8ABAF00EC7AF1 /* ProcedureOptionViewController */,
 				EDCD57C419B8741600EC7AF1 /* SpecialisationViewController */,
-				EDCD57C819B8741600EC7AF1 /* SplashViewController */,
 				EDA7DFF419BAE840002A70E8 /* TermsAndConditionViewController */,
 				EDC91ED719B9E38500212F24 /* ToolDetailsViewController */,
 				84FBDD0B19DAC2BC006C66DA /* TutorialViewController */,
@@ -1166,16 +1173,6 @@
 				EDCD57C719B8741600EC7AF1 /* PESpecialisationViewController.xib */,
 			);
 			path = SpecialisationViewController;
-			sourceTree = "<group>";
-		};
-		EDCD57C819B8741600EC7AF1 /* SplashViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EDCD57C919B8741600EC7AF1 /* PESplashViewController.h */,
-				EDCD57CA19B8741600EC7AF1 /* PESplashViewController.m */,
-				EDCD57CB19B8741600EC7AF1 /* PESplashViewController.xib */,
-			);
-			path = SplashViewController;
 			sourceTree = "<group>";
 		};
 		EDCD57D619B874D100EC7AF1 /* MenuViewController */ = {
@@ -1583,7 +1580,6 @@
 				EDD2A62019DC046900A73C5E /* S0901T0701.jpg in Resources */,
 				84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */,
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
-				EDCD57D119B8741600EC7AF1 /* PESplashViewController.xib in Resources */,
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
 				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
 				ED9C69DF19C720E80022C1A8 /* Gynaecology_Small_Active@2x.png in Resources */,
@@ -1724,7 +1720,6 @@
 				EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */,
 				EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */,
 				EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */,
-				EDCD57D019B8741600EC7AF1 /* PESplashViewController.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
@@ -1767,6 +1762,7 @@
 				ED0D2FC319BA0F42001F8411 /* PECollectionViewCellItemCell.m in Sources */,
 				EDCD583719B8B30800EC7AF1 /* PEPreperationViewController.m in Sources */,
 				ED21660C19CC3022005E821B /* PeriopDataBase.xcdatamodeld in Sources */,
+				84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */,
 				EDD0244719D0B8A60023F46D /* Steps.m in Sources */,
 				EDCD585719B8C8B500EC7AF1 /* PENotesViewController.m in Sources */,
 				EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */,

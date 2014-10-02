@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithPatientPositioning;
@@ -87,19 +86,25 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
+    
+    [stringForLabelTop addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:16.0]
+                              range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    
+    [stringForLabelTop appendAttributedString:stringForLabelBottom];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
     [[self.view viewWithTag:35] removeFromSuperview];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
     self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
     [self.tableViewPatient reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations

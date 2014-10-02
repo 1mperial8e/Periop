@@ -35,7 +35,6 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSMutableDictionary * requestedSpecsWithProc;
@@ -96,15 +95,23 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
     self.specManager.photoObject = nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSString *textForHeader;
+    if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
+        textForHeader = self.navigationLabelDescription;
+    } else {
+        textForHeader = @"Add Surgeon";
+    }
+    ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
+    
     [[self.view viewWithTag:AEDTagForView] removeFromSuperview];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {

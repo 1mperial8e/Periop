@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotes;
 
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) UILabel* navigationBarLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end
@@ -70,14 +69,16 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    NSString *textForHeader;
+    if (self.specManager.isProcedureSelected) {
+        textForHeader = ((Procedure*)self.specManager.currentProcedure).name;
+    } else {
+        textForHeader = ((Doctors*)self.specManager.currentDoctor).name;
+    }
+    ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
+    
     [self.tableViewNotes reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 - (NSUInteger) supportedInterfaceOrientations

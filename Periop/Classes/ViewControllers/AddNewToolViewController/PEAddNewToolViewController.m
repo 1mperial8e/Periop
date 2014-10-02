@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *specLabel;
 @property (weak, nonatomic) IBOutlet UILabel *qtyLabel;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSArray * categoryTools;
@@ -49,7 +48,6 @@
     self.nameTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     self.specTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     self.qtyTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
-    
     
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
     
@@ -79,14 +77,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    self.specManager.photoObject = nil;
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((EquipmentsTool*)self.specManager.currentProcedure).name;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

@@ -72,7 +72,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Preperation"];
+    
+    [stringForLabelTop addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:16.0]
+                              range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    
+    [stringForLabelTop appendAttributedString:stringForLabelBottom];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

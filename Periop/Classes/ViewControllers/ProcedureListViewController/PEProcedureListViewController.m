@@ -32,7 +32,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) UIBarButtonItem * navigationBarAddDoctorButton;
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithProcedures;
 @property (strong, nonatomic) NSMutableArray * sortedArrayWithDoctors;
 
@@ -81,23 +80,18 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     self.tableView.dataSource = self;
     
     self.tableView.layer.borderWidth = 0.0f;
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Procedure Name";
+    
     [self.tableView reloadData];
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
     [self customizingSearchBar];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
 }
 
 #pragma mark - IBActions
@@ -114,6 +108,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)doctorButton:(id)sender
 {
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Doctors Name";
+    
     self.specManager.isProcedureSelected = false;
     self.navigationBarLabel.text = PLVCDoctorsName;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;

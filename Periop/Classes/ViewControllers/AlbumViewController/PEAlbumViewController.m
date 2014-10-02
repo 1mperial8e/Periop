@@ -22,7 +22,6 @@
 
 @property (strong, nonatomic) NSMutableArray *selectedPhotos;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) UILabel * navigationLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (assign, nonatomic) NSInteger allowedCountOfSelectedCells;
 
@@ -64,13 +63,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationLabel removeFromSuperview];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.navigationLabelText;
 }
 
 #pragma mark - UICollectionViewDataSource

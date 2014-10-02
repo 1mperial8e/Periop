@@ -24,8 +24,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 @property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
@@ -100,12 +98,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-}
-
 - (NSUInteger) supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
@@ -115,8 +107,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 
 - (IBAction)menuButton:(id)sender
 {
-    [self.navigationBarLabel removeFromSuperview];
-    
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = SVCSpecialisations;
     menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;

@@ -15,8 +15,6 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
-
 @end
 
 @implementation PETermsAndConditionViewController
@@ -41,13 +39,8 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Terms & Conditions";
 }
 
 #pragma mark - IBActions

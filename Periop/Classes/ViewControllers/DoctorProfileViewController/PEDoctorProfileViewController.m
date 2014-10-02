@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *specsButton;
 
-@property (strong, nonatomic) UILabel *navigationBarLabel;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *doctorsSpec;
@@ -86,17 +85,18 @@
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.doctorPhotoImageView addGestureRecognizer:tap];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
+    
+    [[self.view viewWithTag:35] removeFromSuperview];
+    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    [super viewWillAppear:animated];
-    self.navigationBarLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-    [[self.view viewWithTag:35] removeFromSuperview];
     
     [self getDoctorsSpecAndProcedures];
     
@@ -110,13 +110,6 @@
     
     [self.tableView reloadData];
     [self.collectionView reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    self.specManager.photoObject = nil;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

@@ -72,6 +72,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
+    
     if (self.noteTextToShow.length>0){
         self.textViewNotes.text = self.noteTextToShow;
     }
@@ -82,7 +85,6 @@
     }
     [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

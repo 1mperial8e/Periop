@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
-@property (strong, nonatomic) UILabel *navigationLabel;
 @property (strong, nonatomic) CAGradientLayer *gradient;
 
 @end
@@ -73,17 +72,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationItem.titleView = self.navigationLabel ;
-    if (self.photoToShow!=nil) {
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"View Photo";
+    
+    if (self.photoToShow) {
         self.imageView.image = [UIImage imageWithData:self.photoToShow.photoData];
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationLabel removeFromSuperview];
-    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - Rotation

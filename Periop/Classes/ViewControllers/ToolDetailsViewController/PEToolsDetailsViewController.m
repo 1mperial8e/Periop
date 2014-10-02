@@ -31,7 +31,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpec;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) UIBarButtonItem * rightBarButton;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
@@ -120,14 +119,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     }
     
     [[self.view viewWithTag:35] removeFromSuperview];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-    self.specManager.photoObject = nil;
 }
 
 - (NSUInteger) supportedInterfaceOrientations

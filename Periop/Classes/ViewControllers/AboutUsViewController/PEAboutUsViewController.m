@@ -8,12 +8,11 @@
 
 #import "PEAboutUsViewController.h"
 #import "PEMenuViewController.h"
+#import "PENavigationController.h"
 
 @interface PEAboutUsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 
 @end
 
@@ -37,24 +36,11 @@
     self.textView.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
-}
-
 #pragma mark - IBActions
 
 - (IBAction)menuButton:(id)sender
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = @"About Us";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     

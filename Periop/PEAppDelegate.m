@@ -13,7 +13,7 @@
 #import "PEAboutUsViewController.h"
 #import "PESpecialisationViewController.h"
 #import "PECameraRollManager.h"
-#import  "PEPurchaseManager.h"
+#import "PEPurchaseManager.h"
 
 @interface PEAppDelegate() 
 
@@ -32,16 +32,16 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     PESpecialisationViewController * specializationController = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
-    UINavigationController * specializationNavController = [self navControllerWithRootViewController:specializationController];
+    PENavigationController * specializationNavController = [[PENavigationController alloc] initWithRootViewController:specializationController];
     
     PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
-    UINavigationController * termsNavController = [self navControllerWithRootViewController:termsController];
+    PENavigationController * termsNavController = [[PENavigationController alloc] initWithRootViewController:termsController];
     
     PEDoctorsListViewController *doctorListController = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
-    UINavigationController *doctorListNavController = [self navControllerWithRootViewController:doctorListController];
+    PENavigationController *doctorListNavController = [[PENavigationController alloc] initWithRootViewController:doctorListController];
     
     PEAboutUsViewController *aboutUsController = [[PEAboutUsViewController alloc] initWithNibName:@"PEAboutUsViewController" bundle:nil];
-    UINavigationController *aboutUsNavController = [self navControllerWithRootViewController:aboutUsController];
+    PENavigationController *aboutUsNavController = [[PENavigationController alloc] initWithRootViewController:aboutUsController];
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
     tabController.viewControllers = @[specializationNavController, doctorListNavController, aboutUsNavController, termsNavController];
@@ -55,25 +55,6 @@
     [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
     
     return YES;
-}
-
-#pragma mark - Private
-
-- (UINavigationController *)navControllerWithRootViewController:(UIViewController *)vievController
-{
-    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:vievController];
-    navController.navigationBar.translucent = NO;
-    navController.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
-    navController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:vievController action:NSSelectorFromString(@"menuButton:") forControlEvents:UIControlEventTouchUpInside];
-    
-    vievController.navigationItem.leftBarButtonItem = menuBarButton;
-    return navController;
 }
 
 #pragma mark - Rotation
