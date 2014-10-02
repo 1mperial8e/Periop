@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.S09General";
+
 #import "PEAppDelegate.h"
 #import "PESpecialisationViewController.h"
 #import "PETermsAndConditionViewController.h"
@@ -25,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [PEPurchaseManager saveDefaultsToUserDefault:@"generalProductsIdentifier"];
+    [PEPurchaseManager saveDefaultsToUserDefault:APDGeneralProductsIdentifier];
     [PEPurchaseManager sharedManager];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

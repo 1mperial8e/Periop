@@ -13,7 +13,7 @@
 NSString * const  IAPHelperProductPurchasedNotification = @"IAHelperProductPurchaseNotification";
 
 //implement this protocl for receiving list of product from StoreKit
-@interface IAPHelper() <SKProductsRequestDelegate>
+@interface IAPHelper() <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
 //for storig SkStoreRequest
 @property (strong, nonatomic) SKProductsRequest * productRequest;

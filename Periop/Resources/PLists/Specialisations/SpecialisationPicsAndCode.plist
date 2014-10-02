@@ -15,7 +15,7 @@
 		<key>smallIconName</key>
 		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S10Gastrointestina</string>
 	</dict>
 	<key>General</key>
 	<dict>
@@ -30,7 +30,7 @@
 		<key>smallIconName</key>
 		<string>General_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>generalProductsIdentifier</string>
+		<string>com.Thinkmobiles.Periop.S09General</string>
 	</dict>
 	<key>Cosmetic</key>
 	<dict>
@@ -45,7 +45,7 @@
 		<key>smallIconName</key>
 		<string>osmetic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S08Cosmetic</string>
 	</dict>
 	<key>Plastic</key>
 	<dict>
@@ -60,7 +60,7 @@
 		<key>smallIconName</key>
 		<string>Plastic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S07Plastic</string>
 	</dict>
 	<key>Orthopeadic</key>
 	<dict>
@@ -75,7 +75,7 @@
 		<key>smallIconName</key>
 		<string>Orthopeadic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S06Orthopeadic</string>
 	</dict>
 	<key>Cardiothoracic</key>
 	<dict>
@@ -90,7 +90,7 @@
 		<key>smallIconName</key>
 		<string>Cardiothoracic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S05Cardiothoracic</string>
 	</dict>
 	<key>Opthalmology</key>
 	<dict>
@@ -105,7 +105,7 @@
 		<key>smallIconName</key>
 		<string>Opthalmology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S04Opthalmology</string>
 	</dict>
 	<key>Obstetric</key>
 	<dict>
@@ -120,7 +120,7 @@
 		<key>smallIconName</key>
 		<string>Obstetric_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S03Obstetric</string>
 	</dict>
 	<key>Gyneacology</key>
 	<dict>
@@ -135,7 +135,7 @@
 		<key>smallIconName</key>
 		<string>Gyneacology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S02Gyneacology</string>
 	</dict>
 	<key>ENT</key>
 	<dict>
@@ -150,7 +150,7 @@
 		<key>smallIconName</key>
 		<string>ENT_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>toChange</string>
+		<string>com.Thinkmobiles.Periop.S01ENT</string>
 	</dict>
 </dict>
 </plist>
