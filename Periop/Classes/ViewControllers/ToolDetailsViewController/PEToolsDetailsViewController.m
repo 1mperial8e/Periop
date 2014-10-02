@@ -19,6 +19,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "Photo.h"
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
@@ -100,11 +101,13 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
-    if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
-        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
-            self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
+    if ([[self.specManager.currentEquipment.photo allObjects] count]) {
+        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length) {
+            self.equipmentPhoto.image = [UIImage imageNamedJPGFile:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
+
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
+
         }
     } else {
         self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder"];

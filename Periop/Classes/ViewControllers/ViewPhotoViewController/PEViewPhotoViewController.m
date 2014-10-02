@@ -70,6 +70,11 @@
     }
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 #pragma mark - Rotation
 
 - (void) canRotate

@@ -79,7 +79,9 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationBarLabel removeFromSuperview];
-    self.specManager.photoObject = nil;
+    if (self.specManager.photoObject) {
+        [self.managedObjectContext deleteObject:self.specManager.photoObject];
+    }
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -91,16 +93,25 @@
 
 - (IBAction)closeButton :(id)sender
 {
-    self.specManager.photoObject = nil;
     [self.navigationController popViewControllerAnimated:YES];
+    if (self.specManager.photoObject) {
+        [self.managedObjectContext deleteObject:self.specManager.photoObject];
+    }
+    NSError * saveError = nil;
+    if (![self.managedObjectContext save:&saveError]){
+        NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
+    }
 }
 
 - (IBAction)saveUpdateNote :(id)sender
 {
     if (self.isEditNote) {
-            self.specManager.currentNote.textDescription = self.textViewNotes.text;
-            self.specManager.currentNote.timeStamp = [NSDate date];
-            self.specManager.currentNote.photo = self.specManager.photoObject;
+        if (self.specManager.currentNote.photo) {
+            [self.managedObjectContext deleteObject:self.specManager.currentNote.photo];
+        }
+        self.specManager.currentNote.textDescription = self.textViewNotes.text;
+        self.specManager.currentNote.timeStamp = [NSDate date];
+        self.specManager.currentNote.photo = self.specManager.photoObject;
         ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
@@ -109,21 +120,16 @@
         newNote.timeStamp = [NSDate date];
         
         if (self.specManager.photoObject!=nil) {
-            NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-            Photo * notesPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-            notesPhoto = self.specManager.photoObject;
-            notesPhoto.note = newNote;
-            newNote.photo = notesPhoto;
+            ((Photo*)newNote.photo).note = newNote;
+            newNote.photo = self.specManager.photoObject;
         }
-        
         if (self.specManager.isProcedureSelected) {
             [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
         } else {
             [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
         }
     }
-   // self.specManager.photoObject = nil;
-    [self.managedObjectContext deleteObject:self.specManager.photoObject];
+    self.specManager.photoObject = nil;
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
