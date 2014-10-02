@@ -100,16 +100,18 @@ static NSInteger const CPProcedureCount = 20;
                 NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
                 EquipmentsTool * newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 
-                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 NSString *photoName = (NSString *)colum[6];
                 if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
             
-                    //add method for JPG files
+                    //JPG
                     NSBundle * bundle = [NSBundle mainBundle];
                     NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
                     UIImage * photo = [UIImage imageWithContentsOfFile:path];
                     if (photo) {
+                        
+                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        
                         initPhoto.photoName = colum[6];
                         initPhoto.equiomentTool = newTool;
                         [newTool addPhotoObject:initPhoto];
@@ -177,13 +179,19 @@ static NSInteger const CPProcedureCount = 20;
                         [steps removeLastObject];
                     }
                     for (int i=0; i<steps.count; i++) {
-                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                       
                         
                         NSString *photoName = (NSString *)steps[i];
-                        if ([photoName rangeOfString:@"http"].location == NSNotFound) {
-                            UIImage *photo = [UIImage imageNamed:photoName];
+                        if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
+
+                            
+                            NSBundle * bundle = [NSBundle mainBundle];
+                            NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
+                            UIImage * photo = [UIImage imageWithContentsOfFile:path];
+
                             if (photo) {
+                                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                                 initPhoto.photoName = steps[i];
                                 [opR addPhotoObject:initPhoto];
                             }
