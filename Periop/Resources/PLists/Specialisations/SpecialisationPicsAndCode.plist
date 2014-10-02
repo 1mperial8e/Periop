@@ -16,7 +16,9 @@
 		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S10Gastrointestina</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>General</key>
@@ -33,7 +35,9 @@
 		<string>General_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S09General</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Cosmetic</key>
@@ -50,7 +54,9 @@
 		<string>osmetic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S08Cosmetic</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Plastic</key>
@@ -67,7 +73,9 @@
 		<string>Plastic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S07Plastic</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Orthopeadic</key>
@@ -84,7 +92,9 @@
 		<string>Orthopeadic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S06Orthopeadic</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Cardiothoracic</key>
@@ -101,7 +111,9 @@
 		<string>Cardiothoracic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S05Cardiothoracic</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Opthalmology</key>
@@ -118,7 +130,9 @@
 		<string>Opthalmology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S04Opthalmology</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Obstetric</key>
@@ -135,7 +149,9 @@
 		<string>Obstetric_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S03Obstetric</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>Gyneacology</key>
@@ -152,7 +168,9 @@
 		<string>Gyneacology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S02Gyneacology</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 	<key>ENT</key>
@@ -169,7 +187,9 @@
 		<string>ENT_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S01ENT</string>
-		<key>urlDownloading</key>
+		<key>urlDownloadingMain</key>
+		<string></string>
+		<key>urlDownloadingTool</key>
 		<string></string>
 	</dict>
 </dict>

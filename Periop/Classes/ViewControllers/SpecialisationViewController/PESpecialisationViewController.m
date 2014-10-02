@@ -326,17 +326,54 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     
-    NSArray * arrKeys = [pList allKeys];
-    NSString * purchasedSpecURL;
+    NSArray *arrKeys = [pList allKeys];
+    NSString *purchasedSpecURLAll;
+    NSString *purchasedSpecURLTools;
     for (int i =0; i<arrKeys.count; i++) {
         NSDictionary *dic = [pList valueForKey:arrKeys[i]];
         if ([[dic valueForKey:@"productIdentifier"] isEqualToString:productIdentifier]) {
-            purchasedSpecURL = [dic valueForKeyPath:@"urlDownloading"];
+            purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
+            purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
+            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools];
         }
     }
     
-    //purchasedSpecURL - url for downloading file
-    //here add code for downloading appropriate product
+}
+
+- (void) downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart
+{
+  //  NSURL * url = [NSURL URLWithString:@"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hMmJjUTNwYk1YRkk"];
+    
+    NSMutableArray * arrayWithPathToDelete = [NSMutableArray new];
+    
+    NSData * dataMain = [NSData dataWithContentsOfURL:[NSURL URLWithString:mainFilePart]];
+    if ( dataMain )
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"mainSpec.csv"];
+        [dataMain writeToFile:filePath atomically:YES];
+        [arrayWithPathToDelete addObject:filePath];
+    }
+    NSData * dataTools = [NSData dataWithContentsOfURL:[NSURL URLWithString:toolsFilePart]];
+    if ( dataTools )
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"toolSpec.csv"];
+        [dataTools writeToFile:filePath atomically:YES];
+        [arrayWithPathToDelete addObject:filePath];
+    }
+    
+    PECsvParser * parser = [[PECsvParser alloc] init];
+    [parser parseCsv:@"mainSpec" withCsvToolsFileName:@"toolSpec"];
+    
+    for (int i=0; i<arrayWithPathToDelete.count; i++) {
+        NSError * error = nil;
+        if (![[NSFileManager defaultManager] removeItemAtPath:arrayWithPathToDelete[i] error:&error]) {
+            NSLog(@"Cant remove file after parsing - %@", error.localizedDescription);
+        }
+    }
 }
 
 @end

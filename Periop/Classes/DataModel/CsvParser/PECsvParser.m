@@ -48,6 +48,15 @@ static NSInteger const CPProcedureCount = 20;
     NSString *filePathMain = [[NSBundle mainBundle] pathForResource:mainFileName ofType:@"csv"];
     NSString *filePathTools = [[NSBundle mainBundle] pathForResource:toolsFileName ofType:@"csv"];
     
+    if (!filePathMain) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        filePathMain = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], mainFileName];
+    }
+    if (!filePathTools) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        filePathMain = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], toolsFileName];
+    }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:filePathMain]==YES && [fileManager fileExistsAtPath:filePathTools]==YES) {
