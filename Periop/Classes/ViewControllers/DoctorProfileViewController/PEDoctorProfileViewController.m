@@ -56,17 +56,6 @@
     [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
 
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    
     UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
 

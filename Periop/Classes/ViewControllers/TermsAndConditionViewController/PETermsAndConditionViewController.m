@@ -21,26 +21,11 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 
 #pragma mark - LifeCycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.text = TACTermsAndConditions;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    
-    self.textView.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Terms & Conditions";
+    ((PENavigationController *)self.navigationController).titleLabel.text = TACTermsAndConditions;
 }
 
 #pragma mark - IBActions
@@ -48,7 +33,6 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 - (IBAction)menuButton:(id)sender
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.textToShow = TACTermsAndConditions;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     

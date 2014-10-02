@@ -50,18 +50,6 @@
     self.qtyTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.text =((EquipmentsTool*)self.specManager.currentProcedure).name;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.numberOfLines = 0;
     [self.navigationItem setHidesBackButton:YES];
     
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];

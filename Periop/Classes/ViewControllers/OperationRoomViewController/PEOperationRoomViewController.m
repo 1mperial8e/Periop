@@ -62,14 +62,15 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEOperationTableViewCell" bundle:nil] forCellReuseIdentifier:@"operationTableViewCell"];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
+    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName

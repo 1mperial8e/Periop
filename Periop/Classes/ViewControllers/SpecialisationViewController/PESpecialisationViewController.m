@@ -64,17 +64,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.text = SVCSpecialisations;
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.numberOfLines = 0;
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate = (id)self;
@@ -90,7 +79,11 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.navigationBarLabel];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Specialisations";
+    
+    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self initWithData];
     [self.collectionView reloadData];
     if (self.specManager.currentProcedure!=nil) {
@@ -109,7 +102,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = SVCSpecialisations;
-    menuController.sizeOfFontInNavLabel = self.navigationBarLabel.font.pointSize;
     menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
     

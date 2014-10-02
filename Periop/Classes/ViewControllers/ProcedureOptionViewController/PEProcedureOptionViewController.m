@@ -40,19 +40,6 @@
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
-    
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.text = ((Procedure*)self.specManager.currentProcedure).name;
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.numberOfLines = 0;
-    
     [self setupButtons];
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];

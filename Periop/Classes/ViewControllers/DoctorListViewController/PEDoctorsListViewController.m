@@ -50,22 +50,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsViewTableViewCell" bundle:nil]  forCellReuseIdentifier:@"doctorsCell"];
 
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.labelToShowOnNavigationBar = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.labelToShowOnNavigationBar.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.labelToShowOnNavigationBar.minimumScaleFactor = 0.5;
-    self.labelToShowOnNavigationBar.adjustsFontSizeToFitWidth = YES;
-    self.labelToShowOnNavigationBar.backgroundColor = [UIColor clearColor];
-    self.labelToShowOnNavigationBar.textColor = [UIColor whiteColor];
-    self.labelToShowOnNavigationBar.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.labelToShowOnNavigationBar.textAlignment = NSTextAlignmentCenter;
-    self.labelToShowOnNavigationBar.numberOfLines = 0;
-    if (self.textToShow && self.textToShow.length!=0){
-        self.labelToShowOnNavigationBar.text = self.textToShow;
-    } else {
-        self.labelToShowOnNavigationBar.text = @"Surgeon List";
-    }
-    
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
     self.navigationBarAddBarButton = addDoctorButton;
 

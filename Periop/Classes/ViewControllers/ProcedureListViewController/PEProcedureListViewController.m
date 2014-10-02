@@ -57,19 +57,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width / 2, navBarSize.height / 2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.text = PLVCProcedureName;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-    self.navigationBarLabel.layer.zPosition = 0;
-    self.navigationBarLabel.numberOfLines = 0;
-    
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
     
@@ -98,7 +85,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)procedureButton:(id)sender
 {
-    self.navigationBarLabel.text = PLVCProcedureName;
+    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
+    
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
@@ -108,10 +96,9 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)doctorButton:(id)sender
 {
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Doctors Name";
+    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCDoctorsName;
     
     self.specManager.isProcedureSelected = false;
-    self.navigationBarLabel.text = PLVCDoctorsName;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];

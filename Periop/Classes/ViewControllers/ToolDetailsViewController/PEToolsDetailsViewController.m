@@ -61,28 +61,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool*)self.specManager.currentEquipment).name]];
-    
-    [stringForLabelTop addAttribute:NSFontAttributeName
-                              value:[UIFont systemFontOfSize:16.0]
-                              range:NSMakeRange(0, stringForLabelTop.length)];
-    
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
-    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
-    
-    [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
-    self.navigationBarLabel.attributedText = stringForLabelTop;
-    
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
@@ -108,7 +86,21 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewWillAppear:animated];
     
-    if ([[self.specManager.currentEquipment.photo allObjects] count]) {
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool*)self.specManager.currentEquipment).name]];
+    
+    [stringForLabelTop addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:16.0]
+                              range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    
+    [stringForLabelTop appendAttributedString:stringForLabelBottom];
+    [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
+    if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
         if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
             self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {

@@ -46,29 +46,6 @@
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     [self.tableViewPatient registerNib:[UINib nibWithNibName:@"PEPatientPositioningTableViewCell" bundle:nil] forCellReuseIdentifier:@"patientPositioningStepsCell"];
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    self.navigationBarLabel.minimumScaleFactor = 0.5;
-    self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationBarLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationBarLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationBarLabel.numberOfLines = 0;
-    self.navigationBarLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
-    
-    [stringForLabelTop addAttribute:NSFontAttributeName
-                              value:[UIFont systemFontOfSize:16.0]
-                              range:NSMakeRange(0, stringForLabelTop.length)];
-    
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
-    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
-    
-    [stringForLabelTop appendAttributedString:stringForLabelBottom];
-    self.navigationBarLabel.attributedText = stringForLabelTop;
-    self.navigationBarLabel.backgroundColor = [UIColor clearColor];
-    self.navigationBarLabel.textColor = [UIColor whiteColor];
-
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     

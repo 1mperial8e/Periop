@@ -36,16 +36,6 @@
     
     self.navigationController.navigationBar.translucent = YES;
     
-    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
-    self.navigationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
-    
-    self.navigationLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
-    self.navigationLabel.textAlignment = NSTextAlignmentCenter;
-    self.navigationLabel.textColor = [UIColor whiteColor];
-    self.navigationLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
-    self.navigationLabel.backgroundColor = [UIColor clearColor];
-    self.navigationLabel.text = @"View Photo";
-    
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     
