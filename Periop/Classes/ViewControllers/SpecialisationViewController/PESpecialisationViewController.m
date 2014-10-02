@@ -162,7 +162,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
             NSString * message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
             self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
-            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Redownload" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
         } else {
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
@@ -305,6 +305,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (NSArray*) avaliableSpecs
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
     NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:specEntity];
     NSError *error = nil;
