@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const PLVCProcedureName = @"Procedure Name";
+static NSString *const PLVCDoctorsName = @"Doctors Name";
+
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
 #import "PEMenuViewController.h"
@@ -82,7 +85,7 @@
 
 - (IBAction)procedureButton:(id)sender
 {
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Procedure Name";
+    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
@@ -93,7 +96,7 @@
 
 - (IBAction)doctorButton:(id)sender
 {
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Doctors Name";
+    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCDoctorsName;
     
     self.specManager.isProcedureSelected = false;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
@@ -156,7 +159,7 @@
     for(int i =0; i<[searchBarSubViews count]; i++) {
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
             UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
-            [search setFont:[UIFont fontWithName:@"MuseoSans-500" size:12.5]];
+            [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
             [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
             search.placeholder = @"Search";
             search.backgroundColor = [UIColor whiteColor];
@@ -198,7 +201,7 @@
         cell.textLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
     }
     
-    UIFont *cellFont = [UIFont fontWithName:@"MuseoSans-500" size:15.0];
+    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell.textLabel.text = ((Procedure*)self.searchResult[indexPath.row]).name;

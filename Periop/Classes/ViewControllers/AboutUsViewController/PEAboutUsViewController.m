@@ -25,7 +25,7 @@
     
     ((PENavigationController *)self.navigationController).titleLabel.text = @"About Us";
     
-    self.textView.font = [UIFont fontWithName:@"MuseoSans-300" size:13.5f];
+    self.textView.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
 #pragma mark - IBActions

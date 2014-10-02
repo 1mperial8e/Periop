@@ -139,7 +139,7 @@
 
 - (void)setupButtons
 {
-    UIFont *buttonsFont = [UIFont fontWithName:@"MuseoSans-500" size:17.0];
+    UIFont *buttonsFont = [UIFont fontWithName:FONT_MuseoSans500 size:17.0];
     self.operationRoomButton.titleLabel.font = buttonsFont;
     self.preparationButton.titleLabel.font = buttonsFont;
     self.patientPostioningButton.titleLabel.font = buttonsFont;

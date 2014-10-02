@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSInteger const CPProcedureCount = 20;
+
 #import "PECsvParser.h"
 #import "PECoreDataManager.h"
 #import "EquipmentsTool.h"
@@ -18,8 +20,6 @@
 #import "Photo.h"
 #import "Steps.h"
 #import "Specialisation.h"
-
-static NSString * const pListName = @"SpecialisationPicsAndCode";
 
 @interface PECsvParser ()
 
@@ -53,9 +53,9 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         
         NSEntityDescription * specialisationEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
         Specialisation * newSpecialisation = [[Specialisation alloc] initWithEntity:specialisationEntity insertIntoManagedObjectContext:self.managedObjectContext];
-
+        
         NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SpecialisationPicsAndCode" ofType:@"plist" ]];
-    
+        
         NSDictionary * dic = [pList valueForKey:mainFileName];
         newSpecialisation.specID = [dic valueForKey:@"specID"];
         newSpecialisation.photoName = [dic valueForKey:@"photoName"];
@@ -68,7 +68,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         //parse mainFile
         NSError *error;
         NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
-      //  NSLog(@"%@",lines);
+        //  NSLog(@"%@",lines);
         
         NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         
@@ -77,17 +77,18 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         [rows removeObjectAtIndex:0];
         
         NSEntityDescription * procedureEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
-        Procedure * newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
 
+        
         if ([fileManager fileExistsAtPath:filePathTools]==YES) {
+            Procedure * newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
             
             NSError *error;
             NSString *lines = [NSString stringWithContentsOfFile:filePathTools encoding:NSUTF8StringEncoding error:&error];
-       //     NSLog(@"%@",lines);
+            //     NSLog(@"%@",lines);
             
             NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-       //     NSLog(@"%@",partTwo);
+            //     NSLog(@"%@",partTwo);
             
             NSArray *rows = [partTwo componentsSeparatedByString:@"\n"];
             for (int i = rows.count - 1; i >= 0; i--) {
@@ -99,18 +100,36 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                 NSEntityDescription * toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
                 EquipmentsTool * newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 
-                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 NSString *photoName = (NSString *)colum[6];
-                if ([photoName rangeOfString:@"http"].location == NSNotFound) {
-                    UIImage *photo = [UIImage imageNamed:photoName];
+                if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
+            
+                    //JPG
+                    NSBundle * bundle = [NSBundle mainBundle];
+                    NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
+                    UIImage * photo = [UIImage imageWithContentsOfFile:path];
                     if (photo) {
+                        
+                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        
                         initPhoto.photoName = colum[6];
                         initPhoto.equiomentTool = newTool;
                         [newTool addPhotoObject:initPhoto];
                     }
                 } else {
                     // to download photo and check; if yes save in initPhoto.photoData
+                    NSURL * urlForImage = [NSURL URLWithString:photoName];
+                    NSData * imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                    UIImage * image = [UIImage imageWithData:imageDataFromUrl];
+                    
+                    if (image) {
+                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        
+                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                        initPhoto.equiomentTool = newTool;
+                        [newTool addPhotoObject:initPhoto];
+                    }
                 }
                 
                 newTool.quantity = colum[5];
@@ -124,12 +143,17 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                     newProc.procedureID = colum[0];
                     newProc.name = colum[1];
                     [newSpecialisation addProceduresObject:newProc];
-                    
-                    newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                    if ([[newSpecialisation.procedures allObjects] count] < CPProcedureCount) {
+                        newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                    }
                 }
             }
-        } else NSLog (@"File with tools not found");
+        } else {
+            NSLog (@"File with tools not found");
+        }
 
+        //parsing patient postioning, operationRoom and preparation
+        
         NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
         OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
         NSEntityDescription * patientEntity = [NSEntityDescription entityForName:@"PatientPostioning" inManagedObjectContext:self.managedObjectContext];
@@ -138,26 +162,12 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
         //create procedure temporary
         Procedure * newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
+        NSMutableArray * arrayWithProcWithTools = [[NSMutableArray alloc] init];
+
         for (int index = 0 ; index < rows.count; index++) {
             int parseIndex = index%5;
             switch (parseIndex) {
                 case 0:
-                    if (newProcForDesctiption.procedureID.length >0) {
-                        
-                        for (Procedure* procsWithTools in [newSpecialisation.procedures allObjects]) {
-                            if ([procsWithTools.procedureID isEqualToString:newProcForDesctiption.procedureID]) {
-                                
-                                procsWithTools.operationRoom = opR;
-                                procsWithTools.patientPostioning = pp;
-                                [procsWithTools addPreparation: newProcForDesctiption.preparation];
-                                
-                                opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                                pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                                
-                                newProcForDesctiption =[[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                            }
-                        }
-                    }
                     newProcForDesctiption.procedureID = rows[index];
                     break;
                 case 1: {
@@ -180,18 +190,32 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                         [steps removeLastObject];
                     }
                     for (int i=0; i<steps.count; i++) {
-                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                         
                         NSString *photoName = (NSString *)steps[i];
-                        if ([photoName rangeOfString:@"http"].location == NSNotFound) {
-                            UIImage *photo = [UIImage imageNamed:photoName];
+                        if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
+                            
+                            NSBundle * bundle = [NSBundle mainBundle];
+                            NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
+                            UIImage * photo = [UIImage imageWithContentsOfFile:path];
+
                             if (photo) {
+                                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                                 initPhoto.photoName = steps[i];
                                 [opR addPhotoObject:initPhoto];
                             }
                         } else {
-                            // to download photo and check; if yes save in initPhoto.photoData
+                        // to download photo and check; if yes save in initPhoto.photoData
+                            NSURL * urlForImage = [NSURL URLWithString:photoName];
+                            NSData * imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                            UIImage * image = [UIImage imageWithData:imageDataFromUrl];
+                            
+                            if (image) {
+                                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                                initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                                [opR addPhotoObject:initPhoto];
+                            }
                         }
                     }
                 }
@@ -206,7 +230,7 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                         Preparation * prep = [[Preparation alloc] initWithEntity:preparationEntity insertIntoManagedObjectContext:self.managedObjectContext];
                         prep.stepName = [NSString stringWithFormat:@"Step %i", i + 1];
                         prep.preparationText = steps[i];
-                        prep.procedure = newProc;
+                        prep.procedure = newProcForDesctiption;
                         [newProcForDesctiption addPreparationObject:prep];
                     }
                 }
@@ -223,10 +247,34 @@ static NSString * const pListName = @"SpecialisationPicsAndCode";
                         newStep.stepDescription = steps[i];
                         [pp addStepsObject:newStep];
                     }
+                    
+                    newProcForDesctiption.operationRoom = opR;
+                    newProcForDesctiption.patientPostioning = pp;
+                    
+                    [arrayWithProcWithTools addObject:newProcForDesctiption];
+                    if (arrayWithProcWithTools.count < CPProcedureCount) {
+                        opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                    }
                 }
                     break;
             }
         }
+        
+        //here marge procs
+        
+        for (Procedure* procToMerge in [newSpecialisation.procedures allObjects]) {
+            for (int i =0; i< arrayWithProcWithTools.count; i++) {
+                if ([procToMerge.procedureID isEqualToString:((Procedure*)arrayWithProcWithTools[i]).procedureID]){
+                    procToMerge.patientPostioning = ((Procedure*)arrayWithProcWithTools[i]).patientPostioning;
+                    procToMerge.operationRoom = ((Procedure*)arrayWithProcWithTools[i]).operationRoom;
+                    [procToMerge addPreparation:((Procedure*)arrayWithProcWithTools[i]).preparation];
+                    [self.managedObjectContext deleteObject:((Procedure*)arrayWithProcWithTools[i])];
+                }
+            }
+        }
+        
     } else NSLog (@"File with description of specialisation's procedures found");
     
     NSError * saveError = nil;

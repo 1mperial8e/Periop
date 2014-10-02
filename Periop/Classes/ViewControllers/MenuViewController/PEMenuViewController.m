@@ -50,7 +50,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 {
     [super viewDidLoad];
     self.menuTitleLabel.text = self.textToShow;
-    self.menuTitleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.menuTitleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     
     [self setupButtons];
     self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
@@ -313,7 +313,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
         self.bottomButtonsViewHeight.constant = 0.0f;
     }
     
-    UIFont *menuButtonFont = [UIFont fontWithName:@"MuseoSans-100" size:22.5];
+    UIFont *menuButtonFont = [UIFont fontWithName:FONT_MuseoSans100 size:22.5];
     
     self.specialisationButton.titleLabel.font = menuButtonFont;
     self.surgeonListButton.titleLabel.font = menuButtonFont;

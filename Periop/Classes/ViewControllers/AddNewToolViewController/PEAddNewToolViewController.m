@@ -42,12 +42,12 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    self.nameLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.specLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.qtyLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.nameTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.specTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.qtyTextBox.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.specLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.qtyLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.nameTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.specTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.qtyTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
     [self.navigationItem setHidesBackButton:YES];
@@ -150,14 +150,14 @@
     self.dropDownList.titleLabel.textColor = [UIColor whiteColor];
     self.dropDownList.separateColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0f];
     self.dropDownList.titleLabel.text = @"Equipment Category";
-    self.dropDownList.titleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.dropDownList.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, self.dropDownList.frame.size.height - 1, self.dropDownList.frame.size.width, 0.5f)];
     separator.backgroundColor = [UIColor whiteColor];
     [self.dropDownList addSubview:separator];
     self.dropDownList.numberOfItemsToDraw = 4;
     self.dropDownList.itemBackColor = [UIColor whiteColor];
     self.dropDownList.itemLabelTextColor = [UIColor colorWithRed:(28.0/255.0) green:(28.0/255.0) blue:(28.0/255.0) alpha:1.0f];
-    self.dropDownList.itemLabelFont = [UIFont fontWithName:@"MuseoSans-300" size:15.0];
+    self.dropDownList.itemLabelFont = [UIFont fontWithName:FONT_MuseoSans300 size:15.0];
     self.dropDownList.itemHeight = 30.0f;
     self.dropDownList.delegate = self;
     

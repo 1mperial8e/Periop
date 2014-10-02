@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const TACTermsAndConditions = @"Terms & Conditions";
+
 #import "PETermsAndConditionViewController.h"
 #import "PEMenuViewController.h"
 
@@ -23,7 +25,7 @@
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Terms & Conditions";
+    ((PENavigationController *)self.navigationController).titleLabel.text = TACTermsAndConditions;
 }
 
 #pragma mark - IBActions
@@ -31,7 +33,7 @@
 - (IBAction)menuButton:(id)sender
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.textToShow = @"Terms & Conditions";
+    menuController.textToShow = TACTermsAndConditions;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;

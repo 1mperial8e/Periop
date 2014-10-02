@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
 
-    self.doctorName.font = [UIFont fontWithName:@"MuseoSans-500" size:35.0f];
+    self.doctorName.font = [UIFont fontWithName:FONT_MuseoSans500 size:35.0f];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEDoctorProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"doctorProfileCollectionViewCell"];
@@ -205,7 +205,7 @@
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(15, 0, self.view.frame.size.width-15, 35);
     myLabel.backgroundColor = [UIColor whiteColor];
-    myLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    myLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     myLabel.textColor = [UIColor colorWithRed:73/255.0 green:159/255.0 blue:225/255.0 alpha:1.0f];
     myLabel.text = ((Procedure*)self.doctorsSpec[section]).name;
 

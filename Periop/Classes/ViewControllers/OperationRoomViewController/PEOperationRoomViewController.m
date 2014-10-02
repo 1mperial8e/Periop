@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    self.labelSteps.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelSteps.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;

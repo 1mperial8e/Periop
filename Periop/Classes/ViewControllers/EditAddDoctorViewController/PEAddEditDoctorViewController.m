@@ -168,7 +168,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
         NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
         Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
-        if (!self.nameTextField.text.length) {
+        if (self.nameTextField.text.length) {
             newDoc.name = self.nameTextField.text;
         } else {
             newDoc.name = @"No name Doctor";
@@ -295,7 +295,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(15, 0, self.view.frame.size.width-15, 35);
     myLabel.backgroundColor = [UIColor whiteColor];
-    myLabel.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    myLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     myLabel.textColor = [UIColor colorWithRed:73/255.0 green:159/255.0 blue:225/255.0 alpha:1.0f];
     if (section==0) {
         myLabel.text = AEDTitleNameSpec;

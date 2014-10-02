@@ -46,13 +46,13 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     [super viewDidLoad];
     
-    self.labelName.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.labelSpec.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
-    self.labelQuantity.font = [UIFont fontWithName:@"MuseoSans_700" size:17.5f];
+    self.labelName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelSpec.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelQuantity.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     
-    self.nameTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.specificationTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
-    self.quantityTextField.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0f];
+    self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.specificationTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.quantityTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -106,7 +106,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
         }
-   }
+    } else {
+        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder"];
+    }
     
     [[self.view viewWithTag:35] removeFromSuperview];
 }
@@ -169,9 +171,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"Touched Image");
             PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-            if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
+            if ([[self.specManager.currentEquipment.photo allObjects] count]) {
                 viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
             }
             [self.navigationController pushViewController:viewPhotoControleller animated:YES];

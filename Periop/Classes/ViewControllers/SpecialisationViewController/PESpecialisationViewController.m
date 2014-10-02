@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
+static NSString * const SVCSpecialisations = @"Specialisations";
+
 #import "PESpecialisationViewController.h"
 #import "PESpecialisationCollectionViewCell.h"
 #import "PEProcedureListViewController.h"
@@ -18,8 +21,6 @@
 #import "PETutorialViewController.h"
 #import "PEPurchaseManager.h"
 #import <StoreKit/StoreKit.h>
-
-static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
@@ -36,8 +37,6 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (copy, nonatomic) NSString *selectedSpecToReset;
 @property (strong, nonatomic) PEPurchaseManager *purchaseManager;
-
-//@property (strong, nonatomic) NSFetchedResultsController * fetchedResultController;
 
 @end
 
@@ -64,12 +63,10 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
-
-    //self.navigationBarLabel.text = @"Specialisations";
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
-    self.collectionView.delegate= (id)self;
+    self.collectionView.delegate = (id)self;
     self.collectionView.dataSource = (id)self;
     
     UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
@@ -77,8 +74,6 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
-
-    [self initWithData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -89,6 +84,7 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
     
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
+    [self initWithData];
     [self.collectionView reloadData];
     if (self.specManager.currentProcedure!=nil) {
         self.specManager.currentProcedure = nil;
@@ -105,7 +101,7 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 - (IBAction)menuButton:(id)sender
 {
     PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.textToShow = @"Specialisations";
+    menuController.textToShow = SVCSpecialisations;
     menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
     
@@ -211,6 +207,21 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
         NSLog(@"canceled");
     } else {
         if (self.selectedSpecToReset!=nil) {
+
+            NSLog(@"Finding docotrs for selected spec and removing existing relations...");
+            for (Specialisation * specToCheck in [self avaliableSpecs]) {
+                for (Doctors* docToCheck in [specToCheck.doctors allObjects] ) {
+                    for (Specialisation * spec in [docToCheck.specialisation allObjects]) {
+                        if ([spec.name isEqualToString:self.selectedSpecToReset]) {
+                            [docToCheck removeSpecialisationObject:spec];
+                            if (![[docToCheck.specialisation allObjects] count]) {
+                                [self.managedObjectContext deleteObject:docToCheck];
+                            }
+                        }
+                    }
+                }
+            }
+            
             NSLog(@"Finding and remove selected spec...");
             Specialisation * spec;
             PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:self.selectedSpecToReset];
@@ -221,7 +232,7 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
             NSString * toolsString = [NSString stringWithFormat:@"%@_Tools", self.selectedSpecToReset];
             [parser parseCsv:self.selectedSpecToReset withCsvToolsFileName:toolsString];
             self.selectedSpecToReset = nil;
-            [self initWithData];
+            //[self initWithData];
             [self.collectionView reloadData];
             
             NSLog(@"Done successfuly!");
@@ -233,19 +244,12 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 - (void)initWithData
 {
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
-    if (self.specialisationsArray.count <= 0) {
+    self.specialisationsArray = [self avaliableSpecs];
+    if (!self.specialisationsArray.count) {
         PECsvParser * parser = [[PECsvParser alloc] init];
         [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
         
-//        PEPlistParser * parser = [[PEPlistParser alloc] init];
-//        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
-//        }];
-//        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
-//        }];
-        
-        self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
+        self.specialisationsArray = [self avaliableSpecs];
         [self.collectionView reloadData];
     }
 }
@@ -282,8 +286,13 @@ static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
 
 - (NSArray*) avaliableSpecs
 {
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    return [PECoreDataManager getAllEntities:searchedObject];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:specEntity];
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    return result;
 }
 
 @end

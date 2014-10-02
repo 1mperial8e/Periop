@@ -37,8 +37,8 @@
 {
     [super viewDidLoad];
     
-    self.timeStamp.font = [UIFont fontWithName:@"MuseoSans-500" size:12.0f];
-    self.textViewNotes.font = [UIFont fontWithName:@"MuseoSans-500" size:11.5f];
+    self.timeStamp.font = [UIFont fontWithName:FONT_MuseoSans500 size:12.0f];
+    self.textViewNotes.font = [UIFont fontWithName:FONT_MuseoSans500 size:11.5f];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -99,7 +99,7 @@
             self.specManager.currentNote.textDescription = self.textViewNotes.text;
             self.specManager.currentNote.timeStamp = [NSDate date];
             self.specManager.currentNote.photo = self.specManager.photoObject;
-            ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
+        ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -120,6 +120,8 @@
             [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
         }
     }
+   // self.specManager.photoObject = nil;
+    [self.managedObjectContext deleteObject:self.specManager.photoObject];
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
