@@ -58,8 +58,6 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     self.edgesForExtendedLayout = UIRectEdgeBottom;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
@@ -100,6 +98,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
     if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
         if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
             self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
@@ -109,6 +109,12 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
    }
     
     [[self.view viewWithTag:35] removeFromSuperview];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (NSUInteger) supportedInterfaceOrientations

@@ -8,7 +8,7 @@
 
 @interface PEDoctorsListViewController : UIViewController
 
-@property (strong, nonatomic) NSString * textToShow;
+@property (strong, nonatomic) NSString *textToShow;
 @property (assign, nonatomic) BOOL isButtonRequired;
 
 @end

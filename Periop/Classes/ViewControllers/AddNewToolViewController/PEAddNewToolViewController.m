@@ -114,11 +114,6 @@
 
 #pragma mark - UIDropDownListDelegate
 
-- (void)dropDownList:(UIDropDownList *)dropDownList didSelectItemAtIndex:(NSInteger)idx
-{
-    
-}
-
 - (void)dropDownList:(UIDropDownList *)dropDownList willOpenWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
 {
     if (animation) {

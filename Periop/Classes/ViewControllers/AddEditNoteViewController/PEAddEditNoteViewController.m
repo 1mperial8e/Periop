@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 
@@ -78,7 +77,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationBarLabel removeFromSuperview];
     self.specManager.photoObject = nil;
 }
 
@@ -95,7 +93,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)saveUpdateNote :(id)sender
+- (IBAction)saveUpdateNote:(id)sender
 {
     if (self.isEditNote) {
             self.specManager.currentNote.textDescription = self.textViewNotes.text;

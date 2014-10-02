@@ -182,8 +182,8 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 
 - (void)createAnimationWithKey:(NSString*)key
 {
-    CGPoint  toPoint = self.view.center;
-    toPoint.y -= self.view.frame.size.height-self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGPoint toPoint = self.view.center;
+    toPoint.y -= self.view.frame.size.height - 44 -self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
     
     CABasicAnimation * animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
     animationToHide.duration = MVCAnimationDuration;
