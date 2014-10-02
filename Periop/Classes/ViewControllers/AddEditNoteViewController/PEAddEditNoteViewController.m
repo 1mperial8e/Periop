@@ -132,7 +132,8 @@
             [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
         }
     }
-    self.specManager.photoObject = nil;
+   // self.specManager.photoObject = nil;
+    [self.managedObjectContext deleteObject:self.specManager.photoObject];
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);

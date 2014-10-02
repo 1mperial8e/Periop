@@ -117,8 +117,19 @@ static NSInteger const CPProcedureCount = 20;
                         [newTool addPhotoObject:initPhoto];
                     }
                 } else {
-                    
                     // to download photo and check; if yes save in initPhoto.photoData
+                    NSURL * urlForImage = [NSURL URLWithString:photoName];
+                    NSData * imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                    UIImage * image = [UIImage imageWithData:imageDataFromUrl];
+                    
+                    if (image) {
+                        NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                        Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        
+                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                        initPhoto.equiomentTool = newTool;
+                        [newTool addPhotoObject:initPhoto];
+                    }
                 }
                 
                 newTool.quantity = colum[5];
@@ -179,11 +190,9 @@ static NSInteger const CPProcedureCount = 20;
                         [steps removeLastObject];
                     }
                     for (int i=0; i<steps.count; i++) {
-                       
                         
                         NSString *photoName = (NSString *)steps[i];
                         if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
-
                             
                             NSBundle * bundle = [NSBundle mainBundle];
                             NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
@@ -196,7 +205,17 @@ static NSInteger const CPProcedureCount = 20;
                                 [opR addPhotoObject:initPhoto];
                             }
                         } else {
-                            // to download photo and check; if yes save in initPhoto.photoData
+                        // to download photo and check; if yes save in initPhoto.photoData
+                            NSURL * urlForImage = [NSURL URLWithString:photoName];
+                            NSData * imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                            UIImage * image = [UIImage imageWithData:imageDataFromUrl];
+                            
+                            if (image) {
+                                NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                                Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                                initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                                [opR addPhotoObject:initPhoto];
+                            }
                         }
                     }
                 }

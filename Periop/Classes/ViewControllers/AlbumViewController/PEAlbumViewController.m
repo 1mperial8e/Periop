@@ -149,6 +149,9 @@
                     NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
                 }
         } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"]) {
+            if (self.specManager.currentDoctor.photo) {
+                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
+            }
             newPhoto.doctor = self.specManager.currentDoctor;
             newPhoto.photoNumber = @(0);
             self.specManager.currentDoctor.photo = newPhoto;
