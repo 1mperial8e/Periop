@@ -70,11 +70,6 @@
     }
 }
 
-- (void) viewWillDisappear:(BOOL)animated
-{
-    self.navigationController.navigationBar.translucent = NO;
-}
-
 #pragma mark - Rotation
 
 - (void) canRotate
@@ -125,7 +120,6 @@
                     [self.managedObjectContext deleteObject:(Photo*)self.specManager.currentNote.photo];
                 }
                 self.specManager.currentNote.photo = nil;
-                
             }
         }
 

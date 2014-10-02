@@ -46,7 +46,7 @@
     self.titleLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     

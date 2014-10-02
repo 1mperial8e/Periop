@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
-static NSString * const SVCSpecialisations = @"Specialisations";
-static NSString * const SVCRestoreKeySetting = @"Restored";
+static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
+static NSString *const SVCSpecialisations = @"Specialisations";
+static NSString *const SVCRestoreKeySetting = @"Restored";
 
 #import "PESpecialisationViewController.h"
 #import "PESpecialisationCollectionViewCell.h"
@@ -34,7 +34,6 @@ static NSString * const SVCRestoreKeySetting = @"Restored";
 @property (strong, nonatomic) NSArray * specialisationsArray;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableDictionary *moreSpecialisationSpecs;
-@property (strong, nonatomic) NSMutableDictionary *identifiers;
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (copy, nonatomic) NSString *selectedSpecToReset;
 @property (strong, nonatomic) PEPurchaseManager *purchaseManager;
@@ -141,8 +140,6 @@ static NSString * const SVCRestoreKeySetting = @"Restored";
     [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
     [self refreshData];
-//    [self allSpecs];
-//    [self allIdentifiers];
     [self.collectionView reloadData];
 }
 
@@ -330,15 +327,15 @@ static NSString * const SVCRestoreKeySetting = @"Restored";
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     
     NSArray * arrKeys = [pList allKeys];
-    NSString * purchasedSpec;
+    NSString * purchasedSpecURL;
     for (int i =0; i<arrKeys.count; i++) {
         NSDictionary *dic = [pList valueForKey:arrKeys[i]];
         if ([[dic valueForKey:@"productIdentifier"] isEqualToString:productIdentifier]) {
-            purchasedSpec = arrKeys[i];
+            purchasedSpecURL = [dic valueForKeyPath:@"urlDownloading"];
         }
     }
     
-    //purchased spec- name of purchased spec
+    //purchasedSpecURL - url for downloading file
     //here add code for downloading appropriate product
 }
 

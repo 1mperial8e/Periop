@@ -16,6 +16,8 @@
 		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S10Gastrointestina</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>General</key>
 	<dict>
@@ -31,6 +33,8 @@
 		<string>General_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S09General</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Cosmetic</key>
 	<dict>
@@ -46,6 +50,8 @@
 		<string>osmetic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S08Cosmetic</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Plastic</key>
 	<dict>
@@ -61,6 +67,8 @@
 		<string>Plastic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S07Plastic</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Orthopeadic</key>
 	<dict>
@@ -76,6 +84,8 @@
 		<string>Orthopeadic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S06Orthopeadic</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Cardiothoracic</key>
 	<dict>
@@ -91,6 +101,8 @@
 		<string>Cardiothoracic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S05Cardiothoracic</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Opthalmology</key>
 	<dict>
@@ -106,6 +118,8 @@
 		<string>Opthalmology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S04Opthalmology</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Obstetric</key>
 	<dict>
@@ -121,6 +135,8 @@
 		<string>Obstetric_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S03Obstetric</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>Gyneacology</key>
 	<dict>
@@ -136,6 +152,8 @@
 		<string>Gyneacology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S02Gyneacology</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 	<key>ENT</key>
 	<dict>
@@ -151,6 +169,8 @@
 		<string>ENT_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S01ENT</string>
+		<key>urlDownloading</key>
+		<string></string>
 	</dict>
 </dict>
 </plist>
