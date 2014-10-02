@@ -162,7 +162,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
             NSString * message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
             self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
-            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Redownload" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
         } else {
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
@@ -250,7 +250,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
             NSString * toolsString = [NSString stringWithFormat:@"%@_Tools", self.selectedSpecToReset];
             [parser parseCsv:self.selectedSpecToReset withCsvToolsFileName:toolsString];
             self.selectedSpecToReset = nil;
-            [self initWithData];
+            //[self initWithData];
             [self.collectionView reloadData];
             
             NSLog(@"Done successfuly!");
@@ -263,15 +263,9 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (void)initWithData
 {
     self.specialisationsArray = [self avaliableSpecs];
-    if (self.specialisationsArray.count <= 0) {
+    if (!self.specialisationsArray.count) {
         PECsvParser * parser = [[PECsvParser alloc] init];
         [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
-        
-//        PEPlistParser * parser = [[PEPlistParser alloc] init];
-//        [parser parsePList:@"General" specialisation:^(Specialisation *specialisation) {
-//        }];
-//        [parser parsePList:@"Cardiothoracic" specialisation:^(Specialisation *specialisation) {
-//        }];
         
         self.specialisationsArray = [self avaliableSpecs];
         [self.collectionView reloadData];
@@ -310,8 +304,12 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 
 - (NSArray*) avaliableSpecs
 {
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    return [PECoreDataManager getAllEntities:searchedObject];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:specEntity];
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    return result;
 }
 
 @end

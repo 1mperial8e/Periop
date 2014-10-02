@@ -4,8 +4,8 @@
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="specialityCode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="doctor" inverseEntity="Note" syncable="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="doctor" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="doctor" inverseEntity="Note" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="doctor" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="doctors" inverseEntity="Procedure" syncable="YES"/>
         <relationship name="specialisation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Specialisation" inverseName="doctors" inverseEntity="Specialisation" syncable="YES"/>
     </entity>
@@ -15,25 +15,25 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="equiomentTool" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="equiomentTool" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="equipments" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="textDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctors" inverseName="notes" inverseEntity="Doctors" syncable="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="note" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="note" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="notes" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="OperationRoom" representedClassName="OperationRoom" syncable="YES">
-        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="operationRoom" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="operationRoom" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="operationRoom" inverseEntity="Procedure" syncable="YES"/>
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Steps" inverseName="operationRoom" inverseEntity="Steps" syncable="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Steps" inverseName="operationRoom" inverseEntity="Steps" syncable="YES"/>
     </entity>
     <entity name="PatientPostioning" representedClassName="PatientPostioning" syncable="YES">
-        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="patientPositioning" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="patientPositioning" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="patientPostioning" inverseEntity="Procedure" syncable="YES"/>
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Steps" inverseName="patientPostioning" inverseEntity="Steps" syncable="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Steps" inverseName="patientPostioning" inverseEntity="Steps" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -54,11 +54,11 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procedureID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="procedure" inverseEntity="Doctors" syncable="YES"/>
-        <relationship name="equipments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EquipmentsTool" inverseName="procedure" inverseEntity="EquipmentsTool" syncable="YES"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="procedure" inverseEntity="Note" syncable="YES"/>
-        <relationship name="operationRoom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OperationRoom" inverseName="procedure" inverseEntity="OperationRoom" syncable="YES"/>
-        <relationship name="patientPostioning" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientPostioning" inverseName="procedure" inverseEntity="PatientPostioning" syncable="YES"/>
-        <relationship name="preparation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Preparation" inverseName="procedure" inverseEntity="Preparation" syncable="YES"/>
+        <relationship name="equipments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EquipmentsTool" inverseName="procedure" inverseEntity="EquipmentsTool" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="procedure" inverseEntity="Note" syncable="YES"/>
+        <relationship name="operationRoom" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OperationRoom" inverseName="procedure" inverseEntity="OperationRoom" syncable="YES"/>
+        <relationship name="patientPostioning" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PatientPostioning" inverseName="procedure" inverseEntity="PatientPostioning" syncable="YES"/>
+        <relationship name="preparation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Preparation" inverseName="procedure" inverseEntity="Preparation" syncable="YES"/>
         <relationship name="specialization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Specialisation" inverseName="procedures" inverseEntity="Specialisation" syncable="YES"/>
     </entity>
     <entity name="Specialisation" representedClassName="Specialisation" syncable="YES">
@@ -69,7 +69,7 @@
         <attribute name="smallIconName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="specID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="doctors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctors" inverseName="specialisation" inverseEntity="Doctors" syncable="YES"/>
-        <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
+        <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Procedure" inverseName="specialization" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="Steps" representedClassName="Steps" syncable="YES">
         <attribute name="stepDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,15 +78,15 @@
         <relationship name="patientPostioning" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientPostioning" inverseName="steps" inverseEntity="PatientPostioning" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Doctors" positionX="63" positionY="-18" width="128" height="150"/>
+        <element name="Doctors" positionX="63" positionY="-18" width="128" height="148"/>
         <element name="EquipmentsTool" positionX="-333" positionY="-180" width="128" height="148"/>
         <element name="Note" positionX="-18" positionY="-207" width="128" height="118"/>
         <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="88"/>
         <element name="PatientPostioning" positionX="-333" positionY="-27" width="128" height="88"/>
-        <element name="Photo" positionX="-135" positionY="-63" width="128" height="163"/>
+        <element name="Photo" positionX="-585" positionY="144" width="128" height="163"/>
         <element name="Preparation" positionX="-333" positionY="71" width="128" height="88"/>
-        <element name="Procedure" positionX="-110" positionY="-45" width="128" height="178"/>
-        <element name="Specialisation" positionX="79" positionY="162" width="128" height="165"/>
-        <element name="Steps" positionX="-135" positionY="-63" width="128" height="105"/>
+        <element name="Procedure" positionX="169" positionY="-250" width="128" height="178"/>
+        <element name="Specialisation" positionX="79" positionY="162" width="128" height="163"/>
+        <element name="Steps" positionX="-191" positionY="-207" width="128" height="105"/>
     </elements>
 </model>
