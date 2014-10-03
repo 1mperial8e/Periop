@@ -15,6 +15,7 @@
 #import "Photo.h"
 #import "PatientPostioning.h"
 #import "Note.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -41,7 +42,7 @@
     [self.photosCollectionView registerNib:[UINib nibWithNibName:@"PeAlbumCell" bundle:nil] forCellWithReuseIdentifier:@"albumCell"];
     self.photosCollectionView.allowsMultipleSelection = YES;
     
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Close"] style:UIBarButtonItemStylePlain target:self action:@selector(choosingComplete)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStylePlain target:self action:@selector(choosingComplete)];
     self.navigationItem.leftBarButtonItem = closeButton;
     self.selectedPhotos = [[NSMutableArray alloc] init];
     

@@ -7,6 +7,7 @@
 //
 
 #import "PENavigationController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @implementation PENavigationController
 
@@ -25,7 +26,7 @@
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {        
-        UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
+        UIImage *buttonImage = [UIImage imageNamedFile:@"Menu"];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
         [button setImage:buttonImage forState:UIControlStateNormal];
         UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];

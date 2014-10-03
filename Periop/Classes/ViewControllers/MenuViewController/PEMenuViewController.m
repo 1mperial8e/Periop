@@ -13,6 +13,7 @@
 #import "PEAboutUsViewController.h"
 #import "PETermsAndConditionViewController.h"
 #import <MessageUI/MessageUI.h>
+#import "UIImage+ImageWithJPGFile.h"
 
 static CGFloat const MVCAnimationDuration = 0.5f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
@@ -166,15 +167,15 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 
 - (IBAction)mySpecialisationButton:(id)sender
 {
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self createAnimationWithKey:@"hideMenuToMenuMySpecialisation"];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
 {
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
     [self createAnimationWithKey:@"hideMenuToMenuMoreSpecialisation"];
 }
 
@@ -301,11 +302,11 @@ static NSString *const MVCSpecialisation = @"Specialisations";
         self.viewWithButtons.hidden = NO;
         self.bottomButtonsViewHeight.constant = 30.0f;
         if (self.isButtonMySpecializations) {
-            [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
-            [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+            [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+            [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
         } else {
-            [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
-            [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+            [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+            [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
         }
     }
     else{

@@ -21,6 +21,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 #import "PECoreDataManager.h"
 #import "Procedure.h"
 #import "UIImage+fixOrientation.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 
@@ -54,10 +55,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     
     self.specManager.isProcedureSelected = YES;
     
-    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
-    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
     
-    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -90,8 +91,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     self.specManager.isProcedureSelected = true;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
-    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
-    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
 }
 
 - (IBAction)doctorButton:(id)sender
@@ -101,8 +102,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     self.specManager.isProcedureSelected = false;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
-    [self.procedureButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
-    [self.doctorsButton setImage:[UIImage imageNamed:@"Doctors_Tab_Active"] forState:UIControlStateNormal];
+    [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Active"] forState:UIControlStateNormal];
 }
 
 - (IBAction)addNewDoctor:(id)sender
@@ -152,8 +153,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 {
     [self.searchBar setBackgroundImage:[[UIImage alloc]init]];
 
-    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
-    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    [self.searchBar setImage:[UIImage imageNamedFile:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
+    [self.searchBar setImage:[UIImage imageNamedFile:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     
     NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
     for(int i =0; i<[searchBarSubViews count]; i++) {

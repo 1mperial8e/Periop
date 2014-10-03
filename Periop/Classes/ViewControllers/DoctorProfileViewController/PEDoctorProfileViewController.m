@@ -23,6 +23,7 @@
 #import "Doctors.h"
 #import "PECameraViewController.h"
 #import "PEDoctorsProfileTableViewCell.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -53,10 +54,10 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"PEDoctorProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"doctorProfileCollectionViewCell"];
     
-    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
-    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
 
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
 
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -94,7 +95,7 @@
     if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     } else {
-        self.doctorPhotoImageView.image = [UIImage imageNamed:@"Place_Holder.png"];
+        self.doctorPhotoImageView.image = [UIImage imageNamedFile:@"Place_Holder.png"];
     }
     
     [self.tableView reloadData];
@@ -110,7 +111,7 @@
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamed:@"Place_Holder.png"] hash]) {
+    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:@"Place_Holder.png"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             NSLog(@"Touched Image");
             PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
@@ -133,8 +134,8 @@
 
 - (IBAction)propertiesButtons:(id)sender
 {
-    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
-    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
     PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Doctors Notes";
     [self.navigationController pushViewController:notesView animated:YES];
@@ -142,8 +143,8 @@
 
 - (IBAction)detailsButton:(id)sender
 {
-    [self.specsButton setImage:[UIImage imageNamed:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
-    [self.notesButton setImage:[UIImage imageNamed:@"Notes_Tab_Active"] forState:UIControlStateNormal];
+    [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
+    [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Active"] forState:UIControlStateNormal];
 }
 
 - (IBAction)photoButtons:(id)sender
@@ -239,7 +240,7 @@
     if (!cell) {
         cell = [[PEDoctorProfileCollectionViewCell alloc] init];
     }
-    cell.imageView.image = [UIImage imageNamed:((Specialisation*)self.doctorsSpec[indexPath.row]).smallIconName];
+    cell.imageView.image = [UIImage imageNamedFile:((Specialisation*)self.doctorsSpec[indexPath.row]).smallIconName];
     return cell;
 }
 

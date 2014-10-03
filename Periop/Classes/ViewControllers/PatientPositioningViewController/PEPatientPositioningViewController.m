@@ -19,6 +19,7 @@
 #import "PEViewPhotoViewController.h"
 #import "Steps.h"
 #import "PECameraViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate>
 
@@ -192,7 +193,7 @@
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         self.pageControll.currentPage = [indexPath row];
     } else {
-        cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
+        cell.operationRoomImage.image = [UIImage imageNamedFile:@"Place_Holder"];
     }
     return cell;
 }
@@ -205,7 +206,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+    if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
         PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count >0) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];

@@ -22,6 +22,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 #import "PETutorialViewController.h"
 #import "PEPurchaseManager.h"
 #import <StoreKit/StoreKit.h>
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
@@ -75,7 +76,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     self.collectionView.delegate = (id)self;
     self.collectionView.dataSource = (id)self;
     
-    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
+    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]];
     self.collectionView.backgroundView = backgroundImage;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -130,8 +131,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 - (IBAction)mySpesialisationButton:(id)sender
 {
     self.isMyspecializations = YES;
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
     self.specialisationsArray = [self avaliableSpecs];
     [self.collectionView reloadData];
 }
@@ -139,8 +140,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 - (IBAction)moreSpecialisationButton:(id)sender
 {
     self.isMyspecializations = NO;
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
     [self refreshData];
     [self.collectionView reloadData];
 }
@@ -198,7 +199,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         cell.backgroundColor = [UIColor clearColor];
         
         if (self.isMyspecializations) {
-            cell.specialisationIconImageView.image = [UIImage imageNamed:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
+            cell.specialisationIconImageView.image = [UIImage imageNamedFile:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
             NSArray * allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -207,7 +208,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
                 return [product1 compare:product2];
             }];
             cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;
-            cell.specialisationIconImageView.image = [UIImage imageNamed:[self getFotoForSKProduct:(SKProduct*)allProducts[indexPath.row]]];
+            cell.specialisationIconImageView.image = [UIImage imageNamedFile:[self getFotoForSKProduct:(SKProduct*)allProducts[indexPath.row]]];
         }
     }
     return cell;

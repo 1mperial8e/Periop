@@ -8,6 +8,6 @@
 
 @interface UIImage (ImageWithJPGFile)
 
-+ (UIImage*)imageNamedJPGFile: (NSString*)imageNameInLocalBundle;
++ (UIImage*)imageNamedFile: (NSString*)imageNameInLocalBundle;
 
 @end

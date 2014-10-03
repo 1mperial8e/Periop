@@ -37,8 +37,8 @@
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
 		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
-		84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */; };
-		84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */; };
+		84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4@2x.png */; };
+		84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5@2x.png */; };
 		84AF77AD19DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */; };
 		84AF77AE19DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */; };
 		84AF77AF19DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */; };
@@ -275,8 +275,8 @@
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
 		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
-		84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone4.png"; sourceTree = "<group>"; };
-		84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone5.png"; sourceTree = "<group>"; };
+		84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone4@2x.png"; sourceTree = "<group>"; };
+		84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_0-iphone5@2x.png"; sourceTree = "<group>"; };
 		84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_1-iphone4@2x.png"; sourceTree = "<group>"; };
 		84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_1-iphone5@2x.png"; sourceTree = "<group>"; };
 		84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialPage_2-iphone4@2x.png"; sourceTree = "<group>"; };
@@ -720,8 +720,8 @@
 		84AF77A219DAEA77009F2B98 /* TutorialScreen */ = {
 			isa = PBXGroup;
 			children = (
-				84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4.png */,
-				84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5.png */,
+				84AF77A319DAEA77009F2B98 /* tutorialPage_0-iphone4@2x.png */,
+				84AF77A419DAEA77009F2B98 /* tutorialPage_0-iphone5@2x.png */,
 				84AF77A519DAEA77009F2B98 /* tutorialPage_1-iphone4@2x.png */,
 				84AF77A619DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png */,
 				84AF77A719DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png */,
@@ -1576,7 +1576,7 @@
 				ED9C69B919C720E80022C1A8 /* Cardiothoracic_Small_Inactive@2x.png in Resources */,
 				ED9C699B19C720E80022C1A8 /* Notes_Tab_Active@2x.png in Resources */,
 				ED9C69C919C720E80022C1A8 /* Cosmetic_Small_Inactive@2x.png in Resources */,
-				84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4.png in Resources */,
+				84AF77AB19DAEA77009F2B98 /* tutorialPage_0-iphone4@2x.png in Resources */,
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
 				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
@@ -1610,7 +1610,7 @@
 				ED9C69FF19C720E80022C1A8 /* Plastic_Small_Active@2x.png in Resources */,
 				ED0D2FB419BA0762001F8411 /* PEAddEditDoctorViewController.xib in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
-				84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5.png in Resources */,
+				84AF77AC19DAEA77009F2B98 /* tutorialPage_0-iphone5@2x.png in Resources */,
 				ED9C698519C720E80022C1A8 /* Edit_Info@2x.png in Resources */,
 				ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */,
 				ED9C699119C720E80022C1A8 /* Menu_Overlay@2x.png in Resources */,

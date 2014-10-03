@@ -8,6 +8,7 @@
 
 #import "PETutorialViewController.h"
 #import "PETutorialCollectionViewCell.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
@@ -65,7 +66,7 @@ NSInteger const TVCCountPage = 4;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PETutorialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TVCCellName forIndexPath:indexPath];
-    cell.tutorialImageView.image = [UIImage imageNamed:self.pageImages[indexPath.row]];
+    cell.tutorialImageView.image = [UIImage imageNamedFile:self.pageImages[indexPath.row]];
     return cell;
 }
 

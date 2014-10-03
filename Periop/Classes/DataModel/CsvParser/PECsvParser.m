@@ -105,7 +105,7 @@ static NSInteger const CPProcedureCount = 20;
                 
                 if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
             
-                    UIImage * photo = [UIImage imageNamedJPGFile:photoName];
+                    UIImage * photo = [UIImage imageNamedFile:photoName];
                     if (photo) {
                         
                         NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
@@ -203,7 +203,7 @@ static NSInteger const CPProcedureCount = 20;
                         
                         if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                             
-                            UIImage * photo = [UIImage imageNamedJPGFile:photoName];
+                            UIImage * photo = [UIImage imageNamedFile:photoName];
                             if (photo) {
                                 NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
