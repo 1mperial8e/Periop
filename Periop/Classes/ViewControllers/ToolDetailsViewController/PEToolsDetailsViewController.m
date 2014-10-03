@@ -19,6 +19,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 #import "Photo.h"
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits>
@@ -105,9 +106,10 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
             self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
+
         }
     } else {
-        self.equipmentPhoto.image = [UIImage imageNamed:@"Place_Holder"];
+        self.equipmentPhoto.image = [UIImage imageNamedFile:@"Place_Holder"];
     }
     
     [[self.view viewWithTag:35] removeFromSuperview];
@@ -169,7 +171,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamed:@"Place_Holder"] hash]) {
+    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if ([[self.specManager.currentEquipment.photo allObjects] count]) {

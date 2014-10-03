@@ -20,6 +20,7 @@
 #import "Photo.h"
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 
 static NSInteger const AEDTitleForRowHeight = 37;
@@ -101,7 +102,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
         if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
                 self.imageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
         } else {
-            self.imageView.image = [UIImage imageNamed:@"Place_Holder.png"];
+            self.imageView.image = [UIImage imageNamedFile:@"Place_Holder.png"];
         }
     }
     
@@ -119,7 +120,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([self.imageView.image hash] != [[UIImage imageNamed:@"Place_Holder.png"] hash]) {
+    if ([self.imageView.image hash] != [[UIImage imageNamedFile:@"Place_Holder.png"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded && self.isEditedDoctor) {
             NSLog(@"Touched Image");
             PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];

@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString * const SVCPListName = @"SpecialisationPicsAndCode";
-static NSString * const SVCSpecialisations = @"Specialisations";
+static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
+static NSString *const SVCSpecialisations = @"Specialisations";
+static NSString *const SVCRestoreKeySetting = @"Restored";
 
 #import "PESpecialisationViewController.h"
 #import "PESpecialisationCollectionViewCell.h"
@@ -21,6 +22,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 #import "PETutorialViewController.h"
 #import "PEPurchaseManager.h"
 #import <StoreKit/StoreKit.h>
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
@@ -33,10 +35,11 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 @property (strong, nonatomic) NSArray * specialisationsArray;
 @property (strong, nonatomic) PESpecialisationManager * specManager;
 @property (strong, nonatomic) NSMutableDictionary *moreSpecialisationSpecs;
-@property (strong, nonatomic) NSMutableDictionary *identifiers;
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (copy, nonatomic) NSString *selectedSpecToReset;
 @property (strong, nonatomic) PEPurchaseManager *purchaseManager;
+
+@property (strong, nonatomic) NSArray *avaliableSKProductsForPurchasing;
 
 @end
 
@@ -47,6 +50,8 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //[self downloadPurchasedItems:@"" withToolsPartFile:@"" withSpecName:@"Gyneacology"];
     
     self.purchaseManager = [PEPurchaseManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -60,16 +65,18 @@ static NSString * const SVCSpecialisations = @"Specialisations";
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [rootController presentViewController:tutorialController animated:NO completion:nil];
     }
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
+    
+    if (![def integerForKey:SVCRestoreKeySetting]){
+         [self.purchaseManager restoreCompleteTransactions];
+        [def setInteger:1 forKey:SVCRestoreKeySetting];
+    }
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
     
     self.collectionView.delegate = (id)self;
     self.collectionView.dataSource = (id)self;
     
-    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]];
+    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]];
     self.collectionView.backgroundView = backgroundImage;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -80,15 +87,26 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 {
     [super viewWillAppear:animated];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    
     ((PENavigationController *)self.navigationController).titleLabel.text = @"Specialisations";
     
     PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self initWithData];
     [self.collectionView reloadData];
+    
     if (self.specManager.currentProcedure!=nil) {
         self.specManager.currentProcedure = nil;
     }
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -113,8 +131,8 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (IBAction)mySpesialisationButton:(id)sender
 {
     self.isMyspecializations = YES;
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Active"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
     self.specialisationsArray = [self avaliableSpecs];
     [self.collectionView reloadData];
 }
@@ -122,10 +140,9 @@ static NSString * const SVCSpecialisations = @"Specialisations";
 - (IBAction)moreSpecialisationButton:(id)sender
 {
     self.isMyspecializations = NO;
-    [self.mySpecialisationsButton setImage:[UIImage imageNamed:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
-    [self.moreSpecialisationsButton setImage:[UIImage imageNamed:@"More_Specialisations_Active"] forState:UIControlStateNormal];
-    [self allSpecs];
-    [self allIdentifiers];
+    [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
+    [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    [self refreshData];
     [self.collectionView reloadData];
 }
 
@@ -144,23 +161,22 @@ static NSString * const SVCSpecialisations = @"Specialisations";
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
             NSString * message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
             self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
-            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Redownload" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
         } else {
+
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
                 if (success) {
                     NSString * requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
                     for (SKProduct * product in products) {
                         if ([product.productIdentifier isEqualToString:requestedProductIdentifier]) {
+                            NSLog(@"Start buying...");
                             [self.purchaseManager buyProduct:product];
-                            if ([self.purchaseManager productPurchased:product.productIdentifier]) {
-                                NSLog(@"start to update DB with new spec...");
-                                //to download new specs
-                            }
                         }
                     }
                 }
             }];
+            
         }
     }
 }
@@ -172,28 +188,27 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     if (self.isMyspecializations) {
         return self.specialisationsArray.count;
     } else {
-        return [self.moreSpecialisationSpecs allKeys].count;
+        return self.avaliableSKProductsForPurchasing.count;
     }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
-    if (self.specialisationsArray && self.specialisationsArray.count > 0) {
+    if (self.specialisationsArray && self.specialisationsArray.count) {
         cell.backgroundColor = [UIColor clearColor];
         
         if (self.isMyspecializations) {
-            cell.specialisationIconImageView.image = [UIImage imageNamed:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
+            cell.specialisationIconImageView.image = [UIImage imageNamedFile:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
-            NSArray * all = [[self.moreSpecialisationSpecs allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                NSString * str1 = (NSString*)obj1;
-                NSString * str2 = (NSString*)obj2;
-                return [str1 compare:str2];
+            NSArray * allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSString * product1 = [(SKProduct*)obj1 localizedTitle];
+                NSString * product2 = [(SKProduct*)obj2 localizedTitle];
+                return [product1 compare:product2];
             }];
-            cell.specialisationIconImageView.image = [UIImage imageNamed:[self.moreSpecialisationSpecs valueForKey:all[indexPath.row]]];
-            cell.specName = all[indexPath.row];
-            cell.productIdentifier = [self.identifiers valueForKey:all[indexPath.row]];;
+            cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;
+            cell.specialisationIconImageView.image = [UIImage imageNamedFile:[self getFotoForSKProduct:(SKProduct*)allProducts[indexPath.row]]];
         }
     }
     return cell;
@@ -228,11 +243,8 @@ static NSString * const SVCSpecialisations = @"Specialisations";
             [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
             
             NSLog(@"Parsing selected spec and update DB...");
-            PECsvParser * parser = [[PECsvParser alloc] init];
-            NSString * toolsString = [NSString stringWithFormat:@"%@_Tools", self.selectedSpecToReset];
-            [parser parseCsv:self.selectedSpecToReset withCsvToolsFileName:toolsString];
+            [self restoreSelectedSpecByName:self.selectedSpecToReset];
             self.selectedSpecToReset = nil;
-            //[self initWithData];
             [self.collectionView reloadData];
             
             NSLog(@"Done successfuly!");
@@ -247,7 +259,7 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     self.specialisationsArray = [self avaliableSpecs];
     if (!self.specialisationsArray.count) {
         PECsvParser * parser = [[PECsvParser alloc] init];
-        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
+        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools" withSpecName:@"General"];
         
         self.specialisationsArray = [self avaliableSpecs];
         [self.collectionView reloadData];
@@ -269,21 +281,6 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     }
 }
 
-- (void) allIdentifiers
-{
-    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
-    NSArray * arrKeys = [pList allKeys];
-    NSMutableArray * arrayWithAllIdentifiers = [[NSMutableArray alloc] init];
-    for (int i=0; i<arrKeys.count; i++) {
-        NSDictionary *dic = [pList valueForKey:arrKeys[i]];
-        [arrayWithAllIdentifiers addObject:[dic valueForKey:@"productIdentifier"]];
-    }
-    self.identifiers = [[NSMutableDictionary alloc] init];
-    for (int i=0; i<arrKeys.count; i++) {
-        [self.identifiers setValue:arrayWithAllIdentifiers[i] forKey:arrKeys[i]];
-    }
-}
-
 - (NSArray*) avaliableSpecs
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -293,6 +290,114 @@ static NSString * const SVCSpecialisations = @"Specialisations";
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     return result;
+}
+
+- (void) restoreSelectedSpecByName: (NSString*)specName
+{
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    
+    NSArray *arrKeys = [pList allKeys];
+    NSString *purchasedSpecURLAll;
+    NSString *purchasedSpecURLTools;
+    for (int i =0; i<arrKeys.count; i++) {
+        if ([arrKeys[i] isEqualToString:specName]) {
+            NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+            purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
+            purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
+            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:specName];
+        }
+    }
+}
+
+#pragma mark - InAppPurchase
+
+- (void)refreshData
+{
+    self.avaliableSKProductsForPurchasing = nil;
+    [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
+        if (success) {
+            self.avaliableSKProductsForPurchasing = products;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
+- (NSString*)getFotoForSKProduct :(SKProduct*)skProduct
+{
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    
+    NSArray * arrKeys = [pList allKeys];
+    NSString * photoName;
+    for (int i =0; i<arrKeys.count; i++) {
+        NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+        if ([[dic valueForKey:@"productIdentifier"] isEqualToString:skProduct.productIdentifier]) {
+            photoName = [dic valueForKey:@"photoName"];
+        }
+    }
+    return photoName;
+}
+
+#pragma mark - NotificationFromPurchaseManager
+
+- (void)productPurchased: (NSNotification *)notification
+{
+    //product identifier - purchased product
+    NSString * productIdentifier = notification.object;
+    
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    
+    NSArray *arrKeys = [pList allKeys];
+    NSString *purchasedSpecURLAll;
+    NSString *purchasedSpecURLTools;
+    for (int i =0; i<arrKeys.count; i++) {
+        NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+        if ([[dic valueForKey:@"productIdentifier"] isEqualToString:productIdentifier]) {
+            purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
+            purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
+            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:arrKeys[i]];
+        }
+    }
+}
+
+- (void) downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart withSpecName:(NSString*)specName;
+{
+  // toolsFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hUG5yYzVEUTdMVm8";
+  // mainFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hM1I3SldxODEzdUk";
+    
+    NSMutableArray * arrayWithPathToDelete = [NSMutableArray new];
+    
+    NSData * dataMain = [NSData dataWithContentsOfURL:[NSURL URLWithString:mainFilePart]];
+    if ( dataMain )
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"mainSpec.csv"];
+        if ([dataMain writeToFile:filePath atomically:YES]) {
+            NSLog(@"mainSpec file created");
+            [arrayWithPathToDelete addObject:filePath];
+        }
+    }
+    NSData * dataTools = [NSData dataWithContentsOfURL:[NSURL URLWithString:toolsFilePart]];
+    if ( dataTools )
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"toolSpec.csv"];
+        if ([dataTools writeToFile:filePath atomically:YES]) {
+            NSLog(@"toolSpec file created");
+            [arrayWithPathToDelete addObject:filePath];
+        }
+    }
+    
+    PECsvParser * parser = [[PECsvParser alloc] init];
+    [parser parseCsv:@"mainSpec" withCsvToolsFileName:@"toolSpec" withSpecName:specName];
+    
+    for (int i=0; i<arrayWithPathToDelete.count; i++) {
+        NSError * error = nil;
+        if (![[NSFileManager defaultManager] removeItemAtPath:arrayWithPathToDelete[i] error:&error]) {
+            NSLog(@"Cant remove file after parsing - %@", error.localizedDescription);
+        }
+    }
 }
 
 @end

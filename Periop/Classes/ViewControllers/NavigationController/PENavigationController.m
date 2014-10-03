@@ -7,6 +7,7 @@
 //
 
 #import "PENavigationController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @implementation PENavigationController
 
@@ -25,7 +26,7 @@
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {        
-        UIImage *buttonImage = [UIImage imageNamed:@"Menu"];
+        UIImage *buttonImage = [UIImage imageNamedFile:@"Menu"];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
         [button setImage:buttonImage forState:UIControlStateNormal];
         UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -46,7 +47,7 @@
     self.titleLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.font = [UIFont fontWithName:@"MuseoSans-300" size:20.0];
+    self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     

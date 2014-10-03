@@ -12,6 +12,7 @@
 #import "PECoreDataManager.h"
 #import "PEObjectDescription.h"
 #import "Specialisation.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEEditAddDoctorTableViewCell() < UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -58,8 +59,8 @@
         cell =[[PECollectionViewCellItemCell alloc] init];
     }
     
-    cell.activeImageViewWithLogo.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecObjects[indexPath.row]).activeButtonPhotoName];
-    cell.inactiveImageViewWithLogo.image = [UIImage imageNamed:((Specialisation*)self.arrayWithSpecObjects[indexPath.row]).inactiveButtonPhotoName];
+    cell.activeImageViewWithLogo.image = [UIImage imageNamedFile:((Specialisation*)self.arrayWithSpecObjects[indexPath.row]).activeButtonPhotoName];
+    cell.inactiveImageViewWithLogo.image = [UIImage imageNamedFile:((Specialisation*)self.arrayWithSpecObjects[indexPath.row]).inactiveButtonPhotoName];
     cell.labelNameOfSpec.text = ((Specialisation*)self.arrayWithSpecObjects[indexPath.row]).name;
     return cell;
 }

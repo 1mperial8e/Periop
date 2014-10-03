@@ -15,6 +15,7 @@
 #import "PECoreDataManager.h"
 #import "Doctors.h"
 #import "UIImage+fixOrientation.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate, UISearchDisplayDelegate>
 
@@ -121,8 +122,8 @@
 {
     [self.searchBar setBackgroundImage:[[UIImage alloc]init]];
     
-    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
-    [self.searchBar setImage:[UIImage imageNamed:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    [self.searchBar setImage:[UIImage imageNamedFile:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateHighlighted];
+    [self.searchBar setImage:[UIImage imageNamedFile:@"Cancel_Search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     
     NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
     for(int i =0; i<[searchBarSubViews count]; i++) {

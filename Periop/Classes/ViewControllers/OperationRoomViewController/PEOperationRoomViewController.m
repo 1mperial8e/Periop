@@ -19,6 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
 
@@ -99,7 +100,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamed:@"Place_Holder"] hash]) {
+    if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:@"Place_Holder"] hash]) {
         PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count >0) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
@@ -126,7 +127,7 @@
     if (self.sortedArrayWithPhotos.count >0) {
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
     } else {
-        cell.operationRoomImage.image = [UIImage imageNamed:@"Place_Holder"];
+        cell.operationRoomImage.image = [UIImage imageNamedFile:@"Place_Holder"];
     }
     
     self.pageController.currentPage = [indexPath row];

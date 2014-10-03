@@ -12,6 +12,7 @@
 #import "PECoreDataManager.h"
 #import "Procedure.h"
 #import "UIDropDownList.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEAddNewToolViewController () <UITextInputTraits, UIDropDownListDelegate>
 
@@ -54,7 +55,7 @@
     
     UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem = saveButton;
-    UIBarButtonItem * cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
+    UIBarButtonItem * cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     self.qtyTextBox.keyboardType = UIKeyboardTypeNumberPad;

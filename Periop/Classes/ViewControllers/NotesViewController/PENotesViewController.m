@@ -17,6 +17,7 @@
 #import "PECoreDataManager.h"
 #import "Doctors.h"
 #import "PEViewPhotoViewController.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -38,7 +39,7 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
     UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -95,7 +96,7 @@
     if (!cell) {
         cell = [[PENotesTableViewCell alloc] init];
     }
-    UIImage * buttonImage = [UIImage imageNamed:@"Edit"];
+    UIImage * buttonImage = [UIImage imageNamedFile:@"Edit"];
     cell.cornerLabel.layer.cornerRadius = buttonImage.size.height/2;
     cell.cornerLabel.layer.borderColor = [UIColorFromRGB(0xE0E0E0) CGColor];
     cell.cornerLabel.layer.borderWidth = 1.0;

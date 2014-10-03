@@ -20,6 +20,7 @@ static NSInteger const CPProcedureCount = 20;
 #import "Photo.h"
 #import "Steps.h"
 #import "Specialisation.h"
+#import "UIImage+ImageWithJPGFile.h"
 
 @interface PECsvParser ()
 
@@ -42,10 +43,19 @@ static NSInteger const CPProcedureCount = 20;
 
 #pragma mark - Public
 
-- (void)parseCsv:(NSString*)mainFileName withCsvToolsFileName:(NSString*)toolsFileName
+- (void)parseCsv:(NSString*)mainFileName withCsvToolsFileName:(NSString*)toolsFileName withSpecName:(NSString *)specName
 {
     NSString *filePathMain = [[NSBundle mainBundle] pathForResource:mainFileName ofType:@"csv"];
     NSString *filePathTools = [[NSBundle mainBundle] pathForResource:toolsFileName ofType:@"csv"];
+    
+    if (!filePathMain) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        filePathMain = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], mainFileName];
+    }
+    if (!filePathTools) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        filePathTools = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], toolsFileName];
+    }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -56,25 +66,16 @@ static NSInteger const CPProcedureCount = 20;
         
         NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SpecialisationPicsAndCode" ofType:@"plist" ]];
         
-        NSDictionary * dic = [pList valueForKey:mainFileName];
+        NSDictionary * dic = [pList valueForKey:specName];
         newSpecialisation.specID = [dic valueForKey:@"specID"];
         newSpecialisation.photoName = [dic valueForKey:@"photoName"];
         newSpecialisation.activeButtonPhotoName = [dic valueForKey:@"activeButtonPhotoName"];
         newSpecialisation.inactiveButtonPhotoName =[dic valueForKey:@"inactiveButtonPhotoName"];
         newSpecialisation.smallIconName = [dic valueForKey:@"smallIconName"];
         
-        newSpecialisation.name = mainFileName;
+        newSpecialisation.name = specName;
         
-        //parse mainFile
-        NSError *error;
-        NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
-        //  NSLog(@"%@",lines);
-        
-        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        
-        NSArray *parseWithSeparate = [partOne componentsSeparatedByString:@";"];
-        NSMutableArray *rows = [parseWithSeparate mutableCopy];
-        [rows removeObjectAtIndex:0];
+        //tools parsing
         
         NSEntityDescription * procedureEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
 
@@ -101,12 +102,10 @@ static NSInteger const CPProcedureCount = 20;
                 EquipmentsTool * newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 
                 NSString *photoName = (NSString *)colum[6];
+                
                 if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
             
-                    //JPG
-                    NSBundle * bundle = [NSBundle mainBundle];
-                    NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
-                    UIImage * photo = [UIImage imageWithContentsOfFile:path];
+                    UIImage * photo = [UIImage imageNamedFile:photoName];
                     if (photo) {
                         
                         NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
@@ -151,8 +150,17 @@ static NSInteger const CPProcedureCount = 20;
         } else {
             NSLog (@"File with tools not found");
         }
-
-        //parsing patient postioning, operationRoom and preparation
+        
+        //parse mainFile
+        NSError *error;
+        NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
+        //  NSLog(@"%@",lines);
+        
+        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        NSArray *parseWithSeparate = [partOne componentsSeparatedByString:@";"];
+        NSMutableArray *rows = [parseWithSeparate mutableCopy];
+        [rows removeObjectAtIndex:0];
         
         NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
         OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -192,12 +200,10 @@ static NSInteger const CPProcedureCount = 20;
                     for (int i=0; i<steps.count; i++) {
                         
                         NSString *photoName = (NSString *)steps[i];
+                        
                         if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                             
-                            NSBundle * bundle = [NSBundle mainBundle];
-                            NSString *path = [bundle pathForResource:photoName ofType:@"jpg"];
-                            UIImage * photo = [UIImage imageWithContentsOfFile:path];
-
+                            UIImage * photo = [UIImage imageNamedFile:photoName];
                             if (photo) {
                                 NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                                 Photo * initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -275,7 +281,7 @@ static NSInteger const CPProcedureCount = 20;
             }
         }
         
-    } else NSLog (@"File with description of specialisation's procedures found");
+    } else NSLog (@"File with description of specialisation's procedures NOT found");
     
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]) {
