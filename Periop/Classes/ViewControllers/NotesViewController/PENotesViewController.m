@@ -97,7 +97,7 @@
     }
     UIImage * buttonImage = [UIImage imageNamed:@"Edit"];
     cell.cornerLabel.layer.cornerRadius = buttonImage.size.height/2;
-    cell.cornerLabel.layer.borderColor = [[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1] CGColor];
+    cell.cornerLabel.layer.borderColor = [UIColorFromRGB(0xE0E0E0) CGColor];
     cell.cornerLabel.layer.borderWidth = 1.0;
     cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;

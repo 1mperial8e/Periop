@@ -97,7 +97,7 @@
 - (IBAction)eMailButton:(id)sender
 {
     if ([MFMailComposeViewController canSendMail]) {
-        [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+        [UINavigationBar appearance].barTintColor = UIColorFromRGB(0x4B9DE1);
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:                                                               
                                                               [UIColor whiteColor], NSForegroundColorAttributeName, nil]];

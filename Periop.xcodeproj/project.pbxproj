@@ -256,6 +256,7 @@
 		842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@2x.png"; sourceTree = "<group>"; };
 		842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@3x.png"; sourceTree = "<group>"; };
+		846413E819DD8F550077FE16 /* PEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMacros.h; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8474906419B8459E0013C446 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -632,6 +633,14 @@
 			path = "UIImage+fixOrientation";
 			sourceTree = "<group>";
 		};
+		846413E719DD8F210077FE16 /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				846413E819DD8F550077FE16 /* PEMacros.h */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
 		8474905619B8459E0013C446 = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +690,7 @@
 		8474906B19B8459E0013C446 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				846413E719DD8F210077FE16 /* Macros */,
 				EDD2A55719DBF40E00A73C5E /* Constants */,
 				8474906C19B8459E0013C446 /* Periop-Info.plist */,
 				8474906D19B8459E0013C446 /* InfoPlist.strings */,

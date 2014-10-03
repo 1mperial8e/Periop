@@ -135,7 +135,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
     self.menuTitleLabel.text = MVCFeedback;
     
     if ([MFMailComposeViewController canSendMail]) {
-        [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+        [UINavigationBar appearance].barTintColor = UIColorFromRGB(0x4B9DE1);
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                [UIColor whiteColor], NSForegroundColorAttributeName,  nil]];
@@ -183,7 +183,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 - (void)createAnimationWithKey:(NSString*)key
 {
     CGPoint toPoint = self.view.center;
-    toPoint.y -= self.view.frame.size.height - 44 -self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
+    toPoint.y -= self.view.frame.size.height - self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
     
     CABasicAnimation * animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
     animationToHide.duration = MVCAnimationDuration;

@@ -136,14 +136,14 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
-    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 75/255.0 green:157/255.0 blue:225/255.0 alpha: 1.0f]]
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x4B9DE1)]
                                                 forBarPosition:0
                                                     barMetrics:UIBarMetricsDefault];
 }
 
 - (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
-    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha: 1.0f]]
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]
                                                 forBarPosition:0
                                                     barMetrics:UIBarMetricsDefault];
 }
@@ -160,17 +160,16 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
             UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
             [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
-            [search setTintColor:[UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1.0f]];
+            [search setTintColor:UIColorFromRGB(0x4D4D4D)];
             search.placeholder = @"Search";
             search.backgroundColor = [UIColor whiteColor];
-            search.layer.borderColor = [[UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1.0f] CGColor];
+            search.layer.borderColor = [UIColorFromRGB(0x4B9DE1) CGColor];
             search.layer.borderWidth = 1.0f;
             search.layer.cornerRadius = 8.0f;
             search.alpha =1.0f;
             search.leftViewMode = UITextFieldViewModeNever;
         }
     }
-    
 }
 
 #pragma mark - TableViewDataSource
@@ -194,11 +193,11 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     }
     
     if ( indexPath.row % 2){
-        cell.contentView.backgroundColor = [UIColor colorWithRed:(231.0/255.0) green:(245.0/255.0) blue:(250.0/255.0) alpha:1.0f];
-        cell.textLabel.textColor = [UIColor colorWithRed:(73.0/255.0) green:(159.0/255.0) blue:(225.0/255.0) alpha:1.0f];
+        cell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+        cell.textLabel.textColor = UIColorFromRGB(0x499FE1);
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.textColor = [UIColor colorWithRed:(66.0/255.0) green:(66.0/255.0) blue:(66.0/255.0) alpha:1.0f];
+        cell.textLabel.textColor = UIColorFromRGB(0x424242);
     }
     
     UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];

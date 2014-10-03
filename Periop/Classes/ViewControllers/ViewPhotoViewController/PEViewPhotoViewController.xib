@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-6i-XGO" userLabel="ImageToShow ImageView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-6i-XGO" userLabel="ImageToShow ImageView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -52,7 +52,11 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="EbG-QC-MTF"/>
+                <constraint firstItem="qVa-6i-XGO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OBM-9G-4U2"/>
+                <constraint firstAttribute="bottom" secondItem="qVa-6i-XGO" secondAttribute="bottom" id="kbc-nk-Vlf"/>
                 <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nCf-ie-FzM"/>
+                <constraint firstItem="qVa-6i-XGO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pLS-vP-cuc"/>
+                <constraint firstAttribute="trailing" secondItem="qVa-6i-XGO" secondAttribute="trailing" id="t6A-Ra-kBF"/>
                 <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="xpz-K9-GIg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

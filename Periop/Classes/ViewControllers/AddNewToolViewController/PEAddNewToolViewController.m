@@ -146,9 +146,9 @@
 {
     self.dropDownList = [[UIDropDownList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0)];
     self.dropDownList.items = @[@"Disposables", @"Drapes", @"Dressing", @"Equipment", @"Extra Instruments/Equipment", @"Gloves", @"Holloware", @"Instrument Tray",  @"Prep Solution", @"Prosthesis", @"Solutions", @"Sutures"];
-    [self.dropDownList setBackgroundColor:[UIColor colorWithRed:(147.0/255.0) green:(227.0/255.0) blue:(185.0/255.0) alpha:1.0f]];
+    [self.dropDownList setBackgroundColor:UIColorFromRGB(0x93E3B9)];
     self.dropDownList.titleLabel.textColor = [UIColor whiteColor];
-    self.dropDownList.separateColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0f];
+    self.dropDownList.separateColor = UIColorFromRGB(0xF5F5F5);
     self.dropDownList.titleLabel.text = @"Equipment Category";
     self.dropDownList.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, self.dropDownList.frame.size.height - 1, self.dropDownList.frame.size.width, 0.5f)];
@@ -156,7 +156,7 @@
     [self.dropDownList addSubview:separator];
     self.dropDownList.numberOfItemsToDraw = 4;
     self.dropDownList.itemBackColor = [UIColor whiteColor];
-    self.dropDownList.itemLabelTextColor = [UIColor colorWithRed:(28.0/255.0) green:(28.0/255.0) blue:(28.0/255.0) alpha:1.0f];
+    self.dropDownList.itemLabelTextColor = UIColorFromRGB(0x1C1C1C);
     self.dropDownList.itemLabelFont = [UIFont fontWithName:FONT_MuseoSans300 size:15.0];
     self.dropDownList.itemHeight = 30.0f;
     self.dropDownList.delegate = self;

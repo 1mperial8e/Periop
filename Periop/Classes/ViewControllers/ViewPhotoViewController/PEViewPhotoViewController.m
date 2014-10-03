@@ -33,17 +33,13 @@
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
-    
-    self.navigationController.navigationBar.translucent = YES;
-    
+
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     
     self.gradient = [CAGradientLayer layer];
     self.gradient.frame = self.viewContainer.bounds;
-    self.gradient.colors = [NSArray arrayWithObjects:
-                       (id)[[UIColor colorWithRed:248/255.0f green:243/255.0f blue:254/255.0f alpha:1.0f] CGColor],
-                       (id)[[UIColor colorWithRed:201/255.0f green:234/255.0f blue:254/255.0f alpha:1.0f] CGColor], nil];
+    self.gradient.colors = [NSArray arrayWithObjects:(id)[UIColorFromRGB(0xF5F3FE) CGColor], (id)[UIColorFromRGB(0xC9EAFE) CGColor], nil];
     [self.viewContainer.layer insertSublayer:self.gradient atIndex:0];
     
 }
@@ -63,7 +59,14 @@
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"View Photo";
+    CGSize navBarSize = self.navigationController.navigationBar.frame.size;
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = @"View Photo";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20];
+    self.navigationItem.titleView = titleLabel;
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"";
     
     if (self.photoToShow) {
         self.imageView.image = [UIImage imageWithData:self.photoToShow.photoData];
@@ -120,7 +123,6 @@
                     [self.managedObjectContext deleteObject:(Photo*)self.specManager.currentNote.photo];
                 }
                 self.specManager.currentNote.photo = nil;
-                
             }
         }
 
@@ -131,7 +133,6 @@
         
         [self.navigationController popViewControllerAnimated:NO];
     }
-    
 }
 
 @end
