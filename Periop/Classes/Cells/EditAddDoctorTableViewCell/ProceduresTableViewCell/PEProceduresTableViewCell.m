@@ -14,6 +14,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.procedureName.font = [UIFont fontWithName:FONT_MuseoSans300 size:17.5f];
 }
 

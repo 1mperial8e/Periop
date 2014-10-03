@@ -11,7 +11,6 @@
 #import "Procedure.h"
 #import "Steps.h"
 
-
 @implementation OperationRoom
 
 @dynamic photo;

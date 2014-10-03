@@ -6,23 +6,16 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface PEObjectDescription : NSObject
 
-//Managed ObjectContext
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-//name of entity that must be deleted - used in fetchRequest and NSEntityDesccription objects
-@property (copy, nonatomic) NSString* entityName;
-//sortDescriptor key - key for getting values of table
-@property (copy, nonatomic) NSString* sortDescriptorKey;
-//name of attribute - wiil be used for comparing value of this attribute with sortingParameter
-@property (copy, nonatomic) NSString* keyPath;
-//parameter for comparing and finding required entity 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (copy, nonatomic) NSString *entityName;
+@property (copy, nonatomic) NSString *sortDescriptorKey;
+@property (copy, nonatomic) NSString *keyPath;
 @property (strong, nonatomic) id sortingParameter;
 
-- (id) initWithDeleteObject :(NSManagedObjectContext*)managedObjectContext withEntityName:(NSString*)entityName withSortDescriptorKey:(NSString*)sortDescriptorKey forKeyPath:(NSString*)keyPath withSortingParameter:(id)sortingParameter;
+- (id)initWithDeleteObject:(NSManagedObjectContext *)managedObjectContext withEntityName:(NSString *)entityName withSortDescriptorKey:(NSString *)sortDescriptorKey forKeyPath:(NSString *)keyPath withSortingParameter:(id)sortingParameter;
 
-- (id) initWithSearchObject :(NSManagedObjectContext*)managedObjectContext withEntityName:(NSString*)entityName withSortDescriptorKey:(NSString*)sortDescriptorKey;
+- (id)initWithSearchObject:(NSManagedObjectContext *)managedObjectContext withEntityName:(NSString *)entityName withSortDescriptorKey:(NSString *)sortDescriptorKey;
 
 @end

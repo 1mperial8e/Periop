@@ -19,7 +19,7 @@ enum RequsetedController: NSInteger {
     PatientPostioningViewController
 };
 
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithCurrentPhoto;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithCurrentPhoto;
 @property (assign, nonatomic) RequestedController request;
 
 @end

@@ -17,7 +17,8 @@
 
 #pragma mark - Singleton
 
-+ (id) sharedManager{
++ (id)sharedManager
+{
     static id coreDataManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -26,48 +27,38 @@
     return coreDataManager;
 }
 
-- (id)init{
-    if (self= [super init]){
-        
-    }
-    return self;
-}
-
 #pragma mark - CoreData
 
-//collection of model objects
-- (NSManagedObjectContext*) managedObjectContext{
-    
-    if (_managedObjectContext!=nil){
+- (NSManagedObjectContext*) managedObjectContext
+{
+    if (_managedObjectContext) {
         return _managedObjectContext;
     }
-    NSPersistentStoreCoordinator * coordinator = [self persistentStoreCoordinator];
-    if (coordinator!=nil){
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
 }
 
-//shcema of DB
-- (NSManagedObjectModel * ) managedObjectModel {
-    if (_managedObjectModel !=nil){
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (_managedObjectModel) {
         return _managedObjectModel;
     }
-    //url for storing model
-    NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"PeriopDataBase" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PeriopDataBase" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
 
-//constructor; store and manage data
-- (NSPersistentStoreCoordinator*) persistentStoreCoordinator{
-    if (_persistentStoreCoordinator!=nil){
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator) {
         return _persistentStoreCoordinator;
     }
-    //place for storing DB
-    NSURL* storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PeriopDataBase.sqlite"];
-    NSError* error = nil;
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PeriopDataBase.sqlite"];
+    NSError *error;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]){
@@ -80,17 +71,15 @@
 
 #pragma mark - Application Documents Directory
 
-// Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSString *)nameForIncompatibleStore {
-    // Initialize Date Formatter
+- (NSString *)nameForIncompatibleStore
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
-    // Configure Date Formatter
     [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     
@@ -99,44 +88,37 @@
 
 #pragma mark - Data Backup
 
-- (void)backupDBIfError: (NSURL*)urlOfDB{
-    NSFileManager * fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:[urlOfDB path]]){
-        //create path for saving corrupted data
-        NSURL* corruptedURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[self nameForIncompatibleStore]];
-        NSError* error = nil;
-        //move DB to new location
+- (void)backupDBIfError:(NSURL *)urlOfDB
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[urlOfDB path]]) {
+        NSURL *corruptedURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[self nameForIncompatibleStore]];
+        NSError *error;
         [fileManager moveItemAtURL:urlOfDB toURL:corruptedURL error:&error];
         
-        //show alert to user
-        NSString * title= @"Warning";
-        NSString * applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-        NSString* message = [NSString stringWithFormat:@"A serious application error occurred while %@ tried to read your data. Please contact support for help.", applicationName];
-        UIAlertView * alerView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSString *title= @"Warning";
+        NSString *applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        NSString *message = [NSString stringWithFormat:@"A serious application error occurred while %@ tried to read your data. Please contact support for help.", applicationName];
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alerView show];
     }
 }
 
 #pragma mark - Data Managment
 
-+ (void)removeFromDB: (PEObjectDescription *)deleteObjectDescription withManagedObject:(NSManagedObject *)managedObject{
-    
-    //create Fetch Request
++ (void)removeFromDB:(PEObjectDescription *)deleteObjectDescription withManagedObject:(NSManagedObject *)managedObject
+{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:deleteObjectDescription.entityName];
-    //create sort Descriptor
-    NSSortDescriptor * sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:deleteObjectDescription.sortDescriptorKey ascending:YES];
-    //fetching
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:deleteObjectDescription.sortDescriptorKey ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    NSError * error = nil;
-    //get result
-    NSArray * result = [deleteObjectDescription.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSError *error;
+    NSArray *result = [deleteObjectDescription.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    //find and delete
     for (managedObject in result){
-        if ([[managedObject valueForKeyPath:deleteObjectDescription.keyPath] isEqual:deleteObjectDescription.sortingParameter]){
+        if ([[managedObject valueForKeyPath:deleteObjectDescription.keyPath] isEqual:deleteObjectDescription.sortingParameter]) {
             [managedObject.managedObjectContext deleteObject:managedObject];
-            NSError * err = nil;
+            NSError *err;
             if (![managedObject.managedObjectContext save:&err]){
                 NSLog(@"Error during deleting - %@", err.localizedDescription);
             }
@@ -144,17 +126,13 @@
     }
 }
 
-+ (NSArray *)getAllEntities: (PEObjectDescription*)getObjectDescription{
-    //create Fetch Request
++ (NSArray *)getAllEntities:(PEObjectDescription *)getObjectDescription
+{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:getObjectDescription.entityName];
-    //create sort Descriptor
-    NSSortDescriptor * sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:getObjectDescription.sortDescriptorKey ascending:YES];
-    //fetching
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:getObjectDescription.sortDescriptorKey ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
-    NSError * error = nil;
-    //get result
-    NSArray * result = [getObjectDescription.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSError *error;
+    NSArray *result = [getObjectDescription.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     return result;
 }
 

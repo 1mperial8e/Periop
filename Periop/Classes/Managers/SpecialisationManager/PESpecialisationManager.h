@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Specialisation.h"
 #import "Procedure.h"
 #import "EquipmentsTool.h"
@@ -25,7 +24,6 @@
 @property (assign, nonatomic) BOOL isProcedureSelected;
 @property (strong, nonatomic) Photo *photoObject;
 
-
-+ (id) sharedManager;
++ (id)sharedManager;
 
 @end

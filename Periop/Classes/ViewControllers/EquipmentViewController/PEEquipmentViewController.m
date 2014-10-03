@@ -23,12 +23,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
 @property (strong, nonatomic) NSMutableSet *cellCurrentlyEditing;
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSMutableArray * arrayWithCategorisedToolsArrays;
-@property (strong, nonatomic) NSMutableArray * categoryTools;
-@property (strong, nonatomic) NSMutableSet * cellWithCheckedButtons;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) MFMailComposeViewController * mailController;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSMutableArray *arrayWithCategorisedToolsArrays;
+@property (strong, nonatomic) NSMutableArray *categoryTools;
+@property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) MFMailComposeViewController *mailController;
 
 @end
 
@@ -44,9 +44,9 @@
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
     self.navigationItem.rightBarButtonItem = closeButton;
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.tableView.delegate = self;
@@ -82,7 +82,7 @@
 
 - (IBAction)addNewButton:(id)sender
 {
-    PEAddNewToolViewController * addNewTool = [[PEAddNewToolViewController alloc] initWithNibName:@"PEAddNewToolViewController" bundle:nil];
+    PEAddNewToolViewController *addNewTool = [[PEAddNewToolViewController alloc] initWithNibName:@"PEAddNewToolViewController" bundle:nil];
     [self.navigationController pushViewController:addNewTool animated:YES];
 }
 
@@ -107,8 +107,8 @@
         
         [self.mailController setSubject:@"Equipment list"];
         
-        NSMutableString * message = [[NSMutableString alloc] init];
-        for (NSIndexPath * indexWithSelectedCells in self.cellWithCheckedButtons) {
+        NSMutableString *message = [[NSMutableString alloc] init];
+        for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons) {
             [message appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).name];
             [message appendString:@"\n"];
         }
@@ -118,7 +118,7 @@
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
     } else {
-        UIAlertView * alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alerMail show];
     }
     
@@ -162,7 +162,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEEquipmentCategoryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"equipmentCell" forIndexPath:indexPath];
+    PEEquipmentCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"equipmentCell" forIndexPath:indexPath];
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
@@ -195,7 +195,7 @@
 {
     self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
     
-    PEToolsDetailsViewController * toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
+    PEToolsDetailsViewController *toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
     [self.navigationController pushViewController:toolDetailsView animated:YES];
 }
 
@@ -203,7 +203,7 @@
 
 - (void)buttonDeleteAction:(UITableViewCell*)cell
 {
-    NSIndexPath * currentIndex = [self.tableView indexPathForCell:cell];
+    NSIndexPath *currentIndex = [self.tableView indexPathForCell:cell];
     [self deleteSlectedItem:currentIndex];
 }
 
@@ -213,13 +213,13 @@
 }
 
 - (void)cellDidSwipedOut:(UITableViewCell *)cell{
-    NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
 }
 
 - (void)cellChecked:(UITableViewCell *)cell
 {
-    NSIndexPath * currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
     [self.cellWithCheckedButtons addObject:currentlyEditedIndexPath];
 }
 
@@ -232,25 +232,25 @@
 
 - (NSMutableArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray
 {
-    NSMutableArray * arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
-    NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
-    NSArray * uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString* categotyOne = (NSString*)obj1;
-        NSString* categotyTwo = (NSString*)obj2;
+    NSMutableArray *arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
+    NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
+    NSArray *uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *categotyOne = (NSString*)obj1;
+        NSString *categotyTwo = (NSString*)obj2;
         return [categotyOne compare:categotyTwo];
     }];
     
     for (int i=0; i< uniqueCategory.count; i++){
-        NSMutableArray * categoryArray = [[NSMutableArray alloc] init];
-        for (EquipmentsTool * equipment in objectsArray) {
+        NSMutableArray *categoryArray = [[NSMutableArray alloc] init];
+        for (EquipmentsTool *equipment in objectsArray) {
             if ([equipment.category isEqualToString:[NSString stringWithFormat:@"%@", uniqueCategory[i]] ]) {
                 [categoryArray addObject:equipment];
             }
         }
         
-        NSArray * sortedCategoryArray = [categoryArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString* categotyOne = [(EquipmentsTool*)obj1 name];
-            NSString* categotyTwo = [(EquipmentsTool*)obj2 name];
+        NSArray *sortedCategoryArray = [categoryArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString *categotyOne = [(EquipmentsTool*)obj1 name];
+            NSString *categotyTwo = [(EquipmentsTool*)obj2 name];
             return [categotyOne compare:categotyTwo];
         }];
         
@@ -259,12 +259,12 @@
     return arrayWithCategorisedArrays;
 }
 
-- (NSMutableArray* )categoryType: (NSArray*)objectsArray
+- (NSMutableArray *)categoryType: (NSArray*)objectsArray
 {
-    NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
-    NSArray * uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString* categotyOne = (NSString*)obj1;
-        NSString* categotyTwo = (NSString*)obj2;
+    NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
+    NSArray *uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *categotyOne = (NSString*)obj1;
+        NSString *categotyTwo = (NSString*)obj2;
         return [categotyOne compare:categotyTwo];
     }];
     return [NSMutableArray arrayWithArray:uniqueCategory];
@@ -274,7 +274,7 @@
 {
     EquipmentsTool *eq = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
     [self.specManager.currentProcedure removeEquipmentsObject:eq];
-    NSError * saveDeletedObjectsError = nil;
+    NSError *saveDeletedObjectsError = nil;
     [self.managedObjectContext deleteObject:eq];
     if(![self.managedObjectContext save:&saveDeletedObjectsError]) {
         NSLog(@"Cant delete from DB, error : %@", saveDeletedObjectsError.localizedDescription);
@@ -285,10 +285,10 @@
     if ([self.cellWithCheckedButtons containsObject:indexPathToDelete]) {
         [self.cellWithCheckedButtons removeObject:indexPathToDelete];
     }
-    NSMutableArray * arrayWithIndex = [NSMutableArray arrayWithArray:[self.cellWithCheckedButtons allObjects]];
+    NSMutableArray *arrayWithIndex = [NSMutableArray arrayWithArray:[self.cellWithCheckedButtons allObjects]];
     [self.cellWithCheckedButtons removeAllObjects];
-    NSMutableArray * buffer = [[NSMutableArray alloc] init];
-    for (NSIndexPath * index in arrayWithIndex){
+    NSMutableArray *buffer = [[NSMutableArray alloc] init];
+    for (NSIndexPath *index in arrayWithIndex){
         if (index.section == indexPathToDelete.section && index.row > indexPathToDelete.row) {
             NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:index.row-1 inSection:index.section];
             [buffer addObject:newIndexPath];

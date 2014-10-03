@@ -19,7 +19,7 @@
 
 @interface PEProcedureOptionViewController ()
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 
 @property (weak, nonatomic) IBOutlet UIButton *preparationButton;
 @property (weak, nonatomic) IBOutlet UIButton *operationRoomButton;
@@ -42,7 +42,7 @@
     self.specManager = [PESpecialisationManager sharedManager];
     [self setupButtons];
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 }
 
@@ -96,7 +96,7 @@
 
 - (void) goToEquipmentViewController
 {
-    PEEquipmentViewController * equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
+    PEEquipmentViewController *equipmentView = [[PEEquipmentViewController alloc] initWithNibName:@"PEEquipmentViewController" bundle:nil];
     [self.navigationController pushViewController:equipmentView animated:YES];
 }
 
@@ -104,32 +104,32 @@
 
 - (IBAction)preparationButton:(id)sender
 {
-    PEPreperationViewController * preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
+    PEPreperationViewController *preperationView = [[PEPreperationViewController alloc] initWithNibName:@"PEPreperationViewController" bundle:nil];
     [self.navigationController pushViewController:preperationView animated:YES];
 }
 
 - (IBAction)operationRoomButton:(id)sender
 {
-    PEOperationRoomViewController * operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
+    PEOperationRoomViewController *operationRoomView = [[PEOperationRoomViewController alloc] initWithNibName:@"PEOperationRoomViewController" bundle:nil];
     [self.navigationController pushViewController:operationRoomView animated:YES];
 }
 
 - (IBAction)patientPositioningButton:(id)sender
 {
-    PEPatientPositioningViewController * patientPositioningView = [[PEPatientPositioningViewController alloc] initWithNibName:@"PEPatientPositioningViewController" bundle:nil];
+    PEPatientPositioningViewController *patientPositioningView = [[PEPatientPositioningViewController alloc] initWithNibName:@"PEPatientPositioningViewController" bundle:nil];
     [self.navigationController pushViewController:patientPositioningView animated:YES];
 }
 
 - (IBAction)notesButton:(id)sender
 {
-    PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
+    PENotesViewController *notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Procedure Notes";
     [self.navigationController pushViewController:notesView animated:YES];
 }
 
 - (IBAction)doctorsButton:(id)sender
 {
-    PEDoctorsListViewController * doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
+    PEDoctorsListViewController *doctorsView = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
     doctorsView.textToShow = self.specManager.currentProcedure.name;
     doctorsView.isButtonRequired = false;
     [self.navigationController pushViewController:doctorsView animated:YES];
@@ -156,11 +156,11 @@
     [self.patientPostioningButton setTitle:@"Patient\n Positioning" forState:UIControlStateNormal];
 }
 
-- (CGFloat) distanceBetweenTwoPoints: (CGPoint) point1 toPoint:(CGPoint) point2
+- (CGFloat)distanceBetweenTwoPoints:(CGPoint)point1 toPoint:(CGPoint)point2
 {
     CGFloat dx = point2.x - point1.x;
     CGFloat dy = point2.y - point1.y;
-    return sqrt(dx*dx + dy*dy );
+    return sqrt(dx * dx + dy * dy );
 }
 
 @end

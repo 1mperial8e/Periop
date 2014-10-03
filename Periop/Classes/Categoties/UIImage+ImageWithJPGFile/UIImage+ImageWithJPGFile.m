@@ -10,14 +10,13 @@
 
 @implementation UIImage (ImageWithJPGFile)
 
-+ (UIImage*)imageNamedFile: (NSString*)imageNameInLocalBundle {
-    
-    NSBundle * bundle = [NSBundle mainBundle];
-    NSString *path = [bundle pathForResource:imageNameInLocalBundle ofType:@"jpg"];
-    UIImage * image = [UIImage imageWithContentsOfFile:path];
++ (UIImage *)imageNamedFile:(NSString *)imageNameInLocalBundle
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:imageNameInLocalBundle ofType:@"jpg"];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
     if (!image) {
         NSString *name = [NSString stringWithFormat:@"%@@2x", imageNameInLocalBundle];
-        path = [bundle pathForResource:name ofType:@"png"];
+        path = [[NSBundle mainBundle] pathForResource:name ofType:@"png"];
         image = [UIImage imageWithContentsOfFile:path];
     }
     return image;

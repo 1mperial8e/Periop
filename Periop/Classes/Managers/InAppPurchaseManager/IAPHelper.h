@@ -6,24 +6,21 @@
 //  Copyright (c) 2014 Kirill. All rights reserved.
 //
 #import <StoreKit/StoreKit.h>
-#import <Foundation/Foundation.h>
 
-UIKIT_EXTERN NSString * const IAPHelperProductPurchasedNotification;
+extern NSString *const IAPHelperProductPurchasedNotification;
 
 @interface IAPHelper : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
-typedef void (^RequestProductCompletitionHandler)(BOOL success, NSArray* products);
+typedef void(^RequestProductCompletitionHandler)(BOOL success, NSArray *products);
 
-- (id) initWithProductsIdentifieer : (NSSet *) productsIdentifier;
-- (void)requestProductsWithCompletitonHelper: (RequestProductCompletitionHandler)completitionHandler;
+- (id)initWithProductsIdentifieer:(NSSet *)productsIdentifier;
+- (void)requestProductsWithCompletitonHelper:(RequestProductCompletitionHandler)completitionHandler;
 
-//buying product
-- (void)buyProduct: (SKProduct*)product;
-- (BOOL)productPurchased:(NSString*) productIdentifier;
+- (void)buyProduct:(SKProduct *)product;
+- (BOOL)productPurchased:(NSString *)productIdentifier;
 
-//restoring already purchased products
 - (void)restoreCompleteTransactions;
 
-- (void) provideContentForProductIdentifier: (NSString*)productIdentifier;
+- (void)provideContentForProductIdentifier:(NSString *)productIdentifier;
 
 @end

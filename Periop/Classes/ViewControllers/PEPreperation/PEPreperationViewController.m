@@ -16,12 +16,12 @@
 
 @interface PEPreperationViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) UILabel * navigationBarLabel;
+@property (strong, nonatomic) UILabel *navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *sortedArrayWithPreprations;
 
 @end
 
@@ -41,7 +41,7 @@
     
     self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
@@ -81,7 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PEPreparationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+    PEPreparationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
     if (!cell) {
         cell = [[PEPreparationTableViewCell alloc] init];
     }
@@ -107,7 +107,7 @@
 
 - (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
 {
-    static PEPreparationTableViewCell * sizingCell = nil;
+    static PEPreparationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
         sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
@@ -124,12 +124,12 @@
 #pragma marks - Private
 
 
-- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
+- (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Preparation*)obj1 stepName];
-        NSString * secondObject = [(Preparation*)obj2 stepName];
+        NSString *firstObject = [(Preparation*)obj1 stepName];
+        NSString *secondObject = [(Preparation*)obj2 stepName];
         return [firstObject compare:secondObject];
     }];
     return sortedArray;

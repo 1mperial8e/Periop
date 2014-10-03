@@ -23,8 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotes;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -39,10 +39,10 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     [self.tableViewNotes registerNib:[UINib nibWithNibName:@"PENotesTableViewCell" bundle:nil] forCellReuseIdentifier:@"notesCell"];
@@ -75,7 +75,7 @@
 
 - (IBAction)addNewNotes :(id)sender
 {
-    PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
+    PEAddEditNoteViewController *addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
     addEditNote.isEditNote = false;
     [self.navigationController pushViewController:addEditNote animated:YES];
 }
@@ -92,11 +92,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PENotesTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"notesCell" forIndexPath:indexPath];
+    PENotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"notesCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[PENotesTableViewCell alloc] init];
     }
-    UIImage * buttonImage = [UIImage imageNamedFile:@"Edit"];
+    UIImage *buttonImage = [UIImage imageNamedFile:@"Edit"];
     cell.cornerLabel.layer.cornerRadius = buttonImage.size.height/2;
     cell.cornerLabel.layer.borderColor = [UIColorFromRGB(0xE0E0E0) CGColor];
     cell.cornerLabel.layer.borderWidth = 1.0;
@@ -128,7 +128,7 @@
 
 - (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
 {
-    static PENotesTableViewCell * sizingCell = nil;
+    static PENotesTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
         sizingCell = [self.tableViewNotes dequeueReusableCellWithIdentifier:@"notesCell"];
@@ -146,17 +146,17 @@
 
 - (void) deleteNotesButtonPress:(UITableViewCell *)cell
 {
-    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
         self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
-        NSError * deleteError = nil;
+        NSError *deleteError = nil;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
             NSLog(@"Cant delete note from Procedure - %@", deleteError.localizedDescription);
         }
     } else {
         self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
-        NSError * deleteError = nil;
+        NSError *deleteError = nil;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
             NSLog(@"Cant delete note from Doctor - %@", deleteError.localizedDescription);
@@ -167,7 +167,7 @@
 
 - (void) addPhotoButtonPress:(UITableViewCell *)cell
 {
-    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
         self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
     } else {
@@ -175,7 +175,7 @@
     }
     
     if ([UIImage imageWithData:((Photo*)self.specManager.currentNote.photo).photoData]!= nil) {
-        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentNote.photo;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
@@ -183,8 +183,8 @@
 
 - (void) editNoteButtonPress:(UITableViewCell *)cell
 {
-    NSIndexPath * currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
-    PEAddEditNoteViewController * addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
+    NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
+    PEAddEditNoteViewController *addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
     if (self.specManager.isProcedureSelected) {
         self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
     } else {
@@ -200,9 +200,9 @@
 
 - (NSString*)dateFormatter: (NSDate*)dateToFormatt
 {
-    NSDateFormatter * dateFormatterTimePart = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatterTimePart = [[NSDateFormatter alloc] init];
     [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];
-    NSDateFormatter * dateFormatterDayPart = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatterDayPart = [[NSDateFormatter alloc] init];
     [dateFormatterDayPart setDateFormat:@"aaa"];
     return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
 }

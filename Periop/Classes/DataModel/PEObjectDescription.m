@@ -10,9 +10,9 @@
 
 @implementation PEObjectDescription
 
-- (id) initWithDeleteObject :(NSManagedObjectContext*)managedObjectContext withEntityName:(NSString*)entityName withSortDescriptorKey:(NSString*)sortDescriptorKey forKeyPath:(NSString*)keyPath withSortingParameter:(id)sortingParameter{
-    
-    if (self = [super init]){
+- (id)initWithDeleteObject:(NSManagedObjectContext *)managedObjectContext withEntityName:(NSString *)entityName withSortDescriptorKey:(NSString *)sortDescriptorKey forKeyPath:(NSString *)keyPath withSortingParameter:(id)sortingParameter
+{
+    if (self = [super init]) {
         _managedObjectContext = managedObjectContext;
         _entityName = entityName;
         _sortDescriptorKey = sortDescriptorKey;
@@ -22,8 +22,9 @@
     return self;
 }
 
-- (id) initWithSearchObject :(NSManagedObjectContext*)managedObjectContext withEntityName:(NSString*)entityName withSortDescriptorKey:(NSString*)sortDescriptorKey{
-    if (self = [super init]){
+- (id)initWithSearchObject:(NSManagedObjectContext *)managedObjectContext withEntityName:(NSString *)entityName withSortDescriptorKey:(NSString *)sortDescriptorKey
+{
+    if (self = [super init]) {
         _managedObjectContext = managedObjectContext;
         _entityName = entityName;
         _sortDescriptorKey = sortDescriptorKey;

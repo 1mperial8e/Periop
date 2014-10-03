@@ -141,10 +141,10 @@ static NSString *const MVCSpecialisation = @"Specialisations";
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                [UIColor whiteColor], NSForegroundColorAttributeName,  nil]];
         
-        MFMailComposeViewController * mailController = [[MFMailComposeViewController alloc] init];
+        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
         mailController.mailComposeDelegate = self;
         [mailController setSubject:@"Feedback"];
-        NSString * message = @"Feedback :";
+        NSString *message = @"Feedback :";
         [mailController setMessageBody:message isHTML:NO];
         PEMenuViewController *menuController = self;
         [menuController presentViewController:mailController animated:YES completion:^{
@@ -155,7 +155,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
         menuController.viewSelection.hidden = NO;
         
     } else {
-        UIAlertView * alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alerMail show];
     }
 }
@@ -186,7 +186,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
     CGPoint toPoint = self.view.center;
     toPoint.y -= self.view.frame.size.height - self.buttonPositionY - [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    CABasicAnimation * animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
+    CABasicAnimation *animationToHide = [CABasicAnimation animationWithKeyPath:@"position"];
     animationToHide.duration = MVCAnimationDuration;
     animationToHide.fromValue = [NSValue valueWithCGPoint:self.view.center];
     animationToHide.toValue = [NSValue valueWithCGPoint:toPoint];

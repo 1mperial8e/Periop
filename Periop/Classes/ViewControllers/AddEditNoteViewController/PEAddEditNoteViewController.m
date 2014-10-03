@@ -25,8 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 
 @end
 
@@ -44,29 +44,29 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(closeButton:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(closeButton:)];
     self.navigationItem.leftBarButtonItem = closeButton;
-    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveUpdateNote:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveUpdateNote:)];
     self.navigationItem.rightBarButtonItem = saveButton;
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.textViewNotes.layer.cornerRadius = 24;
     self.cornerLabel.layer.cornerRadius = 24;
-    self.cornerLabel.layer.borderColor = [[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1] CGColor];
+    self.cornerLabel.layer.borderColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1].CGColor;
     self.cornerLabel.layer.borderWidth = 1;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
     
-    if (self.noteTextToShow.length>0){
+    if (self.noteTextToShow.length){
         self.textViewNotes.text = self.noteTextToShow;
     }
-    if (self.timeToShow.length>0){
+    if (self.timeToShow.length){
         self.timeStamp.text = self.timeToShow;
     } else {
         self.timeStamp.text = [self dateFormatter:[NSDate date]];
@@ -81,21 +81,21 @@
     self.specManager.photoObject = nil;
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - IBActions
 
-- (IBAction)closeButton :(id)sender
+- (IBAction)closeButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
     if (self.specManager.photoObject) {
         [self.managedObjectContext deleteObject:self.specManager.photoObject];
     }
-    NSError * saveError = nil;
-    if (![self.managedObjectContext save:&saveError]){
+    NSError *saveError;
+    if (![self.managedObjectContext save:&saveError]) {
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
     }
 }
@@ -109,25 +109,25 @@
         self.specManager.currentNote.textDescription = self.textViewNotes.text;
         self.specManager.currentNote.timeStamp = [NSDate date];
         self.specManager.currentNote.photo = self.specManager.photoObject;
-        ((Photo*)self.specManager.currentNote.photo).note = self.specManager.currentNote;
+        ((Photo *)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
-        NSEntityDescription * noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
-        Note * newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+        Note *newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newNote.textDescription = self.textViewNotes.text;
         newNote.timeStamp = [NSDate date];
         
-        if (self.specManager.photoObject!=nil) {
-            ((Photo*)newNote.photo).note = newNote;
+        if (self.specManager.photoObject) {
+            ((Photo *)newNote.photo).note = newNote;
             newNote.photo = self.specManager.photoObject;
         }
         if (self.specManager.isProcedureSelected) {
-            [((Procedure*)(self.specManager.currentProcedure)) addNotesObject:newNote];
+            [((Procedure*)self.specManager.currentProcedure) addNotesObject:newNote];
         } else {
-            [((Doctors*)(self.specManager.currentDoctor)) addNotesObject:newNote];
+            [((Doctors*)self.specManager.currentDoctor) addNotesObject:newNote];
         }
     }
     self.specManager.photoObject = nil;
-    NSError * saveError = nil;
+    NSError *saveError;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
     }
@@ -138,8 +138,8 @@
 - (IBAction)photoButton:(id)sender
 {
     CGRect position = self.mainView.frame;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = [array firstObject];
     view.frame = position;
     view.tag = 35;
     [self.textViewNotes endEditing:YES];
@@ -153,9 +153,9 @@
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
     
     if (self.specManager.isProcedureSelected) {
-        albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+        albumViewController.navigationLabelText = ((Procedure *)self.specManager.currentProcedure).name;
     } else {
-        albumViewController.navigationLabelText = ((Doctors*)(self.specManager.currentDoctor)).name;
+        albumViewController.navigationLabelText = ((Doctors *)self.specManager.currentDoctor).name;
     }
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
@@ -176,11 +176,11 @@
 
 #pragma mark - Private
 
-- (NSString*)dateFormatter: (NSDate*)dateToFormatt
+- (NSString *)dateFormatter:(NSDate *)dateToFormatt
 {
-    NSDateFormatter * dateFormatterTimePart = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatterTimePart = [[NSDateFormatter alloc] init];
     [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];
-    NSDateFormatter * dateFormatterDayPart = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatterDayPart = [[NSDateFormatter alloc] init];
     [dateFormatterDayPart setDateFormat:@"aaa"];
     return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
 }

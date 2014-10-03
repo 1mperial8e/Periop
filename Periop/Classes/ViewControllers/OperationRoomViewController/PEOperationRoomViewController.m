@@ -29,9 +29,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *labelSteps;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSArray * sortedArrayWithPreprations;
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSArray *sortedArrayWithPreprations;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
 
 @end
 
@@ -63,7 +63,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEOperationTableViewCell" bundle:nil] forCellReuseIdentifier:@"operationTableViewCell"];
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
 }
@@ -101,7 +101,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:@"Place_Holder"] hash]) {
-        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count >0) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
@@ -123,7 +123,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
+    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count >0) {
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
     } else {
@@ -143,7 +143,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
+    PEOperationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
     if (!cell){
         cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"operationTableViewCell"];
     }
@@ -169,7 +169,7 @@
 
 - (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
 {
-    static PEOperationTableViewCell * sizingCell = nil;
+    static PEOperationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
         sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
@@ -188,8 +188,8 @@
 - (IBAction)photoButton:(id)sender
 {
     CGRect position = self.collectionView.frame;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = 35;
     [self.view addSubview:view];
@@ -221,12 +221,12 @@
 
 #pragma marks - Private
 
-- (NSArray * )sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
+- (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Steps*)obj1 stepName];
-        NSString * secondObject = [(Steps*)obj2 stepName];
+        NSString *firstObject = [(Steps*)obj1 stepName];
+        NSString *secondObject = [(Steps*)obj2 stepName];
         return [firstObject compare:secondObject];
     }];
     return sortedArray;
@@ -234,10 +234,10 @@
 
 - (NSMutableArray *)sortedArrayWithPhotos: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSNumber * firstObject = [(Photo*)obj1 photoNumber];
-        NSNumber *  secondObject = [(Photo*)obj2 photoNumber];
+        NSNumber *firstObject = [(Photo*)obj1 photoNumber];
+        NSNumber *secondObject = [(Photo*)obj2 photoNumber];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];

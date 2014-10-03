@@ -32,7 +32,7 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 
 - (IBAction)menuButton:(id)sender
 {
-    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
+    PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = TACTermsAndConditions;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     

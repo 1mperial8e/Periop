@@ -6,16 +6,15 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class Note, Photo, Procedure, Specialisation;
 
 @interface Doctors : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * specialityCode;
-@property (nonatomic, retain) NSDate * createdDate;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *specialityCode;
+@property (nonatomic, retain) NSDate *createdDate;
 @property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) Photo *photo;
 @property (nonatomic, retain) NSSet *procedure;

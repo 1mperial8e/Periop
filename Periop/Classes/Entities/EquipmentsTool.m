@@ -10,7 +10,6 @@
 #import "Photo.h"
 #import "Procedure.h"
 
-
 @implementation EquipmentsTool
 
 @dynamic category;

@@ -6,10 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface PECsvParser : NSObject
 
-- (void)parseCsv:(NSString*)csvMainFileName withCsvToolsFileName:(NSString*)csvToolsFileName withSpecName:(NSString*)specName;
+- (void)parseCsvMainFile:(NSString *)csvMainFileName csvToolsFile:(NSString *)csvToolsFileName specName:(NSString *)specName;
 
 @end

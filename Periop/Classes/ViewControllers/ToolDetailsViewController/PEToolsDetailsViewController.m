@@ -32,9 +32,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpec;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
 
-@property (strong, nonatomic) UIBarButtonItem * rightBarButton;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) UIBarButtonItem *rightBarButton;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (assign, nonatomic) CGRect keyboardRect;
 
 @end
@@ -60,11 +60,11 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     self.edgesForExtendedLayout = UIRectEdgeBottom;
 
-    UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamed:@"Edit"];
     self.rightBarButton = editButton;
     
-    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
 
     self.navigationItem.rightBarButtonItem=editButton;
@@ -76,7 +76,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.equipmentPhoto addGestureRecognizer:tap];
 
 }
@@ -130,7 +130,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (IBAction)editButton:(id)sender
 {
-    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     self.nameTextField.enabled = true;
     self.specificationTextField.enabled = true;
@@ -153,7 +153,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     ((EquipmentsTool*)self.specManager.currentEquipment).quantity = self.quantityTextField.text;
     ((EquipmentsTool*)self.specManager.currentEquipment).createdDate = [NSDate date];
                                                                       
-    NSError * saveError = nil;
+    NSError *saveError = nil;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
     }
@@ -162,8 +162,8 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 - (IBAction)photoButton:(id)sender
 {
     CGRect position = self.equipmentPhoto.frame;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = 35;
     [self.view addSubview:view];
@@ -173,7 +173,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 {
     if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
-            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if ([[self.specManager.currentEquipment.photo allObjects] count]) {
                 viewPhotoControleller.photoToShow = (Photo*)[self.specManager.currentEquipment.photo allObjects][0];
             }

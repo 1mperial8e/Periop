@@ -13,13 +13,17 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
 #import "PETermsAndConditionViewController.h"
 #import "PEDoctorsListViewController.h"
 #import "PEAboutUsViewController.h"
-#import "PESpecialisationViewController.h"
 #import "PECameraRollManager.h"
 #import "PEPurchaseManager.h"
 
+static NSString *const PESpecialisationControllerNibName = @"PESpecialisationViewController";
+static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";
+static NSString *const PEDoctorsListControllerNibName = @"PEDoctorsListViewController";
+static NSString *const PEAboutUsControllerNibName = @"PEAboutUsViewController";
+
 @interface PEAppDelegate() 
 
-@property (strong, nonatomic) UITabBarController * tabBarController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
 @end
 
@@ -33,16 +37,16 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
-    PESpecialisationViewController * specializationController = [[PESpecialisationViewController alloc] initWithNibName:@"PESpecialisationViewController" bundle:nil];
-    PENavigationController * specializationNavController = [[PENavigationController alloc] initWithRootViewController:specializationController];
+    PESpecialisationViewController *specializationController = [[PESpecialisationViewController alloc] initWithNibName:PESpecialisationControllerNibName bundle:nil];
+    PENavigationController *specializationNavController = [[PENavigationController alloc] initWithRootViewController:specializationController];
     
-    PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:@"PETermsAndConditionViewController" bundle:nil];
-    PENavigationController * termsNavController = [[PENavigationController alloc] initWithRootViewController:termsController];
+    PETermsAndConditionViewController *termsController = [[PETermsAndConditionViewController alloc] initWithNibName:PETermsAndConditionControllerNibName bundle:nil];
+    PENavigationController *termsNavController = [[PENavigationController alloc] initWithRootViewController:termsController];
     
-    PEDoctorsListViewController *doctorListController = [[PEDoctorsListViewController alloc] initWithNibName:@"PEDoctorsListViewController" bundle:nil];
+    PEDoctorsListViewController *doctorListController = [[PEDoctorsListViewController alloc] initWithNibName:PEDoctorsListControllerNibName bundle:nil];
     PENavigationController *doctorListNavController = [[PENavigationController alloc] initWithRootViewController:doctorListController];
     
-    PEAboutUsViewController *aboutUsController = [[PEAboutUsViewController alloc] initWithNibName:@"PEAboutUsViewController" bundle:nil];
+    PEAboutUsViewController *aboutUsController = [[PEAboutUsViewController alloc] initWithNibName:PEAboutUsControllerNibName bundle:nil];
     PENavigationController *aboutUsNavController = [[PENavigationController alloc] initWithRootViewController:aboutUsController];
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
@@ -66,7 +70,6 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
     UIViewController *currentViewController = [self topViewController];
     if ([currentViewController respondsToSelector:NSSelectorFromString(@"canRotate")]) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
-        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
     }
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -79,13 +82,13 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
 - (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController
 {
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        UITabBarController *tabBarController = (UITabBarController*)rootViewController;
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        UINavigationController *navigationController = (UINavigationController*)rootViewController;
         return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
     } else if (rootViewController.presentedViewController) {
-        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        UIViewController *presentedViewController = rootViewController.presentedViewController;
         return [self topViewControllerWithRootViewController:presentedViewController];
     } else {
         return rootViewController;

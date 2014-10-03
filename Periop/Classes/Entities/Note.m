@@ -10,7 +10,6 @@
 #import "Doctors.h"
 #import "Procedure.h"
 
-
 @implementation Note
 
 @dynamic textDescription;

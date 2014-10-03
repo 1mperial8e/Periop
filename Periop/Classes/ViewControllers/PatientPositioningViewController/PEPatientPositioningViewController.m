@@ -27,9 +27,9 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithPhotos;
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithPatientPositioning;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithPatientPositioning;
 
 @end
 
@@ -47,7 +47,7 @@
     [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
     [self.tableViewPatient registerNib:[UINib nibWithNibName:@"PEPatientPositioningTableViewCell" bundle:nil] forCellReuseIdentifier:@"patientPositioningStepsCell"];
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.postedCollectionView.delegate = self;
@@ -95,8 +95,8 @@
 - (IBAction)operationWithPhotoButton:(id)sender
 {
     CGRect size = self.view.bounds;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = array[0];
     view.frame = size;
     view.tag = 35;
     [self.view addSubview:view];
@@ -133,7 +133,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEPatientPositioningTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell" forIndexPath:indexPath];
+    PEPatientPositioningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"patientPositioningStepsCell"];
     }
@@ -162,7 +162,7 @@
 
 - (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
 {
-    static PEPatientPositioningTableViewCell * sizingCell = nil;
+    static PEPatientPositioningTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
         sizingCell = [self.tableViewPatient dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell"];
@@ -188,7 +188,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationRoomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
+    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count>0) {
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         self.pageControll.currentPage = [indexPath row];
@@ -207,7 +207,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
-        PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+        PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count >0) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
@@ -219,21 +219,21 @@
 
 - (NSMutableArray *)sortedArrayWithPhotos: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSNumber * firstObject = [(Photo*)obj1 photoNumber];
-        NSNumber *  secondObject = [(Photo*)obj2 photoNumber];
+        NSNumber *firstObject = [(Photo*)obj1 photoNumber];
+        NSNumber *secondObject = [(Photo*)obj2 photoNumber];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
 }
 
-- (NSMutableArray*) sortedArrayWithPatientPos: (NSArray * ) arrayToSort
+- (NSMutableArray*) sortedArrayWithPatientPos: (NSArray *) arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Steps*)obj1 stepName ];
-        NSString *  secondObject = [(Steps*)obj2 stepName];
+        NSString *firstObject = [(Steps*)obj1 stepName ];
+        NSString *secondObject = [(Steps*)obj2 stepName];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
