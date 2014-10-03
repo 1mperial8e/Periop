@@ -10,9 +10,8 @@
 
 @interface PEPurchaseManager : IAPHelper
 
-+(id)sharedManager;
++ (id)sharedManager;
 
-+ (void) saveDefaultsToUserDefault: (NSString*)productIdentifier;
-
++ (void)saveDefaultsToUserDefault:(NSString *)productIdentifier;
 
 @end

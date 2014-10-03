@@ -100,8 +100,8 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
         [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
         [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:self.videoDeviceInput.device];
-        PECameraViewController* __weak weakSelf = self;
-        [self setRuntimeErrorHandlingObserver:[[NSNotificationCenter defaultCenter] addObserverForName:AVCaptureSessionRuntimeErrorNotification object:[self session] queue:nil usingBlock:^(NSNotification *note) {
+        PECameraViewController *__weak weakSelf = self;
+        [self setRuntimeErrorHandlingObserver:[[NSNotificationCenter defaultCenter] addObserverForName:AVCaptureSessionRuntimeErrorNotification object:self.session queue:nil usingBlock:^(NSNotification *note) {
             PECameraViewController *strongSelf = weakSelf;
             dispatch_async([strongSelf sessionQueue], ^{
                 [strongSelf.session startRunning];
@@ -175,16 +175,16 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 
 #pragma mark - Private
 
-- (void) hidePhotoView: (NSTimer*)currentTimer
+- (void)hidePhotoView:(NSTimer *)currentTimer
 {
     [currentTimer invalidate];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
-- (void) createPhotoObjectToStore: (UIImage*)imageToStore
+- (void)createPhotoObjectToStore:(UIImage *)imageToStore
 {
-    NSEntityDescription * photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-    Photo * newPhotoObject = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    Photo *newPhotoObject = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
     newPhotoObject.photoData = UIImageJPEGRepresentation(imageToStore, 1.0);
     
     self.specManager.photoObject = newPhotoObject;
@@ -192,62 +192,54 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     if (self.request == OperationRoomViewController) {
         if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
             newPhotoObject.operationRoom = self.specManager.currentProcedure.operationRoom;
-            newPhotoObject.photoNumber = @([[self.specManager.currentProcedure.operationRoom.photo allObjects] count]+1);
+            newPhotoObject.photoNumber = @([self.specManager.currentProcedure.operationRoom.photo allObjects].count + 1);
             [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhotoObject];
         } else {
             [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[0]];
-            newPhotoObject.photoNumber = @(0);
+            newPhotoObject.photoNumber = @0;
             newPhotoObject.operationRoom = self.specManager.currentProcedure.operationRoom;
             [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhotoObject];
         }
-        NSError * error = nil;
+        NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Cant save camera photo for operationRoom DB  - %@", error.localizedDescription);
         }
     } else if (self.request == PatientPostioningViewController) {
         newPhotoObject.patientPositioning = self.specManager.currentProcedure.patientPostioning;
-        newPhotoObject.photoNumber = @([[self.specManager.currentProcedure.patientPostioning.photo allObjects] count] + 1);
+        newPhotoObject.photoNumber = @([self.specManager.currentProcedure.patientPostioning.photo allObjects].count + 1);
         [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhotoObject];
-        NSError * error = nil;
+        NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Cant save camera photo for patientPostioning DB  - %@", error.localizedDescription);
         }
     } else  if (self.request == EquipmentsToolViewController) {
-        if ([[self.specManager.currentEquipment.photo allObjects] count] > 0) {
+        if ([self.specManager.currentEquipment.photo allObjects].count) {
             [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
             [self.specManager.currentEquipment removePhotoObject:[self.specManager.currentEquipment.photo allObjects][0]];
         }
         newPhotoObject.equiomentTool = self.specManager.currentEquipment;
-        newPhotoObject.photoNumber = @(0);
+        newPhotoObject.photoNumber = @0;
         [self.specManager.currentEquipment addPhotoObject:newPhotoObject];
         
-        NSError * error = nil;
+        NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Cant save camera photo for equipment DB  - %@", error.localizedDescription);
         }
-    } else if (self.request == NotesViewControllerAdd ) {
-        newPhotoObject.photoNumber = @(0);
+    } else if (self.request == NotesViewControllerAdd) {
+        newPhotoObject.photoNumber = @0;
         self.specManager.photoObject = newPhotoObject;
     } else if (self.request == DoctorsViewControllerProfile) {
         newPhotoObject.doctor = self.specManager.currentDoctor;
-        newPhotoObject.photoNumber = @(0);
+        newPhotoObject.photoNumber = @0;
         self.specManager.currentDoctor.photo = newPhotoObject;
-        NSError * error = nil;
+        NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Cant save camera photo for doctorsProfile DB - %@", error.localizedDescription);
         }
     } else if (self.request == DoctorsViewControllerAdd) {
-        newPhotoObject.photoNumber = @(0);
+        newPhotoObject.photoNumber = @0;
         self.specManager.photoObject = newPhotoObject;
     }
-    
-    
-    
-    
-    
-
-    
-    //todo - for others controllers - after tryying on phone code above
 }
 
 - (void)checkDeviceAuthorizationStatus

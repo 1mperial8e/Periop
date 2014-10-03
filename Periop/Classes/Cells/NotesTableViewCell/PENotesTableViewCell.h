@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @protocol PENotesTableViewCellDelegate <NSObject>
 
 @required
-- (void)addPhotoButtonPress:(UITableViewCell*)cell;
-- (void)deleteNotesButtonPress:(UITableViewCell*)cell;
-- (void)editNoteButtonPress:(UITableViewCell*)cell;
+- (void)addPhotoButtonPress:(UITableViewCell *)cell;
+- (void)deleteNotesButtonPress:(UITableViewCell *)cell;
+- (void)editNoteButtonPress:(UITableViewCell *)cell;
 
 @end
 

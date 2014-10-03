@@ -6,14 +6,11 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @protocol PEEditAddDoctorTableViewCellDelegate
 
 @required
-- (void) cellSelected :(NSString* )specialisationName;
-- (void) cellUnselected :(NSString* )specialisationName;
-
+- (void)cellSelected:(NSString *)specialisationName;
+- (void)cellDeselected:(NSString *)specialisationName;
 
 @end
 

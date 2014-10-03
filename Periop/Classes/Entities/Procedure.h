@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class Doctors, EquipmentsTool, Note, OperationRoom, PatientPostioning, Preparation, Specialisation;
 
 @interface Procedure : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * procedureID;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *procedureID;
 @property (nonatomic, retain) NSSet *doctors;
 @property (nonatomic, retain) NSSet *equipments;
 @property (nonatomic, retain) NSSet *notes;

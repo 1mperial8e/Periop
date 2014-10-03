@@ -37,9 +37,9 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSMutableDictionary * requestedSpecsWithProc;
-@property (strong, nonatomic) NSMutableArray * selectedProceduresID;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSMutableDictionary *requestedSpecsWithProc;
+@property (strong, nonatomic) NSMutableArray *selectedProceduresID;
 
 @end
 
@@ -59,9 +59,9 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
     self.nameTextField.delegate = self;
     
-    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem=saveButton;
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 
     self.tableView.delegate = self;
@@ -73,7 +73,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
         [self getProcedureIdForSelectedDoctor];
     }
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.imageView addGestureRecognizer:tap];
 }
 
@@ -123,7 +123,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     if ([self.imageView.image hash] != [[UIImage imageNamedFile:@"Place_Holder.png"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded && self.isEditedDoctor) {
             NSLog(@"Touched Image");
-            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
                 viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;
             }
@@ -134,15 +134,15 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 
 -(IBAction)saveButton :(id)sender
 {
-    NSArray * allSpecs = [NSArray new];
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    NSArray *allSpecs = [NSArray new];
+    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     allSpecs = [PECoreDataManager getAllEntities:searchedObject];
     
     if (self.isEditedDoctor) {
-        for (Procedure * procedure in [self.specManager.currentDoctor.procedure allObjects]) {
+        for (Procedure *procedure in [self.specManager.currentDoctor.procedure allObjects]) {
             [(Doctors*)self.specManager.currentDoctor removeProcedureObject:procedure];
         }
-        for (Specialisation * spec in [self.specManager.currentDoctor.specialisation allObjects]) {
+        for (Specialisation *spec in [self.specManager.currentDoctor.specialisation allObjects]) {
             [(Doctors *)self.specManager.currentDoctor removeSpecialisationObject:spec];
         }
         self.specManager.currentDoctor.name = self.nameTextField.text;
@@ -151,9 +151,9 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
             self.specManager.currentDoctor.photo = self.specManager.photoObject;
         }
         
-        for (Specialisation * spec in allSpecs) {
+        for (Specialisation *spec in allSpecs) {
             BOOL isAdded = NO;
-            for (Procedure * proc in [spec.procedures allObjects]) {
+            for (Procedure *proc in [spec.procedures allObjects]) {
                 for (int i=0; i<self.selectedProceduresID.count; i++) {
                     if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
                         [self.specManager.currentDoctor addProcedureObject:proc];
@@ -166,8 +166,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
             }
         }
     } else {
-        NSEntityDescription * doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
-        Doctors * newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
+        Doctors *newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
         if (self.nameTextField.text.length) {
             newDoc.name = self.nameTextField.text;
@@ -179,9 +179,9 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
             newDoc.photo = self.specManager.photoObject;
         }
         
-        for (Specialisation * spec in allSpecs) {
+        for (Specialisation *spec in allSpecs) {
             BOOL isAdded = NO;
-            for (Procedure * proc in [spec.procedures allObjects]) {
+            for (Procedure *proc in [spec.procedures allObjects]) {
                 for (int i=0; i<self.selectedProceduresID.count; i++) {
                     if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
                         [newDoc addProcedureObject:proc];
@@ -195,7 +195,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
         }
     }
 
-    NSError * saveError = nil;
+    NSError *saveError = nil;
     if (![self.managedObjectContext save:&saveError]) {
         NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
     } else {
@@ -208,8 +208,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 - (IBAction)addPhoto:(id)sender
 {
     CGRect position = self.imageView.frame;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = AEDTagForView;
     [self.view addSubview:view];
@@ -258,8 +258,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
             cell = [[PEProceduresTableViewCell alloc] init];
         }
         
-        NSArray * keys = [self.requestedSpecsWithProc allKeys];
-        NSArray * currentSectionProc = [self.requestedSpecsWithProc objectForKey:keys[indexPath.section - 1 ]];
+        NSArray *keys = [self.requestedSpecsWithProc allKeys];
+        NSArray *currentSectionProc = [self.requestedSpecsWithProc objectForKey:keys[indexPath.section - 1 ]];
         
         cell.procedureName.text = ((Procedure*)currentSectionProc[indexPath.row]).name;
         cell.procedureID = ((Procedure*)currentSectionProc[indexPath.row]).procedureID;
@@ -276,8 +276,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     if (!section){
         return 1;
     } else {
-        NSArray * keys = [self.requestedSpecsWithProc allKeys];
-        NSArray * currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1 ]];
+        NSArray *keys = [self.requestedSpecsWithProc allKeys];
+        NSArray *currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1 ]];
         return currentProcArray.count;
     }
 }
@@ -308,7 +308,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     headerView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:myLabel];
     
-    UIView * separatorView = [[UIView alloc] init];
+    UIView *separatorView = [[UIView alloc] init];
     separatorView.backgroundColor = UIColorFromRGB(0xEDEDED);
     separatorView.frame = CGRectMake(0, myLabel.frame.size.height, self.view.frame.size.width, 1);
     
@@ -337,8 +337,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 {
     if (indexPath.section) {
         ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = YES;
-        NSArray * keys = [self.requestedSpecsWithProc allKeys];
-        NSArray * procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
+        NSArray *keys = [self.requestedSpecsWithProc allKeys];
+        NSArray *procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
         [self.selectedProceduresID addObject:((Procedure*)procForCurrentSection[indexPath.row]).procedureID];
     }
 }
@@ -347,8 +347,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 {
     if (indexPath.section) {
         ((PEProceduresTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]).checkButton.selected = NO;
-        NSArray * keys = [self.requestedSpecsWithProc allKeys];
-        NSArray * procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
+        NSArray *keys = [self.requestedSpecsWithProc allKeys];
+        NSArray *procForCurrentSection = [self.requestedSpecsWithProc valueForKeyPath:keys[indexPath.section - 1]];
         [self.selectedProceduresID removeObject:((Procedure*)procForCurrentSection[indexPath.row]).procedureID];
     }
 }
@@ -370,7 +370,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     [self.tableView reloadData];
 }
 
-- (void)cellUnselected:(NSString *)specialisationName
+- (void)cellDeselected:(NSString *)specialisationName
 {
     NSLog (@"Unselected specialisation \"%@\"", specialisationName);
     [self removeRequestedSpecWithProceduresFromDic:specialisationName];
@@ -381,17 +381,17 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 
 - (void) getRequestedSpecsWithProcedures: (NSString*) specName
 {
-    NSArray * allSpecs = [NSArray new];
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    NSArray *allSpecs = [NSArray new];
+    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     allSpecs = [PECoreDataManager getAllEntities:searchedObject];
     [allSpecs sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Specialisation*)obj1 name];
-        NSString * secondObject = [(Specialisation*)obj2 name];
+        NSString *firstObject = [(Specialisation*)obj1 name];
+        NSString *secondObject = [(Specialisation*)obj2 name];
         return [firstObject compare:secondObject];
     }];
-    NSMutableArray * arrayWithProcsForRequestedSpec = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayWithProcsForRequestedSpec = [[NSMutableArray alloc] init];
     for (int i=0; i<allSpecs.count; i++) {
-        for (Procedure* proc in [((Specialisation*)allSpecs[i]).procedures allObjects]) {
+        for (Procedure *proc in [((Specialisation*)allSpecs[i]).procedures allObjects]) {
             if ([((Specialisation*)proc.specialization).name isEqualToString:specName]) {
                 [arrayWithProcsForRequestedSpec addObject:proc];
             }
@@ -399,8 +399,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     }
     NSArray *sortedArrayWithProcedures;
     sortedArrayWithProcedures = [arrayWithProcsForRequestedSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * string1 = [(Procedure*)obj1 name];
-        NSString * string2 = [(Procedure*)obj2 name];
+        NSString *string1 = [(Procedure*)obj1 name];
+        NSString *string2 = [(Procedure*)obj2 name];
         return [string1 compare:string2];
     }];
     
@@ -416,7 +416,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 
 - (void) getProcedureIdForSelectedDoctor
 {
-    for (Procedure * proc in [self.specManager.currentDoctor.procedure allObjects]) {
+    for (Procedure *proc in [self.specManager.currentDoctor.procedure allObjects]) {
         [self.selectedProceduresID addObject:proc.procedureID];
     }
 }

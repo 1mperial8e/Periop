@@ -13,7 +13,6 @@
 #import "OperationRoom.h"
 #import "PatientPostioning.h"
 
-
 @implementation Photo
 
 @dynamic photoName;

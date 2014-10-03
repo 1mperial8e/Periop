@@ -16,7 +16,6 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 #import <QuartzCore/QuartzCore.h>
 #import "PECoreDataManager.h"
 #import "PECsvParser.h"
-#import "PEPlistParser.h"
 #import "PESpecialisationManager.h"
 #import "PEObjectDescription.h"
 #import "PETutorialViewController.h"
@@ -31,9 +30,9 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 @property (weak, nonatomic) IBOutlet UIButton *mySpecialisationsButton;
 @property (weak, nonatomic) IBOutlet UIButton *moreSpecialisationsButton;
 
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSArray * specialisationsArray;
-@property (strong, nonatomic) PESpecialisationManager * specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *specialisationsArray;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSMutableDictionary *moreSpecialisationSpecs;
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (copy, nonatomic) NSString *selectedSpecToReset;
@@ -76,10 +75,10 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     self.collectionView.delegate = (id)self;
     self.collectionView.dataSource = (id)self;
     
-    UIImageView * backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]];
     self.collectionView.backgroundView = backgroundImage;
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 }
 
@@ -94,7 +93,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     
     ((PENavigationController *)self.navigationController).titleLabel.text = @"Specialisations";
     
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self initWithData];
     [self.collectionView reloadData];
@@ -118,7 +117,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 
 - (IBAction)menuButton:(id)sender
 {
-    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
+    PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = SVCSpecialisations;
     menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
@@ -159,7 +158,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
-            NSString * message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
+            NSString *message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
             self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
             UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
@@ -167,8 +166,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
                 if (success) {
-                    NSString * requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
-                    for (SKProduct * product in products) {
+                    NSString *requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
+                    for (SKProduct *product in products) {
                         if ([product.productIdentifier isEqualToString:requestedProductIdentifier]) {
                             NSLog(@"Start buying...");
                             [self.purchaseManager buyProduct:product];
@@ -194,7 +193,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PESpecialisationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
+    PESpecialisationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
     if (self.specialisationsArray && self.specialisationsArray.count) {
         cell.backgroundColor = [UIColor clearColor];
         
@@ -202,9 +201,9 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
             cell.specialisationIconImageView.image = [UIImage imageNamedFile:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
-            NSArray * allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                NSString * product1 = [(SKProduct*)obj1 localizedTitle];
-                NSString * product2 = [(SKProduct*)obj2 localizedTitle];
+            NSArray *allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSString *product1 = [(SKProduct*)obj1 localizedTitle];
+                NSString *product2 = [(SKProduct*)obj2 localizedTitle];
                 return [product1 compare:product2];
             }];
             cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;
@@ -224,9 +223,9 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         if (self.selectedSpecToReset!=nil) {
 
             NSLog(@"Finding docotrs for selected spec and removing existing relations...");
-            for (Specialisation * specToCheck in [self avaliableSpecs]) {
-                for (Doctors* docToCheck in [specToCheck.doctors allObjects] ) {
-                    for (Specialisation * spec in [docToCheck.specialisation allObjects]) {
+            for (Specialisation *specToCheck in [self avaliableSpecs]) {
+                for (Doctors *docToCheck in [specToCheck.doctors allObjects] ) {
+                    for (Specialisation *spec in [docToCheck.specialisation allObjects]) {
                         if ([spec.name isEqualToString:self.selectedSpecToReset]) {
                             [docToCheck removeSpecialisationObject:spec];
                             if (![[docToCheck.specialisation allObjects] count]) {
@@ -238,8 +237,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
             }
             
             NSLog(@"Finding and remove selected spec...");
-            Specialisation * spec;
-            PEObjectDescription * objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:self.selectedSpecToReset];
+            Specialisation *spec;
+            PEObjectDescription *objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:self.selectedSpecToReset];
             [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
             
             NSLog(@"Parsing selected spec and update DB...");
@@ -258,8 +257,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 {
     self.specialisationsArray = [self avaliableSpecs];
     if (!self.specialisationsArray.count) {
-        PECsvParser * parser = [[PECsvParser alloc] init];
-        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools" withSpecName:@"General"];
+        PECsvParser *parser = [[PECsvParser alloc] init];
+        [parser parseCsvMainFile:@"General" csvToolsFile:@"General_Tools" specName:@"General"];
         
         self.specialisationsArray = [self avaliableSpecs];
         [self.collectionView reloadData];
@@ -269,8 +268,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 - (void) allSpecs
 {
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
-    NSArray * arrKeys = [pList allKeys];
-    NSMutableArray * arrayWithAllSpecsPhoto = [[NSMutableArray alloc] init];
+    NSArray *arrKeys = [pList allKeys];
+    NSMutableArray *arrayWithAllSpecsPhoto = [[NSMutableArray alloc] init];
     for (int i=0; i<arrKeys.count; i++) {
         NSDictionary *dic = [pList valueForKey:arrKeys[i]];
         [arrayWithAllSpecsPhoto addObject:[dic valueForKey:@"photoName"]];
@@ -285,7 +284,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
-    NSEntityDescription * specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:specEntity];
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -326,8 +325,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 {
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     
-    NSArray * arrKeys = [pList allKeys];
-    NSString * photoName;
+    NSArray *arrKeys = [pList allKeys];
+    NSString *photoName;
     for (int i =0; i<arrKeys.count; i++) {
         NSDictionary *dic = [pList valueForKey:arrKeys[i]];
         if ([[dic valueForKey:@"productIdentifier"] isEqualToString:skProduct.productIdentifier]) {
@@ -342,7 +341,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 - (void)productPurchased: (NSNotification *)notification
 {
     //product identifier - purchased product
-    NSString * productIdentifier = notification.object;
+    NSString *productIdentifier = notification.object;
     
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     
@@ -364,9 +363,9 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
   // toolsFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hUG5yYzVEUTdMVm8";
   // mainFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hM1I3SldxODEzdUk";
     
-    NSMutableArray * arrayWithPathToDelete = [NSMutableArray new];
+    NSMutableArray *arrayWithPathToDelete = [NSMutableArray new];
     
-    NSData * dataMain = [NSData dataWithContentsOfURL:[NSURL URLWithString:mainFilePart]];
+    NSData *dataMain = [NSData dataWithContentsOfURL:[NSURL URLWithString:mainFilePart]];
     if ( dataMain )
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -377,7 +376,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
             [arrayWithPathToDelete addObject:filePath];
         }
     }
-    NSData * dataTools = [NSData dataWithContentsOfURL:[NSURL URLWithString:toolsFilePart]];
+    NSData *dataTools = [NSData dataWithContentsOfURL:[NSURL URLWithString:toolsFilePart]];
     if ( dataTools )
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -389,11 +388,11 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         }
     }
     
-    PECsvParser * parser = [[PECsvParser alloc] init];
-    [parser parseCsv:@"mainSpec" withCsvToolsFileName:@"toolSpec" withSpecName:specName];
+    PECsvParser *parser = [[PECsvParser alloc] init];
+    [parser parseCsvMainFile:@"mainSpec" csvToolsFile:@"toolSpec" specName:specName];
     
     for (int i=0; i<arrayWithPathToDelete.count; i++) {
-        NSError * error = nil;
+        NSError *error = nil;
         if (![[NSFileManager defaultManager] removeItemAtPath:arrayWithPathToDelete[i] error:&error]) {
             NSLog(@"Cant remove file after parsing - %@", error.localizedDescription);
         }

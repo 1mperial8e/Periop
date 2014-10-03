@@ -57,10 +57,10 @@
     [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
 
-    UIBarButtonItem * propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    UIBarButtonItem *propButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Edit_Info"] style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     self.navigationItem.rightBarButtonItem=propButton;
 
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.tableView.delegate = self;
@@ -73,7 +73,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.layer.borderWidth = 0.0f;
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.doctorPhotoImageView addGestureRecognizer:tap];
 }
 
@@ -114,7 +114,7 @@
     if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:@"Place_Holder.png"] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             NSLog(@"Touched Image");
-            PEViewPhotoViewController * viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
+            PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
                 viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;
             }
@@ -125,7 +125,7 @@
 
 - (IBAction)editButton:(id)sender
 {
-    PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
+    PEAddEditDoctorViewController *addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Edit Surgeon";
     addEditDoctorView.isEditedDoctor = YES;
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
@@ -136,7 +136,7 @@
 {
     [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
-    PENotesViewController * notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
+    PENotesViewController *notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.navigationLabelText = @"Doctors Notes";
     [self.navigationController pushViewController:notesView animated:YES];
 }
@@ -150,8 +150,8 @@
 - (IBAction)photoButtons:(id)sender
 {
     CGRect position = self.doctorPhotoImageView.frame;
-    NSArray * array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
-    PEMediaSelect * view = array[0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
+    PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = 35;
     [self.view addSubview:view];
@@ -193,7 +193,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorsProfileTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
+    PEDoctorsProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEDoctorsProfileTableViewCell alloc] init];
     }
@@ -213,7 +213,7 @@
     UIView *headerView = [[UIView alloc] init];
     [headerView addSubview:myLabel];
     
-    UIView * separatorView = [[UIView alloc] init];
+    UIView *separatorView = [[UIView alloc] init];
     separatorView.backgroundColor = UIColorFromRGB(0xEDEDED);
     separatorView.frame = CGRectMake(0, myLabel.frame.size.height, 320, 1);
 
@@ -236,7 +236,7 @@
 
 - (PEDoctorProfileCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorProfileCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"doctorProfileCollectionViewCell" forIndexPath:indexPath];
+    PEDoctorProfileCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"doctorProfileCollectionViewCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEDoctorProfileCollectionViewCell alloc] init];
     }
@@ -248,34 +248,34 @@
 
 - (void)getDoctorsSpecAndProcedures
 {
-    PEObjectDescription * searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
-    NSArray * allDoctors = [PECoreDataManager getAllEntities:searchedObject];
+    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Doctors" withSortDescriptorKey:@"name"];
+    NSArray *allDoctors = [PECoreDataManager getAllEntities:searchedObject];
     
-    for (Doctors * doctor in allDoctors) {
+    for (Doctors *doctor in allDoctors) {
         if ([doctor.createdDate isEqualToDate:self.specManager.currentDoctor.createdDate]){
             self.doctorsSpec = [doctor.specialisation allObjects];
         }
     }
     
     [self.doctorsSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Specialisation*)obj1 name];
-        NSString * secondObject = [(Specialisation*)obj2 name];
+        NSString *firstObject = [(Specialisation*)obj1 name];
+        NSString *secondObject = [(Specialisation*)obj2 name];
         return [firstObject compare:secondObject];
     }];
     
-    NSMutableArray * arrayWithArraysOfProceduresForCurrentDoctor = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayWithArraysOfProceduresForCurrentDoctor = [[NSMutableArray alloc] init];
     
     for (int i=0; i<self.doctorsSpec.count; i++) {
-        NSMutableArray * arrayWithProc = [[NSMutableArray alloc] init];
-        for (Procedure * proc in [self.specManager.currentDoctor.procedure allObjects]) {
+        NSMutableArray *arrayWithProc = [[NSMutableArray alloc] init];
+        for (Procedure *proc in [self.specManager.currentDoctor.procedure allObjects]) {
             if ([proc.specialization.name isEqualToString:((Specialisation*)self.doctorsSpec[i]).name]) {
                 [arrayWithProc addObject:proc];
             }
         }
         
         [arrayWithProc sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString* o1 = [(Procedure*)obj1 name];
-            NSString* o2 = [(Procedure*)obj2 name];
+            NSString *o1 = [(Procedure*)obj1 name];
+            NSString *o2 = [(Procedure*)obj2 name];
             return [o1 compare:o2];
         }];
         

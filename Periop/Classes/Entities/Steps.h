@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class OperationRoom, PatientPostioning;
 
 @interface Steps : NSManagedObject
 
-@property (nonatomic, retain) NSString * stepDescription;
-@property (nonatomic, retain) NSString * stepName;
+@property (nonatomic, retain) NSString *stepDescription;
+@property (nonatomic, retain) NSString *stepName;
 @property (nonatomic, retain) OperationRoom *operationRoom;
 @property (nonatomic, retain) PatientPostioning *patientPostioning;
 

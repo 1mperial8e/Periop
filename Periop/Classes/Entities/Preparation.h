@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class Procedure;
 
 @interface Preparation : NSManagedObject
 
-@property (nonatomic, retain) NSString * preparationText;
-@property (nonatomic, retain) NSString * stepName;
+@property (nonatomic, retain) NSString *preparationText;
+@property (nonatomic, retain) NSString *stepName;
 @property (nonatomic, retain) Procedure *procedure;
 
 @end

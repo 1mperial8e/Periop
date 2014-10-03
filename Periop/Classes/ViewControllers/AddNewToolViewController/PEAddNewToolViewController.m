@@ -18,16 +18,16 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *specTextBox;
-@property (weak, nonatomic) IBOutlet UITextField *qtyTextBox;
+@property (weak, nonatomic) IBOutlet UITextField *quantityTextBox;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *specLabel;
-@property (weak, nonatomic) IBOutlet UILabel *qtyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) NSArray * categoryTools;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *categoryTools;
 @property (strong, nonatomic) UIDropDownList *dropDownList;
 @property (strong, nonatomic) NSLayoutConstraint *dropDownListHeight;
 
@@ -45,20 +45,20 @@
     
     self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     self.specLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
-    self.qtyLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.quantityLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     self.nameTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     self.specTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
-    self.qtyTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.quantityTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
     [self.navigationItem setHidesBackButton:YES];
     
-    UIBarButtonItem * saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
     self.navigationItem.rightBarButtonItem = saveButton;
-    UIBarButtonItem * cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    self.qtyTextBox.keyboardType = UIKeyboardTypeNumberPad;
+    self.quantityTextBox.keyboardType = UIKeyboardTypeNumberPad;
     
     [self createDropDownList];
 }
@@ -67,7 +67,7 @@
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = ((EquipmentsTool*)self.specManager.currentProcedure).name;
+    ((PENavigationController *)self.navigationController).titleLabel.text = ((EquipmentsTool *)self.specManager.currentProcedure).name;
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -79,27 +79,27 @@
 
 - (IBAction)saveButton:(id)sender
 {
-    if (self.nameTextBox.text || self.qtyTextBox.text || self.specTextBox.text) {
-        NSEntityDescription * equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
-        EquipmentsTool * newEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
+    if (self.nameTextBox.text || self.quantityTextBox.text || self.specTextBox.text) {
+        NSEntityDescription *equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+        EquipmentsTool *newEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newEquipment.name = self.nameTextBox.text;
-        newEquipment.quantity = self.qtyTextBox.text;
+        newEquipment.quantity = self.quantityTextBox.text;
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
         if ([self.dropDownList.titleLabel.text isEqualToString:@"Equipment Category"]) {
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         } else {
             newEquipment.category = self.dropDownList.titleLabel.text;
             [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
-            NSError * saveError = nil;
-            if (![self.managedObjectContext save:&saveError]) {
-                NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
-            } else {
+            NSError *saveError = nil;
+            if ([self.managedObjectContext save:&saveError]) {
                 NSLog(@"New tool \"%@\" added successfully", newEquipment.name);
+            } else {
+                NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
             }
             self.nameTextBox.text=@"";
-            self.qtyTextBox.text =@"";
+            self.quantityTextBox.text =@"";
             self.specTextBox.text = @"";
             [self.view endEditing:YES];
 
@@ -118,9 +118,10 @@
 - (void)dropDownList:(UIDropDownList *)dropDownList willOpenWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
 {
     if (animation) {
+        PEAddNewToolViewController __weak *weakSelf = self;
         [UIView animateWithDuration:animation.duration animations:^{
-            self.dropDownListHeight.constant = bounds.size.height;
-            [self.view layoutIfNeeded];
+            weakSelf.dropDownListHeight.constant = bounds.size.height;
+            [weakSelf.view layoutIfNeeded];
         }];
     }
 }
@@ -128,18 +129,19 @@
 - (void)dropDownList:(UIDropDownList *)dropDownList willCloseWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
 {
     if (animation) {
+        PEAddNewToolViewController __weak *weakSelf = self;
         [UIView animateWithDuration:animation.duration animations:^{
-            self.dropDownListHeight.constant = bounds.size.height;
-            [self.view layoutIfNeeded];
+            weakSelf.dropDownListHeight.constant = bounds.size.height;
+            [weakSelf.view layoutIfNeeded];
         }];
     }
 }
 
 #pragma mark - Private 
 
-- (NSArray*)getArrayWithAvaliableCategories : (NSArray* )objectsArray
+- (NSArray *)getArrayWithAvaliableCategories:(NSArray *)objectsArray
 {
-    NSCountedSet * toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
+    NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     return [toolsWithCounts allObjects];
 }
 

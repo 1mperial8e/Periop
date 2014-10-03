@@ -12,7 +12,6 @@
 #import "Procedure.h"
 #import "Specialisation.h"
 
-
 @implementation Doctors
 
 @dynamic name;

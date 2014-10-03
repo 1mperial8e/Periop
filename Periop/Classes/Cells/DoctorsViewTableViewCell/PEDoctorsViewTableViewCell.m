@@ -23,11 +23,6 @@
     [self initGestrudeRecognizer];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-}
-
 - (void)prepareForReuse
 {
     [super prepareForReuse];
@@ -45,27 +40,28 @@
 
 - (void)initGestrudeRecognizer
 {
-    UISwipeGestureRecognizer * leftGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
+    UISwipeGestureRecognizer *leftGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
     leftGestrudeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    UISwipeGestureRecognizer * rightGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
+    UISwipeGestureRecognizer *rightGestrudeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
     rightGestrudeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    
     [self addGestureRecognizer:rightGestrudeRecognizer];
     [self addGestureRecognizer:leftGestrudeRecognizer];
 }
 
 - (IBAction)swipeLeft:(id)sender
 {
-        [UIView animateWithDuration:0.2 animations:^ {
-        self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width*2.8, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
+    PEDoctorsViewTableViewCell __weak *weakSelf = self;
+    [UIView animateWithDuration:0.2 animations:^ {
+    weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width *2.8, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
+    } completion:^(BOOL finished) {
+    [UIView animateWithDuration:0.2 animations:^ {
+            weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
         } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^ {
-                self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
-            } completion:^(BOOL finished) {
-                self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
-                //call to delegate method - add cell to list of openes cells
-                [self.delegate cellDidSwipedOut:self];
-            }];
+            weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
+            [weakSelf.delegate cellDidSwipedOut:weakSelf];
         }];
+    }];
 }
 
 - (IBAction)swipeRight:(id)sender
@@ -73,21 +69,20 @@
    [UIView animateWithDuration:0 animations:^ {
         self.viewDoctorsNameView.frame = CGRectMake(0, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
     } completion:^(BOOL finished) {
-        //call to delegate remove objects from list of opened cells
         [self.delegate cellDidSwipedIn:self];
     }];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
 }
 
 #pragma mark - PEDoctorsViewTableViewCellDelegate
 
-- (void) setCellSwiped
+- (void)setCellSwiped
 {
     self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
 }

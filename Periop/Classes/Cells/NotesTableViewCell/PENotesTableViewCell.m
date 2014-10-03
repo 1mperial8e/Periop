@@ -16,15 +16,16 @@
 
 #pragma mark - LifeCycle
 
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:14.5f];
     self.label.font = [UIFont fontWithName:FONT_MuseoSans300 size:12.5f];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)photButton:(id)sender
+- (IBAction)photoButton:(id)sender
 {
     [self.delegate addPhotoButtonPress:self];
 }

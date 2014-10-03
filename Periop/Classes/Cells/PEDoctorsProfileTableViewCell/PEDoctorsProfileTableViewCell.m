@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.doctorsNameLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:17.5f];
 }
 

@@ -10,6 +10,6 @@
 
 @interface PENotesViewController : UIViewController
 
-@property (copy, nonatomic)NSString * navigationLabelText;
+@property (copy, nonatomic)NSString *navigationLabelText;
 
 @end

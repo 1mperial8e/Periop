@@ -6,19 +6,18 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
 @class Doctors, Procedure;
 
 @interface Specialisation : NSManagedObject
 
-@property (nonatomic, retain) NSString * activeButtonPhotoName;
-@property (nonatomic, retain) NSString * inactiveButtonPhotoName;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * photoName;
-@property (nonatomic, retain) NSString * specID;
-@property (nonatomic, retain) NSString * smallIconName;
+@property (nonatomic, retain) NSString *activeButtonPhotoName;
+@property (nonatomic, retain) NSString *inactiveButtonPhotoName;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *photoName;
+@property (nonatomic, retain) NSString *specID;
+@property (nonatomic, retain) NSString *smallIconName;
 @property (nonatomic, retain) NSSet *doctors;
 @property (nonatomic, retain) NSSet *procedures;
 @end

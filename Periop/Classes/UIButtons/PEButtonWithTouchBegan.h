@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PEButtonWithTouchBegan : UIButton
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;

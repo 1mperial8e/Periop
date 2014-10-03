@@ -10,7 +10,8 @@
 
 @implementation PESpecialisationManager
 
-+ (id)sharedManager{
++ (id)sharedManager
+{
     static id sharedManager = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{

@@ -32,7 +32,7 @@
 
 - (IBAction)menuButton:(id)sender
 {
-    PEMenuViewController * menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
+    PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = @"About Us";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     

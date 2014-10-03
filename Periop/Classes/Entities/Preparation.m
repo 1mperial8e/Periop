@@ -9,7 +9,6 @@
 #import "Preparation.h"
 #import "Procedure.h"
 
-
 @implementation Preparation
 
 @dynamic preparationText;

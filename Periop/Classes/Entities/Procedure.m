@@ -15,7 +15,6 @@
 #import "Preparation.h"
 #import "Specialisation.h"
 
-
 @implementation Procedure
 
 @dynamic name;

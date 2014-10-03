@@ -30,11 +30,11 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 @property (weak, nonatomic) IBOutlet UIButton *doctorsButton;
 @property (weak, nonatomic) IBOutlet UIButton *procedureButton;
 
-@property (strong, nonatomic) PESpecialisationManager * specManager;
-@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic) UIBarButtonItem * navigationBarAddDoctorButton;
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithProcedures;
-@property (strong, nonatomic) NSMutableArray * sortedArrayWithDoctors;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) UIBarButtonItem *navigationBarAddDoctorButton;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithProcedures;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithDoctors;
 
 @property (strong, nonatomic) NSArray *searchResult;
 
@@ -58,10 +58,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
     
-    UIBarButtonItem * addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
     
-    UIBarButtonItem * backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
     self.tableView.delegate = self;
@@ -108,7 +108,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)addNewDoctor:(id)sender
 {
-    PEAddEditDoctorViewController * addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
+    PEAddEditDoctorViewController *addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
 }
@@ -159,7 +159,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
     for(int i =0; i<[searchBarSubViews count]; i++) {
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
-            UITextField* search=(UITextField*)[searchBarSubViews objectAtIndex:i];
+            UITextField *search=(UITextField*)[searchBarSubViews objectAtIndex:i];
             [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
             [search setTintColor:UIColorFromRGB(0x4D4D4D)];
             search.placeholder = @"Search";
@@ -188,7 +188,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
@@ -228,28 +228,28 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
              self.specManager.currentProcedure = (Procedure*)self.searchResult[indexPath.row];
         } else {
-            for (Procedure* proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            for (Procedure *proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
                 if ([((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
                     self.specManager.currentProcedure = proc;
                 }
             }
         }
         
-        PEProcedureOptionViewController * procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
+        PEProcedureOptionViewController *procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
         [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             self.specManager.currentDoctor = (Doctors*)self.searchResult[indexPath.row];
         } else {
-            for (Doctors* doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
+            for (Doctors *doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
                 if ([((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
                     self.specManager.currentDoctor = doc;
                 }
             }
         }
         
-        PEDoctorProfileViewController * doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
+        PEDoctorProfileViewController *doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
         [self.navigationController pushViewController:doctorsView animated:YES];
     }
 }
@@ -264,10 +264,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (NSMutableArray *)sortedArrayWitProcedures: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Procedure*)obj1 name];
-        NSString *  secondObject = [(Procedure*)obj2 name];
+        NSString *firstObject = [(Procedure*)obj1 name];
+        NSString *secondObject = [(Procedure*)obj2 name];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
@@ -275,10 +275,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (NSMutableArray *)sortedArrayWitDoctors: (NSArray*)arrayToSort
 {
-    NSArray * sortedArray;
+    NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString * firstObject = [(Doctors*)obj1 name];
-        NSString *  secondObject = [(Doctors*)obj2 name];
+        NSString *firstObject = [(Doctors*)obj1 name];
+        NSString *secondObject = [(Doctors*)obj2 name];
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];

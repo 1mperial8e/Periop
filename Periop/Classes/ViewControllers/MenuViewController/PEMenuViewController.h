@@ -8,7 +8,7 @@
 
 @interface PEMenuViewController : UIViewController
 
-@property (strong, nonatomic) NSString * textToShow;
+@property (strong, nonatomic) NSString *textToShow;
 @property (assign, nonatomic) NSInteger buttonPositionY;
 @property (assign, nonatomic) BOOL isButtonMySpecializations;
 @property (assign, nonatomic) CGFloat sizeOfFontInNavLabel;

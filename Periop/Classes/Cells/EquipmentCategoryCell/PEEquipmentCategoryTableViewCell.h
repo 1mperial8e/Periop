@@ -6,19 +6,17 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @protocol PEEquipmentCategoryTableViewCellDelegate <NSObject>
 
 @required
-//buttonAction
-- (void)buttonDeleteAction:(UITableViewCell*)cell;
 
-- (void)cellDidSwipedIn:(UITableViewCell*)cell;
+- (void)buttonDeleteAction:(UITableViewCell *)cell;
+
+- (void)cellDidSwipedIn:(UITableViewCell *)cell;
 - (void)cellDidSwipedOut:(UITableViewCell *)cell;
 
-- (void)cellChecked:(UITableViewCell*)cell;
-- (void)cellUnchecked:(UITableViewCell*)cell;
+- (void)cellChecked:(UITableViewCell *)cell;
+- (void)cellUnchecked:(UITableViewCell *)cell;
 
 @end
 
@@ -29,9 +27,8 @@
 
 @property (strong, nonatomic) NSDate *createdDate;
 
-//property for delegate
 @property (weak, nonatomic) id <PEEquipmentCategoryTableViewCellDelegate> delegate;
-//method that allow delegate to change state of cell
+
 - (void)setCellSwiped;
 - (void)cellSetChecked;
 

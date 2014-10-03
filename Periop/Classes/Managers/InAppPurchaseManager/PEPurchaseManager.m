@@ -10,11 +10,12 @@
 
 @implementation PEPurchaseManager
 
-+ (id)sharedManager{
++ (id)sharedManager
+{
     static id sharedManager = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        NSSet * productsIdentifiers = [NSSet setWithObjects:
+        NSSet *productsIdentifiers = [NSSet setWithObjects:
                                        @"com.Thinkmobiles.Periop.S01ENT",
                                        @"com.Thinkmobiles.Periop.S02Gyneacology",
                                        @"com.Thinkmobiles.Periop.S03Obstetric",
@@ -31,7 +32,8 @@
     return sharedManager;
 }
 
-+ (void) saveDefaultsToUserDefault: (NSString*)productIdentifier{
++ (void)saveDefaultsToUserDefault:(NSString *)productIdentifier
+{
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

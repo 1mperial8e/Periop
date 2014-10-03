@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PEAddEditNoteViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet NSString *timeToShow;

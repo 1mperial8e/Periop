@@ -29,7 +29,7 @@
         UIImage *buttonImage = [UIImage imageNamedFile:@"Menu"];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
         [button setImage:buttonImage forState:UIControlStateNormal];
-        UIBarButtonItem * menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [button addTarget:rootViewController action:NSSelectorFromString(@"menuButton:") forControlEvents:UIControlEventTouchUpInside];
         
         rootViewController.navigationItem.leftBarButtonItem = menuBarButton;
@@ -41,10 +41,10 @@
 {
     [super viewDidLoad];
     CGSize navBarSize = self.navigationBar.frame.size;
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height * 2,  navBarSize.height)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBarSize.width - navBarSize.height *2,  navBarSize.height)];
     self.titleLabel.minimumScaleFactor = 0.5;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.center = CGPointMake(navBarSize.width/2, navBarSize.height/2);
+    self.titleLabel.center = CGPointMake(navBarSize.width / 2, navBarSize.height / 2);
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
@@ -53,22 +53,5 @@
     
     [self.navigationBar addSubview:self.titleLabel];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

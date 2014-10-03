@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -9,8 +9,8 @@
                 <outlet property="containerView" destination="76L-9A-WfF" id="Yda-VV-R7y"/>
                 <outlet property="nameLabel" destination="fDB-Eu-ciO" id="sPG-8z-atG"/>
                 <outlet property="nameTextBox" destination="Yeg-N8-D6I" id="4Ta-Ar-Avi"/>
-                <outlet property="qtyLabel" destination="ftX-t3-4yR" id="fVk-DW-qUl"/>
-                <outlet property="qtyTextBox" destination="CKQ-7r-lJP" id="PZo-xI-mAa"/>
+                <outlet property="quantityLabel" destination="ftX-t3-4yR" id="vp3-dj-jLq"/>
+                <outlet property="quantityTextBox" destination="CKQ-7r-lJP" id="key-Ac-ESb"/>
                 <outlet property="specLabel" destination="znY-qg-xWJ" id="FRI-iM-BnA"/>
                 <outlet property="specTextBox" destination="eA1-We-fB1" id="BMd-AR-2EM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

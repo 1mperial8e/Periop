@@ -12,7 +12,7 @@
 
 #pragma mark - LifeCycle
 
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
     [super awakeFromNib];
     self.labelStep.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];

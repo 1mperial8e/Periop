@@ -42,7 +42,8 @@ static CGFloat const DLAnimationDuration = 0.15f;
 }
 
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     if (!self.titleLabel.text.length) {
         self.titleLabel.text = (NSString *)self.items[self.selectedItem];
     }    
@@ -53,13 +54,13 @@ static CGFloat const DLAnimationDuration = 0.15f;
 - (void)setNumberOfItemsToDraw:(NSInteger)numberOfItemsToDraw
 {
     _numberOfItemsToDraw = numberOfItemsToDraw;
-    self.tableView.frame = CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw * self.itemHeight);
+    self.tableView.frame = CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw *self.itemHeight);
 }
 
 - (void)setItemHeight:(CGFloat)itemHeight
 {
     _itemHeight = itemHeight;
-    self.tableView.frame = CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw * self.itemHeight);
+    self.tableView.frame = CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw *self.itemHeight);
 }
 
 - (void)setSeparateColor:(UIColor *)separateColor
@@ -186,7 +187,7 @@ static CGFloat const DLAnimationDuration = 0.15f;
     title.textAlignment = NSTextAlignmentCenter;
     self.titleLabel = title;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw * self.itemHeight)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.size.height, self.frame.size.width, self.numberOfItemsToDraw *self.itemHeight)];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.bounces = NO;
     self.tableView.delegate = (id)self;
@@ -212,12 +213,11 @@ static CGFloat const DLAnimationDuration = 0.15f;
         
         if (CGRectContainsPoint(self.titleLabel.frame, touchLocation)) {
             if (self.isOpened) {
-                self.isOpened = NO;
                 [self closeList];
             } else {
-                self.isOpened = YES;
                 [self openList];
             }
+            self.isOpened = !self.isOpened;
         }
     }
 }
