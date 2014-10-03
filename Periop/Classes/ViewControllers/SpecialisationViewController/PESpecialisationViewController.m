@@ -50,6 +50,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 {
     [super viewDidLoad];
     
+    //[self downloadPurchasedItems:@"" withToolsPartFile:@"" withSpecName:@"Gyneacology"];
+    
     self.purchaseManager = [PEPurchaseManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
@@ -240,9 +242,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
             [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
             
             NSLog(@"Parsing selected spec and update DB...");
-            PECsvParser * parser = [[PECsvParser alloc] init];
-            NSString * toolsString = [NSString stringWithFormat:@"%@_Tools", self.selectedSpecToReset];
-            [parser parseCsv:self.selectedSpecToReset withCsvToolsFileName:toolsString];
+            [self restoreSelectedSpecByName:self.selectedSpecToReset];
             self.selectedSpecToReset = nil;
             [self.collectionView reloadData];
             
@@ -258,7 +258,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     self.specialisationsArray = [self avaliableSpecs];
     if (!self.specialisationsArray.count) {
         PECsvParser * parser = [[PECsvParser alloc] init];
-        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools"];
+        [parser parseCsv:@"General" withCsvToolsFileName:@"General_Tools" withSpecName:@"General"];
         
         self.specialisationsArray = [self avaliableSpecs];
         [self.collectionView reloadData];
@@ -291,6 +291,23 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     return result;
 }
 
+- (void) restoreSelectedSpecByName: (NSString*)specName
+{
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    
+    NSArray *arrKeys = [pList allKeys];
+    NSString *purchasedSpecURLAll;
+    NSString *purchasedSpecURLTools;
+    for (int i =0; i<arrKeys.count; i++) {
+        if ([arrKeys[i] isEqualToString:specName]) {
+            NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+            purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
+            purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
+            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:specName];
+        }
+    }
+}
+
 #pragma mark - InAppPurchase
 
 - (void)refreshData
@@ -319,6 +336,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     return photoName;
 }
 
+#pragma mark - NotificationFromPurchaseManager
+
 - (void)productPurchased: (NSNotification *)notification
 {
     //product identifier - purchased product
@@ -334,15 +353,15 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         if ([[dic valueForKey:@"productIdentifier"] isEqualToString:productIdentifier]) {
             purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
             purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
-            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools];
+            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:arrKeys[i]];
         }
     }
-    
 }
 
-- (void) downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart
+- (void) downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart withSpecName:(NSString*)specName;
 {
-  //  NSURL * url = [NSURL URLWithString:@"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hMmJjUTNwYk1YRkk"];
+  // toolsFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hUG5yYzVEUTdMVm8";
+  // mainFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hM1I3SldxODEzdUk";
     
     NSMutableArray * arrayWithPathToDelete = [NSMutableArray new];
     
@@ -352,8 +371,10 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"mainSpec.csv"];
-        [dataMain writeToFile:filePath atomically:YES];
-        [arrayWithPathToDelete addObject:filePath];
+        if ([dataMain writeToFile:filePath atomically:YES]) {
+            NSLog(@"mainSpec file created");
+            [arrayWithPathToDelete addObject:filePath];
+        }
     }
     NSData * dataTools = [NSData dataWithContentsOfURL:[NSURL URLWithString:toolsFilePart]];
     if ( dataTools )
@@ -361,12 +382,14 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"toolSpec.csv"];
-        [dataTools writeToFile:filePath atomically:YES];
-        [arrayWithPathToDelete addObject:filePath];
+        if ([dataTools writeToFile:filePath atomically:YES]) {
+            NSLog(@"toolSpec file created");
+            [arrayWithPathToDelete addObject:filePath];
+        }
     }
     
     PECsvParser * parser = [[PECsvParser alloc] init];
-    [parser parseCsv:@"mainSpec" withCsvToolsFileName:@"toolSpec"];
+    [parser parseCsv:@"mainSpec" withCsvToolsFileName:@"toolSpec" withSpecName:specName];
     
     for (int i=0; i<arrayWithPathToDelete.count; i++) {
         NSError * error = nil;

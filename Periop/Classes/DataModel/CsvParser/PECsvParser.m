@@ -43,7 +43,7 @@ static NSInteger const CPProcedureCount = 20;
 
 #pragma mark - Public
 
-- (void)parseCsv:(NSString*)mainFileName withCsvToolsFileName:(NSString*)toolsFileName
+- (void)parseCsv:(NSString*)mainFileName withCsvToolsFileName:(NSString*)toolsFileName withSpecName:(NSString *)specName
 {
     NSString *filePathMain = [[NSBundle mainBundle] pathForResource:mainFileName ofType:@"csv"];
     NSString *filePathTools = [[NSBundle mainBundle] pathForResource:toolsFileName ofType:@"csv"];
@@ -54,7 +54,7 @@ static NSInteger const CPProcedureCount = 20;
     }
     if (!filePathTools) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        filePathMain = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], toolsFileName];
+        filePathTools = [NSString stringWithFormat:@"%@/%@.csv" , paths[0], toolsFileName];
     }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -66,25 +66,16 @@ static NSInteger const CPProcedureCount = 20;
         
         NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SpecialisationPicsAndCode" ofType:@"plist" ]];
         
-        NSDictionary * dic = [pList valueForKey:mainFileName];
+        NSDictionary * dic = [pList valueForKey:specName];
         newSpecialisation.specID = [dic valueForKey:@"specID"];
         newSpecialisation.photoName = [dic valueForKey:@"photoName"];
         newSpecialisation.activeButtonPhotoName = [dic valueForKey:@"activeButtonPhotoName"];
         newSpecialisation.inactiveButtonPhotoName =[dic valueForKey:@"inactiveButtonPhotoName"];
         newSpecialisation.smallIconName = [dic valueForKey:@"smallIconName"];
         
-        newSpecialisation.name = mainFileName;
+        newSpecialisation.name = specName;
         
-        //parse mainFile
-        NSError *error;
-        NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
-        //  NSLog(@"%@",lines);
-        
-        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        
-        NSArray *parseWithSeparate = [partOne componentsSeparatedByString:@";"];
-        NSMutableArray *rows = [parseWithSeparate mutableCopy];
-        [rows removeObjectAtIndex:0];
+        //tools parsing
         
         NSEntityDescription * procedureEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
 
@@ -159,8 +150,17 @@ static NSInteger const CPProcedureCount = 20;
         } else {
             NSLog (@"File with tools not found");
         }
-
-        //parsing patient postioning, operationRoom and preparation
+        
+        //parse mainFile
+        NSError *error;
+        NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
+        //  NSLog(@"%@",lines);
+        
+        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        NSArray *parseWithSeparate = [partOne componentsSeparatedByString:@";"];
+        NSMutableArray *rows = [parseWithSeparate mutableCopy];
+        [rows removeObjectAtIndex:0];
         
         NSEntityDescription * operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
         OperationRoom * opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -281,7 +281,7 @@ static NSInteger const CPProcedureCount = 20;
             }
         }
         
-    } else NSLog (@"File with description of specialisation's procedures found");
+    } else NSLog (@"File with description of specialisation's procedures NOT found");
     
     NSError * saveError = nil;
     if (![self.managedObjectContext save:&saveError]) {

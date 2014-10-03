@@ -10,6 +10,6 @@
 
 @interface PECsvParser : NSObject
 
-- (void)parseCsv:(NSString*)csvMainFileName withCsvToolsFileName:(NSString*)csvToolsFileName;
+- (void)parseCsv:(NSString*)csvMainFileName withCsvToolsFileName:(NSString*)csvToolsFileName withSpecName:(NSString*)specName;
 
 @end
