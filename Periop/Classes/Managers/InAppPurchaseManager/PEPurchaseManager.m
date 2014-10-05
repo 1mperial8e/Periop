@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
+static NSString *const CPPlistProductIdentifierKey = @"productIdentifier";
+
 #import "PEPurchaseManager.h"
 
 @implementation PEPurchaseManager
@@ -15,19 +18,13 @@
     static id sharedManager = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        NSSet *productsIdentifiers = [NSSet setWithObjects:
-                                       @"com.Thinkmobiles.Periop.S01ENT",
-                                       @"com.Thinkmobiles.Periop.S02Gyneacology",
-                                       @"com.Thinkmobiles.Periop.S03Obstetric",
-                                       @"com.Thinkmobiles.Periop.S04Opthalmology",
-                                       @"com.Thinkmobiles.Periop.S05Cardiothoracic",
-                                       @"com.Thinkmobiles.Periop.S06Orthopeadic",
-                                       @"com.Thinkmobiles.Periop.S07Plastic",
-                                       @"com.Thinkmobiles.Periop.S08Cosmetic",
-                                       @"com.Thinkmobiles.Periop.S09General",
-                                       @"com.Thinkmobiles.Periop.S10Gastrointestina", nil];
-        
-        sharedManager = [[PEPurchaseManager alloc] initWithProductsIdentifieer:productsIdentifiers];
+        NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:CPPlistSpecialisationPicsAndCode ofType:@"plist" ]];
+        NSMutableSet *setWithProductIdentifiers = [NSMutableSet new];
+        for (int i = 0; i < [pList allKeys].count; i++) {
+            NSDictionary *dict = [pList valueForKey:[pList allKeys][i]];
+            [setWithProductIdentifiers addObject:[dict valueForKey:CPPlistProductIdentifierKey]];
+        }
+        sharedManager = [[PEPurchaseManager alloc] initWithProductsIdentifieer:setWithProductIdentifiers];
     });
     return sharedManager;
 }

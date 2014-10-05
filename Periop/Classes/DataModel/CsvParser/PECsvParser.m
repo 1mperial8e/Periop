@@ -7,6 +7,7 @@
 //
 
 static NSInteger const CPProcedureCount = 20;
+static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
 
 #import "PECsvParser.h"
 #import "PECoreDataManager.h"
@@ -74,7 +75,7 @@ static NSInteger const CPProcedureCount = 20;
     NSEntityDescription *specialisationEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     Specialisation *newSpecialisation = [[Specialisation alloc] initWithEntity:specialisationEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
-    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SpecialisationPicsAndCode" ofType:@"plist" ]];
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:CPPlistSpecialisationPicsAndCode ofType:@"plist" ]];
     
     NSDictionary *dict = [pList valueForKey:specName];
     newSpecialisation.specID = [dict valueForKey:@"specID"];
