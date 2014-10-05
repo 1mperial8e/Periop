@@ -61,7 +61,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     self.edgesForExtendedLayout = UIRectEdgeBottom;
 
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
-    editButton.image = [UIImage imageNamed:@"Edit"];
+    editButton.image = [UIImage imageNamedFile:@"Edit"];
     self.rightBarButton = editButton;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
@@ -101,9 +101,9 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    if ([[self.specManager.currentEquipment.photo allObjects] count]> 0) {
-        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length>0) {
-            self.equipmentPhoto.image = [UIImage imageNamed:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
+    if ([[self.specManager.currentEquipment.photo allObjects] count]) {
+        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length) {
+            self.equipmentPhoto.image = [UIImage imageNamedFile:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
         } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
             self.equipmentPhoto.image = [UIImage imageWithData:((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
 
