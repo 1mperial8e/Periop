@@ -5,6 +5,8 @@
 //  Created by Kirill on 9/5/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
+static NSString *const ANTDefaultEquipmentStr = @"Equipment Category";
+static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
 
 #import "PEAddNewToolViewController.h"
 #import "PESpecialisationManager.h"
@@ -80,13 +82,13 @@
 - (IBAction)saveButton:(id)sender
 {
     if (self.nameTextBox.text || self.quantityTextBox.text || self.specTextBox.text) {
-        NSEntityDescription *equipmentEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *equipmentEntity = [NSEntityDescription entityForName:ANTEquipmentEntityName inManagedObjectContext:self.managedObjectContext];
         EquipmentsTool *newEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newEquipment.name = self.nameTextBox.text;
         newEquipment.quantity = self.quantityTextBox.text;
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
-        if ([self.dropDownList.titleLabel.text isEqualToString:@"Equipment Category"]) {
+        if ([self.dropDownList.titleLabel.text isEqualToString:ANTDefaultEquipmentStr]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         } else {
@@ -152,7 +154,7 @@
     [self.dropDownList setBackgroundColor:UIColorFromRGB(0x93E3B9)];
     self.dropDownList.titleLabel.textColor = [UIColor whiteColor];
     self.dropDownList.separateColor = UIColorFromRGB(0xF5F5F5);
-    self.dropDownList.titleLabel.text = @"Equipment Category";
+    self.dropDownList.titleLabel.text = ANTDefaultEquipmentStr;
     self.dropDownList.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, self.dropDownList.frame.size.height - 1, self.dropDownList.frame.size.width, 0.5f)];
     separator.backgroundColor = [UIColor whiteColor];

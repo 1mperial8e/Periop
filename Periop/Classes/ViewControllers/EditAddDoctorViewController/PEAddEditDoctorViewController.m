@@ -6,6 +6,17 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSInteger const AEDTitleForRowHeight = 37;
+static NSInteger const AEDHeightForSpecRow = 130;
+static NSInteger const AEDHeightForAllRows = 37;
+static NSInteger const AEDTagForView = 100;
+static NSString *const AEDTitleNameSpec = @"Specialisations";
+
+static NSString *const AEDTEditAddDoctorTableViewCellNibName = @"PEEditAddDoctorTableViewCell";
+static NSString *const AEDTEditAddDoctorTableViewCellCellName = @"tableViewCellWithCollection";
+static NSString *const AEDTProceduresTableViewCellNibName = @"PEProceduresTableViewCell";
+static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
+
 #import "PEMediaSelect.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PEEditAddDoctorTableViewCell.h"
@@ -21,13 +32,6 @@
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
-
-
-static NSInteger const AEDTitleForRowHeight = 37;
-static NSInteger const AEDHeightForSpecRow = 130;
-static NSInteger const AEDHeightForAllRows = 37;
-static NSInteger const AEDTagForView = 100;
-static NSString *const AEDTitleNameSpec = @"Specialisations";
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
@@ -55,8 +59,8 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEEditAddDoctorTableViewCell" bundle:nil] forCellReuseIdentifier:@"tableViewCellWithCollection"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEProceduresTableViewCell" bundle:nil] forCellReuseIdentifier:@"proceduresCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:AEDTEditAddDoctorTableViewCellNibName bundle:nil] forCellReuseIdentifier:AEDTEditAddDoctorTableViewCellCellName];
+    [self.tableView registerNib:[UINib nibWithNibName:AEDTProceduresTableViewCellNibName bundle:nil] forCellReuseIdentifier:AEDTProceduresTableViewCellName];
     self.nameTextField.delegate = self;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
@@ -245,7 +249,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath row] == 0 && indexPath.section == 0) {
-        PEEditAddDoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCellWithCollection" forIndexPath: indexPath];
+        PEEditAddDoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AEDTEditAddDoctorTableViewCellCellName forIndexPath: indexPath];
         if (!cell) {
             cell = [[PEEditAddDoctorTableViewCell alloc] init];
         }
@@ -253,7 +257,7 @@ static NSString *const AEDTitleNameSpec = @"Specialisations";
         cell.delegate = self;
         return cell;
     } else {
-        PEProceduresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"proceduresCell" forIndexPath: indexPath];
+        PEProceduresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AEDTProceduresTableViewCellName forIndexPath: indexPath];
         if (!cell) {
             cell = [[PEProceduresTableViewCell alloc] init];
         }

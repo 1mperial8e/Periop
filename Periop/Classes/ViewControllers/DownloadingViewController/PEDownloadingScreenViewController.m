@@ -19,10 +19,4 @@
 
 @implementation PEDownloadingScreenViewController
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 @end

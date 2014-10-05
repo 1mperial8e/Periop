@@ -74,7 +74,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Procedure Name";
+    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
     [self.tableView reloadData];
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
@@ -266,8 +266,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = [(Procedure*)obj1 name];
-        NSString *secondObject = [(Procedure*)obj2 name];
+        NSString *firstObject = ((Procedure*)obj1).name;
+        NSString *secondObject = ((Procedure*)obj2).name;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
@@ -277,8 +277,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = [(Doctors*)obj1 name];
-        NSString *secondObject = [(Doctors*)obj2 name];
+        NSString *firstObject = ((Doctors*)obj1).name;
+        NSString *secondObject = ((Doctors*)obj2).name;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];

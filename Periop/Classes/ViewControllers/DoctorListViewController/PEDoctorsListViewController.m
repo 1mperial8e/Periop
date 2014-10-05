@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const DLCellName = @"doctorsCell";
+static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
+
 #import "PEDoctorsListViewController.h"
 #import "PEDoctorsViewTableViewCell.h"
 #import "PEAddEditDoctorViewController.h"
@@ -48,7 +51,7 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsViewTableViewCell" bundle:nil]  forCellReuseIdentifier:@"doctorsCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:DLNibName bundle:nil]  forCellReuseIdentifier:DLCellName];
 
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithImage:[UIImage  imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
 
@@ -153,9 +156,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorsViewTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"doctorsCell" forIndexPath:indexPath];
+    PEDoctorsViewTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:DLCellName forIndexPath:indexPath];
     if (!cell) {
-        cell = [[PEDoctorsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"doctorsCell"];
+        cell = [[PEDoctorsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DLCellName];
     }
     if (indexPath.row % 2) {
         cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);

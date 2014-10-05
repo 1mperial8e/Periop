@@ -6,6 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
+static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
+static NSString *const PPPatientPositioningTableViewCellNibName = @"PEPatientPositioningTableViewCell";
+static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPositioningStepsCell";
+
+static NSString *const PPImagePlaceHolder = @"Place_Holder";
+static NSInteger const PPTagView = 35;
+
 #import "PEPatientPositioningViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEPatientPositioningTableViewCell.h"
@@ -44,8 +52,8 @@
     self.specManager = [PESpecialisationManager sharedManager];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    [self.postedCollectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
-    [self.tableViewPatient registerNib:[UINib nibWithNibName:@"PEPatientPositioningTableViewCell" bundle:nil] forCellReuseIdentifier:@"patientPositioningStepsCell"];
+    [self.postedCollectionView registerNib:[UINib nibWithNibName:PPOperationRoomCollectionViewCellNibName bundle:nil] forCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier];
+    [self.tableViewPatient registerNib:[UINib nibWithNibName:PPPatientPositioningTableViewCellNibName bundle:nil] forCellReuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
     
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -77,7 +85,7 @@
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:PPTagView] removeFromSuperview];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
     self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
@@ -98,7 +106,7 @@
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = size;
-    view.tag = 35;
+    view.tag = PPTagView;
     [self.view addSubview:view];
 }
 
@@ -113,7 +121,6 @@
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
     cameraView.request = PatientPostioningViewController;
     [self presentViewController:cameraView animated:YES completion:nil];
@@ -121,21 +128,21 @@
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:PPTagView] removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.specManager.currentProcedure.patientPostioning.steps allObjects] count];
+    return [self.specManager.currentProcedure.patientPostioning.steps allObjects].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEPatientPositioningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell" forIndexPath:indexPath];
+    PEPatientPositioningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PPPatientPositioningTableViewCellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"patientPositioningStepsCell"];
+        cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
     }
     
     [self configureCell:cell atIndexPath:indexPath];
@@ -165,7 +172,7 @@
     static PEPatientPositioningTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
-        sizingCell = [self.tableViewPatient dequeueReusableCellWithIdentifier:@"patientPositioningStepsCell"];
+        sizingCell = [self.tableViewPatient dequeueReusableCellWithIdentifier:PPPatientPositioningTableViewCellIdentifier];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     
@@ -188,12 +195,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
+    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count>0) {
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         self.pageControll.currentPage = [indexPath row];
     } else {
-        cell.operationRoomImage.image = [UIImage imageNamedFile:@"Place_Holder"];
+        cell.operationRoomImage.image = [UIImage imageNamedFile:PPImagePlaceHolder];
     }
     return cell;
 }
@@ -206,9 +213,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count >0 && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
+    if (self.sortedArrayWithPhotos.count && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:PPImagePlaceHolder] hash]) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        if (self.sortedArrayWithPhotos.count >0) {
+        if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];

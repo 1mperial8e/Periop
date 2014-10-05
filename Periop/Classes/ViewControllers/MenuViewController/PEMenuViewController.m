@@ -6,6 +6,22 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static CGFloat const MVCAnimationDuration = 0.5f;
+static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
+static NSString *const MVCAboutUs = @"About Us";
+static NSString *const MVCSurgeonList = @"Surgeon List";
+static NSString *const MVCTermsAndCond = @"Terms & Conditions";
+static NSString *const MVCFeedback = @"Feedback";
+static NSString *const MVCSpecialisation = @"Specialisations";
+
+static NSString *const MVCSpecAnimationKey = @"hideMenuToSpecialisation";
+static NSString *const MVCTermsAnimationKey = @"hideMenuToTerms";
+static NSString *const MVCAboutAnimationKey = @"hideMenuToAbout";
+static NSString *const MVCSurgeonListAnimationKey = @"hideMenuToSurgeons";
+static NSString *const MVCMenuAnimationKey = @"hideMenuToMenu";
+static NSString *const MVCMoreSpecButtonAnimationKey = @"hideMenuToMenuMySpecialisation";
+static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecialisation";
+
 #import <QuartzCore/QuartzCore.h>
 #import "PEMenuViewController.h"
 #import "PEDoctorsListViewController.h"
@@ -14,14 +30,6 @@
 #import "PETermsAndConditionViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "UIImage+ImageWithJPGFile.h"
-
-static CGFloat const MVCAnimationDuration = 0.5f;
-static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
-static NSString *const MVCAboutUs = @"About Us";
-static NSString *const MVCSurgeonList = @"Surgeon List";
-static NSString *const MVCTermsAndCond = @"Terms & Conditions";
-static NSString *const MVCFeedback = @"Feedback";
-static NSString *const MVCSpecialisation = @"Specialisations";
 
 @interface PEMenuViewController () <MFMailComposeViewControllerDelegate>
 
@@ -54,16 +62,15 @@ static NSString *const MVCSpecialisation = @"Specialisations";
     self.menuTitleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0];
     
     [self setupButtons];
-    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height/2;   
+    self.viewSelection.layer.cornerRadius = self.viewSelection.frame.size.height / 2;
     self.tabBarController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     
     self.isFeedbackPresented = NO;
 }
 
-- (void)viewDidLayoutSubviews{
-    
+- (void)viewDidLayoutSubviews
+{
     [super viewDidLayoutSubviews];
-    
     if (!self.isFeedbackPresented) {
         CGPoint newCenter = self.view.center;
         newCenter.y -= self.view.frame.size.height;
@@ -83,13 +90,14 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 
 #pragma mark - IBActions
 
-- (IBAction)specialisationButton:(id)sender {
+- (IBAction)specialisationButton:(id)sender
+{
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
     self.menuTitleLabel.text = MVCSpecialisation;
-    [self createAnimationWithKey:@"hideMenuToSpecialisation"];
+    [self createAnimationWithKey:MVCSpecAnimationKey];
     self.tabBarController.selectedViewController = self.tabBarController.viewControllers[0];
 }
 
@@ -101,7 +109,7 @@ static NSString *const MVCSpecialisation = @"Specialisations";
     self.viewSelection.hidden = NO;
     self.menuTitleLabel.text = MVCSurgeonList;
     self.tabBarController.selectedViewController = self.tabBarController.viewControllers[1];
-    [self createAnimationWithKey:@"hideMenuToSurgeons"];
+    [self createAnimationWithKey:MVCSurgeonListAnimationKey];
     [self hideBottomButtons];
 }
 
@@ -113,22 +121,24 @@ static NSString *const MVCSpecialisation = @"Specialisations";
     self.viewSelection.hidden = NO;
     self.menuTitleLabel.text = MVCAboutUs;
     self.tabBarController.selectedViewController = self.tabBarController.viewControllers[2];
-    [self createAnimationWithKey:@"hideMenuToAbout"];
+    [self createAnimationWithKey:MVCAboutAnimationKey];
     [self hideBottomButtons];
 }
     
-- (IBAction)termsAndConditionsButton:(id)sender {
+- (IBAction)termsAndConditionsButton:(id)sender
+{
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
     self.viewSelection.hidden = NO;
     self.menuTitleLabel.text= MVCTermsAndConditions;
     self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
-    [self createAnimationWithKey:@"hideMenuToTerms"];
+    [self createAnimationWithKey:MVCTermsAnimationKey];
     [self hideBottomButtons];
 }
 
-- (IBAction)feedbackButton:(id)sender {
+- (IBAction)feedbackButton:(id)sender
+{
     CGPoint newCenterForView = ((UIButton *)sender).center;
     newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
     self.viewSelection.center = newCenterForView;
@@ -162,21 +172,21 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 
 - (IBAction)menuButton:(id)sender
 {
-    [self createAnimationWithKey:@"hideMenuToMenu"];
+    [self createAnimationWithKey:MVCMenuAnimationKey];
 }
 
 - (IBAction)mySpecialisationButton:(id)sender
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
-    [self createAnimationWithKey:@"hideMenuToMenuMySpecialisation"];
+    [self createAnimationWithKey:MVCMoreSpecButtonAnimationKey];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
-    [self createAnimationWithKey:@"hideMenuToMenuMoreSpecialisation"];
+    [self createAnimationWithKey:MVCMySpecButtonAnimationKey];
 }
 
 #pragma mark - Animation
@@ -213,27 +223,25 @@ static NSString *const MVCSpecialisation = @"Specialisations";
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if (anim == [self.view.layer animationForKey:@"hideMenuToMenu"]) {
-        [self.view.layer removeAnimationForKey:@"hideMenuToMenu"];
+    if (anim == [self.view.layer animationForKey:MVCMenuAnimationKey]) {
+        [self.view.layer removeAnimationForKey:MVCMenuAnimationKey];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToSpecialisation"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToSpecialisation"];
+    } else if (anim==[self.view.layer animationForKey:MVCSpecAnimationKey]){
+        [self.view.layer removeAnimationForKey:MVCSpecAnimationKey];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToSurgeons"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToSurgeons"];
+    } else if (anim==[self.view.layer animationForKey:MVCSurgeonListAnimationKey]){
+        [self.view.layer removeAnimationForKey:MVCSurgeonListAnimationKey];
          [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToAbout"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToAbout"];
+    } else if (anim==[self.view.layer animationForKey:MVCAboutAnimationKey]){
+        [self.view.layer removeAnimationForKey:MVCAboutAnimationKey];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToTerms"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToTerms"];
+    } else if (anim==[self.view.layer animationForKey:MVCTermsAnimationKey]){
+        [self.view.layer removeAnimationForKey:MVCTermsAnimationKey];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim==[self.view.layer animationForKey:@"hideMenuToFeedback"]){
-        [self.view.layer removeAnimationForKey:@"hideMenuToFeedback"];
-    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMoreSpecialisation"]) {
+    } else if (anim == [self.view.layer animationForKey:MVCMySpecButtonAnimationKey]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"moreSpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (anim == [self.view.layer animationForKey:@"hideMenuToMenuMySpecialisation"]) {
+    } else if (anim == [self.view.layer animationForKey:MVCMoreSpecButtonAnimationKey]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mySpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){

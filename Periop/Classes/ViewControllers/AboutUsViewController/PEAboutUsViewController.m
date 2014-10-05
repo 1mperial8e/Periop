@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const AUVCTitleText = @"About Us";
+static NSString *const AUVCNibName = @"PEMenuViewController";
+
 #import "PEAboutUsViewController.h"
 #import "PEMenuViewController.h"
 
@@ -23,7 +26,7 @@
 {
     [super viewDidLoad];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"About Us";
+    ((PENavigationController *)self.navigationController).titleLabel.text = AUVCTitleText;
     
     self.textView.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
@@ -32,8 +35,8 @@
 
 - (IBAction)menuButton:(id)sender
 {
-    PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
-    menuController.textToShow = @"About Us";
+    PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:AUVCNibName bundle:nil];
+    menuController.textToShow = AUVCTitleText;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;

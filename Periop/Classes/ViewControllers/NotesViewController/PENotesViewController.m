@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const NVCNotesCellIdentifier = @"notesCell";
+static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
+
 #import "PENotesViewController.h"
 #import "PENotesTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
@@ -45,7 +48,7 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    [self.tableViewNotes registerNib:[UINib nibWithNibName:@"PENotesTableViewCell" bundle:nil] forCellReuseIdentifier:@"notesCell"];
+    [self.tableViewNotes registerNib:[UINib nibWithNibName:NVCNotesCellNibName bundle:nil] forCellReuseIdentifier:NVCNotesCellIdentifier];
     self.tableViewNotes.delegate = self;
     self.tableViewNotes.dataSource = self;
 }
@@ -92,7 +95,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PENotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"notesCell" forIndexPath:indexPath];
+    PENotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NVCNotesCellIdentifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[PENotesTableViewCell alloc] init];
     }
@@ -131,7 +134,7 @@
     static PENotesTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
-        sizingCell = [self.tableViewNotes dequeueReusableCellWithIdentifier:@"notesCell"];
+        sizingCell = [self.tableViewNotes dequeueReusableCellWithIdentifier:NVCNotesCellIdentifier];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     

@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const DPDoctorsProfileTableCellName = @"doctorsProfileCell";
+static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableViewCell";
+static NSString *const DPDoctorsProfileCollectionCellName = @"doctorProfileCollectionViewCell";
+static NSString *const DPDoctorsProfileCollectionNibName = @"PEDoctorProfileCollectionViewCell";
+static NSString *const DPPlaceHolderImageName = @"Place_Holder";
+
 #import "PEDoctorProfileViewController.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PENotesViewController.h"
@@ -51,8 +57,8 @@
 
     self.doctorName.font = [UIFont fontWithName:FONT_MuseoSans500 size:35.0f];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEDoctorsProfileTableViewCell" bundle:nil] forCellReuseIdentifier:@"doctorsProfileCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PEDoctorProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"doctorProfileCollectionViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:DPDoctorsProfileTableNibName bundle:nil] forCellReuseIdentifier:DPDoctorsProfileTableCellName];
+    [self.collectionView registerNib:[UINib nibWithNibName:DPDoctorsProfileCollectionNibName bundle:nil] forCellWithReuseIdentifier:DPDoctorsProfileCollectionCellName];
     
     [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
@@ -95,7 +101,7 @@
     if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     } else {
-        self.doctorPhotoImageView.image = [UIImage imageNamedFile:@"Place_Holder.png"];
+        self.doctorPhotoImageView.image = [UIImage imageNamedFile:DPPlaceHolderImageName];
     }
     
     [self.tableView reloadData];
@@ -111,9 +117,8 @@
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:@"Place_Holder.png"] hash]) {
+    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:DPPlaceHolderImageName] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"Touched Image");
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
                 viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;
@@ -193,7 +198,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorsProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"doctorsProfileCell" forIndexPath:indexPath];
+    PEDoctorsProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DPDoctorsProfileTableCellName forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEDoctorsProfileTableViewCell alloc] init];
     }
@@ -236,7 +241,7 @@
 
 - (PEDoctorProfileCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEDoctorProfileCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"doctorProfileCollectionViewCell" forIndexPath:indexPath];
+    PEDoctorProfileCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DPDoctorsProfileCollectionCellName forIndexPath:indexPath];
     if (!cell) {
         cell = [[PEDoctorProfileCollectionViewCell alloc] init];
     }

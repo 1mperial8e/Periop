@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
+
 #import "PEEquipmentViewController.h"
 #import "PEEquipmentCategoryTableViewCell.h"
 #import "PEToolsDetailsViewController.h"
@@ -52,7 +54,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"equipmentCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:EEquipmentCellIdentifier];
     self.cellCurrentlyEditing = [NSMutableSet new];
     self.cellWithCheckedButtons = [NSMutableSet new];
     
@@ -162,7 +164,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEEquipmentCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"equipmentCell" forIndexPath:indexPath];
+    PEEquipmentCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EEquipmentCellIdentifier forIndexPath:indexPath];
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }

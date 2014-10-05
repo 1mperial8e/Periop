@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const PPreparationTableViewCellNibName = @"PEPreparationTableViewCell";
+static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell";
+
 #import "PEPreperationViewController.h"
 #import "PEPreparationTableViewCell.h"
 
@@ -44,7 +47,7 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEPreparationTableViewCell" bundle:nil] forCellReuseIdentifier:@"preparationCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:PPreparationTableViewCellNibName bundle:nil] forCellReuseIdentifier:PPreparationTableViewCellIdentifier];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -81,7 +84,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PEPreparationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+    PEPreparationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PPreparationTableViewCellIdentifier];
     if (!cell) {
         cell = [[PEPreparationTableViewCell alloc] init];
     }
@@ -110,7 +113,7 @@
     static PEPreparationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"preparationCell"];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PPreparationTableViewCellIdentifier];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     

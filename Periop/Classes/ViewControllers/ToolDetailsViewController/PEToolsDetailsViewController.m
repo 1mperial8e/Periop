@@ -7,6 +7,8 @@
 //
 
 static NSInteger const TDVCAnimationDuration = 0.2f;
+static NSInteger const TDVCViewTag = 35;
+static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 
 #import "PEToolsDetailsViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
@@ -109,10 +111,10 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
         }
     } else {
-        self.equipmentPhoto.image = [UIImage imageNamedFile:@"Place_Holder"];
+        self.equipmentPhoto.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
     
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:TDVCViewTag] removeFromSuperview];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -165,13 +167,13 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = position;
-    view.tag = 35;
+    view.tag = TDVCViewTag;
     [self.view addSubview:view];
 }
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamedFile:@"Place_Holder"] hash]) {
+    if ([[self.specManager.currentEquipment.photo allObjects] count]>0 && [((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash]!= [[UIImage imageNamedFile:TDVPlaceHolderImageName] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if ([[self.specManager.currentEquipment.photo allObjects] count]) {
@@ -201,7 +203,7 @@ static NSInteger const TDVCAnimationDuration = 0.2f;
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:TDVCViewTag] removeFromSuperview];
 }
 
 #pragma mark - UITextFieldDelegate

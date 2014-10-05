@@ -10,6 +10,9 @@ static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
 static NSString *const SVCSpecialisations = @"Specialisations";
 static NSString *const SVCRestoreKeySetting = @"Restored";
 
+static NSString *const SVCSpecialisationCollectionCellNibName = @"PESpecialisationCollectionCell";
+static NSString *const SVCSpecialisationCollectionCellIdentifier = @"SpecialisedCell";
+
 #import "PESpecialisationViewController.h"
 #import "PESpecialisationCollectionViewCell.h"
 #import "PEProcedureListViewController.h"
@@ -70,7 +73,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
         [def setInteger:1 forKey:SVCRestoreKeySetting];
     }
     
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PESpecialisationCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"SpecialisedCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:SVCSpecialisationCollectionCellNibName bundle:nil] forCellWithReuseIdentifier:SVCSpecialisationCollectionCellIdentifier];
     
     self.collectionView.delegate = (id)self;
     self.collectionView.dataSource = (id)self;
@@ -91,7 +94,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"Specialisations";
+    ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
     
     PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
     self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
@@ -193,7 +196,7 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PESpecialisationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SpecialisedCell" forIndexPath:indexPath];
+    PESpecialisationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SVCSpecialisationCollectionCellIdentifier forIndexPath:indexPath];
     if (self.specialisationsArray && self.specialisationsArray.count) {
         cell.backgroundColor = [UIColor clearColor];
         
@@ -202,8 +205,8 @@ static NSString *const SVCRestoreKeySetting = @"Restored";
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
             NSArray *allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                NSString *product1 = [(SKProduct*)obj1 localizedTitle];
-                NSString *product2 = [(SKProduct*)obj2 localizedTitle];
+                NSString *product1 = ((SKProduct*)obj1).localizedTitle;
+                NSString *product2 = ((SKProduct*)obj2).localizedTitle;
                 return [product1 compare:product2];
             }];
             cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;

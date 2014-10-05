@@ -6,6 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const OROperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
+static NSString *const OROperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
+static NSString *const OROperationTableViewCellNibName = @"PEOperationTableViewCell";
+static NSString *const OROperationTableViewCellIdentifier = @"operationTableViewCell";
+
+static NSString *const ORImagePlaceHolder = @"Place_Holder";
+static NSInteger const ORTagView = 35;
+
 #import "PEOperationRoomViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEMediaSelect.h"
@@ -59,9 +67,9 @@
     
     self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
 
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PEOperationRoomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"OperationRoomViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:OROperationRoomCollectionViewCellNibName bundle:nil] forCellWithReuseIdentifier:OROperationRoomCollectionViewCellIdentifier];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"PEOperationTableViewCell" bundle:nil] forCellReuseIdentifier:@"operationTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:OROperationTableViewCellNibName bundle:nil] forCellReuseIdentifier:OROperationTableViewCellIdentifier];
     
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -84,7 +92,7 @@
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:ORTagView] removeFromSuperview];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.operationRoom.photo allObjects]];
     self.pageController.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.collectionView reloadData];
@@ -100,9 +108,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count>0 && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:@"Place_Holder"] hash]) {
+    if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        if (self.sortedArrayWithPhotos.count >0) {
+        if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
@@ -114,7 +122,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.sortedArrayWithPhotos.count>0) {
+    if (self.sortedArrayWithPhotos.count) {
         return self.sortedArrayWithPhotos.count;
     } else {
         return 1;
@@ -123,11 +131,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OperationRoomViewCell" forIndexPath:indexPath];
-    if (self.sortedArrayWithPhotos.count >0) {
-        cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+    PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:OROperationRoomCollectionViewCellIdentifier forIndexPath:indexPath];
+    if (self.sortedArrayWithPhotos.count) {
+        cell.operationRoomImage.image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
     } else {
-        cell.operationRoomImage.image = [UIImage imageNamedFile:@"Place_Holder"];
+        cell.operationRoomImage.image = [UIImage imageNamedFile:ORImagePlaceHolder];
     }
     
     self.pageController.currentPage = [indexPath row];
@@ -143,9 +151,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEOperationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
+    PEOperationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OROperationTableViewCellIdentifier];
     if (!cell){
-        cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"operationTableViewCell"];
+        cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:OROperationTableViewCellIdentifier];
     }
     cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -160,7 +168,7 @@
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEOperationTableViewCell *)configureCell: (PEOperationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+- (PEOperationTableViewCell *)configureCell: (PEOperationTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.labelStep.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
     cell.labelPreparationText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
@@ -172,7 +180,7 @@
     static PEOperationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"operationTableViewCell"];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:OROperationTableViewCellIdentifier];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     
@@ -191,7 +199,7 @@
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = position;
-    view.tag = 35;
+    view.tag = ORTagView;
     [self.view addSubview:view];
 }
 
@@ -207,7 +215,6 @@
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
     cameraView.sortedArrayWithCurrentPhoto = self.sortedArrayWithPhotos;
     cameraView.request = OperationRoomViewController;
@@ -216,7 +223,7 @@
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [[self.view viewWithTag:ORTagView] removeFromSuperview];
 }
 
 #pragma marks - Private
@@ -225,8 +232,8 @@
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = [(Steps*)obj1 stepName];
-        NSString *secondObject = [(Steps*)obj2 stepName];
+        NSString *firstObject = ((Steps*)obj1).stepName;
+        NSString *secondObject = ((Steps*)obj2).stepName;
         return [firstObject compare:secondObject];
     }];
     return sortedArray;
@@ -236,8 +243,8 @@
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSNumber *firstObject = [(Photo*)obj1 photoNumber];
-        NSNumber *secondObject = [(Photo*)obj2 photoNumber];
+        NSNumber *firstObject = ((Photo*)obj1).photoNumber;
+        NSNumber *secondObject = ((Photo*)obj2).photoNumber;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];

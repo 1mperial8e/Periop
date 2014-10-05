@@ -6,6 +6,13 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const VPVCOperationRoomViewController = @"PEOperationRoomViewController";
+static NSString *const VPVCToolsDetailsViewController = @"PEToolsDetailsViewController";
+static NSString *const VPVCPatientPositioningViewController = @"PEPatientPositioningViewController";
+static NSString *const VPVCDoctorProfileViewController = @"PEDoctorProfileViewController";
+static NSString *const VPVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
+static NSString *const VPVCNotesViewController = @"PENotesViewController";
+
 #import "PEViewPhotoViewController.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDatamanager.h"
@@ -84,40 +91,41 @@
 
 - (IBAction)removeImageButton:(id)sender
 {
-    if (self.photoToShow!=nil) {
-        if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
+    if (self.photoToShow) {
+        id viewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2];
+        
+        if ([viewController isKindOfClass:NSClassFromString(VPVCOperationRoomViewController)]) {
             for (Photo * imageToDelete in [self.specManager.currentProcedure.operationRoom.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentProcedure.operationRoom removePhotoObject:imageToDelete];
                     [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
-        } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEPatientPositioningViewController"]) {
+        } else if ([viewController isKindOfClass:NSClassFromString(VPVCPatientPositioningViewController)]) {
             for (Photo * imageToDelete in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentProcedure.patientPostioning removePhotoObject:imageToDelete];
                     [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
-        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
+        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
             for (Photo * imageToDelete in [self.specManager.currentEquipment.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentEquipment removePhotoObject:imageToDelete];
                     [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
-        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEDoctorProfileViewController"]) {
+        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
                 [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
             }
-        } else  if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEAddEditDoctorViewController"]) {
+        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
                 [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
             }
-        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PENotesViewController"]) {
-            
+        } else if ([viewController isKindOfClass:NSClassFromString(VPVCNotesViewController)]) {
             if ([((Photo*)self.specManager.currentNote.photo).photoData isEqualToData:self.photoToShow.photoData]) {
                 if (self.specManager.currentNote.photo) {
                     [self.managedObjectContext deleteObject:(Photo*)self.specManager.currentNote.photo];
@@ -125,12 +133,10 @@
                 self.specManager.currentNote.photo = nil;
             }
         }
-
         NSError* removeError = nil;
         if (![self.managedObjectContext save:&removeError]) {
             NSLog(@"Cant remove image - %@", removeError.localizedDescription);
-        }
-        
+        }        
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
