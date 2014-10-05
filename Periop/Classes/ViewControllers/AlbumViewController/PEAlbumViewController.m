@@ -5,6 +5,19 @@
 //  Created by Stas Volskyi on 19.09.14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
+static NSString *const AVCCellName = @"albumCell";
+
+static NSString *const AVCOperationRoomViewController = @"PEOperationRoomViewController";
+static NSString *const AVCToolsDetailsViewController = @"PEToolsDetailsViewController";
+static NSString *const AVCPatientPositioningViewController = @"PEPatientPositioningViewController";
+static NSString *const AVCDoctorProfileViewController = @"PEDoctorProfileViewController";
+static NSString *const AVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
+static NSString *const AVCAddEditNoteViewController = @"PEAddEditNoteViewController";
+
+static NSInteger const AVCOperationRoomQuantity = 4;
+static NSInteger const AVCOneQuantity = 0;
+static NSInteger const AVCDefaultQuantity = 29;
+
 
 #import "PEAlbumViewController.h"
 #import "PECameraRollManager.h"
@@ -39,7 +52,7 @@
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    [self.photosCollectionView registerNib:[UINib nibWithNibName:@"PeAlbumCell" bundle:nil] forCellWithReuseIdentifier:@"albumCell"];
+    [self.photosCollectionView registerNib:[UINib nibWithNibName:@"PeAlbumCell" bundle:nil] forCellWithReuseIdentifier:AVCCellName];
     self.photosCollectionView.allowsMultipleSelection = YES;
     
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStylePlain target:self action:@selector(choosingComplete)];
@@ -65,7 +78,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"albumCell" forIndexPath:indexPath];
+    PEAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:AVCCellName forIndexPath:indexPath];
     ALAsset *asset = [PECameraRollManager sharedInstance].assets[indexPath.row];
     cell.photoThumbnail.image = [UIImage imageWithCGImage:asset.thumbnail];
     return cell;
@@ -96,57 +109,21 @@
         NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
         newPhoto.photoData = imageData;
         
-        if ([self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2] isKindOfClass:NSClassFromString(@"PEOperationRoomViewController")]) {
-            if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
-                newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
-                newPhoto.photoNumber = @(counter++);
-                [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
-            } else {
-                [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
-                newPhoto.photoNumber = @(rewriteCounter);
-                newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
-                [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
-                rewriteCounter++;
-            }
-            NSError *error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
-            }
-        } else if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEToolsDetailsViewController"]) {
-            if ([self.specManager.currentEquipment.photo allObjects].count>0) {
-                [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
-            }
-            newPhoto.equiomentTool = self.specManager.currentEquipment;
+        id requestedController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+        
+        if ([requestedController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
+            [self photoForOperationRoomViewController:newPhoto count:counter rewriteCount:rewriteCounter];
+        } else if ([requestedController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+            [self photoForToolsDetailsViewController:newPhoto];
+        } else if ([requestedController isKindOfClass:NSClassFromString(AVCPatientPositioningViewController)]) {
+            [self photoForPatientPositioningViewController:newPhoto];
+        } else if ([requestedController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)]) {
+            [self photoForDoctorsProfileViewController:newPhoto];
+        } else if ([requestedController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)]) {
             newPhoto.photoNumber = @0;
-            [self.specManager.currentEquipment addPhotoObject:newPhoto];
-            NSError *error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Cant save chnages with photos toolsDetails DB - %@", error.localizedDescription);
-            }
-        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEPatientPositioningViewController"]) {
-                newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
-                newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
-                [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
-                NSError *error = nil;
-                if (![self.managedObjectContext save:&error]) {
-                    NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
-                }
-        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"]) {
-            if (self.specManager.currentDoctor.photo) {
-                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
-            }
-            newPhoto.doctor = self.specManager.currentDoctor;
-            newPhoto.photoNumber = @(0);
-            self.specManager.currentDoctor.photo = newPhoto;
-            NSError *error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
-            }
-        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"]) {
-            newPhoto.photoNumber = @(0);
             self.specManager.photoObject = newPhoto;
-        } else if ([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
-            newPhoto.photoNumber = @(0);
+        } else if ([requestedController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)]) {
+            newPhoto.photoNumber = @0;
             self.specManager.photoObject = newPhoto;
         }
     }
@@ -156,13 +133,81 @@
 
 - (NSInteger)getAllowedCountOfSelectedCells
 {
+    NSInteger allowedPhotoQuantity;
+    
     id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([[NSString stringWithFormat:@"%@",[self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString:@"PEOperationRoomViewController"]) {
-        return  4;
-    } else if([[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditDoctorViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEDoctorProfileViewController"] || [[NSString stringWithFormat:@"%@", [self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2] class]] isEqualToString: @"PEAddEditNoteViewController"]) {
-        return 0;
+    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
+        allowedPhotoQuantity = AVCOperationRoomQuantity;
+    } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
+              [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
+              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ||
+              [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+        allowedPhotoQuantity = AVCOneQuantity;
+    } else {
+        allowedPhotoQuantity = AVCDefaultQuantity;
     }
-    return 30;
+    
+    return allowedPhotoQuantity;
+}
+
+#pragma mark - Private
+
+- (void)photoForOperationRoomViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
+{
+    if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
+        newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+        newPhoto.photoNumber = @(counter++);
+        [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+    } else {
+        [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
+        newPhoto.photoNumber = @(rewriteCounter);
+        newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+        [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+        rewriteCounter++;
+    }
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+    }
+}
+
+- (void)photoForToolsDetailsViewController:(Photo *)newPhoto
+{
+    if ([self.specManager.currentEquipment.photo allObjects].count>0) {
+        [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
+    }
+    newPhoto.equiomentTool = self.specManager.currentEquipment;
+    newPhoto.photoNumber = @0;
+    [self.specManager.currentEquipment addPhotoObject:newPhoto];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant save chnages with photos toolsDetails DB - %@", error.localizedDescription);
+    }
+}
+
+- (void)photoForPatientPositioningViewController:(Photo *)newPhoto
+{
+    newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
+    newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
+    [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
+    }
+}
+
+- (void)photoForDoctorsProfileViewController:(Photo *)newPhoto
+{
+    if (self.specManager.currentDoctor.photo) {
+        [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
+    }
+    newPhoto.doctor = self.specManager.currentDoctor;
+    newPhoto.photoNumber = @0;
+    self.specManager.currentDoctor.photo = newPhoto;
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
+    }
 }
 
 @end
