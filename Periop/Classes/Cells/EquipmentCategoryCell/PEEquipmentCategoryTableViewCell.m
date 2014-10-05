@@ -6,7 +6,13 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const ECAnimationSwipeLeft = @"swipeLeft";
+static NSString *const ECAnimationKeyPath = @"transform.translation.x";
+static CGFloat const ECAnimationDuration = 0.2f;
+static CGFloat const ECMultiplier = 1.8f;
+
 #import "PEEquipmentCategoryTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PEEquipmentCategoryTableViewCell() <UIGestureRecognizerDelegate>
 
@@ -46,25 +52,35 @@
 
 - (IBAction)swipeLeft:(id)sender
 {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width *2.8, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^ {
-            self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
-        } completion:^(BOOL finished) {
-            self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
-            [self.delegate cellDidSwipedOut:self];
-        }];
-    }];
+    CAKeyframeAnimation *translation = [CAKeyframeAnimation animationWithKeyPath:ECAnimationKeyPath];
+    translation.duration = ECAnimationDuration;
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    [values addObject:[NSNumber numberWithFloat:0.0f]];
+    [values addObject:[NSNumber numberWithFloat:-self.buttonDeleteOutlet.frame.size.width * ECMultiplier]];
+    translation.values = values;
+    NSMutableArray *timingFunction = [[NSMutableArray alloc] init];
+    [timingFunction addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    translation.timingFunctions = timingFunction;
+    translation.removedOnCompletion = NO;
+    translation.delegate = self;
+    [self.viewWithContent.layer addAnimation:translation forKey:ECAnimationSwipeLeft];
 }
 
 - (IBAction)swipeRight:(id)sender
 {
-    [UIView animateWithDuration:0 animations:^ {
-        self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
-    } completion:^(BOOL finished) {
-        [self.delegate cellDidSwipedIn:self];
-    }];
+    self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
+    [self.delegate cellDidSwipedIn:self];
+}
+
+#pragma mark - Animation
+
+- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if (anim == [self.viewWithContent.layer animationForKey:ECAnimationSwipeLeft]) {
+        self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
+        [self.delegate cellDidSwipedOut:self];
+        [self.viewWithContent.layer removeAnimationForKey:ECAnimationSwipeLeft];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

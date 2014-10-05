@@ -5,8 +5,13 @@
 //  Created by Kirill on 9/6/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
+static NSString *const DVTVCAnimationSwipeLeft = @"swipeLeft";
+static NSString *const DVTVCAnimationKeyPath = @"transform.translation.x";
+static CGFloat const DVTVAnimationDuration = 0.2f;
+static CGFloat const DVTVMultiplier = 1.8f;
 
 #import "PEDoctorsViewTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PEDoctorsViewTableViewCell ()
 
@@ -51,26 +56,36 @@
 
 - (IBAction)swipeLeft:(id)sender
 {
-    PEDoctorsViewTableViewCell __weak *weakSelf = self;
-    [UIView animateWithDuration:0.2 animations:^ {
-    weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width *2.8, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
-    } completion:^(BOOL finished) {
-    [UIView animateWithDuration:0.2 animations:^ {
-            weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
-        } completion:^(BOOL finished) {
-            weakSelf.viewDoctorsNameView.frame = CGRectMake(-weakSelf.deleteButton.frame.size.width, 0, weakSelf.viewDoctorsNameView.frame.size.width, weakSelf.viewDoctorsNameView.frame.size.height);
-            [weakSelf.delegate cellDidSwipedOut:weakSelf];
-        }];
-    }];
+    CAKeyframeAnimation *translation = [CAKeyframeAnimation animationWithKeyPath:DVTVCAnimationKeyPath];
+    translation.duration = DVTVAnimationDuration;
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    [values addObject:[NSNumber numberWithFloat:0.0f]];
+    [values addObject:[NSNumber numberWithFloat:-self.deleteButton.frame.size.width * DVTVMultiplier]];
+    translation.values = values;
+    NSMutableArray *timingFunction = [[NSMutableArray alloc] init];
+    [timingFunction addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    translation.timingFunctions = timingFunction;
+    translation.removedOnCompletion = NO;
+    translation.delegate = self;
+    [self.viewDoctorsNameView.layer addAnimation:translation forKey:DVTVCAnimationSwipeLeft];
+    
 }
 
 - (IBAction)swipeRight:(id)sender
 {
-   [UIView animateWithDuration:0 animations:^ {
-        self.viewDoctorsNameView.frame = CGRectMake(0, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
-    } completion:^(BOOL finished) {
-        [self.delegate cellDidSwipedIn:self];
-    }];
+   self.viewDoctorsNameView.frame = CGRectMake(0, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
+    [self.delegate cellDidSwipedIn:self];
+}
+
+#pragma mark - Animation
+
+- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if (anim == [self.viewDoctorsNameView.layer animationForKey:DVTVCAnimationSwipeLeft]) {
+        self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
+        [self.delegate cellDidSwipedOut:self];
+        [self.viewDoctorsNameView.layer removeAnimationForKey:DVTVCAnimationSwipeLeft];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -86,5 +101,6 @@
 {
     self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
 }
+
 
 @end

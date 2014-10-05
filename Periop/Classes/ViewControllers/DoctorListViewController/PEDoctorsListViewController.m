@@ -51,7 +51,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    [self.tableView registerNib:[UINib nibWithNibName:DLNibName bundle:nil]  forCellReuseIdentifier:DLCellName];
+    [self.tableView registerNib:[UINib nibWithNibName:DLNibName bundle:nil] forCellReuseIdentifier:DLCellName];
 
     UIBarButtonItem * addDoctorButton = [[UIBarButtonItem alloc] initWithImage:[UIImage  imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addDoctorButton:)];
 
