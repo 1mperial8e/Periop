@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 static NSString *const DVTVCAnimationSwipeLeft = @"swipeLeft";
-static NSString *const DVTVCAnimationKeyPath = @"transform.translation.x";
 static CGFloat const DVTVAnimationDuration = 0.2f;
 static CGFloat const DVTVMultiplier = 1.8f;
 
 #import "PEDoctorsViewTableViewCell.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface PEDoctorsViewTableViewCell ()
 
@@ -25,6 +23,7 @@ static CGFloat const DVTVMultiplier = 1.8f;
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self initGestrudeRecognizer];
 }
 
@@ -64,7 +63,7 @@ static CGFloat const DVTVMultiplier = 1.8f;
     [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width * DVTVMultiplier, startPosition.y)]];
     [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width * 0.8, startPosition.y)]];
     [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width, startPosition.y)]];
-    position.keyTimes = @[@0, @0.6, @0.8, @1];
+    position.keyTimes = @[@0, @0.6, @0.8, @1.0];
     position.values = values;
     position.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];;
     position.removedOnCompletion = NO;
