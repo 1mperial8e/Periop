@@ -26,7 +26,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 #import <StoreKit/StoreKit.h>
 #import "UIImage+ImageWithJPGFile.h"
 
-@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
+@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate, SpecialisationListDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
@@ -124,6 +124,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     menuController.textToShow = SVCSpecialisations;
     menuController.isButtonMySpecializations = self.isMyspecializations;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height+self.buttonsView.frame.size.height;
+    menuController.delegate = (id)self;
     
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -177,8 +178,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
                         }
                     }
                 }
-            }];
-            
+            }];            
         }
     }
 }
@@ -361,7 +361,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     }
 }
 
-- (void) downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart withSpecName:(NSString*)specName;
+- (void)downloadPurchasedItems:(NSString*)mainFilePart withToolsPartFile:(NSString*)toolsFilePart withSpecName:(NSString*)specName;
 {
   // toolsFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hUG5yYzVEUTdMVm8";
   // mainFilePart = @"https://docs.google.com/uc?export=download&id=0B1GU18BxUf8hM1I3SldxODEzdUk";
@@ -399,6 +399,20 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         if (![[NSFileManager defaultManager] removeItemAtPath:arrayWithPathToDelete[i] error:&error]) {
             NSLog(@"Cant remove file after parsing - %@", error.localizedDescription);
         }
+    }
+}
+
+#pragma mark - SpecialisationListDelegate
+
+- (void)specialisationsListChanged:(PESpecList)specList
+{
+    switch (specList) {
+        case PESpecListMySpecialisations:
+            [self mySpesialisationButton:self];
+            break;
+        default:
+            [self moreSpecialisationButton:self];
+            break;
     }
 }
 

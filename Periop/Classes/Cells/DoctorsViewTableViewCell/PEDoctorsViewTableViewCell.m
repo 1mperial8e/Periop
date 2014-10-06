@@ -56,30 +56,41 @@ static CGFloat const DVTVMultiplier = 1.8f;
 
 - (IBAction)swipeLeft:(id)sender
 {
-    CAKeyframeAnimation *translation = [CAKeyframeAnimation animationWithKeyPath:DVTVCAnimationKeyPath];
-    translation.duration = DVTVAnimationDuration;
+    CAKeyframeAnimation *position = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    position.duration = DVTVAnimationDuration;
     NSMutableArray *values = [[NSMutableArray alloc] init];
-    [values addObject:[NSNumber numberWithFloat:0.0f]];
-    [values addObject:[NSNumber numberWithFloat:-self.deleteButton.frame.size.width * DVTVMultiplier]];
-    translation.values = values;
-    NSMutableArray *timingFunction = [[NSMutableArray alloc] init];
-    [timingFunction addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-    translation.timingFunctions = timingFunction;
-    translation.removedOnCompletion = NO;
-    translation.delegate = self;
-    [self.viewDoctorsNameView.layer addAnimation:translation forKey:DVTVCAnimationSwipeLeft];
-    
+    CGPoint startPosition = self.viewDoctorsNameView.layer.position;
+    [values addObject:[NSValue valueWithCGPoint:startPosition]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width * DVTVMultiplier, startPosition.y)]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width * 0.8, startPosition.y)]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.deleteButton.frame.size.width, startPosition.y)]];
+    position.keyTimes = @[@0, @0.6, @0.8, @1];
+    position.values = values;
+    position.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];;
+    position.removedOnCompletion = NO;
+    position.delegate = self;
+    [self.viewDoctorsNameView.layer addAnimation:position forKey:DVTVCAnimationSwipeLeft];
+    self.viewDoctorsNameView.layer.position = CGPointMake(startPosition.x - self.deleteButton.frame.size.width, startPosition.y);
 }
 
 - (IBAction)swipeRight:(id)sender
 {
-   self.viewDoctorsNameView.frame = CGRectMake(0, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = DVTVAnimationDuration;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.fromValue = [NSValue valueWithCGPoint:self.viewDoctorsNameView.layer.position];
+    CGPoint toPoint = self.viewDoctorsNameView.layer.position;
+    toPoint.x = self.viewDoctorsNameView.frame.size.width / 2;
+    animation.toValue = [NSValue valueWithCGPoint:toPoint];
+    animation.removedOnCompletion = NO;
+    [self.viewDoctorsNameView.layer addAnimation:animation forKey:nil];
+    self.viewDoctorsNameView.layer.position = toPoint;
     [self.delegate cellDidSwipedIn:self];
 }
 
 #pragma mark - Animation
 
-- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [self.viewDoctorsNameView.layer animationForKey:DVTVCAnimationSwipeLeft]) {
         self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);

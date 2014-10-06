@@ -179,6 +179,9 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(specialisationsListChanged:)]) {
+        [self.delegate specialisationsListChanged:PESpecListMySpecialisations];
+    }
     [self createAnimationWithKey:MVCMoreSpecButtonAnimationKey];
 }
 
@@ -186,6 +189,9 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 {
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(specialisationsListChanged:)]) {
+        [self.delegate specialisationsListChanged:PESpecListMoreSpecialisations];
+    }
     [self createAnimationWithKey:MVCMySpecButtonAnimationKey];
 }
 
@@ -267,7 +273,7 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 
 #pragma mark - MailComposerDelegate
 
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     if (result) {
         switch (result) {
