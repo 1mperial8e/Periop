@@ -1813,8 +1813,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1832,7 +1832,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "346d6cae-821a-4b05-bc7f-94ca3b60728b";
+				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1853,8 +1853,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Sokhanych (U5HL738569)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1865,7 +1865,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PROVISIONING_PROFILE = "346d6cae-821a-4b05-bc7f-94ca3b60728b";
+				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1876,13 +1876,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
+				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1892,13 +1892,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
+				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
