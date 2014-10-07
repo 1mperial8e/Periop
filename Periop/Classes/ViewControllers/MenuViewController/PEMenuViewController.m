@@ -322,8 +322,7 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
             [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
             [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
         }
-    }
-    else{
+    } else {
         self.viewWithButtons.hidden = YES;
         self.bottomButtonsViewHeight.constant = 0.0f;
     }

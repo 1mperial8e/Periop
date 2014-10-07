@@ -55,6 +55,9 @@ static CGFloat const DVTVMultiplier = 1.8f;
 
 - (IBAction)swipeLeft:(id)sender
 {
+    if (self.viewDoctorsNameView.frame.origin.x < 0) {
+        return;
+    }
     CAKeyframeAnimation *position = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     position.duration = DVTVAnimationDuration;
     NSMutableArray *values = [[NSMutableArray alloc] init];
@@ -81,7 +84,7 @@ static CGFloat const DVTVMultiplier = 1.8f;
     CGPoint toPoint = self.viewDoctorsNameView.layer.position;
     toPoint.x = self.viewDoctorsNameView.frame.size.width / 2;
     animation.toValue = [NSValue valueWithCGPoint:toPoint];
-    animation.removedOnCompletion = NO;
+    animation.removedOnCompletion = YES;
     [self.viewDoctorsNameView.layer addAnimation:animation forKey:nil];
     self.viewDoctorsNameView.layer.position = toPoint;
     [self.delegate cellDidSwipedIn:self];
@@ -92,7 +95,6 @@ static CGFloat const DVTVMultiplier = 1.8f;
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [self.viewDoctorsNameView.layer animationForKey:DVTVCAnimationSwipeLeft]) {
-        self.viewDoctorsNameView.frame = CGRectMake(-self.deleteButton.frame.size.width, 0, self.viewDoctorsNameView.frame.size.width, self.viewDoctorsNameView.frame.size.height);
         [self.delegate cellDidSwipedOut:self];
         [self.viewDoctorsNameView.layer removeAnimationForKey:DVTVCAnimationSwipeLeft];
     }
