@@ -51,6 +51,9 @@ static CGFloat const ECMultiplier = 1.8f;
 
 - (IBAction)swipeLeft:(id)sender
 {
+    if (self.viewWithContent.frame.origin.x < 0) {
+        return;
+    }
     CAKeyframeAnimation *position = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     position.duration = ECAnimationDuration;
     NSMutableArray *values = [[NSMutableArray alloc] init];
@@ -88,7 +91,6 @@ static CGFloat const ECMultiplier = 1.8f;
 - (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [self.viewWithContent.layer animationForKey:ECAnimationSwipeLeft]) {
-        self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
         [self.delegate cellDidSwipedOut:self];
         [self.viewWithContent.layer removeAnimationForKey:ECAnimationSwipeLeft];
     }
