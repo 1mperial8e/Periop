@@ -41,7 +41,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 @property (copy, nonatomic) NSString *selectedSpecToReset;
 @property (strong, nonatomic) PEPurchaseManager *purchaseManager;
 
-@property (strong, nonatomic) NSArray *avaliableSKProductsForPurchasing;
+//@property (strong, nonatomic) NSArray *avaliableSKProductsForPurchasing;
 
 @end
 
@@ -145,7 +145,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     self.isMyspecializations = NO;
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
-    [self refreshData];
+   // [self refreshData];
     [self.collectionView reloadData];
 }
 
@@ -190,7 +190,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     if (self.isMyspecializations) {
         return self.specialisationsArray.count;
     } else {
-        return self.avaliableSKProductsForPurchasing.count;
+       // return self.avaliableSKProductsForPurchasing.count;
+        return [self returnQuantityOfAvaliableSpecs];
     }
 }
 
@@ -204,13 +205,30 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
             cell.specialisationIconImageView.image = [UIImage imageNamedFile:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
         } else {
-            NSArray *allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                NSString *product1 = ((SKProduct*)obj1).localizedTitle;
-                NSString *product2 = ((SKProduct*)obj2).localizedTitle;
-                return [product1 compare:product2];
+            
+            NSDictionary *plistToParse = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist"]];
+            NSArray *arrKeys = [[plistToParse allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSString *specName1 = (NSString *)obj1;
+                NSString *specName2 = (NSString *)obj2;
+                return [specName1 compare:specName2];
             }];
-            cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;
-            cell.specialisationIconImageView.image = [UIImage imageNamedFile:[self getFotoForSKProduct:(SKProduct*)allProducts[indexPath.row]]];
+            
+            for (int i = 0; i < arrKeys.count; i++) {
+                if (i == indexPath.row) {
+                    NSDictionary *dic = [plistToParse valueForKey:arrKeys[i]];
+                    cell.productIdentifier = [dic valueForKey:@"productIdentifier"];
+                    cell.specialisationIconImageView.image = [UIImage imageNamedFile:[dic valueForKey:@"photoName"]];
+                    cell.specName = arrKeys[i];
+                }
+            }
+            
+//            NSArray *allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+//                NSString *product1 = ((SKProduct*)obj1).localizedTitle;
+//                NSString *product2 = ((SKProduct*)obj2).localizedTitle;
+//                return [product1 compare:product2];
+//            }];
+//            cell.productIdentifier = ((SKProduct*)allProducts[indexPath.row]).productIdentifier;
+//            cell.specialisationIconImageView.image = [UIImage imageNamedFile:[self getFotoForSKProduct:(SKProduct*)allProducts[indexPath.row]]];
         }
     }
     return cell;
@@ -256,6 +274,12 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 #pragma mark - Private
 
+- (NSInteger)returnQuantityOfAvaliableSpecs
+{
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+    return [pList allKeys].count;
+}
+
 - (void)initWithData
 {
     self.specialisationsArray = [self avaliableSpecs];
@@ -296,33 +320,37 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 - (void) restoreSelectedSpecByName: (NSString*)specName
 {
-    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
-    
-    NSArray *arrKeys = [pList allKeys];
-    NSString *purchasedSpecURLAll;
-    NSString *purchasedSpecURLTools;
-    for (int i =0; i<arrKeys.count; i++) {
-        if ([arrKeys[i] isEqualToString:specName]) {
-            NSDictionary *dic = [pList valueForKey:arrKeys[i]];
-            purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
-            purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
-            [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:specName];
+    if ([specName isEqualToString:@"General"]) {
+       [self downloadPurchasedItems:@"General" withToolsPartFile:@"General_Tools" withSpecName:specName];
+    } else {
+        NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
+        
+        NSArray *arrKeys = [pList allKeys];
+        NSString *purchasedSpecURLAll;
+        NSString *purchasedSpecURLTools;
+        for (int i =0; i<arrKeys.count; i++) {
+            if ([arrKeys[i] isEqualToString:specName]) {
+                NSDictionary *dic = [pList valueForKey:arrKeys[i]];
+                purchasedSpecURLAll = [dic valueForKeyPath:@"urlDownloadingMain"];
+                purchasedSpecURLTools = [dic valueForKeyPath:@"urlDownloadingTool"];
+                [self downloadPurchasedItems:purchasedSpecURLAll withToolsPartFile:purchasedSpecURLTools withSpecName:specName];
+            }
         }
     }
 }
 
 #pragma mark - InAppPurchase
 
-- (void)refreshData
-{
-    self.avaliableSKProductsForPurchasing = nil;
-    [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
-        if (success) {
-            self.avaliableSKProductsForPurchasing = products;
-            [self.collectionView reloadData];
-        }
-    }];
-}
+//- (void)refreshData
+//{
+//    self.avaliableSKProductsForPurchasing = nil;
+//    [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
+//        if (success) {
+//            self.avaliableSKProductsForPurchasing = products;
+//            [self.collectionView reloadData];
+//        }
+//    }];
+//}
 
 - (NSString*)getFotoForSKProduct :(SKProduct*)skProduct
 {
