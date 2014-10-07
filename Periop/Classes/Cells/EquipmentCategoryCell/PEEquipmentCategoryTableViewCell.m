@@ -7,7 +7,6 @@
 //
 
 static NSString *const ECAnimationSwipeLeft = @"swipeLeft";
-static NSString *const ECAnimationKeyPath = @"transform.translation.x";
 static CGFloat const ECAnimationDuration = 0.2f;
 static CGFloat const ECMultiplier = 1.8f;
 
@@ -52,23 +51,35 @@ static CGFloat const ECMultiplier = 1.8f;
 
 - (IBAction)swipeLeft:(id)sender
 {
-    CAKeyframeAnimation *translation = [CAKeyframeAnimation animationWithKeyPath:ECAnimationKeyPath];
-    translation.duration = ECAnimationDuration;
+    CAKeyframeAnimation *position = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    position.duration = ECAnimationDuration;
     NSMutableArray *values = [[NSMutableArray alloc] init];
-    [values addObject:[NSNumber numberWithFloat:0.0f]];
-    [values addObject:[NSNumber numberWithFloat:-self.buttonDeleteOutlet.frame.size.width * ECMultiplier]];
-    translation.values = values;
-    NSMutableArray *timingFunction = [[NSMutableArray alloc] init];
-    [timingFunction addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-    translation.timingFunctions = timingFunction;
-    translation.removedOnCompletion = NO;
-    translation.delegate = self;
-    [self.viewWithContent.layer addAnimation:translation forKey:ECAnimationSwipeLeft];
+    CGPoint startPosition = self.viewWithContent.layer.position;
+    [values addObject:[NSValue valueWithCGPoint:startPosition]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.buttonDeleteOutlet.frame.size.width * ECMultiplier, startPosition.y)]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.buttonDeleteOutlet.frame.size.width * 0.8, startPosition.y)]];
+    [values addObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x - self.buttonDeleteOutlet.frame.size.width, startPosition.y)]];
+    position.keyTimes = @[@0, @0.6, @0.8, @1];
+    position.values = values;
+    position.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];;
+    position.removedOnCompletion = NO;
+    position.delegate = self;
+    [self.viewWithContent.layer addAnimation:position forKey:ECAnimationSwipeLeft];
+    self.viewWithContent.layer.position = CGPointMake(startPosition.x - self.buttonDeleteOutlet.frame.size.width, startPosition.y);
 }
 
 - (IBAction)swipeRight:(id)sender
 {
-    self.viewWithContent.frame = CGRectMake(0, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = ECAnimationDuration;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.fromValue = [NSValue valueWithCGPoint:self.viewWithContent.layer.position];
+    CGPoint toPoint = self.viewWithContent.layer.position;
+    toPoint.x = self.viewWithContent.frame.size.width / 2;
+    animation.toValue = [NSValue valueWithCGPoint:toPoint];
+    animation.removedOnCompletion = YES;
+    [self.viewWithContent.layer addAnimation:animation forKey:nil];
+    self.viewWithContent.layer.position = toPoint;
     [self.delegate cellDidSwipedIn:self];
 }
 

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 static NSString *const DVTVCAnimationSwipeLeft = @"swipeLeft";
-static NSString *const DVTVCAnimationKeyPath = @"transform.translation.x";
 static CGFloat const DVTVAnimationDuration = 0.2f;
 static CGFloat const DVTVMultiplier = 1.8f;
 
@@ -82,7 +81,7 @@ static CGFloat const DVTVMultiplier = 1.8f;
     CGPoint toPoint = self.viewDoctorsNameView.layer.position;
     toPoint.x = self.viewDoctorsNameView.frame.size.width / 2;
     animation.toValue = [NSValue valueWithCGPoint:toPoint];
-    animation.removedOnCompletion = NO;
+    animation.removedOnCompletion = YES;
     [self.viewDoctorsNameView.layer addAnimation:animation forKey:nil];
     self.viewDoctorsNameView.layer.position = toPoint;
     [self.delegate cellDidSwipedIn:self];
