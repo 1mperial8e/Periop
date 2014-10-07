@@ -294,7 +294,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     return result;
 }
 
-- (void) restoreSelectedSpecByName: (NSString*)specName
+- (void)restoreSelectedSpecByName: (NSString*)specName
 {
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist" ]];
     

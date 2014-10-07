@@ -196,10 +196,11 @@ static CGFloat const DLAnimationDuration = 0.15f;
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
-#warning iOS 8
+#ifdef __IPHONE_8_0
     if ([self.tableView respondsToSelector:@selector(layoutMargins)]) {
-        //self.tableView.layoutMargins = UIEdgeInsetsZero;
+        self.tableView.layoutMargins = UIEdgeInsetsZero;
     }
+#endif
     self.tableView.separatorColor = self.separateColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self addSubview:self.tableView];
@@ -237,10 +238,11 @@ static CGFloat const DLAnimationDuration = 0.15f;
     cell.contentView.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = self.itemBackColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-#warning iOS 8
+#ifdef __IPHONE_8_0
     if ([cell respondsToSelector:@selector(layoutMargins)]) {
-        //cell.layoutMargins = UIEdgeInsetsZero;
+        cell.layoutMargins = UIEdgeInsetsZero;
     }
+#endif
     return cell;
 }
 
