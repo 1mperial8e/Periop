@@ -6,20 +6,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEAlbumViewController">
             <connections>
-                <outlet property="photosCollectionView" destination="Iqy-YW-KRG" id="HfY-Du-g2E"/>
+                <outlet property="photosCollectionView" destination="Qmu-LH-hob" id="QRL-8H-nBm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Iqy-YW-KRG">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Qmu-LH-hob">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="nfb-wZ-UOA">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="USN-oc-wVk">
                         <size key="itemSize" width="105" height="105"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -27,19 +27,19 @@
                     </collectionViewFlowLayout>
                     <cells/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="FbT-43-UIt"/>
-                        <outlet property="delegate" destination="-1" id="ctB-vl-P2U"/>
+                        <outlet property="dataSource" destination="-1" id="Rgl-0G-1Z3"/>
+                        <outlet property="delegate" destination="-1" id="zkj-BB-Paw"/>
                     </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Iqy-YW-KRG" secondAttribute="trailing" id="C0l-ee-rmC"/>
-                <constraint firstAttribute="bottom" secondItem="Iqy-YW-KRG" secondAttribute="bottom" id="Fkj-iX-UA0"/>
-                <constraint firstItem="Iqy-YW-KRG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PQ2-M2-XMc"/>
-                <constraint firstItem="Iqy-YW-KRG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x4K-gA-Nh2"/>
+                <constraint firstAttribute="trailing" secondItem="Qmu-LH-hob" secondAttribute="trailing" id="19B-WX-TPI"/>
+                <constraint firstItem="Qmu-LH-hob" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aS1-FE-Gsc"/>
+                <constraint firstItem="Qmu-LH-hob" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gVn-Ch-afE"/>
+                <constraint firstAttribute="bottom" secondItem="Qmu-LH-hob" secondAttribute="bottom" id="wKT-0b-8iG"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

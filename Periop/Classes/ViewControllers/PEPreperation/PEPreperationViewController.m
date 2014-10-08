@@ -50,6 +50,14 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     [self.tableView registerNib:[UINib nibWithNibName:PPreparationTableViewCellNibName bundle:nil] forCellReuseIdentifier:PPreparationTableViewCellIdentifier];
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

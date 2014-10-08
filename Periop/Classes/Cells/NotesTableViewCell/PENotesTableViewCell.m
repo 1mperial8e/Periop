@@ -39,4 +39,5 @@
 {
     [self.delegate editNoteButtonPress:self];
 }
+
 @end

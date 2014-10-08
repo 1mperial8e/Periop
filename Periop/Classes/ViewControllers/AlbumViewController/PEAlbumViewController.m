@@ -51,7 +51,6 @@ static NSInteger const AVCDefaultQuantity = 29;
     
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
-    
     [self.photosCollectionView registerNib:[UINib nibWithNibName:@"PeAlbumCell" bundle:nil] forCellWithReuseIdentifier:AVCCellName];
     self.photosCollectionView.allowsMultipleSelection = YES;
     
@@ -60,6 +59,13 @@ static NSInteger const AVCDefaultQuantity = 29;
     self.selectedPhotos = [[NSMutableArray alloc] init];
     
     self.allowedCountOfSelectedCells = [self getAllowedCountOfSelectedCells];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.photosCollectionView.contentInset = UIEdgeInsetsZero;
+    self.photosCollectionView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -154,7 +160,7 @@ static NSInteger const AVCDefaultQuantity = 29;
 
 - (void)photoForOperationRoomViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
 {
-    if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count<5) {
+    if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count < 5) {
         newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
         newPhoto.photoNumber = @(counter++);
         [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
