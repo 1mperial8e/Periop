@@ -103,7 +103,7 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
-        if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
+        if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
                 self.imageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
         } else {
             self.imageView.image = [UIImage imageNamedFile:@"Place_Holder.png"];
@@ -135,8 +135,6 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
         }
     }
 }
-
-
 
 - (IBAction)saveButton :(id)sender
 {
@@ -330,7 +328,11 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (![indexPath row] && !indexPath.section) {
-        return AEDHeightForSpecRow;
+        if ([self avalliableSpecs].count <= 5 ) {
+            return AEDHeightForSpecRow / 2;
+        } else {
+            return AEDHeightForSpecRow;
+        }
     } else {
         return AEDHeightForAllRows;
     }
@@ -383,6 +385,14 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
 }
 
 #pragma mark - Private
+
+- (NSArray *)avalliableSpecs
+{
+    NSArray *allSpecs = [NSArray new];
+    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+    allSpecs = [PECoreDataManager getAllEntities:searchedObject];
+    return allSpecs;
+}
 
 - (void) getRequestedSpecsWithProcedures: (NSString*) specName
 {
