@@ -86,13 +86,12 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    ((PENavigationController *)self.navigationController).titleLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
-    
-    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
-    
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentDoctor.name;;
+    
+    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
     
     [self getDoctorsSpecAndProcedures];
     
