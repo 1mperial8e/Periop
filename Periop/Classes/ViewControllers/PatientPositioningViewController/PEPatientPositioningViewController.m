@@ -85,7 +85,7 @@ static NSInteger const PPTagView = 35;
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
-    [[self.view viewWithTag:PPTagView] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:PPTagView] setVisible:NO];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
     self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
@@ -108,6 +108,7 @@ static NSInteger const PPTagView = 35;
     view.frame = size;
     view.tag = PPTagView;
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
 #pragma mark - XIB Action
@@ -128,7 +129,7 @@ static NSInteger const PPTagView = 35;
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:PPTagView] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:PPTagView] setVisible:NO];
 }
 
 #pragma mark - UITableViewDataSource

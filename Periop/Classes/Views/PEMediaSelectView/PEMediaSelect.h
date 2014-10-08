@@ -8,4 +8,6 @@
 
 @interface PEMediaSelect : UIView
 
+- (void)setVisible:(BOOL)visible;
+
 @end

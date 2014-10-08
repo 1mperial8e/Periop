@@ -12,7 +12,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 #import "PEEquipmentCategoryTableViewCell.h"
 #import "PEToolsDetailsViewController.h"
 #import "PEAddNewToolViewController.h"
-
+#import "UIImage+fixOrientation.h"
 #import "EquipmentsTool.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
@@ -60,7 +60,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
     
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -99,7 +99,8 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 - (IBAction)eMailButton:(id)sender
 {
     if ([MFMailComposeViewController canSendMail]) {
-        [UINavigationBar appearance].barTintColor = UIColorFromRGB(0x4B9DE1);
+        [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4B9DE1)];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x4B9DE1)] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:                                                               
                                                               [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
@@ -116,6 +117,8 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
         }
         
         [self.mailController setMessageBody:message isHTML:NO];
+        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        rootController.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:self.mailController animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
@@ -128,7 +131,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 #pragma mark - MailComposerDelegate
 
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     if (result) {
         switch (result) {

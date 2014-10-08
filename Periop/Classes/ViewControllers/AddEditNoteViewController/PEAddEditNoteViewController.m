@@ -144,6 +144,7 @@
     view.tag = 35;
     [self.textViewNotes endEditing:YES];
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
 #pragma mark - XIB Action
@@ -171,7 +172,7 @@
 - (IBAction)tapOnView:(id)sender
 {
     [self.textViewNotes becomeFirstResponder];
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
 }
 
 #pragma mark - Private

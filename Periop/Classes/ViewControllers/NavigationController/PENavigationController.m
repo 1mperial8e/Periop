@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationBar.translucent = NO;
-        self.navigationBar.barTintColor = [UIColor colorWithRed:75/255.0 green:157/255.0 blue:225/255.0 alpha:1];
+        self.navigationBar.barTintColor = UIColorFromRGB(0x4B9DE1);
         self.navigationBar.tintColor = [UIColor whiteColor];
     }
     return self;

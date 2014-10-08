@@ -99,7 +99,7 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     }
     ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
     
-    [[self.view viewWithTag:AEDTagForView] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:AEDTagForView] setVisible:NO];
     
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
@@ -136,7 +136,9 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     }
 }
 
--(IBAction)saveButton :(id)sender
+
+
+- (IBAction)saveButton :(id)sender
 {
     NSArray *allSpecs = [NSArray new];
     PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
@@ -217,9 +219,13 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     view.frame = position;
     view.tag = AEDTagForView;
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
-#pragma mark - UIAction
+- (IBAction)tapOnView:(id)sender
+{
+    [(PEMediaSelect *)[self.view viewWithTag:AEDTagForView] setVisible:NO];
+}
 
 - (IBAction)albumPhoto:(id)sender
 {
@@ -237,11 +243,6 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
     cameraView.request = DoctorsViewControllerAdd;
     [self presentViewController:cameraView animated:YES completion:nil];
-}
-
-- (IBAction)tapOnView:(id)sender
-{
-    [[self.view viewWithTag:35] removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource

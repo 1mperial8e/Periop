@@ -130,7 +130,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
     for(int i = 0; i < searchBarSubViews.count; i++) {
         if([[searchBarSubViews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
-            UITextField *search=(UITextField *)[searchBarSubViews objectAtIndex:i];
+            UITextField *search = (UITextField *)[searchBarSubViews objectAtIndex:i];
             [search setFont:[UIFont fontWithName:FONT_MuseoSans500 size:12.5]];
             [search setTintColor:UIColorFromRGB(0x4D4D4D)];
             search.placeholder = @"Search";

@@ -114,7 +114,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
         self.equipmentPhoto.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
     
-    [[self.view viewWithTag:TDVCViewTag] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:TDVCViewTag] setVisible:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -169,6 +169,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     view.frame = position;
     view.tag = TDVCViewTag;
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
@@ -203,7 +204,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:TDVCViewTag] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:TDVCViewTag] setVisible:NO];
 }
 
 #pragma mark - UITextFieldDelegate

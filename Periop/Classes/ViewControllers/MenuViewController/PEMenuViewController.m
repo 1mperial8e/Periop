@@ -15,7 +15,7 @@
 #import <MessageUI/MessageUI.h>
 #import "UIImage+ImageWithJPGFile.h"
 
-static CGFloat const MVCAnimationDuration = 0.5f;
+static CGFloat const MVCAnimationDuration = 0.3f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 static NSString *const MVCAboutUs = @"About Us";
 static NSString *const MVCSurgeonList = @"Surgeon List";

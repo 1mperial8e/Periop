@@ -92,7 +92,7 @@ static NSInteger const ORTagView = 35;
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
     
-    [[self.view viewWithTag:ORTagView] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:ORTagView] setVisible:NO];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.operationRoom.photo allObjects]];
     self.pageController.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.collectionView reloadData];
@@ -201,6 +201,7 @@ static NSInteger const ORTagView = 35;
     view.frame = position;
     view.tag = ORTagView;
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
 #pragma mark - XIB Action
@@ -223,7 +224,7 @@ static NSInteger const ORTagView = 35;
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:ORTagView] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:ORTagView] setVisible:NO];
 }
 
 #pragma marks - Private

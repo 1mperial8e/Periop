@@ -89,7 +89,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     
     ((PENavigationController *)self.navigationController).titleLabel.text = ((Specialisation*)self.specManager.currentSpecialisation).name;
     
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -160,6 +160,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     view.frame = position;
     view.tag = 35;
     [self.view addSubview:view];
+    [view setVisible:YES];
 }
 
 #pragma mark - XIB Action
@@ -181,7 +182,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (IBAction)tapOnView:(id)sender
 {
-    [[self.view viewWithTag:35] removeFromSuperview];
+    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
 }
 
 #pragma mark - UITableViewDataSource

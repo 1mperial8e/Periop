@@ -82,7 +82,7 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
 
 #pragma mark - Rotation
 
-- (void) canRotate
+- (void)canRotate
 {
     //dummy
 }
@@ -108,19 +108,19 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
                     [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
-        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
+        } else if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
             for (Photo * imageToDelete in [self.specManager.currentEquipment.photo allObjects]) {
                 if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
                     [self.specManager.currentEquipment removePhotoObject:imageToDelete];
                     [self.managedObjectContext deleteObject:imageToDelete];
                 }
             }
-        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
+        } else if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
                 [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
             }
-        } else  if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
+        } else if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
             if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
                 [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
                 self.specManager.currentDoctor.photo = nil;
@@ -137,7 +137,7 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
         if (![self.managedObjectContext save:&removeError]) {
             NSLog(@"Cant remove image - %@", removeError.localizedDescription);
         }        
-        [self.navigationController popViewControllerAnimated:NO];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
