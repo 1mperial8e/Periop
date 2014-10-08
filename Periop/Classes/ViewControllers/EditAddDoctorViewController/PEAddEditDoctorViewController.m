@@ -92,7 +92,7 @@ static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
     [super viewWillAppear:animated];
     
     NSString *textForHeader;
-    if (self.navigationLabelDescription && self.navigationLabelDescription.length>0){
+    if (self.navigationLabelDescription && self.navigationLabelDescription.length){
         textForHeader = self.navigationLabelDescription;
     } else {
         textForHeader = @"Add Surgeon";

@@ -9,7 +9,7 @@
 		<key>photoName</key>
 		<string>Gastrointestina_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Gastrointestina_Small_Active</string>
+		<string>Gastrointestina_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Gastrointestina_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -28,7 +28,7 @@
 		<key>photoName</key>
 		<string>General_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>General_Small_Active</string>
+		<string>General_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>General_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -47,7 +47,7 @@
 		<key>photoName</key>
 		<string>Cosemetic_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Cosmetic_Small_Active</string>
+		<string>Cosmetic_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Cosmetic_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -66,7 +66,7 @@
 		<key>photoName</key>
 		<string>Plastic_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Plastic_Small_Active</string>
+		<string>Plastic_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Plastic_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -85,7 +85,7 @@
 		<key>photoName</key>
 		<string>Orthopaedic_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Orthopeadic_Small_Active</string>
+		<string>Orthopeadic_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Orthopeadic_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -104,7 +104,7 @@
 		<key>photoName</key>
 		<string>Cardiothoracic_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Cardiothoracic_Small_Active</string>
+		<string>Cardiothoracic_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Cardiothoracic_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -123,7 +123,7 @@
 		<key>photoName</key>
 		<string>Opthomology_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Opthalmology_Small_Active</string>
+		<string>Opthalmology_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Opthalmology_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -142,7 +142,7 @@
 		<key>photoName</key>
 		<string>Obstetric_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Obstetric_Small_Active</string>
+		<string>Obstetric_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Obstetric_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -161,7 +161,7 @@
 		<key>photoName</key>
 		<string>Gynaecology_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Gyneacology_Small_Active</string>
+		<string>Gyneacology_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>Gyneacology_Small_Inactive</string>
 		<key>smallIconName</key>
@@ -180,7 +180,7 @@
 		<key>photoName</key>
 		<string>ENT_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>ENT_Small_Active</string>
+		<string>ENT_Small_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
 		<string>ENT_Small_Inactive</string>
 		<key>smallIconName</key>
