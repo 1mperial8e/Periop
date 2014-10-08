@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -97,6 +96,7 @@
                             <constraints>
                                 <constraint firstItem="2WS-fg-W5g" firstAttribute="leading" secondItem="86x-bw-GjL" secondAttribute="leading" id="8tV-UT-5NV"/>
                                 <constraint firstAttribute="width" secondItem="86x-bw-GjL" secondAttribute="height" multiplier="1:1" id="LVA-ve-aug"/>
+                                <constraint firstAttribute="width" constant="294" id="Njd-yW-PiP"/>
                                 <constraint firstAttribute="bottom" secondItem="2WS-fg-W5g" secondAttribute="bottom" id="fXu-lC-eXt"/>
                                 <constraint firstAttribute="centerX" secondItem="xJU-aO-QN2" secondAttribute="centerX" id="slP-Pr-s5j"/>
                                 <constraint firstAttribute="trailing" secondItem="2WS-fg-W5g" secondAttribute="trailing" id="spj-1Y-BNr"/>
