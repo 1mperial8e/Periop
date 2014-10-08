@@ -1613,6 +1613,7 @@
 				ED9C696D19C720E80022C1A8 /* Bin_Icon@2x.png in Resources */,
 				ED9C69FD19C720E80022C1A8 /* Plastic_Large@2x.png in Resources */,
 				84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */,
+				ED3D1BD219E5514A00929F64 /* Gynaecology_Specialisation_Icon@2x.png in Resources */,
 				84BA0AA519E557910054BFE5 /* mail_BTN_active@2x.png in Resources */,
 				ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */,
 				ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */,
