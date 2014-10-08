@@ -22,4 +22,10 @@
     self.activeImageViewWithLogo.hidden = !selected;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.labelNameOfSpec.adjustsFontSizeToFitWidth = YES;
+}
+
 @end
