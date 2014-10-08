@@ -48,6 +48,10 @@
 		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
 		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
 		84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B49319DC2E2400BF8D07 /* PENavigationController.m */; };
+		84BA0AA219E557910054BFE5 /* plus_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9E19E557910054BFE5 /* plus_BTN_inactive@2x-1.png */; };
+		84BA0AA319E557910054BFE5 /* plus_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */; };
+		84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */; };
+		84BA0AA519E557910054BFE5 /* mail_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
@@ -287,6 +291,10 @@
 		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
 		84B1B49219DC2E2400BF8D07 /* PENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENavigationController.h; sourceTree = "<group>"; };
 		84B1B49319DC2E2400BF8D07 /* PENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENavigationController.m; sourceTree = "<group>"; };
+		84BA0A9E19E557910054BFE5 /* plus_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
+		84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_active@2x.png"; sourceTree = "<group>"; };
+		84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
+		84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_active@2x.png"; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
@@ -923,6 +931,10 @@
 				ED9C68CE19C720E70022C1A8 /* Check_Active@2x.png */,
 				ED9C68D019C720E70022C1A8 /* Check_Inactive@2x.png */,
 				ED9C68D219C720E70022C1A8 /* Close@2x.png */,
+				84BA0A9E19E557910054BFE5 /* plus_BTN_inactive@2x-1.png */,
+				84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */,
+				84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */,
+				84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */,
 				ED9C68D419C720E70022C1A8 /* Delete@2x.png */,
 				ED9C68D619C720E70022C1A8 /* Divider@2x.png */,
 				ED9C68D819C720E70022C1A8 /* Doctors@2x.png */,
@@ -1540,6 +1552,7 @@
 				ED9C69B319C720E80022C1A8 /* Upload_Photo_Button_2@2x.png in Resources */,
 				EDCD57E119B87D0E00EC7AF1 /* PEProcedureListViewController.xib in Resources */,
 				ED9C699D19C720E80022C1A8 /* Notes_Tab_Inactive@2x.png in Resources */,
+				84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */,
 				ED9C696B19C720E80022C1A8 /* Background@2x.png in Resources */,
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
 				ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */,
@@ -1547,6 +1560,7 @@
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */,
 				ED9C69D519C720E80022C1A8 /* General_Large@2x.png in Resources */,
+				84BA0AA219E557910054BFE5 /* plus_BTN_inactive@2x-1.png in Resources */,
 				ED9C697D19C720E80022C1A8 /* Doctors@2x.png in Resources */,
 				ED9C696F19C720E80022C1A8 /* Camera_@2x.png in Resources */,
 				ED9C696919C720E80022C1A8 /* Back@2x.png in Resources */,
@@ -1612,6 +1626,7 @@
 				ED9C69FD19C720E80022C1A8 /* Plastic_Large@2x.png in Resources */,
 				ED9C69F719C720E80022C1A8 /* Orthopeadic_Small_Active@2x.png in Resources */,
 				84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */,
+				84BA0AA519E557910054BFE5 /* mail_BTN_active@2x.png in Resources */,
 				ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */,
 				ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */,
 				ED9C69EF19C720E80022C1A8 /* Opthomology_Small_Active@2x.png in Resources */,
@@ -1628,6 +1643,7 @@
 				ED9C697F19C720E80022C1A8 /* Doctors_Tab_Active@2x.png in Resources */,
 				ED9C69C519C720E80022C1A8 /* Cosemetic_Large@2x.png in Resources */,
 				842C8DFD19D57C2000D0DAC7 /* PEMediaSelect.xib in Resources */,
+				84BA0AA319E557910054BFE5 /* plus_BTN_active@2x.png in Resources */,
 				ED9C698D19C720E80022C1A8 /* Menu@2x.png in Resources */,
 				EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */,
 				ED9C69AB19C720E80022C1A8 /* Procedures_Tab_Inactive@2x.png in Resources */,

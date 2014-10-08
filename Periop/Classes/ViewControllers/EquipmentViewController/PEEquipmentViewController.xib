@@ -21,22 +21,23 @@
                     <rect key="frame" x="0.0" y="532" width="320" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-fo-aZs">
-                            <rect key="frame" x="0.0" y="0.0" width="160" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-fo-aZs" userLabel="addNewTool button">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.60392156862745094" green="0.88627450980392153" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Add New">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="plus_BTN_active.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="highlighted" image="plus_BTN_inactive@2x-1.png"/>
                             <connections>
                                 <action selector="addNewButton:" destination="-1" eventType="touchUpInside" id="x9o-Wa-Zz1"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-pi-xee">
-                            <rect key="frame" x="160" y="0.0" width="160" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-pi-xee" userLabel="mailButton">
+                            <rect key="frame" x="160" y="0.0" width="160" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.66000000000000003" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="E-mail">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="mail_BTN_inactive@2x-1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -73,4 +74,9 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="mail_BTN_inactive@2x-1.png" width="320" height="75"/>
+        <image name="plus_BTN_active.png" width="160" height="37"/>
+        <image name="plus_BTN_inactive@2x-1.png" width="320" height="75"/>
+    </resources>
 </document>
