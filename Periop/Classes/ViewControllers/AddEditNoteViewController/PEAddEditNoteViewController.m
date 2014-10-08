@@ -51,7 +51,6 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    self.textViewNotes.layer.cornerRadius = 24;
     self.cornerLabel.layer.cornerRadius = 24;
     self.cornerLabel.layer.borderColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1].CGColor;
     self.cornerLabel.layer.borderWidth = 1;

@@ -35,6 +35,8 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 
 @implementation PENotesViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,7 +56,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -69,7 +71,15 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     [self.tableViewNotes reloadData];
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.tableViewNotes.contentInset = UIEdgeInsetsZero;
+    self.tableViewNotes.scrollIndicatorInsets = UIEdgeInsetsZero;
+
+}
+
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -147,7 +157,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 
 #pragma mark - PENotesTableViewCellDelegate
 
-- (void) deleteNotesButtonPress:(UITableViewCell *)cell
+- (void)deleteNotesButtonPress:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
@@ -168,7 +178,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     [self.tableViewNotes reloadData];
 }
 
-- (void) addPhotoButtonPress:(UITableViewCell *)cell
+- (void)addPhotoButtonPress:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
@@ -184,7 +194,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     }
 }
 
-- (void) editNoteButtonPress:(UITableViewCell *)cell
+- (void)editNoteButtonPress:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     PEAddEditNoteViewController *addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
@@ -201,7 +211,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 
 #pragma mark - Private
 
-- (NSString*)dateFormatter: (NSDate*)dateToFormatt
+- (NSString *)dateFormatter: (NSDate*)dateToFormatt
 {
     NSDateFormatter *dateFormatterTimePart = [[NSDateFormatter alloc] init];
     [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];
