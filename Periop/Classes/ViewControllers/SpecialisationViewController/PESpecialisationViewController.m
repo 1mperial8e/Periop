@@ -89,9 +89,6 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreSpecialisationButton:) name:@"moreSpecButton" object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mySpesialisationButton:) name:@"mySpecButton" object: nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
     ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
@@ -106,8 +103,9 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     }
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

@@ -6,6 +6,15 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+#import "PEMenuViewController.h"
+#import "PEDoctorsListViewController.h"
+#import "PESpecialisationViewController.h"
+#import "PEAboutUsViewController.h"
+#import "PETermsAndConditionViewController.h"
+#import <MessageUI/MessageUI.h>
+#import "UIImage+ImageWithJPGFile.h"
+
 static CGFloat const MVCAnimationDuration = 0.5f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
 static NSString *const MVCAboutUs = @"About Us";
@@ -21,15 +30,6 @@ static NSString *const MVCSurgeonListAnimationKey = @"hideMenuToSurgeons";
 static NSString *const MVCMenuAnimationKey = @"hideMenuToMenu";
 static NSString *const MVCMoreSpecButtonAnimationKey = @"hideMenuToMenuMySpecialisation";
 static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecialisation";
-
-#import <QuartzCore/QuartzCore.h>
-#import "PEMenuViewController.h"
-#import "PEDoctorsListViewController.h"
-#import "PESpecialisationViewController.h"
-#import "PEAboutUsViewController.h"
-#import "PETermsAndConditionViewController.h"
-#import <MessageUI/MessageUI.h>
-#import "UIImage+ImageWithJPGFile.h"
 
 @interface PEMenuViewController () <MFMailComposeViewControllerDelegate>
 
@@ -245,10 +245,8 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
         [self.view.layer removeAnimationForKey:MVCTermsAnimationKey];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim == [self.view.layer animationForKey:MVCMySpecButtonAnimationKey]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"moreSpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim == [self.view.layer animationForKey:MVCMoreSpecButtonAnimationKey]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"mySpecButton" object:nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     } else if (anim==[self.view.layer animationForKey:@"showMenu"]){
         [self.view.layer removeAnimationForKey:@"showMenu"];
