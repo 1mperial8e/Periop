@@ -97,7 +97,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     
     self.doctorName.text = self.specManager.currentDoctor.name;
     
-    if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
+    if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     } else {
         self.doctorPhotoImageView.image = [UIImage imageNamedFile:DPPlaceHolderImageName];
@@ -116,7 +116,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:DPPlaceHolderImageName] hash]) {
+    if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {

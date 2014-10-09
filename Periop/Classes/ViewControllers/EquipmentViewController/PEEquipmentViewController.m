@@ -126,7 +126,6 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
         UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alerMail show];
     }
-    
 }
 
 #pragma mark - MailComposerDelegate
