@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface PENotesViewController : UIViewController
 
 @property (copy, nonatomic)NSString *navigationLabelText;

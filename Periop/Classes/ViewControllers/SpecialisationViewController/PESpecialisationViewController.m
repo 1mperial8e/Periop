@@ -156,19 +156,18 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
-        NSLog(@"Selected specs - %@, identifier - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName,((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier);
+        NSLog(@"Selected specs - %@, identifier - %@", ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName,((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier);
         
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
-            NSString *message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
-            self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
+            NSString *message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName];
+            self.selectedSpecToReset = ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName;
             UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
         } else {
-
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
                 if (success) {
-                    NSString *requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
+                    NSString *requestedProductIdentifier = ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
                     for (SKProduct *product in products) {
                         if ([product.productIdentifier isEqualToString:requestedProductIdentifier]) {
                             NSLog(@"Start buying...");

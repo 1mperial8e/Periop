@@ -102,7 +102,8 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     return YES;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
 }
 
@@ -238,7 +239,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         [self.arrayWithAllDocators removeObject:(Doctors *)(self.arrayWithAllDocators[indexPath.row])];
         [self.tableView reloadData];
     }
-    NSError *deleteError = nil;
+    NSError *deleteError;
     if (![self.managedObjectContext save:&deleteError]) {
         NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
     }
@@ -254,7 +255,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         NSArray *allDoctorsArray = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
         NSMutableArray *requiredDoctors = [[NSMutableArray alloc] init];
         for (Doctors *doctor in allDoctorsArray) {
-            for (Procedure *proceduresOfDoctor in [doctor.procedure allObjects]){
+            for (Procedure *proceduresOfDoctor in [doctor.procedure allObjects]) {
                 if ([proceduresOfDoctor.procedureID isEqualToString:self.specManager.currentProcedure.procedureID]) {
                     if (![requiredDoctors containsObject:doctor]) {
                         [requiredDoctors addObject:doctor];
@@ -263,15 +264,15 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
             }
         }
         NSArray *sorted = [requiredDoctors sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString *name1 = [(Doctors*)obj1 name];
-            NSString *name2 = [(Doctors*)obj2 name];
+            NSString *name1 = ((Doctors*)obj1).name;
+            NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
         self.arrayWithAllDocators= [sorted mutableCopy];
     } else {
         NSArray *sorted = [[PECoreDataManager getAllEntities:objectToSearch] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString *name1 = [(Doctors*)obj1 name];
-            NSString *name2 = [(Doctors*)obj2 name];
+            NSString *name1 = ((Doctors*)obj1).name;
+            NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
         self.arrayWithAllDocators = [sorted mutableCopy];

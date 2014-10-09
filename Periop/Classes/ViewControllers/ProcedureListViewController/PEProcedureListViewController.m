@@ -8,6 +8,7 @@
 
 static NSString *const PLVCProcedureName = @"Procedure Name";
 static NSString *const PLVCDoctorsName = @"Doctors Name";
+static NSInteger const PLVCHeightForRow = 53;
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
@@ -115,7 +116,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 #pragma mark - Search & UISearchDisplayDelegate
 
-- (void)searchedResult: (NSString*)searchText scope:(NSArray*)scope
+- (void)searchedResult:(NSString *)searchText scope:(NSArray *)scope
 {
     NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     if (self.specManager.isProcedureSelected) {
@@ -131,7 +132,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     return YES;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
 }
 
@@ -202,13 +204,13 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     }
     
     UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
-    if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]!=nil) {
+    if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell.textLabel.text = ((Procedure*)self.searchResult[indexPath.row]).name;
         } else {
             cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
         }
-    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]!=nil) {
+    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell.textLabel.text = ((Doctors*)self.searchResult[indexPath.row]).name;
         } else {
@@ -229,7 +231,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
              self.specManager.currentProcedure = (Procedure*)self.searchResult[indexPath.row];
         } else {
             for (Procedure *proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
-                if ([((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
+                if ([((Procedure *)self.sortedArrayWithProcedures[indexPath.row]).procedureID isEqualToString:proc.procedureID]) {
                     self.specManager.currentProcedure = proc;
                 }
             }
@@ -240,10 +242,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            self.specManager.currentDoctor = (Doctors*)self.searchResult[indexPath.row];
+            self.specManager.currentDoctor = (Doctors *)self.searchResult[indexPath.row];
         } else {
             for (Doctors *doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
-                if ([((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
+                if ([((Doctors *)self.sortedArrayWithDoctors[indexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
                     self.specManager.currentDoctor = doc;
                 }
             }
@@ -256,33 +258,31 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 53;
+    return PLVCHeightForRow;
 }
-
 
 #pragma marks - Private
 
-- (NSMutableArray *)sortedArrayWitProcedures: (NSArray*)arrayToSort
+- (NSMutableArray *)sortedArrayWitProcedures:(NSArray *)arrayToSort
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = ((Procedure*)obj1).name;
-        NSString *secondObject = ((Procedure*)obj2).name;
+        NSString *firstObject = ((Procedure *)obj1).name;
+        NSString *secondObject = ((Procedure *)obj2).name;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
 }
 
-- (NSMutableArray *)sortedArrayWitDoctors: (NSArray*)arrayToSort
+- (NSMutableArray *)sortedArrayWitDoctors:(NSArray *)arrayToSort
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = ((Doctors*)obj1).name;
-        NSString *secondObject = ((Doctors*)obj2).name;
+        NSString *firstObject = ((Doctors *)obj1).name;
+        NSString *secondObject = ((Doctors *)obj2).name;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
 }
-
 
 @end
