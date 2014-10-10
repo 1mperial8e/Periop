@@ -133,7 +133,7 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
                 self.specManager.currentNote.photo = nil;
             }
         }
-        NSError* removeError = nil;
+        NSError* removeError;
         if (![self.managedObjectContext save:&removeError]) {
             NSLog(@"Cant remove image - %@", removeError.localizedDescription);
         }        

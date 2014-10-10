@@ -93,8 +93,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     
     ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
     
-    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
+//    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+//    self.specialisationsArray = [PECoreDataManager getAllEntities:searchedObject];
     [self initWithData];
     [self.collectionView reloadData];
     
@@ -158,19 +158,18 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
-        NSLog(@"Selected specs - %@, identifier - %@", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName,((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier);
+        NSLog(@"Selected specs - %@, identifier - %@", ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName,((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier);
         
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
         if ([def integerForKey: ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier]) {
-            NSString *message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName];
-            self.selectedSpecToReset = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).specName;
+            NSString *message = [NSString stringWithFormat:@"Do you really want to reset all settings in %@ specialisation?", ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName];
+            self.selectedSpecToReset = ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).specName;
             UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"Reset" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alerView show];
         } else {
-
             [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
                 if (success) {
-                    NSString *requestedProductIdentifier = ((PESpecialisationCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
+                    NSString *requestedProductIdentifier = ((PESpecialisationCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).productIdentifier;
                     for (SKProduct *product in products) {
                         if ([product.productIdentifier isEqualToString:requestedProductIdentifier]) {
                             NSLog(@"Start buying...");
@@ -315,7 +314,13 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     [fetchRequest setEntity:specEntity];
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    return result;
+    NSArray *sortedSpec = [result sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *specName1 = ((Specialisation *)obj1).name;
+        NSString *specName2 = ((Specialisation *)obj2).name;
+        return [specName1 compare:specName2];
+        }];
+    
+    return sortedSpec;
 }
 
 - (void)restoreSelectedSpecByName: (NSString*)specName
@@ -369,7 +374,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 #pragma mark - NotificationFromPurchaseManager
 
-- (void)productPurchased: (NSNotification *)notification
+- (void)productPurchased:(NSNotification *)notification
 {
     //product identifier - purchased product
     NSString *productIdentifier = notification.object;

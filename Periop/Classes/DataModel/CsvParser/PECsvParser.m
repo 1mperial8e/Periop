@@ -118,6 +118,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
                 Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                 
                 initPhoto.photoName = colum[6];
+                initPhoto.photoData = UIImageJPEGRepresentation(photo, 1.0f);
                 initPhoto.equiomentTool = newTool;
                 [newTool addPhotoObject:initPhoto];
             }

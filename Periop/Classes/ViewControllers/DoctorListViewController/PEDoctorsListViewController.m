@@ -28,7 +28,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
 @property (strong, nonatomic) UIBarButtonItem *navigationBarAddBarButton;
 @property (strong, nonatomic) UIBarButtonItem *navigationBarMenuButton;
 @property (strong, nonatomic) NSMutableSet *currentlySwipedAndOpenesCells;
-@property (strong, nonatomic) NSMutableArray *arrayWithAllDocators;
+@property (strong, nonatomic) NSMutableArray *arrayWithAllDoctors;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSArray *searchResult;
@@ -64,7 +64,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     self.tableView.dataSource = self;
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
-    self.arrayWithAllDocators = [[NSMutableArray alloc] init];
+    self.arrayWithAllDoctors = [[NSMutableArray alloc] init];
     [self customizingSearchBar];
 }
 
@@ -88,12 +88,20 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     [self.tableView reloadData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (self.currentlySwipedAndOpenesCells) {
+        [self.currentlySwipedAndOpenesCells removeAllObjects];
+    }
+}
+
 #pragma mark - Search & UISearchDisplayDelegate
 
 - (void)searchedResult:(NSString *)searchText scope:(NSArray *)scope
 {
     NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-        self.searchResult = [self.arrayWithAllDocators filteredArrayUsingPredicate:resultPredicat];
+        self.searchResult = [self.arrayWithAllDoctors filteredArrayUsingPredicate:resultPredicat];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -102,7 +110,8 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     return YES;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
 }
 
@@ -151,7 +160,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return self.searchResult.count;
     }
-    return self.arrayWithAllDocators.count;
+    return self.arrayWithAllDoctors.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,11 +170,11 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         cell = [[PEDoctorsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DLCellName];
     }
     if (indexPath.row % 2) {
-        cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);
-        cell.doctorNameLabel.textColor = UIColorFromRGB(0x499FE1);
-    } else {
         cell.viewDoctorsNameView.backgroundColor = [UIColor whiteColor];
         cell.doctorNameLabel.textColor = UIColorFromRGB(0x424242);
+    } else {
+        cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+        cell.doctorNameLabel.textColor = UIColorFromRGB(0x499FE1);
     }
     cell.delegate = self;
     
@@ -177,8 +186,10 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
             [cell setCellSwiped];
         }
-        cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDocators[indexPath.row])).name;
+        cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDoctors[indexPath.row])).name;
     }
+    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
+    cell.doctorNameLabel.font = cellFont;
     return cell;
 }
 
@@ -235,12 +246,12 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     } else {
         NSLog(@"delete action");
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self.managedObjectContext deleteObject:(Doctors *)(self.arrayWithAllDocators[indexPath.row])];
+        [self.managedObjectContext deleteObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.currentlySwipedAndOpenesCells removeObject:indexPath];
-        [self.arrayWithAllDocators removeObject:(Doctors *)(self.arrayWithAllDocators[indexPath.row])];
+        [self.arrayWithAllDoctors removeObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.tableView reloadData];
     }
-    NSError *deleteError = nil;
+    NSError *deleteError;
     if (![self.managedObjectContext save:&deleteError]) {
         NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
     }
@@ -256,7 +267,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         NSArray *allDoctorsArray = [NSMutableArray arrayWithArray:[PECoreDataManager getAllEntities:objectToSearch]];
         NSMutableArray *requiredDoctors = [[NSMutableArray alloc] init];
         for (Doctors *doctor in allDoctorsArray) {
-            for (Procedure *proceduresOfDoctor in [doctor.procedure allObjects]){
+            for (Procedure *proceduresOfDoctor in [doctor.procedure allObjects]) {
                 if ([proceduresOfDoctor.procedureID isEqualToString:self.specManager.currentProcedure.procedureID]) {
                     if (![requiredDoctors containsObject:doctor]) {
                         [requiredDoctors addObject:doctor];
@@ -265,18 +276,18 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
             }
         }
         NSArray *sorted = [requiredDoctors sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString *name1 = [(Doctors*)obj1 name];
-            NSString *name2 = [(Doctors*)obj2 name];
+            NSString *name1 = ((Doctors*)obj1).name;
+            NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
-        self.arrayWithAllDocators= [sorted mutableCopy];
+        self.arrayWithAllDoctors= [sorted mutableCopy];
     } else {
         NSArray *sorted = [[PECoreDataManager getAllEntities:objectToSearch] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString *name1 = [(Doctors*)obj1 name];
-            NSString *name2 = [(Doctors*)obj2 name];
+            NSString *name1 = ((Doctors*)obj1).name;
+            NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
-        self.arrayWithAllDocators = [sorted mutableCopy];
+        self.arrayWithAllDoctors = [sorted mutableCopy];
     }
 }
 

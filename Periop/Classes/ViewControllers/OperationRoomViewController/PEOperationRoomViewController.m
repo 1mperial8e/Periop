@@ -86,7 +86,7 @@ static NSInteger const ORTagView = 35;
                               value:[UIFont systemFontOfSize:16.0]
                               range:NSMakeRange(0, stringForLabelTop.length)];
     
-    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure*)self.specManager.currentProcedure).name]];
+    NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure *)self.specManager.currentProcedure).name]];
     [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
@@ -108,7 +108,7 @@ static NSInteger const ORTagView = 35;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
+    if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash] != [[UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
@@ -116,7 +116,6 @@ static NSInteger const ORTagView = 35;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
-
 
 #pragma mark - UICollectionViewDataSource
 
@@ -168,14 +167,14 @@ static NSInteger const ORTagView = 35;
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEOperationTableViewCell *)configureCell: (PEOperationTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (PEOperationTableViewCell *)configureCell:(PEOperationTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.labelStep.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
     cell.labelPreparationText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath*) indexPath
 {
     static PEOperationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;

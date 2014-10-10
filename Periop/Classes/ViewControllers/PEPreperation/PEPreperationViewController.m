@@ -55,7 +55,6 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     [super viewDidLayoutSubviews];
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -111,12 +110,12 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (PEPreparationTableViewCell *)configureCell: (PEPreparationTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
 {    
-    cell.labelStep.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).stepName;    
-    cell.labelPreparationText.text = ((Preparation*)self.sortedArrayWithPreprations[indexPath.row]).preparationText;
+    cell.labelStep.text = ((Preparation *)self.sortedArrayWithPreprations[indexPath.row]).stepName;
+    cell.labelPreparationText.text = ((Preparation *)self.sortedArrayWithPreprations[indexPath.row]).preparationText;
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *) indexPath
 {
     static PEPreparationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
@@ -134,13 +133,12 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 #pragma marks - Private
 
-
-- (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
+- (NSArray *)sortedArrayWithPreparationSteps:(NSArray *)arrayToSort
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = [(Preparation*)obj1 stepName];
-        NSString *secondObject = [(Preparation*)obj2 stepName];
+        NSString *firstObject = ((Preparation*)obj1).stepName;
+        NSString *secondObject = ((Preparation*)obj2).stepName;
         return [firstObject compare:secondObject];
     }];
     return sortedArray;

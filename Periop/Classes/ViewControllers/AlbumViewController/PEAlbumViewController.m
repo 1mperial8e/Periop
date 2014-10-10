@@ -106,7 +106,6 @@ static NSInteger const AVCDefaultQuantity = 29;
         [self.selectedPhotos addObject:[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage]];
     }
     
-    NSInteger counter = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
     NSInteger rewriteCounter = 0;
     
     for (UIImage *image in self.selectedPhotos) {
@@ -118,9 +117,17 @@ static NSInteger const AVCDefaultQuantity = 29;
         id requestedController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
         
         if ([requestedController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
+            NSInteger counter = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
             [self photoForOperationRoomViewController:newPhoto count:counter rewriteCount:rewriteCounter];
+            if (counter == 5) {
+                rewriteCounter++;
+            }
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
-            [self photoForToolsDetailsViewController:newPhoto];
+            NSInteger counter = [self.specManager.currentEquipment.photo allObjects].count;
+            [self photoForToolsDetailsViewController:newPhoto count:counter rewriteCount:rewriteCounter];
+            if (counter == 5) {
+                rewriteCounter++;
+            }
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCPatientPositioningViewController)]) {
             [self photoForPatientPositioningViewController:newPhoto];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)]) {
@@ -142,12 +149,12 @@ static NSInteger const AVCDefaultQuantity = 29;
     NSInteger allowedPhotoQuantity;
     
     id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
+    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ||
+        [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
         allowedPhotoQuantity = AVCOperationRoomQuantity;
     } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
               [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ) {
         allowedPhotoQuantity = AVCOneQuantity;
     } else {
         allowedPhotoQuantity = AVCDefaultQuantity;
@@ -158,61 +165,89 @@ static NSInteger const AVCDefaultQuantity = 29;
 
 #pragma mark - Private
 
+- (BOOL)checkIfPhotoExist:(NSArray *)photoArray compareWithPhoto:(Photo *)newPhoto
+{
+    BOOL isAdded = NO;
+    for (Photo *existingPhoto in photoArray) {
+        if ([newPhoto.photoData isEqualToData:existingPhoto.photoData])
+        {
+            isAdded = YES;
+            [self.managedObjectContext deleteObject:newPhoto];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Cant remove dublicate %@", error.localizedDescription);
+            }
+        }
+    }
+    return isAdded;
+}
+
 - (void)photoForOperationRoomViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
 {
-    if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count < 5) {
-        newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
-        newPhoto.photoNumber = @(counter++);
-        [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
-    } else {
-        [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
-        newPhoto.photoNumber = @(rewriteCounter);
-        newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
-        [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
-        rewriteCounter++;
-    }
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+    if (![self checkIfPhotoExist:[self.specManager.currentProcedure.operationRoom.photo allObjects] compareWithPhoto:newPhoto]) {
+        if ([self.specManager.currentProcedure.operationRoom.photo allObjects].count < 5) {
+            newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+            newPhoto.photoNumber = @(counter++);
+            [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+        } else {
+            [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
+            newPhoto.photoNumber = @(rewriteCounter);
+            newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
+            [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
+        }
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+        }
     }
 }
 
-- (void)photoForToolsDetailsViewController:(Photo *)newPhoto
+- (void)photoForToolsDetailsViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
 {
-    if ([self.specManager.currentEquipment.photo allObjects].count>0) {
-        [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
-    }
-    newPhoto.equiomentTool = self.specManager.currentEquipment;
-    newPhoto.photoNumber = @0;
-    [self.specManager.currentEquipment addPhotoObject:newPhoto];
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save chnages with photos toolsDetails DB - %@", error.localizedDescription);
+    if (![self checkIfPhotoExist:[self.specManager.currentEquipment.photo allObjects] compareWithPhoto:newPhoto]) {
+        if ([self.specManager.currentEquipment.photo allObjects].count < 5) {
+            newPhoto.equiomentTool = self.specManager.currentEquipment;
+            newPhoto.photoNumber = @(counter++);
+            [self.specManager.currentEquipment addPhotoObject:newPhoto];
+        } else {
+            [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
+            newPhoto.photoNumber = @(rewriteCounter);
+            newPhoto.equiomentTool = self.specManager.currentEquipment;
+            [self.specManager.currentEquipment addPhotoObject:newPhoto];
+        }
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
+        }
     }
 }
 
 - (void)photoForPatientPositioningViewController:(Photo *)newPhoto
 {
-    newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
-    newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
-    [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
+    if (![self checkIfPhotoExist:[self.specManager.currentProcedure.patientPostioning.photo allObjects] compareWithPhoto:newPhoto]) {
+        newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
+        newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
+        [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
+        }
     }
 }
 
 - (void)photoForDoctorsProfileViewController:(Photo *)newPhoto
 {
-    if (self.specManager.currentDoctor.photo) {
-        [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
-    }
-    newPhoto.doctor = self.specManager.currentDoctor;
-    newPhoto.photoNumber = @0;
-    self.specManager.currentDoctor.photo = newPhoto;
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
+    if (![self.specManager.currentDoctor.photo.photoData isEqualToData:newPhoto.photoData]) {
+        if (self.specManager.currentDoctor.photo) {
+            [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
+        }
+        newPhoto.doctor = self.specManager.currentDoctor;
+        newPhoto.photoNumber = @0;
+        self.specManager.currentDoctor.photo = newPhoto;
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
+        }
     }
 }
 

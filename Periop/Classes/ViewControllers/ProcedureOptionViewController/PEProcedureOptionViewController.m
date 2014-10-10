@@ -60,10 +60,9 @@
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.equipmentButton];
-    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height / 2, self.equipmentButton.bounds.size.width / 2);
     CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
-    if (distance < self.equipmentButton.frame.size.width/2) {
-        NSLog (@"touch began inside");
+    if (distance < self.equipmentButton.frame.size.width / 2) {
         [self.equipmentButton setHighlighted:YES];
     }
 }
@@ -73,9 +72,9 @@
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.equipmentButton];
-    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height / 2, self.equipmentButton.bounds.size.width / 2);
     CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
-    if (distance < self.equipmentButton.frame.size.width/2) {
+    if (distance < self.equipmentButton.frame.size.width / 2) {
         [self.equipmentButton setHighlighted:NO];
         [self performSelector:@selector(goToEquipmentViewController)];
     }
@@ -86,9 +85,9 @@
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.equipmentButton];
-    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height/2, self.equipmentButton.bounds.size.width/2);
+    CGPoint center = CGPointMake(self.equipmentButton.bounds.size.height / 2, self.equipmentButton.bounds.size.width / 2);
     CGFloat distance = [self distanceBetweenTwoPoints:center toPoint:touchPoint];
-    if (distance < self.equipmentButton.frame.size.width/2) {
+    if (distance < self.equipmentButton.frame.size.width / 2) {
         [self.equipmentButton setHighlighted:NO];
         [self performSelector:@selector(goToEquipmentViewController)];
     }

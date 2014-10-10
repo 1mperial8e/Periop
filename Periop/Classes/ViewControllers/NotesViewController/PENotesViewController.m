@@ -62,9 +62,9 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     
     NSString *textForHeader;
     if (self.specManager.isProcedureSelected) {
-        textForHeader = ((Procedure*)self.specManager.currentProcedure).name;
+        textForHeader = ((Procedure *)self.specManager.currentProcedure).name;
     } else {
-        textForHeader = ((Doctors*)self.specManager.currentDoctor).name;
+        textForHeader = ((Doctors *)self.specManager.currentDoctor).name;
     }
     ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
     
@@ -76,7 +76,6 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     [super viewDidLayoutSubviews];
     self.tableViewNotes.contentInset = UIEdgeInsetsZero;
     self.tableViewNotes.scrollIndicatorInsets = UIEdgeInsetsZero;
-
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -126,20 +125,20 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 
 #pragma mark - DynamicHeightOfCell
 
-- (PENotesTableViewCell*)configureCell: (PENotesTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+- (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]!=nil) {
-        cell.label.text = ((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
+        cell.label.text = ((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
+        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]!=nil) {
-        cell.label.text = ((Note*)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note*)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
+        cell.label.text = ((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
+        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
     }
     cell.delegate = self;
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *) indexPath
 {
     static PENotesTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
@@ -152,7 +151,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     [sizingCell layoutIfNeeded];
     sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableViewNotes.bounds), 0.0f);
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height ;
+    return size.height;
 }
 
 #pragma mark - PENotesTableViewCellDelegate
@@ -161,15 +160,15 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
-        NSError *deleteError = nil;
+        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+        NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
             NSLog(@"Cant delete note from Procedure - %@", deleteError.localizedDescription);
         }
     } else {
-        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
-        NSError *deleteError = nil;
+        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+        NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
             NSLog(@"Cant delete note from Doctor - %@", deleteError.localizedDescription);
@@ -182,14 +181,14 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
     } else {
-        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
     }
     
-    if ([UIImage imageWithData:((Photo*)self.specManager.currentNote.photo).photoData]!= nil) {
+    if ([UIImage imageWithData:((Photo *)self.specManager.currentNote.photo).photoData]!= nil) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentNote.photo;
+        viewPhotoControleller.photoToShow = (Photo *)self.specManager.currentNote.photo;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
@@ -199,9 +198,9 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     PEAddEditNoteViewController *addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
     if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note*)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
     } else {
-        self.specManager.currentNote = (Note*)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
     }
     addEditNote.noteTextToShow = self.specManager.currentNote.textDescription;
     addEditNote.timeToShow = [self dateFormatter:self.specManager.currentNote.timeStamp];
@@ -211,7 +210,7 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 
 #pragma mark - Private
 
-- (NSString *)dateFormatter: (NSDate*)dateToFormatt
+- (NSString *)dateFormatter:(NSDate *)dateToFormatt
 {
     NSDateFormatter *dateFormatterTimePart = [[NSDateFormatter alloc] init];
     [dateFormatterTimePart setDateFormat:@"dd MMMM YYYY, h:mm"];

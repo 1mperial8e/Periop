@@ -11,6 +11,8 @@ static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableVie
 static NSString *const DPDoctorsProfileCollectionCellName = @"doctorProfileCollectionViewCell";
 static NSString *const DPDoctorsProfileCollectionNibName = @"PEDoctorProfileCollectionViewCell";
 static NSString *const DPPlaceHolderImageName = @"Place_Holder";
+static NSInteger const DPViewTag = 35;
+static NSInteger const DPHeaderHeight = 37;
 
 #import "PEDoctorProfileViewController.h"
 #import "PEAddEditDoctorViewController.h"
@@ -91,13 +93,13 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     
     ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentDoctor.name;;
     
-    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
+    [(PEMediaSelect *)[self.view viewWithTag:DPViewTag] setVisible:NO];
     
     [self getDoctorsSpecAndProcedures];
     
     self.doctorName.text = self.specManager.currentDoctor.name;
     
-    if (((Photo*)self.specManager.currentDoctor.photo).photoData!=nil) {
+    if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
         self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
     } else {
         self.doctorPhotoImageView.image = [UIImage imageNamedFile:DPPlaceHolderImageName];
@@ -116,7 +118,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
-    if ([self.doctorPhotoImageView.image hash] != [[UIImage imageNamedFile:DPPlaceHolderImageName] hash]) {
+    if (((Photo *)self.specManager.currentDoctor.photo).photoData) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
@@ -157,7 +159,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = position;
-    view.tag = 35;
+    view.tag = DPViewTag;
     [self.view addSubview:view];
     [view setVisible:YES];
 }
@@ -173,7 +175,6 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (IBAction)cameraPhoto:(id)sender
 {
-    NSLog(@"camera Photo from Op");
     PECameraViewController *cameraView = [[PECameraViewController alloc] initWithNibName:@"PECameraViewController" bundle:nil];
     cameraView.request = DoctorsViewControllerProfile;
     [self presentViewController:cameraView animated:YES completion:nil];
@@ -181,7 +182,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (IBAction)tapOnView:(id)sender
 {
-    [(PEMediaSelect *)[self.view viewWithTag:35] setVisible:NO];
+    [(PEMediaSelect *)[self.view viewWithTag:DPViewTag] setVisible:NO];
 }
 
 #pragma mark - UITableViewDataSource
@@ -206,14 +207,14 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(15, 0, self.view.frame.size.width-15, 35);
     myLabel.backgroundColor = [UIColor whiteColor];
     myLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     myLabel.textColor = UIColorFromRGB(0x499FE1);
-    myLabel.text = ((Procedure*)self.doctorsSpec[section]).name;
+    myLabel.text = ((Procedure *)self.doctorsSpec[section]).name;
 
     UIView *headerView = [[UIView alloc] init];
     [headerView addSubview:myLabel];
@@ -229,7 +230,7 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 37;
+    return DPHeaderHeight;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -263,14 +264,14 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
     }
     
     [self.doctorsSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = [(Specialisation*)obj1 name];
-        NSString *secondObject = [(Specialisation*)obj2 name];
+        NSString *firstObject = ((Specialisation *)obj1).name;
+        NSString *secondObject = ((Specialisation *)obj2).name;
         return [firstObject compare:secondObject];
     }];
     
     NSMutableArray *arrayWithArraysOfProceduresForCurrentDoctor = [[NSMutableArray alloc] init];
     
-    for (int i=0; i<self.doctorsSpec.count; i++) {
+    for (int i = 0; i < self.doctorsSpec.count; i++) {
         NSMutableArray *arrayWithProc = [[NSMutableArray alloc] init];
         for (Procedure *proc in [self.specManager.currentDoctor.procedure allObjects]) {
             if ([proc.specialization.name isEqualToString:((Specialisation*)self.doctorsSpec[i]).name]) {
@@ -279,8 +280,8 @@ static NSString *const DPPlaceHolderImageName = @"Place_Holder";
         }
         
         [arrayWithProc sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSString *o1 = [(Procedure*)obj1 name];
-            NSString *o2 = [(Procedure*)obj2 name];
+            NSString *o1 = ((Procedure *)obj1).name;
+            NSString *o2 = ((Procedure *)obj2).name;
             return [o1 compare:o2];
         }];
         

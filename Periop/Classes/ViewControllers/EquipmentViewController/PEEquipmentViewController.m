@@ -46,7 +46,8 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear all" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    [closeButton setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = closeButton;
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -129,7 +130,6 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
         UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alerMail show];
     }
-    
 }
 
 #pragma mark - MailComposerDelegate
@@ -165,7 +165,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return ((NSArray*)self.arrayWithCategorisedToolsArrays[section]).count;
+   return ((NSArray *)self.arrayWithCategorisedToolsArrays[section]).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -196,7 +196,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return (NSString*)self.categoryTools[section];
+    return (NSString *)self.categoryTools[section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -209,7 +209,7 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
 
-- (void)buttonDeleteAction:(UITableViewCell*)cell
+- (void)buttonDeleteAction:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndex = [self.tableView indexPathForCell:cell];
     [self deleteSlectedItem:currentIndex];
@@ -238,17 +238,17 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 #pragma mark - Private
 
-- (NSMutableArray*)sortArrayByCategoryAttribute: (NSArray*)objectsArray
+- (NSMutableArray *)sortArrayByCategoryAttribute:(NSArray *)objectsArray
 {
     NSMutableArray *arrayWithCategorisedArrays =[[NSMutableArray alloc] init];
     NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     NSArray *uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *categotyOne = (NSString*)obj1;
-        NSString *categotyTwo = (NSString*)obj2;
+        NSString *categotyOne = (NSString *)obj1;
+        NSString *categotyTwo = (NSString *)obj2;
         return [categotyOne compare:categotyTwo];
     }];
     
-    for (int i=0; i< uniqueCategory.count; i++){
+    for (int i = 0; i < uniqueCategory.count; i++){
         NSMutableArray *categoryArray = [[NSMutableArray alloc] init];
         for (EquipmentsTool *equipment in objectsArray) {
             if ([equipment.category isEqualToString:[NSString stringWithFormat:@"%@", uniqueCategory[i]] ]) {
@@ -267,12 +267,12 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
     return arrayWithCategorisedArrays;
 }
 
-- (NSMutableArray *)categoryType: (NSArray*)objectsArray
+- (NSMutableArray *)categoryType: (NSArray *)objectsArray
 {
     NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     NSArray *uniqueCategory = [[toolsWithCounts allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *categotyOne = (NSString*)obj1;
-        NSString *categotyTwo = (NSString*)obj2;
+        NSString *categotyOne = (NSString *)obj1;
+        NSString *categotyTwo = (NSString *)obj2;
         return [categotyOne compare:categotyTwo];
     }];
     return [NSMutableArray arrayWithArray:uniqueCategory];
@@ -280,9 +280,9 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 
 - (void)deleteSlectedItem: (NSIndexPath*)indexPathToDelete
 {
-    EquipmentsTool *eq = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
+    EquipmentsTool *eq = ((EquipmentsTool *)((NSArray *)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
     [self.specManager.currentProcedure removeEquipmentsObject:eq];
-    NSError *saveDeletedObjectsError = nil;
+    NSError *saveDeletedObjectsError;
     [self.managedObjectContext deleteObject:eq];
     if(![self.managedObjectContext save:&saveDeletedObjectsError]) {
         NSLog(@"Cant delete from DB, error : %@", saveDeletedObjectsError.localizedDescription);

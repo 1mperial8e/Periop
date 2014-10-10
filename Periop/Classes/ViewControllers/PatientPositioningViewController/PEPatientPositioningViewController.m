@@ -66,7 +66,6 @@ static NSInteger const PPTagView = 35;
     
     self.tableViewPatient.layer.borderWidth = 0.0f;
     self.postedCollectionView.layer.borderWidth = 0.0f;
-
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -116,7 +115,7 @@ static NSInteger const PPTagView = 35;
 - (IBAction)albumPhoto:(id)sender
 {
     PEAlbumViewController *albumViewController = [[PEAlbumViewController alloc] initWithNibName:@"PEAlbumViewController" bundle:nil];
-    albumViewController.navigationLabelText = ((Procedure*)(self.specManager.currentProcedure)).name;
+    albumViewController.navigationLabelText = ((Procedure *)(self.specManager.currentProcedure)).name;
     [self.navigationController pushViewController:albumViewController animated:YES];
 }
 
@@ -160,15 +159,15 @@ static NSInteger const PPTagView = 35;
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEPatientPositioningTableViewCell*)configureCell: (PEPatientPositioningTableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath
+- (PEPatientPositioningTableViewCell *)configureCell:(PEPatientPositioningTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.labelStepName.text = ((Steps*)self.sortedArrayWithPatientPositioning[indexPath.row]).stepName;
-    cell.labelContent.text = ((Steps*)self.sortedArrayWithPatientPositioning[indexPath.row]).stepDescription;
+    cell.labelStepName.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepName;
+    cell.labelContent.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepDescription;
     
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath: (NSIndexPath*) indexPath
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath
 {
     static PEPatientPositioningTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
