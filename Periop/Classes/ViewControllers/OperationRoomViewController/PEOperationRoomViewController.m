@@ -108,7 +108,7 @@ static NSInteger const ORTagView = 35;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash]!= [ [UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
+    if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash] != [[UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
@@ -116,7 +116,6 @@ static NSInteger const ORTagView = 35;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
-
 
 #pragma mark - UICollectionViewDataSource
 

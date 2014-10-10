@@ -120,7 +120,7 @@ static NSInteger const AVCDefaultQuantity = 29;
         if ([requestedController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
             [self photoForOperationRoomViewController:newPhoto count:counter rewriteCount:rewriteCounter];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
-            [self photoForToolsDetailsViewController:newPhoto];
+            [self photoForToolsDetailsViewController:newPhoto count:counter rewriteCount:rewriteCounter];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCPatientPositioningViewController)]) {
             [self photoForPatientPositioningViewController:newPhoto];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)]) {
@@ -132,6 +132,7 @@ static NSInteger const AVCDefaultQuantity = 29;
             newPhoto.photoNumber = @0;
             self.specManager.photoObject = newPhoto;
         }
+        rewriteCounter++;
     }
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -142,12 +143,12 @@ static NSInteger const AVCDefaultQuantity = 29;
     NSInteger allowedPhotoQuantity;
     
     id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)]) {
+    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ||
+        [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
         allowedPhotoQuantity = AVCOperationRoomQuantity;
     } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
               [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ) {
         allowedPhotoQuantity = AVCOneQuantity;
     } else {
         allowedPhotoQuantity = AVCDefaultQuantity;
@@ -169,7 +170,6 @@ static NSInteger const AVCDefaultQuantity = 29;
         newPhoto.photoNumber = @(rewriteCounter);
         newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
         [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
-        rewriteCounter++;
     }
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -177,17 +177,21 @@ static NSInteger const AVCDefaultQuantity = 29;
     }
 }
 
-- (void)photoForToolsDetailsViewController:(Photo *)newPhoto
+- (void)photoForToolsDetailsViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
 {
-    if ([self.specManager.currentEquipment.photo allObjects].count>0) {
-        [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
+    if ([self.specManager.currentEquipment.photo allObjects].count < 5) {
+        newPhoto.equiomentTool = self.specManager.currentEquipment;
+        newPhoto.photoNumber = @(counter++);
+        [self.specManager.currentEquipment addPhotoObject:newPhoto];
+    } else {
+        [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
+        newPhoto.photoNumber = @(rewriteCounter);
+        newPhoto.equiomentTool = self.specManager.currentEquipment;
+        [self.specManager.currentEquipment addPhotoObject:newPhoto];
     }
-    newPhoto.equiomentTool = self.specManager.currentEquipment;
-    newPhoto.photoNumber = @0;
-    [self.specManager.currentEquipment addPhotoObject:newPhoto];
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant save chnages with photos toolsDetails DB - %@", error.localizedDescription);
+        NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
     }
 }
 
