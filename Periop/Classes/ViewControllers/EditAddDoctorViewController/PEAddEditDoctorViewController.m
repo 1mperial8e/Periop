@@ -80,6 +80,9 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
     [self.imageView addGestureRecognizer:tap];
+    
+    self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
+    self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

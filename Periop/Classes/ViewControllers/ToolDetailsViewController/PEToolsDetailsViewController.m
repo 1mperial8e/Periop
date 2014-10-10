@@ -33,11 +33,10 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
-
-//@property (weak, nonatomic) IBOutlet UIImageView *equipmentPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpec;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) UIBarButtonItem *rightBarButton;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -55,6 +54,8 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.labelName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     self.labelSpec.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     self.labelQuantity.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
@@ -66,7 +67,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    self.edgesForExtendedLayout = UIRectEdgeTop;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
 
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamedFile:@"Edit"];
@@ -85,9 +86,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
-    
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
-//    [self.equipmentPhoto addGestureRecognizer:tap];
 
 }
 
@@ -114,19 +112,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentEquipment.photo allObjects]];
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     
-//    if (!self.sortedArrayWithPhotos.count) {
-//    }
-//    if ([[self.specManager.currentEquipment.photo allObjects] count]) {
-//        
-//        if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoName.length) {
-//            self.equipmentPhoto.image = [UIImage imageNamedFile:((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoName];
-//        } else if (((Photo*)[self.specManager.currentEquipment.photo allObjects][0]).photoData!=nil ) {
-//            self.equipmentPhoto.image = [UIImage imageWithData:((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData];
-//        }
-//    } else {
-//        self.equipmentPhoto.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
-//    }
-    
     [(PEMediaSelect *)[self.view viewWithTag:TDVCViewTag] setVisible:NO];
     [self.collectionView reloadData];
 }
@@ -135,6 +120,14 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    self.sortedArrayWithPhotos = nil;
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -147,6 +140,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 - (IBAction)editButton:(id)sender
 {
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    [saveButton setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_MuseoSans500 size:13.5f]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = saveButton;
     self.nameTextField.enabled = true;
     self.specificationTextField.enabled = true;
@@ -185,11 +179,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     [self.view addSubview:view];
     [view setVisible:YES];
 }
-
-//- (void)tapOnPicture:(UITapGestureRecognizer *)gesture
-//{
-//    
-//}
 
 #pragma mark - XIB Action
 
@@ -258,7 +247,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     if ([[self.specManager.currentEquipment.photo allObjects] count] && [((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash] != [[UIImage imageNamedFile:TDVPlaceHolderImageName] hash]) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if ([[self.specManager.currentEquipment.photo allObjects] count]) {
-            viewPhotoControleller.photoToShow = (Photo *)[self.specManager.currentEquipment.photo allObjects][indexPath.row];
+            viewPhotoControleller.photoToShow = self.sortedArrayWithPhotos[indexPath.row];
         }
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }

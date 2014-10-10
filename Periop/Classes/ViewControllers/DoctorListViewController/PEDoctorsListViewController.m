@@ -28,7 +28,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
 @property (strong, nonatomic) UIBarButtonItem *navigationBarAddBarButton;
 @property (strong, nonatomic) UIBarButtonItem *navigationBarMenuButton;
 @property (strong, nonatomic) NSMutableSet *currentlySwipedAndOpenesCells;
-@property (strong, nonatomic) NSMutableArray *arrayWithAllDocators;
+@property (strong, nonatomic) NSMutableArray *arrayWithAllDoctors;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSArray *searchResult;
@@ -64,7 +64,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     self.tableView.dataSource = self;
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
-    self.arrayWithAllDocators = [[NSMutableArray alloc] init];
+    self.arrayWithAllDoctors = [[NSMutableArray alloc] init];
     [self customizingSearchBar];
 }
 
@@ -93,7 +93,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
 - (void)searchedResult:(NSString *)searchText scope:(NSArray *)scope
 {
     NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-        self.searchResult = [self.arrayWithAllDocators filteredArrayUsingPredicate:resultPredicat];
+        self.searchResult = [self.arrayWithAllDoctors filteredArrayUsingPredicate:resultPredicat];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -152,7 +152,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return self.searchResult.count;
     }
-    return self.arrayWithAllDocators.count;
+    return self.arrayWithAllDoctors.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -178,7 +178,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
             [cell setCellSwiped];
         }
-        cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDocators[indexPath.row])).name;
+        cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDoctors[indexPath.row])).name;
     }
     return cell;
 }
@@ -234,9 +234,9 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     } else {
         NSLog(@"delete action");
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self.managedObjectContext deleteObject:(Doctors *)(self.arrayWithAllDocators[indexPath.row])];
+        [self.managedObjectContext deleteObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.currentlySwipedAndOpenesCells removeObject:indexPath];
-        [self.arrayWithAllDocators removeObject:(Doctors *)(self.arrayWithAllDocators[indexPath.row])];
+        [self.arrayWithAllDoctors removeObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.tableView reloadData];
     }
     NSError *deleteError;
@@ -268,14 +268,14 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
             NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
-        self.arrayWithAllDocators= [sorted mutableCopy];
+        self.arrayWithAllDoctors= [sorted mutableCopy];
     } else {
         NSArray *sorted = [[PECoreDataManager getAllEntities:objectToSearch] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSString *name1 = ((Doctors*)obj1).name;
             NSString *name2 = ((Doctors*)obj2).name;
             return [name1 compare:name2];
         }];
-        self.arrayWithAllDocators = [sorted mutableCopy];
+        self.arrayWithAllDoctors = [sorted mutableCopy];
     }
 }
 

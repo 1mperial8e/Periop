@@ -89,7 +89,7 @@ static NSInteger const PLVCHeightForRow = 53;
 {
     ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
-    self.specManager.isProcedureSelected = true;
+    self.specManager.isProcedureSelected = YES;
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
@@ -98,9 +98,9 @@ static NSInteger const PLVCHeightForRow = 53;
 
 - (IBAction)doctorButton:(id)sender
 {
-    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCDoctorsName;
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentSpecialisation.name;
     
-    self.specManager.isProcedureSelected = false;
+    self.specManager.isProcedureSelected = NO;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
@@ -196,25 +196,25 @@ static NSInteger const PLVCHeightForRow = 53;
     }
     
     if ( indexPath.row % 2){
-        cell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
-        cell.textLabel.textColor = UIColorFromRGB(0x499FE1);
-    } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.textLabel.textColor = UIColorFromRGB(0x424242);
+    } else {
+        cell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+        cell.textLabel.textColor = UIColorFromRGB(0x499FE1);
     }
     
     UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            cell.textLabel.text = ((Procedure*)self.searchResult[indexPath.row]).name;
+            cell.textLabel.text = ((Procedure *)self.searchResult[indexPath.row]).name;
         } else {
-            cell.textLabel.text = ((Procedure*)self.sortedArrayWithProcedures[indexPath.row]).name;
+            cell.textLabel.text = ((Procedure *)self.sortedArrayWithProcedures[indexPath.row]).name;
         }
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            cell.textLabel.text = ((Doctors*)self.searchResult[indexPath.row]).name;
+            cell.textLabel.text = ((Doctors *)self.searchResult[indexPath.row]).name;
         } else {
-            cell.textLabel.text = ((Doctors*)self.sortedArrayWithDoctors[indexPath.row]).name;
+            cell.textLabel.text = ((Doctors *)self.sortedArrayWithDoctors[indexPath.row]).name;
         }
     }
     cell.textLabel.font = cellFont;

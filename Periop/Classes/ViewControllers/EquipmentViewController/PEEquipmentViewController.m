@@ -46,7 +46,8 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
     
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear all" style:UIBarButtonItemStyleBordered target:self action:@selector(clearAll:)];
+    [closeButton setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = closeButton;
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
