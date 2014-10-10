@@ -88,6 +88,14 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     [self.tableView reloadData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (self.currentlySwipedAndOpenesCells) {
+        [self.currentlySwipedAndOpenesCells removeAllObjects];
+    }
+}
+
 #pragma mark - Search & UISearchDisplayDelegate
 
 - (void)searchedResult:(NSString *)searchText scope:(NSArray *)scope
@@ -162,11 +170,11 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         cell = [[PEDoctorsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DLCellName];
     }
     if (indexPath.row % 2) {
-        cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);
-        cell.doctorNameLabel.textColor = UIColorFromRGB(0x499FE1);
-    } else {
         cell.viewDoctorsNameView.backgroundColor = [UIColor whiteColor];
         cell.doctorNameLabel.textColor = UIColorFromRGB(0x424242);
+    } else {
+        cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+        cell.doctorNameLabel.textColor = UIColorFromRGB(0x499FE1);
     }
     cell.delegate = self;
     
@@ -180,6 +188,8 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
         }
         cell.doctorNameLabel.text = ((Doctors*)(self.arrayWithAllDoctors[indexPath.row])).name;
     }
+    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
+    cell.doctorNameLabel.font = cellFont;
     return cell;
 }
 

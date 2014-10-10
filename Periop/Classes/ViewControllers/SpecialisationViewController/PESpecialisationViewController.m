@@ -372,7 +372,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 #pragma mark - NotificationFromPurchaseManager
 
-- (void)productPurchased: (NSNotification *)notification
+- (void)productPurchased:(NSNotification *)notification
 {
     //product identifier - purchased product
     NSString *productIdentifier = notification.object;

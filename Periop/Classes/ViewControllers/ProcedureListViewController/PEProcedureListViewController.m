@@ -6,9 +6,13 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const PLVCCellName = @"doctorsCell";
+static NSString *const PLVCNibName = @"PEDoctorsViewTableViewCell";
+static NSString *const PLVCStandartCellName = @"Cell";
+
 static NSString *const PLVCProcedureName = @"Procedure Name";
 static NSString *const PLVCDoctorsName = @"Doctors Name";
-static NSInteger const PLVCHeightForRow = 53;
+//static NSInteger const PLVCHeightForRow = 53;
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
@@ -23,8 +27,9 @@ static NSInteger const PLVCHeightForRow = 53;
 #import "Procedure.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEDoctorsViewTableViewCell.h"
 
-@interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
+@interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, PEDoctorsViewTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -36,6 +41,8 @@ static NSInteger const PLVCHeightForRow = 53;
 @property (strong, nonatomic) UIBarButtonItem *navigationBarAddDoctorButton;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithProcedures;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithDoctors;
+@property (strong, nonatomic) NSMutableSet *currentlySwipedAndOpenesCells;
+@property (assign, nonatomic) BOOL isSearchTable;
 
 @property (strong, nonatomic) NSArray *searchResult;
 
@@ -54,6 +61,8 @@ static NSInteger const PLVCHeightForRow = 53;
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
+    [self.tableView registerNib:[UINib nibWithNibName:PLVCNibName bundle:nil] forCellReuseIdentifier:PLVCCellName];
+    
     self.specManager.isProcedureSelected = YES;
     
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
@@ -69,9 +78,11 @@ static NSInteger const PLVCHeightForRow = 53;
     self.tableView.dataSource = self;
     
     self.tableView.layer.borderWidth = 0.0f;
+    //self.currentlySwipedAndOpenesCells = [[NSMutableSet alloc] init];
+    self.isSearchTable = NO;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -81,6 +92,14 @@ static NSInteger const PLVCHeightForRow = 53;
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
     [self customizingSearchBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.currentlySwipedAndOpenesCells) {
+        [self.currentlySwipedAndOpenesCells removeAllObjects];
+    }
 }
 
 #pragma mark - IBActions
@@ -135,6 +154,12 @@ static NSInteger const PLVCHeightForRow = 53;
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[UIColor clearColor]];
+    self.isSearchTable = YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
+    self.isSearchTable = NO;
 }
 
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
@@ -190,36 +215,63 @@ static NSInteger const PLVCHeightForRow = 53;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    }
+    UITableViewCell *returnCell = [[UITableViewCell alloc] init];
     
-    if ( indexPath.row % 2){
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.textColor = UIColorFromRGB(0x424242);
-    } else {
-        cell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
-        cell.textLabel.textColor = UIColorFromRGB(0x499FE1);
-    }
-    
-    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
     if (self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.procedures allObjects][indexPath.row]) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLVCStandartCellName];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PLVCStandartCellName];
+        }
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell.textLabel.text = ((Procedure *)self.searchResult[indexPath.row]).name;
         } else {
             cell.textLabel.text = ((Procedure *)self.sortedArrayWithProcedures[indexPath.row]).name;
         }
+        returnCell = cell;
     } else if (!self.specManager.isProcedureSelected && [self.specManager.currentSpecialisation.doctors allObjects][indexPath.row]) {
+
         if (tableView == self.searchDisplayController.searchResultsTableView) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLVCStandartCellName];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PLVCStandartCellName];
+            }
             cell.textLabel.text = ((Doctors *)self.searchResult[indexPath.row]).name;
+            returnCell = cell;
         } else {
-            cell.textLabel.text = ((Doctors *)self.sortedArrayWithDoctors[indexPath.row]).name;
+           PEDoctorsViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLVCCellName forIndexPath:indexPath];
+            cell.doctorNameLabel.text = ((Doctors *)self.sortedArrayWithDoctors[indexPath.row]).name;
+            cell.delegate = self;
+            
+            if ( indexPath.row % 2){
+                cell.viewDoctorsNameView.backgroundColor = [UIColor whiteColor];
+                cell.doctorNameLabel.textColor = UIColorFromRGB(0x424242);
+            } else {
+                cell.viewDoctorsNameView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+                cell.doctorNameLabel.textColor = UIColorFromRGB(0x499FE1);
+            }
+            
+            if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
+                [cell setCellSwiped];
+            }
+            returnCell = cell;
         }
     }
-    cell.textLabel.font = cellFont;
-    cell.textLabel.numberOfLines = 0;
-    return cell;
+    if (self.specManager.isProcedureSelected || (!self.specManager.isProcedureSelected && tableView == self.searchDisplayController.searchResultsTableView)) {
+        if ( indexPath.row % 2){
+            returnCell.contentView.backgroundColor = [UIColor whiteColor];
+            returnCell.textLabel.textColor = UIColorFromRGB(0x424242);
+        } else {
+            returnCell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+            returnCell.textLabel.textColor = UIColorFromRGB(0x499FE1);
+        }
+    }
+    
+    UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
+    returnCell.textLabel.font = cellFont;
+    returnCell.textLabel.numberOfLines = 0;
+    
+    return returnCell;
 }
 
 #pragma mark - TableViewDelegate
@@ -256,10 +308,45 @@ static NSInteger const PLVCHeightForRow = 53;
     }
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - PEDoctorsViewTableViewCellDelegate
+
+- (void)buttonDeleteAction:(UITableViewCell *)cell
 {
-    return PLVCHeightForRow;
+    NSIndexPath *selectedCellIndexPath = [self.tableView indexPathForCell:cell];
+    
+    for (Doctors *doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
+        if ([((Doctors *)self.sortedArrayWithDoctors[selectedCellIndexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
+            [self.managedObjectContext deleteObject:doc];
+            NSError *delObj = nil;
+            if (![self.managedObjectContext save:&delObj]) {
+                NSLog(@"Cant delete doctor");
+            }
+            [self.currentlySwipedAndOpenesCells removeObject:selectedCellIndexPath];
+            self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
+            [self.tableView reloadData];
+            break;
+        }
+    }
 }
+
+- (void)cellDidSwipedOut:(UITableViewCell *)cell
+{
+    if (!self.isSearchTable) {
+        NSIndexPath *currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
+        if (!self.currentlySwipedAndOpenesCells) {
+            self.currentlySwipedAndOpenesCells = [[NSMutableSet alloc] init];
+        }
+        [self.currentlySwipedAndOpenesCells addObject:currentOpenedCellIndexPath];
+    }
+}
+
+- (void)cellDidSwipedIn:(UITableViewCell *)cell
+{
+    if (!self.isSearchTable)  {
+        [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
+    }
+}
+
 
 #pragma marks - Private
 
