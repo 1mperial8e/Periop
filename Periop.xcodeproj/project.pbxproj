@@ -97,7 +97,6 @@
 		ED9C696319C720E70022C1A8 /* Add_Photo_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */; };
 		ED9C696519C720E80022C1A8 /* Add_Photo_to_Note_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */; };
 		ED9C696719C720E80022C1A8 /* Album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C219C720E70022C1A8 /* Album@2x.png */; };
-		ED9C696919C720E80022C1A8 /* Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C419C720E70022C1A8 /* Back@2x.png */; };
 		ED9C696B19C720E80022C1A8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C619C720E70022C1A8 /* Background@2x.png */; };
 		ED9C696D19C720E80022C1A8 /* Bin_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68C819C720E70022C1A8 /* Bin_Icon@2x.png */; };
 		ED9C696F19C720E80022C1A8 /* Camera_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68CA19C720E70022C1A8 /* Camera_@2x.png */; };
@@ -114,7 +113,6 @@
 		ED9C698519C720E80022C1A8 /* Edit_Info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68E019C720E70022C1A8 /* Edit_Info@2x.png */; };
 		ED9C698719C720E80022C1A8 /* Equipment_category_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68E219C720E70022C1A8 /* Equipment_category_Button@2x.png */; };
 		ED9C698919C720E80022C1A8 /* Flash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68E419C720E70022C1A8 /* Flash@2x.png */; };
-		ED9C698B19C720E80022C1A8 /* Header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68E619C720E70022C1A8 /* Header@2x.png */; };
 		ED9C698D19C720E80022C1A8 /* Menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68E819C720E70022C1A8 /* Menu@2x.png */; };
 		ED9C698F19C720E80022C1A8 /* Menu_Dividers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68EA19C720E70022C1A8 /* Menu_Dividers@2x.png */; };
 		ED9C699119C720E80022C1A8 /* Menu_Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68EC19C720E70022C1A8 /* Menu_Overlay@2x.png */; };
@@ -125,13 +123,10 @@
 		ED9C699B19C720E80022C1A8 /* Notes_Tab_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68F619C720E70022C1A8 /* Notes_Tab_Active@2x.png */; };
 		ED9C699D19C720E80022C1A8 /* Notes_Tab_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */; };
 		ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */; };
-		ED9C69A119C720E80022C1A8 /* Pagination_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68FC19C720E70022C1A8 /* Pagination_Active@2x.png */; };
-		ED9C69A319C720E80022C1A8 /* Pagination_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68FE19C720E70022C1A8 /* Pagination_Inactive@2x.png */; };
 		ED9C69A519C720E80022C1A8 /* Photo_Added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */; };
 		ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */; };
 		ED9C69A919C720E80022C1A8 /* Procedures_Tab_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */; };
 		ED9C69AB19C720E80022C1A8 /* Procedures_Tab_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */; };
-		ED9C69AD19C720E80022C1A8 /* Search_Bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690819C720E70022C1A8 /* Search_Bar@2x.png */; };
 		ED9C69AF19C720E80022C1A8 /* Select_Photo_Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */; };
 		ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690C19C720E70022C1A8 /* Take_Photo@2x.png */; };
 		ED9C69B319C720E80022C1A8 /* Upload_Photo_Button_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690E19C720E70022C1A8 /* Upload_Photo_Button_2@2x.png */; };
@@ -200,6 +195,8 @@
 		EDD0244719D0B8A60023F46D /* Steps.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0244619D0B8A60023F46D /* Steps.m */; };
 		EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */; };
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
+		EDD21AD019EBB52400F343A2 /* ENT_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */; };
+		EDD21AD219EBB53400F343A2 /* ENT_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */; };
 		EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDE819D2A8D40087D8CE /* Doctors.m */; };
 		EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */; };
 		EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */; };
@@ -329,29 +326,28 @@
 		ED21660B19CC3022005E821B /* PeriopDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeriopDataBase.xcdatamodel; sourceTree = "<group>"; };
 		ED350F2F19C0979500512663 /* PECoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECoreDataManager.h; sourceTree = "<group>"; };
 		ED350F3019C0979500512663 /* PECoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECoreDataManager.m; sourceTree = "<group>"; };
-		ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Colorectal_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Specialisation_Iconl@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "General_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBE19E5514A00929F64 /* General_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "General_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBF19E5514A00929F64 /* Gynaecology_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gynaecology_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC019E5514A00929F64 /* Gynaecology_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gynaecology_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC119E5514A00929F64 /* Obstetric_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Obstetric_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC219E5514A00929F64 /* Obstetric_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Obstetric_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC319E5514A00929F64 /* Opthomology_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Opthomology_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC419E5514A00929F64 /* Opthomology_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Opthomology_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC519E5514A00929F64 /* Orthopeadic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orthopeadic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orthopeadic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plastic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plastic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Small_Inactive@2x.png"; path = "../../Cardiothoracic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Specialisation_Icon@2x.png"; path = "../../Cardiothoracic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colorectal_Small_Inactive@2x.png"; path = "../../Colorectal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colorectal_Specialisation_Icon@2x.png"; path = "../../Colorectal_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Small_Inactive@2x.png"; path = "../../Cosmetic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Specialisation_Iconl@2x.png"; path = "../../Cosmetic_Specialisation_Iconl@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General_Small_Inactive@2x.png"; path = "../../General_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBE19E5514A00929F64 /* General_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General_Specialisation_Icon@2x.png"; path = "../../General_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBF19E5514A00929F64 /* Gynaecology_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gynaecology_Small_Inactive@2x.png"; path = "../../Gynaecology_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC019E5514A00929F64 /* Gynaecology_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gynaecology_Specialisation_Icon@2x.png"; path = "../../Gynaecology_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC119E5514A00929F64 /* Obstetric_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Small_Inactive@2x.png"; path = "../../Obstetric_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC219E5514A00929F64 /* Obstetric_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Specialisation_Icon@2x.png"; path = "../../Obstetric_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC319E5514A00929F64 /* Opthomology_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Small_Inactive@2x.png"; path = "../../Opthomology_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC419E5514A00929F64 /* Opthomology_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Specialisation_Icon@2x.png"; path = "../../Opthomology_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC519E5514A00929F64 /* Orthopeadic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Small_Inactive@2x.png"; path = "../../Orthopeadic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Specialisation_Icon@2x.png"; path = "../../Orthopeadic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Small_Inactive@2x.png"; path = "../../Plastic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Specialisation_Icon@2x.png"; path = "../../Plastic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
 		ED9C68BC19C720E70022C1A8 /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Photo_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Photo_to_Note_Button@2x.png"; sourceTree = "<group>"; };
 		ED9C68C219C720E70022C1A8 /* Album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Album@2x.png"; sourceTree = "<group>"; };
-		ED9C68C419C720E70022C1A8 /* Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back@2x.png"; sourceTree = "<group>"; };
 		ED9C68C619C720E70022C1A8 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		ED9C68C819C720E70022C1A8 /* Bin_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bin_Icon@2x.png"; sourceTree = "<group>"; };
 		ED9C68CA19C720E70022C1A8 /* Camera_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera_@2x.png"; sourceTree = "<group>"; };
@@ -368,7 +364,6 @@
 		ED9C68E019C720E70022C1A8 /* Edit_Info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit_Info@2x.png"; sourceTree = "<group>"; };
 		ED9C68E219C720E70022C1A8 /* Equipment_category_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Equipment_category_Button@2x.png"; sourceTree = "<group>"; };
 		ED9C68E419C720E70022C1A8 /* Flash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Flash@2x.png"; sourceTree = "<group>"; };
-		ED9C68E619C720E70022C1A8 /* Header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header@2x.png"; sourceTree = "<group>"; };
 		ED9C68E819C720E70022C1A8 /* Menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu@2x.png"; sourceTree = "<group>"; };
 		ED9C68EA19C720E70022C1A8 /* Menu_Dividers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu_Dividers@2x.png"; sourceTree = "<group>"; };
 		ED9C68EC19C720E70022C1A8 /* Menu_Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu_Overlay@2x.png"; sourceTree = "<group>"; };
@@ -379,36 +374,33 @@
 		ED9C68F619C720E70022C1A8 /* Notes_Tab_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notes_Tab_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notes_Tab_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
-		ED9C68FC19C720E70022C1A8 /* Pagination_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagination_Active@2x.png"; sourceTree = "<group>"; };
-		ED9C68FE19C720E70022C1A8 /* Pagination_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pagination_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo_Added@2x.png"; sourceTree = "<group>"; };
 		ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@2x.png"; sourceTree = "<group>"; };
 		ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Procedures_Tab_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Procedures_Tab_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED9C690819C720E70022C1A8 /* Search_Bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search_Bar@2x.png"; sourceTree = "<group>"; };
 		ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Select_Photo_Indicator@2x.png"; sourceTree = "<group>"; };
 		ED9C690C19C720E70022C1A8 /* Take_Photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Take_Photo@2x.png"; sourceTree = "<group>"; };
 		ED9C690E19C720E70022C1A8 /* Upload_Photo_Button_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Upload_Photo_Button_2@2x.png"; sourceTree = "<group>"; };
-		ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestina_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosemetic_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cosmetic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C692F19C720E70022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C693119C720E70022C1A8 /* General_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "General_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C693719C720E70022C1A8 /* General_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "General_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C693919C720E70022C1A8 /* Gynaecology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gynaecology_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gynaecology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Obstetric_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Obstetric_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Opthomology_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Opthomology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orthopaedic_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orthopeadic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plastic_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plastic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Large@2x.png"; path = "../Cardiothoracic_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; path = "../Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestina_Large@2x.png"; path = "../Gastrointestina_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestina_Specialisation_Icon_-_Small@2x.png"; path = "../Gastrointestina_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosemetic_Large@2x.png"; path = "../Cosemetic_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Specialisation_Icon_-_Small@2x.png"; path = "../Cosmetic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ENT_Large@2x.png"; path = "../ENT_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C692F19C720E70022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ENT_Specialisation_Icon_-_Small@2x.png"; path = "../ENT_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C693119C720E70022C1A8 /* General_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General_Large@2x.png"; path = "../General_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C693719C720E70022C1A8 /* General_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General_Specialisation_Icon_-_Small@2x.png"; path = "../General_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C693919C720E70022C1A8 /* Gynaecology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gynaecology_Large@2x.png"; path = "../Gynaecology_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gynaecology_Specialisation_Icon_-_Small@2x.png"; path = "../Gynaecology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Large@2x.png"; path = "../Obstetric_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Specialisation_Icon_-_Small@2x.png"; path = "../Obstetric_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Large@2x.png"; path = "../Opthomology_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Specialisation_Icon_-_Small@2x.png"; path = "../Opthomology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopaedic_Large@2x.png"; path = "../Orthopaedic_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Specialisation_Icon_-_Small@2x.png"; path = "../Orthopeadic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Large@2x.png"; path = "../Plastic_Large@2x.png"; sourceTree = "<group>"; };
+		ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Specialisation_Icon_-_Small@2x.png"; path = "../Plastic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		EDA7DFE919BAD744002A70E8 /* PEDoctorsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsViewTableViewCell.h; sourceTree = "<group>"; };
 		EDA7DFEA19BAD744002A70E8 /* PEDoctorsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsViewTableViewCell.m; sourceTree = "<group>"; };
 		EDA7DFEB19BAD744002A70E8 /* PEDoctorsViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -480,6 +472,8 @@
 		EDD0598219BAC1F8007C0DE8 /* PEDoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsListViewController.h; sourceTree = "<group>"; };
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
+		EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Small_Active@2x.png"; sourceTree = "<group>"; };
 		EDD2A55B19DBF46500A73C5E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		EDD4BDE719D2A8D40087D8CE /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctors.h; path = Periop/Classes/Entities/Doctors.h; sourceTree = SOURCE_ROOT; };
 		EDD4BDE819D2A8D40087D8CE /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctors.m; path = Periop/Classes/Entities/Doctors.m; sourceTree = SOURCE_ROOT; };
@@ -919,7 +913,6 @@
 				ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */,
 				ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */,
 				ED9C68C219C720E70022C1A8 /* Album@2x.png */,
-				ED9C68C419C720E70022C1A8 /* Back@2x.png */,
 				ED9C68C619C720E70022C1A8 /* Background@2x.png */,
 				ED9C68C819C720E70022C1A8 /* Bin_Icon@2x.png */,
 				ED9C68CA19C720E70022C1A8 /* Camera_@2x.png */,
@@ -940,7 +933,6 @@
 				ED9C68E019C720E70022C1A8 /* Edit_Info@2x.png */,
 				ED9C68E219C720E70022C1A8 /* Equipment_category_Button@2x.png */,
 				ED9C68E419C720E70022C1A8 /* Flash@2x.png */,
-				ED9C68E619C720E70022C1A8 /* Header@2x.png */,
 				ED9C68E819C720E70022C1A8 /* Menu@2x.png */,
 				ED9C68EA19C720E70022C1A8 /* Menu_Dividers@2x.png */,
 				ED9C68EC19C720E70022C1A8 /* Menu_Overlay@2x.png */,
@@ -951,13 +943,10 @@
 				ED9C68F619C720E70022C1A8 /* Notes_Tab_Active@2x.png */,
 				ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */,
 				ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */,
-				ED9C68FC19C720E70022C1A8 /* Pagination_Active@2x.png */,
-				ED9C68FE19C720E70022C1A8 /* Pagination_Inactive@2x.png */,
 				ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */,
 				ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */,
 				ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */,
 				ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */,
-				ED9C690819C720E70022C1A8 /* Search_Bar@2x.png */,
 				ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */,
 				ED9C690C19C720E70022C1A8 /* Take_Photo@2x.png */,
 				ED9C690E19C720E70022C1A8 /* Upload_Photo_Button_2@2x.png */,
@@ -968,44 +957,9 @@
 		ED9C690F19C720E70022C1A8 /* Assets - Surgical Specialties */ = {
 			isa = PBXGroup;
 			children = (
-				ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */,
-				ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */,
-				ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */,
-				ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */,
-				ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */,
-				ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */,
-				ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */,
-				ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */,
-				ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */,
-				ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */,
-				ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */,
-				ED9C692F19C720E70022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png */,
-				ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */,
-				ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */,
-				ED9C693119C720E70022C1A8 /* General_Large@2x.png */,
-				ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */,
-				ED3D1BBE19E5514A00929F64 /* General_Specialisation_Icon@2x.png */,
-				ED9C693719C720E70022C1A8 /* General_Specialisation_Icon_-_Small@2x.png */,
-				ED9C693919C720E70022C1A8 /* Gynaecology_Large@2x.png */,
-				ED3D1BBF19E5514A00929F64 /* Gynaecology_Small_Inactive@2x.png */,
-				ED3D1BC019E5514A00929F64 /* Gynaecology_Specialisation_Icon@2x.png */,
-				ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */,
-				ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */,
-				ED3D1BC119E5514A00929F64 /* Obstetric_Small_Inactive@2x.png */,
-				ED3D1BC219E5514A00929F64 /* Obstetric_Specialisation_Icon@2x.png */,
-				ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */,
-				ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */,
-				ED3D1BC319E5514A00929F64 /* Opthomology_Small_Inactive@2x.png */,
-				ED3D1BC419E5514A00929F64 /* Opthomology_Specialisation_Icon@2x.png */,
-				ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */,
-				ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */,
-				ED3D1BC519E5514A00929F64 /* Orthopeadic_Small_Inactive@2x.png */,
-				ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */,
-				ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */,
-				ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */,
-				ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */,
-				ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */,
-				ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */,
+				EDD21ACC19EBB3EC00F343A2 /* SmallSpecsIcon */,
+				EDD21ACB19EBB37D00F343A2 /* DoctorsProfileIcons */,
+				EDD21ACA19EBB32100F343A2 /* SpecialisationIcons */,
 			);
 			path = "Assets - Surgical Specialties";
 			sourceTree = "<group>";
@@ -1314,6 +1268,83 @@
 			path = DoctorListViewController;
 			sourceTree = "<group>";
 		};
+		EDD21ACA19EBB32100F343A2 /* SpecialisationIcons */ = {
+			isa = PBXGroup;
+			children = (
+				ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */,
+				ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */,
+				ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */,
+				ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */,
+				ED9C693119C720E70022C1A8 /* General_Large@2x.png */,
+				ED9C693919C720E70022C1A8 /* Gynaecology_Large@2x.png */,
+				ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */,
+				ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */,
+				ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */,
+				ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */,
+			);
+			path = SpecialisationIcons;
+			sourceTree = "<group>";
+		};
+		EDD21ACB19EBB37D00F343A2 /* DoctorsProfileIcons */ = {
+			isa = PBXGroup;
+			children = (
+				ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */,
+				ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */,
+				ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */,
+				ED9C693719C720E70022C1A8 /* General_Specialisation_Icon_-_Small@2x.png */,
+				ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */,
+				ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */,
+				ED9C692F19C720E70022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png */,
+				ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */,
+				ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */,
+				ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */,
+			);
+			path = DoctorsProfileIcons;
+			sourceTree = "<group>";
+		};
+		EDD21ACC19EBB3EC00F343A2 /* SmallSpecsIcon */ = {
+			isa = PBXGroup;
+			children = (
+				EDD21ACE19EBB40000F343A2 /* Inactive */,
+				EDD21ACD19EBB3F600F343A2 /* Active */,
+			);
+			path = SmallSpecsIcon;
+			sourceTree = "<group>";
+		};
+		EDD21ACD19EBB3F600F343A2 /* Active */ = {
+			isa = PBXGroup;
+			children = (
+				ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */,
+				ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */,
+				ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */,
+				ED3D1BBE19E5514A00929F64 /* General_Specialisation_Icon@2x.png */,
+				EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */,
+				ED3D1BC019E5514A00929F64 /* Gynaecology_Specialisation_Icon@2x.png */,
+				ED3D1BC219E5514A00929F64 /* Obstetric_Specialisation_Icon@2x.png */,
+				ED3D1BC419E5514A00929F64 /* Opthomology_Specialisation_Icon@2x.png */,
+				ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */,
+				ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */,
+			);
+			path = Active;
+			sourceTree = "<group>";
+		};
+		EDD21ACE19EBB40000F343A2 /* Inactive */ = {
+			isa = PBXGroup;
+			children = (
+				ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */,
+				ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */,
+				ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */,
+				ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */,
+				ED3D1BBF19E5514A00929F64 /* Gynaecology_Small_Inactive@2x.png */,
+				EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */,
+				ED3D1BC119E5514A00929F64 /* Obstetric_Small_Inactive@2x.png */,
+				ED3D1BC319E5514A00929F64 /* Opthomology_Small_Inactive@2x.png */,
+				ED3D1BC519E5514A00929F64 /* Orthopeadic_Small_Inactive@2x.png */,
+				ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */,
+			);
+			path = Inactive;
+			sourceTree = "<group>";
+		};
 		EDD2A55719DBF40E00A73C5E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,15 +1589,14 @@
 				84BA0AA219E557910054BFE5 /* plus_BTN_inactive@2x-1.png in Resources */,
 				ED9C697D19C720E80022C1A8 /* Doctors@2x.png in Resources */,
 				ED9C696F19C720E80022C1A8 /* Camera_@2x.png in Resources */,
-				ED9C696919C720E80022C1A8 /* Back@2x.png in Resources */,
 				ED9C69E319C720E80022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png in Resources */,
 				ED9C69D319C720E80022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png in Resources */,
 				ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */,
 				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
 				ED9C697319C720E80022C1A8 /* Check_Active@2x.png in Resources */,
+				EDD21AD019EBB52400F343A2 /* ENT_Small_Inactive@2x.png in Resources */,
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
 				ED9C697519C720E80022C1A8 /* Check_Inactive@2x.png in Resources */,
-				ED9C69A319C720E80022C1A8 /* Pagination_Inactive@2x.png in Resources */,
 				ED9C69FB19C720E80022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDCD583819B8B30800EC7AF1 /* PEPreperationViewController.xib in Resources */,
 				EDCD57CD19B8741600EC7AF1 /* PEDownloadingScreenViewController.xib in Resources */,
@@ -1587,7 +1617,6 @@
 				EDCD57CF19B8741600EC7AF1 /* PESpecialisationViewController.xib in Resources */,
 				84AF77AE19DAEA77009F2B98 /* tutorialPage_1-iphone5@2x.png in Resources */,
 				84AF77B219DAEA77009F2B98 /* tutorialPage_3-iphone5@2x.png in Resources */,
-				ED9C698B19C720E80022C1A8 /* Header@2x.png in Resources */,
 				ED9C69F519C720E80022C1A8 /* Orthopaedic_Large@2x.png in Resources */,
 				ED9C69A919C720E80022C1A8 /* Procedures_Tab_Active@2x.png in Resources */,
 				ED9C69E519C720E80022C1A8 /* Obstetric_Large@2x.png in Resources */,
@@ -1596,7 +1625,6 @@
 				ED9C698F19C720E80022C1A8 /* Menu_Dividers@2x.png in Resources */,
 				EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */,
 				EDCD583E19B8B43B00EC7AF1 /* PEOperationRoomViewController.xib in Resources */,
-				ED9C69A119C720E80022C1A8 /* Pagination_Active@2x.png in Resources */,
 				EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */,
 				EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */,
 				842BF2AF19CC568200AFCA42 /* PEAlbumViewController.xib in Resources */,
@@ -1619,6 +1647,7 @@
 				ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */,
 				84AF77AF19DAEA77009F2B98 /* tutorialPage_2-iphone4@2x.png in Resources */,
 				ED9C69CD19C720E80022C1A8 /* ENT_Large@2x.png in Resources */,
+				EDD21AD219EBB53400F343A2 /* ENT_Small_Active@2x.png in Resources */,
 				ED9C698119C720E80022C1A8 /* Doctors_Tab_Inactive@2x.png in Resources */,
 				EDCD583219B8ABF700EC7AF1 /* PEProcedureOptionViewController.xib in Resources */,
 				ED9C699319C720E80022C1A8 /* More_Specialisations_Active@2x.png in Resources */,
@@ -1658,7 +1687,6 @@
 				84AF77B119DAEA77009F2B98 /* tutorialPage_3-iphone4@2x.png in Resources */,
 				ED0D2FC019BA0F2F001F8411 /* CollectionViewCellItemCell.xib in Resources */,
 				84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */,
-				ED9C69AD19C720E80022C1A8 /* Search_Bar@2x.png in Resources */,
 				ED9C696319C720E70022C1A8 /* Add_Photo_Small@2x.png in Resources */,
 				8474907A19B8459E0013C446 /* Images.xcassets in Resources */,
 				EDE9CA1B19D4028700150754 /* General.csv in Resources */,
