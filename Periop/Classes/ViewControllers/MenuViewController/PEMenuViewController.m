@@ -157,6 +157,9 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
         NSString *message = @"Feedback :";
         [mailController setMessageBody:message isHTML:NO];
         PEMenuViewController *menuController = self;
+#ifdef __IPHONE_8_0
+        mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
         [menuController presentViewController:mailController animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
             menuController.viewSelection.hidden = YES;

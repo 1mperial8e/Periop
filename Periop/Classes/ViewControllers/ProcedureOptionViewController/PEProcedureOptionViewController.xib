@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -22,16 +21,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-j5-Wjr" userLabel="Container">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-ZV-aTw" userLabel="Background Image View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu_Overlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="vxJ-LU-8Zo" userLabel="Shade Image View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86x-bw-GjL" userLabel="ButtonsContainer">
-                            <rect key="frame" x="13" y="119" width="294" height="294"/>
+                            <rect key="frame" x="13" y="118" width="294" height="294"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sight_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-fg-W5g" userLabel="Pricel">
                                     <rect key="frame" x="0.0" y="0.0" width="294" height="294"/>
@@ -97,6 +96,7 @@
                             <constraints>
                                 <constraint firstItem="2WS-fg-W5g" firstAttribute="leading" secondItem="86x-bw-GjL" secondAttribute="leading" id="8tV-UT-5NV"/>
                                 <constraint firstAttribute="width" secondItem="86x-bw-GjL" secondAttribute="height" multiplier="1:1" id="LVA-ve-aug"/>
+                                <constraint firstAttribute="width" constant="294" id="Njd-yW-PiP"/>
                                 <constraint firstAttribute="bottom" secondItem="2WS-fg-W5g" secondAttribute="bottom" id="fXu-lC-eXt"/>
                                 <constraint firstAttribute="centerX" secondItem="xJU-aO-QN2" secondAttribute="centerX" id="slP-Pr-s5j"/>
                                 <constraint firstAttribute="trailing" secondItem="2WS-fg-W5g" secondAttribute="trailing" id="spj-1Y-BNr"/>
@@ -120,10 +120,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mna-v9-mOd">
-                    <rect key="frame" x="0.0" y="532" width="320" height="36"/>
+                    <rect key="frame" x="0.0" y="530" width="320" height="38"/>
                     <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="oq6-Qh-pb9"/>
+                        <constraint firstAttribute="height" constant="38" id="oq6-Qh-pb9"/>
                     </constraints>
                     <state key="normal" title="Doctors" image="Doctors.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,7 +144,6 @@
                 <constraint firstAttribute="bottom" secondItem="mna-v9-mOd" secondAttribute="bottom" id="ngG-Hm-VNG"/>
                 <constraint firstAttribute="trailing" secondItem="v8N-j5-Wjr" secondAttribute="trailing" id="rMp-CE-xK4"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
@@ -153,9 +152,4 @@
         <image name="Menu_Overlay.png" width="320" height="466"/>
         <image name="sight_img.png" width="294" height="294"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

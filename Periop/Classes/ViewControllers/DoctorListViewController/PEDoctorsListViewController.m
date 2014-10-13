@@ -208,7 +208,9 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:@"PEMenuViewController" bundle:nil];
     menuController.textToShow = @"Surgeon List";
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    
+#ifdef __IPHONE_8_0
+    menuController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
     [rootController presentViewController:menuController animated:NO completion:nil];

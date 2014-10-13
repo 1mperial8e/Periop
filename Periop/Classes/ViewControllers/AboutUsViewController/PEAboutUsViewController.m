@@ -38,7 +38,9 @@ static NSString *const AUVCNibName = @"PEMenuViewController";
     PEMenuViewController *menuController = [[PEMenuViewController alloc] initWithNibName:AUVCNibName bundle:nil];
     menuController.textToShow = AUVCTitleText;
     menuController.buttonPositionY = self.navigationController.navigationBar.frame.size.height;
-    
+#ifdef __IPHONE_8_0
+    menuController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
     UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
     [rootController presentViewController:menuController animated:NO completion:nil];

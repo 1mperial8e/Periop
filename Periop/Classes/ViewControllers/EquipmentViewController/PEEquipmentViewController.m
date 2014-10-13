@@ -120,6 +120,9 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
         [self.mailController setMessageBody:message isHTML:NO];
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
         rootController.modalPresentationStyle = UIModalPresentationFullScreen;
+#ifdef __IPHONE_8_0
+        self.mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
         [self presentViewController:self.mailController animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
