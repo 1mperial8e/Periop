@@ -9,7 +9,7 @@
 static NSString *const NVCNotesCellIdentifier = @"notesCell";
 static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 static CGFloat const NVCNotesBottomButtonHeight = 38.0f;
-static CGFloat const NVCNotesBackButtonNegativeOffcet = -10.0f;
+static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 #import "PENotesViewController.h"
 #import "PENotesTableViewCell.h"
@@ -60,8 +60,12 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -10.0f;
         self.navigationItem.hidesBackButton = YES;
         
         UIImage *backButtonImage = [UIImage imageNamed:@"Back"];
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, backButtonImage.size.width, 20)];
-        [backButton setImage:backButtonImage forState:UIControlStateNormal];
+        
+        CGPoint size = CGPointMake(backButtonImage.size.width * 2 , backButtonImage.size.height * 2);
+        UIImage *scaledImage = [UIImage imageWithImage:backButtonImage scaledToSize:CGSizeMake(size.x, size.y)];
+        
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, scaledImage.size.width, scaledImage.size.height)];
+        [backButton setImage:scaledImage forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(backToDoctorsList:) forControlEvents:UIControlEventTouchDown];
         UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         

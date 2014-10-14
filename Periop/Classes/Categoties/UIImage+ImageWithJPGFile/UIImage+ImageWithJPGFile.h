@@ -9,5 +9,6 @@
 @interface UIImage (ImageWithJPGFile)
 
 + (UIImage *)imageNamedFile:(NSString *)imageNameInLocalBundle;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 @end

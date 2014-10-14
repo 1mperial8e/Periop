@@ -10,10 +10,18 @@
 
 @implementation PESpecialisationCollectionViewCell
 
+#pragma mark - LifeCycle
+
 - (void)prepareForReuse
 {
     [super prepareForReuse];
     self.labelPrice.text = @"";
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.labelPrice.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
 }
 
 @end
