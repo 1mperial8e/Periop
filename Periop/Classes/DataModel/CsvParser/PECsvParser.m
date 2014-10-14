@@ -218,6 +218,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
                                 NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                                 Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                                 initPhoto.photoName = steps[i];
+                                initPhoto.photoData = UIImageJPEGRepresentation(photo, 1.0f);
                                 [opR addPhotoObject:initPhoto];
                             }
                         } else {
@@ -302,6 +303,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
     NSError *saveError;
     if ([self.managedObjectContext save:&saveError]) {
         NSLog(@"Parsing data from CSV succcess");
+        [self.managedObjectContext reset];
     } else {
         NSLog(@"Fail to parse data from CSV - %@", saveError.localizedDescription);
     }

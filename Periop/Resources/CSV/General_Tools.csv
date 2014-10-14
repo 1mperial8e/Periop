@@ -143,7 +143,6 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Equipment;Specimen Container;;1;S0903T1108
 ;;Equipment;Pathology Form;;1;S0903T1109
 ;;Equipment;Specimen Bag;;1;S0903T1110
-;;Prosthesis;;;;
 S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8,5;2;S0904T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0904T0201
 ;;Drapes;Major;;1;S0904T0301
@@ -263,7 +262,6 @@ S0905;Laparoscopic Appendicectomy;Gloves;Microthin;8;1;
 ;;Equipment;Pathology Form;;1;S0905T1108
 ;;Equipment;Specimen container; Formalin;1;S0905T1109
 ;;Equipment;Specimen bag;;1;S0905T1110
-;;Prosthesis;;;;
 S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0906T0201
 ;;Drapes;Major;;1;S0906T0301
@@ -317,8 +315,7 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Equipment;Pathology form;;1;S0906T1104
 ;;Equipment;Specimen container;small-formalin;1;S0906T1105
 ;;Equipment;Specimen bag;;1;S0906T1106
-;;Prosthesis;;;;
-S0907;Mastectomy Simple;Gloves;Latex;8,5;2;
+S0907; Mastectomy Simple;Gloves;Latex ;8,5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0907T0201
 ;;Drapes;Major Pack;;1;S0907T0301
 ;;Drapes;Gowns ;Large;2;S0907T0302
@@ -364,7 +361,6 @@ S0907;Mastectomy Simple;Gloves;Latex;8,5;2;
 ;;Equipment;Pathology Forms;;1;S0907T1104
 ;;Equipment;Specimen Bag;;1;S0907T1105
 ;;Equipment;Specimen container;Medium- Large;1;S0907T1106
-;;Prosthesis;;;;
 S0908;Excision of Skin Lesions;Gloves;Latex Free;8,5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0908T0201
 ;;Prep Solution;Chlorhexidine;250mls;1;S0908T0202
@@ -395,7 +391,6 @@ S0908;Excision of Skin Lesions;Gloves;Latex Free;8,5;2;
 ;;Equipment;Pathology Form;;1;S0908T1102
 ;;Equipment;Specimen container; small/medium;1;S0908T1103
 ;;Equipment;Specimen bag;;1;S0908T1104
-;;Prosthesis;;;;
 S0909;Laparotomy;Gloves;Latex Free;8;2;S0909T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0909T0201
 ;;Drapes;Major ;;1;S0909T0301
@@ -438,7 +433,6 @@ S0909;Laparotomy;Gloves;Latex Free;8;2;S0909T0101
 ;;Equipment;Specimen form;;;S0909T1104
 ;;Equipment;Specimen container;;;S0909T1105
 ;;Equipment;Specimen bag;;;S0909T1106
-;;Prosthesis;;;;
 S0910;Hook Wire Biopsy with Sentinel Node Dissection;Gloves;Latex Free;6,5;1;
 ;;Gloves;Latex Free;7;1;
 ;;Prep Solution;Povidone Iodine;;1;S0910T0201
@@ -479,7 +473,6 @@ S0910;Hook Wire Biopsy with Sentinel Node Dissection;Gloves;Latex Free;6,5;1;
 ;;Equipment;Pathology Forms;;1;S0910T1103
 ;;Equipment;Specimen container;medium;1;S0910T1104
 ;;Equipment;Specimen Bag;;1;S0910T1105
-;;Prosthesis;;;;
 S0911;Pilonidal Sinus Incision and Drainage of ;Gloves;Microthin;7,5;2;
 ;;Prep Solution;Povidone Iodine;250mls;1;S0911T0201
 ;;Drapes;Major ;;1;S0911T0301
@@ -547,7 +540,6 @@ S0912;Breast Biopsy;Gloves;Dermaprene;7,5;1;
 ;;Equipment;Pathology Forms;;1;S0912T1102
 ;;Equipment;Pathology Bag;;1;S0912T1103
 ;;Equipment;Specimen container;medium;1;S0912T1104
-;;Prosthesis;;;;
 S0913;Thyroidectomy Total;Gloves;Latex;7,5;1;S0913T0101
 ;;Prep Solution;Povidone Iodine;;1;S0913T0201
 ;;Drapes;Major Pack;;1;S0913T0301
@@ -780,7 +772,6 @@ S0917;Large Bowel Resection Open;Gloves;Latex Free;7,5;2;
 ;;Equipment;Specimen Container;Large;1;S0917T1104
 ;;Equipment;Pathology Form;;1;S0917T1105
 ;;Equipment;Specimen Bag;;1;S0917T1106
-;;Prosthesis;;;;
 S0918;Debridement and washout of wound;Gloves;latex free;6,5;1;S0918T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0918T0201
 ;;Drapes;Major Pack;;1;S0918T0301

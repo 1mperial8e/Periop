@@ -59,7 +59,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
         self.constraintHeightOfBottomButtons.constant = NVCNotesBottomButtonHeight;
         self.navigationItem.hidesBackButton = YES;
         
-        UIImage *backButtonImage = [UIImage imageNamed:@"Back"];
+        UIImage *backButtonImage = [UIImage imageNamedFile:@"Back"];
         
         CGPoint size = CGPointMake(backButtonImage.size.width * 2 , backButtonImage.size.height * 2);
         UIImage *scaledImage = [UIImage imageWithImage:backButtonImage scaledToSize:CGSizeMake(size.x, size.y)];

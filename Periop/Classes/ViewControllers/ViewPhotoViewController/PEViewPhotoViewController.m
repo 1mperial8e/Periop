@@ -80,6 +80,12 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationItem.titleView removeFromSuperview];
+}
+
 #pragma mark - Rotation
 
 - (void)canRotate
