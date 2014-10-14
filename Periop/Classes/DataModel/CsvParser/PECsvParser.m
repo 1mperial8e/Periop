@@ -5,8 +5,7 @@
 //  Created by Kirill on 9/25/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
-
-static NSInteger const CPProcedureCount = 20;
+static NSInteger const CPDivideCounter = 5;
 static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
 
 #import "PECsvParser.h"
@@ -26,6 +25,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
 @interface PECsvParser ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (assign, nonatomic) NSInteger quantityOfProcedures;
 
 @end
 
@@ -58,6 +58,8 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathMain] && [[NSFileManager defaultManager] fileExistsAtPath:filePathTools]) {
+        
+        self.quantityOfProcedures = [self getQuantityOfProcedure:filePathMain];
         
         Specialisation *newSpecialisation = [self parseToolsCSVFile:filePathTools specialisationName:specName];
         NSMutableArray *arrayWithProcWithoutTools = [self parseMainCSVFile:filePathMain];
@@ -148,7 +150,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
             newProc.procedureID = colum[0];
             newProc.name = colum[1];
             [newSpecialisation addProceduresObject:newProc];
-            if ([[newSpecialisation.procedures allObjects] count] < CPProcedureCount) {
+            if ([[newSpecialisation.procedures allObjects] count] < self.quantityOfProcedures) {
                 newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
             }
         }
@@ -181,7 +183,7 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
         Procedure *newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
         for (int index = 0 ; index < rows.count; index++) {
-            int parseIndex = index % 5;
+            int parseIndex = index % CPDivideCounter;
             switch (parseIndex) {
                 case 0:
                     newProcForDesctiption.procedureID = rows[index];
@@ -260,16 +262,17 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
                         newStep.stepDescription = steps[i];
                         [pp addStepsObject:newStep];
                     }
-                    
                     newProcForDesctiption.operationRoom = opR;
                     newProcForDesctiption.patientPostioning = pp;
                     
                     [arrayWithProcWithoutTools addObject:newProcForDesctiption];
-                    if (arrayWithProcWithoutTools.count < CPProcedureCount) {
+                    
+                    if (arrayWithProcWithoutTools.count < self.quantityOfProcedures) {
                         opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
                         pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
                         newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
                     }
+                    
                 }
                     break;
             }
@@ -302,6 +305,19 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
     } else {
         NSLog(@"Fail to parse data from CSV - %@", saveError.localizedDescription);
     }
+}
+
+- (NSInteger)getQuantityOfProcedure:(NSString *)filePathMain
+{
+    NSError *error;
+    NSString *lines = [NSString stringWithContentsOfFile:filePathMain encoding:NSUTF8StringEncoding error:&error];
+    
+    NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    
+    NSArray *parseWithSeparate = [partOne componentsSeparatedByString:@";"];
+    NSMutableArray *rows = [parseWithSeparate mutableCopy];
+    [rows removeObjectAtIndex:0];
+    return (rows.count / CPDivideCounter);
 }
 
 @end
