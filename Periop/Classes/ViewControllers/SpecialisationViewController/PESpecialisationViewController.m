@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+static NSString *const SVCPriceForSpec = @"$1,99";
+
 static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
 static NSString *const SVCSpecialisations = @"Specialisations";
 static NSString *const SVCRestoreKeySetting = @"Restored";
@@ -40,6 +42,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (copy, nonatomic) NSString *selectedSpecToReset;
 @property (strong, nonatomic) PEPurchaseManager *purchaseManager;
+@property (strong, nonatomic) NSUserDefaults *def;
 
 //@property (strong, nonatomic) NSArray *avaliableSKProductsForPurchasing;
 
@@ -60,17 +63,17 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     self.specManager = [PESpecialisationManager sharedManager];
     self.isMyspecializations = YES;
     
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    if (![def integerForKey:TVCShowTutorial]) {
+    self.def = [NSUserDefaults standardUserDefaults];
+    if (![self.def integerForKey:TVCShowTutorial]) {
         PETutorialViewController *tutorialController = [[PETutorialViewController alloc] initWithNibName:@"PETutorialViewController" bundle:nil];
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [rootController presentViewController:tutorialController animated:NO completion:nil];
     }
     
-    if (![def integerForKey:SVCRestoreKeySetting]){
+    if (![self.def integerForKey:SVCRestoreKeySetting]){
          [self.purchaseManager restoreCompleteTransactions];
-        [def setInteger:1 forKey:SVCRestoreKeySetting];
+        [self.def setInteger:1 forKey:SVCRestoreKeySetting];
     }
     
     [self.collectionView registerNib:[UINib nibWithNibName:SVCSpecialisationCollectionCellNibName bundle:nil] forCellWithReuseIdentifier:SVCSpecialisationCollectionCellIdentifier];
@@ -203,8 +206,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         if (self.isMyspecializations) {
             cell.specialisationIconImageView.image = [UIImage imageNamedFile:((Specialisation*)self.specialisationsArray[indexPath.row]).photoName];
             cell.specName = ((Specialisation*)self.specialisationsArray[indexPath.row]).name;
+            cell.labelPrice.hidden = YES;
         } else {
-            
             NSDictionary *plistToParse = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SVCPListName ofType:@"plist"]];
             NSArray *arrKeys = [[plistToParse allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                 NSString *specName1 = (NSString *)obj1;
@@ -215,12 +218,17 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
             for (int i = 0; i < arrKeys.count; i++) {
                 if (i == indexPath.row) {
                     NSDictionary *dic = [plistToParse valueForKey:arrKeys[i]];
-                    cell.productIdentifier = [dic valueForKey:@"productIdentifier"];
+                    NSString *productIdentifier = [dic valueForKey:@"productIdentifier"];
+                    cell.productIdentifier = productIdentifier;
                     cell.specialisationIconImageView.image = [UIImage imageNamedFile:[dic valueForKey:@"photoName"]];
                     cell.specName = arrKeys[i];
+                    if (![self.def integerForKey:productIdentifier]) {
+                        cell.labelPrice.hidden = NO;
+                        cell.labelPrice.text = SVCPriceForSpec;
+                    }
                 }
             }
-            
+
 //            NSArray *allProducts = [self.avaliableSKProductsForPurchasing sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
 //                NSString *product1 = ((SKProduct*)obj1).localizedTitle;
 //                NSString *product2 = ((SKProduct*)obj2).localizedTitle;

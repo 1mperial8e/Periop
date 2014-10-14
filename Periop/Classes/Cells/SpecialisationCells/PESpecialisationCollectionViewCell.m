@@ -10,4 +10,10 @@
 
 @implementation PESpecialisationCollectionViewCell
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.labelPrice.text = @"";
+}
+
 @end

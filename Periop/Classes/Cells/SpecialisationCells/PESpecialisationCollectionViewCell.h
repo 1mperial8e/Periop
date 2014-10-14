@@ -9,6 +9,7 @@
 @interface PESpecialisationCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *specialisationIconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *labelPrice;
 
 @property (copy, nonatomic) NSString *specName;
 @property (copy, nonatomic) NSString *productIdentifier;
