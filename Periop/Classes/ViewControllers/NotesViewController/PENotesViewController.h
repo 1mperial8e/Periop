@@ -8,6 +8,7 @@
 
 @interface PENotesViewController : UIViewController
 
-@property (copy, nonatomic)NSString *navigationLabelText;
+@property (copy, nonatomic) NSString *navigationLabelText;
+@property (assign, nonatomic) BOOL isDoctorsNote;
 
 @end

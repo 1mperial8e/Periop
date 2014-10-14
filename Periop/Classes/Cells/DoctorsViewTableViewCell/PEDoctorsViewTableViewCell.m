@@ -25,6 +25,7 @@ static CGFloat const DVTVMultiplier = 1.8f;
 {
     [super awakeFromNib];
     [self initGestrudeRecognizer];
+    self.deleteButton.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
 }
 
 - (void)prepareForReuse

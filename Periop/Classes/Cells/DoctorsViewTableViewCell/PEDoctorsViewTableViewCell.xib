@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" constant="94" id="LbS-HK-IXu"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal">
+                        <state key="normal" title="Delete">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>

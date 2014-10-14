@@ -32,6 +32,7 @@ static NSInteger const DPHeaderHeight = 37;
 #import "PECameraViewController.h"
 #import "PEDoctorsProfileTableViewCell.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEProcedureListViewController.h"
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -114,7 +115,7 @@ static NSInteger const DPHeaderHeight = 37;
     return UIInterfaceOrientationMaskPortrait;
 }
 
-#pragma mark - IBActions 
+#pragma mark - IBActions
 
 - (void)tapOnPicture:(UITapGestureRecognizer *)gesture
 {
@@ -140,17 +141,15 @@ static NSInteger const DPHeaderHeight = 37;
 
 - (IBAction)propertiesButtons:(id)sender
 {
-    [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
-    [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Inactive"] forState:UIControlStateNormal];
     PENotesViewController *notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
+    notesView.isDoctorsNote = YES;
     notesView.navigationLabelText = @"Doctors Notes";
-    [self.navigationController pushViewController:notesView animated:YES];
+    [self.navigationController pushViewController:notesView animated:NO];
 }
 
 - (IBAction)detailsButton:(id)sender
 {
-    [self.specsButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Inactive"] forState:UIControlStateNormal];
-    [self.notesButton setImage:[UIImage imageNamedFile:@"Notes_Tab_Active"] forState:UIControlStateNormal];
+    //dummy
 }
 
 - (IBAction)photoButtons:(id)sender

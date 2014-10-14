@@ -143,75 +143,80 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 
 - (IBAction)saveButton :(id)sender
 {
-    NSArray *allSpecs = [NSArray new];
-    PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
-    allSpecs = [PECoreDataManager getAllEntities:searchedObject];
-    
-    if (self.isEditedDoctor) {
-        for (Procedure *procedure in [self.specManager.currentDoctor.procedure allObjects]) {
-            [(Doctors *)self.specManager.currentDoctor removeProcedureObject:procedure];
-        }
-        for (Specialisation *spec in [self.specManager.currentDoctor.specialisation allObjects]) {
-            [(Doctors *)self.specManager.currentDoctor removeSpecialisationObject:spec];
-        }
-        self.specManager.currentDoctor.name = self.nameTextField.text;
-        self.specManager.currentDoctor.createdDate = [NSDate date];
-        if (self.imageView.image && self.specManager.photoObject!=nil) {
-            self.specManager.currentDoctor.photo = self.specManager.photoObject;
-        }
+    if (self.selectedProceduresID.count) {
+        NSArray *allSpecs = [NSArray new];
+        PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
+        allSpecs = [PECoreDataManager getAllEntities:searchedObject];
         
-        for (Specialisation *spec in allSpecs) {
-            BOOL isAdded = NO;
-            for (Procedure *proc in [spec.procedures allObjects]) {
-                for (int i = 0; i < self.selectedProceduresID.count; i++) {
-                    if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
-                        [self.specManager.currentDoctor addProcedureObject:proc];
-                        isAdded = YES;
+        if (self.isEditedDoctor) {
+            for (Procedure *procedure in [self.specManager.currentDoctor.procedure allObjects]) {
+                [(Doctors *)self.specManager.currentDoctor removeProcedureObject:procedure];
+            }
+            for (Specialisation *spec in [self.specManager.currentDoctor.specialisation allObjects]) {
+                [(Doctors *)self.specManager.currentDoctor removeSpecialisationObject:spec];
+            }
+            self.specManager.currentDoctor.name = self.nameTextField.text;
+            self.specManager.currentDoctor.createdDate = [NSDate date];
+            if (self.imageView.image && self.specManager.photoObject!=nil) {
+                self.specManager.currentDoctor.photo = self.specManager.photoObject;
+            }
+            
+            for (Specialisation *spec in allSpecs) {
+                BOOL isAdded = NO;
+                for (Procedure *proc in [spec.procedures allObjects]) {
+                    for (int i = 0; i < self.selectedProceduresID.count; i++) {
+                        if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
+                            [self.specManager.currentDoctor addProcedureObject:proc];
+                            isAdded = YES;
+                        }
                     }
                 }
+                if (isAdded) {
+                    [self.specManager.currentDoctor addSpecialisationObject:spec];
+                }
             }
-            if (isAdded) {
-                [self.specManager.currentDoctor addSpecialisationObject:spec];
-            }
-        }
-    } else {
-        NSEntityDescription *doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
-        Doctors *newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
-        
-        if (self.nameTextField.text.length) {
-            newDoc.name = self.nameTextField.text;
         } else {
-            newDoc.name = @"No name Doctor";
-        }
-        newDoc.createdDate = [NSDate date];
-        if (self.imageView.image) {
-            newDoc.photo = self.specManager.photoObject;
-        }
-        
-        for (Specialisation *spec in allSpecs) {
-            BOOL isAdded = NO;
-            for (Procedure *proc in [spec.procedures allObjects]) {
-                for (int i = 0; i < self.selectedProceduresID.count; i++) {
-                    if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
-                        [newDoc addProcedureObject:proc];
-                        isAdded = YES;
+            NSEntityDescription *doctorsEntity = [NSEntityDescription entityForName:@"Doctors" inManagedObjectContext:self.managedObjectContext];
+            Doctors *newDoc = [[Doctors alloc] initWithEntity:doctorsEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            
+            if (self.nameTextField.text.length) {
+                newDoc.name = self.nameTextField.text;
+            } else {
+                newDoc.name = @"No name Doctor";
+            }
+            newDoc.createdDate = [NSDate date];
+            if (self.imageView.image) {
+                newDoc.photo = self.specManager.photoObject;
+            }
+            
+            for (Specialisation *spec in allSpecs) {
+                BOOL isAdded = NO;
+                for (Procedure *proc in [spec.procedures allObjects]) {
+                    for (int i = 0; i < self.selectedProceduresID.count; i++) {
+                        if ([proc.procedureID isEqualToString: self.selectedProceduresID[i]]) {
+                            [newDoc addProcedureObject:proc];
+                            isAdded = YES;
+                        }
                     }
                 }
-            }
-            if (isAdded) {
-                [newDoc addSpecialisationObject:spec];
+                if (isAdded) {
+                    [newDoc addSpecialisationObject:spec];
+                }
             }
         }
-    }
 
-    NSError *saveError;
-    if ([self.managedObjectContext save:&saveError]) {
-        NSLog (@"Success");
+        NSError *saveError;
+        if ([self.managedObjectContext save:&saveError]) {
+            NSLog (@"Success");
+        } else {
+            NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
-        NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
+        UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields" message:@"Please select at least one procedure for doctor" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addPhoto:(id)sender

@@ -12,7 +12,6 @@ static NSString *const PLVCStandartCellName = @"Cell";
 
 static NSString *const PLVCProcedureName = @"Procedure Name";
 static NSString *const PLVCDoctorsName = @"Doctors Name";
-//static NSInteger const PLVCHeightForRow = 53;
 
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
@@ -78,8 +77,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     self.tableView.dataSource = self;
     
     self.tableView.layer.borderWidth = 0.0f;
-    //self.currentlySwipedAndOpenesCells = [[NSMutableSet alloc] init];
     self.isSearchTable = NO;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -92,6 +91,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
     [self customizingSearchBar];
+    
+    if (!self.specManager.isProcedureSelected) {
+        [self doctorsSelected];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -116,6 +119,11 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 }
 
 - (IBAction)doctorButton:(id)sender
+{
+    [self doctorsSelected];
+}
+
+- (void)doctorsSelected
 {
     ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentSpecialisation.name;
     

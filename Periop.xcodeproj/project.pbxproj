@@ -211,6 +211,7 @@
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
+		EDE77DEC19ED2B7D00A9C43B /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDE77DEB19ED2B7D00A9C43B /* Back.png */; };
 		EDE9CA1B19D4028700150754 /* General.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA1919D4028700150754 /* General.csv */; };
 		EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9CA1F19D402E900150754 /* PECsvParser.m */; };
 		EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA2119D4214F00150754 /* General_Tools.csv */; };
@@ -497,6 +498,7 @@
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
+		EDE77DEB19ED2B7D00A9C43B /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		EDE9CA1919D4028700150754 /* General.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General.csv; sourceTree = "<group>"; };
 		EDE9CA1E19D402E900150754 /* PECsvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECsvParser.h; sourceTree = "<group>"; };
 		EDE9CA1F19D402E900150754 /* PECsvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECsvParser.m; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */,
 				842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */,
 				ED9C68BC19C720E70022C1A8 /* Add@2x.png */,
+				EDE77DEB19ED2B7D00A9C43B /* Back.png */,
 				ED9C68BE19C720E70022C1A8 /* Add_Photo_Small@2x.png */,
 				ED9C68C019C720E70022C1A8 /* Add_Photo_to_Note_Button@2x.png */,
 				ED9C68C219C720E70022C1A8 /* Album@2x.png */,
@@ -1698,6 +1701,7 @@
 				ED9C696519C720E80022C1A8 /* Add_Photo_to_Note_Button@2x.png in Resources */,
 				EDC91ED019B9C33E00212F24 /* PEEquipmentViewController.xib in Resources */,
 				ED9C69B519C720E80022C1A8 /* Cardiothoracic_Large@2x.png in Resources */,
+				EDE77DEC19ED2B7D00A9C43B /* Back.png in Resources */,
 				ED9C699719C720E80022C1A8 /* My_Specialisations_Active@2x.png in Resources */,
 				84FCBC1F19E7C82400BC9829 /* MuseoSans-700.otf in Resources */,
 				ED9C697B19C720E80022C1A8 /* Divider@2x.png in Resources */,

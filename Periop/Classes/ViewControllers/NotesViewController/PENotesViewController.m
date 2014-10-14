@@ -8,6 +8,8 @@
 
 static NSString *const NVCNotesCellIdentifier = @"notesCell";
 static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
+static CGFloat const NVCNotesBottomButtonHeight = 38.0f;
+static CGFloat const NVCNotesBackButtonNegativeOffcet = -10.0f;
 
 #import "PENotesViewController.h"
 #import "PENotesTableViewCell.h"
@@ -21,10 +23,12 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 #import "Doctors.h"
 #import "PEViewPhotoViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEProcedureListViewController.h"
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotes;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintHeightOfBottomButtons;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -47,13 +51,32 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
-    
     [self.tableViewNotes registerNib:[UINib nibWithNibName:NVCNotesCellNibName bundle:nil] forCellReuseIdentifier:NVCNotesCellIdentifier];
     self.tableViewNotes.delegate = self;
     self.tableViewNotes.dataSource = self;
+    
+    if (self.isDoctorsNote) {
+        self.constraintHeightOfBottomButtons.constant = NVCNotesBottomButtonHeight;
+        self.navigationItem.hidesBackButton = YES;
+        
+        UIImage *backButtonImage = [UIImage imageNamed:@"Back"];
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, backButtonImage.size.width, 20)];
+        [backButton setImage:backButtonImage forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(backToDoctorsList:) forControlEvents:UIControlEventTouchDown];
+        UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        
+        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = NVCNotesBackButtonNegativeOffcet;
+        [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects: negativeSpacer, backBarButton, nil] animated:NO];
+    }
 }
+
+- (IBAction)backToDoctorsList:(id)sender
+{
+    id viewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count]-3];
+    [self.navigationController popToViewController:viewController animated:YES];
+}
+
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +107,11 @@ static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
 }
 
 #pragma mark - IBActions
+
+- (IBAction)specButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 - (IBAction)addNewNotes :(id)sender
 {

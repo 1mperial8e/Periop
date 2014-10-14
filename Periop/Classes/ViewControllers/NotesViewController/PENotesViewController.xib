@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PENotesViewController">
             <connections>
+                <outlet property="constraintHeightOfBottomButtons" destination="LYt-Jh-EC3" id="vB1-yR-Qdv"/>
                 <outlet property="tableViewNotes" destination="QCJ-RR-vgr" id="e6y-0m-yhw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,16 +21,51 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iI-H3-V6P" userLabel="View - buttons holder">
+                    <rect key="frame" x="0.0" y="568" width="320" height="0.0"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-kw-2ht" userLabel="Button - Notes">
+                            <rect key="frame" x="160" y="0.0" width="160" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="Notes_Tab_Active.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51M-Mw-JKe" userLabel="Button - Specs">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="Procedures_Tab_Inactive.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="specButtonPressed:" destination="-1" eventType="touchUpInside" id="OZo-qn-Ca6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="LYt-Jh-EC3"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="QCJ-RR-vgr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="11N-qr-HjN"/>
-                <constraint firstAttribute="bottom" secondItem="QCJ-RR-vgr" secondAttribute="bottom" id="LZw-gI-uEb"/>
+                <constraint firstAttribute="trailing" secondItem="0iI-H3-V6P" secondAttribute="trailing" id="E8p-q4-1Im"/>
+                <constraint firstItem="0iI-H3-V6P" firstAttribute="leading" secondItem="QCJ-RR-vgr" secondAttribute="leading" id="GbK-zU-LyJ"/>
+                <constraint firstItem="0iI-H3-V6P" firstAttribute="top" secondItem="QCJ-RR-vgr" secondAttribute="bottom" id="IPO-Ak-Eu5"/>
                 <constraint firstItem="QCJ-RR-vgr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gCP-Ho-6ZS"/>
+                <constraint firstAttribute="bottom" secondItem="0iI-H3-V6P" secondAttribute="bottom" id="j2Y-Gq-NYg"/>
                 <constraint firstAttribute="trailing" secondItem="QCJ-RR-vgr" secondAttribute="trailing" id="xQO-jw-Sue"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="Notes_Tab_Active.png" width="160" height="38"/>
+        <image name="Procedures_Tab_Inactive.png" width="160" height="38"/>
+    </resources>
 </document>
