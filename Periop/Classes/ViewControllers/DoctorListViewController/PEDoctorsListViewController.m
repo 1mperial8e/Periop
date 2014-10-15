@@ -19,6 +19,7 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
 #import "Doctors.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEDoctorProfileViewController.h"
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate, UISearchDisplayDelegate>
 
@@ -191,6 +192,20 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     UIFont *cellFont = [UIFont fontWithName:FONT_MuseoSans500 size:15.0];
     cell.doctorNameLabel.font = cellFont;
     return cell;
+}
+
+#pragma mark - TableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        self.specManager.currentDoctor = self.searchResult[indexPath.row];
+    } else {
+        self.specManager.currentDoctor = self.arrayWithAllDoctors[indexPath.row];
+    }
+    
+    PEDoctorProfileViewController *doctorsView = [[PEDoctorProfileViewController alloc] initWithNibName:@"PEDoctorProfileViewController" bundle:nil];
+    [self.navigationController pushViewController:doctorsView animated:YES];
 }
 
 #pragma mark - IBActions

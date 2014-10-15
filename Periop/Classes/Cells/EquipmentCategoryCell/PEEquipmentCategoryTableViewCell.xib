@@ -13,18 +13,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6B-ut-RVE">
                         <rect key="frame" x="226" y="0.0" width="94" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.8901960784313725" green="0.32941176470588235" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Delete">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="94" id="HWW-Jh-Rfu"/>
+                            <constraint firstAttribute="height" constant="46" id="gHL-6d-cqd"/>
+                        </constraints>
+                        <state key="normal" image="delete_icon_white.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Fj-a7-NLy"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-Q6-cZb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -50,6 +54,14 @@
                         <gestureRecognizers/>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="mzo-Q6-cZb" secondAttribute="trailing" id="Q17-1Y-Ta1"/>
+                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aXs-vi-1HV"/>
+                    <constraint firstItem="mzo-Q6-cZb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i89-IP-B0n"/>
+                    <constraint firstItem="i6B-ut-RVE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lGe-AO-rkP"/>
+                    <constraint firstAttribute="bottom" secondItem="mzo-Q6-cZb" secondAttribute="bottom" id="wBu-CH-elr"/>
+                    <constraint firstAttribute="trailing" secondItem="i6B-ut-RVE" secondAttribute="trailing" id="xw6-at-ub9"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="buttonDeleteOutlet" destination="i6B-ut-RVE" id="x0j-qn-U1T"/>
@@ -62,5 +74,6 @@
     <resources>
         <image name="Check_Active.png" width="26" height="24"/>
         <image name="Check_Inactive.png" width="26" height="24"/>
+        <image name="delete_icon_white.png" width="24" height="24"/>
     </resources>
 </document>

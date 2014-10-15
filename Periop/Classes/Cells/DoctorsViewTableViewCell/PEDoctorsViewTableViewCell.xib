@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" constant="94" id="LbS-HK-IXu"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="Delete">
+                        <state key="normal" image="delete_icon_white.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -68,4 +68,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="delete_icon_white.png" width="24" height="24"/>
+    </resources>
 </document>

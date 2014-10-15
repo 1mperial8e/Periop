@@ -70,6 +70,8 @@
 		ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B319BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib */; };
 		ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */; };
 		ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */; };
+		ED0E644619EE558F00D32C64 /* delete_icon_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED0E644519EE558F00D32C64 /* delete_icon_white@2x.png */; };
+		ED0E644819EE564D00D32C64 /* Gastrointestinal_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED0E644719EE564D00D32C64 /* Gastrointestinal_Large@2x.png */; };
 		ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */; };
 		ED1379C419D54A9F00EF517F /* PEViewPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */; };
 		ED18513319D008610021E1EB /* OperationRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18513219D008610021E1EB /* OperationRoom.m */; };
@@ -78,8 +80,8 @@
 		ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED350F3019C0979500512663 /* PECoreDataManager.m */; };
 		ED3D1BC919E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */; };
 		ED3D1BCA19E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */; };
-		ED3D1BCB19E5514A00929F64 /* Colorectal_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */; };
-		ED3D1BCC19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */; };
+		ED3D1BCB19E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BB919E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png */; };
+		ED3D1BCC19E5514A00929F64 /* Gastrointestinal_Specialisation_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BBA19E5514A00929F64 /* Gastrointestinal_Specialisation_Icon@2x.png */; };
 		ED3D1BCD19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */; };
 		ED3D1BCE19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */; };
 		ED3D1BCF19E5514A00929F64 /* General_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */; };
@@ -133,8 +135,7 @@
 		ED9C69B319C720E80022C1A8 /* Upload_Photo_Button_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690E19C720E70022C1A8 /* Upload_Photo_Button_2@2x.png */; };
 		ED9C69B519C720E80022C1A8 /* Cardiothoracic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */; };
 		ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */; };
-		ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */; };
-		ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */; };
+		ED9C69C319C720E80022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C691F19C720E70022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69C519C720E80022C1A8 /* Cosemetic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */; };
 		ED9C69CB19C720E80022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69CD19C720E80022C1A8 /* ENT_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */; };
@@ -1168,6 +1169,8 @@
 		ED0D30B719BA14E1001F8411 /* PEProceduresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEProceduresTableViewCell.h; sourceTree = "<group>"; };
 		ED0D30B819BA14E1001F8411 /* PEProceduresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEProceduresTableViewCell.m; sourceTree = "<group>"; };
 		ED0D30B919BA14E1001F8411 /* PEProceduresTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEProceduresTableViewCell.xib; sourceTree = "<group>"; };
+		ED0E644519EE558F00D32C64 /* delete_icon_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_icon_white@2x.png"; sourceTree = "<group>"; };
+		ED0E644719EE564D00D32C64 /* Gastrointestinal_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gastrointestinal_Large@2x.png"; sourceTree = "<group>"; };
 		ED1379C019D54A9F00EF517F /* PEViewPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEViewPhotoViewController.h; sourceTree = "<group>"; };
 		ED1379C119D54A9F00EF517F /* PEViewPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEViewPhotoViewController.m; sourceTree = "<group>"; };
 		ED1379C219D54A9F00EF517F /* PEViewPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEViewPhotoViewController.xib; sourceTree = "<group>"; };
@@ -1180,8 +1183,8 @@
 		ED350F3019C0979500512663 /* PECoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECoreDataManager.m; sourceTree = "<group>"; };
 		ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Small_Inactive@2x.png"; path = "../../Cardiothoracic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Specialisation_Icon@2x.png"; path = "../../Cardiothoracic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
-		ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colorectal_Small_Inactive@2x.png"; path = "../../Colorectal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
-		ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colorectal_Specialisation_Icon@2x.png"; path = "../../Colorectal_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3D1BB919E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestinal_Small_Inactive@2x.png"; path = "../../Gastrointestinal_Small_Inactive@2x.png"; sourceTree = "<group>"; };
+		ED3D1BBA19E5514A00929F64 /* Gastrointestinal_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestinal_Specialisation_Icon@2x.png"; path = "../../Gastrointestinal_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
 		ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Small_Inactive@2x.png"; path = "../../Cosmetic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Specialisation_Iconl@2x.png"; path = "../../Cosmetic_Specialisation_Iconl@2x.png"; sourceTree = "<group>"; };
 		ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General_Small_Inactive@2x.png"; path = "../../General_Small_Inactive@2x.png"; sourceTree = "<group>"; };
@@ -1235,8 +1238,7 @@
 		ED9C690E19C720E70022C1A8 /* Upload_Photo_Button_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Upload_Photo_Button_2@2x.png"; sourceTree = "<group>"; };
 		ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Large@2x.png"; path = "../Cardiothoracic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; path = "../Cardiothoracic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestina_Large@2x.png"; path = "../Gastrointestina_Large@2x.png"; sourceTree = "<group>"; };
-		ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestina_Specialisation_Icon_-_Small@2x.png"; path = "../Gastrointestina_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9C691F19C720E70022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gastrointestinal_Specialisation_Icon_-_Small@2x.png"; path = "../Gastrointestinal_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosemetic_Large@2x.png"; path = "../Cosemetic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cosmetic_Specialisation_Icon_-_Small@2x.png"; path = "../Cosmetic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ENT_Large@2x.png"; path = "../ENT_Large@2x.png"; sourceTree = "<group>"; };
@@ -2618,6 +2620,7 @@
 			isa = PBXGroup;
 			children = (
 				842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */,
+				ED0E644519EE558F00D32C64 /* delete_icon_white@2x.png */,
 				842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */,
 				ED9C68BC19C720E70022C1A8 /* Add@2x.png */,
 				EDE77DED19ED4E8900A9C43B /* Back.png */,
@@ -2983,7 +2986,7 @@
 			isa = PBXGroup;
 			children = (
 				ED9C691119C720E70022C1A8 /* Cardiothoracic_Large@2x.png */,
-				ED9C691919C720E70022C1A8 /* Gastrointestina_Large@2x.png */,
+				ED0E644719EE564D00D32C64 /* Gastrointestinal_Large@2x.png */,
 				ED9C692119C720E70022C1A8 /* Cosemetic_Large@2x.png */,
 				ED9C692919C720E70022C1A8 /* ENT_Large@2x.png */,
 				ED9C693119C720E70022C1A8 /* General_Large@2x.png */,
@@ -3001,7 +3004,7 @@
 			children = (
 				ED9C691719C720E70022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png */,
 				ED9C692719C720E70022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png */,
-				ED9C691F19C720E70022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png */,
+				ED9C691F19C720E70022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png */,
 				ED9C693719C720E70022C1A8 /* General_Specialisation_Icon_-_Small@2x.png */,
 				ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */,
 				ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */,
@@ -3026,7 +3029,7 @@
 			isa = PBXGroup;
 			children = (
 				ED3D1BB819E5514A00929F64 /* Cardiothoracic_Specialisation_Icon@2x.png */,
-				ED3D1BBA19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png */,
+				ED3D1BBA19E5514A00929F64 /* Gastrointestinal_Specialisation_Icon@2x.png */,
 				ED3D1BBC19E5514A00929F64 /* Cosmetic_Specialisation_Iconl@2x.png */,
 				ED3D1BBE19E5514A00929F64 /* General_Specialisation_Icon@2x.png */,
 				EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */,
@@ -3043,7 +3046,7 @@
 			isa = PBXGroup;
 			children = (
 				ED3D1BB719E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png */,
-				ED3D1BB919E5514A00929F64 /* Colorectal_Small_Inactive@2x.png */,
+				ED3D1BB919E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png */,
 				ED3D1BBB19E5514A00929F64 /* Cosmetic_Small_Inactive@2x.png */,
 				ED3D1BBD19E5514A00929F64 /* General_Small_Inactive@2x.png */,
 				ED3D1BBF19E5514A00929F64 /* Gynaecology_Small_Inactive@2x.png */,
@@ -4689,6 +4692,7 @@
 				EDE7905519ED5E4700A9C43B /* S0917T0708.jpg in Resources */,
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
+				ED0E644619EE558F00D32C64 /* delete_icon_white@2x.png in Resources */,
 				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
 				EDE7930919ED5E4800A9C43B /* S0905T0401.jpg in Resources */,
 				EDE791B519ED5E4700A9C43B /* S0908T0401.jpg in Resources */,
@@ -4866,7 +4870,7 @@
 				EDE790F219ED5E4700A9C43B /* S0913T0504.jpg in Resources */,
 				EDE7900B19ED5E4700A9C43B /* S0919T0709.jpg in Resources */,
 				EDE792FC19ED5E4800A9C43B /* S0907T1106.jpg in Resources */,
-				ED3D1BCC19E5514A00929F64 /* Colorectal_Specialisation_Icon@2x.png in Resources */,
+				ED3D1BCC19E5514A00929F64 /* Gastrointestinal_Specialisation_Icon@2x.png in Resources */,
 				EDE790B619ED5E4700A9C43B /* S0915T0704.jpg in Resources */,
 				EDE7905819ED5E4700A9C43B /* S0917T0712.jpg in Resources */,
 				EDE7911419ED5E4700A9C43B /* S0913T0707.jpg in Resources */,
@@ -4912,7 +4916,6 @@
 				EDE791E319ED5E4700A9C43B /* S0906T0708.jpg in Resources */,
 				EDE790D819ED5E4700A9C43B /* S0914T0702.jpg in Resources */,
 				EDE791F619ED5E4700A9C43B /* S0906T0508.jpg in Resources */,
-				ED9C69BD19C720E80022C1A8 /* Gastrointestina_Large@2x.png in Resources */,
 				EDE78FE119ED5E4700A9C43B /* S0920T0704.jpg in Resources */,
 				EDE7923D19ED5E4700A9C43B /* S0904T0715.jpg in Resources */,
 				EDE78FE619ED5E4700A9C43B /* S0920T0710.jpg in Resources */,
@@ -5092,6 +5095,7 @@
 				EDE792AF19ED5E4800A9C43B /* S0903T0605.jpg in Resources */,
 				EDE7903C19ED5E4700A9C43B /* S0917T0302.jpg in Resources */,
 				EDE7919719ED5E4700A9C43B /* S0909T0708.jpg in Resources */,
+				ED0E644819EE564D00D32C64 /* Gastrointestinal_Large@2x.png in Resources */,
 				EDE7900919ED5E4700A9C43B /* S0919T0706.jpg in Resources */,
 				EDE7921C19ED5E4700A9C43B /* S0904T0703.jpg in Resources */,
 				EDE791C219ED5E4700A9C43B /* S0908T0802.jpg in Resources */,
@@ -5212,7 +5216,7 @@
 				EDE7923A19ED5E4700A9C43B /* S0904T0602.jpg in Resources */,
 				EDE7923219ED5E4700A9C43B /* S0904T1105.jpg in Resources */,
 				EDE7904219ED5E4700A9C43B /* S0917T0503.jpg in Resources */,
-				ED9C69C319C720E80022C1A8 /* Gastrointestina_Specialisation_Icon_-_Small@2x.png in Resources */,
+				ED9C69C319C720E80022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE7930419ED5E4800A9C43B /* S0907T1102.jpg in Resources */,
 				EDE7917819ED5E4700A9C43B /* S0910T1103.jpg in Resources */,
 				EDE78FF919ED5E4700A9C43B /* S0919T0201.jpg in Resources */,
@@ -5429,7 +5433,7 @@
 				EDE77E4119ED5C7E00A9C43B /* S0912P01.jpg in Resources */,
 				EDE791E219ED5E4700A9C43B /* S0906T0707.jpg in Resources */,
 				EDE791E119ED5E4700A9C43B /* S0906T0706.jpg in Resources */,
-				ED3D1BCB19E5514A00929F64 /* Colorectal_Small_Inactive@2x.png in Resources */,
+				ED3D1BCB19E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png in Resources */,
 				EDE7926819ED5E4800A9C43B /* S0901T0101.jpg in Resources */,
 				EDE7907119ED5E4700A9C43B /* S0917T1102.jpg in Resources */,
 				ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */,
