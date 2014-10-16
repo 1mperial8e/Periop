@@ -16,7 +16,7 @@
 {
     [super awakeFromNib];
     self.labelStep.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
-    self.labelPreparationText.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
+    self.labelOperationRoomText.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
 @end
