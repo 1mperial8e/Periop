@@ -8,4 +8,6 @@
 
 @interface PEAddEditProcedureViewController : UIViewController
 
+@property (copy, nonatomic) NSString *navigationLabelDescription;
+
 @end

@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const AEPWindowName = @"Edit Procedure Name";
-static CGFloat const AEPCornerRadius = 24;
-
 #import "PEAddEditProcedureViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+ImageWithJPGFile.h"
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
+#import "PatientPostioning.h"
+
+static CGFloat const AEPCornerRadius = 24;
 
 @interface PEAddEditProcedureViewController ()
 
@@ -48,14 +48,13 @@ static CGFloat const AEPCornerRadius = 24;
     self.navigationItem.rightBarButtonItem = saveButton;
     [saveButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans500 size:13.5f]} forState:UIControlStateNormal];
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
-    
+    self.navigationItem.backBarButtonItem = backBarButtonItem;    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    ((PENavigationController *)self.navigationController).titleLabel.text = AEPWindowName;
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.navigationLabelDescription;
     [self.textViewProcedureName becomeFirstResponder];
     
     if (self.specManager.currentProcedure) {
@@ -63,15 +62,7 @@ static CGFloat const AEPCornerRadius = 24;
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.specManager.currentProcedure = nil;
-}
-
-#pragma mark - IBActions
-
-- (IBAction)save:(id)sender
+- (void)updateProcedure
 {
     if (self.textViewProcedureName.text.length) {
         self.specManager.currentProcedure.name = self.textViewProcedureName.text;
@@ -79,11 +70,50 @@ static CGFloat const AEPCornerRadius = 24;
         if (![self.managedObjectContext save:&saveError]) {
             NSLog(@"Cant save modified name of Procedure - %@", saveError.localizedDescription);
         }
-        [self.navigationController popViewControllerAnimated:YES];
         self.specManager.currentProcedure = nil;
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Empty procedure name" message:@"Name can not be empty, please enter \"Procedure Name\"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        [[[UIAlertView alloc] initWithTitle:@"Empty procedure name" message:@"Name can not be empty, please enter \"Procedure Name\"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    }
+}
+
+- (void)addNewProcedure
+{
+    if (self.textViewProcedureName.text.length) {
+        NSEntityDescription *procedureEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
+        Procedure *newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        newProcForDesctiption.name = self.textViewProcedureName.text;
+        NSString *procID = [NSString stringWithFormat:@"%@%i", self.specManager.currentSpecialisation.specID, (int)[self.specManager.currentSpecialisation.procedures allObjects].count + 1];
+        newProcForDesctiption.procedureID = procID;
+        [self.specManager.currentSpecialisation addProceduresObject:newProcForDesctiption];
+        
+        NSEntityDescription *operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];
+        OperationRoom *opR = [[OperationRoom alloc] initWithEntity:operationEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        opR.procedure = newProcForDesctiption;
+        [newProcForDesctiption setOperationRoom:opR];
+        
+        NSEntityDescription *patientEntity = [NSEntityDescription entityForName:@"PatientPostioning" inManagedObjectContext:self.managedObjectContext];
+        PatientPostioning *pp = [[PatientPostioning alloc] initWithEntity:patientEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        pp.procedure = newProcForDesctiption;
+        [newProcForDesctiption setPatientPostioning:pp];
+        
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Empty procedure name" message:@"Name can not be empty, please enter \"Procedure Name\"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    }
+}
+
+#pragma mark - IBActions
+
+- (IBAction)save:(id)sender
+{
+    if (self.specManager.currentProcedure) {
+        [self updateProcedure];
+    } else {
+        [self addNewProcedure];
     }
 }
 

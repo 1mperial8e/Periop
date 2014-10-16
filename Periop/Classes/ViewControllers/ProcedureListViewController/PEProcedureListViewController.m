@@ -106,9 +106,10 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     }
     
     if (self.isSearchTable) {
-      //  self.searchBar.text = self.searchBar.text;
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
+    
+    self.specManager.currentProcedure = nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -157,7 +158,9 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)addNewProcedure:(id)sender
 {
-    
+    PEAddEditProcedureViewController *addEditProcedure = [[PEAddEditProcedureViewController alloc] initWithNibName:@"PEAddEditProcedureViewController" bundle:nil];
+    addEditProcedure.navigationLabelDescription = @"Add Procedure";
+    [self.navigationController pushViewController:addEditProcedure animated:YES];
 }
 
 #pragma mark - Search & UISearchDisplayDelegate
@@ -421,7 +424,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         self.specManager.currentProcedure = self.sortedArrayWithProcedures[selectedProcIndexPath.row];
     }
     PEAddEditProcedureViewController *controller = [[PEAddEditProcedureViewController alloc] initWithNibName:@"PEAddEditProcedureViewController" bundle:nil];
-
+    controller.navigationLabelDescription = @"Edit Procedure Name";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
