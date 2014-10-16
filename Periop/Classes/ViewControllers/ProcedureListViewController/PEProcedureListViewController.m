@@ -106,7 +106,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     }
     
     if (self.isSearchTable) {
-      //  self.searchBar.text = self.searchBar.text;
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
 }
