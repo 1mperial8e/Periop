@@ -80,8 +80,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     
     self.navigationItem.rightBarButtonItem = self.addStepButton;
     
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
-    [self.tableView reloadData];
+    [self refreshData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -229,7 +228,29 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (void)buttonDeleteAction:(UITableViewCell *)cell
 {
-    NSLog(@"delete");
+    NSIndexPath *indexPathToDelete = [self.tableView indexPathForCell:cell];
+    [self.managedObjectContext deleteObject:self.sortedArrayWithPreprations[indexPathToDelete.row]];
+    
+    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++){
+        for (Preparation *step in [self.specManager.currentProcedure.preparation allObjects]) {
+            if ([step.stepName isEqualToString:((Preparation *)self.sortedArrayWithPreprations[i]).stepName]) {
+                step.stepName = [NSString stringWithFormat:@"Step %i", i];
+            }
+        }
+    }
+    [self.swipedCells removeAllObjects];
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant delete preparation Step - %@", error.localizedDescription);
+    }
+    
+    [self refreshData];
+}
+
+- (void)refreshData
+{
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
+    [self.tableView reloadData];
 }
 
 @end
