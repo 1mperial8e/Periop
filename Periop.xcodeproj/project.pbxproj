@@ -56,8 +56,6 @@
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
 		84FCBC1F19E7C82400BC9829 /* MuseoSans-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBCF13019D986CF0054C464 /* MuseoSans-700.otf */; };
-		84FE694219EFC532008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */; };
-		84FE694319EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
 		ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2FA519B9FDF8001F8411 /* PEDoctorProfileViewController.m */; };
@@ -201,6 +199,8 @@
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
 		EDD21AD019EBB52400F343A2 /* ENT_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */; };
 		EDD21AD219EBB53400F343A2 /* ENT_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */; };
+		EDD2966219EFC226002F4564 /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */; };
+		EDD2966319EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */; };
 		EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDE819D2A8D40087D8CE /* Doctors.m */; };
 		EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */; };
 		EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */; };
@@ -1154,9 +1154,6 @@
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
 		84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialViewController.m; sourceTree = "<group>"; };
 		84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialViewController.xib; sourceTree = "<group>"; };
-		84FE693F19EFC532008AD54C /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
-		84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
-		84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
 		ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddNewToolViewController.m; sourceTree = "<group>"; };
 		ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddNewToolViewController.xib; sourceTree = "<group>"; };
@@ -1337,6 +1334,9 @@
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
 		EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ENT_Small_Active@2x.png"; sourceTree = "<group>"; };
+		EDD2965F19EFC226002F4564 /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
+		EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
+		EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
 		EDD2A55B19DBF46500A73C5E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		EDD4BDE719D2A8D40087D8CE /* Doctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Doctors.h; path = Periop/Classes/Entities/Doctors.h; sourceTree = SOURCE_ROOT; };
 		EDD4BDE819D2A8D40087D8CE /* Doctors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctors.m; path = Periop/Classes/Entities/Doctors.m; sourceTree = SOURCE_ROOT; };
@@ -2501,16 +2501,6 @@
 			path = TutorialViewController;
 			sourceTree = "<group>";
 		};
-		84FE693E19EFC532008AD54C /* AddEditStepViewController */ = {
-			isa = PBXGroup;
-			children = (
-				84FE693F19EFC532008AD54C /* PEAddEditStepViewControllerViewController.h */,
-				84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */,
-				84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */,
-			);
-			path = AddEditStepViewController;
-			sourceTree = "<group>";
-		};
 		ED0D2F9D19B9F39B001F8411 /* AddNewToolViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2840,7 +2830,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				84FE693E19EFC532008AD54C /* AddEditStepViewController */,
+				EDD2965E19EFC226002F4564 /* AddEditStepViewController */,
 				EDE7189219EF929000F59761 /* AddEditProcedureViewController */,
 				84B1B49119DC2DD300BF8D07 /* NavigationController */,
 				EDA7DFEE19BAE5CD002A70E8 /* AboutUsViewController */,
@@ -3085,6 +3075,16 @@
 				ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */,
 			);
 			path = Inactive;
+			sourceTree = "<group>";
+		};
+		EDD2965E19EFC226002F4564 /* AddEditStepViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDD2965F19EFC226002F4564 /* PEAddEditStepViewControllerViewController.h */,
+				EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */,
+				EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */,
+			);
+			path = AddEditStepViewController;
 			sourceTree = "<group>";
 		};
 		EDD2A55719DBF40E00A73C5E /* Constants */ = {
@@ -4927,6 +4927,7 @@
 				EDE78FD119ED5E4700A9C43B /* S0906T0510.jpg in Resources */,
 				EDE7901319ED5E4700A9C43B /* S0919T1101.jpg in Resources */,
 				EDE7913019ED5E4700A9C43B /* S0912T0903.jpg in Resources */,
+				EDD2966319EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib in Resources */,
 				EDE7908E19ED5E4700A9C43B /* S0916T0715.jpg in Resources */,
 				EDE7913719ED5E4700A9C43B /* S0912T0102.jpg in Resources */,
 				EDE792AA19ED5E4800A9C43B /* S0903T0509.jpg in Resources */,
@@ -5549,6 +5550,7 @@
 				EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */,
 				EDD9589219DACA71002D3D39 /* PEOperationTableViewCell.m in Sources */,
 				EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */,
+				EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */,
 				EDA7DFF819BAE853002A70E8 /* PETermsAndConditionViewController.m in Sources */,
 				ED0D30B419BA11B9001F8411 /* PEEditAddDoctorTableViewCell.m in Sources */,
 				842BF2B319CC583500AFCA42 /* PEAlbumCell.m in Sources */,
@@ -5557,6 +5559,7 @@
 				8474907119B8459E0013C446 /* main.m in Sources */,
 				84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */,
 				842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */,
+				EDD2966219EFC226002F4564 /* PEAddEditStepViewControllerViewController.m in Sources */,
 				842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */,
 				84FE694219EFC532008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */,
 				ED18513619D01CE70021E1EB /* Photo.m in Sources */,
@@ -5565,7 +5568,6 @@
 				EDD0244419D0B8A40023F46D /* PatientPostioning.m in Sources */,
 				EDD4BDE919D2A8D40087D8CE /* Doctors.m in Sources */,
 				EDCD57E619B881F200EC7AF1 /* PESpecialisationCollectionViewCell.m in Sources */,
-				EDCD584919B8C1ED00EC7AF1 /* PEPatientPositioningViewController.m in Sources */,
 				EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */,
 				ED0D2FAD19BA0367001F8411 /* PEDoctorsProfileTableViewCell.m in Sources */,
 				ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */,
