@@ -7,13 +7,13 @@
 		<key>specID</key>
 		<string>S10</string>
 		<key>photoName</key>
-		<string>Gastrointestina_Large</string>
+		<string>Gastrointestinal_Large</string>
 		<key>activeButtonPhotoName</key>
-		<string>Gastrointestina_Specialisation_Icon</string>
+		<string>Gastrointestinal_Specialisation_Icon</string>
 		<key>inactiveButtonPhotoName</key>
-		<string>Gastrointestina_Small_Inactive</string>
+		<string>Gastrointestinal_Small_Inactive</string>
 		<key>smallIconName</key>
-		<string>Gastrointestina_Specialisation_Icon_-_Small</string>
+		<string>Gastrointestinal_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.Periop.S10Gastrointestina</string>
 		<key>urlDownloadingMain</key>
