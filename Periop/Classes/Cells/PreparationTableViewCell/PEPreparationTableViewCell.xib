@@ -14,35 +14,73 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="21" text="Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tht-NG-tGm" userLabel="Label - Step Name">
-                        <rect key="frame" x="24" y="15" width="272" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-L4-GNf" userLabel="Label - Content">
-                        <rect key="frame" x="24" y="50" width="272" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnn-aP-Hyq">
+                        <rect key="frame" x="226" y="0.0" width="94" height="99"/>
+                        <color key="backgroundColor" red="0.89019607840000003" green="0.3294117647" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="94" id="uNt-IH-bui"/>
+                        </constraints>
+                        <state key="normal" image="delete_icon_white.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OLa-Vm-Xld"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjQ-oR-gBy" userLabel="Container">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="21" text="Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tht-NG-tGm" userLabel="Label - Step Name">
+                                <rect key="frame" x="24" y="15" width="272" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="rX5-k1-dF1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-L4-GNf" userLabel="Label - Content">
+                                <rect key="frame" x="24" y="50" width="272" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tht-NG-tGm" firstAttribute="top" secondItem="GjQ-oR-gBy" secondAttribute="top" constant="15" id="14x-l8-0Ma"/>
+                            <constraint firstAttribute="bottom" secondItem="Hhx-L4-GNf" secondAttribute="bottom" constant="19" id="HAj-oJ-LWc"/>
+                            <constraint firstItem="Hhx-L4-GNf" firstAttribute="leading" secondItem="GjQ-oR-gBy" secondAttribute="leading" constant="24" id="L6l-RG-cWo"/>
+                            <constraint firstItem="Tht-NG-tGm" firstAttribute="leading" secondItem="GjQ-oR-gBy" secondAttribute="leading" constant="24" id="YnY-ix-xZm"/>
+                            <constraint firstAttribute="trailing" secondItem="Hhx-L4-GNf" secondAttribute="trailing" constant="24" id="caC-h1-JRI"/>
+                            <constraint firstItem="Hhx-L4-GNf" firstAttribute="top" secondItem="Tht-NG-tGm" secondAttribute="bottom" constant="14" id="fB0-yr-g7m"/>
+                            <constraint firstAttribute="trailing" secondItem="Tht-NG-tGm" secondAttribute="trailing" constant="24" id="yiF-Qx-bgC"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Tht-NG-tGm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="0p4-R7-Hjj"/>
-                    <constraint firstItem="Hhx-L4-GNf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="5wZ-Fd-bXn"/>
-                    <constraint firstItem="Hhx-L4-GNf" firstAttribute="top" secondItem="Tht-NG-tGm" secondAttribute="bottom" constant="14" id="AWY-vl-JpA"/>
-                    <constraint firstAttribute="bottom" secondItem="Hhx-L4-GNf" secondAttribute="bottom" constant="19" id="CIY-ia-CAe"/>
-                    <constraint firstAttribute="trailing" secondItem="Hhx-L4-GNf" secondAttribute="trailing" constant="24" id="Hi7-8H-vtZ"/>
-                    <constraint firstAttribute="trailing" secondItem="Tht-NG-tGm" secondAttribute="trailing" constant="24" id="bPU-xO-4Mh"/>
-                    <constraint firstItem="Tht-NG-tGm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="lvS-e8-Vde"/>
+                    <constraint firstAttribute="bottom" secondItem="Xnn-aP-Hyq" secondAttribute="bottom" id="KLo-uc-arP"/>
+                    <constraint firstAttribute="bottom" secondItem="GjQ-oR-gBy" secondAttribute="bottom" id="Toj-ao-b3Y"/>
+                    <constraint firstAttribute="trailing" secondItem="Xnn-aP-Hyq" secondAttribute="trailing" id="dif-Xp-leg"/>
+                    <constraint firstItem="GjQ-oR-gBy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eqn-ic-CWp"/>
+                    <constraint firstItem="GjQ-oR-gBy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iFa-Vn-EoB"/>
+                    <constraint firstAttribute="trailing" secondItem="GjQ-oR-gBy" secondAttribute="trailing" id="syv-cV-utT"/>
+                    <constraint firstItem="Xnn-aP-Hyq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tq1-mE-1ib"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="contentViewXLeftSpace" destination="eqn-ic-CWp" id="dy9-74-EIa"/>
+                <outlet property="contentViewXRightSpace" destination="syv-cV-utT" id="12h-1A-GDF"/>
+                <outlet property="customContentView" destination="GjQ-oR-gBy" id="JH4-9k-HZu"/>
+                <outlet property="deleteButton" destination="Xnn-aP-Hyq" id="nKv-M3-wyf"/>
                 <outlet property="labelPreparationText" destination="Hhx-L4-GNf" id="f8r-s2-suk"/>
                 <outlet property="labelStep" destination="Tht-NG-tGm" id="hgU-Tt-jUq"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="delete_icon_white.png" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

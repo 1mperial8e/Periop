@@ -17,7 +17,7 @@
 static NSString *const PPreparationTableViewCellNibName = @"PEPreparationTableViewCell";
 static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell";
 
-@interface PEPreperationViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PEPreperationViewController () <UITableViewDataSource, UITableViewDelegate, PEPreparationTableViewCellDelegate>
 
 @property (strong, nonatomic) UILabel *navigationBarLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,6 +28,8 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 @property (strong, nonatomic) UIBarButtonItem *addStepButton;
 @property (strong, nonatomic) UIBarButtonItem *editStepButton;
+
+@property (strong, nonatomic) NSMutableArray *swipedCells;
 
 @end
 
@@ -44,8 +46,6 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
     
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -77,6 +77,11 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
+    
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -100,7 +105,11 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
         cell = [[PEPreparationTableViewCell alloc] init];
     }
      cell = [self configureCell:cell atIndexPath:indexPath];
-    return cell;    
+    cell.delegate = self;
+    if ([self.swipedCells containsObject:indexPath]) {
+        [cell setCellSwiped];
+    }
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
@@ -112,13 +121,18 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    PEPreparationTableViewCell *cell = (PEPreparationTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    BOOL selected = cell.selected;
     if (selected) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         self.navigationItem.rightBarButtonItem = self.addStepButton;
     }
+    if (cell.customContentView.frame.origin.x) {
+        return NO;
+    }
     return !selected;
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -180,6 +194,8 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (void)editStep:(UIBarButtonItem *)sender
 {
+    NSIndexPath *selectedIndexPath = self.tableView.indexPathsForSelectedRows[0];
+    
     PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
     editStepController.entityName = PEStepEntityNamePreparation;
     if (sender == self.addStepButton) {
@@ -189,8 +205,31 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
         PEPreparationTableViewCell *cell = (PEPreparationTableViewCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
         editStepController.stepNumber = cell.labelStep.text;
         editStepController.stepText = cell.labelPreparationText.text;
+        self.specManager.currentPreparation = self.sortedArrayWithPreprations[selectedIndexPath.row];
     }
     [self.navigationController pushViewController:editStepController animated:YES];
+}
+
+#pragma mark - PEPreparationTableViewCellDelegate
+
+- (void)cellSwipedIn:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForCell:cell];
+    [self.swipedCells removeObject:swipedIndexPath];
+}
+
+-(void)cellSwipedOut:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForCell:cell];
+    if (!self.swipedCells) {
+        self.swipedCells = [[NSMutableArray alloc] init];
+    }
+    [self.swipedCells addObject:swipedIndexPath];
+}
+
+- (void)buttonDeleteAction:(UITableViewCell *)cell
+{
+    NSLog(@"delete");
 }
 
 @end

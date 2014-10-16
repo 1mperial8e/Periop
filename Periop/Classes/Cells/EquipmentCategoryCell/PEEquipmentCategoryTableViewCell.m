@@ -89,7 +89,7 @@ static CGFloat const ECMultiplier = 1.8f;
 
 #pragma mark - Animation
 
-- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [self.viewWithContent.layer animationForKey:ECAnimationSwipeLeft]) {
         [self.delegate cellDidSwipedOut:self];
@@ -99,7 +99,7 @@ static CGFloat const ECMultiplier = 1.8f;
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
 }
@@ -124,7 +124,7 @@ static CGFloat const ECMultiplier = 1.8f;
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate & panRecognizer
 
-- (void) setCellSwiped
+- (void)setCellSwiped
 {
     self.viewWithContent.frame = CGRectMake(-self.buttonDeleteOutlet.frame.size.width, 0, self.viewWithContent.frame.size.width, self.viewWithContent.frame.size.height);
 }

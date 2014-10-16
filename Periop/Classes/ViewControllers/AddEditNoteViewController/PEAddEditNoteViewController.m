@@ -55,6 +55,8 @@
     self.cornerLabel.layer.cornerRadius = 24;
     self.cornerLabel.layer.borderColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1].CGColor;
     self.cornerLabel.layer.borderWidth = 1;
+    
+    self.textViewNotes.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated

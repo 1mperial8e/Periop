@@ -20,6 +20,8 @@
 @property (strong, nonatomic) EquipmentsTool *currentEquipment;
 @property (strong, nonatomic) Note *currentNote;
 @property (strong, nonatomic) Doctors *currentDoctor;
+@property (strong, nonatomic) Steps *currentStep;
+@property (strong, nonatomic) Preparation *currentPreparation;
 
 @property (assign, nonatomic) BOOL isProcedureSelected;
 @property (strong, nonatomic) Photo *photoObject;

@@ -30,7 +30,7 @@ static NSString *const OROperationTableViewCellIdentifier = @"operationTableView
 static NSString *const ORImagePlaceHolder = @"Place_Holder";
 static NSInteger const ORTagView = 35;
 
-@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
+@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate, PEOperationTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
@@ -44,6 +44,8 @@ static NSInteger const ORTagView = 35;
 
 @property (strong, nonatomic) UIBarButtonItem *addStepButton;
 @property (strong, nonatomic) UIBarButtonItem *editStepButton;
+
+@property (strong, nonatomic) NSMutableArray *swipedCells;
 
 @end
 
@@ -68,8 +70,6 @@ static NSInteger const ORTagView = 35;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
 
     [self.collectionView registerNib:[UINib nibWithNibName:OROperationRoomCollectionViewCellNibName bundle:nil] forCellWithReuseIdentifier:OROperationRoomCollectionViewCellIdentifier];
     
@@ -81,7 +81,7 @@ static NSInteger const ORTagView = 35;
     [self createBarButtons];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -100,11 +100,16 @@ static NSInteger const ORTagView = 35;
     [(PEMediaSelect *)[self.view viewWithTag:ORTagView] setVisible:NO];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.operationRoom.photo allObjects]];
     self.pageController.numberOfPages = self.sortedArrayWithPhotos.count;
+    
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
+    
     [self.collectionView reloadData];
     [self.tableView reloadData];
+    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -141,7 +146,6 @@ static NSInteger const ORTagView = 35;
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:ORImagePlaceHolder];
     }
-    
     self.pageController.currentPage = [indexPath row];
     return cell;
 }
@@ -160,6 +164,10 @@ static NSInteger const ORTagView = 35;
         cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:OROperationTableViewCellIdentifier];
     }
     cell = [self configureCell:cell atIndexPath:indexPath];
+    cell.delegate = self;
+    if ([self.swipedCells containsObject:indexPath]) {
+        [cell setCellSwiped];
+    }
     return cell;
 }
 
@@ -172,10 +180,14 @@ static NSInteger const ORTagView = 35;
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    PEOperationTableViewCell *cell = (PEOperationTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    BOOL selected = cell.selected;
     if (selected) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         self.navigationItem.rightBarButtonItem = self.addStepButton;
+    }
+    if (cell.customContentView.frame.origin.x) {
+        return NO;
     }
     return !selected;
 }
@@ -199,7 +211,7 @@ static NSInteger const ORTagView = 35;
     return cell;
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath*) indexPath
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath*)indexPath
 {
     static PEOperationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
@@ -251,6 +263,28 @@ static NSInteger const ORTagView = 35;
     [(PEMediaSelect *)[self.view viewWithTag:ORTagView] setVisible:NO];
 }
 
+#pragma mark - PEOperationTableViewCellDelegate
+
+- (void)cellSwipedIn:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForCell:cell];
+    [self.swipedCells removeObject:swipedIndexPath];
+}
+
+-(void)cellSwipedOut:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForCell:cell];
+    if (!self.swipedCells) {
+        self.swipedCells = [[NSMutableArray alloc] init];
+    }
+    [self.swipedCells addObject:swipedIndexPath];
+}
+
+- (void)buttonDeleteAction:(UITableViewCell *)cell
+{
+    NSLog(@"delete");
+}
+
 #pragma marks - Private
 
 - (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
@@ -287,6 +321,8 @@ static NSInteger const ORTagView = 35;
 
 - (void)editStep:(UIBarButtonItem *)sender
 {
+    NSIndexPath *selectedIndexPath = self.tableView.indexPathsForSelectedRows[0];
+    
     PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
     editStepController.entityName = PEStepEntityNameOperationRoom;
     if (sender == self.addStepButton) {
@@ -296,6 +332,7 @@ static NSInteger const ORTagView = 35;
         PEOperationTableViewCell *cell = (PEOperationTableViewCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
         editStepController.stepNumber = cell.labelStep.text;
         editStepController.stepText = cell.labelOperationRoomText.text;
+        self.specManager.currentStep = self.sortedArrayWithPreprations[selectedIndexPath.row];
     }
     [self.navigationController pushViewController:editStepController animated:YES];
 }
