@@ -31,6 +31,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEDoctorsViewTableViewCell.h"
 #import "PEProcedureListTableViewCell.h"
+#import "PEAddEditProcedureViewController.h"
 
 @interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, PEDoctorsViewTableViewCellDelegate, PEProcedureListTableViewCellGestrudeDelegate>
 
@@ -100,6 +101,11 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     
     if (!self.specManager.isProcedureSelected) {
         [self doctorsSelected];
+    }
+    
+    if (self.isSearchTable) {
+      //  self.searchBar.text = self.searchBar.text;
+        [self.searchDisplayController.searchResultsTableView reloadData];
     }
 }
 
@@ -355,7 +361,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
                 }
                 self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
                 [self.tableView reloadData];
-               // [self.searchDisplayController.searchResultsTableView reloadData];
                 self.searchBar.text = self.searchBar.text;
                 break;
             }
@@ -400,10 +405,20 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void)longPressRecognised:(UITableViewCell *)cell
 {
-    NSLog(@"long Press");
+    NSIndexPath * selectedProcIndexPath;
+    if (self.isSearchTable) {
+        selectedProcIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
+        self.specManager.currentProcedure = self.searchResult[selectedProcIndexPath.row];
+    } else {
+        selectedProcIndexPath = [self.tableView indexPathForCell:cell];
+        self.specManager.currentProcedure = self.sortedArrayWithProcedures[selectedProcIndexPath.row];
+    }
+    PEAddEditProcedureViewController *controller = [[PEAddEditProcedureViewController alloc] initWithNibName:@"PEAddEditProcedureViewController" bundle:nil];
+
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-#pragma marks - Private
+#pragma mark - Private
 
 - (NSMutableArray *)sortedArrayWitProcedures:(NSArray *)arrayToSort
 {

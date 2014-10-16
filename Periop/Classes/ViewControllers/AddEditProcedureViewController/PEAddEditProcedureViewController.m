@@ -38,7 +38,7 @@ static CGFloat const AEPCornerRadius = 24;
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     self.textViewProcedureName.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
-    self.labelCorners.layer.cornerRadius = 24;
+    self.labelCorners.layer.cornerRadius = AEPCornerRadius;
     self.labelCorners.layer.borderColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1].CGColor;
     self.labelCorners.layer.borderWidth = 1;
     
@@ -79,6 +79,8 @@ static CGFloat const AEPCornerRadius = 24;
         if (![self.managedObjectContext save:&saveError]) {
             NSLog(@"Cant save modified name of Procedure - %@", saveError.localizedDescription);
         }
+        [self.navigationController popViewControllerAnimated:YES];
+        self.specManager.currentProcedure = nil;
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Empty procedure name" message:@"Name can not be empty, please enter \"Procedure Name\"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];

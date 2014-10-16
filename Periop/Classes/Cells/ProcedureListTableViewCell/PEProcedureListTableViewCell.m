@@ -14,7 +14,8 @@
 
 - (void)awakeFromNib
 {
-    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapPress)];
+    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapPress:)];
+    longPressRecognizer.minimumPressDuration = 0.3;
     [self.labelProcedureName addGestureRecognizer:longPressRecognizer];
 }
 
@@ -27,9 +28,11 @@
 
 #pragma mark - IBActions
 
-- (void)longTapPress
+- (void)longTapPress:(UILongPressGestureRecognizer *)longPress
 {
-    [self.delegate longPressRecognised:self];
+    if (longPress.state == UIGestureRecognizerStateBegan) {
+        [self.delegate longPressRecognised:self];
+    }
 }
 
 
