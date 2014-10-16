@@ -11,6 +11,13 @@
 #import "PECoreDataManager.h"
 #import "PESpecialisationManager.h"
 #import "Preparation.h"
+#import "Steps.h"
+#import "PatientPostioning.h"
+
+static NSString *const AESStepsEntityName = @"Steps";
+static NSString *const AESPreparationEntityName = @"Preparation";
+static NSString *const AESOperationRoomEntityName = @"OperationRoom";
+static NSString *const AESPatientPositioningEntityName = @"PatientPositioning";
 
 @interface PEAddEditStepViewControllerViewController ()
 
@@ -37,10 +44,11 @@
     [self setupUI];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     self.specManager.currentPreparation = nil;
+    self.specManager.currentStep = nil;
 }
 
 - (void)setupUI
@@ -76,27 +84,118 @@
 {
     // save result!
     switch (self.entityName) {
-        case PEStepEntityNamePreparation:
-            [self saveUpdatedPreparationNote];
+        case PEStepEntityNamePreparation: {
+            if (self.specManager.currentPreparation) {
+                [self saveUpdatedPreparationNote];
+            } else {
+                [self saveNewStepToPreparation];
+            }
             break;
-            
+        }
+        case PEStepEntityNameOperationRoom: {
+            if (self.specManager.currentStep) {
+                [self saveUpdatedStepForOperationRoom];
+            } else {
+                [self addNewStepForOperationRoom];
+            }
+            break;
+        }
+        case PEStepEntityNamePatientPositioning: {
+            if (self.specManager.currentStep) {
+                [self saveUpdatedStepForPatientPositioning];
+            } else {
+                [self addNewStepForPatientPositioning];
+            }
+        }
         default:
             break;
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.stepTextView.text.length) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Private
 
-- (void)saveUpdatedPreparationNote
+- (void)addNewStepForPatientPositioning
 {
-    if (self.specManager.currentPreparation){
-        if (self.stepTextView.text) {
-            self.specManager.currentPreparation.preparationText = self.stepTextView.text;
-            [self saveToLocalDataBase:@"Preparation"];
+    if (self.stepTextView.text.length) {
+        NSEntityDescription *stepEntityDescription = [NSEntityDescription entityForName:AESStepsEntityName inManagedObjectContext:self.managedObjectContext];
+        Steps *newStep = [[Steps alloc] initWithEntity:stepEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+        newStep.stepDescription = self.stepTextView.text;
+        newStep.stepName = self.stepNumber;
+        [self.specManager.currentProcedure.patientPostioning addStepsObject:newStep];
+        [self saveToLocalDataBase:AESStepsEntityName];
+    } else {
+        [self showAlertView];
+    }
+}
+
+- (void)saveUpdatedStepForPatientPositioning
+{
+    if (self.specManager.currentStep) {
+        if (self.stepTextView.text.length) {
+            self.specManager.currentStep.stepDescription = self.stepTextView.text;
+            [self saveToLocalDataBase:AESPatientPositioningEntityName];
+        } else {
+            [self showAlertView];
         }
     }
 }
+
+- (void)saveUpdatedStepForOperationRoom
+{
+    if (self.specManager.currentStep) {
+        if (self.stepTextView.text.length) {
+            self.specManager.currentStep.stepDescription = self.stepTextView.text;
+            [self saveToLocalDataBase:AESOperationRoomEntityName];
+        } else {
+            [self showAlertView];
+        }
+    }
+}
+
+- (void)addNewStepForOperationRoom
+{
+    if (self.stepTextView.text.length) {
+        NSEntityDescription *stepEntityDescription = [NSEntityDescription entityForName:AESStepsEntityName inManagedObjectContext:self.managedObjectContext];
+        Steps *newStep = [[Steps alloc] initWithEntity:stepEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+        newStep.stepDescription = self.stepTextView.text;
+        newStep.stepName = self.stepNumber;
+        [self.specManager.currentProcedure.operationRoom addStepsObject:newStep];
+        [self saveToLocalDataBase:AESStepsEntityName];
+    } else {
+        [self showAlertView];
+    }
+    
+}
+
+- (void)saveUpdatedPreparationNote
+{
+    if (self.specManager.currentPreparation){
+        if (self.stepTextView.text.length) {
+            self.specManager.currentPreparation.preparationText = self.stepTextView.text;
+            [self saveToLocalDataBase:AESPreparationEntityName];
+        } else {
+            [self showAlertView];
+        }
+    }
+}
+
+- (void)saveNewStepToPreparation
+{
+    if (self.stepTextView.text.length) {
+        NSEntityDescription *preparationEntity = [NSEntityDescription entityForName:AESPreparationEntityName inManagedObjectContext:self.managedObjectContext];
+        Preparation *newPreparationStep = [[Preparation alloc] initWithEntity:preparationEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        newPreparationStep.stepName = self.stepNumber;
+        newPreparationStep.preparationText = self.stepTextView.text;
+        [self.specManager.currentProcedure addPreparationObject:newPreparationStep];
+        [self saveToLocalDataBase:AESPreparationEntityName];
+    } else {
+        [self showAlertView];
+    }
+}
+
 
 - (void)saveToLocalDataBase:(NSString *)entryTypeName
 {
@@ -104,6 +203,11 @@
     if (![self.managedObjectContext save:&saveError]) {
         NSLog(@"Cant save modified %@ - %@", entryTypeName, saveError.localizedDescription);
     }
+}
+
+- (void)showAlertView
+{
+    [[[UIAlertView alloc] initWithTitle:@"Empty step description" message:@"Please add description for step" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
 }
 
 @end

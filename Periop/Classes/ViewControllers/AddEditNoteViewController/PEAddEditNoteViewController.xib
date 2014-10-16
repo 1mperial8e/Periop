@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -42,7 +43,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsn-MI-vp8" userLabel="Button - Photo button">
-                            <rect key="frame" x="15" y="316" width="32" height="32"/>
+                            <rect key="frame" x="15" y="306" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="WQn-WV-xyL"/>
                                 <constraint firstAttribute="width" constant="32" id="eic-hH-h9p"/>
@@ -58,14 +59,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="lTc-WO-b2b" secondAttribute="trailing" constant="15" id="1Cn-Tx-O44"/>
-                        <constraint firstAttribute="bottom" secondItem="Nsn-MI-vp8" secondAttribute="bottom" constant="220" id="B3Z-Fq-x8r"/>
+                        <constraint firstAttribute="bottom" secondItem="Nsn-MI-vp8" secondAttribute="bottom" constant="230" id="B3Z-Fq-x8r"/>
                         <constraint firstAttribute="trailing" secondItem="RZx-DS-0z7" secondAttribute="trailing" constant="30" id="GIb-OX-kUr"/>
-                        <constraint firstItem="Nsn-MI-vp8" firstAttribute="top" secondItem="RZx-DS-0z7" secondAttribute="bottom" constant="40" id="Hsw-D0-Iwi"/>
+                        <constraint firstItem="Nsn-MI-vp8" firstAttribute="top" secondItem="RZx-DS-0z7" secondAttribute="bottom" constant="30" id="Hsw-D0-Iwi"/>
                         <constraint firstAttribute="trailing" secondItem="JdX-dX-Cmu" secondAttribute="trailing" constant="15" id="Lny-tp-t04"/>
                         <constraint firstItem="lTc-WO-b2b" firstAttribute="top" secondItem="JdX-dX-Cmu" secondAttribute="bottom" constant="3" id="PjG-hS-gLh"/>
                         <constraint firstItem="lTc-WO-b2b" firstAttribute="leading" secondItem="v8J-ir-Hc2" secondAttribute="leading" constant="15" id="XcO-7d-tlH"/>
                         <constraint firstItem="JdX-dX-Cmu" firstAttribute="leading" secondItem="v8J-ir-Hc2" secondAttribute="leading" constant="15" id="aRF-8p-z4N"/>
-                        <constraint firstItem="Nsn-MI-vp8" firstAttribute="top" secondItem="lTc-WO-b2b" secondAttribute="bottom" constant="25" id="gtz-Mc-lg3"/>
+                        <constraint firstItem="Nsn-MI-vp8" firstAttribute="top" secondItem="lTc-WO-b2b" secondAttribute="bottom" constant="15" id="gtz-Mc-lg3"/>
                         <constraint firstItem="RZx-DS-0z7" firstAttribute="leading" secondItem="v8J-ir-Hc2" secondAttribute="leading" constant="30" id="mkw-fG-Dk0"/>
                         <constraint firstItem="RZx-DS-0z7" firstAttribute="top" secondItem="JdX-dX-Cmu" secondAttribute="bottom" constant="12" id="rHf-Mm-XMg"/>
                         <constraint firstItem="JdX-dX-Cmu" firstAttribute="top" secondItem="v8J-ir-Hc2" secondAttribute="top" constant="23" id="vro-WQ-U1g"/>

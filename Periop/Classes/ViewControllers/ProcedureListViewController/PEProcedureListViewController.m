@@ -43,6 +43,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) UIBarButtonItem *navigationBarAddDoctorButton;
+@property (strong, nonatomic) UIBarButtonItem *addProcedureButton;
 
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithProcedures;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithDoctors;
@@ -76,7 +77,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewDoctor:)];
     self.navigationBarAddDoctorButton = addButton;
-    
+    self.addProcedureButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewProcedure:)];
+    self.navigationItem.rightBarButtonItem = self.addProcedureButton;
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
@@ -124,7 +126,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
     self.specManager.isProcedureSelected = YES;
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = self.addProcedureButton;
     [self.tableView reloadData];
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
@@ -151,6 +153,11 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     PEAddEditDoctorViewController *addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
     [self.navigationController pushViewController:addEditDoctorView animated:YES];
+}
+
+- (IBAction)addNewProcedure:(id)sender
+{
+    
 }
 
 #pragma mark - Search & UISearchDisplayDelegate

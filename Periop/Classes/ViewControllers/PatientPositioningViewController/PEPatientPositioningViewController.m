@@ -30,7 +30,7 @@ static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPo
 static NSString *const PPImagePlaceHolder = @"Place_Holder";
 static NSInteger const PPTagView = 35;
 
-@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate>
+@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, PEPatientPositioningTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *postedCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
@@ -42,6 +42,8 @@ static NSInteger const PPTagView = 35;
 
 @property (strong, nonatomic) UIBarButtonItem *addStepButton;
 @property (strong, nonatomic) UIBarButtonItem *editStepButton;
+
+@property (strong, nonatomic) NSMutableArray *swipedCells;
 
 @end
 
@@ -94,11 +96,11 @@ static NSInteger const PPTagView = 35;
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
     [self.tableViewPatient reloadData];
-    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
     [self createBarButtons];
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -150,9 +152,11 @@ static NSInteger const PPTagView = 35;
     if (!cell) {
         cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
     }
-    
     [self configureCell:cell atIndexPath:indexPath];
-    
+    cell.delegate = self;
+    if ([self.swipedCells containsObject:indexPath]) {
+        [cell setCellSwiped];
+    }
     return cell;
 }
 
@@ -165,10 +169,14 @@ static NSInteger const PPTagView = 35;
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    PEPatientPositioningTableViewCell *cell = (PEPatientPositioningTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    BOOL selected = cell.selected;
     if (selected) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         self.navigationItem.rightBarButtonItem = self.addStepButton;
+    }
+    if (cell.customContentView.frame.origin.x) {
+        return NO;
     }
     return !selected;
 }
@@ -248,7 +256,29 @@ static NSInteger const PPTagView = 35;
     }
 }
 
-#pragma marks - Private
+#pragma mark - PEPatientPositioningTableViewCellDelegate
+
+- (void)cellSwipedIn:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableViewPatient indexPathForCell:cell];
+    [self.swipedCells removeObject:swipedIndexPath];
+}
+
+-(void)cellSwipedOut:(UITableViewCell *)cell
+{
+    NSIndexPath *swipedIndexPath = [self.tableViewPatient indexPathForCell:cell];
+    if (!self.swipedCells) {
+        self.swipedCells = [[NSMutableArray alloc] init];
+    }
+    [self.swipedCells addObject:swipedIndexPath];
+}
+
+- (void)buttonDeleteAction:(UITableViewCell *)cell
+{
+    NSLog(@"delete");
+}
+
+#pragma mark - Private
 
 - (NSMutableArray *)sortedArrayWithPhotos:(NSArray*)arrayToSort
 {
@@ -284,6 +314,8 @@ static NSInteger const PPTagView = 35;
 
 - (void)editStep:(UIBarButtonItem *)sender
 {
+     NSIndexPath *selectedIndexPath = self.tableViewPatient.indexPathsForSelectedRows[0];
+    
     PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
     editStepController.entityName = PEStepEntityNamePatientPositioning;
     if (sender == self.addStepButton) {
@@ -293,6 +325,7 @@ static NSInteger const PPTagView = 35;
         PEPatientPositioningTableViewCell *cell = (PEPatientPositioningTableViewCell *)[self.tableViewPatient cellForRowAtIndexPath:self.tableViewPatient.indexPathForSelectedRow];
         editStepController.stepNumber = cell.labelStepName.text;
         editStepController.stepText = cell.labelContent.text;
+        self.specManager.currentStep = self.sortedArrayWithPatientPositioning[selectedIndexPath.row];
     }
     [self.navigationController pushViewController:editStepController animated:YES];
 }
