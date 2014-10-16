@@ -6,14 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
-static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
-static NSString *const PPPatientPositioningTableViewCellNibName = @"PEPatientPositioningTableViewCell";
-static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPositioningStepsCell";
-
-static NSString *const PPImagePlaceHolder = @"Place_Holder";
-static NSInteger const PPTagView = 35;
-
 #import "PEPatientPositioningViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEPatientPositioningTableViewCell.h"
@@ -28,6 +20,15 @@ static NSInteger const PPTagView = 35;
 #import "Steps.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEAddEditStepViewControllerViewController.h"
+
+static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
+static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
+static NSString *const PPPatientPositioningTableViewCellNibName = @"PEPatientPositioningTableViewCell";
+static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPositioningStepsCell";
+
+static NSString *const PPImagePlaceHolder = @"Place_Holder";
+static NSInteger const PPTagView = 35;
 
 @interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate>
 
@@ -38,6 +39,9 @@ static NSInteger const PPTagView = 35;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPatientPositioning;
+
+@property (strong, nonatomic) UIBarButtonItem *addStepButton;
+@property (strong, nonatomic) UIBarButtonItem *editStepButton;
 
 @end
 
@@ -90,6 +94,8 @@ static NSInteger const PPTagView = 35;
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
     [self.tableViewPatient reloadData];
+    
+    [self createBarButtons];
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -155,6 +161,26 @@ static NSInteger const PPTagView = 35;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self heightForBasicCellAtIndexPath:indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    if (selected) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        self.navigationItem.rightBarButtonItem = self.addStepButton;
+    }
+    return !selected;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.editStepButton;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
 }
 
 #pragma mark - DynamicHeightOfCell
@@ -224,7 +250,7 @@ static NSInteger const PPTagView = 35;
 
 #pragma marks - Private
 
-- (NSMutableArray *)sortedArrayWithPhotos: (NSArray*)arrayToSort
+- (NSMutableArray *)sortedArrayWithPhotos:(NSArray*)arrayToSort
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -235,7 +261,7 @@ static NSInteger const PPTagView = 35;
     return [NSMutableArray arrayWithArray:sortedArray];
 }
 
-- (NSMutableArray*) sortedArrayWithPatientPos: (NSArray *) arrayToSort
+- (NSMutableArray *)sortedArrayWithPatientPos:(NSArray *)arrayToSort
 {
     NSArray *sortedArray;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -244,6 +270,31 @@ static NSInteger const PPTagView = 35;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
+}
+
+- (void)createBarButtons
+{
+    UIImage *addImage = [UIImage imageNamed:@"Add"];
+    UIImage *editImage = [UIImage imageNamed:@"Edit_Info"];
+    self.addStepButton = [[UIBarButtonItem alloc] initWithImage:addImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    self.editStepButton = [[UIBarButtonItem alloc] initWithImage:editImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
+}
+
+- (void)editStep:(UIBarButtonItem *)sender
+{
+    PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
+    editStepController.entityName = PEStepEntityNamePatientPositioning;
+    if (sender == self.addStepButton) {
+        editStepController.stepNumber = [NSString stringWithFormat:@"Step %i", (int)(self.specManager.currentProcedure.patientPostioning.steps.count + 1)];
+        editStepController.stepText = @"";
+    } else {
+        PEPatientPositioningTableViewCell *cell = (PEPatientPositioningTableViewCell *)[self.tableViewPatient cellForRowAtIndexPath:self.tableViewPatient.indexPathForSelectedRow];
+        editStepController.stepNumber = cell.labelStepName.text;
+        editStepController.stepText = cell.labelContent.text;
+    }
+    [self.navigationController pushViewController:editStepController animated:YES];
 }
 
 @end

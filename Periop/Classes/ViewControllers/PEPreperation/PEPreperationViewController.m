@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const PPreparationTableViewCellNibName = @"PEPreparationTableViewCell";
-static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell";
-
 #import "PEPreperationViewController.h"
 #import "PEPreparationTableViewCell.h"
-
+#import "PEAddEditStepViewControllerViewController.h"
 #import "PECoreDataManager.h"
 #import "PESpecialisationManager.h"
 #import "Preparation.h"
 #import "Procedure.h"
+
+static NSString *const PPreparationTableViewCellNibName = @"PEPreparationTableViewCell";
+static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell";
 
 @interface PEPreperationViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -25,6 +25,9 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *sortedArrayWithPreprations;
+
+@property (strong, nonatomic) UIBarButtonItem *addStepButton;
+@property (strong, nonatomic) UIBarButtonItem *editStepButton;
 
 @end
 
@@ -47,6 +50,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
+    [self createBarButtons];
     [self.tableView registerNib:[UINib nibWithNibName:PPreparationTableViewCellNibName bundle:nil] forCellReuseIdentifier:PPreparationTableViewCellIdentifier];
 }
 
@@ -57,7 +61,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -85,7 +89,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  [self.specManager.currentProcedure.preparation count];
+    return self.specManager.currentProcedure.preparation.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,6 +108,26 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self heightForBasicCellAtIndexPath:indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    if (selected) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        self.navigationItem.rightBarButtonItem = self.addStepButton;
+    }
+    return !selected;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.editStepButton;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
 }
 
 #pragma mark - DynamicHeightOfCell
@@ -142,6 +166,31 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
         return [firstObject compare:secondObject];
     }];
     return sortedArray;
+}
+
+- (void)createBarButtons
+{
+    UIImage *addImage = [UIImage imageNamed:@"Add"];
+    UIImage *editImage = [UIImage imageNamed:@"Edit_Info"];
+    self.addStepButton = [[UIBarButtonItem alloc] initWithImage:addImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    self.editStepButton = [[UIBarButtonItem alloc] initWithImage:editImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
+}
+
+- (void)editStep:(UIBarButtonItem *)sender
+{
+    PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
+    editStepController.entityName = PEStepEntityNamePreparation;
+    if (sender == self.addStepButton) {
+        editStepController.stepNumber = [NSString stringWithFormat:@"Step %i", (int)(self.specManager.currentProcedure.preparation.count + 1)];
+        editStepController.stepText = @"";
+    } else {
+        PEPreparationTableViewCell *cell = (PEPreparationTableViewCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+        editStepController.stepNumber = cell.labelStep.text;
+        editStepController.stepText = cell.labelPreparationText.text;
+    }
+    [self.navigationController pushViewController:editStepController animated:YES];
 }
 
 @end

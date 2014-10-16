@@ -9,6 +9,6 @@
 @interface PEOperationTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *labelStep;
-@property (weak, nonatomic) IBOutlet UILabel *labelPreparationText;
+@property (weak, nonatomic) IBOutlet UILabel *labelOperationRoomText;
 
 @end

@@ -6,14 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const OROperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
-static NSString *const OROperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
-static NSString *const OROperationTableViewCellNibName = @"PEOperationTableViewCell";
-static NSString *const OROperationTableViewCellIdentifier = @"operationTableViewCell";
-
-static NSString *const ORImagePlaceHolder = @"Place_Holder";
-static NSInteger const ORTagView = 35;
-
 #import "PEOperationRoomViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
 #import "PEMediaSelect.h"
@@ -28,6 +20,15 @@ static NSInteger const ORTagView = 35;
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEAddEditStepViewControllerViewController.h"
+
+static NSString *const OROperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
+static NSString *const OROperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
+static NSString *const OROperationTableViewCellNibName = @"PEOperationTableViewCell";
+static NSString *const OROperationTableViewCellIdentifier = @"operationTableViewCell";
+
+static NSString *const ORImagePlaceHolder = @"Place_Holder";
+static NSInteger const ORTagView = 35;
 
 @interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate>
 
@@ -40,6 +41,9 @@ static NSInteger const ORTagView = 35;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSArray *sortedArrayWithPreprations;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
+
+@property (strong, nonatomic) UIBarButtonItem *addStepButton;
+@property (strong, nonatomic) UIBarButtonItem *editStepButton;
 
 @end
 
@@ -74,6 +78,7 @@ static NSInteger const ORTagView = 35;
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
+    [self createBarButtons];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -145,7 +150,7 @@ static NSInteger const ORTagView = 35;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  [self.specManager.currentProcedure.operationRoom.steps count];
+    return self.specManager.currentProcedure.operationRoom.steps.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,12 +170,32 @@ static NSInteger const ORTagView = 35;
     return [self heightForBasicCellAtIndexPath:indexPath];
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL selected = ((UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).selected;
+    if (selected) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        self.navigationItem.rightBarButtonItem = self.addStepButton;
+    }
+    return !selected;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.editStepButton;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
+}
+
 #pragma mark - DynamicHeightOfCell
 
 - (PEOperationTableViewCell *)configureCell:(PEOperationTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.labelStep.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepName;
-    cell.labelPreparationText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
+    cell.labelOperationRoomText.text = ((Steps*)(self.sortedArrayWithPreprations[indexPath.row])).stepDescription;
     return cell;
 }
 
@@ -248,6 +273,31 @@ static NSInteger const ORTagView = 35;
         return [firstObject compare:secondObject];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
+}
+
+- (void)createBarButtons
+{
+    UIImage *addImage = [UIImage imageNamed:@"Add"];
+    UIImage *editImage = [UIImage imageNamed:@"Edit_Info"];
+    self.addStepButton = [[UIBarButtonItem alloc] initWithImage:addImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    self.editStepButton = [[UIBarButtonItem alloc] initWithImage:editImage style:UIBarButtonItemStylePlain target:self action:@selector(editStep:)];
+    
+    self.navigationItem.rightBarButtonItem = self.addStepButton;
+}
+
+- (void)editStep:(UIBarButtonItem *)sender
+{
+    PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
+    editStepController.entityName = PEStepEntityNameOperationRoom;
+    if (sender == self.addStepButton) {
+        editStepController.stepNumber = [NSString stringWithFormat:@"Step %i", (int)(self.specManager.currentProcedure.operationRoom.steps.count + 1)];
+        editStepController.stepText = @"";
+    } else {
+        PEOperationTableViewCell *cell = (PEOperationTableViewCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+        editStepController.stepNumber = cell.labelStep.text;
+        editStepController.stepText = cell.labelOperationRoomText.text;
+    }
+    [self.navigationController pushViewController:editStepController animated:YES];
 }
 
 @end
