@@ -8,6 +8,7 @@
 
 static NSString *const DLCellName = @"doctorsCell";
 static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
+static CGFloat const DLVCHeighForCell = 53.0f;
 
 #import "PEDoctorsListViewController.h"
 #import "PEDoctorsViewTableViewCell.h"
@@ -128,6 +129,11 @@ static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
     [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]
                                                 forBarPosition:0
                                                     barMetrics:UIBarMetricsDefault];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.rowHeight = DLVCHeighForCell;
 }
 
 - (void)customizingSearchBar

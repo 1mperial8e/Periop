@@ -16,6 +16,7 @@
 #import "PEDoctorsListViewController.h"
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
+#import "PEAddEditProcedureViewController.h"
 
 @interface PEProcedureOptionViewController ()
 

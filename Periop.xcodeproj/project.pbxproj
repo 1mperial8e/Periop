@@ -212,6 +212,10 @@
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
+		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
+		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
+		EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189A19EF994E00F59761 /* PEProcedureListTableViewCell.m */; };
+		EDE7189D19EF994E00F59761 /* PEProcedureListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189B19EF994E00F59761 /* PEProcedureListTableViewCell.xib */; };
 		EDE77DEE19ED4E8900A9C43B /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDE77DED19ED4E8900A9C43B /* Back.png */; };
 		EDE77E3419ED5C7E00A9C43B /* S0901P01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE77E1E19ED5C7D00A9C43B /* S0901P01.jpg */; };
 		EDE77E3519ED5C7E00A9C43B /* S0901P02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE77E1F19ED5C7D00A9C43B /* S0901P02.jpg */; };
@@ -1350,6 +1354,12 @@
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
+		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
+		EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditProcedureViewController.m; sourceTree = "<group>"; };
+		EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditProcedureViewController.xib; sourceTree = "<group>"; };
+		EDE7189919EF994E00F59761 /* PEProcedureListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEProcedureListTableViewCell.h; sourceTree = "<group>"; };
+		EDE7189A19EF994E00F59761 /* PEProcedureListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEProcedureListTableViewCell.m; sourceTree = "<group>"; };
+		EDE7189B19EF994E00F59761 /* PEProcedureListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEProcedureListTableViewCell.xib; sourceTree = "<group>"; };
 		EDE77DED19ED4E8900A9C43B /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		EDE77E1E19ED5C7D00A9C43B /* S0901P01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0901P01.jpg; sourceTree = "<group>"; };
 		EDE77E1F19ED5C7D00A9C43B /* S0901P02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0901P02.jpg; sourceTree = "<group>"; };
@@ -2815,6 +2825,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EDE7189219EF929000F59761 /* AddEditProcedureViewController */,
 				84B1B49119DC2DD300BF8D07 /* NavigationController */,
 				EDA7DFEE19BAE5CD002A70E8 /* AboutUsViewController */,
 				EDC91EC519B9BB9A00212F24 /* AddEditNoteViewController */,
@@ -2885,6 +2896,7 @@
 		EDCD57E219B8814500EC7AF1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EDE7189819EF993700F59761 /* ProcedureListTableViewCell */,
 				EDD9588E19DACA50002D3D39 /* OperationTableViewCell */,
 				84AF77B319DAEBBA009F2B98 /* TutorialCell */,
 				EDBCF12819D983A50054C464 /* PEPatientPositioningTableViewCell */,
@@ -3145,6 +3157,26 @@
 				EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */,
 			);
 			path = UIButtons;
+			sourceTree = "<group>";
+		};
+		EDE7189219EF929000F59761 /* AddEditProcedureViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */,
+				EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */,
+				EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */,
+			);
+			path = AddEditProcedureViewController;
+			sourceTree = "<group>";
+		};
+		EDE7189819EF993700F59761 /* ProcedureListTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDE7189919EF994E00F59761 /* PEProcedureListTableViewCell.h */,
+				EDE7189A19EF994E00F59761 /* PEProcedureListTableViewCell.m */,
+				EDE7189B19EF994E00F59761 /* PEProcedureListTableViewCell.xib */,
+			);
+			path = ProcedureListTableViewCell;
 			sourceTree = "<group>";
 		};
 		EDE77DEF19ED5BFF00A9C43B /* GeneralSpecPhoto */ = {
@@ -4618,6 +4650,7 @@
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
 				EDE7908919ED5E4700A9C43B /* S0916T0709.jpg in Resources */,
 				EDE791EB19ED5E4700A9C43B /* S0906T0901.jpg in Resources */,
+				EDE7189D19EF994E00F59761 /* PEProcedureListTableViewCell.xib in Resources */,
 				EDE791E519ED5E4700A9C43B /* S0906T0710.jpg in Resources */,
 				EDE790AE19ED5E4700A9C43B /* S0915T0505.jpg in Resources */,
 				EDE790DB19ED5E4700A9C43B /* S0914T0705.jpg in Resources */,
@@ -4988,6 +5021,7 @@
 				EDE792E019ED5E4800A9C43B /* S0907T0505.jpg in Resources */,
 				EDE7903E19ED5E4700A9C43B /* S0917T0401.jpg in Resources */,
 				EDE7921719ED5E4700A9C43B /* S0904T0603.jpg in Resources */,
+				EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */,
 				EDE7915619ED5E4700A9C43B /* S0911T1101.jpg in Resources */,
 				EDE7931C19ED5E4800A9C43B /* S0905T0709.jpg in Resources */,
 				EDE7901A19ED5E4700A9C43B /* S0919T0602.jpg in Resources */,
@@ -5474,6 +5508,7 @@
 				EDCB1CD519DD4E1F0049A970 /* UIImage+ImageWithJPGFile.m in Sources */,
 				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
 				EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */,
+				EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */,
 				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
@@ -5487,6 +5522,7 @@
 				847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */,
 				EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */,
 				EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */,
+				EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */,
 				EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
 				84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */,
