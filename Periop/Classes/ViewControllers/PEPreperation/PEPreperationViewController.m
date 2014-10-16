@@ -209,6 +209,12 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     [self.navigationController pushViewController:editStepController animated:YES];
 }
 
+- (void)refreshData
+{
+    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
+    [self.tableView reloadData];
+}
+
 #pragma mark - PEPreparationTableViewCellDelegate
 
 - (void)cellSwipedIn:(UITableViewCell *)cell
@@ -243,14 +249,8 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Cant delete preparation Step - %@", error.localizedDescription);
     }
-    
+    ((PEPreparationTableViewCell *)cell).deleteButton.hidden = YES;
     [self refreshData];
-}
-
-- (void)refreshData
-{
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
-    [self.tableView reloadData];
 }
 
 @end

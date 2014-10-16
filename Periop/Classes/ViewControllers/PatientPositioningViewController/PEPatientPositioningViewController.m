@@ -21,6 +21,7 @@
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEAddEditStepViewControllerViewController.h"
+#import "PECoreDataManager.h"
 
 static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
@@ -37,6 +38,7 @@ static NSInteger const PPTagView = 35;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPatientPositioning;
 
@@ -56,6 +58,7 @@ static NSInteger const PPTagView = 35;
     [super viewDidLoad];
     
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     [self.postedCollectionView registerNib:[UINib nibWithNibName:PPOperationRoomCollectionViewCellNibName bundle:nil] forCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier];
@@ -92,12 +95,13 @@ static NSInteger const PPTagView = 35;
     
     [(PEMediaSelect *)[self.view viewWithTag:PPTagView] setVisible:NO];
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.patientPostioning.photo allObjects]];
-    self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
+ 
     self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     [self.postedCollectionView reloadData];
-    [self.tableViewPatient reloadData];
+
     self.navigationItem.rightBarButtonItem = self.addStepButton;
     [self createBarButtons];
+    [self refreshData];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -276,9 +280,32 @@ static NSInteger const PPTagView = 35;
 - (void)buttonDeleteAction:(UITableViewCell *)cell
 {
     NSLog(@"delete");
+    NSIndexPath *indexPathToDelete = [self.tableViewPatient indexPathForCell:cell];
+    [self.managedObjectContext deleteObject:self.sortedArrayWithPatientPositioning[indexPathToDelete.row]];
+    
+    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPatientPositioning.count; i++) {
+        for (Steps *step in [self.specManager.currentProcedure.patientPostioning.steps allObjects]) {
+            if ([step.stepName isEqualToString:((Steps *)self.sortedArrayWithPatientPositioning[i]).stepName]) {
+                step.stepName = [NSString stringWithFormat:@"Step %i", i];
+            }
+        }
+    }
+    [self.swipedCells removeAllObjects];
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant delete patient positioning Step - %@", error.localizedDescription);
+    }
+    ((PEPatientPositioningTableViewCell *)cell).deleteButton.hidden = YES;
+    [self refreshData];
 }
 
 #pragma mark - Private
+
+- (void)refreshData
+{
+    self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
+    [self.tableViewPatient reloadData];
+}
 
 - (NSMutableArray *)sortedArrayWithPhotos:(NSArray*)arrayToSort
 {

@@ -21,6 +21,7 @@
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEAddEditStepViewControllerViewController.h"
+#import "PECoreDataManager.h"
 
 static NSString *const OROperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const OROperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
@@ -39,6 +40,7 @@ static NSInteger const ORTagView = 35;
 @property (weak, nonatomic) IBOutlet UILabel *labelSteps;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSArray *sortedArrayWithPreprations;
 @property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
 
@@ -57,6 +59,7 @@ static NSInteger const ORTagView = 35;
 {
     [super viewDidLoad];
     self.specManager = [PESpecialisationManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
     self.labelSteps.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
     
@@ -101,11 +104,10 @@ static NSInteger const ORTagView = 35;
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentProcedure.operationRoom.photo allObjects]];
     self.pageController.numberOfPages = self.sortedArrayWithPhotos.count;
     
-    self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
+    [self refreshData];
     
     [self.collectionView reloadData];
-    [self.tableView reloadData];
-    
+
     self.navigationItem.rightBarButtonItem = self.addStepButton;
 }
 
@@ -283,9 +285,32 @@ static NSInteger const ORTagView = 35;
 - (void)buttonDeleteAction:(UITableViewCell *)cell
 {
     NSLog(@"delete");
+    NSIndexPath *indexPathToDelete = [self.tableView indexPathForCell:cell];
+    [self.managedObjectContext deleteObject:self.sortedArrayWithPreprations[indexPathToDelete.row]];
+    
+    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++) {
+        for (Steps *step in [self.specManager.currentProcedure.operationRoom.steps allObjects]) {
+            if ([step.stepName isEqualToString:((Steps *)self.sortedArrayWithPreprations[i]).stepName]) {
+                step.stepName = [NSString stringWithFormat:@"Step %i", i];
+            }
+        }
+    }
+    [self.swipedCells removeAllObjects];
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant delete patient positioning Step - %@", error.localizedDescription);
+    }
+    ((PEOperationTableViewCell *)cell).deleteButton.hidden = YES;
+    [self refreshData];
 }
 
 #pragma marks - Private
+
+- (void)refreshData
+{
+    self.sortedArrayWithPreprations = [self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
+    [self.tableView reloadData];
+}
 
 - (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort
 {
