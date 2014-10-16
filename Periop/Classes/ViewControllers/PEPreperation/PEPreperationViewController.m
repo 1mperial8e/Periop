@@ -77,6 +77,8 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     
     ((PENavigationController *)self.navigationController).titleLabel.attributedText = stringForLabelTop;
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -180,6 +182,9 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 
 - (void)editStep:(UIBarButtonItem *)sender
 {
+    NSIndexPath *selectedIndexPath = self.tableView.indexPathsForSelectedRows[0];
+    self.specManager.currentPreparation = self.sortedArrayWithPreprations[selectedIndexPath.row];
+    
     PEAddEditStepViewControllerViewController *editStepController = [PEAddEditStepViewControllerViewController new];
     editStepController.entityName = PEStepEntityNamePreparation;
     if (sender == self.addStepButton) {

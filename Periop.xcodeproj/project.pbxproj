@@ -56,8 +56,8 @@
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
 		84FCBC1F19E7C82400BC9829 /* MuseoSans-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBCF13019D986CF0054C464 /* MuseoSans-700.otf */; };
-		84FE693C19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE693A19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.m */; };
-		84FE693D19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE693B19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.xib */; };
+		84FE694219EFC532008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */; };
+		84FE694319EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
 		ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2FA519B9FDF8001F8411 /* PEDoctorProfileViewController.m */; };
@@ -1154,9 +1154,9 @@
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
 		84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialViewController.m; sourceTree = "<group>"; };
 		84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialViewController.xib; sourceTree = "<group>"; };
-		84FE693919EFACCB008AD54C /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
-		84FE693A19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
-		84FE693B19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
+		84FE693F19EFC532008AD54C /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
+		84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
+		84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
 		ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddNewToolViewController.m; sourceTree = "<group>"; };
 		ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddNewToolViewController.xib; sourceTree = "<group>"; };
@@ -2501,12 +2501,12 @@
 			path = TutorialViewController;
 			sourceTree = "<group>";
 		};
-		84FE693819EFACB2008AD54C /* AddEditStepViewController */ = {
+		84FE693E19EFC532008AD54C /* AddEditStepViewController */ = {
 			isa = PBXGroup;
 			children = (
-				84FE693919EFACCB008AD54C /* PEAddEditStepViewControllerViewController.h */,
-				84FE693A19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.m */,
-				84FE693B19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.xib */,
+				84FE693F19EFC532008AD54C /* PEAddEditStepViewControllerViewController.h */,
+				84FE694019EFC532008AD54C /* PEAddEditStepViewControllerViewController.m */,
+				84FE694119EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib */,
 			);
 			path = AddEditStepViewController;
 			sourceTree = "<group>";
@@ -2840,6 +2840,7 @@
 		EDCD57A719B8479100EC7AF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84FE693E19EFC532008AD54C /* AddEditStepViewController */,
 				EDE7189219EF929000F59761 /* AddEditProcedureViewController */,
 				84B1B49119DC2DD300BF8D07 /* NavigationController */,
 				EDA7DFEE19BAE5CD002A70E8 /* AboutUsViewController */,
@@ -4730,7 +4731,6 @@
 				EDE7912719ED5E4700A9C43B /* S0912T0705.jpg in Resources */,
 				EDE7912619ED5E4700A9C43B /* S0912T0704.jpg in Resources */,
 				ED3D1BCF19E5514A00929F64 /* General_Small_Inactive@2x.png in Resources */,
-				84FE693D19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.xib in Resources */,
 				EDE792EE19ED5E4800A9C43B /* S0907T0710.jpg in Resources */,
 				EDE7932119ED5E4800A9C43B /* S0905T0715.jpg in Resources */,
 				EDE7911D19ED5E4700A9C43B /* S0912T0401.jpg in Resources */,
@@ -5297,6 +5297,7 @@
 				ED9C69EB19C720E80022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE7915419ED5E4700A9C43B /* S0911T1002.jpg in Resources */,
 				EDE7906419ED5E4700A9C43B /* S0917T1103.jpg in Resources */,
+				84FE694319EFC532008AD54C /* PEAddEditStepViewControllerViewController.xib in Resources */,
 				EDE7915A19ED5E4700A9C43B /* S0910T0301.jpg in Resources */,
 				EDE791F519ED5E4700A9C43B /* S0906T0502.jpg in Resources */,
 				EDE792DA19ED5E4800A9C43B /* S0907T0303.jpg in Resources */,
@@ -5531,7 +5532,6 @@
 				EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
-				84FE693C19EFACCB008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */,
 				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
 				842C8DFC19D57C2000D0DAC7 /* PEMediaSelect.m in Sources */,
 				EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */,
@@ -5558,6 +5558,7 @@
 				84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */,
 				842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */,
 				842C8DFE19D57C2000D0DAC7 /* UIDropDownList.m in Sources */,
+				84FE694219EFC532008AD54C /* PEAddEditStepViewControllerViewController.m in Sources */,
 				ED18513619D01CE70021E1EB /* Photo.m in Sources */,
 				EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */,
 				ED18513319D008610021E1EB /* OperationRoom.m in Sources */,

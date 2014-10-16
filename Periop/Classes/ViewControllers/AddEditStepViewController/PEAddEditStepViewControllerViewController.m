@@ -8,6 +8,9 @@
 
 #import "PEAddEditStepViewControllerViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PECoreDataManager.h"
+#import "PESpecialisationManager.h"
+#import "Preparation.h"
 
 @interface PEAddEditStepViewControllerViewController ()
 
@@ -15,15 +18,29 @@
 @property (weak, nonatomic) IBOutlet UILabel *borderLabel;
 @property (weak, nonatomic) IBOutlet UITextView *stepTextView;
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
+
 @end
 
 @implementation PEAddEditStepViewControllerViewController
+
+#pragma mark - LifeCycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.specManager = [PESpecialisationManager sharedManager];
+    
     [self setupUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.specManager.currentPreparation = nil;
 }
 
 - (void)setupUI
@@ -58,7 +75,35 @@
 - (void)saveUpdateStep:(UIBarButtonItem *)sender
 {
     // save result!
+    switch (self.entityName) {
+        case PEStepEntityNamePreparation:
+            [self saveUpdatedPreparationNote];
+            break;
+            
+        default:
+            break;
+    }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Private
+
+- (void)saveUpdatedPreparationNote
+{
+    if (self.specManager.currentPreparation){
+        if (self.stepTextView.text) {
+            self.specManager.currentPreparation.preparationText = self.stepTextView.text;
+            [self saveToLocalDataBase:@"Preparation"];
+        }
+    }
+}
+
+- (void)saveToLocalDataBase:(NSString *)entryTypeName
+{
+    NSError * saveError = nil;
+    if (![self.managedObjectContext save:&saveError]) {
+        NSLog(@"Cant save modified %@ - %@", entryTypeName, saveError.localizedDescription);
+    }
 }
 
 @end
