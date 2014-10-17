@@ -95,10 +95,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     [super viewWillAppear:animated];
     
     ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
-    
-    [self.tableView reloadData];
-    self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
-    self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
+
     [self customizingSearchBar];
     
     if (!self.specManager.isProcedureSelected) {
@@ -108,6 +105,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
     if (self.isSearchTable) {
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
+    
+    [self refreshData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -122,6 +121,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (IBAction)procedureButton:(id)sender
 {
+    [self.currentlySwipedAndOpenesCells removeAllObjects];
     ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
     self.specManager.isProcedureSelected = YES;
@@ -138,6 +138,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void)doctorsSelected
 {
+    [self.currentlySwipedAndOpenesCells removeAllObjects];
     ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentSpecialisation.name;
     
     self.specManager.isProcedureSelected = NO;
@@ -264,20 +265,23 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             cell = [self.tableView dequeueReusableCellWithIdentifier:PLVCProcedureTableViewCellIdentifier];
-            cell.textLabel.text = ((Procedure *)self.searchResult[indexPath.row]).name;
+            cell.labelProcedureName.text = ((Procedure *)self.searchResult[indexPath.row]).name;
         } else {
-            cell.textLabel.text = ((Procedure *)self.sortedArrayWithProcedures[indexPath.row]).name;
+            if ([self.currentlySwipedAndOpenesCells containsObject:indexPath]) {
+                [cell setCellSwiped];
+            }
+            cell.labelProcedureName.text = ((Procedure *)self.sortedArrayWithProcedures[indexPath.row]).name;
         }
         
         if ( indexPath.row % 2){
-            cell.contentView.backgroundColor = [UIColor whiteColor];
-            cell.textLabel.textColor = UIColorFromRGB(0x424242);
+            cell.customContentView.backgroundColor = [UIColor whiteColor];
+            cell.labelProcedureName.textColor = UIColorFromRGB(0x424242);
         } else {
-            cell.contentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
-            cell.textLabel.textColor = UIColorFromRGB(0x499FE1);
+            cell.customContentView.backgroundColor = UIColorFromRGB(0xE7F5FA);
+            cell.labelProcedureName.textColor = UIColorFromRGB(0x499FE1);
         }
-        cell.textLabel.font = cellFont;
-        cell.textLabel.numberOfLines = 0;
+        cell.labelProcedureName.font = cellFont;
+        cell.labelProcedureName.numberOfLines = 0;
         cell.delegate = self;
         returnCell = cell;
         
@@ -365,9 +369,8 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
                 if (![self.managedObjectContext save:&delObj]) {
                     NSLog(@"Cant delete doctor");
                 }
-                self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
-                [self.tableView reloadData];
-                self.searchBar.text = self.searchBar.text;
+                [self refreshData];
+                self.searchBar.text = self.searchBar.text; //<-- reload search result
                 break;
             }
         }
@@ -381,8 +384,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
                     NSLog(@"Cant delete doctor");
                 }
                 [self.currentlySwipedAndOpenesCells removeObject:selectedCellIndexPath];
-                self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
-                [self.tableView reloadData];
+                [self refreshData];
                 break;
             }
         }
@@ -409,6 +411,72 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 #pragma mark - PEProcedureListTableViewCellGestrudeDelegate
 
+- (void)buttonDeleteActionProcedure:(UITableViewCell *)cell
+{
+    NSLog(@"delete");
+    NSIndexPath *indexPathToDelete;
+    if (self.isSearchTable){
+        indexPathToDelete = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
+        
+        for (Procedure *proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            if ([proc.procedureID isEqualToString:((Procedure *)self.searchResult[indexPathToDelete.row]).procedureID]){
+                [self.managedObjectContext deleteObject:proc];
+                break;
+            }
+        }
+        
+        for (Procedure *procedure in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            if ([self getNSIntegerProcedureIdFromStringID:procedure.procedureID] > [self getNSIntegerProcedureIdFromStringID:((Procedure *)self.searchResult[indexPathToDelete.row]).procedureID]) {
+                
+                NSInteger newIndex = [self getNSIntegerProcedureIdFromStringID:procedure.procedureID] - 1;
+                procedure.procedureID = [self createUpdatedProcedureId:newIndex];
+            }
+        }
+    } else {
+        indexPathToDelete = [self.tableView indexPathForCell:cell];
+        
+        for (Procedure *proc in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            if ([proc.procedureID isEqualToString:((Procedure *)self.sortedArrayWithProcedures[indexPathToDelete.row]).procedureID]){
+                [self.managedObjectContext deleteObject:proc];
+                break;
+            }
+        }
+        
+        for (Procedure *procedure in [self.specManager.currentSpecialisation.procedures allObjects]) {
+            if ([self getNSIntegerProcedureIdFromStringID:procedure.procedureID] > [self getNSIntegerProcedureIdFromStringID:((Procedure *)self.sortedArrayWithProcedures[indexPathToDelete.row]).procedureID]) {
+                
+                NSInteger newIndex = [self getNSIntegerProcedureIdFromStringID:procedure.procedureID] - 1;
+                procedure.procedureID = [self createUpdatedProcedureId:newIndex];
+            }
+        }
+        [self.currentlySwipedAndOpenesCells removeAllObjects];
+    }
+    
+    [self saveChangesToLocalDataBase:@"searchProcedure"];
+    ((PEProcedureListTableViewCell *)cell).deleteButton.hidden = YES;
+    [self refreshData];
+}
+
+- (void)cellDidSwipedInProcedure:(UITableViewCell *)cell
+{
+    NSLog(@"in");
+    if (!self.isSearchTable)  {
+        [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
+    }
+}
+
+- (void)cellDidSwipedOutProcedure:(UITableViewCell *)cell
+{
+    NSLog(@"out");
+    if (!self.isSearchTable) {
+        NSIndexPath *currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
+        if (!self.currentlySwipedAndOpenesCells) {
+            self.currentlySwipedAndOpenesCells = [[NSMutableSet alloc] init];
+        }
+        [self.currentlySwipedAndOpenesCells addObject:currentOpenedCellIndexPath];
+    }
+}
+
 - (void)longPressRecognised:(UITableViewCell *)cell
 {
     NSIndexPath * selectedProcIndexPath;
@@ -425,6 +493,44 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 }
 
 #pragma mark - Private
+
+- (NSString *)createUpdatedProcedureId:(NSInteger)newIndex
+{
+    NSString *newProcedureIDString;
+    if ([NSString stringWithFormat:@"%i", (int)newIndex].length == 3) {
+        newProcedureIDString = [NSString stringWithFormat:@"S0%i", (int)newIndex];
+    } else {
+        newProcedureIDString = [NSString stringWithFormat:@"S%i", (int)newIndex];
+    }
+    return newProcedureIDString;
+}
+
+- (NSInteger)getNSIntegerProcedureIdFromStringID:(NSString *)procedureID
+{
+    NSInteger procedureIDInt;
+    if ([procedureID hasPrefix:@"S"] && procedureID.length) {
+        procedureIDInt = [[procedureID substringFromIndex:1] integerValue];
+    }
+    return procedureIDInt;
+}
+
+- (void)saveChangesToLocalDataBase:(NSString *)description
+{
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Cant delete %@ - %@",description, error.localizedDescription);
+    }
+}
+
+- (void)refreshData
+{
+    self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
+    self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
+    [self.tableView reloadData];
+    if (self.isSearchTable) {
+        self.searchBar.text = self.searchBar.text;
+    }
+}
 
 - (NSMutableArray *)sortedArrayWitProcedures:(NSArray *)arrayToSort
 {

@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewDoctorsNameView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonDelete;
 
-@property (strong, nonatomic) id <PEDoctorsViewTableViewCellDelegate> delegate;
+@property (weak, nonatomic) id <PEDoctorsViewTableViewCellDelegate> delegate;
 
 - (void)setCellSwiped;
 

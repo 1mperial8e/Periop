@@ -12,12 +12,20 @@
 
 - (void)longPressRecognised:(UITableViewCell *)cell;
 
+- (void)buttonDeleteActionProcedure:(UITableViewCell *)cell;
+- (void)cellDidSwipedInProcedure:(UITableViewCell *)cell;
+- (void)cellDidSwipedOutProcedure:(UITableViewCell *)cell;
+
 @end
 
 @interface PEProcedureListTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *labelProcedureName;
+@property (weak, nonatomic) IBOutlet UIView *customContentView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
-@property (strong, nonatomic) id <PEProcedureListTableViewCellGestrudeDelegate> delegate;
+@property (weak, nonatomic) id <PEProcedureListTableViewCellGestrudeDelegate> delegate;
+
+- (void)setCellSwiped;
 
 @end
