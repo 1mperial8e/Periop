@@ -83,8 +83,14 @@ static CGFloat const AEPCornerRadius = 24;
         NSEntityDescription *procedureEntity = [NSEntityDescription entityForName:@"Procedure" inManagedObjectContext:self.managedObjectContext];
         Procedure *newProcForDesctiption = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newProcForDesctiption.name = self.textViewProcedureName.text;
-        NSString *procID = [NSString stringWithFormat:@"%@%i", self.specManager.currentSpecialisation.specID, (int)[self.specManager.currentSpecialisation.procedures allObjects].count + 1];
+
+        NSMutableString *newSpecId = [NSMutableString stringWithFormat:@"%i", (int)[self.specManager.currentSpecialisation.procedures allObjects].count + 1];
+        if (newSpecId.length == 1) {
+            newSpecId = [NSMutableString stringWithFormat:@"0%@",newSpecId];
+        }
+        NSString *procID = [NSString stringWithFormat:@"%@%@", self.specManager.currentSpecialisation.specID, newSpecId];
         newProcForDesctiption.procedureID = procID;
+        
         [self.specManager.currentSpecialisation addProceduresObject:newProcForDesctiption];
         
         NSEntityDescription *operationEntity = [NSEntityDescription entityForName:@"OperationRoom" inManagedObjectContext:self.managedObjectContext];

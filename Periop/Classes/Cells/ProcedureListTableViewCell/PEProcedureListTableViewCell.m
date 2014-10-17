@@ -126,6 +126,9 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
     } else if (anim ==[self.customContentView.layer animationForKey:PLTSwipeRightAnimationKey]) {
         [self.customContentView.layer removeAnimationForKey:PLTSwipeRightAnimationKey];
         self.deleteButton.hidden = YES;
+    } else if (anim == [self.textLabel.layer animationForKey:@"bounce"]) {
+        [self.textLabel.layer removeAnimationForKey:@"bounce"];
+        [self.delegate longPressRecognised:self];
     }
 }
 

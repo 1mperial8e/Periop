@@ -106,6 +106,7 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
     
+    self.specManager.currentProcedure = nil;
     [self refreshData];
 }
 
