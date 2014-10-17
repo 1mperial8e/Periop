@@ -12,12 +12,6 @@
 
 #pragma mark - LifeCycle
 
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-    self.labelPrice.text = @"";
-}
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
