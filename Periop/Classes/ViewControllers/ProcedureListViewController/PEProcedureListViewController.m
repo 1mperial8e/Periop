@@ -6,16 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const PLVCCellName = @"doctorsCell";
-static NSString *const PLVCNibName = @"PEDoctorsViewTableViewCell";
-
-static NSString *const PLVCProcedureTableViewCellIdentifier = @"procedureListTableViewCell";
-static NSString *const PLVCProcedureTableViewCellNibName = @"PEProcedureListTableViewCell";
-static CGFloat const PLVCHeighForCell = 53.0f;
-
-static NSString *const PLVCProcedureName = @"Procedure Name";
-static NSString *const PLVCDoctorsName = @"Doctors Name";
-
 #import <QuartzCore/QuartzCore.h>
 #import "PEProcedureListViewController.h"
 #import "PEMenuViewController.h"
@@ -32,6 +22,14 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 #import "PEDoctorsViewTableViewCell.h"
 #import "PEProcedureListTableViewCell.h"
 #import "PEAddEditProcedureViewController.h"
+
+static NSString *const PLVCCellName = @"doctorsCell";
+static NSString *const PLVCNibName = @"PEDoctorsViewTableViewCell";
+static NSString *const PLVCProcedureTableViewCellIdentifier = @"procedureListTableViewCell";
+static NSString *const PLVCProcedureTableViewCellNibName = @"PEProcedureListTableViewCell";
+static NSString *const PLVCProcedureName = @"Procedure Name";
+static NSString *const PLVCDoctorsName = @"Doctors Name";
+static CGFloat const PLVCHeighForCell = 53.0f;
 
 @interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, PEDoctorsViewTableViewCellDelegate, PEProcedureListTableViewCellGestrudeDelegate>
 
@@ -416,7 +414,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void)buttonDeleteActionProcedure:(UITableViewCell *)cell
 {
-    NSLog(@"delete");
     NSIndexPath *indexPathToDelete;
     if (self.isSearchTable){
         indexPathToDelete = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
@@ -462,7 +459,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void)cellDidSwipedInProcedure:(UITableViewCell *)cell
 {
-    NSLog(@"in");
     if (!self.isSearchTable)  {
         [self.currentlySwipedAndOpenesCells removeObject:[self.tableView indexPathForCell:cell]];
     }
@@ -470,7 +466,6 @@ static NSString *const PLVCDoctorsName = @"Doctors Name";
 
 - (void)cellDidSwipedOutProcedure:(UITableViewCell *)cell
 {
-    NSLog(@"out");
     if (!self.isSearchTable) {
         NSIndexPath *currentOpenedCellIndexPath = [self.tableView indexPathForCell:cell];
         if (!self.currentlySwipedAndOpenesCells) {

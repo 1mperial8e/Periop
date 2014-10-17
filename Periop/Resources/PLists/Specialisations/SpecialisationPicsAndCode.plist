@@ -6,6 +6,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S10</string>
+		<key>name</key>
+		<string>Gastrointestinal</string>
 		<key>photoName</key>
 		<string>Gastrointestinal_Large</string>
 		<key>logo</key>
@@ -27,6 +29,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S09</string>
+		<key>name</key>
+		<string>General</string>
 		<key>photoName</key>
 		<string>General_Large</string>
 		<key>logo</key>
@@ -48,6 +52,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S08</string>
+		<key>name</key>
+		<string>Cosmetic</string>
 		<key>photoName</key>
 		<string>Cosemetic_Large</string>
 		<key>logo</key>
@@ -69,6 +75,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S07</string>
+		<key>name</key>
+		<string>Plastic</string>
 		<key>photoName</key>
 		<string>Plastic_Large</string>
 		<key>logo</key>
@@ -90,6 +98,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S06</string>
+		<key>name</key>
+		<string>Orthopaedic</string>
 		<key>photoName</key>
 		<string>Orthopaedic_Large</string>
 		<key>logo</key>
@@ -111,6 +121,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S05</string>
+		<key>name</key>
+		<string>Cardiothoracic</string>
 		<key>photoName</key>
 		<string>Cardiothoracic_Large</string>
 		<key>logo</key>
@@ -132,6 +144,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S04</string>
+		<key>name</key>
+		<string>Opthomology</string>
 		<key>photoName</key>
 		<string>Opthomology_Large</string>
 		<key>logo</key>
@@ -153,6 +167,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S03</string>
+		<key>name</key>
+		<string>Obstetric</string>
 		<key>photoName</key>
 		<string>Obstetric_Large</string>
 		<key>logo</key>
@@ -174,6 +190,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S02</string>
+		<key>name</key>
+		<string>Gynaecology</string>
 		<key>photoName</key>
 		<string>Gynaecology_Large</string>
 		<key>logo</key>
@@ -195,6 +213,8 @@
 	<dict>
 		<key>specID</key>
 		<string>S01</string>
+		<key>name</key>
+		<string>ENT</string>
 		<key>photoName</key>
 		<string>ENT_Large</string>
 		<key>logo</key>
