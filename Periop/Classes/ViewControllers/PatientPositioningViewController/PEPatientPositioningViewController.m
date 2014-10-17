@@ -283,7 +283,7 @@ static NSInteger const PPTagView = 35;
     NSIndexPath *indexPathToDelete = [self.tableViewPatient indexPathForCell:cell];
     [self.managedObjectContext deleteObject:self.sortedArrayWithPatientPositioning[indexPathToDelete.row]];
     
-    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPatientPositioning.count; i++) {
+    for (int i = (int)indexPathToDelete.row; i < self.sortedArrayWithPatientPositioning.count; i++) {
         for (Steps *step in [self.specManager.currentProcedure.patientPostioning.steps allObjects]) {
             if ([step.stepName isEqualToString:((Steps *)self.sortedArrayWithPatientPositioning[i]).stepName]) {
                 step.stepName = [NSString stringWithFormat:@"Step %i", i];

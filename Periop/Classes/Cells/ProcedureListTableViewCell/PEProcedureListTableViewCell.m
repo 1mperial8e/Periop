@@ -48,7 +48,14 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
 - (void)longTapPress:(UILongPressGestureRecognizer *)longPress
 {
     if (longPress.state == UIGestureRecognizerStateBegan) {
-        [self.delegate longPressRecognised:self];
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+        animation.duration = 0.15f;
+        animation.values = @[@1, @1.3, @1.2];
+        animation.keyTimes = @[@0, @0.5, @1];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.removedOnCompletion = NO;
+        animation.delegate = self;
+        [self.textLabel.layer addAnimation:animation forKey:@"bounce"];
     }
 }
 
