@@ -237,7 +237,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     NSIndexPath *indexPathToDelete = [self.tableView indexPathForCell:cell];
     [self.managedObjectContext deleteObject:self.sortedArrayWithPreprations[indexPathToDelete.row]];
     
-    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++){
+    for (int i = (int)indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++){
         for (Preparation *step in [self.specManager.currentProcedure.preparation allObjects]) {
             if ([step.stepName isEqualToString:((Preparation *)self.sortedArrayWithPreprations[i]).stepName]) {
                 step.stepName = [NSString stringWithFormat:@"Step %i", i];

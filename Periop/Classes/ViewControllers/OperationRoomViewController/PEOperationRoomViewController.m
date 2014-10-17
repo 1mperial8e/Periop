@@ -288,7 +288,7 @@ static NSInteger const ORTagView = 35;
     NSIndexPath *indexPathToDelete = [self.tableView indexPathForCell:cell];
     [self.managedObjectContext deleteObject:self.sortedArrayWithPreprations[indexPathToDelete.row]];
     
-    for (int i = indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++) {
+    for (int i = (int)indexPathToDelete.row; i < self.sortedArrayWithPreprations.count; i++) {
         for (Steps *step in [self.specManager.currentProcedure.operationRoom.steps allObjects]) {
             if ([step.stepName isEqualToString:((Steps *)self.sortedArrayWithPreprations[i]).stepName]) {
                 step.stepName = [NSString stringWithFormat:@"Step %i", i];
