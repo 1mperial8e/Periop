@@ -34,6 +34,7 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
     [super prepareForReuse];
     self.constraintLeftForCustomView.constant = 0;
     self.constraintRightForCustomView.constant = 0;
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -47,6 +48,9 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
 
 - (void)longTapPress:(UILongPressGestureRecognizer *)longPress
 {
+    if (self.customContentView.frame.origin.x < 0) {
+        return;
+    }
     if (longPress.state == UIGestureRecognizerStateBegan) {
         CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
         animation.duration = 0.15f;
@@ -87,6 +91,7 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
     [self.customContentView.layer addAnimation:position forKey:PLTSwipeLeftAnimationKey];
     self.customContentView.layer.position = CGPointMake(startPosition.x - self.deleteButton.frame.size.width, startPosition.y);
     self.deleteButton.hidden = NO;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (IBAction)swipeRight:(id)sender
@@ -110,6 +115,7 @@ static NSString *const PLTSwipeRightAnimationKey = @"swipeRightKey";
     }
     self.constraintRightForCustomView.constant = 0;
     self.constraintLeftForCustomView.constant = 0;
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 #pragma mark - Animation
