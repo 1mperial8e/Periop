@@ -17,6 +17,7 @@ static NSString *const CPPlistProductIdentifierKey = @"productIdentifier";
 {
     static id sharedManager = nil;
     static dispatch_once_t token;
+    
     dispatch_once(&token, ^{
         NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:CPPlistSpecialisationPicsAndCode ofType:@"plist" ]];
         NSMutableSet *setWithProductIdentifiers = [NSMutableSet new];
@@ -24,7 +25,7 @@ static NSString *const CPPlistProductIdentifierKey = @"productIdentifier";
             NSDictionary *dict = [pList valueForKey:[pList allKeys][i]];
             [setWithProductIdentifiers addObject:[dict valueForKey:CPPlistProductIdentifierKey]];
         }
-        sharedManager = [[PEPurchaseManager alloc] initWithProductsIdentifieer:setWithProductIdentifiers];
+        sharedManager = [[PEPurchaseManager alloc] initWithProductsIdentifiers:setWithProductIdentifiers];
     });
     return sharedManager;
 }

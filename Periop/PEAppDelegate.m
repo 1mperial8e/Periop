@@ -32,7 +32,6 @@ static NSString *const PEAboutUsControllerNibName = @"PEAboutUsViewController";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [PEPurchaseManager saveDefaultsToUserDefault:APDGeneralProductsIdentifier];
-    [PEPurchaseManager sharedManager];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
