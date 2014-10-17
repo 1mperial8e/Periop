@@ -130,7 +130,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
