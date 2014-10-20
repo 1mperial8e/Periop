@@ -29,6 +29,8 @@ static CGFloat const ECMultiplier = 1.8f;
     [super awakeFromNib];
     [self initGestrureRecognizer];
     self.buttonDeleteOutlet.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
+    self.equipmentNameLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:16.5f];
+    self.equipmentNameLabel.textColor = UIColorFromRGB(0x1C1C1C);
 }
 
 - (void)prepareForReuse

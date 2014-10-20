@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
-
 #import "PEEquipmentViewController.h"
 #import "PEEquipmentCategoryTableViewCell.h"
 #import "PEToolsDetailsViewController.h"
@@ -17,6 +15,9 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import <MessageUI/MessageUI.h>
+
+static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
+static CGFloat const EHeightForHeader = 36.5f;
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate, MFMailComposeViewControllerDelegate>
 
@@ -199,12 +200,36 @@ static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
     return (NSString *)self.categoryTools[section];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(16.5f, 0, self.view.frame.size.width - 16.5f, EHeightForHeader);
+    myLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    myLabel.textColor = UIColorFromRGB(0x4B9DE1);
+    myLabel.backgroundColor = [UIColor whiteColor];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, EHeightForHeader - 1, self.view.bounds.size.width, 1)];
+    separatorView.backgroundColor = UIColorFromRGB(0xDBDBDB);
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    [headerView addSubview:separatorView];
+    
+    return headerView;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
     
     PEToolsDetailsViewController *toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];
     [self.navigationController pushViewController:toolDetailsView animated:YES];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return EHeightForHeader;
 }
 
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
