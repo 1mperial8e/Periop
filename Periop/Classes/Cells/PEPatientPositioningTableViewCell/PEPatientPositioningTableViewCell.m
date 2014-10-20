@@ -25,7 +25,7 @@ static NSString *const PTVCAnimationKeyRight = @"swipeRight";
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.labelStepName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelStepName.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
     self.labelContent.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
     [self initGestureRecognizers];
 }

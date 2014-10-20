@@ -56,6 +56,7 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
     [self.navigationItem setHidesBackButton:YES];
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    [saveButton setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_MuseoSans500 size:13.5]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = saveButton;
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.navigationItem.leftBarButtonItem = cancelButton;

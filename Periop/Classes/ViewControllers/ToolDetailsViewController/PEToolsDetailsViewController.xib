@@ -20,12 +20,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ubF-9D-r0c" userLabel="Collection View - all photos">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="237" id="sff-4y-stD"/>
@@ -64,14 +63,14 @@
                     </connections>
                 </button>
                 <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-UY-09T">
-                    <rect key="frame" x="0.0" y="237" width="320" height="331"/>
+                    <rect key="frame" x="0.0" y="237" width="320" height="267"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGb-U6-Jpl" userLabel="View - holder">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="283"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3f-NX-Scj" userLabel="Label - Name">
-                                    <rect key="frame" x="15" y="14" width="290" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="15" y="12" width="290" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -79,54 +78,54 @@
                                     <rect key="frame" x="0.0" y="43" width="320" height="1"/>
                                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLM-HE-mkB" userLabel="View - separator _underSpec">
-                                    <rect key="frame" x="0.0" y="135" width="320" height="1"/>
-                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGe-1h-vVZ" userLabel="View - separator underQuantity">
-                                    <rect key="frame" x="0.0" y="232" width="320" height="1"/>
-                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </view>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-ms-gc2" userLabel="Label - Spec">
-                                    <rect key="frame" x="15" y="94" width="290" height="37"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-pu-NrX" userLabel="Label - Quantity">
-                                    <rect key="frame" x="15" y="186" width="290" height="37"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-RK-EeY" userLabel="TextField - Name">
-                                    <rect key="frame" x="15" y="43" width="290" height="51"/>
+                                    <rect key="frame" x="15" y="44" width="290" height="51"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLM-HE-mkB" userLabel="View - separator _underSpec">
+                                    <rect key="frame" x="0.0" y="138" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Spec" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-CF-b1Q" userLabel="TextField - Spec">
-                                    <rect key="frame" x="15" y="135" width="290" height="51"/>
+                                    <rect key="frame" x="15" y="139" width="290" height="51"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-pu-NrX" userLabel="Label - Quantity">
+                                    <rect key="frame" x="15" y="202" width="290" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGe-1h-vVZ" userLabel="View - separator underQuantity">
+                                    <rect key="frame" x="0.0" y="233" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Quantity" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIT-4j-2yd" userLabel="TextField - Quantity">
-                                    <rect key="frame" x="15" y="232" width="290" height="51"/>
+                                    <rect key="frame" x="15" y="234" width="290" height="51"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-ms-gc2" userLabel="Label - Spec">
+                                    <rect key="frame" x="15" y="107" width="290" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.28627450980392155" green="0.61176470588235299" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="283" id="ZPa-rD-prX"/>
-                                <constraint firstAttribute="width" constant="320" id="aue-eN-UZt"/>
+                                <constraint firstAttribute="width" constant="320" id="IQF-gj-yph"/>
+                                <constraint firstAttribute="height" constant="300" id="bcN-E2-rtE"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="tGb-U6-Jpl" secondAttribute="trailing" id="7NC-Vl-ZyR"/>
                         <constraint firstItem="tGb-U6-Jpl" firstAttribute="top" secondItem="mTW-UY-09T" secondAttribute="top" id="JCB-go-pNY"/>
-                        <constraint firstAttribute="bottom" secondItem="tGb-U6-Jpl" secondAttribute="bottom" constant="48" id="N6M-Sc-box"/>
                         <constraint firstItem="tGb-U6-Jpl" firstAttribute="leading" secondItem="mTW-UY-09T" secondAttribute="leading" id="aNc-gK-WYr"/>
+                        <constraint firstAttribute="bottom" secondItem="tGb-U6-Jpl" secondAttribute="bottom" constant="-18" id="owo-QH-sw6"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -144,6 +143,7 @@
                 <constraint firstAttribute="trailing" secondItem="mTW-UY-09T" secondAttribute="trailing" id="lk4-ra-wbC"/>
                 <constraint firstItem="mTW-UY-09T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="m7H-pa-WuS"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
         </view>
     </objects>
     <resources>

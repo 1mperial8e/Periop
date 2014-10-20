@@ -19,7 +19,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:14.5f];
+    self.timestampLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:13.5f];
     self.label.font = [UIFont fontWithName:FONT_MuseoSans300 size:12.5f];
 }
 

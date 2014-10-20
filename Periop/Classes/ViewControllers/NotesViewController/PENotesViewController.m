@@ -51,6 +51,9 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addNewNotes:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
+    UIBarButtonItem *buttonBack = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(backToDoctorsList:)];
+    self.navigationItem.backBarButtonItem = buttonBack;
+    
     [self.tableViewNotes registerNib:[UINib nibWithNibName:NVCNotesCellNibName bundle:nil] forCellReuseIdentifier:NVCNotesCellIdentifier];
     self.tableViewNotes.delegate = self;
     self.tableViewNotes.dataSource = self;
@@ -130,8 +133,9 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 {
     if (self.specManager.isProcedureSelected) {
         return self.specManager.currentProcedure.notes.count;
-    } else
-        return self.specManager.currentDoctor.notes.count;
+    }
+    return self.specManager.currentDoctor.notes.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,6 +148,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     cell.cornerLabel.layer.cornerRadius = buttonImage.size.height/2;
     cell.cornerLabel.layer.borderColor = [UIColorFromRGB(0xE0E0E0) CGColor];
     cell.cornerLabel.layer.borderWidth = 1.0;
+    cell.photoButton.hidden = YES;
     cell = [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -159,12 +164,18 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]!=nil) {
+    if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]) {
         cell.label.text = ((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
-    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]!=nil) {
+        cell.timestampLabel.text = [self dateFormatter:((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
+        if (((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).photo) {
+            cell.photoButton.hidden = NO;
+        }
+    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]) {
         cell.label.text = ((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
+        cell.timestampLabel.text = [self dateFormatter:((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
+        if (((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).photo) {
+            cell.photoButton.hidden = NO;
+        }
     }
     cell.delegate = self;
     return cell;

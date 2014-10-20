@@ -17,9 +17,10 @@
 
 @interface PENotesTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UILabel *cornerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton;
 
 @property (strong, nonatomic) id <PENotesTableViewCellDelegate> delegate;
 

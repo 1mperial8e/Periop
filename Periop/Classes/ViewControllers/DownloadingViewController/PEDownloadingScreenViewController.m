@@ -192,6 +192,8 @@
                         break;
                     }
                 }
+            } else {
+                [[[UIAlertView alloc] initWithTitle:@"Periop" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             }
         }];
     } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {

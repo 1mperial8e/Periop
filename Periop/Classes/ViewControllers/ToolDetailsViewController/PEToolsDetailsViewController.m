@@ -41,7 +41,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 @property (strong, nonatomic) UIBarButtonItem *rightBarButton;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
-@property (assign, nonatomic) CGRect keyboardRect;
 @property (strong, nonatomic)NSMutableArray *sortedArrayWithPhotos;
 
 @end
@@ -56,13 +55,13 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.labelName.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
-    self.labelSpec.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
-    self.labelQuantity.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
+    self.labelName.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
+    self.labelSpec.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
+    self.labelQuantity.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
     
-    self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
-    self.specificationTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
-    self.quantityTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
+    self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:17.5f];
+    self.specificationTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:17.5f];
+    self.quantityTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:17.5f];
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
@@ -95,12 +94,11 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool *)self.specManager.currentEquipment).name]];
     
-    [stringForLabelTop addAttribute:NSFontAttributeName
-                              value:[UIFont systemFontOfSize:16.0]
+    [stringForLabelTop addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:20.0]
                               range:NSMakeRange(0, stringForLabelTop.length)];
     
     NSMutableAttributedString *stringForLabelBottom = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"\n%@",((Procedure *)self.specManager.currentProcedure).name]];
-    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.0] range:NSMakeRange(0, stringForLabelBottom.length)];
+    [stringForLabelBottom addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5] range:NSMakeRange(0, stringForLabelBottom.length)];
     
     [stringForLabelTop appendAttributedString:stringForLabelBottom];
     [stringForLabelTop addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, stringForLabelTop.length)];
@@ -206,8 +204,8 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
-        [textField resignFirstResponder];
+    [textField resignFirstResponder];
+    [UIView animateWithDuration:TDVCAnimationDuration animations:^ {        
         self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
     
@@ -257,11 +255,11 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 
 - (void)keyboardWillChange:(NSNotification *)notification
 {
-    self.keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    self.keyboardRect = [self.view convertRect:self.keyboardRect fromView:nil];
+    CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
     
     [UIView animateWithDuration:TDVCAnimationDuration animations:^ {
-        self.view.transform = CGAffineTransformMakeTranslation(0, -self.keyboardRect.size.height);
+        self.view.transform = CGAffineTransformMakeTranslation(0, -keyboardRect.size.height);
     }];
 }
 

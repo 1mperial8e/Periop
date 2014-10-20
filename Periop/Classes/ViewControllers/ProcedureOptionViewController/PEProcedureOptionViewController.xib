@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -20,12 +20,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-ZV-aTw" userLabel="Background Image View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-j5-Wjr" userLabel="Container">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-ZV-aTw" userLabel="Background Image View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
-                        </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu_Overlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="vxJ-LU-8Zo" userLabel="Shade Image View">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
                         </imageView>
@@ -105,14 +105,10 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="86x-bw-GjL" secondAttribute="centerX" id="8Cn-E4-Pyj"/>
-                        <constraint firstItem="RkG-ZV-aTw" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="8ZX-Yw-fHC"/>
-                        <constraint firstItem="RkG-ZV-aTw" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="O8X-Cb-Q7s"/>
-                        <constraint firstAttribute="bottom" secondItem="RkG-ZV-aTw" secondAttribute="bottom" id="PNh-rn-UA9"/>
                         <constraint firstAttribute="centerY" secondItem="86x-bw-GjL" secondAttribute="centerY" id="ZIy-fH-3iq"/>
-                        <constraint firstAttribute="trailing" secondItem="RkG-ZV-aTw" secondAttribute="trailing" id="aQ8-pO-AMY"/>
                         <constraint firstItem="vxJ-LU-8Zo" firstAttribute="top" secondItem="v8N-j5-Wjr" secondAttribute="top" id="hCd-xu-1ZQ"/>
                         <constraint firstAttribute="trailing" secondItem="vxJ-LU-8Zo" secondAttribute="trailing" id="j8q-AC-qrd"/>
                         <constraint firstItem="vxJ-LU-8Zo" firstAttribute="leading" secondItem="v8N-j5-Wjr" secondAttribute="leading" id="z96-2l-Y1X"/>
@@ -141,9 +137,14 @@
                 <constraint firstItem="v8N-j5-Wjr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Oyh-jQ-hXu"/>
                 <constraint firstItem="mna-v9-mOd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PGr-VX-lip"/>
                 <constraint firstItem="v8N-j5-Wjr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aYf-2w-9QF"/>
+                <constraint firstItem="RkG-ZV-aTw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aqC-ov-WBd"/>
+                <constraint firstItem="RkG-ZV-aTw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iyA-Qv-4hh"/>
                 <constraint firstAttribute="bottom" secondItem="mna-v9-mOd" secondAttribute="bottom" id="ngG-Hm-VNG"/>
                 <constraint firstAttribute="trailing" secondItem="v8N-j5-Wjr" secondAttribute="trailing" id="rMp-CE-xK4"/>
+                <constraint firstAttribute="trailing" secondItem="RkG-ZV-aTw" secondAttribute="trailing" id="y9h-Vz-qtF"/>
+                <constraint firstAttribute="bottom" secondItem="RkG-ZV-aTw" secondAttribute="bottom" id="yLJ-fh-pZ3"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
@@ -152,4 +153,9 @@
         <image name="Menu_Overlay.png" width="320" height="466"/>
         <image name="sight_img.png" width="294" height="294"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

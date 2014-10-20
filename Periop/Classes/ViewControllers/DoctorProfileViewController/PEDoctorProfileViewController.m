@@ -86,7 +86,7 @@ static NSInteger const DPHeaderHeight = 37;
     [self.doctorPhotoImageView addGestureRecognizer:tap];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.specManager = [PESpecialisationManager sharedManager];

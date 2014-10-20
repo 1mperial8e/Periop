@@ -67,7 +67,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     
     [self.collectionView registerNib:[UINib nibWithNibName:SVCSpecialisationCollectionCellNibName bundle:nil] forCellWithReuseIdentifier:SVCSpecialisationCollectionCellIdentifier];
     
-    self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]];
+    [self.view insertSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamedFile:@"Background"]] atIndex:0];
     
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
@@ -161,7 +161,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     } else {
         cell.labelPrice.hidden = NO;
         cell.specialisationIconImageView.image = [UIImage imageNamedFile:[self.moreSpecialisationsInfo[indexPath.row] valueForKey:@"photoName"]];
-        if ([self.defaults boolForKey:[self.moreSpecialisationsInfo[indexPath.row] valueForKey:@"productIdentifier"]]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:[self.moreSpecialisationsInfo[indexPath.row] valueForKey:@"productIdentifier"]]) {
             cell.labelPrice.hidden = YES;
         }
     }
