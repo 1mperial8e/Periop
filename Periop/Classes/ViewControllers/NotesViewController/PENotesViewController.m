@@ -137,11 +137,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.specManager.isProcedureSelected) {
-        return self.specManager.currentProcedure.notes.count;
-    }
-    return self.specManager.currentDoctor.notes.count;
-    
+    return self.arrayWithSortedNotes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,19 +166,8 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]) {
-        cell.label.text = ((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
-        cell.timestampLabel.text = [self dateFormatter:((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
-        if (((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).photo) {
-            cell.photoButton.hidden = NO;
-        }
-    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]) {
-        cell.label.text = ((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
-        cell.timestampLabel.text = [self dateFormatter:((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
-        if (((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).photo) {
-            cell.photoButton.hidden = NO;
-        }
-    }
+    cell.label.text = ((Note *)(self.arrayWithSortedNotes[indexPath.row])).textDescription;
+    cell.timestampLabel.text = [self dateFormatter:((Note *)(self.arrayWithSortedNotes[indexPath.row])).timeStamp];
     cell.delegate = self;
     return cell;
 }
