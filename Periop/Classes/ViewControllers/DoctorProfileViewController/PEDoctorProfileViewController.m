@@ -143,6 +143,7 @@ static NSInteger const DPHeaderHeight = 37;
 {
     PENotesViewController *notesView = [[PENotesViewController alloc] initWithNibName:@"PENotesViewController" bundle:nil];
     notesView.isDoctorsNote = YES;
+    self.specManager.isProcedureSelected = NO;
     notesView.navigationLabelText = @"Doctors Notes";
     [self.navigationController pushViewController:notesView animated:NO];
 }

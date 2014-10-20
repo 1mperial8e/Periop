@@ -123,11 +123,7 @@ static NSInteger const AVCDefaultQuantity = 29;
                 rewriteCounter++;
             }
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
-            NSInteger counter = [self.specManager.currentEquipment.photo allObjects].count;
-            [self photoForToolsDetailsViewController:newPhoto count:counter rewriteCount:rewriteCounter];
-            if (counter == 5) {
-                rewriteCounter++;
-            }
+            [self photoForToolsDetailsViewController:newPhoto];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCPatientPositioningViewController)]) {
             [self photoForPatientPositioningViewController:newPhoto];
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)]) {
@@ -149,12 +145,12 @@ static NSInteger const AVCDefaultQuantity = 29;
     NSInteger allowedPhotoQuantity;
     
     id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ||
-        [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+    if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ) {
         allowedPhotoQuantity = AVCOperationRoomQuantity;
     } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
               [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ) {
+              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ||
+              [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
         allowedPhotoQuantity = AVCOneQuantity;
     } else {
         allowedPhotoQuantity = AVCDefaultQuantity;
@@ -202,19 +198,14 @@ static NSInteger const AVCDefaultQuantity = 29;
     }
 }
 
-- (void)photoForToolsDetailsViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter
-{
+- (void)photoForToolsDetailsViewController:(Photo *)newPhoto{
     if (![self checkIfPhotoExist:[self.specManager.currentEquipment.photo allObjects] compareWithPhoto:newPhoto]) {
-        if ([self.specManager.currentEquipment.photo allObjects].count < 5) {
-            newPhoto.equiomentTool = self.specManager.currentEquipment;
-            newPhoto.photoNumber = @(counter++);
-            [self.specManager.currentEquipment addPhotoObject:newPhoto];
-        } else {
-            [self.managedObjectContext deleteObject:self.sortedArrayWithCurrentPhoto[rewriteCounter]];
-            newPhoto.photoNumber = @(rewriteCounter);
-            newPhoto.equiomentTool = self.specManager.currentEquipment;
-            [self.specManager.currentEquipment addPhotoObject:newPhoto];
+        if ([self.specManager.currentEquipment.photo allObjects].count) {
+            [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
         }
+        newPhoto.equiomentTool = self.specManager.currentEquipment;
+        newPhoto.photoNumber=@(0);
+        [self.specManager.currentEquipment addPhotoObject:newPhoto];
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);

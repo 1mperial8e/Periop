@@ -32,7 +32,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 @property (weak, nonatomic) IBOutlet UITextField *specificationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpec;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
@@ -110,7 +109,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     self.sortedArrayWithPhotos = [self sortedArrayWithPhotos:[self.specManager.currentEquipment.photo allObjects]];
-    self.pageControll.numberOfPages = self.sortedArrayWithPhotos.count;
     
     [(PEMediaSelect *)[self.view viewWithTag:TDVCViewTag] setVisible:NO];
     [self.collectionView reloadData];
@@ -236,7 +234,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
-    self.pageControll.currentPage = indexPath.row;
     return cell;
 }
 

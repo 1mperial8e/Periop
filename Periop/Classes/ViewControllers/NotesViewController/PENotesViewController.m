@@ -33,6 +33,8 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+@property (strong, nonatomic) NSArray *arrayWithSortedNotes;
+
 @end
 
 #pragma mark - Lifecycle
@@ -81,8 +83,6 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     [self.navigationController popToViewController:viewController animated:YES];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -94,6 +94,12 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
         textForHeader = ((Doctors *)self.specManager.currentDoctor).name;
     }
     ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
+    
+    if (self.specManager.isProcedureSelected) {
+        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentProcedure.notes allObjects]];
+    } else {
+        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentDoctor.notes allObjects]];
+    }
     
     [self.tableViewNotes reloadData];
 }
@@ -128,10 +134,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.specManager.isProcedureSelected) {
-        return self.specManager.currentProcedure.notes.count;
-    } else
-        return self.specManager.currentDoctor.notes.count;
+    return self.arrayWithSortedNotes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,13 +162,8 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.specManager.isProcedureSelected && [self.specManager.currentProcedure.notes allObjects][indexPath.row]!=nil) {
-        cell.label.text = ((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentProcedure.notes allObjects][indexPath.row])).timeStamp];
-    } else if (!self.specManager.isProcedureSelected && [self.specManager.currentDoctor.notes allObjects][indexPath.row]!=nil) {
-        cell.label.text = ((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).textDescription;
-        cell.titleLabel.text = [self dateFormatter:((Note *)([self.specManager.currentDoctor.notes allObjects][indexPath.row])).timeStamp];
-    }
+    cell.label.text = ((Note *)(self.arrayWithSortedNotes[indexPath.row])).textDescription;
+    cell.titleLabel.text = [self dateFormatter:((Note *)(self.arrayWithSortedNotes[indexPath.row])).timeStamp];
     cell.delegate = self;
     return cell;
 }
@@ -192,14 +190,14 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
         NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
             NSLog(@"Cant delete note from Procedure - %@", deleteError.localizedDescription);
         }
     } else {
-        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
+        self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
         NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
         if (![self.managedObjectContext save:&deleteError]) {
@@ -212,11 +210,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 - (void)addPhotoButtonPress:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
-    if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
-    } else {
-        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
-    }
+    self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
     
     if ([UIImage imageWithData:((Photo *)self.specManager.currentNote.photo).photoData]!= nil) {
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
@@ -229,11 +223,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 {
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     PEAddEditNoteViewController *addEditNote = [[PEAddEditNoteViewController alloc] initWithNibName:@"PEAddEditNoteViewController" bundle:nil];
-    if (self.specManager.isProcedureSelected) {
-        self.specManager.currentNote = (Note *)[self.specManager.currentProcedure.notes allObjects][currentIndexPath.row];
-    } else {
-        self.specManager.currentNote = (Note *)[self.specManager.currentDoctor.notes allObjects][currentIndexPath.row];
-    }
+    self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
     addEditNote.noteTextToShow = self.specManager.currentNote.textDescription;
     addEditNote.timeToShow = [self dateFormatter:self.specManager.currentNote.timeStamp];
     addEditNote.isEditNote = true;
@@ -249,6 +239,13 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     NSDateFormatter *dateFormatterDayPart = [[NSDateFormatter alloc] init];
     [dateFormatterDayPart setDateFormat:@"aaa"];
     return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
+}
+
+- (NSArray *)sortedArrayWithNotes:(NSArray *)arrayWithNotesToSort
+{
+    return [arrayWithNotesToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [((Note *)obj2).timeStamp compare:((Note *)obj1).timeStamp];
+    }];
 }
 
 @end
