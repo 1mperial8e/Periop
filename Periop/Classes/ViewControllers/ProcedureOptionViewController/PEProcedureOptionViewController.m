@@ -50,7 +50,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    self.specManager.isProcedureSelected = YES;
     ((PENavigationController *)self.navigationController).titleLabel.text = ((Procedure *)self.specManager.currentProcedure).name;
 }
 

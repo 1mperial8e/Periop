@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEToolsDetailsViewController">
@@ -11,7 +11,6 @@
                 <outlet property="labelQuantity" destination="0cc-pu-NrX" id="4a5-Sw-iZP"/>
                 <outlet property="labelSpec" destination="9qF-ms-gc2" id="aOM-Kp-Rr7"/>
                 <outlet property="nameTextField" destination="bdN-RK-EeY" id="Qsz-Mo-Fkf"/>
-                <outlet property="pageControll" destination="f4w-CD-yyS" id="8fh-NL-8fM"/>
                 <outlet property="quantityTextField" destination="tIT-4j-2yd" id="X0i-xz-geY"/>
                 <outlet property="scrollView" destination="mTW-UY-09T" id="paH-MT-RgD"/>
                 <outlet property="specificationTextField" destination="AZF-CF-b1Q" id="fzv-QT-SAs"/>
@@ -23,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ubF-9D-r0c" userLabel="Collection View - all photos">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ubF-9D-r0c" userLabel="Collection View - all photos">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -41,7 +40,7 @@
                         <outlet property="delegate" destination="-1" id="mWk-yx-pVx"/>
                     </connections>
                 </collectionView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="f4w-CD-yyS">
+                <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="f4w-CD-yyS">
                     <rect key="frame" x="128" y="199" width="63" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="63" id="coT-ij-gDS"/>
@@ -149,9 +148,4 @@
     <resources>
         <image name="Add_Photo_Small.png" width="30" height="30"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
