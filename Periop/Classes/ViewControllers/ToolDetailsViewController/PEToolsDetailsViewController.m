@@ -84,7 +84,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
