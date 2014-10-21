@@ -22,6 +22,7 @@ static NSString *const MVCSurgeonList = @"Surgeon List";
 static NSString *const MVCTermsAndCond = @"Terms & Conditions";
 static NSString *const MVCFeedback = @"Feedback";
 static NSString *const MVCSpecialisation = @"Specialisations";
+static NSString *const MVCDefaultToRecipient = @"allistechnology@gmail.com";
 
 static NSString *const MVCSpecAnimationKey = @"hideMenuToSpecialisation";
 static NSString *const MVCTermsAnimationKey = @"hideMenuToTerms";
@@ -154,12 +155,14 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
         MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
         mailController.mailComposeDelegate = self;
         [mailController setSubject:@"Feedback"];
-        NSString *message = @"Feedback :";
+        NSString *message = @"Feedback : \n";
         [mailController setMessageBody:message isHTML:NO];
         PEMenuViewController *menuController = self;
 #ifdef __IPHONE_8_0
         mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 #endif
+        NSArray *defaultToRecepient = @[MVCDefaultToRecipient];
+        [mailController setToRecipients:defaultToRecepient];
         [menuController presentViewController:mailController animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
             menuController.viewSelection.hidden = YES;

@@ -80,7 +80,7 @@ static NSInteger const PPTagView = 35;
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Postioning"];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Positioning"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:20.0] range:NSMakeRange(0, stringForLabelTop.length)];
     
@@ -111,7 +111,7 @@ static NSInteger const PPTagView = 35;
 
 - (IBAction)operationWithPhotoButton:(id)sender
 {
-    CGRect size = self.view.bounds;
+    CGRect size = self.postedCollectionView.bounds;
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = size;
@@ -322,7 +322,7 @@ static NSInteger const PPTagView = 35;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *firstObject = [(Steps*)obj1 stepName ];
         NSString *secondObject = [(Steps*)obj2 stepName];
-        return [firstObject compare:secondObject];
+        return [firstObject compare:secondObject options:NSNumericSearch];
     }];
     return [NSMutableArray arrayWithArray:sortedArray];
 }
