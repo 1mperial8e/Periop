@@ -114,7 +114,8 @@
             }
         }
     }
-    [self hideView];
+    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
+    [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
 - (void)removePreviousData

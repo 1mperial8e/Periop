@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.S09General";
 
 #import "PEAppDelegate.h"
 #import "PESpecialisationViewController.h"
@@ -20,6 +19,7 @@ static NSString *const PESpecialisationControllerNibName = @"PESpecialisationVie
 static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";
 static NSString *const PEDoctorsListControllerNibName = @"PEDoctorsListViewController";
 static NSString *const PEAboutUsControllerNibName = @"PEAboutUsViewController";
+static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.S09General";
 
 @interface PEAppDelegate() 
 
