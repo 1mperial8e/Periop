@@ -292,7 +292,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         return 1;
     } else {
         NSArray *keys = [self.requestedSpecsWithProc allKeys];
-        NSArray *currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1 ]];
+        NSArray *currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1]];
         return currentProcArray.count;
     }
 }
@@ -406,7 +406,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     return allSpecs;
 }
 
-- (void) getRequestedSpecsWithProcedures: (NSString*) specName
+- (void) getRequestedSpecsWithProcedures:(NSString *)specName
 {
     NSArray *allSpecs = [NSArray new];
     PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
