@@ -82,6 +82,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.searchDisplayController.searchResultsDataSource = self;
     
     self.tableView.layer.borderWidth = 0.0f;
     self.isSearchTable = NO;
@@ -98,10 +99,6 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     
     if (!self.specManager.isProcedureSelected) {
         [self doctorsSelected];
-    }
-    
-    if (self.isSearchTable) {
-        [self.searchDisplayController.searchResultsTableView reloadData];
     }
     
     self.specManager.currentProcedure = nil;
@@ -125,7 +122,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     
     self.specManager.isProcedureSelected = YES;
     self.navigationItem.rightBarButtonItem = self.addProcedureButton;
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self.procedureButton setImage:[UIImage imageNamedFile:@"Procedures_Tab_Active"] forState:UIControlStateNormal];
     [self.doctorsButton setImage:[UIImage imageNamedFile:@"Doctors_Tab_Inactive"] forState:UIControlStateNormal];
 }
@@ -133,6 +130,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 - (IBAction)doctorButton:(id)sender
 {
     [self doctorsSelected];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)doctorsSelected
@@ -175,6 +173,9 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    if (!searchString.length) {
+        [self.tableView reloadData];
+    }
     [self searchedResult:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
@@ -190,7 +191,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     self.isSearchTable = NO;
 }
 
-- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
     [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x4B9DE1)]
                                                 forBarPosition:0
@@ -208,6 +209,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     if (self.currentlySwipedAndOpenesCells.count) {
         [self.currentlySwipedAndOpenesCells removeAllObjects];
     }
+    [self.tableView reloadData];
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
@@ -524,9 +526,11 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 {
     self.sortedArrayWithProcedures = [self sortedArrayWitProcedures:[self.specManager.currentSpecialisation.procedures allObjects]];
     self.sortedArrayWithDoctors = [self sortedArrayWitDoctors:[self.specManager.currentSpecialisation.doctors allObjects]];
-    [self.tableView reloadData];
     if (self.isSearchTable) {
-        self.searchBar.text = self.searchBar.text;
+        [self.searchBar setText:self.searchBar.text];
+        [self.searchDisplayController.searchResultsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 

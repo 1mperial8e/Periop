@@ -6,10 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const DLCellName = @"doctorsCell";
-static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
-static CGFloat const DLVCHeighForCell = 53.0f;
-
 #import "PEDoctorsListViewController.h"
 #import "PEDoctorsViewTableViewCell.h"
 #import "PEAddEditDoctorViewController.h"
@@ -21,6 +17,10 @@ static CGFloat const DLVCHeighForCell = 53.0f;
 #import "UIImage+fixOrientation.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEDoctorProfileViewController.h"
+
+static NSString *const DLCellName = @"doctorsCell";
+static NSString *const DLNibName = @"PEDoctorsViewTableViewCell";
+static CGFloat const DLVCHeighForCell = 53.0f;
 
 @interface PEDoctorsListViewController () <UITableViewDataSource, UITableViewDelegate , PEDoctorsViewTableViewCellDelegate, UISearchDisplayDelegate>
 
@@ -64,6 +64,7 @@ static CGFloat const DLVCHeighForCell = 53.0f;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.searchDisplayController.searchResultsDataSource = self;
     
     self.currentlySwipedAndOpenesCells = [NSMutableSet new];
     self.arrayWithAllDoctors = [[NSMutableArray alloc] init];
@@ -108,6 +109,9 @@ static CGFloat const DLVCHeighForCell = 53.0f;
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    if (!searchString.length) {
+        [self.tableView reloadData];
+    }
     [self searchedResult:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
@@ -129,6 +133,7 @@ static CGFloat const DLVCHeighForCell = 53.0f;
     [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]
                                                 forBarPosition:0
                                                     barMetrics:UIBarMetricsDefault];
+    [self.tableView reloadData];
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
@@ -261,16 +266,15 @@ static CGFloat const DLVCHeighForCell = 53.0f;
     if (self.isSearchTable)  {
         [self.managedObjectContext deleteObject:((Doctors *)self.searchResult[indexPath.row])];
         [self initWithData];
-        [self.tableView reloadData];
-        [self.searchDisplayController.searchResultsTableView reloadData];
         self.searchBar.text = self.searchBar.text;
+        [self.searchDisplayController.searchResultsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     } else {
         NSLog(@"delete action");
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self.managedObjectContext deleteObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.currentlySwipedAndOpenesCells removeObject:indexPath];
         [self.arrayWithAllDoctors removeObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
     NSError *deleteError;
     if (![self.managedObjectContext save:&deleteError]) {

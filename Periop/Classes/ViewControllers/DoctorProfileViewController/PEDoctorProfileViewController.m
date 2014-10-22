@@ -121,6 +121,7 @@ static NSInteger const DPHeaderHeight = 37;
 {
     if (((Photo *)self.specManager.currentDoctor.photo).photoData) {
         if (gesture.state == UIGestureRecognizerStateEnded) {
+            self.navigationController.navigationBar.translucent = YES;
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
                 viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;

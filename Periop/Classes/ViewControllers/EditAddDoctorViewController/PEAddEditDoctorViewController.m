@@ -6,18 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSInteger const AEDTitleForRowHeight = 37;
-static NSInteger const AEDHeightForSpecRow = 130;
-static NSInteger const AEDHeightForAllRows = 37;
-static NSInteger const AEDTagForView = 100;
-static NSString *const AEDTitleNameSpec = @"Specialisations";
-
-static NSString *const AEDTEditAddDoctorTableViewCellNibName = @"PEEditAddDoctorTableViewCell";
-static NSString *const AEDTEditAddDoctorTableViewCellCellName = @"tableViewCellWithCollection";
-static NSString *const AEDTProceduresTableViewCellNibName = @"PEProceduresTableViewCell";
-static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
-static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
-
 #import "PEMediaSelect.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PEEditAddDoctorTableViewCell.h"
@@ -33,6 +21,18 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+
+static NSInteger const AEDTitleForRowHeight = 37;
+static NSInteger const AEDHeightForSpecRow = 130;
+static NSInteger const AEDHeightForAllRows = 37;
+static NSInteger const AEDTagForView = 100;
+static NSString *const AEDTitleNameSpec = @"Specialisations";
+
+static NSString *const AEDTEditAddDoctorTableViewCellNibName = @"PEEditAddDoctorTableViewCell";
+static NSString *const AEDTEditAddDoctorTableViewCellCellName = @"tableViewCellWithCollection";
+static NSString *const AEDTProceduresTableViewCellNibName = @"PEProceduresTableViewCell";
+static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
+static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
@@ -132,6 +132,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     if ([self.imageView.image hash] != [[UIImage imageNamedFile:AEDTPlaceHolderImage] hash]) {
         if (gesture.state == UIGestureRecognizerStateEnded && self.isEditedDoctor) {
             NSLog(@"Touched Image");
+            self.navigationController.navigationBar.translucent = YES;
             PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             if (self.specManager.currentDoctor.photo.photoData!=nil) {
                 viewPhotoControleller.photoToShow = (Photo*)self.specManager.currentDoctor.photo;

@@ -1,4 +1,4 @@
-//
+	//
 //  PECameraViewController.m
 //  Periop
 //
@@ -35,7 +35,6 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundRecordingID;
 @property (nonatomic, getter = isDeviceAuthorized) BOOL deviceAuthorized;
 @property (nonatomic, readonly, getter = isSessionRunningAndDeviceAuthorized) BOOL sessionRunningAndDeviceAuthorized;
-@property (nonatomic) BOOL lockInterfaceRotation;
 @property (nonatomic) id runtimeErrorHandlingObserver;
 @property (nonatomic) AVCaptureFlashMode currentFlashMode;
 
@@ -130,6 +129,10 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 	});
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
 
 #pragma mark - UIActions
 
@@ -138,17 +141,25 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     [self.takePhotoButton setEnabled:NO];
 	dispatch_async([self sessionQueue], ^{
 		[[self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)self.previewView.layer connection] videoOrientation]];
-				
-		[[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:[self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+		[PECameraViewController setFlashMode:self.currentFlashMode forDevice:self.videoDeviceInput.device];
+		[self.stillImageOutput captureStillImageAsynchronouslyFromConnection:[self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
 			
 			if (imageDataSampleBuffer)
 			{
 				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 				UIImage *image = [[UIImage alloc] initWithData:imageData];
-                image = [image fixOrientation];
+                if ([UIDevice currentDevice].orientation == UIDeviceOrientationPortrait || [UIDevice currentDevice].orientation == UIDeviceOrientationPortraitUpsideDown) {
+                    image = [image fixOrientation];
+                } else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight) {
+                    image = [image fixLanscapeOrientationRight];
+                } else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) {
+                    image = [image fixLanscapeOrientationLeft];
+                }
                 
                 UIImageView *photoToShow = [[UIImageView alloc] initWithFrame:self.view.bounds];
                 photoToShow.image = image;
+                photoToShow.contentMode = UIViewContentModeScaleAspectFit;
+                photoToShow.backgroundColor = [UIColor blackColor];
                 [self.view addSubview:photoToShow];
                 [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hidePhotoView:) userInfo:nil repeats:NO];
                 [self createPhotoObjectToStore:image];
@@ -274,24 +285,9 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 	return [NSSet setWithObjects:@"session.running", @"deviceAuthorized", nil];
 }
 
-- (BOOL)prefersStatusBarHidden
-{
-	return NO;
-}
-
-- (BOOL)shouldAutorotate
-{
-	return ![self lockInterfaceRotation];
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-	return UIInterfaceOrientationMaskAll;
-}
-
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)toInterfaceOrientation];
+	[[(AVCaptureVideoPreviewLayer *)self.previewView.layer connection] setVideoOrientation:(AVCaptureVideoOrientation)toInterfaceOrientation];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

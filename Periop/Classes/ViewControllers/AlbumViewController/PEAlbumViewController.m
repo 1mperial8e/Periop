@@ -5,19 +5,6 @@
 //  Created by Stas Volskyi on 19.09.14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
-static NSString *const AVCCellName = @"albumCell";
-
-static NSString *const AVCOperationRoomViewController = @"PEOperationRoomViewController";
-static NSString *const AVCToolsDetailsViewController = @"PEToolsDetailsViewController";
-static NSString *const AVCPatientPositioningViewController = @"PEPatientPositioningViewController";
-static NSString *const AVCDoctorProfileViewController = @"PEDoctorProfileViewController";
-static NSString *const AVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
-static NSString *const AVCAddEditNoteViewController = @"PEAddEditNoteViewController";
-
-static NSInteger const AVCOperationRoomQuantity = 4;
-static NSInteger const AVCOneQuantity = 0;
-static NSInteger const AVCDefaultQuantity = 29;
-
 
 #import "PEAlbumViewController.h"
 #import "PECameraRollManager.h"
@@ -29,6 +16,18 @@ static NSInteger const AVCDefaultQuantity = 29;
 #import "PatientPostioning.h"
 #import "Note.h"
 #import "UIImage+ImageWithJPGFile.h"
+
+static NSString *const AVCCellName = @"albumCell";
+static NSString *const AVCOperationRoomViewController = @"PEOperationRoomViewController";
+static NSString *const AVCToolsDetailsViewController = @"PEToolsDetailsViewController";
+static NSString *const AVCPatientPositioningViewController = @"PEPatientPositioningViewController";
+static NSString *const AVCDoctorProfileViewController = @"PEDoctorProfileViewController";
+static NSString *const AVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
+static NSString *const AVCAddEditNoteViewController = @"PEAddEditNoteViewController";
+
+static NSInteger const AVCOperationRoomQuantity = 4;
+static NSInteger const AVCOneQuantity = 0;
+static NSInteger const AVCDefaultQuantity = 29;
 
 @interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
