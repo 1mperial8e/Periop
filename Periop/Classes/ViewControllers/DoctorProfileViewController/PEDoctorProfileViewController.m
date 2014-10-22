@@ -264,15 +264,14 @@ static NSInteger const DPHeaderHeight = 37;
     
     for (Doctors *doctor in allDoctors) {
         if ([doctor.createdDate isEqualToDate:self.specManager.currentDoctor.createdDate]){
-            self.doctorsSpec = [doctor.specialisation allObjects];
+            self.doctorsSpec = [[doctor.specialisation allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSString *firstObject = ((Specialisation *)obj1).name;
+                NSString *secondObject = ((Specialisation *)obj2).name;
+                return [firstObject compare:secondObject];
+            }];
+            break;
         }
     }
-    
-    [self.doctorsSpec sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *firstObject = ((Specialisation *)obj1).name;
-        NSString *secondObject = ((Specialisation *)obj2).name;
-        return [firstObject compare:secondObject];
-    }];
     
     NSMutableArray *arrayWithArraysOfProceduresForCurrentDoctor = [[NSMutableArray alloc] init];
     
@@ -292,7 +291,15 @@ static NSInteger const DPHeaderHeight = 37;
         
         [arrayWithArraysOfProceduresForCurrentDoctor addObject:arrayWithProc];
     }
-    self.doctorsProcedures = arrayWithArraysOfProceduresForCurrentDoctor;
+    NSArray *sortedArray = [arrayWithArraysOfProceduresForCurrentDoctor sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSArray *arr1 = obj1;
+        NSArray *arr2 = obj2;
+        NSString *specNameForArray1 = ((Procedure *)arr1[0]).specialization.name;
+        NSString *specNameForArray2 = ((Procedure *)arr2[0]).specialization.name;
+        return [specNameForArray1 compare:specNameForArray2];
+    }];
+    
+    self.doctorsProcedures = sortedArray;
 }
 
 @end

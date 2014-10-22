@@ -84,6 +84,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
     self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
+    self.nameTextField.tintColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -291,7 +292,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         return 1;
     } else {
         NSArray *keys = [self.requestedSpecsWithProc allKeys];
-        NSArray *currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1 ]];
+        NSArray *currentProcArray = [self.requestedSpecsWithProc objectForKey:keys[section - 1]];
         return currentProcArray.count;
     }
 }
@@ -405,7 +406,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     return allSpecs;
 }
 
-- (void) getRequestedSpecsWithProcedures: (NSString*) specName
+- (void) getRequestedSpecsWithProcedures:(NSString *)specName
 {
     NSArray *allSpecs = [NSArray new];
     PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
