@@ -98,67 +98,71 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     
     NSError *error;
     NSString *lines = [NSString stringWithContentsOfFile:filePathTools encoding:NSUTF8StringEncoding error:&error];
-    NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-    
-    NSDictionary *dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
-
-    NSArray *rows = [partTwo componentsSeparatedByString:@"\n"];
-    for (int i = (int)(rows.count - 1); i >= 0; i--) {
-        if ([rows[i] isEqualToString:@""]) {
-            continue;
-        }
-        NSArray *colum = [rows[i] componentsSeparatedByString:@";"];
+    if (error) {
+        NSLog(@"Cant read tools file - %@", error.localizedDescription);
+    } else {
+        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         
-        NSEntityDescription *toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
-        EquipmentsTool *newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
-        
-        NSString *photoName = (NSString *)colum[6];
+        NSDictionary *dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
 
-        if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
+        NSArray *rows = [partTwo componentsSeparatedByString:@"\n"];
+        for (int i = (int)(rows.count - 1); i >= 0; i--) {
+            if ([rows[i] isEqualToString:@""]) {
+                continue;
+            }
+            NSArray *colum = [rows[i] componentsSeparatedByString:@";"];
             
-            UIImage *photo = [UIImage imageNamedFile:photoName];
-            if (photo) {
+            NSEntityDescription *toolEntity = [NSEntityDescription entityForName:@"EquipmentsTool" inManagedObjectContext:self.managedObjectContext];
+            EquipmentsTool *newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            
+            NSString *photoName = (NSString *)colum[6];
+
+            if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                 
-                NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                
-                initPhoto.photoName = colum[6];
-                initPhoto.photoData = UIImageJPEGRepresentation(photo, 1.0f);
-                initPhoto.equiomentTool = newTool;
-                [newTool addPhotoObject:initPhoto];
-            } else {
-                
-                NSString *keyToParse = [NSString stringWithFormat:@"%@.jpg", photoName];
-                NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
-                NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
-                UIImage *image = [UIImage imageWithData:imageDataFromUrl];
-                
-                if (image) {
+                UIImage *photo = [UIImage imageNamedFile:photoName];
+                if (photo) {
+                    
                     NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                     Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                     
-                    initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                    initPhoto.photoName = colum[6];
+                    initPhoto.photoData = UIImageJPEGRepresentation(photo, 1.0f);
                     initPhoto.equiomentTool = newTool;
                     [newTool addPhotoObject:initPhoto];
+                } else {
+                    
+                    NSString *keyToParse = [NSString stringWithFormat:@"%@.jpg", photoName];
+                    NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
+                    NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                    UIImage *image = [UIImage imageWithData:imageDataFromUrl];
+                    
+                    if (image) {
+                        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                        
+                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                        initPhoto.equiomentTool = newTool;
+                        [newTool addPhotoObject:initPhoto];
+                    }
+                    
                 }
-                 
             }
-        }
-        
-        newTool.quantity = colum[5];
-        newTool.type = colum[4];
-        newTool.name = colum[3];
-        newTool.category = colum[2];
-        newTool.createdDate = [NSDate date];
-        [newProc addEquipmentsObject:newTool];
-        
-        if (![colum[0] isEqualToString:@""]) {
-            newProc.procedureID = colum[0];
-            newProc.name = colum[1];
-            [newSpecialisation addProceduresObject:newProc];
-            if ([[newSpecialisation.procedures allObjects] count] < self.quantityOfProcedures) {
-                newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            
+            newTool.quantity = colum[5];
+            newTool.type = colum[4];
+            newTool.name = colum[3];
+            newTool.category = colum[2];
+            newTool.createdDate = [NSDate date];
+            [newProc addEquipmentsObject:newTool];
+            
+            if (![colum[0] isEqualToString:@""]) {
+                newProc.procedureID = colum[0];
+                newProc.name = colum[1];
+                [newSpecialisation addProceduresObject:newProc];
+                if ([[newSpecialisation.procedures allObjects] count] < self.quantityOfProcedures) {
+                    newProc = [[Procedure alloc] initWithEntity:procedureEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                }
             }
         }
     }
@@ -291,6 +295,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
 
 - (void)mergeAndSaveSpec:(NSMutableArray*)arrayWithProcWithoutTools specialisation:(Specialisation*)newSpecialisation
 {
+    BOOL success = NO;
     if (arrayWithProcWithoutTools.count && [newSpecialisation.procedures allObjects].count) {
         for (Procedure *procToMerge in [newSpecialisation.procedures allObjects]) {
             for (int i = 0; i < arrayWithProcWithoutTools.count; i++) {
@@ -299,20 +304,25 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
                     procToMerge.operationRoom = ((Procedure *)arrayWithProcWithoutTools[i]).operationRoom;
                     [procToMerge addPreparation:((Procedure *)arrayWithProcWithoutTools[i]).preparation];
                     [self.managedObjectContext deleteObject:((Procedure *)arrayWithProcWithoutTools[i])];
+                    success = YES;
                 }
             }
         }
         
     } else {
-        NSLog (@"No input data");
+        NSLog (@"No input data - incorrect one of input files");
     }
-
+    
+    if (success) {
     NSError *saveError;
-    if ([self.managedObjectContext save:&saveError]) {
-        NSLog(@"Parsing data from CSV succcess");
-        [self.managedObjectContext reset];
+        if ([self.managedObjectContext save:&saveError]) {
+            NSLog(@"Saving of parsed data from CSV succcess");
+            [self.managedObjectContext reset];
+        } else {
+            NSLog(@"Fail to save data from CSV - %@", saveError.localizedDescription);
+        }
     } else {
-        NSLog(@"Fail to parse data from CSV - %@", saveError.localizedDescription);
+        NSLog(@"Incorrect input data");
     }
 }
 

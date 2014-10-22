@@ -228,6 +228,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     }
     if (self.sortedArrayWithPhotos.count) {
         cell.operationRoomImage.image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }

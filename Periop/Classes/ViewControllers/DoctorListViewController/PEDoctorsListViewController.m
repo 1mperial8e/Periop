@@ -299,14 +299,14 @@ static CGFloat const DLVCHeighForCell = 53.0f;
         NSArray *sorted = [requiredDoctors sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSString *name1 = ((Doctors*)obj1).name;
             NSString *name2 = ((Doctors*)obj2).name;
-            return [name1 compare:name2];
+            return [name1 compare:name2 options:NSNumericSearch];
         }];
         self.arrayWithAllDoctors= [sorted mutableCopy];
     } else {
         NSArray *sorted = [[PECoreDataManager getAllEntities:objectToSearch] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSString *name1 = ((Doctors*)obj1).name;
             NSString *name2 = ((Doctors*)obj2).name;
-            return [name1 compare:name2];
+            return [name1 compare:name2 options:NSNumericSearch];
         }];
         self.arrayWithAllDoctors = [sorted mutableCopy];
     }
