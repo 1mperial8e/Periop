@@ -209,6 +209,11 @@ static CGFloat const DLVCHeighForCell = 53.0f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PEDoctorsViewTableViewCell *cell = (PEDoctorsViewTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell.viewDoctorsNameView.frame.origin.x < 0) {
+        return;
+    }
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         self.specManager.currentDoctor = self.searchResult[indexPath.row];
     } else {

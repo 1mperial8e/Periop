@@ -221,6 +221,11 @@ static CGFloat const EHeightForHeader = 36.5f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PEEquipmentCategoryTableViewCell *cell = (PEEquipmentCategoryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell.viewWithContent.frame.origin.x < 0) {
+        return;
+    }
+    
     self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
     
     PEToolsDetailsViewController *toolDetailsView = [[PEToolsDetailsViewController alloc] initWithNibName:@"PEToolsDetailsViewController" bundle:nil];

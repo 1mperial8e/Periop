@@ -328,6 +328,10 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.specManager.isProcedureSelected) {
+        PEProcedureListTableViewCell *cell = (PEProcedureListTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        if (cell.customContentView.frame.origin.x < 0) {
+            return;
+        }
         if (tableView == self.searchDisplayController.searchResultsTableView) {
              self.specManager.currentProcedure = (Procedure*)self.searchResult[indexPath.row];
         } else {
@@ -342,6 +346,10 @@ static CGFloat const PLVCHeighForCell = 53.0f;
         [self.navigationController pushViewController:procedureOptionVIew animated:YES];
         
     } else {
+        PEDoctorsViewTableViewCell *cell = (PEDoctorsViewTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        if (cell.viewDoctorsNameView.frame.origin.x < 0) {
+            return;
+        }
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             self.specManager.currentDoctor = (Doctors *)self.searchResult[indexPath.row];
         } else {

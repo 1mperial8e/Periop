@@ -154,7 +154,7 @@ static NSInteger const TDVCViewTag = 35;
     }];
     
     ((EquipmentsTool *)self.specManager.currentEquipment).name = self.nameTextField.text;
-    ((EquipmentsTool *)self.specManager.currentEquipment).category = self.specificationTextField.text;
+    ((EquipmentsTool *)self.specManager.currentEquipment).type = self.specificationTextField.text;
     ((EquipmentsTool *)self.specManager.currentEquipment).quantity = self.quantityTextField.text;
     ((EquipmentsTool *)self.specManager.currentEquipment).createdDate = [NSDate date];
                                                                       
@@ -269,7 +269,7 @@ static NSInteger const TDVCViewTag = 35;
 - (void)setSelectedObjectToView
 {
     self.nameTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).name;
-    self.specificationTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).category;
+    self.specificationTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).type;
     self.quantityTextField.text = ((EquipmentsTool*)self.specManager.currentEquipment).quantity;
 }
 
