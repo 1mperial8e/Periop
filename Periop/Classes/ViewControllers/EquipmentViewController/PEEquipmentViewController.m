@@ -340,12 +340,17 @@ static CGFloat const EHeightForHeader = 36.5f;
         }
     }
     self.cellWithCheckedButtons = [NSMutableSet setWithArray:buffer];
+    NSInteger sectionCount = self.arrayWithCategorisedToolsArrays.count;
     [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] removeObjectAtIndex:indexPathToDelete.row];
     if ( [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] count] == 0) {
         [self.arrayWithCategorisedToolsArrays removeObjectAtIndex:indexPathToDelete.section];
         [self.categoryTools removeObject:self.categoryTools[indexPathToDelete.section]];
     }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    if (self.arrayWithCategorisedToolsArrays.count < sectionCount) {
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPathToDelete.section] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, sectionCount)] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 @end
