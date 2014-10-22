@@ -31,7 +31,7 @@ static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPo
 static NSString *const PPImagePlaceHolder = @"Place_Holder";
 static NSInteger const PPTagView = 35;
 
-@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, PEPatientPositioningTableViewCellDelegate>
+@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, PEPatientPositioningTableViewCellDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *postedCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
@@ -219,6 +219,18 @@ static NSInteger const PPTagView = 35;
     return size.height ;
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    for (NSIndexPath *indexPath in self.postedCollectionView.indexPathsForVisibleItems) {
+        PEOperationRoomCollectionViewCell *cell = (PEOperationRoomCollectionViewCell *)[self.postedCollectionView cellForItemAtIndexPath:indexPath];
+        if (ABS(cell.frame.origin.x - self.postedCollectionView.contentOffset.x) <= 50) {
+            self.pageControll.currentPage = indexPath.row;
+        }
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -236,7 +248,7 @@ static NSInteger const PPTagView = 35;
         UIImage *image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         cell.operationRoomImage.image = image;
         cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
-        self.pageControll.currentPage = [indexPath row];
+        
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:PPImagePlaceHolder];
     }

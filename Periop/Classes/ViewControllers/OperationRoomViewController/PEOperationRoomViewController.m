@@ -32,7 +32,7 @@ static NSString *const OROperationTableViewCellIdentifier = @"operationTableView
 static NSString *const ORImagePlaceHolder = @"Place_Holder";
 static NSInteger const ORTagView = 35;
 
-@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate, PEOperationTableViewCellDelegate>
+@interface PEOperationRoomViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDelegate, PEOperationTableViewCellDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *operationWithPhotoButton;
@@ -151,8 +151,19 @@ static NSInteger const ORTagView = 35;
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:ORImagePlaceHolder];
     }
-    self.pageController.currentPage = [indexPath row];
     return cell;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    for (NSIndexPath *indexPath in self.collectionView.indexPathsForVisibleItems) {
+        PEOperationRoomCollectionViewCell *cell = (PEOperationRoomCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        if (ABS(cell.frame.origin.x - self.collectionView.contentOffset.x) <= 50) {
+            self.pageController.currentPage = indexPath.row;
+        }
+    }
 }
 
 #pragma mark - UITableViewDataSource

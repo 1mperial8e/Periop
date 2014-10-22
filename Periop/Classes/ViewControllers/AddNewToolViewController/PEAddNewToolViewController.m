@@ -90,8 +90,7 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
         newEquipment.type = self.specTextBox.text;
         newEquipment.createdDate = [NSDate date];
         if ([self.dropDownList.titleLabel.text isEqualToString:ANTDefaultEquipmentStr]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+            [[[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         } else {
             newEquipment.category = self.dropDownList.titleLabel.text;
             [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
