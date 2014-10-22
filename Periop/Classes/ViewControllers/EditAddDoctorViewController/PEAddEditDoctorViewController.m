@@ -84,6 +84,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
     self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
+    self.nameTextField.tintColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
