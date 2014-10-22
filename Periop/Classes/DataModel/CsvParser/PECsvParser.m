@@ -5,8 +5,6 @@
 //  Created by Kirill on 9/25/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
-static NSInteger const CPDivideCounter = 5;
-static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
 
 #import "PECsvParser.h"
 #import "PECoreDataManager.h"
@@ -21,6 +19,10 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
 #import "Steps.h"
 #import "Specialisation.h"
 #import "UIImage+ImageWithJPGFile.h"
+
+static NSInteger const CPDivideCounter = 5;
+static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
+static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
 
 @interface PECsvParser ()
 
@@ -99,6 +101,8 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
     NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     
+    NSDictionary *dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
+
     NSArray *rows = [partTwo componentsSeparatedByString:@"\n"];
     for (int i = (int)(rows.count - 1); i >= 0; i--) {
         if ([rows[i] isEqualToString:@""]) {
@@ -123,19 +127,22 @@ static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAn
                 initPhoto.photoData = UIImageJPEGRepresentation(photo, 1.0f);
                 initPhoto.equiomentTool = newTool;
                 [newTool addPhotoObject:initPhoto];
-            }
-        } else {
-            NSURL *urlForImage = [NSURL URLWithString:photoName];
-            NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
-            UIImage *image = [UIImage imageWithData:imageDataFromUrl];
-            
-            if (image) {
-                NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            } else {
                 
-                initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
-                initPhoto.equiomentTool = newTool;
-                [newTool addPhotoObject:initPhoto];
+                NSString *keyToParse = [NSString stringWithFormat:@"%@.jpg", photoName];
+                NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
+                NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+                UIImage *image = [UIImage imageWithData:imageDataFromUrl];
+                
+                if (image) {
+                    NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                    Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+                    
+                    initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+                    initPhoto.equiomentTool = newTool;
+                    [newTool addPhotoObject:initPhoto];
+                }
+                 
             }
         }
         

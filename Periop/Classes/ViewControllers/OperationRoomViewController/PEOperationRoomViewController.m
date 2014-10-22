@@ -317,7 +317,7 @@ static NSInteger const ORTagView = 35;
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *firstObject = ((Steps*)obj1).stepName;
         NSString *secondObject = ((Steps*)obj2).stepName;
-        return [firstObject compare:secondObject];
+        return [firstObject compare:secondObject options:NSNumericSearch];
     }];
     return sortedArray;
 }

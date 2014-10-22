@@ -65,7 +65,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
 
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
     editButton.image = [UIImage imageNamedFile:@"Edit"];
@@ -84,7 +84,6 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -232,6 +231,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
+    cell.operationRoomImage.frame = cell.bounds;
     return cell;
 }
 

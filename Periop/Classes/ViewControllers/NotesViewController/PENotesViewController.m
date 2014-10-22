@@ -19,6 +19,7 @@
 #import "PEViewPhotoViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEProcedureListViewController.h"
+#import "Photo.h"
 
 static NSString *const NVCNotesCellIdentifier = @"notesCell";
 static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
@@ -161,6 +162,9 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    if (((Note *)(self.arrayWithSortedNotes[indexPath.row])).photo) {
+        cell.photoButton.hidden = NO;
+    }
     cell.label.text = ((Note *)(self.arrayWithSortedNotes[indexPath.row])).textDescription;
     cell.timestampLabel.text = [self dateFormatter:((Note *)(self.arrayWithSortedNotes[indexPath.row])).timeStamp];
     cell.delegate = self;

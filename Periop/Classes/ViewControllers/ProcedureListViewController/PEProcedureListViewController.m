@@ -27,8 +27,6 @@ static NSString *const PLVCCellName = @"doctorsCell";
 static NSString *const PLVCNibName = @"PEDoctorsViewTableViewCell";
 static NSString *const PLVCProcedureTableViewCellIdentifier = @"procedureListTableViewCell";
 static NSString *const PLVCProcedureTableViewCellNibName = @"PEProcedureListTableViewCell";
-static NSString *const PLVCProcedureName = @"Procedure Name";
-static NSString *const PLVCDoctorsName = @"Doctors Name";
 static CGFloat const PLVCHeighForCell = 53.0f;
 
 @interface PEProcedureListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, PEDoctorsViewTableViewCellDelegate, PEProcedureListTableViewCellGestrudeDelegate>
@@ -93,7 +91,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
+    ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentSpecialisation.name;
 
     [self customizingSearchBar];
     
@@ -118,7 +116,6 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 - (IBAction)procedureButton:(id)sender
 {
     [self.currentlySwipedAndOpenesCells removeAllObjects];
-    ((PENavigationController *)self.navigationController).titleLabel.text = PLVCProcedureName;
     
     self.specManager.isProcedureSelected = YES;
     self.navigationItem.rightBarButtonItem = self.addProcedureButton;
@@ -136,7 +133,6 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 - (void)doctorsSelected
 {
     [self.currentlySwipedAndOpenesCells removeAllObjects];
-    ((PENavigationController *)self.navigationController).titleLabel.text = self.specManager.currentSpecialisation.name;
     
     self.specManager.isProcedureSelected = NO;
     self.navigationItem.rightBarButtonItem = self.navigationBarAddDoctorButton;
@@ -165,9 +161,13 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 {
     NSPredicate *resultPredicat = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     if (self.specManager.isProcedureSelected) {
-        self.searchResult = [[self.specManager.currentSpecialisation.procedures allObjects] filteredArrayUsingPredicate:resultPredicat];
+        self.searchResult = [[[self.specManager.currentSpecialisation.procedures allObjects] filteredArrayUsingPredicate:resultPredicat] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [((Procedure *)obj1).name compare:((Procedure *)obj2).name];
+        }];
     } else {
-        self.searchResult = [[self.specManager.currentSpecialisation.doctors allObjects] filteredArrayUsingPredicate:resultPredicat];
+        self.searchResult = [[[self.specManager.currentSpecialisation.doctors allObjects] filteredArrayUsingPredicate:resultPredicat] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [((Doctors *)obj1).name compare:((Doctors *)obj2).name];
+        }];
     }
 }
 

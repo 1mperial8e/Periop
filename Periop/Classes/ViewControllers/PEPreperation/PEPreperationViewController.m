@@ -176,7 +176,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
     sortedArray = [arrayToSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *firstObject = ((Preparation*)obj1).stepName;
         NSString *secondObject = ((Preparation*)obj2).stepName;
-        return [firstObject compare:secondObject];
+        return [firstObject compare:secondObject options:NSNumericSearch];
     }];
     return sortedArray;
 }
