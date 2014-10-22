@@ -71,6 +71,7 @@
     [self.delegate cellDeselected:((Specialisation *)self.arrayWithSpecObjects[indexPath.row]).name];
 }
 
+
 #pragma mark - Private
 
 - (void)initWithData
@@ -82,6 +83,15 @@
         NSString *o2 = ((Specialisation *)obj2).name;
         return [o1 compare:o2];
     }];
+}
+
+- (void)selectAllSpecs
+{
+    for (int i = 0; i < self.arrayWithSpecObjects.count; i++) {
+        Specialisation *spec = (Specialisation *)self.arrayWithSpecObjects[i];
+        [self.delegate cellSelected:spec.name];
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
 }
 
 @end

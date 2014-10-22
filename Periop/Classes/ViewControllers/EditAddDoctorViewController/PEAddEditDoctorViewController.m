@@ -93,7 +93,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     self.specManager.photoObject = nil;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -118,6 +118,14 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     if (self.specManager.photoObject) {
         self.imageView.image = [UIImage imageWithData:self.specManager.photoObject.photoData];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.isEditedDoctor) {
+        [(PEEditAddDoctorTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] selectAllSpecs];
     }
 }
 
@@ -274,7 +282,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         }
         
         NSArray *keys = [self.requestedSpecsWithProc allKeys];
-        NSArray *currentSectionProc = [self.requestedSpecsWithProc objectForKey:keys[indexPath.section - 1 ]];
+        NSArray *currentSectionProc = [self.requestedSpecsWithProc objectForKey:keys[indexPath.section - 1]];
         
         cell.procedureName.text = ((Procedure *)currentSectionProc[indexPath.row]).name;
         cell.procedureID = ((Procedure *)currentSectionProc[indexPath.row]).procedureID;
@@ -406,7 +414,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     return allSpecs;
 }
 
-- (void) getRequestedSpecsWithProcedures:(NSString *)specName
+- (void)getRequestedSpecsWithProcedures:(NSString *)specName
 {
     NSArray *allSpecs = [NSArray new];
     PEObjectDescription *searchedObject = [[PEObjectDescription alloc] initWithSearchObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name"];
@@ -434,14 +442,14 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     [self.requestedSpecsWithProc setObject:sortedArrayWithProcedures forKey:specName];
 }
 
-- (void) removeRequestedSpecWithProceduresFromDic: (NSString*)specName
+- (void)removeRequestedSpecWithProceduresFromDic: (NSString*)specName
 {
     if ([[self.requestedSpecsWithProc allKeys] containsObject:specName]) {
         [self.requestedSpecsWithProc removeObjectForKey:specName];
     }
 }
 
-- (void) getProcedureIdForSelectedDoctor
+- (void)getProcedureIdForSelectedDoctor
 {
     for (Procedure *proc in [self.specManager.currentDoctor.procedure allObjects]) {
         [self.selectedProceduresID addObject:proc.procedureID];

@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) id <PEEditAddDoctorTableViewCellDelegate> delegate;
 
+- (void)selectAllSpecs;
+
 @end
