@@ -241,6 +241,7 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.specManager.currentEquipment.photo allObjects] count] && [((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash] != [[UIImage imageNamedFile:TDVPlaceHolderImageName] hash]) {
+        self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if ([[self.specManager.currentEquipment.photo allObjects] count]) {
             viewPhotoControleller.photoToShow = self.sortedArrayWithPhotos[indexPath.row];

@@ -128,7 +128,7 @@ static CGFloat const EHeightForHeader = 36.5f;
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
     } else {
-        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"No mail accounts" message:@"Please setup your e-mail account through device settings." delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
         [alerMail show];
     }
 }
@@ -340,7 +340,7 @@ static CGFloat const EHeightForHeader = 36.5f;
         [self.arrayWithCategorisedToolsArrays removeObjectAtIndex:indexPathToDelete.section];
         [self.categoryTools removeObject:self.categoryTools[indexPathToDelete.section]];
     }
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

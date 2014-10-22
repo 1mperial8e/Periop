@@ -119,6 +119,7 @@ static NSInteger const ORTagView = 35;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.sortedArrayWithPhotos.count && [[UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData] hash] != [[UIImage imageNamedFile:ORImagePlaceHolder] hash]) {
+        self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
@@ -307,7 +308,7 @@ static NSInteger const ORTagView = 35;
 - (void)refreshData
 {
     self.sortedArrayWithPreprations = [self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.operationRoom.steps allObjects]];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (NSArray *)sortedArrayWithPreparationSteps: (NSArray*)arrayToSort

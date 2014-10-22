@@ -5,8 +5,6 @@
 //  Created by Kirill on 9/5/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
-static NSString *const ANTDefaultEquipmentStr = @"Equipment Category";
-static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
 
 #import "PEAddNewToolViewController.h"
 #import "PESpecialisationManager.h"
@@ -16,7 +14,10 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
 #import "UIDropDownList.h"
 #import "UIImage+ImageWithJPGFile.h"
 
-@interface PEAddNewToolViewController () <UITextInputTraits, UIDropDownListDelegate>
+static NSString *const ANTDefaultEquipmentStr = @"Equipment Category";
+static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
+
+@interface PEAddNewToolViewController () <UITextInputTraits, UITextFieldDelegate, UIDropDownListDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *specTextBox;
@@ -61,9 +62,8 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamedFile:@"Close"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    self.quantityTextBox.keyboardType = UIKeyboardTypeNumberPad;
-    
     [self createDropDownList];
+    [self initGestures];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -116,10 +116,25 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)showKeyboard:(UITapGestureRecognizer *)gesture
+{
+    UIView *label = gesture.view;
+    if (label == self.nameLabel) {
+        [self.nameTextBox becomeFirstResponder];
+    } else if (label == self.specLabel) {
+        [self.specTextBox becomeFirstResponder];
+    } else {
+        [self.quantityTextBox becomeFirstResponder];
+    }
+}
+
 #pragma mark - UIDropDownListDelegate
 
 - (void)dropDownList:(UIDropDownList *)dropDownList willOpenWithAnimation:(CABasicAnimation *)animation bounds:(CGRect)bounds
 {
+    for (UITextField *textfield in self.containerView.subviews) {
+        [textfield resignFirstResponder];
+    }
     if (animation) {
         PEAddNewToolViewController __weak *weakSelf = self;
         [UIView animateWithDuration:animation.duration animations:^{
@@ -140,12 +155,32 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
     }
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark - Private 
 
 - (NSArray *)getArrayWithAvaliableCategories:(NSArray *)objectsArray
 {
     NSCountedSet *toolsWithCounts = [NSCountedSet setWithArray:[objectsArray valueForKey:@"category"]];
     return [toolsWithCounts allObjects];
+}
+
+- (void)initGestures
+{
+    UITapGestureRecognizer *nameGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard:)];
+    [self.nameLabel addGestureRecognizer:nameGesture];
+    
+    UITapGestureRecognizer *specGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard:)];
+    [self.specLabel addGestureRecognizer:specGesture];
+    
+    UITapGestureRecognizer *quantityGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard:)];
+    [self.quantityLabel addGestureRecognizer:quantityGesture];
 }
 
 - (void)createDropDownList

@@ -83,6 +83,57 @@
     return img;
 }
 
+- (UIImage *)fixLanscapeOrientationRight
+{
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform = CGAffineTransformTranslate(transform, self.size.height, self.size.width);
+    transform = CGAffineTransformRotate(transform, M_PI);
+    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.height, self.size.width,
+                                             CGImageGetBitsPerComponent(self.CGImage), 0,
+                                             CGImageGetColorSpace(self.CGImage),
+                                             CGImageGetBitmapInfo(self.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (self.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0, 0 ,self.size.height, self.size.width), self.CGImage);
+            break;
+    }
+    
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
+
+- (UIImage *)fixLanscapeOrientationLeft
+{
+    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.height, self.size.width,
+                                             CGImageGetBitsPerComponent(self.CGImage), 0,
+                                             CGImageGetColorSpace(self.CGImage),
+                                             CGImageGetBitmapInfo(self.CGImage));
+    switch (self.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0, 0 ,self.size.height, self.size.width), self.CGImage);
+            break;
+    }
+    
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
+
+
 + (UIImage *)imageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

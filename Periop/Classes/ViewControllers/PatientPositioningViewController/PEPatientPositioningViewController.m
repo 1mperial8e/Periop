@@ -77,7 +77,7 @@ static NSInteger const PPTagView = 35;
     self.postedCollectionView.layer.borderWidth = 0.0f;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Patient Positioning"];
@@ -250,6 +250,7 @@ static NSInteger const PPTagView = 35;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.sortedArrayWithPhotos.count && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:PPImagePlaceHolder] hash]) {
+        self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
@@ -302,7 +303,7 @@ static NSInteger const PPTagView = 35;
 - (void)refreshData
 {
     self.sortedArrayWithPatientPositioning = [self sortedArrayWithPatientPos:[self.specManager.currentProcedure.patientPostioning.steps allObjects]];
-    [self.tableViewPatient reloadData];
+    [self.tableViewPatient reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (NSMutableArray *)sortedArrayWithPhotos:(NSArray*)arrayToSort

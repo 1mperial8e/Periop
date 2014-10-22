@@ -212,7 +212,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 - (void)refreshData
 {
     self.sortedArrayWithPreprations =[self sortedArrayWithPreparationSteps:[self.specManager.currentProcedure.preparation allObjects]];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - PEPreparationTableViewCellDelegate

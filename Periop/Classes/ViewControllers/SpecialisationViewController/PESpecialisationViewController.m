@@ -110,7 +110,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Active"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Inactive"] forState:UIControlStateNormal];
     self.mySpecialisationsInfo = [self avaliableSpecs];
-    [self.collectionView reloadData];
+    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
 
 - (IBAction)moreSpecialisationButton:(id)sender
@@ -118,7 +118,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     self.isMyspecializations = NO;
     [self.mySpecialisationsButton setImage:[UIImage imageNamedFile:@"My_Specialisations_Inactive"] forState:UIControlStateNormal];
     [self.moreSpecialisationsButton setImage:[UIImage imageNamedFile:@"More_Specialisations_Active"] forState:UIControlStateNormal];
-    [self.collectionView reloadData];
+    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
 
 #pragma mark - CollectionViewDelegate

@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
+#import "PEViewPhotoViewController.h"
+#import "PESpecialisationManager.h"
+#import "PECoreDatamanager.h"
+#import "PatientPostioning.h"
+#import "Note.h"
+
 static NSString *const VPVCOperationRoomViewController = @"PEOperationRoomViewController";
 static NSString *const VPVCToolsDetailsViewController = @"PEToolsDetailsViewController";
 static NSString *const VPVCPatientPositioningViewController = @"PEPatientPositioningViewController";
@@ -13,21 +19,17 @@ static NSString *const VPVCDoctorProfileViewController = @"PEDoctorProfileViewCo
 static NSString *const VPVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
 static NSString *const VPVCNotesViewController = @"PENotesViewController";
 
-#import "PEViewPhotoViewController.h"
-#import "PESpecialisationManager.h"
-#import "PECoreDatamanager.h"
-#import "PatientPostioning.h"
-#import "Note.h"
-
-@interface PEViewPhotoViewController ()
+@interface PEViewPhotoViewController () <UIScrollViewDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *imageView;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) CAGradientLayer *gradient;
 
+@property (assign, nonatomic) BOOL isFullScreen;
+@property (weak, nonatomic) IBOutlet UIScrollView *photoScrollView;
 @end
 
 @implementation PEViewPhotoViewController
@@ -37,7 +39,7 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.specManager = [PESpecialisationManager sharedManager];
 
@@ -48,18 +50,69 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
     self.gradient.frame = self.viewContainer.bounds;
     self.gradient.colors = [NSArray arrayWithObjects:(id)[UIColorFromRGB(0xF5F3FE) CGColor], (id)[UIColorFromRGB(0xC9EAFE) CGColor], nil];
     [self.viewContainer.layer insertSublayer:self.gradient atIndex:0];
-    
+    self.edgesForExtendedLayout = UIRectEdgeTop;
+    self.isFullScreen = NO;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHideNavBar:)];
+    [self.photoScrollView addGestureRecognizer:tapGesture];
+    UIImage *photo;
+    if (self.photoToShow) {
+        photo = [UIImage imageWithData:self.photoToShow.photoData];
+    }
+    CGSize size = photo.size;
+    size.width = self.view.bounds.size.width;
+    size.height = size.height * (size.width / photo.size.width);
+    self.imageView = [[UIImageView alloc] initWithImage:photo];
+    self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.photoScrollView addSubview:self.imageView];
+    self.photoScrollView.contentSize = size;
+    [self configPhotoScrollView];
+    [self centerScrollViewContents];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
     CGRect bounds = self.gradient.bounds;
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        CGSize size = CGSizeMake(self.imageView.image.size.height, self.imageView.image.size.width);
+        size.width = self.view.bounds.size.height;
+        size.height = size.height * (size.width / self.imageView.image.size.width);
+        self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
+        self.photoScrollView.contentSize = size;
+
     } else {
         bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        CGSize size = self.imageView.image.size;
+        size.height = self.view.bounds.size.width;
+        size.width = size.width * (size.height / self.imageView.image.size.height);
+        self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
+        self.photoScrollView.contentSize = size;
     }
+    [self centerScrollViewContents];
     self.gradient.frame = bounds;
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    CGRect frame = [UIScreen mainScreen].bounds;
+    self.view.frame = frame;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if (self.isFullScreen) {
+        self.navigationController.navigationBar.alpha = 0;
+    } else {
+        self.navigationController.navigationBar.alpha = 1;
+    }
+    self.photoScrollView.contentInset = UIEdgeInsetsZero;
+    [self centerScrollViewContents];
+    self.photoScrollView.bounds = self.view.bounds;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,16 +127,13 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
     titleLabel.font = [UIFont fontWithName:FONT_MuseoSans300 size:20];
     self.navigationItem.titleView = titleLabel;
     ((PENavigationController *)self.navigationController).titleLabel.text = @"";
-    
-    if (self.photoToShow) {
-        self.imageView.image = [UIImage imageWithData:self.photoToShow.photoData];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationItem.titleView removeFromSuperview];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - Rotation
@@ -145,6 +195,66 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
         }        
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)showHideNavBar:(UITapGestureRecognizer *)tapGesture
+{
+    __weak PEViewPhotoViewController *weakSelf = self;
+    if (self.isFullScreen) {
+        [UIView animateWithDuration:0.32 animations:^{
+            weakSelf.viewContainer.alpha = 1;
+            weakSelf.navigationController.navigationBar.alpha = 1;
+            weakSelf.view.backgroundColor = [UIColor whiteColor];
+        }];
+    } else {
+        [UIView animateWithDuration:0.32 animations:^{
+            weakSelf.viewContainer.alpha = 0;
+            weakSelf.navigationController.navigationBar.alpha = 0;
+            weakSelf.view.backgroundColor = [UIColor blackColor];
+        }];
+    }
+    self.isFullScreen = !self.isFullScreen;
+}
+
+#pragma mark - Private
+
+- (void)configPhotoScrollView
+{
+    self.photoScrollView.minimumZoomScale = 1.0f;
+    self.photoScrollView.maximumZoomScale = 4.0f;
+    self.photoScrollView.zoomScale = 1.0;
+}
+
+- (void)centerScrollViewContents
+{
+    CGSize boundsSize = self.photoScrollView.bounds.size;
+    CGRect contentsFrame = self.imageView.frame;
+    
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    } else {
+        contentsFrame.origin.x = 0.0f;
+    }
+    
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    } else {
+        contentsFrame.origin.y = 0.0f;
+    }
+    
+    self.imageView.frame = contentsFrame;
+}
+
+#pragma mark - UIScrollView delegate
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    [self centerScrollViewContents];
+}
+
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
 }
 
 @end

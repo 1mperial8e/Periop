@@ -6,11 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const NVCNotesCellIdentifier = @"notesCell";
-static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
-static CGFloat const NVCNotesBottomButtonHeight = 38.0f;
-static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
-
 #import "PENotesViewController.h"
 #import "PENotesTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
@@ -25,6 +20,11 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEProcedureListViewController.h"
 #import "Photo.h"
+
+static NSString *const NVCNotesCellIdentifier = @"notesCell";
+static NSString *const NVCNotesCellNibName = @"PENotesTableViewCell";
+static CGFloat const NVCNotesBottomButtonHeight = 38.0f;
+static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 @interface PENotesViewController () <UITableViewDataSource, UITableViewDelegate, PENotesTableViewCellDelegate>
 
@@ -99,12 +99,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     }
     ((PENavigationController *)self.navigationController).titleLabel.text = textForHeader;
     
-    if (self.specManager.isProcedureSelected) {
-        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentProcedure.notes allObjects]];
-    } else {
-        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentDoctor.notes allObjects]];
-    }
-    
+    [self updateDataSource];    
     [self.tableViewNotes reloadData];
 }
 
@@ -212,7 +207,8 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
             NSLog(@"Cant delete note from Doctor - %@", deleteError.localizedDescription);
         }
     }
-    [self.tableViewNotes reloadData];
+    [self updateDataSource];
+    [self.tableViewNotes reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)addPhotoButtonPress:(UITableViewCell *)cell
@@ -221,6 +217,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
     
     if ([UIImage imageWithData:((Photo *)self.specManager.currentNote.photo).photoData]!= nil) {
+        self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         viewPhotoControleller.photoToShow = (Photo *)self.specManager.currentNote.photo;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
@@ -239,6 +236,15 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 }
 
 #pragma mark - Private
+
+- (void)updateDataSource
+{
+    if (self.specManager.isProcedureSelected) {
+        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentProcedure.notes allObjects]];
+    } else {
+        self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentDoctor.notes allObjects]];
+    }
+}
 
 - (NSString *)dateFormatter:(NSDate *)dateToFormatt
 {

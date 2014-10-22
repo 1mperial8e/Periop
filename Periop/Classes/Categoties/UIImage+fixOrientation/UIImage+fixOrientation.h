@@ -9,6 +9,8 @@
 @interface UIImage (fixOrientation)
 
 - (UIImage *)fixOrientation;
+- (UIImage *)fixLanscapeOrientationRight;
+- (UIImage *)fixLanscapeOrientationLeft;
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 @end
