@@ -77,11 +77,10 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
         CGSize size = CGSizeMake(self.imageView.image.size.height, self.imageView.image.size.width);
-        size.width = self.view.bounds.size.height;
-        size.height = size.height * (size.width / self.imageView.image.size.width);
-        self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
-        self.photoScrollView.contentSize = size;
-
+        size.height = self.view.bounds.size.height;
+        size.width = size.width * (size.height / self.imageView.image.size.width);
+        self.imageView.bounds = CGRectMake(0, 0, size.height, size.width);
+        self.photoScrollView.contentSize = CGSizeMake(size.height, size.width);
     } else {
         bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
         CGSize size = self.imageView.image.size;

@@ -6,14 +6,6 @@
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
-static NSString *const DPDoctorsProfileTableCellName = @"doctorsProfileCell";
-static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableViewCell";
-static NSString *const DPDoctorsProfileCollectionCellName = @"doctorProfileCollectionViewCell";
-static NSString *const DPDoctorsProfileCollectionNibName = @"PEDoctorProfileCollectionViewCell";
-static NSString *const DPPlaceHolderImageName = @"Place_Holder";
-static NSInteger const DPViewTag = 35;
-static NSInteger const DPHeaderHeight = 37;
-
 #import "PEDoctorProfileViewController.h"
 #import "PEAddEditDoctorViewController.h"
 #import "PENotesViewController.h"
@@ -33,6 +25,15 @@ static NSInteger const DPHeaderHeight = 37;
 #import "PEDoctorsProfileTableViewCell.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEProcedureListViewController.h"
+#import "PEBlurEffect.h"
+
+static NSString *const DPDoctorsProfileTableCellName = @"doctorsProfileCell";
+static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableViewCell";
+static NSString *const DPDoctorsProfileCollectionCellName = @"doctorProfileCollectionViewCell";
+static NSString *const DPDoctorsProfileCollectionNibName = @"PEDoctorProfileCollectionViewCell";
+static NSString *const DPPlaceHolderImageName = @"Place_Holder";
+static NSInteger const DPViewTag = 35;
+static NSInteger const DPHeaderHeight = 37;
 
 @interface PEDoctorProfileViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -42,6 +43,7 @@ static NSInteger const DPHeaderHeight = 37;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *specsButton;
+@property (weak, nonatomic) IBOutlet UIImageView *bluredPartImageView;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -101,7 +103,9 @@ static NSInteger const DPHeaderHeight = 37;
     self.doctorName.text = self.specManager.currentDoctor.name;
     
     if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
-        self.doctorPhotoImageView.image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
+        UIImage *image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
+        self.doctorPhotoImageView.image = image;
+        self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
     } else {
         self.doctorPhotoImageView.image = [UIImage imageNamedFile:DPPlaceHolderImageName];
     }

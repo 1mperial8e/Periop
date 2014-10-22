@@ -20,6 +20,7 @@
 		842C8E0719D5892100D0DAC7 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */; };
 		842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */; };
 		842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */; };
+		8450805219F7A04E00BDD36C /* PEBlurEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8450805119F7A04E00BDD36C /* PEBlurEffect.m */; };
 		8474906319B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
 		8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906419B8459E0013C446 /* CoreGraphics.framework */; };
 		8474906719B8459E0013C446 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906619B8459E0013C446 /* UIKit.framework */; };
@@ -1156,6 +1157,8 @@
 		842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		842C8E0819D5AE7E00D0DAC7 /* sight_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@2x.png"; sourceTree = "<group>"; };
 		842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sight_img@3x.png"; sourceTree = "<group>"; };
+		8450805019F7A04E00BDD36C /* PEBlurEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEBlurEffect.h; sourceTree = "<group>"; };
+		8450805119F7A04E00BDD36C /* PEBlurEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEBlurEffect.m; sourceTree = "<group>"; };
 		846413E819DD8F550077FE16 /* PEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMacros.h; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2389,6 +2392,7 @@
 		842C8DF419D57C2000D0DAC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8450804F19F7A02800BDD36C /* BlurEffect */,
 				842C8DFF19D57C3900D0DAC7 /* AVPreviewView */,
 				842C8DF519D57C2000D0DAC7 /* PEMediaSelectView */,
 				842C8DF919D57C2000D0DAC7 /* UIDropDownList */,
@@ -2440,6 +2444,15 @@
 				842C8E0619D5892100D0DAC7 /* UIImage+fixOrientation.m */,
 			);
 			path = "UIImage+fixOrientation";
+			sourceTree = "<group>";
+		};
+		8450804F19F7A02800BDD36C /* BlurEffect */ = {
+			isa = PBXGroup;
+			children = (
+				8450805019F7A04E00BDD36C /* PEBlurEffect.h */,
+				8450805119F7A04E00BDD36C /* PEBlurEffect.m */,
+			);
+			path = BlurEffect;
 			sourceTree = "<group>";
 		};
 		846413E719DD8F210077FE16 /* Macros */ = {
@@ -5704,6 +5717,7 @@
 				ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */,
 				EDCB1CD519DD4E1F0049A970 /* UIImage+ImageWithJPGFile.m in Sources */,
 				EDCD17D619C18BD900BA36C9 /* PEObjectDescription.m in Sources */,
+				8450805219F7A04E00BDD36C /* PEBlurEffect.m in Sources */,
 				EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */,
 				EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */,
 				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,

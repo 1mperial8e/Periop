@@ -22,12 +22,12 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEAddEditStepViewControllerViewController.h"
 #import "PECoreDataManager.h"
+#import "PEBlurEffect.h"
 
 static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
 static NSString *const PPPatientPositioningTableViewCellNibName = @"PEPatientPositioningTableViewCell";
 static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPositioningStepsCell";
-
 static NSString *const PPImagePlaceHolder = @"Place_Holder";
 static NSInteger const PPTagView = 35;
 
@@ -233,7 +233,9 @@ static NSInteger const PPTagView = 35;
 {
     PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count>0) {
-        cell.operationRoomImage.image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        UIImage *image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        cell.operationRoomImage.image = image;
+        cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
         self.pageControll.currentPage = [indexPath row];
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:PPImagePlaceHolder];

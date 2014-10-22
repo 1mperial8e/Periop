@@ -22,6 +22,7 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEAddEditStepViewControllerViewController.h"
 #import "PECoreDataManager.h"
+#import "PEBlurEffect.h"
 
 static NSString *const OROperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const OROperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
@@ -143,7 +144,10 @@ static NSInteger const ORTagView = 35;
 {
     PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:OROperationRoomCollectionViewCellIdentifier forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count) {
-        cell.operationRoomImage.image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        UIImage *image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        cell.operationRoomImage.image = image;
+        cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
+
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:ORImagePlaceHolder];
     }

@@ -5,12 +5,6 @@
 //  Created by Kirill on 9/5/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
-static NSString *const TDVCellNibName = @"PEOperationRoomCollectionViewCell";
-static NSString *const TDVCellIdentifier = @"OperationRoomViewCell";
-
-static NSInteger const TDVCAnimationDuration = 0.2f;
-static NSInteger const TDVCViewTag = 35;
-static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 
 #import "PEToolsDetailsViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
@@ -24,7 +18,13 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEBlurEffect.h"
 
+static NSString *const TDVCellNibName = @"PEOperationRoomCollectionViewCell";
+static NSString *const TDVCellIdentifier = @"OperationRoomViewCell";
+static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
+static NSInteger const TDVCAnimationDuration = 0.2f;
+static NSInteger const TDVCViewTag = 35;
 
 @interface PEToolsDetailsViewController () <UITextFieldDelegate, UITextInputTraits, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -227,11 +227,13 @@ static NSString *const TDVPlaceHolderImageName = @"Place_Holder";
         cell = [[PEOperationRoomCollectionViewCell alloc] init];
     }
     if (self.sortedArrayWithPhotos.count) {
-        cell.operationRoomImage.image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
-        
+        UIImage *image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
+        cell.operationRoomImage.image = image;
+        cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
+    cell.bluredPartImageView.frame = cell.bounds;
     cell.operationRoomImage.frame = cell.bounds;
     return cell;
 }
