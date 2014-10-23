@@ -2,7 +2,7 @@
 //  Photo.m
 //  Periop
 //
-//  Created by Kirill on 9/22/14.
+//  Created by Kirill on 10/23/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
@@ -13,10 +13,11 @@
 #import "OperationRoom.h"
 #import "PatientPostioning.h"
 
+
 @implementation Photo
 
-@dynamic photoName;
 @dynamic photoData;
+@dynamic photoName;
 @dynamic photoNumber;
 @dynamic doctor;
 @dynamic equiomentTool;

@@ -25,6 +25,7 @@
 
 @property (assign, nonatomic) BOOL isProcedureSelected;
 @property (strong, nonatomic) Photo *photoObject;
+@property (strong, nonatomic) NSMutableArray *photoObjectsToSave;
 
 + (id)sharedManager;
 

@@ -107,19 +107,22 @@
     if (self.isEditNote) {
         self.specManager.currentNote.textDescription = self.textViewNotes.text;
         self.specManager.currentNote.timeStamp = [NSDate date];
-        if (self.specManager.photoObject) {
-            self.specManager.currentNote.photo = self.specManager.photoObject;
+        if (self.specManager.photoObjectsToSave.count) {
+            for (Photo *photo in self.specManager.photoObjectsToSave) {
+                [self.specManager.currentNote addPhotoObject:photo];
+            }
         }
-        ((Photo *)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription *noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         Note *newNote = [[Note alloc] initWithEntity:noteEntity insertIntoManagedObjectContext:self.managedObjectContext];
         newNote.textDescription = self.textViewNotes.text;
         newNote.timeStamp = [NSDate date];
         
-        if (self.specManager.photoObject) {
-            ((Photo *)newNote.photo).note = newNote;
-            newNote.photo = self.specManager.photoObject;
+        if (self.specManager.photoObjectsToSave.count) {
+            for (Photo *photo in self.specManager.photoObjectsToSave) {
+                [newNote addPhotoObject:photo];
+                photo.note = newNote;
+            }
         }
         if (self.specManager.isProcedureSelected) {
             [((Procedure*)self.specManager.currentProcedure) addNotesObject:newNote];

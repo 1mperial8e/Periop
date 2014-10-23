@@ -162,7 +162,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 - (PENotesTableViewCell *)configureCell:(PENotesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (((Note *)(self.arrayWithSortedNotes[indexPath.row])).photo) {
+    if ([((Note *)(self.arrayWithSortedNotes[indexPath.row])).photo allObjects].count) {
         cell.photoButton.hidden = NO;
     }
     cell.label.text = ((Note *)(self.arrayWithSortedNotes[indexPath.row])).textDescription;
@@ -216,10 +216,11 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
     
-    if ([UIImage imageWithData:((Photo *)self.specManager.currentNote.photo).photoData]!= nil) {
+    if ([self.specManager.currentNote.photo allObjects].count) {
         self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        viewPhotoControleller.photoToShow = (Photo *)self.specManager.currentNote.photo;
+#warning to change
+        viewPhotoControleller.photoToShow = [self.specManager.currentNote.photo allObjects][0];
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }

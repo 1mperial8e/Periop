@@ -131,8 +131,7 @@ static NSInteger const AVCDefaultQuantity = 29;
             newPhoto.photoNumber = @0;
             self.specManager.photoObject = newPhoto;
         } else if ([requestedController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)]) {
-            newPhoto.photoNumber = @0;
-            self.specManager.photoObject = newPhoto;
+            [self photoForNotesViewController:newPhoto];
         }
     }
     
@@ -148,7 +147,6 @@ static NSInteger const AVCDefaultQuantity = 29;
         allowedPhotoQuantity = AVCOperationRoomQuantity;
     } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
               [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCAddEditNoteViewController)] ||
               [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
         allowedPhotoQuantity = AVCOneQuantity;
     } else {
@@ -175,6 +173,15 @@ static NSInteger const AVCDefaultQuantity = 29;
         }
     }
     return isAdded;
+}
+
+- (void)photoForNotesViewController:(Photo *)newPhoto
+{
+    if (![self checkIfPhotoExist:[self.specManager.currentNote.photo allObjects] compareWithPhoto:newPhoto]) {
+        newPhoto.note = self.specManager.currentNote;
+        newPhoto.photoNumber=@([self.specManager.currentNote.photo allObjects].count+1);
+        [self.specManager.photoObjectsToSave addObject:newPhoto];
+    }
 }
 
 - (void)photoForOperationRoomViewController:(Photo *)newPhoto count:(NSInteger)counter rewriteCount:(NSInteger)rewriteCounter

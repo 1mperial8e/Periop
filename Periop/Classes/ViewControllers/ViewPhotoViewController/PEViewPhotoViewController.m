@@ -11,6 +11,7 @@
 #import "PECoreDatamanager.h"
 #import "PatientPostioning.h"
 #import "Note.h"
+#import "PEViewPhotoViewCollectionViewCell.h"
 
 static NSString *const VPVCOperationRoomViewController = @"PEOperationRoomViewController";
 static NSString *const VPVCToolsDetailsViewController = @"PEToolsDetailsViewController";
@@ -19,7 +20,11 @@ static NSString *const VPVCDoctorProfileViewController = @"PEDoctorProfileViewCo
 static NSString *const VPVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
 static NSString *const VPVCNotesViewController = @"PENotesViewController";
 
-@interface PEViewPhotoViewController () <UIScrollViewDelegate, UINavigationControllerDelegate>
+static NSString *const VPVCCellNibName = @"PEViewPhotoViewCollectionViewCell";
+static NSString *const VPVCCellIdentifier = @"imageViewCell";
+
+
+@interface PEViewPhotoViewController () <UIScrollViewDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (strong, nonatomic) UIImageView *imageView;
@@ -213,6 +218,18 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
         }];
     }
     self.isFullScreen = !self.isFullScreen;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+//    for (NSIndexPath *indexPath in self.postedCollectionView.indexPathsForVisibleItems) {
+//        PEOperationRoomCollectionViewCell *cell = (PEOperationRoomCollectionViewCell *)[self.postedCollectionView cellForItemAtIndexPath:indexPath];
+//        if (ABS(cell.frame.origin.x - self.postedCollectionView.contentOffset.x) <= 50) {
+//            self.pageControll.currentPage = indexPath.row;
+//        }
+//    }
 }
 
 #pragma mark - Private

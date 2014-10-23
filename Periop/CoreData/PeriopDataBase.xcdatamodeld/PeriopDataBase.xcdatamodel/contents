@@ -22,7 +22,7 @@
         <attribute name="textDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctors" inverseName="notes" inverseEntity="Doctors" syncable="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="note" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="note" inverseEntity="Photo" syncable="YES"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="notes" inverseEntity="Procedure" syncable="YES"/>
     </entity>
     <entity name="OperationRoom" representedClassName="OperationRoom" syncable="YES">
@@ -80,7 +80,7 @@
     <elements>
         <element name="Doctors" positionX="63" positionY="-18" width="128" height="148"/>
         <element name="EquipmentsTool" positionX="-333" positionY="-180" width="128" height="150"/>
-        <element name="Note" positionX="-18" positionY="-207" width="128" height="118"/>
+        <element name="Note" positionX="-18" positionY="-207" width="128" height="120"/>
         <element name="OperationRoom" positionX="-171" positionY="171" width="128" height="88"/>
         <element name="PatientPostioning" positionX="-333" positionY="-27" width="128" height="88"/>
         <element name="Photo" positionX="-585" positionY="144" width="128" height="163"/>
