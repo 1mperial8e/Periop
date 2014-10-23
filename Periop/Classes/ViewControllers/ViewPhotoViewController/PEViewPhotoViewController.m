@@ -97,6 +97,13 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
 {
     [super viewWillLayoutSubviews];
     CGRect frame = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
+        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            frame.size.width *= frame.size.height;
+            frame.size.height = frame.size.width / frame.size.height;
+            frame.size.width /= frame.size.height;
+        }
+    }    
     self.view.frame = frame;
 }
 

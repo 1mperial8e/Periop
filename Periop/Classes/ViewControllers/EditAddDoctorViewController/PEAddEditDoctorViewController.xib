@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEAddEditDoctorViewController">
             <connections>
+                <outlet property="bluredPartImageView" destination="YnH-NA-OGW" id="e2F-zd-V62"/>
                 <outlet property="imageView" destination="Poo-pq-qsh" id="QUt-xL-XHx"/>
                 <outlet property="nameLabel" destination="UbH-iP-Lg9" id="RDL-dp-DfS"/>
                 <outlet property="nameTextField" destination="eOL-BP-6FG" id="Ylb-eg-dcx"/>
@@ -18,11 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEy-eI-TI3" userLabel="View - holder">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEy-eI-TI3" userLabel="Profile photo">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                     <subviews>
-                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YnH-NA-OGW" userLabel="BluredPartImageView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh" userLabel="ProfilePhotoImageView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9o-4y-xKb" userLabel="Button - add photo">
                             <rect key="frame" x="278" y="15" width="32" height="32"/>
@@ -41,16 +46,20 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Poo-pq-qsh" secondAttribute="bottom" id="32w-Ce-89M"/>
+                        <constraint firstAttribute="trailing" secondItem="YnH-NA-OGW" secondAttribute="trailing" id="3xd-Iu-i7l"/>
                         <constraint firstAttribute="trailing" secondItem="h9o-4y-xKb" secondAttribute="trailing" constant="10" id="IWm-2T-xGU"/>
                         <constraint firstItem="h9o-4y-xKb" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" constant="15" id="KHQ-Jm-xHs"/>
+                        <constraint firstItem="YnH-NA-OGW" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" id="L4n-hE-YT4"/>
                         <constraint firstItem="Poo-pq-qsh" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" id="MHU-dp-Ipp"/>
                         <constraint firstAttribute="trailing" secondItem="Poo-pq-qsh" secondAttribute="trailing" id="dDG-pj-xrs"/>
+                        <constraint firstAttribute="bottom" secondItem="YnH-NA-OGW" secondAttribute="bottom" id="hTE-aw-YuJ"/>
                         <constraint firstItem="Poo-pq-qsh" firstAttribute="leading" secondItem="FEy-eI-TI3" secondAttribute="leading" id="lcl-1l-hap"/>
-                        <constraint firstAttribute="height" constant="236" id="m31-zq-Ba3"/>
+                        <constraint firstAttribute="height" constant="237" id="m31-zq-Ba3"/>
+                        <constraint firstItem="YnH-NA-OGW" firstAttribute="leading" secondItem="FEy-eI-TI3" secondAttribute="leading" id="p9C-h0-FVa"/>
                     </constraints>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbH-iP-Lg9" userLabel="Label - background">
-                    <rect key="frame" x="0.0" y="236" width="320" height="37"/>
+                    <rect key="frame" x="0.0" y="237" width="320" height="37"/>
                     <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="ifC-3W-Sdi"/>
@@ -60,11 +69,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="37" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fPt-lL-m2q" userLabel="TableView - specs">
-                    <rect key="frame" x="0.0" y="273" width="320" height="295"/>
+                    <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Doctor's Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-BP-6FG" userLabel="Label - DoctorsName">
-                    <rect key="frame" x="76" y="236" width="229" height="37"/>
+                    <rect key="frame" x="76" y="237" width="229" height="37"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -75,7 +84,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ti2-9W-MIR">
-                    <rect key="frame" x="15" y="236" width="46" height="37"/>
+                    <rect key="frame" x="15" y="237" width="46" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="S1h-Zl-Bqc"/>
                         <constraint firstAttribute="height" constant="37" id="lIA-1R-qZI"/>
@@ -104,10 +113,16 @@
                 <constraint firstItem="fPt-lL-m2q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wEt-ho-Uxw"/>
                 <constraint firstAttribute="trailing" secondItem="fPt-lL-m2q" secondAttribute="trailing" id="wh5-1h-7Mj"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
         <image name="Place_Holder.png" width="320" height="238"/>
         <image name="Upload_Photo_Button_2.png" width="30" height="30"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

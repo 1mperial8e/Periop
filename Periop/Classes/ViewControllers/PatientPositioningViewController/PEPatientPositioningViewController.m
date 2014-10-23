@@ -8,7 +8,7 @@
 
 #import "PEPatientPositioningViewController.h"
 #import "PEOperationRoomCollectionViewCell.h"
-#import "PEPatientPositioningTableViewCell.h"
+#import "PEOperationTableViewCell.h"
 #import "PEMediaSelect.h"
 #import "Procedure.h"
 #import "PESpecialisationManager.h"
@@ -26,16 +26,17 @@
 
 static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
-static NSString *const PPPatientPositioningTableViewCellNibName = @"PEPatientPositioningTableViewCell";
-static NSString *const PPPatientPositioningTableViewCellIdentifier = @"patientPositioningStepsCell";
+static NSString *const PPPatientPositioningTableViewCellNibName = @"PEOperationTableViewCell";
+static NSString *const PPPatientPositioningTableViewCellIdentifier = @"operationTableViewCell";
 static NSString *const PPImagePlaceHolder = @"Place_Holder";
 static NSInteger const PPTagView = 35;
 
-@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, PEPatientPositioningTableViewCellDelegate, UIScrollViewDelegate>
+@interface PEPatientPositioningViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, PEOperationTableViewCellDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *postedCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPatient;
+@property (weak, nonatomic) IBOutlet UILabel *stepsLabel;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -60,6 +61,7 @@ static NSInteger const PPTagView = 35;
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.stepsLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:17.5f];
 
     [self.postedCollectionView registerNib:[UINib nibWithNibName:PPOperationRoomCollectionViewCellNibName bundle:nil] forCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier];
     [self.tableViewPatient registerNib:[UINib nibWithNibName:PPPatientPositioningTableViewCellNibName bundle:nil] forCellReuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
@@ -150,9 +152,9 @@ static NSInteger const PPTagView = 35;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEPatientPositioningTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PPPatientPositioningTableViewCellIdentifier forIndexPath:indexPath];
+    PEOperationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PPPatientPositioningTableViewCellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell = [[PEPatientPositioningTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
+        cell = [[PEOperationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PPPatientPositioningTableViewCellIdentifier];
     }
     [self configureCell:cell atIndexPath:indexPath];
     cell.delegate = self;
@@ -171,7 +173,7 @@ static NSInteger const PPTagView = 35;
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PEPatientPositioningTableViewCell *cell = (PEPatientPositioningTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    PEOperationTableViewCell *cell = (PEOperationTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     BOOL selected = cell.selected;
     if (selected) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -195,17 +197,17 @@ static NSInteger const PPTagView = 35;
 
 #pragma mark - DynamicHeightOfCell
 
-- (PEPatientPositioningTableViewCell *)configureCell:(PEPatientPositioningTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (PEOperationTableViewCell *)configureCell:(PEOperationTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.labelStepName.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepName;
-    cell.labelContent.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepDescription;
+    cell.labelStep.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepName;
+    cell.labelOperationRoomText.text = ((Steps *)self.sortedArrayWithPatientPositioning[indexPath.row]).stepDescription;
     
     return cell;
 }
 
 - (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    static PEPatientPositioningTableViewCell *sizingCell = nil;
+    static PEOperationTableViewCell *sizingCell = nil;
     static dispatch_once_t  token;
     dispatch_once(&token, ^ {
         sizingCell = [self.tableViewPatient dequeueReusableCellWithIdentifier:PPPatientPositioningTableViewCellIdentifier];
@@ -233,7 +235,8 @@ static NSInteger const PPTagView = 35;
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     if (self.sortedArrayWithPhotos.count >0) {
         return self.sortedArrayWithPhotos.count;
     } else {
@@ -263,7 +266,7 @@ static NSInteger const PPTagView = 35;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sortedArrayWithPhotos.count && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash]!= [[UIImage imageNamedFile:PPImagePlaceHolder] hash]) {
+    if (self.sortedArrayWithPhotos.count && [((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData hash] != [[UIImage imageNamedFile:PPImagePlaceHolder] hash]) {
         self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if (self.sortedArrayWithPhotos.count) {
@@ -308,7 +311,7 @@ static NSInteger const PPTagView = 35;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Cant delete patient positioning Step - %@", error.localizedDescription);
     }
-    ((PEPatientPositioningTableViewCell *)cell).deleteButton.hidden = YES;
+    ((PEOperationTableViewCell *)cell).deleteButton.hidden = YES;
     [self refreshData];
 }
 
@@ -362,9 +365,9 @@ static NSInteger const PPTagView = 35;
         editStepController.stepNumber = [NSString stringWithFormat:@"Step %i", (int)(self.specManager.currentProcedure.patientPostioning.steps.count + 1)];
         editStepController.stepText = @"";
     } else {
-        PEPatientPositioningTableViewCell *cell = (PEPatientPositioningTableViewCell *)[self.tableViewPatient cellForRowAtIndexPath:self.tableViewPatient.indexPathForSelectedRow];
-        editStepController.stepNumber = cell.labelStepName.text;
-        editStepController.stepText = cell.labelContent.text;
+        PEOperationTableViewCell *cell = (PEOperationTableViewCell *)[self.tableViewPatient cellForRowAtIndexPath:self.tableViewPatient.indexPathForSelectedRow];
+        editStepController.stepNumber = cell.labelStep.text;
+        editStepController.stepText = cell.labelOperationRoomText.text;
         self.specManager.currentStep = self.sortedArrayWithPatientPositioning[selectedIndexPath.row];
     }
     [self.navigationController pushViewController:editStepController animated:YES];
