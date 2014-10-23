@@ -18,6 +18,7 @@
 
 static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 static CGFloat const EHeightForHeader = 36.5f;
+static CGFloat const EMinimumHeightOfCell = 47.0f;
 
 @interface PEEquipmentViewController () <UITableViewDataSource, UITableViewDelegate, PEEquipmentCategoryTableViewCellDelegate, MFMailComposeViewControllerDelegate>
 
@@ -112,13 +113,7 @@ static CGFloat const EHeightForHeader = 36.5f;
         
         [self.mailController setSubject:@"Equipment list"];
         
-        NSMutableString *message = [[NSMutableString alloc] init];
-        for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons) {
-            [message appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).name];
-            [message appendString:@"\n"];
-        }
-        
-        [self.mailController setMessageBody:message isHTML:NO];
+        [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
         rootController.modalPresentationStyle = UIModalPresentationFullScreen;
 #ifdef __IPHONE_8_0
@@ -175,8 +170,7 @@ static CGFloat const EHeightForHeader = 36.5f;
     if (!cell){
         cell = [[PEEquipmentCategoryTableViewCell alloc] init];
     }
-    cell.equipmentNameLabel.text = ((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name;
-    
+    cell = [self configureCell:cell atIndexPath:indexPath];
     cell.delegate = self;
     if ([self.cellCurrentlyEditing containsObject:indexPath]) {
         [cell setCellSwiped];
@@ -200,7 +194,7 @@ static CGFloat const EHeightForHeader = 36.5f;
     return (NSString *)self.categoryTools[section];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(16.5f, 0, self.view.frame.size.width - 16.5f, EHeightForHeader);
@@ -237,12 +231,55 @@ static CGFloat const EHeightForHeader = 36.5f;
     return EHeightForHeader;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self heightForBasicCellAtIndexPath:indexPath] < EMinimumHeightOfCell) {
+        return EMinimumHeightOfCell;
+    } else {
+        return [self heightForBasicCellAtIndexPath:indexPath];
+    }
+}
+
+#pragma mark - DynamicHeightOfCell
+
+- (PEEquipmentCategoryTableViewCell *)configureCell:(PEEquipmentCategoryTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableString *titleForEquipmentCell = [[NSMutableString alloc] init];
+    [titleForEquipmentCell appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).name];
+    if (![((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).type isEqualToString:@""]) {
+        [titleForEquipmentCell appendString:@", "];
+        [titleForEquipmentCell appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).type];
+    }
+    if (![((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).quantity isEqualToString:@""]) {
+        [titleForEquipmentCell appendString:@", "];
+        [titleForEquipmentCell appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).quantity];
+    }
+    cell.equipmentNameLabel.text = titleForEquipmentCell;
+    return cell;
+}
+
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *) indexPath
+{
+    static PEEquipmentCategoryTableViewCell *sizingCell = nil;
+    static dispatch_once_t  token;
+    dispatch_once(&token, ^ {
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:EEquipmentCellIdentifier];
+    });
+    [self configureCell:sizingCell atIndexPath:indexPath];
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 0.0f);
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
+}
+
 #pragma mark - PEEquipmentCategoryTableViewCellDelegate
 
 - (void)buttonDeleteAction:(UITableViewCell *)cell
 {
     NSIndexPath *currentIndex = [self.tableView indexPathForCell:cell];
-    [self deleteSlectedItem:currentIndex];
+    [self deleteSelectedItem:currentIndex];
 }
 
 - (void)cellDidSwipedIn:(UITableViewCell *)cell
@@ -308,7 +345,7 @@ static CGFloat const EHeightForHeader = 36.5f;
     return [NSMutableArray arrayWithArray:uniqueCategory];
 }
 
-- (void)deleteSlectedItem: (NSIndexPath*)indexPathToDelete
+- (void)deleteSelectedItem:(NSIndexPath*)indexPathToDelete
 {
     EquipmentsTool *eq = ((EquipmentsTool *)((NSArray *)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
     [self.specManager.currentProcedure removeEquipmentsObject:eq];
@@ -351,6 +388,41 @@ static CGFloat const EHeightForHeader = 36.5f;
     } else {
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, sectionCount)] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (NSMutableString *)getMessageBody
+{
+    NSMutableString *message = [[NSMutableString alloc] init];
+    
+    NSMutableArray *selectedCategories = [[NSMutableArray alloc] init];
+    for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons){
+        [selectedCategories addObject:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category];
+    }
+    NSArray *uniqueCategories = [[NSSet setWithArray:selectedCategories] allObjects];
+    
+    for (int i = 0; i < uniqueCategories.count; i++) {
+        [message appendString:[NSString stringWithFormat:@"<b>%@</b><br>", uniqueCategories[i]]];
+            
+        for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons) {
+            if ([((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category isEqualToString:uniqueCategories[i]]) {
+                
+                NSMutableString *descriptionOfEquipment = [[NSMutableString alloc] init];
+                [descriptionOfEquipment appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).name];
+                if (![((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).type isEqualToString:@""]) {
+                    [descriptionOfEquipment appendString:@", "];
+                    [descriptionOfEquipment appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).type];
+                }
+                if (![((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).quantity isEqualToString:@""]) {
+                    [descriptionOfEquipment appendString:@", "];
+                    [descriptionOfEquipment appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).quantity];
+                }
+
+                [message appendString:[NSString stringWithFormat:@"%@<br>" ,descriptionOfEquipment]];
+            }
+        }
+        [message appendString:@"<br>"];
+    }
+    return message;
 }
 
 @end

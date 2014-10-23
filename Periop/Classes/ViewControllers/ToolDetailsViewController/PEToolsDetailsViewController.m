@@ -74,16 +74,19 @@ static NSInteger const TDVCViewTag = 35;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
 
-    self.navigationItem.rightBarButtonItem=editButton;
+    self.navigationItem.rightBarButtonItem = editButton;
     
     [self setSelectedObjectToView];
     
     [self.collectionView registerNib:[UINib nibWithNibName:TDVCellNibName bundle:nil] forCellWithReuseIdentifier:TDVCellIdentifier];
     
+    self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.specificationTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.quantityTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    
     self.nameTextField.delegate = self;
     self.specificationTextField.delegate = self;
     self.quantityTextField.delegate = self;
-    self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -152,7 +155,6 @@ static NSInteger const TDVCViewTag = 35;
         [self.view endEditing:YES];
         self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
-    
     ((EquipmentsTool *)self.specManager.currentEquipment).name = self.nameTextField.text;
     ((EquipmentsTool *)self.specManager.currentEquipment).type = self.specificationTextField.text;
     ((EquipmentsTool *)self.specManager.currentEquipment).quantity = self.quantityTextField.text;

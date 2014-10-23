@@ -18,7 +18,6 @@
                         <color key="backgroundColor" red="0.8901960784313725" green="0.32941176470588235" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="94" id="HWW-Jh-Rfu"/>
-                            <constraint firstAttribute="height" constant="46" id="gHL-6d-cqd"/>
                         </constraints>
                         <state key="normal" image="delete_icon_white.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,7 +32,6 @@
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miv-Tt-JSS">
                                 <rect key="frame" x="273" y="0.0" width="32" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="8g0-qD-4wx"/>
                                     <constraint firstAttribute="width" constant="32" id="yI7-Dc-Kmb"/>
                                 </constraints>
                                 <state key="normal" image="Check_Inactive.png">
@@ -44,8 +42,8 @@
                                     <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="for-mt-FQq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
-                                <rect key="frame" x="17" y="8" width="248" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-lw-m1o">
+                                <rect key="frame" x="17" y="0.0" width="248" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -53,9 +51,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="miv-Tt-JSS" secondAttribute="bottom" id="67v-3M-3fV"/>
                             <constraint firstAttribute="trailing" secondItem="miv-Tt-JSS" secondAttribute="trailing" constant="15" id="9gj-Rg-WEF"/>
-                            <constraint firstAttribute="bottom" secondItem="I1s-lw-m1o" secondAttribute="bottom" constant="8" id="PUm-Di-JLP"/>
-                            <constraint firstItem="I1s-lw-m1o" firstAttribute="top" secondItem="mzo-Q6-cZb" secondAttribute="top" constant="8" id="YQl-tB-DPh"/>
+                            <constraint firstAttribute="bottom" secondItem="I1s-lw-m1o" secondAttribute="bottom" id="PUm-Di-JLP"/>
+                            <constraint firstItem="I1s-lw-m1o" firstAttribute="top" secondItem="mzo-Q6-cZb" secondAttribute="top" id="YQl-tB-DPh"/>
                             <constraint firstItem="miv-Tt-JSS" firstAttribute="top" secondItem="mzo-Q6-cZb" secondAttribute="top" id="mGR-rU-WDQ"/>
                             <constraint firstItem="miv-Tt-JSS" firstAttribute="leading" secondItem="I1s-lw-m1o" secondAttribute="trailing" constant="8" id="nFr-ln-jhI"/>
                             <constraint firstItem="I1s-lw-m1o" firstAttribute="leading" secondItem="mzo-Q6-cZb" secondAttribute="leading" constant="17" id="tPt-RF-F0Q"/>
@@ -63,10 +62,13 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="i6B-ut-RVE" secondAttribute="trailing" id="EA6-wf-R9A"/>
+                    <constraint firstItem="i6B-ut-RVE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LUj-FG-TLz"/>
                     <constraint firstAttribute="trailing" secondItem="mzo-Q6-cZb" secondAttribute="trailing" id="Q17-1Y-Ta1"/>
                     <constraint firstItem="mzo-Q6-cZb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aXs-vi-1HV"/>
                     <constraint firstItem="mzo-Q6-cZb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i89-IP-B0n"/>
                     <constraint firstItem="i6B-ut-RVE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lGe-AO-rkP"/>
+                    <constraint firstAttribute="bottom" secondItem="i6B-ut-RVE" secondAttribute="bottom" id="oUD-OO-p1h"/>
                     <constraint firstAttribute="bottom" secondItem="mzo-Q6-cZb" secondAttribute="bottom" id="wBu-CH-elr"/>
                     <constraint firstAttribute="trailing" secondItem="i6B-ut-RVE" secondAttribute="trailing" id="xw6-at-ub9"/>
                 </constraints>
