@@ -105,12 +105,11 @@
 - (IBAction)saveUpdateNote:(id)sender
 {
     if (self.isEditNote) {
-        if (self.specManager.currentNote.photo) {
-            [self.managedObjectContext deleteObject:self.specManager.currentNote.photo];
-        }
         self.specManager.currentNote.textDescription = self.textViewNotes.text;
         self.specManager.currentNote.timeStamp = [NSDate date];
-        self.specManager.currentNote.photo = self.specManager.photoObject;
+        if (self.specManager.photoObject) {
+            self.specManager.currentNote.photo = self.specManager.photoObject;
+        }
         ((Photo *)self.specManager.currentNote.photo).note = self.specManager.currentNote;
     } else {
         NSEntityDescription *noteEntity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];

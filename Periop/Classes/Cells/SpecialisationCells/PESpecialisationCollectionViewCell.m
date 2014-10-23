@@ -15,7 +15,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.labelPrice.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
+    self.labelPrice.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
 }
 
 @end
