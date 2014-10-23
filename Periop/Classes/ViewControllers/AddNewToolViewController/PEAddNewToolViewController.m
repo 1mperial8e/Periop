@@ -95,9 +95,7 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
             newEquipment.category = self.dropDownList.titleLabel.text;
             [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
             NSError *saveError = nil;
-            if ([self.managedObjectContext save:&saveError]) {
-                NSLog(@"New tool \"%@\" added successfully", newEquipment.name);
-            } else {
+            if (![self.managedObjectContext save:&saveError]) {
                 NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
             }
             self.nameTextBox.text=@"";

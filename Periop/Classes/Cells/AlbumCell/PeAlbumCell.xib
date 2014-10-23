@@ -14,11 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Photo_Indicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Xv-Kr-OLu" userLabel="SelectionImageView">
-                        <rect key="frame" x="-1" y="-1" width="107" height="107"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-B6-HzR" userLabel="Thumbnail">
                         <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Photo_Indicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Xv-Kr-OLu" userLabel="SelectionImageView">
+                        <rect key="frame" x="-1" y="-1" width="107" height="107"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

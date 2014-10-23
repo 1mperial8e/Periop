@@ -156,13 +156,13 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
                     image = [image fixLanscapeOrientationLeft];
                 }
                 
-                UIImageView *photoToShow = [[UIImageView alloc] initWithFrame:self.view.bounds];
-                photoToShow.image = image;
-                photoToShow.contentMode = UIViewContentModeScaleAspectFit;
-                photoToShow.backgroundColor = [UIColor blackColor];
-                [self.view addSubview:photoToShow];
-                [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hidePhotoView:) userInfo:nil repeats:NO];
-                [self createPhotoObjectToStore:image];
+//                UIImageView *photoToShow = [[UIImageView alloc] initWithFrame:self.view.bounds];
+//                photoToShow.image = image;
+//                photoToShow.contentMode = UIViewContentModeScaleAspectFit;
+//                photoToShow.backgroundColor = [UIColor blackColor];
+//                [self.view addSubview:photoToShow];
+//                [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hidePhotoView:) userInfo:nil repeats:NO];
+//                [self createPhotoObjectToStore:image];
                 
 			}
             [self.takePhotoButton setEnabled:YES];
@@ -182,6 +182,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     } else {
         self.currentFlashMode = AVCaptureFlashModeOn;
     }
+    ((UIButton *)sender).selected = !((UIButton *)sender).selected;
 }
 
 #pragma mark - Private
@@ -328,7 +329,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 	});
 }
 
-#pragma mark Device Configuration
+#pragma mark - Device Configuration
 
 - (void)focusWithMode:(AVCaptureFocusMode)focusMode exposeWithMode:(AVCaptureExposureMode)exposureMode atDevicePoint:(CGPoint)point monitorSubjectAreaChange:(BOOL)monitorSubjectAreaChange
 {

@@ -236,8 +236,6 @@ static NSInteger const ORTagView = 35;
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     
-    [sizingCell setNeedsLayout];
-    [sizingCell layoutIfNeeded];
     sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), 0.0f);
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;

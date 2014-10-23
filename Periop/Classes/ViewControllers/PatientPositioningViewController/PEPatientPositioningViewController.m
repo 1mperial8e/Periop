@@ -214,8 +214,6 @@ static NSInteger const PPTagView = 35;
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
     
-    [sizingCell setNeedsLayout];
-    [sizingCell layoutIfNeeded];
     sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableViewPatient.bounds), 0.0f);
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height ;

@@ -75,6 +75,9 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     CGRect bounds = self.gradient.bounds;
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            return;
+        }
         bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
         CGSize size = CGSizeMake(self.imageView.image.size.height, self.imageView.image.size.width);
         size.height = self.view.bounds.size.height;
@@ -82,6 +85,9 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
         self.imageView.bounds = CGRectMake(0, 0, size.height, size.width);
         self.photoScrollView.contentSize = CGSizeMake(size.height, size.width);
     } else {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            return;
+        }
         bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
         CGSize size = self.imageView.image.size;
         size.height = self.view.bounds.size.width;
@@ -143,6 +149,11 @@ static NSString *const VPVCNotesViewController = @"PENotesViewController";
 }
 
 #pragma mark - Rotation
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return  UIInterfaceOrientationMaskAll;
+}
 
 - (void)canRotate
 {
