@@ -68,7 +68,7 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
 {
     UIViewController *currentViewController = [self topViewController];
     if ([currentViewController respondsToSelector:NSSelectorFromString(@"canRotate")]) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
+        return UIInterfaceOrientationMaskAll;
     }
     return UIInterfaceOrientationMaskPortrait;
 }

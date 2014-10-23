@@ -21,6 +21,7 @@
 #import "PEViewPhotoViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEBlurEffect.h"
 
 static NSInteger const AEDTitleForRowHeight = 37;
 static NSInteger const AEDHeightForSpecRow = 130;
@@ -37,6 +38,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bluredPartImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -110,14 +112,18 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     if (self.isEditedDoctor) {
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo *)self.specManager.currentDoctor.photo).photoData) {
-                self.imageView.image = [UIImage imageWithData:((Photo *)self.specManager.currentDoctor.photo).photoData];
+            UIImage *image = [UIImage imageWithData:((Photo *)self.specManager.currentDoctor.photo).photoData];
+            self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
+            self.imageView.image = image;
         } else {
             self.imageView.image = [UIImage imageNamedFile:AEDTPlaceHolderImage];
         }
     }
     
     if (self.specManager.photoObject) {
-        self.imageView.image = [UIImage imageWithData:self.specManager.photoObject.photoData];
+        UIImage *image = [UIImage imageWithData:self.specManager.photoObject.photoData];
+        self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
+        self.imageView.image = image;
     }
 }
 

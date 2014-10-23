@@ -179,9 +179,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
         sizingCell = [self.tableViewNotes dequeueReusableCellWithIdentifier:NVCNotesCellIdentifier];
     });
     [self configureCell:sizingCell atIndexPath:indexPath];
-    
-    [sizingCell setNeedsLayout];
-    [sizingCell layoutIfNeeded];
+
     sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableViewNotes.bounds), 0.0f);
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
