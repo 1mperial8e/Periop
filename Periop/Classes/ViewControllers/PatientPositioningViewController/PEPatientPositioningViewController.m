@@ -270,6 +270,7 @@ static NSInteger const PPTagView = 35;
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
+        viewPhotoControleller.startPosition = indexPath.row;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }

@@ -36,6 +36,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 @property (assign, nonatomic) BOOL isFullScreen;
 @property (strong, nonatomic) NSMutableArray *arrayWithPhotoToShow;
 @property (strong, nonatomic) NSIndexPath *indexPathForCurrentItem;
+@property (assign, nonatomic) BOOL isNavigatedToSelectedItem;
 
 @end
 
@@ -70,8 +71,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHideNavBar:)];
     [self.collectionViewPhoto addGestureRecognizer:tapGesture];
-    
-    [self.collectionViewPhoto scrollToItemAtIndexPath:self.indexPathForCurrentItem atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    self.isNavigatedToSelectedItem = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,6 +102,11 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     }    
     self.view.frame = frame;
     self.collectionViewPhoto.contentInset = UIEdgeInsetsZero;
+    
+    if (!self.isNavigatedToSelectedItem) {
+        [self.collectionViewPhoto scrollToItemAtIndexPath:self.indexPathForCurrentItem atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        self.isNavigatedToSelectedItem = !self.isNavigatedToSelectedItem;
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -191,53 +196,67 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 
 - (IBAction)removeImageButton:(id)sender
 {
-    if (self.photoToShow) {
+    if (self.arrayWithPhotoToShow.count) {
         id viewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2];
         
         if ([viewController isKindOfClass:NSClassFromString(VPVCOperationRoomViewController)]) {
-            for (Photo * imageToDelete in [self.specManager.currentProcedure.operationRoom.photo allObjects]) {
-                if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
-                    [self.specManager.currentProcedure.operationRoom removePhotoObject:imageToDelete];
-                    [self.managedObjectContext deleteObject:imageToDelete];
+            for (Photo *photo in [self.specManager.currentProcedure.operationRoom.photo allObjects]) {
+                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                    [self.managedObjectContext deleteObject:photo];
+                    [self.arrayWithPhotoToShow removeObject:photo];
+                    break;
                 }
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCPatientPositioningViewController)]) {
-            for (Photo * imageToDelete in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
-                if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
-                    [self.specManager.currentProcedure.patientPostioning removePhotoObject:imageToDelete];
-                    [self.managedObjectContext deleteObject:imageToDelete];
+            for (Photo *photo in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
+                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                    [self.managedObjectContext deleteObject:photo];
+                    [self.arrayWithPhotoToShow removeObject:photo];
+                    break;
                 }
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
-            for (Photo * imageToDelete in [self.specManager.currentEquipment.photo allObjects]) {
-                if ([imageToDelete.photoData isEqualToData:self.photoToShow.photoData]) {
-                    [self.specManager.currentEquipment removePhotoObject:imageToDelete];
-                    [self.managedObjectContext deleteObject:imageToDelete];
+            for (Photo *photo in [self.specManager.currentEquipment.photo allObjects]) {
+                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                    [self.managedObjectContext deleteObject:photo];
+                    [self.arrayWithPhotoToShow removeObject:photo];
+                    break;
                 }
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
-            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
-                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                [self.managedObjectContext deleteObject:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row]))];
+                [self.arrayWithPhotoToShow removeAllObjects];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
-            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:self.photoToShow.photoData]) {
-                [self.managedObjectContext deleteObject:self.specManager.currentDoctor.photo];
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                [self.managedObjectContext deleteObject:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row]))];
+                [self.arrayWithPhotoToShow removeAllObjects];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCNotesViewController)]) {
-            if ([((Photo*)self.specManager.currentNote.photo).photoData isEqualToData:self.photoToShow.photoData]) {
-                if (self.specManager.currentNote.photo) {
-                    [self.managedObjectContext deleteObject:(Photo*)self.specManager.currentNote.photo];
+            for (Photo *photo in [self.specManager.currentNote.photo allObjects]) {
+                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                    [self.managedObjectContext deleteObject:photo];
+                    [self.arrayWithPhotoToShow removeObject:photo];
+                    break;
                 }
-                self.specManager.currentNote.photo = nil;
             }
         }
+
         NSError* removeError;
         if (![self.managedObjectContext save:&removeError]) {
             NSLog(@"Cant remove image - %@", removeError.localizedDescription);
-        }        
-        [self.navigationController popViewControllerAnimated:YES];
+        }
+        self.pageControl.numberOfPages = self.arrayWithPhotoToShow.count;
+        if (self.arrayWithPhotoToShow.count) {
+            [self.collectionViewPhoto reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } else {
+        NSLog(@"Cant delete object - empty dataSource");
     }
 }
 
@@ -311,8 +330,29 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     if (!self.arrayWithPhotoToShow) {
         self.arrayWithPhotoToShow = [[NSMutableArray alloc] init];
     }
+    id viewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2];
     
-    self.arrayWithPhotoToShow = [[self.specManager.currentNote.photo allObjects] mutableCopy];
+    NSArray *arrayWithPhotos = [[NSArray alloc] init];
+    
+    if ([viewController isKindOfClass:NSClassFromString(VPVCOperationRoomViewController)]) {
+        arrayWithPhotos = [self.specManager.currentProcedure.operationRoom.photo allObjects];
+    } else if ([viewController isKindOfClass:NSClassFromString(VPVCPatientPositioningViewController)]) {
+        arrayWithPhotos = [self.specManager.currentProcedure.patientPostioning.photo allObjects];
+    } else if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
+        arrayWithPhotos = [self.specManager.currentEquipment.photo allObjects];
+    } else if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
+        arrayWithPhotos = @[self.specManager.currentDoctor.photo];
+    } else if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
+        arrayWithPhotos = @[self.specManager.currentDoctor.photo];
+    } else if ([viewController isKindOfClass:NSClassFromString(VPVCNotesViewController)]) {
+        arrayWithPhotos = [[self.specManager.currentNote.photo allObjects] mutableCopy];
+    }
+
+    self.arrayWithPhotoToShow = [[arrayWithPhotos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber *photoNum1 = ((Photo *)obj1).photoNumber;
+        NSNumber *photoNum2 = ((Photo *)obj2).photoNumber;
+        return [photoNum1 compare:photoNum2];
+    }] mutableCopy];
 }
 
 - (void)showPageControl
