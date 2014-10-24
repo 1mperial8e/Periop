@@ -27,13 +27,14 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewPhoto;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) CAGradientLayer *gradient;
 
 @property (assign, nonatomic) BOOL isFullScreen;
-@property (strong, nonatomic) NSMutableArray * arrayWithPhotoToShow;
+@property (strong, nonatomic) NSMutableArray *arrayWithPhotoToShow;
 @property (strong, nonatomic) NSIndexPath *indexPathForCurrentItem;
 
 @end
@@ -52,7 +53,9 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     [self.collectionViewPhoto registerNib:[UINib nibWithNibName:VPVCCellNibName bundle:nil] forCellWithReuseIdentifier:VPVCCellIdentifier];
     
     [self configureDataSource];
-    self.indexPathForCurrentItem = [NSIndexPath indexPathForItem:0 inSection:0];
+    self.indexPathForCurrentItem = [NSIndexPath indexPathForItem:(int)self.startPosition inSection:0];
+    self.pageControl.numberOfPages = self.arrayWithPhotoToShow.count;
+    self.pageControl.currentPage = (int)self.startPosition;
     
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -63,9 +66,12 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     [self.viewContainer.layer insertSublayer:self.gradient atIndex:0];
     self.edgesForExtendedLayout = UIRectEdgeTop;
     self.isFullScreen = NO;
+    self.pageControl.alpha = 0;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHideNavBar:)];
     [self.collectionViewPhoto addGestureRecognizer:tapGesture];
+    
+    [self.collectionViewPhoto scrollToItemAtIndexPath:self.indexPathForCurrentItem atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -124,11 +130,16 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     for (NSIndexPath *indexPath in self.collectionViewPhoto.indexPathsForVisibleItems) {
         PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:indexPath];
         if (ABS(cell.frame.origin.x - self.collectionViewPhoto.contentOffset.x) <= 50) {
-//            self.pageControll.currentPage = indexPath.row;
+            self.pageControl.currentPage = indexPath.row;
             self.indexPathForCurrentItem = indexPath;
             break;
         }
     }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    [self showPageControl];
 }
 
 #pragma mark - Rotation
@@ -302,6 +313,18 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     }
     
     self.arrayWithPhotoToShow = [[self.specManager.currentNote.photo allObjects] mutableCopy];
+}
+
+- (void)showPageControl
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+    animation.keyTimes = @[@0, @0.5, @1];
+    animation.values = @[[NSNumber numberWithFloat:((CALayer *)self.pageControl.layer.presentationLayer).opacity], @1, @0];
+    animation.duration = 1.5;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.removedOnCompletion = YES;
+    [self.pageControl.layer removeAllAnimations];
+    [self.pageControl.layer addAnimation:animation forKey:@"fade"];
 }
 
 - (void)centerContent

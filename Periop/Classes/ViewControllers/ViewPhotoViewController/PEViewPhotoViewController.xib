@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEViewPhotoViewController">
             <connections>
                 <outlet property="collectionViewPhoto" destination="5hD-tq-TdP" id="2ur-VY-pea"/>
+                <outlet property="pageControl" destination="xkQ-l0-9my" id="Icx-bm-HPg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewContainer" destination="PNa-8m-45z" id="f0D-de-zRu"/>
             </connections>
@@ -32,6 +33,14 @@
                         <outlet property="delegate" destination="-1" id="VLt-sc-RIN"/>
                     </connections>
                 </collectionView>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xkQ-l0-9my">
+                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="1Gq-41-ZWt"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNa-8m-45z" userLabel="BottomHolderVIew">
                     <rect key="frame" x="0.0" y="531" width="320" height="37"/>
                     <subviews>
@@ -62,10 +71,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5hD-tq-TdP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C0v-Gh-Htd"/>
+                <constraint firstAttribute="trailing" secondItem="xkQ-l0-9my" secondAttribute="trailing" id="ESb-UX-E5M"/>
                 <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="EbG-QC-MTF"/>
                 <constraint firstAttribute="trailing" secondItem="5hD-tq-TdP" secondAttribute="trailing" id="Rz6-Vn-VZx"/>
+                <constraint firstItem="xkQ-l0-9my" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XnQ-DK-LKW"/>
                 <constraint firstAttribute="bottom" secondItem="5hD-tq-TdP" secondAttribute="bottom" id="fdm-B2-b89"/>
                 <constraint firstItem="5hD-tq-TdP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kee-ag-zlD"/>
+                <constraint firstAttribute="bottom" secondItem="xkQ-l0-9my" secondAttribute="bottom" id="kzX-3I-inQ"/>
                 <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nCf-ie-FzM"/>
                 <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="xpz-K9-GIg"/>
             </constraints>
