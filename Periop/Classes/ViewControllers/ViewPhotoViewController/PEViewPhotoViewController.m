@@ -36,6 +36,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 @property (assign, nonatomic) BOOL isFullScreen;
 @property (strong, nonatomic) NSMutableArray *arrayWithPhotoToShow;
 @property (strong, nonatomic) NSIndexPath *indexPathForCurrentItem;
+
 @property (assign, nonatomic) BOOL isNavigatedToSelectedItem;
 
 @end
@@ -198,10 +199,10 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 {
     if (self.arrayWithPhotoToShow.count) {
         id viewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count]-2];
-        
+        NSIndexPath *selectedIndexPath = [[self.collectionViewPhoto indexPathsForVisibleItems] lastObject];
         if ([viewController isKindOfClass:NSClassFromString(VPVCOperationRoomViewController)]) {
             for (Photo *photo in [self.specManager.currentProcedure.operationRoom.photo allObjects]) {
-                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                if ([photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                     [self.managedObjectContext deleteObject:photo];
                     [self.arrayWithPhotoToShow removeObject:photo];
                     break;
@@ -209,7 +210,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCPatientPositioningViewController)]) {
             for (Photo *photo in [self.specManager.currentProcedure.patientPostioning.photo allObjects]) {
-                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                if ([photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                     [self.managedObjectContext deleteObject:photo];
                     [self.arrayWithPhotoToShow removeObject:photo];
                     break;
@@ -217,27 +218,27 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCToolsDetailsViewController)]) {
             for (Photo *photo in [self.specManager.currentEquipment.photo allObjects]) {
-                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                if ([photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                     [self.managedObjectContext deleteObject:photo];
                     [self.arrayWithPhotoToShow removeObject:photo];
                     break;
                 }
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
-            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                 [self.managedObjectContext deleteObject:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row]))];
                 [self.arrayWithPhotoToShow removeAllObjects];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
-            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+            if ([self.specManager.currentDoctor.photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                 [self.managedObjectContext deleteObject:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row]))];
                 [self.arrayWithPhotoToShow removeAllObjects];
                 self.specManager.currentDoctor.photo = nil;
             }
         } else if ([viewController isKindOfClass:NSClassFromString(VPVCNotesViewController)]) {
             for (Photo *photo in [self.specManager.currentNote.photo allObjects]) {
-                if ([photo.photoData isEqualToData:((Photo *)(self.arrayWithPhotoToShow[self.indexPathForCurrentItem.row])).photoData]) {
+                if ([photo.photoData isEqualToData:((Photo *)self.arrayWithPhotoToShow[selectedIndexPath.row]).photoData]) {
                     [self.managedObjectContext deleteObject:photo];
                     [self.arrayWithPhotoToShow removeObject:photo];
                     break;
