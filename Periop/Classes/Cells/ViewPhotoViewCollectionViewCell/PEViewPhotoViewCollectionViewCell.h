@@ -12,4 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *photoScrollView;
 
+@property (strong, nonatomic) UIImageView *imageViewForSelectedPhoto;
+
+- (void)centerScrollViewContents;
+- (void)resizeCell:(UIInterfaceOrientation)toInterfaceOrientation boundsParam:(CGRect)toBounds;
+
+
 @end

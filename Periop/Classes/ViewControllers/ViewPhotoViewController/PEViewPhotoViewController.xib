@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEViewPhotoViewController">
             <connections>
-                <outlet property="photoScrollView" destination="Des-XT-JhU" id="XUm-al-g8U"/>
+                <outlet property="collectionViewPhoto" destination="5hD-tq-TdP" id="2ur-VY-pea"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewContainer" destination="PNa-8m-45z" id="f0D-de-zRu"/>
             </connections>
@@ -17,12 +16,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Des-XT-JhU">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-tq-TdP">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="20l-zA-XHX">
+                        <size key="itemSize" width="320" height="568"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="deo-tv-6qJ"/>
+                        <outlet property="dataSource" destination="-1" id="eqz-OW-2xz"/>
+                        <outlet property="delegate" destination="-1" id="VLt-sc-RIN"/>
                     </connections>
-                </scrollView>
+                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNa-8m-45z" userLabel="BottomHolderVIew">
                     <rect key="frame" x="0.0" y="531" width="320" height="37"/>
                     <subviews>
@@ -52,24 +60,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="5hD-tq-TdP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C0v-Gh-Htd"/>
                 <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="EbG-QC-MTF"/>
-                <constraint firstItem="Des-XT-JhU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JTZ-8V-lr3"/>
-                <constraint firstAttribute="bottom" secondItem="Des-XT-JhU" secondAttribute="bottom" id="dsO-Ws-8EC"/>
-                <constraint firstAttribute="trailing" secondItem="Des-XT-JhU" secondAttribute="trailing" id="iyS-tK-Ucc"/>
+                <constraint firstAttribute="trailing" secondItem="5hD-tq-TdP" secondAttribute="trailing" id="Rz6-Vn-VZx"/>
+                <constraint firstAttribute="bottom" secondItem="5hD-tq-TdP" secondAttribute="bottom" id="fdm-B2-b89"/>
+                <constraint firstItem="5hD-tq-TdP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kee-ag-zlD"/>
                 <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nCf-ie-FzM"/>
-                <constraint firstItem="Des-XT-JhU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="odH-EX-epW"/>
                 <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="xpz-K9-GIg"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
     </objects>
     <resources>
         <image name="Bin_Icon.png" width="32" height="32"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

@@ -179,7 +179,10 @@ static NSInteger const AVCDefaultQuantity = 29;
 {
     if (![self checkIfPhotoExist:[self.specManager.currentNote.photo allObjects] compareWithPhoto:newPhoto]) {
         newPhoto.note = self.specManager.currentNote;
-        newPhoto.photoNumber=@([self.specManager.currentNote.photo allObjects].count+1);
+        newPhoto.photoNumber = @([self.specManager.currentNote.photo allObjects].count+1);
+        if (!self.specManager.photoObjectsToSave) {
+            self.specManager.photoObjectsToSave = [[NSMutableArray alloc] init];
+        }
         [self.specManager.photoObjectsToSave addObject:newPhoto];
     }
 }
