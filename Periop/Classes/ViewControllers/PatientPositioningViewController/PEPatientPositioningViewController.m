@@ -247,9 +247,7 @@ static NSInteger const PPTagView = 35;
     PEOperationRoomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PPOperationRoomCollectionViewCellIdentifier forIndexPath:indexPath];
     if (self.sortedArrayWithPhotos.count>0) {
         UIImage *image = [UIImage imageWithData:((Photo*)self.sortedArrayWithPhotos[indexPath.row]).photoData];
-        cell.operationRoomImage.image = image;
-        cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
-        
+        cell.operationRoomImage.image = image;        
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:PPImagePlaceHolder];
     }

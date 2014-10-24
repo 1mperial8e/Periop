@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDoctorProfileViewController">
             <connections>
-                <outlet property="bluredPartImageView" destination="hAX-cT-tvS" id="J0X-kz-NtN"/>
                 <outlet property="collectionView" destination="YIM-zE-PPM" id="daI-BZ-AWI"/>
                 <outlet property="doctorName" destination="D0H-Kj-kVe" id="97a-fh-Fyg"/>
                 <outlet property="doctorPhotoImageView" destination="qbo-4Q-cnG" id="ANu-u4-qYO"/>
@@ -22,12 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hAX-cT-tvS" userLabel="BluredPart">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="hAX-cT-tvS" secondAttribute="height" multiplier="320:237" id="OyS-yV-GUY"/>
-                    </constraints>
-                </imageView>
                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qbo-4Q-cnG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                     <constraints>
@@ -113,12 +106,9 @@
                 <constraint firstItem="c97-2Y-Yg8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D4J-mK-8nh"/>
                 <constraint firstItem="Shd-00-ENp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="FmJ-OG-Gmm"/>
                 <constraint firstItem="D0H-Kj-kVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="M5j-Me-RqD"/>
-                <constraint firstAttribute="trailing" secondItem="hAX-cT-tvS" secondAttribute="trailing" id="MTj-8J-Ffq"/>
                 <constraint firstItem="qbo-4Q-cnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ns1-bh-jGS"/>
                 <constraint firstItem="oQV-6s-ZsM" firstAttribute="top" secondItem="YIM-zE-PPM" secondAttribute="bottom" constant="10" id="OD5-fs-bMz"/>
                 <constraint firstItem="YIM-zE-PPM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="Rbo-7w-VKY"/>
-                <constraint firstItem="hAX-cT-tvS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="V5M-sA-1OT"/>
-                <constraint firstItem="hAX-cT-tvS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XGz-BB-rJ3"/>
                 <constraint firstAttribute="bottom" secondItem="c97-2Y-Yg8" secondAttribute="bottom" id="biI-JZ-erx"/>
                 <constraint firstItem="qbo-4Q-cnG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bnj-No-QnN"/>
                 <constraint firstAttribute="trailing" secondItem="D0H-Kj-kVe" secondAttribute="trailing" constant="15" id="d1X-m1-ifW"/>

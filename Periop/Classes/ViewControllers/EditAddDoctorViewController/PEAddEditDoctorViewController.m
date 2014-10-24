@@ -38,7 +38,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 @interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIImageView *bluredPartImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -113,7 +112,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo *)self.specManager.currentDoctor.photo).photoData) {
             UIImage *image = [UIImage imageWithData:((Photo *)self.specManager.currentDoctor.photo).photoData];
-            self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
             self.imageView.image = image;
         } else {
             self.imageView.image = [UIImage imageNamedFile:AEDTPlaceHolderImage];
@@ -122,7 +120,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     if (self.specManager.photoObject) {
         UIImage *image = [UIImage imageWithData:self.specManager.photoObject.photoData];
-        self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
         self.imageView.image = image;
     }
 }

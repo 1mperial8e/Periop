@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEAddEditDoctorViewController">
             <connections>
-                <outlet property="bluredPartImageView" destination="YnH-NA-OGW" id="e2F-zd-V62"/>
                 <outlet property="imageView" destination="Poo-pq-qsh" id="QUt-xL-XHx"/>
                 <outlet property="nameLabel" destination="UbH-iP-Lg9" id="RDL-dp-DfS"/>
                 <outlet property="nameTextField" destination="eOL-BP-6FG" id="Ylb-eg-dcx"/>
@@ -22,9 +21,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEy-eI-TI3" userLabel="Profile photo">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YnH-NA-OGW" userLabel="BluredPartImageView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
-                        </imageView>
                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh" userLabel="ProfilePhotoImageView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                         </imageView>
@@ -45,16 +41,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Poo-pq-qsh" secondAttribute="bottom" id="32w-Ce-89M"/>
-                        <constraint firstAttribute="trailing" secondItem="YnH-NA-OGW" secondAttribute="trailing" id="3xd-Iu-i7l"/>
                         <constraint firstAttribute="trailing" secondItem="h9o-4y-xKb" secondAttribute="trailing" constant="10" id="IWm-2T-xGU"/>
                         <constraint firstItem="h9o-4y-xKb" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" constant="15" id="KHQ-Jm-xHs"/>
-                        <constraint firstItem="YnH-NA-OGW" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" id="L4n-hE-YT4"/>
                         <constraint firstItem="Poo-pq-qsh" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" id="MHU-dp-Ipp"/>
                         <constraint firstAttribute="trailing" secondItem="Poo-pq-qsh" secondAttribute="trailing" id="dDG-pj-xrs"/>
-                        <constraint firstAttribute="bottom" secondItem="YnH-NA-OGW" secondAttribute="bottom" id="hTE-aw-YuJ"/>
                         <constraint firstItem="Poo-pq-qsh" firstAttribute="leading" secondItem="FEy-eI-TI3" secondAttribute="leading" id="lcl-1l-hap"/>
                         <constraint firstAttribute="height" constant="237" id="m31-zq-Ba3"/>
-                        <constraint firstItem="YnH-NA-OGW" firstAttribute="leading" secondItem="FEy-eI-TI3" secondAttribute="leading" id="p9C-h0-FVa"/>
                     </constraints>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbH-iP-Lg9" userLabel="Label - background">
