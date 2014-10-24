@@ -10,6 +10,8 @@
 
 @interface PEViewPhotoViewCollectionViewCell () <UIScrollViewDelegate>
 
+@property (assign, nonatomic) CGPoint contentOffset;
+
 @end
 
 @implementation PEViewPhotoViewCollectionViewCell
@@ -43,52 +45,61 @@
 
 - (void)centerScrollViewContents
 {
+    self.photoScrollView.zoomScale = self.photoScrollView.zoomScale;
+    CGPoint offset;
     CGSize boundsSize = self.photoScrollView.bounds.size;
-    CGRect contentsFrame = self.photoScrollView.frame;
-    
+    CGRect contentsFrame = self.imageViewForSelectedPhoto.frame;
     if (contentsFrame.size.width < boundsSize.width) {
         contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
     } else {
         contentsFrame.origin.x = 0.0f;
+        offset.x = self.photoScrollView.contentSize.width * self.contentOffset.x;
+        if (self.photoScrollView.contentSize.width - offset.x < self.photoScrollView.bounds.size.width) {
+            offset.x = self.photoScrollView.contentSize.width - self.photoScrollView.bounds.size.width;
+        }
     }
     
     if (contentsFrame.size.height < boundsSize.height) {
         contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
     } else {
         contentsFrame.origin.y = 0.0f;
+        offset.y = self.photoScrollView.contentSize.height * self.contentOffset.y;
+        if (self.photoScrollView.contentSize.height - offset.y < self.photoScrollView.bounds.size.height) {
+            offset.y = self.photoScrollView.contentSize.height - self.photoScrollView.bounds.size.height;
+        }
     }
-    
     self.imageViewForSelectedPhoto.frame = contentsFrame;
+    
+    if (!CGPointEqualToPoint(self.contentOffset, CGPointZero)) {
+        self.photoScrollView.contentOffset = offset;
+    }
+    self.contentOffset = CGPointZero;
 }
 
 - (void)resizeCell:(UIInterfaceOrientation)toInterfaceOrientation boundsParam:(CGRect)toBounds
 {
-    CGRect newRect;
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
-        newRect = CGRectMake(0, 0, toBounds.size.height, toBounds.size.width);
-    } else {
-        newRect = toBounds;
-    }
+    CGPoint offset = self.photoScrollView.contentOffset;
+    offset.x = offset.x / self.photoScrollView.contentSize.width;
+    offset.y = offset.y / self.photoScrollView.contentSize.height;
+    self.contentOffset = offset;
+    
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
     {
-        CGSize size = CGSizeMake(self.imageViewForSelectedPhoto.image.size.height, self.imageViewForSelectedPhoto.image.size.width);
-        size.height = toBounds.size.height;
-        size.width = size.width * (size.height / self.imageViewForSelectedPhoto.image.size.width);
-        self.imageViewForSelectedPhoto.bounds = CGRectMake(0, 0, size.height, size.width);
-        self.photoScrollView.contentSize = CGSizeMake(size.height, size.width);
-        //self.bounds = newRect;
-        self.photoScrollView.frame = newRect;
+        CGSize size = CGSizeMake(self.imageViewForSelectedPhoto.image.size.width, self.imageViewForSelectedPhoto.image.size.height);
+        size.width = toBounds.size.width;
+        size.height = size.height * (size.width / self.imageViewForSelectedPhoto.image.size.width);
+        self.imageViewForSelectedPhoto.bounds = CGRectMake(0, 0, size.width, size.height);
+        self.photoScrollView.contentSize = CGSizeMake(size.width, size.height);
+        self.photoScrollView.frame = toBounds;
     } else {
         CGSize size = self.imageViewForSelectedPhoto.image.size;
-        size.height = toBounds.size.width;
+        size.height = toBounds.size.height ;
         size.width = size.width * (size.height / self.imageViewForSelectedPhoto.image.size.height);
         self.imageViewForSelectedPhoto.bounds = CGRectMake(0, 0, size.width, size.height);
         self.photoScrollView.contentSize = size;
-        //self.bounds = newRect;
-        self.photoScrollView.frame = newRect;
+        self.photoScrollView.frame = toBounds;
     }
     [self centerScrollViewContents];
-    //self.photoScrollView.zoomScale = 1.0f;
 }
 
 #pragma mark - UIScrollView delegate

@@ -217,8 +217,6 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     if ([self.specManager.currentNote.photo allObjects].count) {
         self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-#warning to change
-        viewPhotoControleller.photoToShow = [self.specManager.currentNote.photo allObjects][0];
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }

@@ -20,17 +20,13 @@ static NSString *const VPVCPatientPositioningViewController = @"PEPatientPositio
 static NSString *const VPVCDoctorProfileViewController = @"PEDoctorProfileViewController";
 static NSString *const VPVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
 static NSString *const VPVCNotesViewController = @"PENotesViewController";
-
 static NSString *const VPVCCellNibName = @"PEViewPhotoViewCollectionViewCell";
 static NSString *const VPVCCellIdentifier = @"imageViewCell";
-
 
 @interface PEViewPhotoViewController () < UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewPhoto;
-
-//@property (strong, nonatomic) UIImageView *imageView;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
@@ -70,106 +66,6 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHideNavBar:)];
     [self.collectionViewPhoto addGestureRecognizer:tapGesture];
-    
-//    UIImage *photo;
-//    if (self.photoToShow) {
-//        photo = [UIImage imageWithData:self.photoToShow.photoData];
-//    }
-//    CGSize size = photo.size;
-//    size.width = self.view.bounds.size.width;
-//    size.height = size.height * (size.width / photo.size.width);
-//    self.imageView = [[UIImageView alloc] initWithImage:photo];
-//    self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
-//    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    
-//    [self.photoScrollView addSubview:self.imageView];
-//    self.photoScrollView.contentSize = size;
-    
-//    [self configPhotoScrollView];
-//    [self centerScrollViewContents];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
-    CGRect bounds = self.gradient.bounds;
-    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-            return;
-        }
-        bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-        
-//        CGSize size = CGSizeMake(self.imageView.image.size.height, self.imageView.image.size.width);
-//        size.height = self.view.bounds.size.height;
-//        size.width = size.width * (size.height / self.imageView.image.size.width);
-//        self.imageView.bounds = CGRectMake(0, 0, size.height, size.width);
-        
-//        self.photoScrollView.contentSize = CGSizeMake(size.height, size.width);
-    } else {
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            return;
-        }
-        bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-        
-//        CGSize size = self.imageView.image.size;
-//        size.height = self.view.bounds.size.width;
-//        size.width = size.width * (size.height / self.imageView.image.size.height);
-//        self.imageView.bounds = CGRectMake(0, 0, size.width, size.height);
-        
-//        self.photoScrollView.contentSize = size;
-    }
-//    [self centerScrollViewContents];
-    self.gradient.frame = bounds;
-    
-    PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:self.indexPathForCurrentItem];
-    [self.collectionViewPhoto.collectionViewLayout invalidateLayout];
-    CGSize size;
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
-        size = CGSizeMake(self.view.bounds.size.height, self.view.bounds.size.width);
-    } else {
-        size = self.view.bounds.size;
-    }
-    
-    [cell resizeCell:toInterfaceOrientation boundsParam:CGRectMake(0, 0, size.width, size.height)];
-    
-    [self.collectionViewPhoto reloadData];
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) && UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        [self centerContent];
-    } else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        [self centerContent];
-    }
-    self.collectionViewPhoto.contentInset = UIEdgeInsetsZero;
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    CGRect frame = [UIScreen mainScreen].bounds;
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
-        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-            frame.size.width *= frame.size.height;
-            frame.size.height = frame.size.width / frame.size.height;
-            frame.size.width /= frame.size.height;
-        }
-    }    
-    self.view.frame = frame;
-    
-    PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:self.indexPathForCurrentItem];
-    [cell centerScrollViewContents];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    if (self.isFullScreen) {
-        self.navigationController.navigationBar.alpha = 0;
-    } else {
-        self.navigationController.navigationBar.alpha = 1;
-    }
-//    self.photoScrollView.contentInset = UIEdgeInsetsZero;
-//    [self centerScrollViewContents];
-//    self.photoScrollView.bounds = self.view.bounds;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,9 +82,37 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     ((PENavigationController *)self.navigationController).titleLabel.text = @"";
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect frame = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
+        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            frame.size.width *= frame.size.height;
+            frame.size.height = frame.size.width / frame.size.height;
+            frame.size.width /= frame.size.height;
+        }
+    }    
+    self.view.frame = frame;
+    self.collectionViewPhoto.contentInset = UIEdgeInsetsZero;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if (self.isFullScreen) {
+        self.navigationController.navigationBar.alpha = 0;
+    } else {
+        self.navigationController.navigationBar.alpha = 1;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
     [self.navigationItem.titleView removeFromSuperview];
     self.navigationController.navigationBar.translucent = NO;
 }
@@ -196,22 +120,55 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    self.indexPathForCurrentItem = [[self.collectionViewPhoto indexPathsForVisibleItems] lastObject];
-    
-//    for (NSIndexPath *indexPath in self.collectionViewPhoto.indexPathsForVisibleItems) {
-//        PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:indexPath];
-//        if (ABS(cell.frame.origin.x - self.collectionViewPhoto.contentOffset.x) <= 50) {
+{    
+    for (NSIndexPath *indexPath in self.collectionViewPhoto.indexPathsForVisibleItems) {
+        PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:indexPath];
+        if (ABS(cell.frame.origin.x - self.collectionViewPhoto.contentOffset.x) <= 50) {
 //            self.pageControll.currentPage = indexPath.row;
-//        }
-//    }
+            self.indexPathForCurrentItem = indexPath;
+            break;
+        }
+    }
 }
 
 #pragma mark - Rotation
 
--(NSUInteger)supportedInterfaceOrientations
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    return  UIInterfaceOrientationMaskAll;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+
+    CGRect bounds = self.gradient.bounds;
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            return;
+        }
+        bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    } else {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            return;
+        }
+        bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
+    self.gradient.frame = bounds;
+    
+    PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:self.indexPathForCurrentItem];
+    [self.collectionViewPhoto.collectionViewLayout invalidateLayout];
+    
+    CGSize size;
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
+        size = CGSizeMake(self.view.bounds.size.height, self.view.bounds.size.width);
+    } else {
+        size = self.view.bounds.size;
+    }
+    
+    [cell resizeCell:toInterfaceOrientation boundsParam:CGRectMake(0, 0, size.width, size.height)];
+    
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) && UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        [self centerContent];
+    } else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        [self centerContent];
+    }
+    
 }
 
 - (void)canRotate
@@ -305,7 +262,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     if (!cell) {
         cell = [[PEViewPhotoViewCollectionViewCell alloc] init];
     }
-    UIImage *myImage = [UIImage imageWithData: ((Photo *)self.arrayWithPhotoToShow[indexPath.row]).photoData];
+    UIImage *myImage = [UIImage imageWithData:((Photo *)self.arrayWithPhotoToShow[indexPath.row]).photoData];
     CGSize size = myImage.size;
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         size.width = self.view.bounds.size.width;
@@ -316,15 +273,13 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
         CGFloat koef = (self.view.bounds.size.height / myImage.size.height);
         size.width = size.width * koef;
     }
-    cell.backgroundColor = [UIColor colorWithRed:(80 / 255.0) green:((indexPath.row * 30) / 255.0) blue:((indexPath.row * 30) / 255.0) alpha:1];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     imageView.image = myImage;
     cell.imageViewForSelectedPhoto = imageView;
     cell.imageViewForSelectedPhoto.contentMode = UIViewContentModeScaleAspectFit;
     [cell.photoScrollView addSubview:imageView];
     cell.photoScrollView.contentSize = size;
-    //cell.photoScrollView.zoomScale = 1.0f;
-    cell.photoScrollView.frame = self.collectionViewPhoto.frame;
+    cell.photoScrollView.frame = cell.bounds;
     
     [cell centerScrollViewContents];
     
@@ -362,44 +317,5 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     self.collectionViewPhoto.contentSize = contentSize;
     [self.collectionViewPhoto setContentOffset:CGPointMake(originX, 0) animated:NO];
 }
-
-//- (void)configPhotoScrollView
-//{
-//    self.photoScrollView.minimumZoomScale = 1.0f;
-//    self.photoScrollView.maximumZoomScale = 4.0f;
-//    self.photoScrollView.zoomScale = 1.0;
-//}
-//
-//- (void)centerScrollViewContents
-//{
-//    CGSize boundsSize = self.photoScrollView.bounds.size;
-//    CGRect contentsFrame = self.imageView.frame;
-//    
-//    if (contentsFrame.size.width < boundsSize.width) {
-//        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
-//    } else {
-//        contentsFrame.origin.x = 0.0f;
-//    }
-//    
-//    if (contentsFrame.size.height < boundsSize.height) {
-//        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
-//    } else {
-//        contentsFrame.origin.y = 0.0f;
-//    }
-//    
-//    self.imageView.frame = contentsFrame;
-//}
-//
-//#pragma mark - UIScrollView delegate
-//
-//- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-//{
-//    [self centerScrollViewContents];
-//}
-//
-//- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
-//{
-//    return self.imageView;
-//}
 
 @end
