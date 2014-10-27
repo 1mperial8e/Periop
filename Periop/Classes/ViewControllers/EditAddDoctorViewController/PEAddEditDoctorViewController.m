@@ -25,7 +25,7 @@
 
 static NSInteger const AEDTitleForRowHeight = 37;
 static NSInteger const AEDHeightForSpecRow = 130;
-static NSInteger const AEDHeightForAllRows = 37;
+static NSInteger const AEDHeightForAllRows = 48;
 static NSInteger const AEDTagForView = 100;
 static NSString *const AEDTitleNameSpec = @"Specialisations";
 static CGFloat const AEDDuration = 0.2f;
