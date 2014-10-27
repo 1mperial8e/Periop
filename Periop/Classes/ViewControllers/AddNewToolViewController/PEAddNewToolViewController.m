@@ -53,6 +53,10 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
     self.specTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     self.quantityTextBox.font = [UIFont fontWithName:FONT_MuseoSans300 size:20.0f];
     
+    self.nameTextBox.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.specTextBox.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.quantityTextBox.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    
     self.categoryTools = [self getArrayWithAvaliableCategories:[self.specManager.currentProcedure.equipments allObjects]];
     [self.navigationItem setHidesBackButton:YES];
     
