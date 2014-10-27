@@ -9,5 +9,6 @@
 @interface PEDownloadingScreenViewController : UIViewController
 
 @property (strong, nonatomic) NSDictionary *specialisationInfo;
+@property (assign, nonatomic) BOOL isInitialConfig;
 
 @end

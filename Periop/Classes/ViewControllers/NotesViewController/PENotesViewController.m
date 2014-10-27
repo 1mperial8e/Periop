@@ -206,6 +206,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
         }
     }
     [self updateDataSource];
+    self.specManager.currentNote = nil;
     [self.tableViewNotes reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 

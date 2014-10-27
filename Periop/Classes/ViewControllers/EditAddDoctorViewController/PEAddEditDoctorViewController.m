@@ -25,9 +25,10 @@
 
 static NSInteger const AEDTitleForRowHeight = 37;
 static NSInteger const AEDHeightForSpecRow = 130;
-static NSInteger const AEDHeightForAllRows = 37;
+static NSInteger const AEDHeightForAllRows = 48;
 static NSInteger const AEDTagForView = 100;
 static NSString *const AEDTitleNameSpec = @"Specialisations";
+static CGFloat const AEDDuration = 0.2f;
 
 static NSString *const AEDTEditAddDoctorTableViewCellNibName = @"PEEditAddDoctorTableViewCell";
 static NSString *const AEDTEditAddDoctorTableViewCellCellName = @"tableViewCellWithCollection";
@@ -35,10 +36,9 @@ static NSString *const AEDTProceduresTableViewCellNibName = @"PEProceduresTableV
 static NSString *const AEDTProceduresTableViewCellName = @"proceduresCell";
 static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 
-@interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PEEditAddDoctorTableViewCellDelegate>
+@interface PEAddEditDoctorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextInputTraits, PEEditAddDoctorTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIImageView *bluredPartImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -60,6 +60,9 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:AEDTEditAddDoctorTableViewCellNibName bundle:nil] forCellReuseIdentifier:AEDTEditAddDoctorTableViewCellCellName];
@@ -87,11 +90,14 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     self.nameTextField.font = [UIFont fontWithName:FONT_MuseoSans300 size:13.5f];
     self.nameLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:20.0f];
     self.nameTextField.tintColor = [UIColor whiteColor];
+    
+    self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     self.specManager.photoObject = nil;
 }
 
@@ -113,7 +119,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         self.nameTextField.text = self.specManager.currentDoctor.name;
         if (((Photo *)self.specManager.currentDoctor.photo).photoData) {
             UIImage *image = [UIImage imageWithData:((Photo *)self.specManager.currentDoctor.photo).photoData];
-            self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
             self.imageView.image = image;
         } else {
             self.imageView.image = [UIImage imageNamedFile:AEDTPlaceHolderImage];
@@ -122,7 +127,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     
     if (self.specManager.photoObject) {
         UIImage *image = [UIImage imageWithData:self.specManager.photoObject.photoData];
-        self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
         self.imageView.image = image;
     }
 }
@@ -391,6 +395,9 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [UIView animateWithDuration:AEDDuration animations:^ {
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
     return YES;
 }
 
@@ -408,6 +415,18 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     NSLog (@"Unselected specialisation \"%@\"", specialisationName);
     [self removeRequestedSpecWithProceduresFromDic:specialisationName];
     [self.tableView reloadData];
+}
+
+#pragma mark - NotifiactionKeyboard
+
+- (void)keyboardWillChange:(NSNotification *)notification
+{
+    CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    [UIView animateWithDuration:AEDDuration animations:^ {
+        self.view.transform = CGAffineTransformMakeTranslation(0, -keyboardRect.size.height);
+    }];
 }
 
 #pragma mark - Private

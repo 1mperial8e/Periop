@@ -57,13 +57,6 @@
     self.cornerLabel.layer.borderWidth = 1;
     
     self.textViewNotes.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
     
     if (self.noteTextToShow.length){
         self.textViewNotes.text = self.noteTextToShow;
@@ -73,14 +66,27 @@
     } else {
         self.timeStamp.text = [self dateFormatter:[NSDate date]];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
+    
     [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
+    if (!self.isEditNote) {
+        self.specManager.currentNote = nil;
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.specManager.photoObject = nil;
+    [self.specManager.photoObjectsToSave removeAllObjects];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -118,8 +124,10 @@
         newNote.textDescription = self.textViewNotes.text;
         newNote.timeStamp = [NSDate date];
         
+        self.specManager.currentNote = newNote;
         if (self.specManager.photoObjectsToSave.count) {
             for (Photo *photo in self.specManager.photoObjectsToSave) {
+                photo.note = self.specManager.currentNote;
                 [newNote addPhotoObject:photo];
                 photo.note = newNote;
             }
@@ -130,12 +138,14 @@
             [((Doctors*)self.specManager.currentDoctor) addNotesObject:newNote];
         }
     }
-    self.specManager.photoObject = nil;
+
     NSError *saveError;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
     }
     
+    [self.specManager.photoObjectsToSave removeAllObjects];
+    self.specManager.currentNote = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -43,7 +43,6 @@ static NSInteger const DPHeaderHeight = 37;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *specsButton;
-@property (weak, nonatomic) IBOutlet UIImageView *bluredPartImageView;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -105,7 +104,6 @@ static NSInteger const DPHeaderHeight = 37;
     if (((Photo*)self.specManager.currentDoctor.photo).photoData) {
         UIImage *image = [UIImage imageWithData:((Photo*)self.specManager.currentDoctor.photo).photoData];
         self.doctorPhotoImageView.image = image;
-        self.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
     } else {
         self.doctorPhotoImageView.image = [UIImage imageNamedFile:DPPlaceHolderImageName];
     }

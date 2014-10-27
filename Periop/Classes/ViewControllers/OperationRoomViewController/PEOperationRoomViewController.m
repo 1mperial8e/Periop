@@ -125,6 +125,7 @@ static NSInteger const ORTagView = 35;
         if (self.sortedArrayWithPhotos.count) {
             viewPhotoControleller.photoToShow = (Photo*)self.sortedArrayWithPhotos[indexPath.row];
         }
+        viewPhotoControleller.startPosition = indexPath.row;
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
@@ -146,8 +147,6 @@ static NSInteger const ORTagView = 35;
     if (self.sortedArrayWithPhotos.count) {
         UIImage *image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         cell.operationRoomImage.image = image;
-        cell.bluredPartImageView.image = [PEBlurEffect applyBlurWithRadius:15.0f tintColor:[UIColor blurTintColor] saturationDeltaFactor:2.0f maskImage:nil inputImage:image];
-
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:ORImagePlaceHolder];
     }

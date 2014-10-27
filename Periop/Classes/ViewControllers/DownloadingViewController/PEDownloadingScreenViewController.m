@@ -54,7 +54,13 @@
 - (void)prepareForDownload
 {
     if ([self.purchaseManager isProductPurchased:self.productIdentifier]) {
-        [self prepareFoReset];
+        if (self.isInitialConfig) {
+            if ([self respondsToSelector:@selector(downloadData)]) {
+                [self performSelector:@selector(downloadData) withObject:nil afterDelay:2.0f];
+            }
+        } else {
+            [self prepareFoReset];
+        }
     } else {
         [self prepareForBuying];
     }
