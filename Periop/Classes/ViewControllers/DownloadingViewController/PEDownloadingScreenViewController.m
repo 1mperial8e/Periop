@@ -187,6 +187,9 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (!buttonIndex) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
+            [self.delegate dataDidChanged];
+        }
         [self hideView];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
         [self downloadData];

@@ -37,11 +37,16 @@ NSInteger const TVCCountPage = 4;
     [self.spleshCollectionView registerNib:[UINib nibWithNibName:@"PETutorialCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"TutorialCell"];
 }
 
-- (IBAction)goToCamera:(id)sender
+- (IBAction)closeTutorial:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:TVCShowTutorial];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __weak PETutorialViewController *weakSelf = self;
+    [self dismissViewControllerAnimated:NO completion:^{
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(tutorialDidFinished)]) {
+            [weakSelf.delegate tutorialDidFinished];
+        }
+    }];
 }
 
 #pragma mark - Private

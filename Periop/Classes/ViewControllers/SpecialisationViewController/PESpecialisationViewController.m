@@ -24,7 +24,7 @@ static NSString *const SVCSpecialisations = @"Specialisations";
 static NSString *const SVCSpecialisationCollectionCellNibName = @"PESpecialisationCollectionCell";
 static NSString *const SVCSpecialisationCollectionCellIdentifier = @"SpecialisedCell";
 
-@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, SpecialisationListDelegate, UIAlertViewDelegate>
+@interface PESpecialisationViewController () <UICollectionViewDelegate, UICollectionViewDataSource, SpecialisationListDelegate, PETutorialDelegate, PEDownloadingVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
@@ -61,7 +61,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
 #ifdef __IPHONE_8_0
         tutorialController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-#endif
+#endif        
+        tutorialController.delegate = self;
         [rootController presentViewController:tutorialController animated:NO completion:nil];
     }
     
@@ -135,6 +136,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 #ifdef __IPHONE_8_0
         downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 #endif
+        downloadingVC.delegate = self;
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [rootController presentViewController:downloadingVC animated:NO completion:nil];
@@ -192,10 +194,11 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 - (void)setSpecialisationsData
 {
     self.mySpecialisationsInfo = [self avaliableSpecs];
-    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
     if (!self.mySpecialisationsInfo.count) {
-        [[[UIAlertView alloc] initWithTitle:@"Inforamtion" message:@"Application will start initial configuration. This operation will take some time. Please wait." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [self createDatabase];
+        self.mySpecialisationsInfo = [self avaliableSpecs];
     }
+    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
 }
 
 - (NSArray *)avaliableSpecs
@@ -234,24 +237,21 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     return sortedSpecialisationsInfo;
 }
 
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)createDatabase
 {
-    if (!buttonIndex) {        
-        PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
-        
-        for (NSDictionary *specPList in self.moreSpecialisationsInfo) {
-            if ([[specPList valueForKey:@"name"] isEqualToString:@"General"]){
-                downloadingVC.specialisationInfo = specPList;
-                downloadingVC.isInitialConfig = YES;
+    PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
+    
+    for (NSDictionary *specPList in self.moreSpecialisationsInfo) {
+        if ([[specPList valueForKey:@"name"] isEqualToString:@"General"]){
+            downloadingVC.specialisationInfo = specPList;
+            downloadingVC.isInitialConfig = YES;
 #ifdef __IPHONE_8_0
-                downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 #endif
-                UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-                rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
-                [rootController presentViewController:downloadingVC animated:NO completion:nil];
-            }
+            downloadingVC.delegate = self;
+            UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+            rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [rootController presentViewController:downloadingVC animated:NO completion:nil];
         }
     }
 }
@@ -268,6 +268,21 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
             [self moreSpecialisationButton:self];
             break;
     }
+}
+
+#pragma mark - PETutorialDelegate
+
+- (void)tutorialDidFinished
+{
+    [self createDatabase];
+}
+
+#pragma mark - PEDownloadingVCDelegate
+
+- (void)dataDidChanged
+{
+    [self setSpecialisationsData];
+    [self.collectionView reloadData];
 }
 
 @end
