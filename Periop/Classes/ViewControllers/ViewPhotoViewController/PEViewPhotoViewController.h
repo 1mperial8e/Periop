@@ -10,7 +10,7 @@
 
 @interface PEViewPhotoViewController : UIViewController
 
-@property (strong, nonatomic) Photo * photoToShow;
+@property (strong, nonatomic) Photo *photoToShow;
 @property (assign, nonatomic) NSInteger startPosition;
 
 @end
