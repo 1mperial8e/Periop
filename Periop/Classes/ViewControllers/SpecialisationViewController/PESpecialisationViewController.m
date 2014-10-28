@@ -238,7 +238,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (!buttonIndex) {        
+    if (!buttonIndex) {
         PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
         
         for (NSDictionary *specPList in self.moreSpecialisationsInfo) {

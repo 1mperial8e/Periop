@@ -57,7 +57,7 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
     [self.window makeKeyAndVisible];
     
     [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
-    
+
     return YES;
 }
 
