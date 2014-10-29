@@ -5931,7 +5931,7 @@
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
+				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5948,7 +5948,7 @@
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a56ca813-78d0-4362-96b2-2fda2ea7ebd9";
+				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

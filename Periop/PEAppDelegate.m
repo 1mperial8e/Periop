@@ -61,6 +61,11 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
     return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
+}
+
 #pragma mark - Rotation
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
