@@ -120,8 +120,12 @@
             }
         }
     }
-    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
-    [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+//    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
+//    [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
+        [self.delegate dataDidChanged];
+    }
+    [self hideView];
 }
 
 - (void)removePreviousData

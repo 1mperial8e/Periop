@@ -78,8 +78,6 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
-    [self.cellWithCheckedButtons  removeAllObjects];
     [self.cellCurrentlyEditing removeAllObjects];
 }
 
@@ -175,7 +173,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     if ([self.cellCurrentlyEditing containsObject:indexPath]) {
         [cell setCellSwiped];
     }
-    if ([self.cellWithCheckedButtons containsObject:indexPath]) {
+    if ([self.cellWithCheckedButtons containsObject:cell.createdDate]) {
          [cell cellSetChecked];
     }
 
@@ -254,6 +252,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
         [titleForEquipmentCell appendString:@", "];
         [titleForEquipmentCell appendString:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).quantity];
     }
+    cell.createdDate = ((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]).createdDate;
     cell.equipmentNameLabel.text = titleForEquipmentCell;
     return cell;
 }
@@ -290,15 +289,14 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     [self.cellCurrentlyEditing addObject:currentlyEditedIndexPath];
 }
 
-- (void)cellChecked:(UITableViewCell *)cell
+- (void)cellChecked:(PEEquipmentCategoryTableViewCell *)cell
 {
-    NSIndexPath *currentlyEditedIndexPath = [self.tableView indexPathForCell:cell];
-    [self.cellWithCheckedButtons addObject:currentlyEditedIndexPath];
+    [self.cellWithCheckedButtons addObject:cell.createdDate];
 }
 
-- (void)cellUnchecked:(UITableViewCell *)cell
+- (void)cellUnchecked:(PEEquipmentCategoryTableViewCell *)cell
 {
-    [self.cellWithCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
+    [self.cellWithCheckedButtons removeObject:cell.createdDate];
 }
 
 #pragma mark - Private

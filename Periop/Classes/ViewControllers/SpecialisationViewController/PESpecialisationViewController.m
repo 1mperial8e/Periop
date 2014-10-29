@@ -239,13 +239,12 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 
 - (void)createDatabase
 {
-    if (!buttonIndex) {
-        PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
-        
-        for (NSDictionary *specPList in self.moreSpecialisationsInfo) {
-            if ([[specPList valueForKey:@"name"] isEqualToString:@"General"]){
-                downloadingVC.specialisationInfo = specPList;
-                downloadingVC.isInitialConfig = YES;
+    PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
+    
+    for (NSDictionary *specPList in self.moreSpecialisationsInfo) {
+        if ([[specPList valueForKey:@"name"] isEqualToString:@"General"]){
+            downloadingVC.specialisationInfo = specPList;
+            downloadingVC.isInitialConfig = YES;
 #ifdef __IPHONE_8_0
             downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 #endif
