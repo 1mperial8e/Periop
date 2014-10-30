@@ -14,6 +14,7 @@
 #import "Specialisation.h"
 #import "PEObjectDescription.h"
 #import "PECoreDataManager.h"
+#import "PEGAManager.h"
 
 @interface PEDownloadingScreenViewController () <UIAlertViewDelegate, IAPurchaseDelegate>
 
@@ -122,6 +123,7 @@
     }
     NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
     [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    [[PEGAManager sharedManager] trackDownloadedSpecialisation:[self.specialisationInfo valueForKey:@"name"]];
 }
 
 - (void)removePreviousData

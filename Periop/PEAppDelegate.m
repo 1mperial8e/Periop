@@ -13,6 +13,7 @@
 #import "PEAboutUsViewController.h"
 #import "PECameraRollManager.h"
 #import "PEPurchaseManager.h"
+#import "PEGAManager.h"
 
 static NSString *const PESpecialisationControllerNibName = @"PESpecialisationViewController";
 static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";
@@ -57,6 +58,7 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.
     [self.window makeKeyAndVisible];
     
     [[PECameraRollManager sharedInstance] getPhotosFromCameraRoll];
+    [PEGAManager sharedManager];
     
     return YES;
 }

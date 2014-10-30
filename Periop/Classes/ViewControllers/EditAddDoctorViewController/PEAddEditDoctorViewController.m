@@ -22,6 +22,7 @@
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEBlurEffect.h"
+#import "PEGAManager.h"
 
 static NSInteger const AEDTitleForRowHeight = 37;
 static NSInteger const AEDHeightForSpecRow = 130;
@@ -228,6 +229,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         NSError *saveError;
         if ([self.managedObjectContext save:&saveError]) {
             NSLog (@"Success");
+            [[PEGAManager sharedManager] trackNewDoctor];
         } else {
             NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
         }

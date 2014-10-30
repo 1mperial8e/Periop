@@ -22,6 +22,9 @@
 		842C8E0B19D5AE7E00D0DAC7 /* sight_img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842C8E0919D5AE7E00D0DAC7 /* sight_img@3x.png */; };
 		8450805219F7A04E00BDD36C /* PEBlurEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8450805119F7A04E00BDD36C /* PEBlurEffect.m */; };
 		84662D7519F9039800CB44F6 /* Flash_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84662D7419F9039800CB44F6 /* Flash_white@2x.png */; };
+		8467E6771A022E8900B7D82D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8467E6761A022E8900B7D82D /* SystemConfiguration.framework */; };
+		8467E6791A022E9800B7D82D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8467E6781A022E9800B7D82D /* libz.dylib */; };
+		8467E67D1A022EF400B7D82D /* PEGAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467E67C1A022EF400B7D82D /* PEGAManager.m */; };
 		8474906319B8459E0013C446 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906219B8459E0013C446 /* Foundation.framework */; };
 		8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906419B8459E0013C446 /* CoreGraphics.framework */; };
 		8474906719B8459E0013C446 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474906619B8459E0013C446 /* UIKit.framework */; };
@@ -1164,6 +1167,20 @@
 		8450805119F7A04E00BDD36C /* PEBlurEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEBlurEffect.m; sourceTree = "<group>"; };
 		846413E819DD8F550077FE16 /* PEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMacros.h; sourceTree = "<group>"; };
 		84662D7419F9039800CB44F6 /* Flash_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Flash_white@2x.png"; sourceTree = "<group>"; };
+		8467E66C1A022E3D00B7D82D /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		8467E66D1A022E3D00B7D82D /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		8467E66E1A022E3D00B7D82D /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		8467E66F1A022E3D00B7D82D /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		8467E6701A022E3D00B7D82D /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		8467E6711A022E3D00B7D82D /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		8467E6721A022E3D00B7D82D /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		8467E6731A022E3D00B7D82D /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		8467E6741A022E3D00B7D82D /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		8467E6751A022E3D00B7D82D /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		8467E6761A022E8900B7D82D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8467E6781A022E9800B7D82D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		8467E67B1A022EF400B7D82D /* PEGAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEGAManager.h; sourceTree = "<group>"; };
+		8467E67C1A022EF400B7D82D /* PEGAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEGAManager.m; sourceTree = "<group>"; };
 		8474905F19B8459E0013C446 /* Periop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Periop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8474906219B8459E0013C446 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8474906419B8459E0013C446 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -2344,6 +2361,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8467E6791A022E9800B7D82D /* libz.dylib in Frameworks */,
+				8467E6771A022E8900B7D82D /* SystemConfiguration.framework in Frameworks */,
 				EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */,
 				8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */,
 				8474906919B8459E0013C446 /* CoreData.framework in Frameworks */,
@@ -2470,6 +2489,32 @@
 			path = Macros;
 			sourceTree = "<group>";
 		};
+		8467E66B1A022E2500B7D82D /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				8467E66C1A022E3D00B7D82D /* GAI.h */,
+				8467E66D1A022E3D00B7D82D /* GAIDictionaryBuilder.h */,
+				8467E66E1A022E3D00B7D82D /* GAIEcommerceFields.h */,
+				8467E66F1A022E3D00B7D82D /* GAIEcommerceProduct.h */,
+				8467E6701A022E3D00B7D82D /* GAIEcommerceProductAction.h */,
+				8467E6711A022E3D00B7D82D /* GAIEcommercePromotion.h */,
+				8467E6721A022E3D00B7D82D /* GAIFields.h */,
+				8467E6731A022E3D00B7D82D /* GAILogger.h */,
+				8467E6741A022E3D00B7D82D /* GAITrackedViewController.h */,
+				8467E6751A022E3D00B7D82D /* GAITracker.h */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		8467E67A1A022EB800B7D82D /* GAManager */ = {
+			isa = PBXGroup;
+			children = (
+				8467E67B1A022EF400B7D82D /* PEGAManager.h */,
+				8467E67C1A022EF400B7D82D /* PEGAManager.m */,
+			);
+			path = GAManager;
+			sourceTree = "<group>";
+		};
 		8474905619B8459E0013C446 = {
 			isa = PBXGroup;
 			children = (
@@ -2492,6 +2537,8 @@
 		8474906119B8459E0013C446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8467E6781A022E9800B7D82D /* libz.dylib */,
+				8467E6761A022E8900B7D82D /* SystemConfiguration.framework */,
 				EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */,
 				8474906219B8459E0013C446 /* Foundation.framework */,
 				8474906419B8459E0013C446 /* CoreGraphics.framework */,
@@ -2519,6 +2566,7 @@
 		8474906B19B8459E0013C446 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8467E66B1A022E2500B7D82D /* GoogleAnalytics */,
 				846413E719DD8F210077FE16 /* Macros */,
 				EDD2A55719DBF40E00A73C5E /* Constants */,
 				8474906C19B8459E0013C446 /* Periop-Info.plist */,
@@ -2940,6 +2988,7 @@
 		EDCD57A619B8479100EC7AF1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8467E67A1A022EB800B7D82D /* GAManager */,
 				847E937819CC479A00665240 /* CameraRollManager */,
 				EDDDEF6F19CAD410007BEDE4 /* SpecialisationManager */,
 				EDEC8EF819C9D1E700066BA5 /* InAppPurchaseManager */,
@@ -5757,6 +5806,7 @@
 				EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */,
 				EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */,
 				EDCD57DA19B874DE00EC7AF1 /* PEMenuViewController.m in Sources */,
+				8467E67D1A022EF400B7D82D /* PEGAManager.m in Sources */,
 				84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */,
 				EDC91EDB19B9E3A200212F24 /* PEToolsDetailsViewController.m in Sources */,
 				842C8DF219D57AE400D0DAC7 /* PECameraViewController.m in Sources */,
