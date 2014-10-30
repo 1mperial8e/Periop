@@ -121,8 +121,12 @@
             }
         }
     }
-    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
-    [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    //    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
+    //    [[[UIAlertView alloc] initWithTitle:@"Periop" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
+        [self.delegate dataDidChanged];
+    }
+    [self hideView];
     [[PEGAManager sharedManager] trackDownloadedSpecialisation:[self.specialisationInfo valueForKey:@"name"]];
 }
 
@@ -196,6 +200,8 @@
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
         [self downloadData];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Buy"]) {
+        [self downloadData];
+        return;
         [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
             if (success) {
                 for (SKProduct *product in products) {

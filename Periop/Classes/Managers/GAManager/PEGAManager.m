@@ -18,7 +18,9 @@ static NSString *const GAMDoctorCreated = @"doctorCreated";
 {
     self = [super init];
     if (self) {
-        self.tracker = [[GAI sharedInstance] trackerWithTrackingId:GATrackingID];
+        [[GAI sharedInstance] trackerWithTrackingId:GATrackingID];
+        self.tracker = [[GAI sharedInstance] defaultTracker];
+        [GAI sharedInstance].dispatchInterval = 20;
     }
     return self;
 }

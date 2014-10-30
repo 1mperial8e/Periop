@@ -57,6 +57,7 @@
 		84BA0AA319E557910054BFE5 /* plus_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */; };
 		84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */; };
 		84BA0AA519E557910054BFE5 /* mail_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */; };
+		84CF607C1A0237F80087E305 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
@@ -1218,6 +1219,7 @@
 		84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_active@2x.png"; sourceTree = "<group>"; };
 		84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
 		84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_active@2x.png"; sourceTree = "<group>"; };
+		84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
@@ -2364,6 +2366,7 @@
 				8467E6791A022E9800B7D82D /* libz.dylib in Frameworks */,
 				8467E6771A022E8900B7D82D /* SystemConfiguration.framework in Frameworks */,
 				EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */,
+				84CF607C1A0237F80087E305 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */,
 				8474906919B8459E0013C446 /* CoreData.framework in Frameworks */,
 				8474906719B8459E0013C446 /* UIKit.framework in Frameworks */,
@@ -2492,6 +2495,7 @@
 		8467E66B1A022E2500B7D82D /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */,
 				8467E66C1A022E3D00B7D82D /* GAI.h */,
 				8467E66D1A022E3D00B7D82D /* GAIDictionaryBuilder.h */,
 				8467E66E1A022E3D00B7D82D /* GAIEcommerceFields.h */,
@@ -5980,6 +5984,11 @@
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/admin/Downloads/GoogleAnalyticsServicesiOS_3.09,
+					"$(PROJECT_DIR)/Periop/GoogleAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				WRAPPER_EXTENSION = app;
@@ -5997,6 +6006,11 @@
 				GCC_PREFIX_HEADER = "Periop/Periop-Prefix.pch";
 				INFOPLIST_FILE = "Periop/Periop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/admin/Downloads/GoogleAnalyticsServicesiOS_3.09,
+					"$(PROJECT_DIR)/Periop/GoogleAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
 				WRAPPER_EXTENSION = app;
