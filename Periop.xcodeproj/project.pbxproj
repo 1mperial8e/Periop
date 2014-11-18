@@ -169,7 +169,6 @@
 		ED9C699D19C720E80022C1A8 /* Notes_Tab_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */; };
 		ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */; };
 		ED9C69A519C720E80022C1A8 /* Photo_Added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */; };
-		ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */; };
 		ED9C69A919C720E80022C1A8 /* Procedures_Tab_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */; };
 		ED9C69AB19C720E80022C1A8 /* Procedures_Tab_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */; };
 		ED9C69AF19C720E80022C1A8 /* Select_Photo_Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */; };
@@ -268,6 +267,7 @@
 		EDDE41911A1BA11F00534D15 /* Screen1-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE418D1A1BA11F00534D15 /* Screen1-iphone5@2x.png */; };
 		EDDE41921A1BA11F00534D15 /* Screen2-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE418E1A1BA11F00534D15 /* Screen2-iphone5@2x.png */; };
 		EDDE41931A1BA11F00534D15 /* Screen3-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE418F1A1BA11F00534D15 /* Screen3-iphone5@2x.png */; };
+		EDDE41971A1BA52000534D15 /* Place_Holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE41961A1BA52000534D15 /* Place_Holder@2x.png */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
 		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
@@ -1344,7 +1344,6 @@
 		ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notes_Tab_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo_Added@2x.png"; sourceTree = "<group>"; };
-		ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@2x.png"; sourceTree = "<group>"; };
 		ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Procedures_Tab_Active@2x.png"; sourceTree = "<group>"; };
 		ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Procedures_Tab_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Select_Photo_Indicator@2x.png"; sourceTree = "<group>"; };
@@ -1480,6 +1479,7 @@
 		EDDE418D1A1BA11F00534D15 /* Screen1-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen1-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDE418E1A1BA11F00534D15 /* Screen2-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen2-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDE418F1A1BA11F00534D15 /* Screen3-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen3-iphone5@2x.png"; sourceTree = "<group>"; };
+		EDDE41961A1BA52000534D15 /* Place_Holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@2x.png"; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
@@ -2842,8 +2842,8 @@
 				ED9C68F619C720E70022C1A8 /* Notes_Tab_Active@2x.png */,
 				ED9C68F819C720E70022C1A8 /* Notes_Tab_Inactive@2x.png */,
 				ED9C68FA19C720E70022C1A8 /* Overlay@2x.png */,
+				EDDE41961A1BA52000534D15 /* Place_Holder@2x.png */,
 				ED9C690019C720E70022C1A8 /* Photo_Added@2x.png */,
-				ED9C690219C720E70022C1A8 /* Place_Holder@2x.png */,
 				ED9C690419C720E70022C1A8 /* Procedures_Tab_Active@2x.png */,
 				ED9C690619C720E70022C1A8 /* Procedures_Tab_Inactive@2x.png */,
 				ED9C690A19C720E70022C1A8 /* Select_Photo_Indicator@2x.png */,
@@ -4774,6 +4774,7 @@
 				EDE78FD919ED5E4700A9C43B /* S0920T0503.jpg in Resources */,
 				EDE7919819ED5E4700A9C43B /* S0909T0710.jpg in Resources */,
 				EDE7924D19ED5E4800A9C43B /* S0902T0604.jpg in Resources */,
+				EDDE41971A1BA52000534D15 /* Place_Holder@2x.png in Resources */,
 				EDE7913419ED5E4700A9C43B /* S0912T1103.jpg in Resources */,
 				EDE792CE19ED5E4800A9C43B /* S0903T0702.jpg in Resources */,
 				EDDE41921A1BA11F00534D15 /* Screen2-iphone5@2x.png in Resources */,
@@ -4908,7 +4909,6 @@
 				EDE792DF19ED5E4800A9C43B /* S0907T0504.jpg in Resources */,
 				EDE7919C19ED5E4700A9C43B /* S0909T0903.jpg in Resources */,
 				EDE7907D19ED5E4700A9C43B /* S0916T0506.jpg in Resources */,
-				ED9C69A719C720E80022C1A8 /* Place_Holder@2x.png in Resources */,
 				EDE7926E19ED5E4800A9C43B /* S0901T0401.jpg in Resources */,
 				EDE7907F19ED5E4700A9C43B /* S0916T0601.jpg in Resources */,
 				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
