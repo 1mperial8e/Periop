@@ -86,7 +86,7 @@ NSInteger const TVCCountPage = 4;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int itemIndex  = scrollView.contentOffset.x / scrollView.frame.size.width;
+    int itemIndex = scrollView.contentOffset.x / scrollView.frame.size.width;
     self.spleshPageControl.currentPage = itemIndex;
     self.goButton.hidden = TVCCountPage - 1 != itemIndex;
 }

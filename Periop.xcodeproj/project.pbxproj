@@ -57,7 +57,6 @@
 		84BA0AA319E557910054BFE5 /* plus_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */; };
 		84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */; };
 		84BA0AA519E557910054BFE5 /* mail_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */; };
-		84CF607C1A0237F80087E305 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */; };
 		84D65BE619D03CF1001C6E5C /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */; };
 		84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBDD0D19DAC323006C66DA /* PETutorialViewController.m */; };
 		84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FBDD0E19DAC323006C66DA /* PETutorialViewController.xib */; };
@@ -203,6 +202,7 @@
 		ED9C69FB19C720E80022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69FD19C720E80022C1A8 /* Plastic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */; };
 		ED9C6A0319C720E80022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */; };
+		ED9D885B1A023F1000430C9D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9D885A1A023F1000430C9D /* libGoogleAnalyticsServices.a */; };
 		EDA7DFEC19BAD745002A70E8 /* PEDoctorsViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFEA19BAD744002A70E8 /* PEDoctorsViewTableViewCell.m */; };
 		EDA7DFED19BAD745002A70E8 /* PEDoctorsViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA7DFEB19BAD744002A70E8 /* PEDoctorsViewTableViewCell.xib */; };
 		EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA7DFF019BAE5EA002A70E8 /* PEAboutUsViewController.m */; };
@@ -267,6 +267,7 @@
 		EDDDEF7219CAD42B007BEDE4 /* PESpecialisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7119CAD42B007BEDE4 /* PESpecialisationManager.m */; };
 		EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */; };
 		EDDDEF7819CAE168007BEDE4 /* PEPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */; };
+		EDDE41811A1B8BE600534D15 /* AboutUs.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDDE41801A1B8BE600534D15 /* AboutUs.txt */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
 		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
@@ -1219,7 +1220,6 @@
 		84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_active@2x.png"; sourceTree = "<group>"; };
 		84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
 		84BA0AA119E557910054BFE5 /* mail_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_active@2x.png"; sourceTree = "<group>"; };
-		84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		84D65BE519D03CF1001C6E5C /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
 		84FBDD0C19DAC323006C66DA /* PETutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialViewController.h; sourceTree = "<group>"; };
@@ -1377,6 +1377,7 @@
 		ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Specialisation_Icon_-_Small@2x.png"; path = "../Orthopeadic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Large@2x.png"; path = "../Plastic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C695F19C720E70022C1A8 /* Plastic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Specialisation_Icon_-_Small@2x.png"; path = "../Plastic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
+		ED9D885A1A023F1000430C9D /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		EDA7DFE919BAD744002A70E8 /* PEDoctorsViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsViewTableViewCell.h; sourceTree = "<group>"; };
 		EDA7DFEA19BAD744002A70E8 /* PEDoctorsViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsViewTableViewCell.m; sourceTree = "<group>"; };
 		EDA7DFEB19BAD744002A70E8 /* PEDoctorsViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -1478,6 +1479,7 @@
 		EDDDEF7419CAE168007BEDE4 /* PEPreparationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPreparationTableViewCell.h; sourceTree = "<group>"; };
 		EDDDEF7519CAE168007BEDE4 /* PEPreparationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPreparationTableViewCell.m; sourceTree = "<group>"; };
 		EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPreparationTableViewCell.xib; sourceTree = "<group>"; };
+		EDDE41801A1B8BE600534D15 /* AboutUs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AboutUs.txt; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
@@ -2366,7 +2368,7 @@
 				8467E6791A022E9800B7D82D /* libz.dylib in Frameworks */,
 				8467E6771A022E8900B7D82D /* SystemConfiguration.framework in Frameworks */,
 				EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */,
-				84CF607C1A0237F80087E305 /* libGoogleAnalyticsServices.a in Frameworks */,
+				ED9D885B1A023F1000430C9D /* libGoogleAnalyticsServices.a in Frameworks */,
 				8474906519B8459E0013C446 /* CoreGraphics.framework in Frameworks */,
 				8474906919B8459E0013C446 /* CoreData.framework in Frameworks */,
 				8474906719B8459E0013C446 /* UIKit.framework in Frameworks */,
@@ -2495,7 +2497,7 @@
 		8467E66B1A022E2500B7D82D /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				84CF607B1A0237F80087E305 /* libGoogleAnalyticsServices.a */,
+				ED9D885A1A023F1000430C9D /* libGoogleAnalyticsServices.a */,
 				8467E66C1A022E3D00B7D82D /* GAI.h */,
 				8467E66D1A022E3D00B7D82D /* GAIDictionaryBuilder.h */,
 				8467E66E1A022E3D00B7D82D /* GAIEcommerceFields.h */,
@@ -2783,6 +2785,7 @@
 		ED9C68B819C7209F0022C1A8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EDDE417E1A1B8BC700534D15 /* Texts */,
 				EDE9CA1819D4027500150754 /* CSV */,
 				84D65BE419D03CD0001C6E5C /* Fonts */,
 				EDDA09B219CA17BE003480C2 /* PLists */,
@@ -3349,6 +3352,22 @@
 				EDDDEF7619CAE168007BEDE4 /* PEPreparationTableViewCell.xib */,
 			);
 			path = PreparationTableViewCell;
+			sourceTree = "<group>";
+		};
+		EDDE417E1A1B8BC700534D15 /* Texts */ = {
+			isa = PBXGroup;
+			children = (
+				EDDE417F1A1B8BD600534D15 /* AboutUs */,
+			);
+			path = Texts;
+			sourceTree = "<group>";
+		};
+		EDDE417F1A1B8BD600534D15 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				EDDE41801A1B8BE600534D15 /* AboutUs.txt */,
+			);
+			path = AboutUs;
 			sourceTree = "<group>";
 		};
 		EDDEDCD919D6FE6500B0EDAC /* UIButtons */ = {
@@ -5472,6 +5491,7 @@
 				EDE7921819ED5E4700A9C43B /* S0904T0604.jpg in Resources */,
 				EDE7916C19ED5E4700A9C43B /* S0910T0707.jpg in Resources */,
 				EDE78FD719ED5E4700A9C43B /* S0920T0501.JPG in Resources */,
+				EDDE41811A1B8BE600534D15 /* AboutUs.txt in Resources */,
 				EDE790D019ED5E4700A9C43B /* S0914T0303.jpg in Resources */,
 				84FE694E19F11006008AD54C /* Cardiothoracic_logo.png in Resources */,
 				EDE7906919ED5E4700A9C43B /* S0917T0507.jpg in Resources */,
@@ -5986,7 +6006,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/admin/Downloads/GoogleAnalyticsServicesiOS_3.09,
 					"$(PROJECT_DIR)/Periop/GoogleAnalytics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6008,7 +6027,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/admin/Downloads/GoogleAnalyticsServicesiOS_3.09,
 					"$(PROJECT_DIR)/Periop/GoogleAnalytics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
