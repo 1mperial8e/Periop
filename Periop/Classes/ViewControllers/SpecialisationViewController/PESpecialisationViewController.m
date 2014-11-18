@@ -55,7 +55,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     self.isMyspecializations = YES;
     
     self.defaults = [NSUserDefaults standardUserDefaults];
-    if (![self.defaults integerForKey:TVCShowTutorial]) {
+#warning to change !
+    if ([self.defaults integerForKey:TVCShowTutorial]) {
         PETutorialViewController *tutorialController = [[PETutorialViewController alloc] initWithNibName:@"PETutorialViewController" bundle:nil];
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
         rootController.modalPresentationStyle = UIModalPresentationCurrentContext;

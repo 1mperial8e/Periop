@@ -55,7 +55,7 @@ NSInteger const TVCCountPage = 4;
 {
     self.pageImages = [[NSMutableArray alloc] init];
     for (int index = 0; index < TVCCountPage; index++) {
-        NSString *imageName = IS_IPHONE_5 ? [NSString stringWithFormat:@"tutorialPage_%d-iphone5", index] : [NSString stringWithFormat:@"tutorialPage_%d-iphone4", index];
+        NSString *imageName = IS_IPHONE_5 ? [NSString stringWithFormat:@"Screen%d-iphone5", index] : [NSString stringWithFormat:@"Screen%d-iphone4", index];
         [self.pageImages addObject:imageName];
     }
 }
