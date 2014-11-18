@@ -268,6 +268,8 @@
 		EDDE41921A1BA11F00534D15 /* Screen2-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE418E1A1BA11F00534D15 /* Screen2-iphone5@2x.png */; };
 		EDDE41931A1BA11F00534D15 /* Screen3-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE418F1A1BA11F00534D15 /* Screen3-iphone5@2x.png */; };
 		EDDE41971A1BA52000534D15 /* Place_Holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE41961A1BA52000534D15 /* Place_Holder@2x.png */; };
+		EDDE419B1A1BB40C00534D15 /* Screen4-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE419A1A1BB40C00534D15 /* Screen4-iphone4@2x.png */; };
+		EDDE419D1A1BB47B00534D15 /* Screen4-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
 		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
@@ -1480,6 +1482,8 @@
 		EDDE418E1A1BA11F00534D15 /* Screen2-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen2-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDE418F1A1BA11F00534D15 /* Screen3-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen3-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDE41961A1BA52000534D15 /* Place_Holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@2x.png"; sourceTree = "<group>"; };
+		EDDE419A1A1BB40C00534D15 /* Screen4-iphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen4-iphone4@2x.png"; sourceTree = "<group>"; };
+		EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen4-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
@@ -3371,6 +3375,7 @@
 				EDDE41841A1BA11000534D15 /* Screen1-iphone4@2x.png */,
 				EDDE41851A1BA11000534D15 /* Screen2-iphone4@2x.png */,
 				EDDE41861A1BA11000534D15 /* Screen3-iphone4@2x.png */,
+				EDDE419A1A1BB40C00534D15 /* Screen4-iphone4@2x.png */,
 			);
 			path = i4;
 			sourceTree = "<group>";
@@ -3382,6 +3387,7 @@
 				EDDE418D1A1BA11F00534D15 /* Screen1-iphone5@2x.png */,
 				EDDE418E1A1BA11F00534D15 /* Screen2-iphone5@2x.png */,
 				EDDE418F1A1BA11F00534D15 /* Screen3-iphone5@2x.png */,
+				EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */,
 			);
 			path = i5;
 			sourceTree = "<group>";
@@ -5039,6 +5045,7 @@
 				842C8DF319D57AE400D0DAC7 /* PECameraViewController.xib in Resources */,
 				EDE7922019ED5E4700A9C43B /* S0904T0707.jpg in Resources */,
 				8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */,
+				EDDE419D1A1BB47B00534D15 /* Screen4-iphone5@2x.png in Resources */,
 				EDE792E819ED5E4800A9C43B /* S0907T0703.jpg in Resources */,
 				EDE7914119ED5E4700A9C43B /* S0911T0502.jpg in Resources */,
 				EDA7DFF319BAE5EA002A70E8 /* PEAboutUsViewController.xib in Resources */,
@@ -5656,6 +5663,7 @@
 				EDE7929D19ED5E4800A9C43B /* S0903T0302.jpg in Resources */,
 				EDE792F419ED5E4800A9C43B /* S0907T0904.jpg in Resources */,
 				EDE790E619ED5E4700A9C43B /* S0914T1104.jpg in Resources */,
+				EDDE419B1A1BB40C00534D15 /* Screen4-iphone4@2x.png in Resources */,
 				EDE792F319ED5E4800A9C43B /* S0907T0902.jpg in Resources */,
 				EDE792FF19ED5E4800A9C43B /* S0907T0603.jpg in Resources */,
 				EDE7908719ED5E4700A9C43B /* S0916T0707.jpg in Resources */,

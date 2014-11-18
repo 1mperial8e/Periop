@@ -14,7 +14,7 @@
 
 static NSString *const TVCCellName = @"TutorialCell";
 NSString *const TVCShowTutorial = @"ShowTutorial";
-NSInteger const TVCCountPage = 4;
+NSInteger const TVCCountPage = 5;
 
 @interface PETutorialViewController () <UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -33,6 +33,7 @@ NSInteger const TVCCountPage = 4;
 - (void)viewDidLoad
 {
     [self createImagesArray];
+    [self configureButton];
     
     [self.spleshCollectionView registerNib:[UINib nibWithNibName:@"PETutorialCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"TutorialCell"];
 }
@@ -58,6 +59,16 @@ NSInteger const TVCCountPage = 4;
         NSString *imageName = IS_IPHONE_5 ? [NSString stringWithFormat:@"Screen%d-iphone5", index] : [NSString stringWithFormat:@"Screen%d-iphone4", index];
         [self.pageImages addObject:imageName];
     }
+}
+
+- (void)configureButton
+{
+    self.goButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.goButton.layer.borderWidth = 2.0f;
+    self.goButton.layer.cornerRadius = 10.0f;
+    self.goButton.backgroundColor = [UIColor clearColor];
+    self.goButton.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
+    
 }
 
 #pragma mark - UICollectionViewDataSource

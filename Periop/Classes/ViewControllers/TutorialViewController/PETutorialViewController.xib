@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PETutorialViewController">
@@ -40,13 +39,13 @@
                         <constraint firstAttribute="width" constant="100" id="hss-b3-t2f"/>
                     </constraints>
                 </pageControl>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-wG-wtJ">
-                    <rect key="frame" x="265" y="525" width="46" height="30"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-wG-wtJ">
+                    <rect key="frame" x="22" y="420" width="276" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="ZNu-KZ-BRl"/>
-                        <constraint firstAttribute="width" constant="46" id="w0x-HI-Gdb"/>
+                        <constraint firstAttribute="height" constant="40" id="ZNu-KZ-BRl"/>
+                        <constraint firstAttribute="width" constant="276" id="w0x-HI-Gdb"/>
                     </constraints>
-                    <state key="normal" title="Go">
+                    <state key="normal" title="Get Started">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -57,11 +56,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="cS1-Es-FCj" secondAttribute="trailing" id="4eW-wU-tbX"/>
-                <constraint firstAttribute="trailing" secondItem="xNH-wG-wtJ" secondAttribute="trailing" constant="9" id="53P-Qc-ZO6"/>
+                <constraint firstAttribute="trailing" secondItem="xNH-wG-wtJ" secondAttribute="trailing" constant="22" id="53P-Qc-ZO6"/>
                 <constraint firstAttribute="bottom" secondItem="cS1-Es-FCj" secondAttribute="bottom" id="D5F-0M-QNb"/>
                 <constraint firstAttribute="centerX" secondItem="zxa-XW-E6U" secondAttribute="centerX" id="HIT-Ac-zgo"/>
                 <constraint firstItem="cS1-Es-FCj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yxv-Dg-Wdb"/>
-                <constraint firstAttribute="bottom" secondItem="xNH-wG-wtJ" secondAttribute="bottom" constant="13" id="eYr-qy-tMY"/>
+                <constraint firstAttribute="bottom" secondItem="xNH-wG-wtJ" secondAttribute="bottom" constant="108" id="eYr-qy-tMY"/>
                 <constraint firstAttribute="bottom" secondItem="zxa-XW-E6U" secondAttribute="bottom" constant="35" id="mhr-OI-EeV"/>
                 <constraint firstItem="cS1-Es-FCj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vE9-qd-aiH"/>
             </constraints>
@@ -69,9 +68,4 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
