@@ -14,6 +14,7 @@
 #import "PETermsAndConditionViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEMailControllerConfigurator.h"
 
 static CGFloat const MVCAnimationDuration = 0.3f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
@@ -147,32 +148,10 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
     self.menuTitleLabel.text = MVCFeedback;
     
     if ([MFMailComposeViewController canSendMail]) {
-        [UINavigationBar appearance].barTintColor = UIColorFromRGB(0x4B9DE1);
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                               [UIColor whiteColor], NSForegroundColorAttributeName,  nil]];
-        
-        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
-        mailController.mailComposeDelegate = self;
-        [mailController setSubject:@"Feedback"];
-        NSString *message = @"Feedback : \n";
-        [mailController setMessageBody:message isHTML:NO];
-        PEMenuViewController *menuController = self;
-#ifdef __IPHONE_8_0
-        mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-#endif
-        NSArray *defaultToRecepient = @[MVCDefaultToRecipient];
-        [mailController setToRecipients:defaultToRecepient];
-        [menuController presentViewController:mailController animated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-            menuController.viewSelection.hidden = YES;
-        }];
-        self.isFeedbackPresented = YES;
-        menuController.viewSelection.hidden = NO;
-        
+        [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
+        [self configureAndShowMailController];
     } else {
-        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alerMail show];
+        [self showAlertViewForMailController];
     }
 }
 
@@ -313,6 +292,33 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 }
 
 #pragma mark - Private
+
+- (void)configureAndShowMailController
+{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+    mailController.mailComposeDelegate = self;
+    [mailController setSubject:@"Feedback"];
+    NSString *message = @"Feedback : \n";
+    [mailController setMessageBody:message isHTML:NO];
+    PEMenuViewController *menuController = self;
+#ifdef __IPHONE_8_0
+    mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
+    NSArray *defaultToRecepient = @[MVCDefaultToRecipient];
+    [mailController setToRecipients:defaultToRecepient];
+    [menuController presentViewController:mailController animated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        menuController.viewSelection.hidden = YES;
+    }];
+    self.isFeedbackPresented = YES;
+    menuController.viewSelection.hidden = NO;
+}
+
+- (void)showAlertViewForMailController
+{
+    UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"E-mail settings" message:@"Please configure your e-mails setting before sending message" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alerMail show];
+}
 
 - (void)setupButtons
 {
