@@ -86,23 +86,34 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
 
 - (NSMutableAttributedString *)combineAboutContent:(NSString *)mainContent
 {
-    NSMutableAttributedString *content = [[NSMutableAttributedString alloc] initWithString:mainContent];
-    [content addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] range:NSMakeRange(0, content.length)];
+    NSMutableAttributedString *content = [self getFormattedString:mainContent];
     
-    NSMutableAttributedString *twitter = [[NSMutableAttributedString alloc] initWithString:@"\n\nTwitter: ScrubUp@ScrubupU" attributes:@{ AUVCTwitterKey : @(YES) }];
-    [twitter addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] range:NSMakeRange(0, twitter.length)];
+    NSMutableAttributedString *twitter = [self configureLinkWithString:@"ScrubUp@ScrubupU" forKey:AUVCTwitterKey tintColor:UIColorFromRGB(0x4B9DE1)];
+    NSMutableAttributedString *email = [self configureLinkWithString:@"Scrubup@Allistechnology.com.au" forKey:AUVCEmailKey tintColor:UIColorFromRGB(0x4B9DE1)];
+    NSMutableAttributedString *faceBook = [self configureLinkWithString:@"Allis Technology" forKey:AUVCFaceBookKey tintColor:UIColorFromRGB(0x4B9DE1)];
     
-    NSMutableAttributedString *email = [[NSMutableAttributedString alloc] initWithString:@"\nEmail: Scrubup@Allistechnology.com.au" attributes:@{ AUVCEmailKey : @(YES) }];
-    [email addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] range:NSMakeRange(0, email.length)];
-    
-    NSMutableAttributedString *faceBook = [[NSMutableAttributedString alloc] initWithString:@"\nFacebook: Allis Technology" attributes:@{ AUVCFaceBookKey : @(YES) }];
-    [faceBook addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] range:NSMakeRange(0, faceBook.length)];
-    
+    [content appendAttributedString:[self getFormattedString:@"\n\nTwitter: "]];
     [content appendAttributedString:twitter];
+        [content appendAttributedString:[self getFormattedString:@"\n\nEmail: "]];
     [content appendAttributedString:email];
+        [content appendAttributedString:[self getFormattedString:@"\n\nFacebook: "]];
     [content appendAttributedString:faceBook];
     
     return content;
+}
+
+- (NSMutableAttributedString *)configureLinkWithString:(NSString *)string forKey:(NSString *)key tintColor:(UIColor *)color
+{
+    NSMutableAttributedString *linkString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{ key : @(YES) }];
+    [linkString addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] range:NSMakeRange(0, linkString.length)];
+    [linkString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, linkString.length)];
+    return linkString;
+}
+
+- (NSMutableAttributedString *)getFormattedString:(NSString *)string
+{
+    NSDictionary * attributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:FONT_MuseoSans300 size:13.5f] forKey:NSFontAttributeName];
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
 }
 
 #pragma mark - TapGesture
@@ -120,14 +131,12 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
     CGPoint location = [gesture locationInView:textView];
     location.x -= textView.textContainerInset.left;
     location.y -= textView.textContainerInset.top;
-    NSUInteger characterIndex;
-    characterIndex = [layoutManager characterIndexForPoint:location inTextContainer:textView.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
+    NSUInteger characterIndex = [layoutManager characterIndexForPoint:location inTextContainer:textView.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
     
     if (characterIndex < textView.textStorage.length) {
         NSRange range;
 
         NSDictionary *attributes = [textView.textStorage attributesAtIndex:characterIndex effectiveRange:&range];
-        NSLog(@"%@, %@", attributes, NSStringFromRange(range));
         if ([attributes objectForKey:AUVCEmailKey]) {
             [self openEmailPage];
         } else if ([attributes objectForKey:AUVCFaceBookKey]) {
@@ -153,6 +162,7 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
         self.mailController.mailComposeDelegate = self;
         
         [self.mailController setSubject:@"Feedback"];
+        [self.mailController setToRecipients:@[@"Scrubup@Allistechnology.com.au"]];
         [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
         
         UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
