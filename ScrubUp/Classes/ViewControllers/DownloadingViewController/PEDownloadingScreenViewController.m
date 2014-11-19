@@ -201,7 +201,7 @@
         [self downloadData];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Buy"]) {
         [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
-            if (success) {
+            if (success && products.count) {
                 for (SKProduct *product in products) {
                     if ([product.productIdentifier isEqualToString:self.productIdentifier]) {
                         [self.purchaseManager buyProduct:product];
@@ -209,7 +209,7 @@
                     }
                 }
             } else {
-                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
             }
         }];
     } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {
