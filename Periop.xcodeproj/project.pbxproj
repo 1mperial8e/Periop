@@ -271,6 +271,7 @@
 		EDDE419B1A1BB40C00534D15 /* Screen4-iphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE419A1A1BB40C00534D15 /* Screen4-iphone4@2x.png */; };
 		EDDE419D1A1BB47B00534D15 /* Screen4-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
+		EDDEDEF91A1C797600DEEFCD /* PEMailControllerConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */; };
 		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
 		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
 		EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189A19EF994E00F59761 /* PEProcedureListTableViewCell.m */; };
@@ -1486,6 +1487,8 @@
 		EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen4-iphone5@2x.png"; sourceTree = "<group>"; };
 		EDDEDCDA19D6FE8700B0EDAC /* PEButtonWithTouchBegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEButtonWithTouchBegan.h; sourceTree = "<group>"; };
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
+		EDDEDEF71A1C797600DEEFCD /* PEMailControllerConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMailControllerConfigurator.h; sourceTree = "<group>"; };
+		EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMailControllerConfigurator.m; sourceTree = "<group>"; };
 		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
 		EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditProcedureViewController.m; sourceTree = "<group>"; };
 		EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditProcedureViewController.xib; sourceTree = "<group>"; };
@@ -2978,6 +2981,7 @@
 		EDCD57A519B8479100EC7AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EDDEDEF51A1C794700DEEFCD /* OtherClasses */,
 				EDDEDCD919D6FE6500B0EDAC /* UIButtons */,
 				842C8E0319D5890400D0DAC7 /* Categoties */,
 				842C8DF419D57C2000D0DAC7 /* Views */,
@@ -3399,6 +3403,23 @@
 				EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */,
 			);
 			path = UIButtons;
+			sourceTree = "<group>";
+		};
+		EDDEDEF51A1C794700DEEFCD /* OtherClasses */ = {
+			isa = PBXGroup;
+			children = (
+				EDDEDEF61A1C795B00DEEFCD /* MailController */,
+			);
+			path = OtherClasses;
+			sourceTree = "<group>";
+		};
+		EDDEDEF61A1C795B00DEEFCD /* MailController */ = {
+			isa = PBXGroup;
+			children = (
+				EDDEDEF71A1C797600DEEFCD /* PEMailControllerConfigurator.h */,
+				EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */,
+			);
+			path = MailController;
 			sourceTree = "<group>";
 		};
 		EDE7189219EF929000F59761 /* AddEditProcedureViewController */ = {
@@ -5867,6 +5888,7 @@
 				ED0D30B419BA11B9001F8411 /* PEEditAddDoctorTableViewCell.m in Sources */,
 				842BF2B319CC583500AFCA42 /* PEAlbumCell.m in Sources */,
 				EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */,
+				EDDEDEF91A1C797600DEEFCD /* PEMailControllerConfigurator.m in Sources */,
 				EDCD583119B8ABF700EC7AF1 /* PEProcedureOptionViewController.m in Sources */,
 				8474907119B8459E0013C446 /* main.m in Sources */,
 				84FBDD0F19DAC323006C66DA /* PETutorialViewController.m in Sources */,

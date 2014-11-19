@@ -15,6 +15,7 @@
 #import "PESpecialisationManager.h"
 #import "PECoreDataManager.h"
 #import <MessageUI/MessageUI.h>
+#import "PEMailControllerConfigurator.h"
 
 static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 static CGFloat const EHeightForHeader = 36.5f;
@@ -31,6 +32,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 @property (strong, nonatomic) NSMutableArray *arrayWithCategorisedToolsArrays;
 @property (strong, nonatomic) NSMutableArray *categoryTools;
 @property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
+@property (strong, nonatomic) NSMutableSet *indexPathForCheckedButtons;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) MFMailComposeViewController *mailController;
 
@@ -60,7 +62,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:EEquipmentCellIdentifier];
     self.cellCurrentlyEditing = [NSMutableSet new];
     self.cellWithCheckedButtons = [NSMutableSet new];
-    
+    self.indexPathForCheckedButtons = [NSMutableSet new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,6 +95,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 {
     if (self.cellWithCheckedButtons) {
         [self.cellWithCheckedButtons removeAllObjects];
+        [self.indexPathForCheckedButtons removeAllObjects];
         [self.tableView reloadData];
     }
 }
@@ -100,30 +103,40 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 - (IBAction)eMailButton:(id)sender
 {
     if ([MFMailComposeViewController canSendMail]) {
-        [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4B9DE1)];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x4B9DE1)] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:                                                               
-                                                              [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-        
-        self.mailController = [[MFMailComposeViewController alloc] init];
-        self.mailController.mailComposeDelegate = self;
-        
-        [self.mailController setSubject:@"Equipment list"];
-        
-        [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
-        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        rootController.modalPresentationStyle = UIModalPresentationFullScreen;
-#ifdef __IPHONE_8_0
-        self.mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-#endif
-        [self presentViewController:self.mailController animated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        }];
+        [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
+        if ([self setupMailController]) {
+            [self showMailController];
+        }
     } else {
-        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"No mail accounts" message:@"Please setup your e-mail account through device settings." delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
-        [alerMail show];
+        [self showAlertView];
     }
+}
+
+- (BOOL)setupMailController
+{
+    self.mailController = [[MFMailComposeViewController alloc] init];
+    self.mailController.mailComposeDelegate = self;
+    [self.mailController setSubject:@"Equipment list"];
+    [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
+    return YES;
+}
+
+- (void)showMailController
+{
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationFullScreen;
+#ifdef __IPHONE_8_0
+    self.mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
+    [self presentViewController:self.mailController animated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }];
+}
+
+- (void)showAlertView
+{
+    UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"No mail accounts" message:@"Please setup your e-mail account through device settings." delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
+    [alerMail show];
 }
 
 #pragma mark - MailComposerDelegate
@@ -292,11 +305,13 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 - (void)cellChecked:(PEEquipmentCategoryTableViewCell *)cell
 {
     [self.cellWithCheckedButtons addObject:cell.createdDate];
+    [self.indexPathForCheckedButtons addObject:[self.tableView indexPathForCell:cell]];
 }
 
 - (void)cellUnchecked:(PEEquipmentCategoryTableViewCell *)cell
 {
     [self.cellWithCheckedButtons removeObject:cell.createdDate];
+    [self.indexPathForCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
 }
 
 #pragma mark - Private
@@ -353,11 +368,11 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     if ([self.cellCurrentlyEditing containsObject:indexPathToDelete]) {
         [self.cellCurrentlyEditing removeObject:indexPathToDelete];
     }
-    if ([self.cellWithCheckedButtons containsObject:indexPathToDelete]) {
-        [self.cellWithCheckedButtons removeObject:indexPathToDelete];
+    if ([self.indexPathForCheckedButtons containsObject:indexPathToDelete]) {
+        [self.indexPathForCheckedButtons removeObject:indexPathToDelete];
     }
-    NSMutableArray *arrayWithIndex = [NSMutableArray arrayWithArray:[self.cellWithCheckedButtons allObjects]];
-    [self.cellWithCheckedButtons removeAllObjects];
+    NSMutableArray *arrayWithIndex = [NSMutableArray arrayWithArray:[self.indexPathForCheckedButtons allObjects]];
+    [self.indexPathForCheckedButtons removeAllObjects];
     NSMutableArray *buffer = [[NSMutableArray alloc] init];
     for (NSIndexPath *index in arrayWithIndex){
         if (index.section == indexPathToDelete.section && index.row > indexPathToDelete.row) {
@@ -372,7 +387,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
             [buffer addObject:newIndexPath];
         }
     }
-    self.cellWithCheckedButtons = [NSMutableSet setWithArray:buffer];
+    self.indexPathForCheckedButtons = [NSMutableSet setWithArray:buffer];
     NSInteger sectionCount = self.arrayWithCategorisedToolsArrays.count;
     [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] removeObjectAtIndex:indexPathToDelete.row];
     if ( [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] count] == 0) {
@@ -391,7 +406,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     NSMutableString *message = [[NSMutableString alloc] init];
     
     NSMutableArray *selectedCategories = [[NSMutableArray alloc] init];
-    for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons){
+    for (NSIndexPath *indexWithSelectedCells in self.indexPathForCheckedButtons){
         [selectedCategories addObject:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category];
     }
     NSArray *uniqueCategories = [[NSSet setWithArray:selectedCategories] allObjects];
@@ -399,7 +414,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     for (int i = 0; i < uniqueCategories.count; i++) {
         [message appendString:[NSString stringWithFormat:@"<b>%@</b><br>", uniqueCategories[i]]];
             
-        for (NSIndexPath *indexWithSelectedCells in self.cellWithCheckedButtons) {
+        for (NSIndexPath *indexWithSelectedCells in self.indexPathForCheckedButtons) {
             if ([((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category isEqualToString:uniqueCategories[i]]) {
                 
                 NSMutableString *descriptionOfEquipment = [[NSMutableString alloc] init];

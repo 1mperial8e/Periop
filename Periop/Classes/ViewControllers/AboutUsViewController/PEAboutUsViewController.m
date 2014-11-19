@@ -18,7 +18,7 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
 #import "PEAboutUsViewController.h"
 #import "PEMenuViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "UIImage+fixOrientation.h"
+#import "PEMailControllerConfigurator.h"
 
 @interface PEAboutUsViewController () <MFMailComposeViewControllerDelegate>
 
@@ -147,42 +147,54 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
     }
 }
 
-#pragma mark - GestureTapsActions
+#pragma mark - MailComposer
 
 - (void)openEmailPage
 {
     if ([MFMailComposeViewController canSendMail]) {
-        [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4B9DE1)];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x4B9DE1)] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                               [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-        
-        self.mailController = [[MFMailComposeViewController alloc] init];
-        self.mailController.mailComposeDelegate = self;
-        
-        [self.mailController setSubject:@"Feedback"];
-        [self.mailController setToRecipients:@[@"Scrubup@Allistechnology.com.au"]];
-        [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
-        
-        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        rootController.modalPresentationStyle = UIModalPresentationFullScreen;
-#ifdef __IPHONE_8_0
-        self.mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-#endif
-        [self presentViewController:self.mailController animated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        }];
+        [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
+        if ([self setupMailController]) {
+            [self presentMailComposer];
+        }
     } else {
-        UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"No mail accounts" message:@"Please setup your e-mail account through device settings." delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
-        [alerMail show];
+        [self showAlertView];
     }
+}
+
+- (BOOL)setupMailController
+{
+    self.mailController = [[MFMailComposeViewController alloc] init];
+    self.mailController.mailComposeDelegate = self;
+    [self.mailController setSubject:@"Feedback"];
+    [self.mailController setToRecipients:@[@"Scrubup@Allistechnology.com.au"]];
+    [self.mailController setMessageBody:[self getMessageBody] isHTML:YES];
+    return YES;
+}
+
+- (void)showAlertView
+{
+    UIAlertView *alerMail = [[UIAlertView alloc] initWithTitle:@"No mail accounts" message:@"Please setup your e-mail account through device settings." delegate:self cancelButtonTitle:@"Close" otherButtonTitles: nil];
+    [alerMail show];
 }
 
 - (NSString *)getMessageBody
 {
     return @"Feedback";
 }
+
+- (void)presentMailComposer
+{
+    UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    rootController.modalPresentationStyle = UIModalPresentationFullScreen;
+#ifdef __IPHONE_8_0
+    self.mailController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+#endif
+    [self presentViewController:self.mailController animated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }];
+}
+
+#pragma mark - TapActions
 
 - (void)openFaceBookPage
 {
