@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEAddEditDoctorViewController">
+            <connections>
+                <outlet property="imageView" destination="Poo-pq-qsh" id="QUt-xL-XHx"/>
+                <outlet property="nameLabel" destination="UbH-iP-Lg9" id="RDL-dp-DfS"/>
+                <outlet property="nameTextField" destination="eOL-BP-6FG" id="Ylb-eg-dcx"/>
+                <outlet property="tableView" destination="fPt-lL-m2q" id="I3O-SN-EBN"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEy-eI-TI3" userLabel="Profile photo">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh" userLabel="ProfilePhotoImageView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9o-4y-xKb" userLabel="Button - add photo">
+                            <rect key="frame" x="278" y="15" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="CQA-Mc-is6"/>
+                                <constraint firstAttribute="width" constant="32" id="Mmm-h4-Grf"/>
+                            </constraints>
+                            <state key="normal" image="Upload_Photo_Button_2.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="addPhoto:" destination="-1" eventType="touchUpInside" id="Ai0-Oh-fFA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Poo-pq-qsh" secondAttribute="bottom" id="32w-Ce-89M"/>
+                        <constraint firstAttribute="trailing" secondItem="h9o-4y-xKb" secondAttribute="trailing" constant="10" id="IWm-2T-xGU"/>
+                        <constraint firstItem="h9o-4y-xKb" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" constant="15" id="KHQ-Jm-xHs"/>
+                        <constraint firstItem="Poo-pq-qsh" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="top" id="MHU-dp-Ipp"/>
+                        <constraint firstAttribute="trailing" secondItem="Poo-pq-qsh" secondAttribute="trailing" id="dDG-pj-xrs"/>
+                        <constraint firstItem="Poo-pq-qsh" firstAttribute="leading" secondItem="FEy-eI-TI3" secondAttribute="leading" id="lcl-1l-hap"/>
+                        <constraint firstAttribute="height" constant="237" id="m31-zq-Ba3"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbH-iP-Lg9" userLabel="Label - background">
+                    <rect key="frame" x="0.0" y="237" width="320" height="37"/>
+                    <color key="backgroundColor" red="0.29411764705882354" green="0.61568627450980395" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="ifC-3W-Sdi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fPt-lL-m2q" userLabel="TableView - specs">
+                    <rect key="frame" x="0.0" y="274" width="320" height="294"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Doctor's Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-BP-6FG" userLabel="Label - DoctorsName">
+                    <rect key="frame" x="76" y="237" width="229" height="37"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="XYM-Av-kKK"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ti2-9W-MIR">
+                    <rect key="frame" x="15" y="237" width="46" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="S1h-Zl-Bqc"/>
+                        <constraint firstAttribute="height" constant="37" id="lIA-1R-qZI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fPt-lL-m2q" secondAttribute="bottom" id="28K-CV-zcP"/>
+                <constraint firstItem="eOL-BP-6FG" firstAttribute="leading" secondItem="Ti2-9W-MIR" secondAttribute="trailing" constant="15" id="2R8-lG-jDp"/>
+                <constraint firstItem="Ti2-9W-MIR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Bgn-qg-Joi"/>
+                <constraint firstItem="UbH-iP-Lg9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CKB-gn-ZPb"/>
+                <constraint firstItem="FEy-eI-TI3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CO8-QP-Ciz"/>
+                <constraint firstItem="fPt-lL-m2q" firstAttribute="top" secondItem="eOL-BP-6FG" secondAttribute="bottom" id="Iyg-0a-23n"/>
+                <constraint firstItem="FEy-eI-TI3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XTO-gD-iuJ"/>
+                <constraint firstAttribute="trailing" secondItem="eOL-BP-6FG" secondAttribute="trailing" constant="15" id="YIo-Mc-D95"/>
+                <constraint firstItem="eOL-BP-6FG" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="bottom" id="eMu-yy-kx8"/>
+                <constraint firstItem="UbH-iP-Lg9" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="bottom" id="f9z-eM-I7E"/>
+                <constraint firstAttribute="trailing" secondItem="UbH-iP-Lg9" secondAttribute="trailing" id="fMO-Ue-vbY"/>
+                <constraint firstAttribute="trailing" secondItem="FEy-eI-TI3" secondAttribute="trailing" id="g7N-9e-PeI"/>
+                <constraint firstItem="fPt-lL-m2q" firstAttribute="top" secondItem="Ti2-9W-MIR" secondAttribute="bottom" id="mgY-hO-EZB"/>
+                <constraint firstItem="Ti2-9W-MIR" firstAttribute="top" secondItem="FEy-eI-TI3" secondAttribute="bottom" id="ou0-sD-iGb"/>
+                <constraint firstItem="fPt-lL-m2q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wEt-ho-Uxw"/>
+                <constraint firstAttribute="trailing" secondItem="fPt-lL-m2q" secondAttribute="trailing" id="wh5-1h-7Mj"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="Place_Holder.png" width="320" height="238"/>
+        <image name="Upload_Photo_Button_2.png" width="30" height="30"/>
+    </resources>
+</document>

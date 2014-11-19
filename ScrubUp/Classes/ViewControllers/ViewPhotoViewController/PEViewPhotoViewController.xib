@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEViewPhotoViewController">
+            <connections>
+                <outlet property="collectionViewPhoto" destination="5hD-tq-TdP" id="2ur-VY-pea"/>
+                <outlet property="pageControl" destination="xkQ-l0-9my" id="Icx-bm-HPg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewContainer" destination="PNa-8m-45z" id="f0D-de-zRu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-tq-TdP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="20l-zA-XHX">
+                        <size key="itemSize" width="320" height="568"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="eqz-OW-2xz"/>
+                        <outlet property="delegate" destination="-1" id="VLt-sc-RIN"/>
+                    </connections>
+                </collectionView>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xkQ-l0-9my">
+                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="1Gq-41-ZWt"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNa-8m-45z" userLabel="BottomHolderVIew">
+                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOi-9N-3t3" userLabel="DeleteImage ">
+                            <rect key="frame" x="273" y="3" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Pj0-5r-R3Z"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="cJQ-CZ-8bY"/>
+                                <constraint firstAttribute="width" constant="32" id="kQV-9s-LkK"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="rjQ-uf-uiC"/>
+                            </constraints>
+                            <state key="normal" image="Bin_Icon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="removeImageButton:" destination="-1" eventType="touchUpInside" id="DIO-OO-3rn"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="wOi-9N-3t3" secondAttribute="trailing" constant="15" id="Hua-1i-Tzi"/>
+                        <constraint firstAttribute="height" constant="37" id="gfG-57-B5s"/>
+                        <constraint firstAttribute="bottom" secondItem="wOi-9N-3t3" secondAttribute="bottom" constant="2" id="h1g-4e-UWU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5hD-tq-TdP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C0v-Gh-Htd"/>
+                <constraint firstAttribute="trailing" secondItem="xkQ-l0-9my" secondAttribute="trailing" id="ESb-UX-E5M"/>
+                <constraint firstAttribute="bottom" secondItem="PNa-8m-45z" secondAttribute="bottom" id="EbG-QC-MTF"/>
+                <constraint firstAttribute="trailing" secondItem="5hD-tq-TdP" secondAttribute="trailing" id="Rz6-Vn-VZx"/>
+                <constraint firstItem="xkQ-l0-9my" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XnQ-DK-LKW"/>
+                <constraint firstAttribute="bottom" secondItem="5hD-tq-TdP" secondAttribute="bottom" id="fdm-B2-b89"/>
+                <constraint firstItem="5hD-tq-TdP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kee-ag-zlD"/>
+                <constraint firstAttribute="bottom" secondItem="xkQ-l0-9my" secondAttribute="bottom" id="kzX-3I-inQ"/>
+                <constraint firstItem="PNa-8m-45z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nCf-ie-FzM"/>
+                <constraint firstAttribute="trailing" secondItem="PNa-8m-45z" secondAttribute="trailing" id="xpz-K9-GIg"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Bin_Icon.png" width="32" height="32"/>
+    </resources>
+</document>

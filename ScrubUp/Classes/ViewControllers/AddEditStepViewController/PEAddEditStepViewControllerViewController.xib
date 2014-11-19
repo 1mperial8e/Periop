@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEAddEditStepViewControllerViewController">
+            <connections>
+                <outlet property="borderLabel" destination="DSo-uF-MeP" id="r3X-NO-S7o"/>
+                <outlet property="stepLabel" destination="AzM-OW-Voa" id="g73-qV-JcP"/>
+                <outlet property="stepTextView" destination="20U-R2-aOm" id="phX-6x-YHB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-qk-89G" userLabel="View - holder">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzM-OW-Voa" userLabel="Label - Step">
+                            <rect key="frame" x="15" y="18" width="290" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="OaS-Ou-IRq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" red="0.28627450980000002" green="0.62352941179999999" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSo-uF-MeP" userLabel="Label - Corners">
+                            <rect key="frame" x="15" y="46" width="290" height="247"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20U-R2-aOm" userLabel="TextView - step textView">
+                            <rect key="frame" x="30" y="61" width="260" height="207"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="DSo-uF-MeP" firstAttribute="top" secondItem="AzM-OW-Voa" secondAttribute="bottom" constant="3" id="94Z-b5-Kbc"/>
+                        <constraint firstItem="AzM-OW-Voa" firstAttribute="top" secondItem="gOS-qk-89G" secondAttribute="top" constant="18" id="9g0-vC-gRg"/>
+                        <constraint firstAttribute="bottom" secondItem="20U-R2-aOm" secondAttribute="bottom" constant="300" id="Bad-B7-Rbw"/>
+                        <constraint firstItem="20U-R2-aOm" firstAttribute="top" secondItem="AzM-OW-Voa" secondAttribute="bottom" constant="18" id="DRT-nX-WFq"/>
+                        <constraint firstItem="DSo-uF-MeP" firstAttribute="leading" secondItem="gOS-qk-89G" secondAttribute="leading" constant="15" id="TvC-P1-rQS"/>
+                        <constraint firstItem="20U-R2-aOm" firstAttribute="leading" secondItem="gOS-qk-89G" secondAttribute="leading" constant="30" id="YX9-GT-DE2"/>
+                        <constraint firstItem="AzM-OW-Voa" firstAttribute="leading" secondItem="gOS-qk-89G" secondAttribute="leading" constant="15" id="dXB-YK-lGU"/>
+                        <constraint firstAttribute="trailing" secondItem="DSo-uF-MeP" secondAttribute="trailing" constant="15" id="gHw-DI-MDr"/>
+                        <constraint firstAttribute="trailing" secondItem="20U-R2-aOm" secondAttribute="trailing" constant="30" id="h4U-dg-ss6"/>
+                        <constraint firstAttribute="bottom" secondItem="DSo-uF-MeP" secondAttribute="bottom" constant="275" id="t0D-08-52y"/>
+                        <constraint firstAttribute="trailing" secondItem="AzM-OW-Voa" secondAttribute="trailing" constant="15" id="u80-eE-mdi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gOS-qk-89G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AA1-My-eeq"/>
+                <constraint firstAttribute="bottom" secondItem="gOS-qk-89G" secondAttribute="bottom" id="CU3-nQ-9E1"/>
+                <constraint firstAttribute="trailing" secondItem="gOS-qk-89G" secondAttribute="trailing" id="HGZ-bC-pEh"/>
+                <constraint firstItem="gOS-qk-89G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JHG-nI-4BE"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
