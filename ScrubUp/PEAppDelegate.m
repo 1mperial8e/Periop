@@ -19,7 +19,7 @@ static NSString *const PESpecialisationControllerNibName = @"PESpecialisationVie
 static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";
 static NSString *const PEDoctorsListControllerNibName = @"PEDoctorsListViewController";
 static NSString *const PEAboutUsControllerNibName = @"PEAboutUsViewController";
-static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.Periop.S09General";
+static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.ScrubUp.S09General";
 
 @interface PEAppDelegate() 
 

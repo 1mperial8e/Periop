@@ -10,4 +10,20 @@
 
 @implementation PETutorialCollectionViewCell
 
+#pragma mark - LifeCycle
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.getStartedButton.hidden = YES;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)getStartedButtonPress:(id)sender
+{
+    [self.delegate getStartedButtonPress];
+}
+
+
 @end

@@ -16,13 +16,12 @@ static NSString *const TVCCellName = @"TutorialCell";
 NSString *const TVCShowTutorial = @"ShowTutorial";
 NSInteger const TVCCountPage = 5;
 
-@interface PETutorialViewController () <UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface PETutorialViewController () <UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout, PETutorialCollectionViewCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *pageImages;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *spleshCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *spleshPageControl;
-@property (weak, nonatomic) IBOutlet UIButton *goButton;
 
 @end
 
@@ -33,21 +32,8 @@ NSInteger const TVCCountPage = 5;
 - (void)viewDidLoad
 {
     [self createImagesArray];
-    [self configureButton];
     
     [self.spleshCollectionView registerNib:[UINib nibWithNibName:@"PETutorialCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"TutorialCell"];
-}
-
-- (IBAction)closeTutorial:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:TVCShowTutorial];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    __weak PETutorialViewController *weakSelf = self;
-    [self dismissViewControllerAnimated:NO completion:^{
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(tutorialDidFinished)]) {
-            [weakSelf.delegate tutorialDidFinished];
-        }
-    }];
 }
 
 #pragma mark - Private
@@ -61,14 +47,16 @@ NSInteger const TVCCountPage = 5;
     }
 }
 
-- (void)configureButton
+- (void)configureButtonInCell:(PETutorialCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    self.goButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.goButton.layer.borderWidth = 2.0f;
-    self.goButton.layer.cornerRadius = 10.0f;
-    self.goButton.backgroundColor = [UIColor clearColor];
-    self.goButton.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
-    
+    if (indexPath.row == TVCCountPage - 1) {
+        cell.getStartedButton.hidden = NO;
+        cell.getStartedButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.getStartedButton.layer.borderWidth = 2.0f;
+        cell.getStartedButton.layer.cornerRadius = 10.0f;
+        cell.getStartedButton.backgroundColor = [UIColor clearColor];
+        cell.getStartedButton.titleLabel.font = [UIFont fontWithName:FONT_MuseoSans700 size:20.0f];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -83,7 +71,23 @@ NSInteger const TVCCountPage = 5;
 {
     PETutorialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TVCCellName forIndexPath:indexPath];
     cell.tutorialImageView.image = [UIImage imageNamedFile:self.pageImages[indexPath.row]];
+    [self configureButtonInCell:cell atIndexPath:indexPath];
+    cell.delegate = self;
     return cell;
+}
+
+#pragma mark - PETutorialCollectionViewCellDelegate
+
+- (void)getStartedButtonPress
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:TVCShowTutorial];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    __weak PETutorialViewController *weakSelf = self;
+    [self dismissViewControllerAnimated:NO completion:^{
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(tutorialDidFinished)]) {
+            [weakSelf.delegate tutorialDidFinished];
+        }
+    }];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -99,7 +103,6 @@ NSInteger const TVCCountPage = 5;
 {
     int itemIndex = scrollView.contentOffset.x / scrollView.frame.size.width;
     self.spleshPageControl.currentPage = itemIndex;
-    self.goButton.hidden = TVCCountPage - 1 != itemIndex;
 }
 
 @end
