@@ -19,6 +19,7 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
 #import "PEMenuViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "PEMailControllerConfigurator.h"
+#import "PEInternetStatusChecker.h"
 
 @interface PEAboutUsViewController () <MFMailComposeViewControllerDelegate>
 
@@ -58,6 +59,11 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
 }
 
 #pragma mark - Private
+
+- (void)showAlertViewNoInternetConnection
+{
+    [[[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"No Internet Connection. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
 
 - (void)setupViewController
 {
@@ -126,24 +132,28 @@ static NSString *const AUVCTwitterLink = @"https://twitter.com/ScrubUpU";
 
 - (void)linkTapOnTextView:(UIGestureRecognizer *)gesture
 {
-    UITextView *textView = (UITextView *)gesture.view;
-    NSLayoutManager *layoutManager = textView.layoutManager;
-    CGPoint location = [gesture locationInView:textView];
-    location.x -= textView.textContainerInset.left;
-    location.y -= textView.textContainerInset.top;
-    NSUInteger characterIndex = [layoutManager characterIndexForPoint:location inTextContainer:textView.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
-    
-    if (characterIndex < textView.textStorage.length) {
-        NSRange range;
+    if ([PEInternetStatusChecker isInternetAvaliable]) {
+        UITextView *textView = (UITextView *)gesture.view;
+        NSLayoutManager *layoutManager = textView.layoutManager;
+        CGPoint location = [gesture locationInView:textView];
+        location.x -= textView.textContainerInset.left;
+        location.y -= textView.textContainerInset.top;
+        NSUInteger characterIndex = [layoutManager characterIndexForPoint:location inTextContainer:textView.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
+        
+        if (characterIndex < textView.textStorage.length) {
+            NSRange range;
 
-        NSDictionary *attributes = [textView.textStorage attributesAtIndex:characterIndex effectiveRange:&range];
-        if ([attributes objectForKey:AUVCEmailKey]) {
-            [self openEmailPage];
-        } else if ([attributes objectForKey:AUVCFaceBookKey]) {
-            [self openFaceBookPage];
-        } else if ([attributes objectForKey:AUVCTwitterKey]) {
-            [self openTwitterPage];
+            NSDictionary *attributes = [textView.textStorage attributesAtIndex:characterIndex effectiveRange:&range];
+            if ([attributes objectForKey:AUVCEmailKey]) {
+                [self openEmailPage];
+            } else if ([attributes objectForKey:AUVCFaceBookKey]) {
+                [self openFaceBookPage];
+            } else if ([attributes objectForKey:AUVCTwitterKey]) {
+                [self openTwitterPage];
+            }
         }
+    } else {
+        [self showAlertViewNoInternetConnection];
     }
 }
 

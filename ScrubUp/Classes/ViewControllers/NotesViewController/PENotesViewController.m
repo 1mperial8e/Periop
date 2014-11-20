@@ -30,6 +30,7 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotes;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintHeightOfBottomButtons;
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -243,6 +244,14 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     } else {
         self.arrayWithSortedNotes = [self sortedArrayWithNotes:[self.specManager.currentDoctor.notes allObjects]];
     }
+    [self setupInforamtionLabel];
+}
+
+- (void)setupInforamtionLabel
+{
+    self.informationLabel.font = [UIFont fontWithName:FONT_MuseoSans500 size:13.5f];
+    self.informationLabel.text = @"No Note! Let's create one now. Touch + on the top right corner.";
+    self.informationLabel.hidden = self.arrayWithSortedNotes.count;
 }
 
 - (NSString *)dateFormatter:(NSDate *)dateToFormatt

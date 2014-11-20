@@ -10,6 +10,8 @@
 
 @implementation PEMediaSelect
 
+#pragma mark - LifeCycle
+
 - (void)setVisible:(BOOL)visible
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];

@@ -86,29 +86,33 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
 
 - (IBAction)saveButton:(id)sender
 {
-    if (self.nameTextBox.text || self.quantityTextBox.text || self.specTextBox.text) {
-        NSEntityDescription *equipmentEntity = [NSEntityDescription entityForName:ANTEquipmentEntityName inManagedObjectContext:self.managedObjectContext];
-        EquipmentsTool *newEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
-        newEquipment.name = self.nameTextBox.text;
-        newEquipment.quantity = self.quantityTextBox.text;
-        newEquipment.type = self.specTextBox.text;
-        newEquipment.createdDate = [NSDate date];
-        if ([self.dropDownList.titleLabel.text isEqualToString:ANTDefaultEquipmentStr]) {
-            [[[UIAlertView alloc] initWithTitle:@"Category not selected" message:@"Please select category for new equipment" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        } else {
-            newEquipment.category = self.dropDownList.titleLabel.text;
-            [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
-            NSError *saveError = nil;
-            if (![self.managedObjectContext save:&saveError]) {
-                NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
-            }
-            self.nameTextBox.text=@"";
-            self.quantityTextBox.text =@"";
-            self.specTextBox.text = @"";
-            [self.view endEditing:YES];
+    if (self.nameTextBox.text.length) {
+        if (self.quantityTextBox.text || self.specTextBox.text) {
+            NSEntityDescription *equipmentEntity = [NSEntityDescription entityForName:ANTEquipmentEntityName inManagedObjectContext:self.managedObjectContext];
+            EquipmentsTool *newEquipment = [[EquipmentsTool alloc] initWithEntity:equipmentEntity insertIntoManagedObjectContext:self.managedObjectContext];
+            newEquipment.name = self.nameTextBox.text;
+            newEquipment.quantity = self.quantityTextBox.text;
+            newEquipment.type = self.specTextBox.text;
+            newEquipment.createdDate = [NSDate date];
+            if ([self.dropDownList.titleLabel.text isEqualToString:ANTDefaultEquipmentStr]) {
+                [[[UIAlertView alloc] initWithTitle:@"Select equipment category" message:@"Unable to save, please select equipment category." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            } else {
+                newEquipment.category = self.dropDownList.titleLabel.text;
+                [self.specManager.currentProcedure addEquipmentsObject:newEquipment];
+                NSError *saveError = nil;
+                if (![self.managedObjectContext save:&saveError]) {
+                    NSLog(@"Cant save new tool - %@", saveError.localizedDescription);
+                }
+                self.nameTextBox.text=@"";
+                self.quantityTextBox.text =@"";
+                self.specTextBox.text = @"";
+                [self.view endEditing:YES];
 
-            [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Tool name missed" message:@"Unable to save, please enter tool name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
 }
 

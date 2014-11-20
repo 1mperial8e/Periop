@@ -16,6 +16,7 @@
 #import "PECoreDataManager.h"
 #import <MessageUI/MessageUI.h>
 #import "PEMailControllerConfigurator.h"
+#import "PEInternetStatusChecker.h"
 
 static NSString *const EEquipmentCellIdentifier = @"equipmentCell";
 static CGFloat const EHeightForHeader = 36.5f;
@@ -102,13 +103,18 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 
 - (IBAction)eMailButton:(id)sender
 {
-    if ([MFMailComposeViewController canSendMail]) {
-        [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
-        if ([self setupMailController]) {
-            [self showMailController];
+    if ([PEInternetStatusChecker isInternetAvaliable]) {
+        if ([MFMailComposeViewController canSendMail]) {
+            [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
+            if ([self setupMailController]) {
+                [self showMailController];
+            }
+        } else {
+            [self showAlertView];
         }
-    } else {
-        [self showAlertView];
+    } else
+    {
+        [self showAlertViewNoInternetConnection];
     }
 }
 
@@ -315,6 +321,11 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 }
 
 #pragma mark - Private
+
+- (void)showAlertViewNoInternetConnection
+{
+    [[[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"No Internet Connection. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
 
 - (NSMutableArray *)sortArrayByCategoryAttribute:(NSArray *)objectsArray
 {

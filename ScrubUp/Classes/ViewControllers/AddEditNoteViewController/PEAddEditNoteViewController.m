@@ -17,6 +17,7 @@
 #import "PEAlbumViewController.h"
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PELabelConfiguration.h"
 
 @interface PEAddEditNoteViewController ()
 
@@ -156,6 +157,9 @@
     PEMediaSelect *view = [array firstObject];
     view.frame = position;
     view.tag = 35;
+    
+    [view addSubview:[PELabelConfiguration setInformationLabelOnView:view]];
+    
     [self.textViewNotes endEditing:YES];
     [self.view addSubview:view];
     [view setVisible:YES];

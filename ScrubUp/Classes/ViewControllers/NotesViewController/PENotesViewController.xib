@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PENotesViewController">
             <connections>
                 <outlet property="constraintHeightOfBottomButtons" destination="LYt-Jh-EC3" id="vB1-yR-Qdv"/>
+                <outlet property="informationLabel" destination="ue5-lb-rNQ" id="9d3-Pz-2Na"/>
                 <outlet property="tableViewNotes" destination="QCJ-RR-vgr" id="e6y-0m-yhw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -45,6 +46,16 @@
                         <constraint firstAttribute="height" id="LYt-Jh-EC3"/>
                     </constraints>
                 </view>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-lb-rNQ" userLabel="Information - UILabel">
+                    <rect key="frame" x="20" y="234" width="280" height="100"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="qmU-kC-co1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.29411764709999999" green="0.61568627450000002" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -53,7 +64,11 @@
                 <constraint firstItem="0iI-H3-V6P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bjW-nQ-xo3"/>
                 <constraint firstItem="QCJ-RR-vgr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gCP-Ho-6ZS"/>
                 <constraint firstItem="0iI-H3-V6P" firstAttribute="top" secondItem="QCJ-RR-vgr" secondAttribute="bottom" id="grd-3l-lZo"/>
+                <constraint firstAttribute="trailing" secondItem="ue5-lb-rNQ" secondAttribute="trailing" constant="20" id="kJY-uM-MGS"/>
                 <constraint firstAttribute="bottom" secondItem="0iI-H3-V6P" secondAttribute="bottom" id="qvJ-I2-mfl"/>
+                <constraint firstAttribute="centerY" secondItem="ue5-lb-rNQ" secondAttribute="centerY" id="uUM-Dr-REV"/>
+                <constraint firstAttribute="centerX" secondItem="ue5-lb-rNQ" secondAttribute="centerX" id="vZb-W8-Gyr"/>
+                <constraint firstItem="ue5-lb-rNQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="w5k-Jv-xAa"/>
                 <constraint firstAttribute="trailing" secondItem="QCJ-RR-vgr" secondAttribute="trailing" id="xQO-jw-Sue"/>
                 <constraint firstAttribute="trailing" secondItem="0iI-H3-V6P" secondAttribute="trailing" id="xR8-7s-eQN"/>
             </constraints>

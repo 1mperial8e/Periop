@@ -69,13 +69,12 @@
 
 - (void)prepareFoReset
 {
-    NSString *message = [NSString stringWithFormat:@"This action will reset all data for %@ specialisation. Continue?", [self.specialisationInfo valueForKey:@"name"]];
-    [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] show];    
+    [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"You will loose all your data created. Do you wish to continue?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] show];
 }
 
 - (void)prepareForBuying
 {
-    NSString *message = [NSString stringWithFormat:@"Buy %@ specialisation for $1.99", [self.specialisationInfo valueForKey:@"name"]];
+    NSString *message = [NSString stringWithFormat:@"Would you like to purchase %@ for $1.99?", [self.specialisationInfo valueForKey:@"name"]];
     [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Buy", @"Restore", nil] show];
 }
 
@@ -235,7 +234,8 @@
         [self downloadData];
     } else {
         if (error) {
-            [[[UIAlertView alloc] initWithTitle:@"Transaction failed" message:error.localizedFailureReason delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            NSString *message = [NSString stringWithFormat:@"%@ could not be purchased at this time. Please try again later.", [self.specialisationInfo valueForKey:@"name"]];
+            [[[UIAlertView alloc] initWithTitle:@"Transaction failed" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         } else {
             [self hideView];
         }

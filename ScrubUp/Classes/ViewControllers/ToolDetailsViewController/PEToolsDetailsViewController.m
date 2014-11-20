@@ -19,6 +19,7 @@
 #import "PECameraViewController.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEBlurEffect.h"
+#import "PELabelConfiguration.h"
 
 static NSString *const TDVCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const TDVCellIdentifier = @"OperationRoomViewCell";
@@ -173,6 +174,9 @@ static NSInteger const TDVCViewTag = 35;
     PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = TDVCViewTag;
+    
+    [view addSubview:[PELabelConfiguration setInformationLabelOnView:view]];
+    
     [self.view addSubview:view];
     [view setVisible:YES];
 }

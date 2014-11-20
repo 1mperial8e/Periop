@@ -15,6 +15,7 @@
 #import <MessageUI/MessageUI.h>
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEMailControllerConfigurator.h"
+#import "PEInternetStatusChecker.h"
 
 static CGFloat const MVCAnimationDuration = 0.3f;
 static NSString *const MVCTermsAndConditions = @"Terms & Conditions";
@@ -141,17 +142,21 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 
 - (IBAction)feedbackButton:(id)sender
 {
-    CGPoint newCenterForView = ((UIButton *)sender).center;
-    newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
-    self.viewSelection.center = newCenterForView;
-    self.viewSelection.hidden = NO;
-    self.menuTitleLabel.text = MVCFeedback;
-    
-    if ([MFMailComposeViewController canSendMail]) {
-        [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
-        [self configureAndShowMailController];
+    if ([PEInternetStatusChecker isInternetAvaliable]) {
+        CGPoint newCenterForView = ((UIButton *)sender).center;
+        newCenterForView.x = ((UIButton *)sender).frame.origin.x / 2;
+        self.viewSelection.center = newCenterForView;
+        self.viewSelection.hidden = NO;
+        self.menuTitleLabel.text = MVCFeedback;
+        
+        if ([MFMailComposeViewController canSendMail]) {
+            [PEMailControllerConfigurator configureMailControllerBackgroundColor:UIColorFromRGB(0x4B9DE1)];
+            [self configureAndShowMailController];
+        } else {
+            [self showAlertViewForMailController];
+        }
     } else {
-        [self showAlertViewForMailController];
+        [self showAlertViewNoInternetConnection];
     }
 }
 
@@ -292,6 +297,11 @@ static NSString *const MVCMySpecButtonAnimationKey = @"hideMenuToMenuMoreSpecial
 }
 
 #pragma mark - Private
+
+- (void)showAlertViewNoInternetConnection
+{
+    [[[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"No Internet Connection. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
 
 - (void)configureAndShowMailController
 {

@@ -207,6 +207,7 @@
 		EDA9862B19F8FD6C00261473 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9862A19F8FD6B00261473 /* Photo.m */; };
 		EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */; };
 		EDBCF12D19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */; };
+		EDC368791A1DF2C100DA72AD /* PELabelConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC368781A1DF2C100DA72AD /* PELabelConfiguration.m */; };
 		EDC91EC319B9B17F00212F24 /* PENotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */; };
 		EDC91EC419B9B17F00212F24 /* PENotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */; };
 		EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC91EC719B9BBC000212F24 /* PEAddEditNoteViewController.m */; };
@@ -1132,6 +1133,8 @@
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
+		EDF3BB191A1DE185000F29FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB181A1DE185000F29FC /* Reachability.m */; };
+		EDF3BB1D1A1DE44C000F29FC /* PEInternetStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */; };
 		EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */; };
 /* End PBXBuildFile section */
 
@@ -1387,6 +1390,8 @@
 		EDBCF12A19D983BB0054C464 /* PEPatientPositioningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPatientPositioningTableViewCell.m; sourceTree = "<group>"; };
 		EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEPatientPositioningTableViewCell.xib; sourceTree = "<group>"; };
 		EDBCF13019D986CF0054C464 /* MuseoSans-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-700.otf"; sourceTree = "<group>"; };
+		EDC368771A1DF2C100DA72AD /* PELabelConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PELabelConfiguration.h; sourceTree = "<group>"; };
+		EDC368781A1DF2C100DA72AD /* PELabelConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PELabelConfiguration.m; sourceTree = "<group>"; };
 		EDC91EC019B9B17E00212F24 /* PENotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesTableViewCell.h; sourceTree = "<group>"; };
 		EDC91EC119B9B17E00212F24 /* PENotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesTableViewCell.m; sourceTree = "<group>"; };
 		EDC91EC219B9B17E00212F24 /* PENotesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesTableViewCell.xib; sourceTree = "<group>"; };
@@ -2352,6 +2357,10 @@
 		EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPurchaseManager.h; sourceTree = "<group>"; };
 		EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPurchaseManager.m; sourceTree = "<group>"; };
+		EDF3BB171A1DE185000F29FC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		EDF3BB181A1DE185000F29FC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		EDF3BB1B1A1DE44C000F29FC /* PEInternetStatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInternetStatusChecker.h; sourceTree = "<group>"; };
+		EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEInternetStatusChecker.m; sourceTree = "<group>"; };
 		EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpecialisationPicsAndCode.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2437,6 +2446,7 @@
 		842C8DF519D57C2000D0DAC7 /* PEMediaSelectView */ = {
 			isa = PBXGroup;
 			children = (
+				EDC368761A1DF2B300DA72AD /* LabelConfiguration */,
 				842C8DF619D57C2000D0DAC7 /* PEMediaSelect.h */,
 				842C8DF719D57C2000D0DAC7 /* PEMediaSelect.m */,
 				842C8DF819D57C2000D0DAC7 /* PEMediaSelect.xib */,
@@ -2886,6 +2896,15 @@
 				EDBCF12B19D983BB0054C464 /* PEPatientPositioningTableViewCell.xib */,
 			);
 			path = PEPatientPositioningTableViewCell;
+			sourceTree = "<group>";
+		};
+		EDC368761A1DF2B300DA72AD /* LabelConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				EDC368771A1DF2C100DA72AD /* PELabelConfiguration.h */,
+				EDC368781A1DF2C100DA72AD /* PELabelConfiguration.m */,
+			);
+			path = LabelConfiguration;
 			sourceTree = "<group>";
 		};
 		EDC91EBF19B9B16A00212F24 /* NotesTableViewCell */ = {
@@ -3377,6 +3396,8 @@
 		EDDEDEF51A1C794700DEEFCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				EDF3BB1A1A1DE432000F29FC /* InternetStatusChecker */,
+				EDF3BB161A1DE16E000F29FC /* Reachability */,
 				EDDEDEF61A1C795B00DEEFCD /* MailController */,
 			);
 			path = OtherClasses;
@@ -4677,6 +4698,24 @@
 			path = InAppPurchaseManager;
 			sourceTree = "<group>";
 		};
+		EDF3BB161A1DE16E000F29FC /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				EDF3BB171A1DE185000F29FC /* Reachability.h */,
+				EDF3BB181A1DE185000F29FC /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		EDF3BB1A1A1DE432000F29FC /* InternetStatusChecker */ = {
+			isa = PBXGroup;
+			children = (
+				EDF3BB1B1A1DE44C000F29FC /* PEInternetStatusChecker.h */,
+				EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */,
+			);
+			path = InternetStatusChecker;
+			sourceTree = "<group>";
+		};
 		EDF3C82419D45F4C0006F641 /* Specialisations */ = {
 			isa = PBXGroup;
 			children = (
@@ -5797,11 +5836,14 @@
 				EDCB1CD519DD4E1F0049A970 /* UIImage+ImageWithJPGFile.m in Sources */,
 				8450805219F7A04E00BDD36C /* PEBlurEffect.m in Sources */,
 				EDDDEF7719CAE168007BEDE4 /* PEPreparationTableViewCell.m in Sources */,
+				EDF3BB191A1DE185000F29FC /* Reachability.m in Sources */,
 				EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */,
 				ED1379C319D54A9F00EF517F /* PEViewPhotoViewController.m in Sources */,
+				EDF3BB1D1A1DE44C000F29FC /* PEInternetStatusChecker.m in Sources */,
 				ED0D2FB319BA0762001F8411 /* PEAddEditDoctorViewController.m in Sources */,
 				EDCD583D19B8B43B00EC7AF1 /* PEOperationRoomViewController.m in Sources */,
 				EDBCF12C19D983BB0054C464 /* PEPatientPositioningTableViewCell.m in Sources */,
+				EDC368791A1DF2C100DA72AD /* PELabelConfiguration.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
 				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
@@ -5980,7 +6022,7 @@
 					"$(PROJECT_DIR)/ScrubUp/GoogleAnalytics",
 				);
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
+				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6001,7 +6043,7 @@
 					"$(PROJECT_DIR)/ScrubUp/GoogleAnalytics",
 				);
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "a08baa78-a4dc-481d-af80-73ac486378bc";
+				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

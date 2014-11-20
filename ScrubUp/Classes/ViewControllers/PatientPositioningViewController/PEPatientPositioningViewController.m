@@ -23,6 +23,7 @@
 #import "PEAddEditStepViewControllerViewController.h"
 #import "PECoreDataManager.h"
 #import "PEBlurEffect.h"
+#import "PELabelConfiguration.h"
 
 static NSString *const PPOperationRoomCollectionViewCellNibName = @"PEOperationRoomCollectionViewCell";
 static NSString *const PPOperationRoomCollectionViewCellIdentifier = @"OperationRoomViewCell";
@@ -118,6 +119,9 @@ static NSInteger const PPTagView = 35;
     PEMediaSelect *view = array[0];
     view.frame = size;
     view.tag = PPTagView;
+    
+    [view addSubview:[PELabelConfiguration setInformationLabelOnView:view]];
+    
     [self.view addSubview:view];
     [view setVisible:YES];
 }

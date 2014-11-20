@@ -17,6 +17,7 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEDownloadingScreenViewController.h"
 #import "PECoreDataManager.h"
+#import "PEInternetStatusChecker.h"
 
 static NSString *const SVCPriceForSpec = @"$1,99";
 static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
@@ -39,6 +40,8 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (assign, nonatomic) BOOL internetActive;
 
 @end
 
@@ -81,6 +84,11 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
     [self setSpecialisationsData];
     [self.collectionView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -131,15 +139,19 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
-        PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
-        downloadingVC.specialisationInfo = self.moreSpecialisationsInfo[indexPath.row];
+        if ([PEInternetStatusChecker isInternetAvaliable]) {
+            PEDownloadingScreenViewController *downloadingVC = [[PEDownloadingScreenViewController alloc] initWithNibName:@"PEDownloadingScreenViewController" bundle:nil];
+            downloadingVC.specialisationInfo = self.moreSpecialisationsInfo[indexPath.row];
 #ifdef __IPHONE_8_0
-        downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            downloadingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 #endif
-        downloadingVC.delegate = self;
-        UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [rootController presentViewController:downloadingVC animated:NO completion:nil];
+            downloadingVC.delegate = self;
+            UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+            rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [rootController presentViewController:downloadingVC animated:NO completion:nil];
+        } else {
+            [self showAlertNoInternetConnection];
+        }
     }
 }
 
@@ -284,5 +296,13 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     [self setSpecialisationsData];
     [self.collectionView reloadData];
 }
+
+#pragma mark - AlertView
+
+- (void)showAlertNoInternetConnection
+{
+    [[[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"To purchase this specialisation, you must connect to Internet. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
+
 
 @end
