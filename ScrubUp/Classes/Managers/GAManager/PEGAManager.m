@@ -40,6 +40,11 @@ static NSString *const GAMDoctorCreated = @"doctorCreated";
 
 #pragma mark - Public
 
+- (void)trackSelectionOfSpecialisation:(NSString *)specName
+{
+    [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Specialisation Like" action:@"Choosed" label:specName value:@(1)] build]];
+}
+
 - (void)trackDownloadedSpecialisation:(NSString *)specName
 {
     [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Specialisation" action:@"Download" label:specName value:@1] build]];
