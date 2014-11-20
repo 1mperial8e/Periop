@@ -5948,7 +5948,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -5988,7 +5988,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6011,7 +6011,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6021,6 +6021,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScrubUp/GoogleAnalytics",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -6032,7 +6033,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roman Huti (Q737JX7QHR)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6042,6 +6043,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScrubUp/GoogleAnalytics",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
 				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
 				WRAPPER_EXTENSION = app;
