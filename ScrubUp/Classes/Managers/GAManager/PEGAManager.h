@@ -15,6 +15,7 @@
 + (instancetype)sharedManager;
 
 - (void)trackDownloadedSpecialisation:(NSString *)specName;
+- (void)trackSelectionOfSpecialisation:(NSString *)specName;
 - (void)trackNewDoctor;
 
 @end

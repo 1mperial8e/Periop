@@ -18,6 +18,7 @@
 #import "PEDownloadingScreenViewController.h"
 #import "PECoreDataManager.h"
 #import "PEInternetStatusChecker.h"
+#import "PEGAManager.h"
 
 static NSString *const SVCPriceForSpec = @"$1,99";
 static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
@@ -137,6 +138,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     if (self.isMyspecializations) {
         self.specManager.currentSpecialisation = [self getSpecialisationWithID:[self.mySpecialisationsInfo[indexPath.row] valueForKey:@"specID"]];
         PEProcedureListViewController *procedureListController = [[PEProcedureListViewController alloc] initWithNibName:@"PEProcedureListViewController" bundle:nil];
+        [self collectLikeDataForSpeciality:self.specManager.currentSpecialisation.name];
         [self.navigationController pushViewController:procedureListController animated:YES];
     } else {
         if ([PEInternetStatusChecker isInternetAvaliable]) {
@@ -148,6 +150,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
             downloadingVC.delegate = self;
             UITabBarController *rootController = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
             rootController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self collectLikeDataForSpeciality:[self.moreSpecialisationsInfo[indexPath.row] valueForKey:@"name"]];
             [rootController presentViewController:downloadingVC animated:NO completion:nil];
         } else {
             [self showAlertNoInternetConnection];
@@ -181,6 +184,33 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     }
     cell.labelPrice.text = SVCPriceForSpec;
     return cell;
+}
+
+#pragma mark - Statistics Google Analytics
+
+- (void)collectLikeDataForSpeciality:(NSString *)specialisationName
+{
+    if ([PEInternetStatusChecker isInternetAvaliable]) {
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:specialisationName]) {
+            NSInteger likeCount = [[[NSUserDefaults standardUserDefaults] valueForKey:specialisationName] integerValue];
+            likeCount++;
+            for (int i = 0; i < likeCount; i++) {
+                [[PEGAManager sharedManager] trackSelectionOfSpecialisation:specialisationName];
+            }
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:specialisationName];
+        } else  {
+            [[PEGAManager sharedManager] trackSelectionOfSpecialisation:specialisationName];
+        }
+    } else {
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:specialisationName]) {
+            NSInteger likeCount = [[[NSUserDefaults standardUserDefaults] valueForKey:specialisationName] integerValue];
+            likeCount++;
+            [[NSUserDefaults standardUserDefaults] setValue:@(likeCount) forKey:specialisationName];
+        } else {
+            [[NSUserDefaults standardUserDefaults] setValue:@(1) forKey:specialisationName];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Private
