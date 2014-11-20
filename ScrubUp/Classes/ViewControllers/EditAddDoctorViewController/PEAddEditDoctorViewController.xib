@@ -23,6 +23,7 @@
                     <subviews>
                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Place_Holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Poo-pq-qsh" userLabel="ProfilePhotoImageView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9o-4y-xKb" userLabel="Button - add photo">
                             <rect key="frame" x="278" y="15" width="32" height="32"/>
@@ -38,7 +39,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Poo-pq-qsh" secondAttribute="bottom" id="32w-Ce-89M"/>
                         <constraint firstAttribute="trailing" secondItem="h9o-4y-xKb" secondAttribute="trailing" constant="10" id="IWm-2T-xGU"/>

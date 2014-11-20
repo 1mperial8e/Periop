@@ -21,7 +21,7 @@ static NSString *const PEDoctorsListControllerNibName = @"PEDoctorsListViewContr
 static NSString *const PEAboutUsControllerNibName = @"PEAboutUsViewController";
 static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.ScrubUp.S09General";
 
-@interface PEAppDelegate() 
+@interface PEAppDelegate()
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
