@@ -29,7 +29,7 @@ static NSInteger const AVCOperationRoomQuantity = 4;
 static NSInteger const AVCOneQuantity = 0;
 static NSInteger const AVCDefaultQuantity = 29;
 
-@interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
 
@@ -70,7 +70,6 @@ static NSInteger const AVCDefaultQuantity = 29;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     ((PENavigationController *)self.navigationController).titleLabel.text = self.navigationLabelText;
 }
 
@@ -143,11 +142,32 @@ static NSInteger const AVCDefaultQuantity = 29;
     NSInteger allowedPhotoQuantity;
     
     id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+    
     if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ) {
+        NSInteger photoCount = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
+        allowedPhotoQuantity = AVCOperationRoomQuantity - photoCount;
+        if (!allowedPhotoQuantity || allowedPhotoQuantity < 0) {
+            allowedPhotoQuantity = AVCOneQuantity;
+            [self showCantAddPhotoNotification:(AVCOperationRoomQuantity + 1)];
+        }
         allowedPhotoQuantity = AVCOperationRoomQuantity;
-    } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)] ||
-              [viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+    } else if ([viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
+        NSInteger photoCount =  [self.specManager.currentEquipment.photo allObjects].count;
+        if (photoCount) {
+            [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+        }
+        allowedPhotoQuantity = AVCOneQuantity;
+    } else if ([viewController isKindOfClass:NSClassFromString(AVCDoctorProfileViewController)]) {
+        if (self.specManager.currentDoctor.photo) {
+            [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+        }
+        allowedPhotoQuantity = AVCOneQuantity;
+    } else if([viewController isKindOfClass:NSClassFromString(AVCAddEditDoctorViewController)]) {
+        if (self.specManager.currentDoctor) {
+            if (self.specManager.currentDoctor.photo) {
+                [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+            }
+        }
         allowedPhotoQuantity = AVCOneQuantity;
     } else {
         allowedPhotoQuantity = AVCDefaultQuantity;
@@ -156,7 +176,25 @@ static NSInteger const AVCDefaultQuantity = 29;
     return allowedPhotoQuantity;
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0: {
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        }
+    }
+}
+
 #pragma mark - Private
+
+- (void)showCantAddPhotoNotification:(NSInteger)allowedItemsCount
+{
+    NSString *message = [NSString stringWithFormat:@"You can add up to %i photos. Please delete some and try again.", (int)allowedItemsCount];
+    [[[UIAlertView alloc] initWithTitle:@"Can't add photos" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
 
 - (BOOL)checkIfPhotoExist:(NSArray *)photoArray compareWithPhoto:(Photo *)newPhoto
 {

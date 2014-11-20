@@ -23,6 +23,7 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEBlurEffect.h"
 #import "PEGAManager.h"
+#import "PELabelConfiguration.h"
 
 static NSInteger const AEDTitleForRowHeight = 37;
 static NSInteger const AEDHeightForSpecRow = 130;
@@ -248,6 +249,9 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = AEDTagForView;
+    
+    [view addSubview:[PELabelConfiguration setInformationLabelOnView:view]];
+    
     [self.view addSubview:view];
     [view setVisible:YES];
 }

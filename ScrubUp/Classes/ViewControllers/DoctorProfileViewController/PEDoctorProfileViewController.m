@@ -26,6 +26,7 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEProcedureListViewController.h"
 #import "PEBlurEffect.h"
+#import "PELabelConfiguration.h"
 
 static NSString *const DPDoctorsProfileTableCellName = @"doctorsProfileCell";
 static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableViewCell";
@@ -163,6 +164,9 @@ static NSInteger const DPHeaderHeight = 37;
     PEMediaSelect *view = array[0];
     view.frame = position;
     view.tag = DPViewTag;
+    
+    [view addSubview:[PELabelConfiguration setInformationLabelOnView:view]];
+    
     [self.view addSubview:view];
     [view setVisible:YES];
 }

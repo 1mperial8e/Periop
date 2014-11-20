@@ -343,7 +343,9 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     } else if ([viewController isKindOfClass:NSClassFromString(VPVCDoctorProfileViewController)]) {
         arrayWithPhotos = @[self.specManager.currentDoctor.photo];
     } else if ([viewController isKindOfClass:NSClassFromString(VPVCAddEditDoctorViewController)]) {
-        arrayWithPhotos = @[self.specManager.currentDoctor.photo];
+        if (self.specManager.currentDoctor){
+            arrayWithPhotos = @[self.specManager.currentDoctor.photo];
+        }
     } else if ([viewController isKindOfClass:NSClassFromString(VPVCNotesViewController)]) {
         arrayWithPhotos = [[self.specManager.currentNote.photo allObjects] mutableCopy];
     }

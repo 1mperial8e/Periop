@@ -8,7 +8,7 @@
 
 #import "PELabelConfiguration.h"
 
-static NSString *const LCMessage = @"For optimal display on the screen, please take or choose photo with portrait orientation";
+static NSString *const LCMessage = @"For optimal display on the screen, please take or choose photo with landscape orientation";
 
 @implementation PELabelConfiguration
 
