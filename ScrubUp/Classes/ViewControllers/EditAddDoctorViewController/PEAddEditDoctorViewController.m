@@ -374,7 +374,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
     }
 }
 
-#pragma mark - UITbaleViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -428,10 +428,9 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 - (void)keyboardWillChange:(NSNotification *)notification
 {
     CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
     
     [UIView animateWithDuration:AEDDuration animations:^ {
-        self.view.transform = CGAffineTransformMakeTranslation(0, -keyboardRect.size.height);
+        self.view.transform = CGAffineTransformMakeTranslation(0, keyboardRect.size.height > 224.0 ? -224.0 : -keyboardRect.size.height);
     }];
 }
 

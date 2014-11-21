@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSSet *productIdentifiers;
 @property (strong, nonatomic) NSMutableSet *purchasedProductIdentifiers;
 @property (strong, nonatomic) NSString *productIdentifierToRestore;
+
 @end
 
 @implementation IAPHelper

@@ -10,8 +10,14 @@
                 <outlet property="containerView" destination="SBF-lF-YdW" id="3xO-RQ-Lc1"/>
                 <outlet property="dropDownListContainer" destination="jfD-9Y-oX0" id="DVy-fp-Zae"/>
                 <outlet property="dropDownListContainerHeightConstraint" destination="drb-J2-wcM" id="nBU-1P-Obq"/>
+                <outlet property="nameLabel" destination="mwk-uc-4ls" id="Bny-55-WXS"/>
+                <outlet property="nameTextBox" destination="i7a-gK-fpf" id="9VT-DJ-pe7"/>
+                <outlet property="quantityLabel" destination="nXd-U1-v3K" id="OUq-EQ-V96"/>
+                <outlet property="quantityTextBox" destination="Xbj-r5-TV7" id="dhu-WA-WCy"/>
                 <outlet property="scrollView" destination="es1-3n-ihO" id="ilW-U6-qP6"/>
                 <outlet property="scrollViewBottomPositionConstraint" destination="yH3-1D-lU8" id="ylv-mY-pCU"/>
+                <outlet property="specLabel" destination="tj7-We-lXi" id="ixF-wD-reS"/>
+                <outlet property="specTextBox" destination="z7F-us-3hX" id="7YZ-qb-rqL"/>
                 <outlet property="view" destination="f2C-3E-ObF" id="epU-UC-V8q"/>
             </connections>
         </placeholder>

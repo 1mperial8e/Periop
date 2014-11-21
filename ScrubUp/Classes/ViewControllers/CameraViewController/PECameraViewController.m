@@ -238,8 +238,11 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
             NSLog(@"Cant save camera photo for equipment DB  - %@", error.localizedDescription);
         }
     } else if (self.request == NotesViewControllerAdd) {
-        newPhotoObject.photoNumber = @0;
-        self.specManager.photoObject = newPhotoObject;
+        newPhotoObject.photoNumber = @([self.specManager.currentNote.photo allObjects].count+1);
+        if (!self.specManager.photoObjectsToSave) {
+            self.specManager.photoObjectsToSave = [[NSMutableArray alloc] init];
+        }
+        [self.specManager.photoObjectsToSave addObject:newPhotoObject];
     } else if (self.request == DoctorsViewControllerProfile) {
         newPhotoObject.doctor = self.specManager.currentDoctor;
         newPhotoObject.photoNumber = @0;
