@@ -212,7 +212,11 @@ static NSString *const ANTEquipmentEntityName = @"EquipmentsTool";
         [self.view layoutIfNeeded];
     }];
     self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.layoutMargins = UIEdgeInsetsZero;
+#ifdef __IPHONE_8_0
+    if ([self.scrollView respondsToSelector:@selector(layoutMargins)]) {
+        self.scrollView.layoutMargins = UIEdgeInsetsZero;
+    }
+#endif
     self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
     self.scrollView.contentSize = CGSizeMake(self.dropDownListContainer.frame.size.width, self.dropDownListContainer.frame.size.height + self.containerView.frame.size.height);
 }
