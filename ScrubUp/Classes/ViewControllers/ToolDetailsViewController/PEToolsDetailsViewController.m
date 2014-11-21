@@ -74,7 +74,6 @@ static NSInteger const TDVCViewTag = 35;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backButton;
-
     self.navigationItem.rightBarButtonItem = editButton;
     
     [self setSelectedObjectToView];

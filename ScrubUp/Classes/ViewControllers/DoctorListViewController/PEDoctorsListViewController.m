@@ -228,6 +228,7 @@ static CGFloat const DLVCHeighForCell = 53.0f;
 
 - (IBAction)addDoctorButton:(id)sender
 {
+    self.specManager.currentDoctor = nil;
     PEAddEditDoctorViewController *addEditDoctorView = [[PEAddEditDoctorViewController alloc] initWithNibName:@"PEAddEditDoctorViewController" bundle:nil];
     addEditDoctorView.navigationLabelDescription = @"Add Surgeon";
     addEditDoctorView.isEditedDoctor = NO;

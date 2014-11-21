@@ -18,16 +18,6 @@
 #import "UIImage+ImageWithJPGFile.h"
 
 static NSString *const AVCCellName = @"albumCell";
-static NSString *const AVCOperationRoomViewController = @"PEOperationRoomViewController";
-static NSString *const AVCToolsDetailsViewController = @"PEToolsDetailsViewController";
-static NSString *const AVCPatientPositioningViewController = @"PEPatientPositioningViewController";
-static NSString *const AVCDoctorProfileViewController = @"PEDoctorProfileViewController";
-static NSString *const AVCAddEditDoctorViewController = @"PEAddEditDoctorViewController";
-static NSString *const AVCAddEditNoteViewController = @"PEAddEditNoteViewController";
-
-static NSInteger const AVCOperationRoomQuantity = 4;
-static NSInteger const AVCOneQuantity = 0;
-static NSInteger const AVCDefaultQuantity = 29;
 
 @interface PEAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 
@@ -141,16 +131,14 @@ static NSInteger const AVCDefaultQuantity = 29;
 {
     NSInteger allowedPhotoQuantity;
     
-    id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    
+    id viewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];    
     if ([viewController isKindOfClass:NSClassFromString(AVCOperationRoomViewController)] ) {
         NSInteger photoCount = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
         allowedPhotoQuantity = AVCOperationRoomQuantity - photoCount;
-        if (!allowedPhotoQuantity || allowedPhotoQuantity < 0) {
+        if (allowedPhotoQuantity < 0) {
             allowedPhotoQuantity = AVCOneQuantity;
             [self showCantAddPhotoNotification:(AVCOperationRoomQuantity + 1)];
         }
-        allowedPhotoQuantity = AVCOperationRoomQuantity;
     } else if ([viewController isKindOfClass:NSClassFromString(AVCToolsDetailsViewController)]) {
         NSInteger photoCount =  [self.specManager.currentEquipment.photo allObjects].count;
         if (photoCount) {
@@ -169,10 +157,17 @@ static NSInteger const AVCDefaultQuantity = 29;
             }
         }
         allowedPhotoQuantity = AVCOneQuantity;
+    } else if ([viewController isKindOfClass:NSClassFromString(AVCPatientPositioningViewController)]){
+        NSInteger photoCount = [self.specManager.currentProcedure.patientPostioning.photo allObjects].count;
+        allowedPhotoQuantity = AVCOperationRoomQuantity - photoCount;
+        if (allowedPhotoQuantity < 0) {
+            allowedPhotoQuantity = AVCOneQuantity;
+            [self showCantAddPhotoNotification:(AVCOperationRoomQuantity + 1)];
+        }
     } else {
         allowedPhotoQuantity = AVCDefaultQuantity;
     }
-    
+    //
     return allowedPhotoQuantity;
 }
 
