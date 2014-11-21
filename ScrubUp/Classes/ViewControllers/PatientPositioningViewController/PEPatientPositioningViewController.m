@@ -114,7 +114,7 @@ static NSInteger const PPTagView = 35;
 
 - (IBAction)operationWithPhotoButton:(id)sender
 {
-    CGRect size = self.postedCollectionView.bounds;
+    CGRect size = self.postedCollectionView.frame;
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"PEMediaSelect" owner:self options:nil];
     PEMediaSelect *view = array[0];
     view.frame = size;

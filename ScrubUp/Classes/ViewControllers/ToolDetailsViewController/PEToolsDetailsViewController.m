@@ -38,7 +38,9 @@ static NSInteger const TDVCViewTag = 35;
 @property (weak, nonatomic) IBOutlet UILabel *labelQuantity;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) UIBarButtonItem *rightBarButton;
+@property (strong, nonatomic) UIBarButtonItem *rightBarButtonEdit;
+@property (strong, nonatomic) UIBarButtonItem *rightBarButtonSave;
+@property (assign, nonatomic) BOOL isEdit;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic)NSMutableArray *sortedArrayWithPhotos;
@@ -68,15 +70,7 @@ static NSInteger const TDVCViewTag = 35;
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
 
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
-    editButton.image = [UIImage imageNamedFile:@"Edit"];
-    self.rightBarButton = editButton;
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.navigationItem.backBarButtonItem = backButton;
-
-    self.navigationItem.rightBarButtonItem = editButton;
-    
+    [self configureNavigationItems];
     [self setSelectedObjectToView];
     
     [self.collectionView registerNib:[UINib nibWithNibName:TDVCellNibName bundle:nil] forCellWithReuseIdentifier:TDVCellIdentifier];
@@ -93,6 +87,12 @@ static NSInteger const TDVCViewTag = 35;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.isEdit) {
+        self.navigationItem.rightBarButtonItem = self.rightBarButtonSave;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.rightBarButtonEdit;
+    }
     
     NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@",((EquipmentsTool *)self.specManager.currentEquipment).name]];
     
@@ -120,6 +120,7 @@ static NSInteger const TDVCViewTag = 35;
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     self.sortedArrayWithPhotos = nil;
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 -(void)viewDidLayoutSubviews
@@ -138,17 +139,16 @@ static NSInteger const TDVCViewTag = 35;
 
 - (IBAction)editButton:(id)sender
 {
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
-    [saveButton setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_MuseoSans500 size:13.5f]} forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = saveButton;
+    self.navigationItem.rightBarButtonItem = self.rightBarButtonSave;
     self.nameTextField.enabled = true;
     self.specificationTextField.enabled = true;
     self.quantityTextField.enabled = true;
+    self.isEdit = !self.isEdit;
 }
 
 - (IBAction)saveButton:(id)sender
 {
-    self.navigationItem.rightBarButtonItem = self.rightBarButton;
+    self.navigationItem.rightBarButtonItem = self.rightBarButtonEdit;
     self.nameTextField.enabled = false;
     self.specificationTextField.enabled = false;
     self.quantityTextField.enabled = false;
@@ -165,6 +165,7 @@ static NSInteger const TDVCViewTag = 35;
     if (![self.managedObjectContext save:&saveError]){
         NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
     }
+    self.isEdit = !self.isEdit;
 }
 
 - (IBAction)photoButton:(id)sender
@@ -269,6 +270,20 @@ static NSInteger const TDVCViewTag = 35;
 }
 
 #pragma mark - Private
+
+- (void)configureNavigationItems
+{
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(editButton:)];
+    editButton.image = [UIImage imageNamedFile:@"Edit"];
+    self.rightBarButtonEdit = editButton;
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveButton:)];
+    [saveButton setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:FONT_MuseoSans500 size:13.5f]} forState:UIControlStateNormal];
+    self.rightBarButtonSave = saveButton;
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+}
 
 - (void)setSelectedObjectToView
 {

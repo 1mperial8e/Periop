@@ -15,6 +15,7 @@
 #import "Photo.h"
 #import "PatientPostioning.h"
 #import "Note.h"
+#import "PEAlbumViewController.h"
 
 static void *CapturingStillImageContext = &CapturingStillImageContext;
 static void *RecordingContext = &RecordingContext;
@@ -51,7 +52,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
-    
+    [self checkPhotoCount];
 	AVCaptureSession *session = [[AVCaptureSession alloc] init];
 	[self setSession:session];
 	
@@ -163,7 +164,6 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
                 [self.view addSubview:photoToShow];
                 [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(hidePhotoView:) userInfo:nil repeats:NO];
                 [self createPhotoObjectToStore:image];
-                
 			}
             [self.takePhotoButton setEnabled:YES];
 		}];
@@ -185,7 +185,60 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     ((UIButton *)sender).selected = !((UIButton *)sender).selected;
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0: {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+    }
+}
+
 #pragma mark - Private
+
+- (void)checkPhotoCount
+{
+    NSInteger allowedPhotoQuantity;
+    
+    if (self.request == OperationRoomViewController) {
+        NSInteger photoCount = [self.specManager.currentProcedure.operationRoom.photo allObjects].count;
+        allowedPhotoQuantity = AVCOperationRoomQuantity - photoCount;
+        if (allowedPhotoQuantity < 0) {
+            [self showCantAddPhotoNotification:(AVCOperationRoomQuantity + 1)];
+        }
+    } else if (self.request == EquipmentsToolViewController) {
+        NSInteger photoCount =  [self.specManager.currentEquipment.photo allObjects].count;
+        if (photoCount) {
+            [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+        }
+    } else if (self.request == DoctorsViewControllerProfile) {
+        if (self.specManager.currentDoctor.photo) {
+            [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+        }
+    } else if(self.request == DoctorsViewControllerAdd) {
+        if (self.specManager.currentDoctor) {
+            if (self.specManager.currentDoctor.photo) {
+                [self showCantAddPhotoNotification:(AVCOneQuantity + 1)];
+            }
+        }
+    } else if (self.request == PatientPostioningViewController){
+        NSInteger photoCount = [self.specManager.currentProcedure.patientPostioning.photo allObjects].count;
+        allowedPhotoQuantity = AVCOperationRoomQuantity - photoCount;
+        if (allowedPhotoQuantity < 0) {
+            [self showCantAddPhotoNotification:(AVCOperationRoomQuantity + 1)];
+        }
+    }
+}
+
+- (void)showCantAddPhotoNotification:(NSInteger)allowedItemsCount
+{
+    NSString *message = [NSString stringWithFormat:@"You can add up to %i photos. Please delete some and try again.", (int)allowedItemsCount];
+    [[[UIAlertView alloc] initWithTitle:@"Can't add photos" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
+
 
 - (void)hidePhotoView:(NSTimer *)currentTimer
 {
@@ -378,5 +431,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 	}
 	return captureDevice;
 }
+
+
 
 @end
