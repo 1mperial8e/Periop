@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *PhotoButtonBottomPosition;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
@@ -57,8 +58,6 @@
     self.cornerLabel.layer.borderColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1].CGColor;
     self.cornerLabel.layer.borderWidth = 1;
     
-    self.textViewNotes.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
-    
     if (self.noteTextToShow.length){
         self.textViewNotes.text = self.noteTextToShow;
     }
@@ -67,6 +66,8 @@
     } else {
         self.timeStamp.text = [self dateFormatter:[NSDate date]];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameDidChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,6 +100,7 @@
 
 - (IBAction)closeButton:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
     if (self.specManager.photoObject) {
         [self.managedObjectContext deleteObject:self.specManager.photoObject];
@@ -147,6 +149,7 @@
     
     [self.specManager.photoObjectsToSave removeAllObjects];
     self.specManager.currentNote = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -202,6 +205,17 @@
     NSDateFormatter *dateFormatterDayPart = [[NSDateFormatter alloc] init];
     [dateFormatterDayPart setDateFormat:@"aaa"];
     return [NSString stringWithFormat:@"%@%@",[dateFormatterTimePart stringFromDate:dateToFormatt],[[dateFormatterDayPart stringFromDate:dateToFormatt] lowercaseString]];
+}
+
+- (void)keyboardFrameDidChanged:(NSNotification*)notification
+{
+    NSDictionary* userInfo = [notification userInfo];
+    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if (endFrame.size.height > 200) {
+        [UIView animateWithDuration:1.2 animations:^{
+            self.PhotoButtonBottomPosition.constant = endFrame.size.height + 10;
+        }];
+    }
 }
 
 @end
