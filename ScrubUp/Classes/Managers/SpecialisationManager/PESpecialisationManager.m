@@ -10,6 +10,8 @@
 
 @implementation PESpecialisationManager
 
+#pragma mark - LifeCycle
+
 + (id)sharedManager
 {
     static id sharedManager = nil;

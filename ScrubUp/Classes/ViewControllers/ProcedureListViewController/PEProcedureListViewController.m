@@ -101,6 +101,14 @@ static CGFloat const PLVCHeighForCell = 53.0f;
     
     self.specManager.currentProcedure = nil;
     [self refreshData];
+    
+    self.specManager.cellWithCheckedButtons = [NSMutableSet new];
+    self.specManager.indexPathForCheckedButtons = [NSMutableSet new];
+    
+    //    if (self.specManager.cellWithCheckedButtons) {
+    //        [self.specManager.cellWithCheckedButtons removeAllObjects];
+    //        [self.specManager.indexPathForCheckedButtons removeAllObjects];
+    //    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

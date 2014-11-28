@@ -32,8 +32,8 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (strong, nonatomic) NSMutableArray *arrayWithCategorisedToolsArrays;
 @property (strong, nonatomic) NSMutableArray *categoryTools;
-@property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
-@property (strong, nonatomic) NSMutableSet *indexPathForCheckedButtons;
+//@property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
+//@property (strong, nonatomic) NSMutableSet *indexPathForCheckedButtons;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) MFMailComposeViewController *mailController;
 
@@ -62,8 +62,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PEEquipmentCategoryTableViewCell" bundle:nil] forCellReuseIdentifier:EEquipmentCellIdentifier];
     self.cellCurrentlyEditing = [NSMutableSet new];
-    self.cellWithCheckedButtons = [NSMutableSet new];
-    self.indexPathForCheckedButtons = [NSMutableSet new];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,9 +93,9 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 
 - (IBAction)clearAll:(id)sender
 {
-    if (self.cellWithCheckedButtons) {
-        [self.cellWithCheckedButtons removeAllObjects];
-        [self.indexPathForCheckedButtons removeAllObjects];
+    if (self.specManager.cellWithCheckedButtons) {
+        [self.specManager.cellWithCheckedButtons removeAllObjects];
+        [self.specManager.indexPathForCheckedButtons removeAllObjects];
         [self.tableView reloadData];
     }
 }
@@ -192,7 +191,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     if ([self.cellCurrentlyEditing containsObject:indexPath]) {
         [cell setCellSwiped];
     }
-    if ([self.cellWithCheckedButtons containsObject:cell.createdDate]) {
+    if ([self.specManager.cellWithCheckedButtons containsObject:cell.createdDate]) {
          [cell cellSetChecked];
     }
 
@@ -310,14 +309,14 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 
 - (void)cellChecked:(PEEquipmentCategoryTableViewCell *)cell
 {
-    [self.cellWithCheckedButtons addObject:cell.createdDate];
-    [self.indexPathForCheckedButtons addObject:[self.tableView indexPathForCell:cell]];
+    [self.specManager.cellWithCheckedButtons addObject:cell.createdDate];
+    [self.specManager.indexPathForCheckedButtons addObject:[self.tableView indexPathForCell:cell]];
 }
 
 - (void)cellUnchecked:(PEEquipmentCategoryTableViewCell *)cell
 {
-    [self.cellWithCheckedButtons removeObject:cell.createdDate];
-    [self.indexPathForCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
+    [self.specManager.cellWithCheckedButtons removeObject:cell.createdDate];
+    [self.specManager.indexPathForCheckedButtons removeObject:[self.tableView indexPathForCell:cell]];
 }
 
 #pragma mark - Private
@@ -379,11 +378,11 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     if ([self.cellCurrentlyEditing containsObject:indexPathToDelete]) {
         [self.cellCurrentlyEditing removeObject:indexPathToDelete];
     }
-    if ([self.indexPathForCheckedButtons containsObject:indexPathToDelete]) {
-        [self.indexPathForCheckedButtons removeObject:indexPathToDelete];
+    if ([self.specManager.indexPathForCheckedButtons containsObject:indexPathToDelete]) {
+        [self.specManager.indexPathForCheckedButtons removeObject:indexPathToDelete];
     }
-    NSMutableArray *arrayWithIndex = [NSMutableArray arrayWithArray:[self.indexPathForCheckedButtons allObjects]];
-    [self.indexPathForCheckedButtons removeAllObjects];
+    NSMutableArray *arrayWithIndex = [NSMutableArray arrayWithArray:[self.specManager.indexPathForCheckedButtons allObjects]];
+    [self.specManager.indexPathForCheckedButtons removeAllObjects];
     NSMutableArray *buffer = [[NSMutableArray alloc] init];
     for (NSIndexPath *index in arrayWithIndex){
         if (index.section == indexPathToDelete.section && index.row > indexPathToDelete.row) {
@@ -398,7 +397,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
             [buffer addObject:newIndexPath];
         }
     }
-    self.indexPathForCheckedButtons = [NSMutableSet setWithArray:buffer];
+    self.specManager.indexPathForCheckedButtons = [NSMutableSet setWithArray:buffer];
     NSInteger sectionCount = self.arrayWithCategorisedToolsArrays.count;
     [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] removeObjectAtIndex:indexPathToDelete.row];
     if ( [self.arrayWithCategorisedToolsArrays[indexPathToDelete.section] count] == 0) {
@@ -417,7 +416,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     NSMutableString *message = [[NSMutableString alloc] init];
     
     NSMutableArray *selectedCategories = [[NSMutableArray alloc] init];
-    for (NSIndexPath *indexWithSelectedCells in self.indexPathForCheckedButtons){
+    for (NSIndexPath *indexWithSelectedCells in self.specManager.indexPathForCheckedButtons){
         [selectedCategories addObject:((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category];
     }
     NSArray *uniqueCategories = [[NSSet setWithArray:selectedCategories] allObjects];
@@ -425,7 +424,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     for (int i = 0; i < uniqueCategories.count; i++) {
         [message appendString:[NSString stringWithFormat:@"<b>%@</b><br>", uniqueCategories[i]]];
             
-        for (NSIndexPath *indexWithSelectedCells in self.indexPathForCheckedButtons) {
+        for (NSIndexPath *indexWithSelectedCells in self.specManager.indexPathForCheckedButtons) {
             if ([((EquipmentsTool*)(self.arrayWithCategorisedToolsArrays[indexWithSelectedCells.section])[indexWithSelectedCells.row]).category isEqualToString:uniqueCategories[i]]) {
                 
                 NSMutableString *descriptionOfEquipment = [[NSMutableString alloc] init];

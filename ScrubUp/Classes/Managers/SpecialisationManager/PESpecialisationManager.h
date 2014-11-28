@@ -27,6 +27,9 @@
 @property (strong, nonatomic) Photo *photoObject;
 @property (strong, nonatomic) NSMutableArray *photoObjectsToSave;
 
+@property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
+@property (strong, nonatomic) NSMutableSet *indexPathForCheckedButtons;
+
 + (id)sharedManager;
 
 @end
