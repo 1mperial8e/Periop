@@ -17,16 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7JT-QJ-aQE">
+                        <rect key="frame" x="142" y="100" width="37" height="37"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="color" red="0.29411764709999999" green="0.61568627450000002" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="AK5-rt-UZa" firstAttribute="leading" secondItem="RmB-WY-8fG" secondAttribute="leading" id="Lk7-6j-4Zk"/>
                 <constraint firstAttribute="trailing" secondItem="AK5-rt-UZa" secondAttribute="trailing" id="RC5-ia-Otv"/>
+                <constraint firstAttribute="centerY" secondItem="7JT-QJ-aQE" secondAttribute="centerY" id="f1m-9I-awt"/>
                 <constraint firstAttribute="bottom" secondItem="AK5-rt-UZa" secondAttribute="bottom" id="kOu-1I-23H"/>
                 <constraint firstItem="AK5-rt-UZa" firstAttribute="top" secondItem="RmB-WY-8fG" secondAttribute="top" id="qDI-9n-bqa"/>
+                <constraint firstAttribute="centerX" secondItem="7JT-QJ-aQE" secondAttribute="centerX" id="zoM-bf-f5B"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicator" destination="7JT-QJ-aQE" id="leo-b1-pbp"/>
                 <outlet property="operationRoomImage" destination="AK5-rt-UZa" id="BnA-EI-GId"/>
             </connections>
         </collectionViewCell>
