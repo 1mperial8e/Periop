@@ -65,7 +65,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
 {
     [super viewWillAppear:animated];
     
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Preperation"];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Preparation"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName
                               value:[UIFont fontWithName:FONT_MuseoSans300 size:20.0]

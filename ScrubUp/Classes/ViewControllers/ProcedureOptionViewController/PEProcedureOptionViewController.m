@@ -47,7 +47,7 @@
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.specManager.isProcedureSelected = YES;
@@ -56,7 +56,7 @@
 
 #pragma mark - Equipment Rounded Button
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {   
     touches = [event touchesForView:self.equipmentButton];
     UITouch *touch = [touches anyObject];

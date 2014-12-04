@@ -27,6 +27,7 @@
 #import "PEProcedureListViewController.h"
 #import "PEBlurEffect.h"
 #import "PELabelConfiguration.h"
+#import "PEProcedureOptionViewController.h"
 
 static NSString *const DPDoctorsProfileTableCellName = @"doctorsProfileCell";
 static NSString *const DPDoctorsProfileTableNibName = @"PEDoctorsProfileTableViewCell";
@@ -74,14 +75,9 @@ static NSInteger const DPHeaderHeight = 37;
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.navigationItem.backBarButtonItem = backBarButtonItem;
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
     self.doctorName.minimumScaleFactor = 0.5;
     self.doctorName.adjustsFontSizeToFitWidth = YES;
-    
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+
     self.collectionView.layer.borderWidth = 0.0f;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnPicture:)];
@@ -113,7 +109,14 @@ static NSInteger const DPHeaderHeight = 37;
     [self.collectionView reloadData];
 }
 
-- (NSUInteger) supportedInterfaceOrientations
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.specManager.isProcedureSelected = NO;
+    self.specManager.currentProcedure = nil;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -210,7 +213,7 @@ static NSInteger const DPHeaderHeight = 37;
     if (!cell) {
         cell = [[PEDoctorsProfileTableViewCell alloc] init];
     }
-    cell.doctorsNameLabel.text = ((Procedure*)self.doctorsProcedures[indexPath.section][indexPath.row]).name;
+    cell.procedureNameLabel.text = ((Procedure*)self.doctorsProcedures[indexPath.section][indexPath.row]).name;
     return cell;
 }
 
@@ -238,6 +241,15 @@ static NSInteger const DPHeaderHeight = 37;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return DPHeaderHeight;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.specManager.currentProcedure = (Procedure*)self.doctorsProcedures[indexPath.section][indexPath.row];
+    PEProcedureOptionViewController *procedureOptionVIew = [[PEProcedureOptionViewController alloc] initWithNibName:@"PEProcedureOptionViewController" bundle:nil];
+    [self.navigationController pushViewController:procedureOptionVIew animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

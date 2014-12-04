@@ -8,6 +8,6 @@
 
 @interface PEDoctorsProfileTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *doctorsNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *procedureNameLabel;
 
 @end

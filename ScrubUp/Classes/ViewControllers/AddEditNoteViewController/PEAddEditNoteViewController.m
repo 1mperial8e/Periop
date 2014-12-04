@@ -79,6 +79,7 @@
     [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
     if (!self.isEditNote) {
+        ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
         self.specManager.currentNote = nil;
     }
     
