@@ -8,6 +8,9 @@
 
 #import "PEObjectDescription.h"
 
+typedef void(^SuccessSearchResult)(NSArray *result);
+typedef void(^ErorrResult)(NSError *error);
+
 @interface PECoreDataManager : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -18,6 +21,7 @@
 
 + (void)removeFromDB:(PEObjectDescription *)deleteObjectDescription withManagedObject:(NSManagedObject *)managedObject;
 + (NSArray *)getAllEntities:(PEObjectDescription *)getObjectDescription;
++ (void)fetchEntitiesWithName:(NSString *)entityName success:(SuccessSearchResult)success failure:(ErorrResult)failure;
 
 @end
 

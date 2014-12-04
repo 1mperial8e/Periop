@@ -293,10 +293,12 @@ static NSInteger const TDVCViewTag = 35;
         
         [strongSelf.specManager.currentEquipment removePhotoObject:strongSelf.sortedArrayWithPhotos[indexPath.row]];
         [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
-        NSError *error;
-        if (![strongSelf.managedObjectContext save:&error]) {
-            NSLog(@"Error - %@", error.localizedDescription);
-        }
+
+            NSError *error;
+            if (![strongSelf.managedObjectContext save:&error]) {
+                NSLog(@"Error - %@", error.localizedDescription);
+            }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [cell.activityIndicator stopAnimating];
             cell.operationRoomImage.image = [UIImage imageWithData:imageDataFromUrl];;

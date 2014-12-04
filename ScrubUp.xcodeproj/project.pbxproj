@@ -273,6 +273,7 @@
 		EDDE419D1A1BB47B00534D15 /* Screen4-iphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDDE419C1A1BB47B00534D15 /* Screen4-iphone5@2x.png */; };
 		EDDEDCDC19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */; };
 		EDDEDEF91A1C797600DEEFCD /* PEMailControllerConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */; };
+		EDE604221A3095F4008F1850 /* PEImageDownloaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE604211A3095F4008F1850 /* PEImageDownloaderManager.m */; };
 		EDE7189619EF92AB00F59761 /* PEAddEditProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */; };
 		EDE7189719EF92AB00F59761 /* PEAddEditProcedureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */; };
 		EDE7189C19EF994E00F59761 /* PEProcedureListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE7189A19EF994E00F59761 /* PEProcedureListTableViewCell.m */; };
@@ -1452,7 +1453,6 @@
 		EDD2965F19EFC226002F4564 /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
 		EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
 		EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
-		EDD2A55B19DBF46500A73C5E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		EDD4BDEB19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorProfileCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1486,6 +1486,9 @@
 		EDDEDCDB19D6FE8700B0EDAC /* PEButtonWithTouchBegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEButtonWithTouchBegan.m; sourceTree = "<group>"; };
 		EDDEDEF71A1C797600DEEFCD /* PEMailControllerConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEMailControllerConfigurator.h; sourceTree = "<group>"; };
 		EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEMailControllerConfigurator.m; sourceTree = "<group>"; };
+		EDE604201A3095F4008F1850 /* PEImageDownloaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEImageDownloaderManager.h; sourceTree = "<group>"; };
+		EDE604211A3095F4008F1850 /* PEImageDownloaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEImageDownloaderManager.m; sourceTree = "<group>"; };
+		EDE604241A3096B0008F1850 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		EDE7189319EF92AB00F59761 /* PEAddEditProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditProcedureViewController.h; sourceTree = "<group>"; };
 		EDE7189419EF92AB00F59761 /* PEAddEditProcedureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditProcedureViewController.m; sourceTree = "<group>"; };
 		EDE7189519EF92AB00F59761 /* PEAddEditProcedureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditProcedureViewController.xib; sourceTree = "<group>"; };
@@ -2588,9 +2591,9 @@
 		8474906B19B8459E0013C446 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EDE604231A3096A8008F1850 /* Constants */,
 				8467E66B1A022E2500B7D82D /* GoogleAnalytics */,
 				846413E719DD8F210077FE16 /* Macros */,
-				EDD2A55719DBF40E00A73C5E /* Constants */,
 				8474906C19B8459E0013C446 /* ScrubUp-Info.plist */,
 				8474906D19B8459E0013C446 /* InfoPlist.strings */,
 				8474907019B8459E0013C446 /* main.m */,
@@ -3000,6 +3003,7 @@
 		EDCD57A619B8479100EC7AF1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EDE6041F1A3095F4008F1850 /* ImageDownloaderManager */,
 				8467E67A1A022EB800B7D82D /* GAManager */,
 				847E937819CC479A00665240 /* CameraRollManager */,
 				EDDDEF6F19CAD410007BEDE4 /* SpecialisationManager */,
@@ -3280,14 +3284,6 @@
 			path = AddEditStepViewController;
 			sourceTree = "<group>";
 		};
-		EDD2A55719DBF40E00A73C5E /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				EDD2A55B19DBF46500A73C5E /* Constants.h */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		EDD2A55C19DC045200A73C5E /* ToolsPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -3416,6 +3412,23 @@
 				EDDEDEF81A1C797600DEEFCD /* PEMailControllerConfigurator.m */,
 			);
 			path = MailController;
+			sourceTree = "<group>";
+		};
+		EDE6041F1A3095F4008F1850 /* ImageDownloaderManager */ = {
+			isa = PBXGroup;
+			children = (
+				EDE604201A3095F4008F1850 /* PEImageDownloaderManager.h */,
+				EDE604211A3095F4008F1850 /* PEImageDownloaderManager.m */,
+			);
+			path = ImageDownloaderManager;
+			sourceTree = "<group>";
+		};
+		EDE604231A3096A8008F1850 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EDE604241A3096B0008F1850 /* Constants.h */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		EDE7189219EF929000F59761 /* AddEditProcedureViewController */ = {
@@ -5903,6 +5916,7 @@
 				ED0D30BA19BA14E1001F8411 /* PEProceduresTableViewCell.m in Sources */,
 				842BF2AE19CC568200AFCA42 /* PEAlbumViewController.m in Sources */,
 				EDCD57CC19B8741600EC7AF1 /* PEDownloadingScreenViewController.m in Sources */,
+				EDE604221A3095F4008F1850 /* PEImageDownloaderManager.m in Sources */,
 				8474907519B8459E0013C446 /* PEAppDelegate.m in Sources */,
 				EDA7DFEC19BAD745002A70E8 /* PEDoctorsViewTableViewCell.m in Sources */,
 				EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */,

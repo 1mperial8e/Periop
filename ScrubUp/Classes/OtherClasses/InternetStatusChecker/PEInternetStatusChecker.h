@@ -12,5 +12,7 @@
 @interface PEInternetStatusChecker : NSObject
 
 + (BOOL)isInternetAvaliable;
++ (BOOL)is3GInternetAvaliable;
++ (BOOL)isWIFIInternetAvaliable;
 
 @end

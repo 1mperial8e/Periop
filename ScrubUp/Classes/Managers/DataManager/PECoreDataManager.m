@@ -7,6 +7,7 @@
 //
 
 #import "PECoreDataManager.h"
+#import "PEImageDownloaderManager.h"
 #import <CoreData/CoreData.h>
 
 @implementation PECoreDataManager
@@ -134,6 +135,21 @@
     NSError *error;
     NSArray *result = [getObjectDescription.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     return result;
+}
+
++ (void)fetchEntitiesWithName:(NSString *)entityName success:(SuccessSearchResult)success failure:(ErorrResult)failure
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityForSearch = [NSEntityDescription entityForName:entityName inManagedObjectContext:[[PECoreDataManager sharedManager] managedObjectContext]];
+    [fetchRequest setEntity:entityForSearch];
+    
+    NSError *error;
+    NSArray *result = [[[PECoreDataManager sharedManager] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        failure(error);
+    } else {
+        success(result);
+    }
 }
 
 @end

@@ -20,7 +20,9 @@
 #import "PEInternetStatusChecker.h"
 #import "PEGAManager.h"
 
-static NSString *const SVCPriceForSpec = @"$1,99";
+#import "PEImageDownloaderManager.h"
+
+static NSString *const SVCPriceForSpec = @"US $1,99";
 static NSString *const SVCPListName = @"SpecialisationPicsAndCode";
 static NSString *const SVCSpecialisations = @"Specialisations";
 static NSString *const SVCSpecialisationCollectionCellNibName = @"PESpecialisationCollectionCell";
@@ -41,6 +43,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 @property (assign, nonatomic) BOOL isMyspecializations;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PEImageDownloaderManager *imageManager;
 
 @property (assign, nonatomic) BOOL internetActive;
 
@@ -56,6 +59,10 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+    self.imageManager = [PEImageDownloaderManager sharedManager];
+    
+    [self.imageManager startAsyncImagesDownloading];
+
     self.isMyspecializations = YES;
     
     self.defaults = [NSUserDefaults standardUserDefaults];

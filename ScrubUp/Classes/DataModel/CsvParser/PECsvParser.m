@@ -19,6 +19,7 @@
 #import "Steps.h"
 #import "Specialisation.h"
 #import "UIImage+ImageWithJPGFile.h"
+#import "PEImageDownloaderManager.h"
 
 static NSInteger const CPDivideCounter = 5;
 static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
@@ -28,6 +29,9 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (assign, nonatomic) NSInteger quantityOfProcedures;
+@property (strong, nonatomic) PEImageDownloaderManager *imageManager;
+@property (copy, nonatomic) NSString *keyValue;
+@property (strong, nonatomic) NSMutableDictionary *dictionaryURL;
 
 @end
 
@@ -38,9 +42,20 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
 - (id)init
 {
     if (self = [super init]) {
-        self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
+        [self initialConfig];
     }
     return self;
+}
+
+#pragma mark - InitialConfig
+
+- (void)initialConfig
+{
+    if (!self.dictionaryURL) {
+        self.dictionaryURL = [NSMutableDictionary dictionary];
+    }
+    self.imageManager = [PEImageDownloaderManager sharedManager];
+    self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
 }
 
 #pragma mark - Public
@@ -131,24 +146,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
                     initPhoto.equiomentTool = newTool;
                     [newTool addPhotoObject:initPhoto];
                 } else {
-                    
-                    NSString *keyToParse = [NSString stringWithFormat:@"%@.jpg", photoName];
-//                    NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
-//                    NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
-//                    UIImage *image = [UIImage imageWithData:imageDataFromUrl];
-//                    
-//                    if (image) {
-//                        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-//                        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-//                        
-//                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
-//                        initPhoto.equiomentTool = newTool;
-//                        [newTool addPhotoObject:initPhoto];
-//                    }
+                    self.keyValue = [NSString stringWithFormat:@"%@.jpg", photoName];
                     NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                     Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                    
-                    initPhoto.photoName = [dicWithPicURL valueForKey:keyToParse];
+                    initPhoto.photoName = [dicWithPicURL valueForKey:self.keyValue];
                     initPhoto.equiomentTool = newTool;
                     [newTool addPhotoObject:initPhoto];
                 }
@@ -159,6 +160,9 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             newTool.name = colum[3];
             newTool.category = colum[2];
             newTool.createdDate = [NSDate date];
+            
+            [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:[self.imageManager stringFromDate:newTool.createdDate]];
+            
             [newProc addEquipmentsObject:newTool];
             
             if (![colum[0] isEqualToString:@""]) {
@@ -171,6 +175,11 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             }
         }
     }
+    
+    if ([self.imageManager saveObjectToUserDefaults:self.dictionaryURL]) {
+        NSLog(@"Images URL for downloading saved successfully, q-ty - %i", self.dictionaryURL.count);
+    }
+    
     return newSpecialisation;
 }
 
@@ -323,6 +332,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
         if ([self.managedObjectContext save:&saveError]) {
             NSLog(@"Saving of parsed data from CSV succcess");
             [self.managedObjectContext reset];
+            [self.imageManager startAsyncImagesDownloading];
         } else {
             NSLog(@"Fail to save data from CSV - %@", saveError.localizedDescription);
         }

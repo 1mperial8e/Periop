@@ -17,4 +17,24 @@
     return networkStatus != NotReachable;
 }
 
++ (BOOL)isWIFIInternetAvaliable
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    if (networkStatus == ReachableViaWiFi) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)is3GInternetAvaliable
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    if (networkStatus == ReachableViaWWAN) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
