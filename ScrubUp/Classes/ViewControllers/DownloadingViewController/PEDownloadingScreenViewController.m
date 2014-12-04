@@ -75,7 +75,7 @@
 - (void)prepareForBuying
 {
     NSString *message = [NSString stringWithFormat:@"Would you like to purchase %@ for $1.99?", [self.specialisationInfo valueForKey:@"name"]];
-    [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Buy", @"Restore", nil] show];
+    [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", @"Restore", nil] show];
 }
 
 - (void)downloadData
@@ -120,8 +120,6 @@
             }
         }
     }
-    //    NSString *message = [NSString stringWithFormat:@"%@ specialisation has been successfuly downloaded.", [self.specialisationInfo valueForKey:@"name"]];
-    //    [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
         [self.delegate dataDidChanged];
     }
@@ -198,7 +196,7 @@
         [self hideView];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
         [self downloadData];
-    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Buy"]) {
+    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Purchase"]) {
         [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
             if (success && products.count) {
                 for (SKProduct *product in products) {
