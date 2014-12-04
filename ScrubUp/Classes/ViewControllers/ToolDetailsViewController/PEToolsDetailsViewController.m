@@ -234,8 +234,13 @@ static NSInteger const TDVCViewTag = 35;
         cell = [[PEOperationRoomCollectionViewCell alloc] init];
     }
     if (self.sortedArrayWithPhotos.count) {
+        if (((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData) {
         UIImage *image = [UIImage imageWithData:((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoData];
         cell.operationRoomImage.image = image;
+        } else if (((Photo *)self.sortedArrayWithPhotos[indexPath.row]).photoName) {
+            [cell.activityIndicator startAnimating];
+            [self asyncDownloadImageForCell:cell atIndexPath:indexPath];
+        }
     } else {
         cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
     }
@@ -247,7 +252,7 @@ static NSInteger const TDVCViewTag = 35;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.specManager.currentEquipment.photo allObjects] count] && [((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData hash] != [[UIImage imageNamedFile:TDVPlaceHolderImageName] hash]) {
+    if (((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData) {
         self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if ([[self.specManager.currentEquipment.photo allObjects] count]) {
@@ -270,6 +275,35 @@ static NSInteger const TDVCViewTag = 35;
 }
 
 #pragma mark - Private
+
+- (void)asyncDownloadImageForCell:(PEOperationRoomCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    dispatch_queue_t myQueue = dispatch_queue_create("imageDownloadingQueue", NULL);
+    __weak PEToolsDetailsViewController *weakSelf = self;
+    dispatch_async(myQueue, ^{
+        PEToolsDetailsViewController *strongSelf = weakSelf;
+        NSURL *urlForImage = [NSURL URLWithString:((Photo *)strongSelf.sortedArrayWithPhotos[indexPath.row]).photoName];
+        NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+        
+        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:strongSelf.managedObjectContext];
+        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:strongSelf.managedObjectContext];
+        initPhoto.photoData = imageDataFromUrl;
+        initPhoto.photoName = ((Photo *)strongSelf.sortedArrayWithPhotos[indexPath.row]).photoName;
+        initPhoto.equiomentTool = strongSelf.specManager.currentEquipment;
+        
+        [strongSelf.specManager.currentEquipment removePhotoObject:strongSelf.sortedArrayWithPhotos[indexPath.row]];
+        [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
+        NSError *error;
+        if (![strongSelf.managedObjectContext save:&error]) {
+            NSLog(@"Error - %@", error.localizedDescription);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.activityIndicator stopAnimating];
+            cell.operationRoomImage.image = [UIImage imageWithData:imageDataFromUrl];;
+            NSLog(@"Image downloaded and saved to DB");
+        });
+    });
+}
 
 - (void)configureNavigationItems
 {

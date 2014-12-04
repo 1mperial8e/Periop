@@ -90,7 +90,7 @@ static NSInteger const ORTagView = 35;
 {
     [super viewWillAppear:animated];
     
-    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operation Room"];
+    NSMutableAttributedString *stringForLabelTop = [[NSMutableAttributedString alloc] initWithString:@"Operating Room"];
     
     [stringForLabelTop addAttribute:NSFontAttributeName value:[UIFont fontWithName:FONT_MuseoSans300 size:20.0] range:NSMakeRange(0, stringForLabelTop.length)];
     

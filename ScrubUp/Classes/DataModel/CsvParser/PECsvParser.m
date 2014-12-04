@@ -133,19 +133,24 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
                 } else {
                     
                     NSString *keyToParse = [NSString stringWithFormat:@"%@.jpg", photoName];
-                    NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
-                    NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
-                    UIImage *image = [UIImage imageWithData:imageDataFromUrl];
+//                    NSURL *urlForImage = [NSURL URLWithString:[dicWithPicURL valueForKey:keyToParse]];
+//                    NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
+//                    UIImage *image = [UIImage imageWithData:imageDataFromUrl];
+//                    
+//                    if (image) {
+//                        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+//                        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
+//                        
+//                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
+//                        initPhoto.equiomentTool = newTool;
+//                        [newTool addPhotoObject:initPhoto];
+//                    }
+                    NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+                    Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                     
-                    if (image) {
-                        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-                        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
-                        
-                        initPhoto.photoData = UIImageJPEGRepresentation(image, 1.0);
-                        initPhoto.equiomentTool = newTool;
-                        [newTool addPhotoObject:initPhoto];
-                    }
-                    
+                    initPhoto.photoName = [dicWithPicURL valueForKey:keyToParse];
+                    initPhoto.equiomentTool = newTool;
+                    [newTool addPhotoObject:initPhoto];
                 }
             }
             

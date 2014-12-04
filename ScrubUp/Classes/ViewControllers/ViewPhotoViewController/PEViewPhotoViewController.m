@@ -154,37 +154,25 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 {
     self.edgesForExtendedLayout = UIRectEdgeBottom;
 
-    CGRect bounds = self.gradient.bounds;
-    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-            return;
-        }
-        bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-    } else {
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            return;
-        }
-        bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-    }
-    self.gradient.frame = bounds;
+    [self setGradientFrameOnRotate:toInterfaceOrientation];
     
     PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:self.indexPathForCurrentItem];
     [self.collectionViewPhoto.collectionViewLayout invalidateLayout];
     
     CGSize size;
-//    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
         size = CGSizeMake(self.view.bounds.size.height, self.view.bounds.size.width);
-//    } else {
-//        size = self.view.bounds.size;
-//    }
-    
+    } else {
+        size = self.view.bounds.size;
+    }
+
     [cell resizeCell:toInterfaceOrientation boundsParam:CGRectMake(0, 0, size.width, size.height)];
     
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) && UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
         [self centerContent];
     } else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
         [self centerContent];
-    }    
+    }
 }
 
 - (void)canRotate
@@ -324,6 +312,23 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 }
 
 #pragma mark - Private
+
+- (void)setGradientFrameOnRotate:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    CGRect bounds = self.gradient.bounds;
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            return;
+        }
+        bounds.size.width = self.view.bounds.size.width + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    } else {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            return;
+        }
+        bounds.size.width = self.view.bounds.size.height + self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
+    self.gradient.frame = bounds;
+}
 
 - (void)configureDataSource
 {

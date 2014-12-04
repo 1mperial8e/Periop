@@ -74,6 +74,9 @@
         self.photoScrollView.contentOffset = offset;
     }
     self.contentOffset = CGPointZero;
+    
+//    self.imageViewForSelectedPhoto.center = self.photoScrollView.center;
+
 }
 
 - (void)resizeCell:(UIInterfaceOrientation)toInterfaceOrientation boundsParam:(CGRect)toBounds

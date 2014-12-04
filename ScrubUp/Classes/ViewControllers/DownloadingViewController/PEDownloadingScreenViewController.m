@@ -129,14 +129,14 @@
 
 - (void)removePreviousData
 {
+    NSLog(@"Finding spec...");
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
     NSEntityDescription *specEntity = [NSEntityDescription entityForName:@"Specialisation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:specEntity];
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    NSLog(@"Finding docotrs for selected spec and removing existing relations...");
+    NSLog(@"Done.\nFinding doctors for selected spec and removing existing relations... ");
     for (Specialisation *specToCheck in result) {
         for (Doctors *docToCheck in [specToCheck.doctors allObjects] ) {
             for (Specialisation *spec in [docToCheck.specialisation allObjects]) {
@@ -150,10 +150,11 @@
         }
     }
     
-    NSLog(@"Finding and remove selected spec...");
+    NSLog(@"Done.\nFinding and remove selected spec...");
     Specialisation *spec;
     PEObjectDescription *objToDelete = [[PEObjectDescription alloc] initWithDeleteObject:self.managedObjectContext withEntityName:@"Specialisation" withSortDescriptorKey:@"name" forKeyPath:@"name" withSortingParameter:[self.specialisationInfo valueForKey:@"name"]];
     [PECoreDataManager removeFromDB:objToDelete withManagedObject:spec];
+    NSLog(@"Done.");
 }
 
 - (void)showView

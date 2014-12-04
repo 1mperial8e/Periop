@@ -74,7 +74,7 @@
 {
     [super viewWillAppear:animated];
     
-    ((PENavigationController *)self.navigationController).titleLabel.text = @"New Note";
+    ((PENavigationController *)self.navigationController).titleLabel.text = @"Note";
     
     [self.textViewNotes becomeFirstResponder];
     [[self.view viewWithTag:35] removeFromSuperview];
