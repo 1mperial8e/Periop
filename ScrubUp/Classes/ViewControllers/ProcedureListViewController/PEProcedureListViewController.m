@@ -384,10 +384,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
         for (Doctors *doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
             if ([((Doctors *)self.searchResult[selectedCellIndexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
                 [self.managedObjectContext deleteObject:doc];
-                NSError *delObj = nil;
-                if (![self.managedObjectContext save:&delObj]) {
-                    NSLog(@"Cant delete doctor");
-                }
+                [[PECoreDataManager sharedManager] save];
                 [self refreshData];
                 self.searchBar.text = self.searchBar.text; //<-- reload search result
                 break;
@@ -398,10 +395,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
         for (Doctors *doc in [self.specManager.currentSpecialisation.doctors allObjects]) {
             if ([((Doctors *)self.sortedArrayWithDoctors[selectedCellIndexPath.row]).createdDate isEqualToDate:doc.createdDate]) {
                 [self.managedObjectContext deleteObject:doc];
-                NSError *delObj = nil;
-                if (![self.managedObjectContext save:&delObj]) {
-                    NSLog(@"Cant delete doctor");
-                }
+                [[PECoreDataManager sharedManager] save];
                 [self.currentlySwipedAndOpenesCells removeObject:selectedCellIndexPath];
                 [self refreshData];
                 break;
@@ -532,10 +526,7 @@ static CGFloat const PLVCHeighForCell = 53.0f;
 
 - (void)saveChangesToLocalDataBase:(NSString *)description
 {
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant delete %@ - %@",description, error.localizedDescription);
-    }
+    [[PECoreDataManager sharedManager] save];
 }
 
 - (void)refreshData

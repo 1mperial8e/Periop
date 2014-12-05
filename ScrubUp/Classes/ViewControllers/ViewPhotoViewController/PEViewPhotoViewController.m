@@ -233,10 +233,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
             }
         }
 
-        NSError* removeError;
-        if (![self.managedObjectContext save:&removeError]) {
-            NSLog(@"Cant remove image - %@", removeError.localizedDescription);
-        }
+        [[PECoreDataManager sharedManager] save];
         self.pageControl.numberOfPages = self.arrayWithPhotoToShow.count;
         if (self.arrayWithPhotoToShow.count) {
             [self.collectionViewPhoto reloadSections:[NSIndexSet indexSetWithIndex:0]];

@@ -243,10 +243,7 @@ static NSString *const PPreparationTableViewCellIdentifier =  @"preparationCell"
         }
     }
     [self.swipedCells removeAllObjects];
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant delete preparation Step - %@", error.localizedDescription);
-    }
+    [[PECoreDataManager sharedManager] save];
     ((PEPreparationTableViewCell *)cell).deleteButton.hidden = YES;
     [self refreshData];
 }

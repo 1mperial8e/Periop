@@ -66,10 +66,8 @@ static CGFloat const AEPCornerRadius = 24;
 {
     if (self.textViewProcedureName.text.length) {
         self.specManager.currentProcedure.name = self.textViewProcedureName.text;
-        NSError * saveError = nil;
-        if (![self.managedObjectContext save:&saveError]) {
-            NSLog(@"Cant save modified name of Procedure - %@", saveError.localizedDescription);
-        }
+        [[PECoreDataManager sharedManager] save];
+
         self.specManager.currentProcedure = nil;
         [self.navigationController popViewControllerAnimated:YES];
     } else {
@@ -103,9 +101,8 @@ static CGFloat const AEPCornerRadius = 24;
         pp.procedure = newProcForDesctiption;
         [newProcForDesctiption setPatientPostioning:pp];
         
-        NSError *error;
-        [self.managedObjectContext save:&error];
-        
+        [[PECoreDataManager sharedManager] save];
+
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Empty procedure name" message:@"Name can not be empty, please enter \"Procedure Name\"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];

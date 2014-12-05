@@ -2,13 +2,14 @@
 //  EquipmentsTool.m
 //  ScrubUp
 //
-//  Created by Kirill on 9/20/14.
+//  Created by Kirill on 12/5/14.
 //  Copyright (c) 2014 Thinkmobiles. All rights reserved.
 //
 
 #import "EquipmentsTool.h"
 #import "Photo.h"
 #import "Procedure.h"
+
 
 @implementation EquipmentsTool
 
@@ -17,7 +18,8 @@
 @dynamic name;
 @dynamic quantity;
 @dynamic type;
-@dynamic procedure;
+@dynamic uniqueKey;
 @dynamic photo;
+@dynamic procedure;
 
 @end

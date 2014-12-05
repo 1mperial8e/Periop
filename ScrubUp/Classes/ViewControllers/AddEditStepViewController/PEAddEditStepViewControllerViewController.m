@@ -199,10 +199,8 @@ static NSString *const AESPatientPositioningEntityName = @"PatientPositioning";
 
 - (void)saveToLocalDataBase:(NSString *)entryTypeName
 {
-    NSError * saveError = nil;
-    if (![self.managedObjectContext save:&saveError]) {
-        NSLog(@"Cant save modified %@ - %@", entryTypeName, saveError.localizedDescription);
-    }
+
+    [[PECoreDataManager sharedManager] save];
 }
 
 - (void)showAlertView

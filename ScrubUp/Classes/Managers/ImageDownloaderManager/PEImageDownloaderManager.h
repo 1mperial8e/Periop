@@ -9,12 +9,18 @@
 @interface PEImageDownloaderManager : NSObject
 
 + (instancetype)sharedManager;
-- (void)startAsyncImagesDownloading;
+- (void)startBackgroundAsyncImageDownloading;
+- (void)startAsyncDownloadingIfQueueCreated;
+
+- (void)suspendAsyncQueue;
+- (void)resumeAsyncQueue;
 
 - (NSString *)stringFromDate:(NSDate *)date;
 - (NSDate *)dateFromString:(NSString *)dateString;
-- (id)getDictionaryWithURL;
-- (BOOL)saveObjectToUserDefaults:(id)object;
+- (NSString *)uniqueKey;
+
+- (NSDictionary *)getDictionaryWithURL;
+- (BOOL)saveObjectToUserDefaults:(NSMutableDictionary *)newUrlsDictionary isNew:(BOOL)newIndicator;
 
 - (void)removeObservers;
 

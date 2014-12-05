@@ -123,7 +123,9 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
         [self.delegate dataDidChanged];
     }
+    
     [self hideView];
+    
     [[PEGAManager sharedManager] trackDownloadedSpecialisation:[self.specialisationInfo valueForKey:@"name"]];
 }
 

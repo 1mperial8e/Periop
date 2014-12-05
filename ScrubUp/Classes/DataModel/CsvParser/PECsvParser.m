@@ -76,12 +76,15 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathMain] && [[NSFileManager defaultManager] fileExistsAtPath:filePathTools]) {
         
-        self.quantityOfProcedures = [self getQuantityOfProcedure:filePathMain];
+        [self.imageManager suspendAsyncQueue];
         
+        self.quantityOfProcedures = [self getQuantityOfProcedure:filePathMain];
         Specialisation *newSpecialisation = [self parseToolsCSVFile:filePathTools specialisationName:specName];
         NSMutableArray *arrayWithProcWithoutTools = [self parseMainCSVFile:filePathMain];
-            
         [self mergeAndSaveSpec:arrayWithProcWithoutTools specialisation:newSpecialisation];
+        
+        [self.imageManager resumeAsyncQueue];
+        
     } else {
         NSLog(@"Files not Found!");
     }
@@ -160,8 +163,9 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             newTool.name = colum[3];
             newTool.category = colum[2];
             newTool.createdDate = [NSDate date];
+            newTool.uniqueKey = [self.imageManager uniqueKey];
             
-            [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:[self.imageManager stringFromDate:newTool.createdDate]];
+            [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:newTool.uniqueKey];
             
             [newProc addEquipmentsObject:newTool];
             
@@ -176,7 +180,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
         }
     }
     
-    if ([self.imageManager saveObjectToUserDefaults:self.dictionaryURL]) {
+    if ([self.imageManager saveObjectToUserDefaults:self.dictionaryURL isNew:YES]) {
         NSLog(@"Images URL for downloading saved successfully, q-ty - %i", self.dictionaryURL.count);
     }
     
@@ -328,11 +332,19 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     }
     
     if (success) {
-    NSError *saveError;
+        NSError *saveError;
+        [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
         if ([self.managedObjectContext save:&saveError]) {
             NSLog(@"Saving of parsed data from CSV succcess");
             [self.managedObjectContext reset];
-            [self.imageManager startAsyncImagesDownloading];
+            
+            [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
+            
+            __weak PECsvParser *weakSelf = self;
+            dispatch_async(dispatch_queue_create("newQueue", NULL), ^{
+                [weakSelf.imageManager startAsyncDownloadingIfQueueCreated];
+            });
+            
         } else {
             NSLog(@"Fail to save data from CSV - %@", saveError.localizedDescription);
         }

@@ -17,10 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Olb-ps-mvr">
-                        <rect key="frame" x="105" y="12" width="40" height="20"/>
+                        <rect key="frame" x="79" y="12" width="70" height="20"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4V-vi-PhS">
-                                <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4V-vi-PhS">
+                                <rect key="frame" x="0.0" y="0.0" width="70" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,8 +29,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="SDv-0B-spd"/>
+                            <constraint firstItem="m4V-vi-PhS" firstAttribute="top" secondItem="Olb-ps-mvr" secondAttribute="top" id="Hph-yJ-fJO"/>
+                            <constraint firstAttribute="width" constant="70" id="SDv-0B-spd"/>
+                            <constraint firstAttribute="trailing" secondItem="m4V-vi-PhS" secondAttribute="trailing" id="TAx-u2-TKb"/>
                             <constraint firstAttribute="height" constant="20" id="eAp-pA-W4Z"/>
+                            <constraint firstItem="m4V-vi-PhS" firstAttribute="leading" secondItem="Olb-ps-mvr" secondAttribute="leading" id="pLF-lp-CUf"/>
+                            <constraint firstAttribute="bottom" secondItem="m4V-vi-PhS" secondAttribute="bottom" id="pit-ds-HWx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -40,7 +44,7 @@
             <constraints>
                 <constraint firstItem="Olb-ps-mvr" firstAttribute="top" secondItem="4QZ-DT-Iia" secondAttribute="top" constant="12" id="5UN-Av-o3t"/>
                 <constraint firstItem="ooM-04-I9g" firstAttribute="top" secondItem="4QZ-DT-Iia" secondAttribute="top" id="85n-Te-M6m"/>
-                <constraint firstAttribute="trailing" secondItem="Olb-ps-mvr" secondAttribute="trailing" constant="15" id="8si-Yb-PRM"/>
+                <constraint firstAttribute="trailing" secondItem="Olb-ps-mvr" secondAttribute="trailing" constant="11" id="8si-Yb-PRM"/>
                 <constraint firstAttribute="trailing" secondItem="ooM-04-I9g" secondAttribute="trailing" id="9am-te-UgX"/>
                 <constraint firstItem="ooM-04-I9g" firstAttribute="leading" secondItem="4QZ-DT-Iia" secondAttribute="leading" id="CUq-HZ-4Yh"/>
                 <constraint firstAttribute="bottom" secondItem="ooM-04-I9g" secondAttribute="bottom" id="G6s-V1-q7G"/>

@@ -11,12 +11,18 @@
 #import "PECoreDataManager.h"
 #import "EquipmentsTool.h"
 #import "Photo.h"
+#import "PECsvParser.h"
 
-@interface PEImageDownloaderManager(){
+@interface PEImageDownloaderManager() {
     dispatch_queue_t customSerialQueue;
 }
 
 @property (strong, nonatomic) EquipmentsTool *equipmentToUpdate;
+@property (strong, atomic) PECoreDataManager *coreDataManager;
+@property (assign, nonatomic) NSInteger startURLCount;
+@property (assign, nonatomic) BOOL isDictionaryURLsUpdated;
+
+@property (strong, nonatomic) PECsvParser *activityMonitor;
 
 @end
 
@@ -34,28 +40,56 @@
     return sharedManager;
 }
 
+#pragma mark - Initialisation
+
 - (instancetype)init
 {
     if (self = [super init]) {
         [self setupAppNotification];
+        [self setStartQuantityOfURLs];
+        self.coreDataManager = [[PECoreDataManager alloc] initCoreDataManager];
     }
     return self;
 }
 
 #pragma mark - Public
 
-- (BOOL)saveObjectToUserDefaults:(id)object
+- (void)suspendAsyncQueue
 {
-    [[NSUserDefaults standardUserDefaults] setObject:object forKey:kLinkDictionary];
+    if (customSerialQueue) {
+        dispatch_suspend(customSerialQueue);
+        NSLog(@"Downloading queue suspended");
+    }
+}
+
+- (void)resumeAsyncQueue
+{
+    if (customSerialQueue) {
+        dispatch_resume(customSerialQueue);
+        NSLog(@"Downloading queue resumed");
+    }
+}
+
+- (BOOL)saveObjectToUserDefaults:(NSMutableDictionary *)newUrlsDictionary isNew:(BOOL)newIndicator
+{
+    if (([self getDictionaryWithURL].count && [self getDictionaryWithURL].count > self.startURLCount) ||
+        newIndicator) {
+        NSMutableDictionary *oldURLs = [[self getDictionaryWithURL] mutableCopy];
+        [newUrlsDictionary addEntriesFromDictionary:oldURLs];
+        self.startURLCount = newUrlsDictionary.count;
+        self.isDictionaryURLsUpdated = YES;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newUrlsDictionary forKey:kLinkDictionary];
     if (![[NSUserDefaults standardUserDefaults] synchronize]) {
         NSLog(@"Cant save updated userDefaults");
     }
     return YES;
 }
 
-- (id)getDictionaryWithURL
+- (NSMutableDictionary *)getDictionaryWithURL
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary];
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary] mutableCopy];
 }
 
 - (NSString *)stringFromDate:(NSDate *)date
@@ -73,6 +107,33 @@
     NSDate *date = [dateFormatter dateFromString:dateString];
     return date;
 }
+
+- (NSString *)uniqueKey
+{
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
+    return (__bridge_transfer NSString *)uuidStringRef;
+}
+
+- (void)startBackgroundAsyncImageDownloading
+{
+    if ([self getDictionaryWithURL].count) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self startAsyncImagesDownloading];
+        });
+    }
+}
+
+- (void)startAsyncDownloadingIfQueueCreated
+{
+    if (customSerialQueue) {
+        [self startAsyncImagesDownloading];
+    }
+}
+
+#pragma mark - Private
 
 - (void)startAsyncImagesDownloading
 {
@@ -95,40 +156,52 @@
     });
 }
 
-#pragma mark - Private
-
 - (BOOL)is3GAllowedByUser
 {
-    //todo
-    return YES;
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"allowMobileNetwork"];
 }
 
 - (void)prepareToDownloadImages
 {
-    NSMutableDictionary *dictionaryURL = [self getDictionaryWithURL];
+    NSMutableDictionary *dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
     NSMutableArray *keys = [[dictionaryURL allKeys] mutableCopy];
-    
+
     if (dictionaryURL.count) {
-        for (NSString *dateKeyString in keys) {
-            if ([self isImageNeedToBeDownloadedForEquipmentWithKey:dateKeyString]) {
-                [self updatePhotoForSelectedEntityFrom:[dictionaryURL valueForKey:dateKeyString]];
+        for (NSString *uniqueKeyString in keys) {
+            if ([self isImageNeedToBeDownloadedForEquipmentWithKey:uniqueKeyString]) {
+                [self updatePhotoForSelectedEntityFrom:[dictionaryURL valueForKey:uniqueKeyString]];
             }
-            [dictionaryURL removeObjectForKey:dateKeyString];
-            [self saveObjectToUserDefaults:dictionaryURL];
+            if (self.isDictionaryURLsUpdated) {
+                dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
+                self.isDictionaryURLsUpdated = NO;
+            }
+            [dictionaryURL removeObjectForKey:uniqueKeyString];
+            [self saveObjectToUserDefaults:dictionaryURL isNew:NO];
+            NSLog(@"Need to update - %i entities", dictionaryURL.count);
         }
     }
+    dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
+    if (dictionaryURL.count) {
+        [self startAsyncDownloadingIfQueueCreated];
+    }
+}
+
+- (void)setStartQuantityOfURLs
+{
+    NSMutableDictionary *dictionaryWithURLs = [[[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary] mutableCopy];
+    self.startURLCount = dictionaryWithURLs.count;
 }
 
 #pragma mark - DBRequest
 
-- (BOOL)isImageNeedToBeDownloadedForEquipmentWithKey:(NSString *)dateKey
+- (BOOL)isImageNeedToBeDownloadedForEquipmentWithKey:(NSString *)uniqueKey
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"EquipmentsTool"  inManagedObjectContext: [[PECoreDataManager sharedManager] managedObjectContext]];
     [fetchRequest setEntity:entityDescription];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(ANY createdDate contains[cd] %@)",[[PEImageDownloaderManager sharedManager] dateFromString:dateKey]]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(uniqueKey == %@)", uniqueKey]];
     NSError * error;
-    NSArray *fetchedResult = [[[PECoreDataManager sharedManager] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedResult = [[self.coreDataManager managedObjectContext] executeFetchRequest:fetchRequest error:&error];
     
     if (fetchedResult.count) {
         EquipmentsTool *selectedEquipment = fetchedResult[0];
@@ -151,18 +224,18 @@
         NSData *imageData = [NSData dataWithContentsOfURL:imgURL];
         if (imageData) {
             ((Photo *)[self.equipmentToUpdate.photo allObjects][0]).photoData = imageData;
-           
-//             dispatch_async(dispatch_get_main_queue(), ^{
-//                 @synchronized (self) {
-                    NSError *saveError;
-                    if (![[[PECoreDataManager sharedManager] managedObjectContext] save:&saveError]) {
-                        NSLog(@"Cant save photo to Equipment - %@", self.equipmentToUpdate.name);
-                    } else {
-                        NSLog(@"Entity  EquipmentTool - %@ updated", self.equipmentToUpdate.name);
-                    }
-                 }
-//             });
-//        }
+            
+            [self.coreDataManager.persistentStoreCoordinator lock];
+            
+            NSError *saveError;
+            if (![[self.coreDataManager managedObjectContext] save:&saveError]) {
+                NSLog(@"Cant save photo to Equipment - %@", self.equipmentToUpdate.name);
+            } else {
+                NSLog(@"Entity  EquipmentTool - %@ updated", self.equipmentToUpdate.name);
+            }
+            
+            [self.coreDataManager.persistentStoreCoordinator unlock];
+        }
     }
 }
 
@@ -194,19 +267,12 @@
 
 - (void)didEnterBackground
 {
-    dispatch_suspend(customSerialQueue);
-    NSLog(@"Downloading queue suspended");
+    [self suspendAsyncQueue];
 }
 
 - (void)willEnterForeground
 {
-    if (customSerialQueue) {
-        dispatch_resume(customSerialQueue);
-    } else {
-        [self startAsyncImagesDownloading];
-        NSLog(@"Created new queue");
-    }
-    NSLog(@"Downloading queue resumed");
+    [self resumeAsyncQueue];
 }
 
 - (BOOL)isQueueStillActive

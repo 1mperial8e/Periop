@@ -161,10 +161,7 @@ static NSInteger const TDVCViewTag = 35;
     ((EquipmentsTool *)self.specManager.currentEquipment).quantity = self.quantityTextField.text;
     ((EquipmentsTool *)self.specManager.currentEquipment).createdDate = [NSDate date];
                                                                       
-    NSError *saveError;
-    if (![self.managedObjectContext save:&saveError]){
-        NSLog(@"Cant save modified Equipment due to %@", saveError.localizedDescription);
-    }
+    [[PECoreDataManager sharedManager] save];
     self.isEdit = !self.isEdit;
 }
 
@@ -294,10 +291,7 @@ static NSInteger const TDVCViewTag = 35;
         [strongSelf.specManager.currentEquipment removePhotoObject:strongSelf.sortedArrayWithPhotos[indexPath.row]];
         [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
 
-            NSError *error;
-            if (![strongSelf.managedObjectContext save:&error]) {
-                NSLog(@"Error - %@", error.localizedDescription);
-            }
+        [[PECoreDataManager sharedManager] save];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [cell.activityIndicator stopAnimating];

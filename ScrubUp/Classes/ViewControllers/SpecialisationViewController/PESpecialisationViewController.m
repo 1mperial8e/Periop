@@ -60,8 +60,6 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.imageManager = [PEImageDownloaderManager sharedManager];
-    
-    [self.imageManager startAsyncImagesDownloading];
 
     self.isMyspecializations = YES;
     
@@ -92,6 +90,7 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
     [self setSpecialisationsData];
     [self.collectionView reloadData];
+    [self.imageManager startBackgroundAsyncImageDownloading];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

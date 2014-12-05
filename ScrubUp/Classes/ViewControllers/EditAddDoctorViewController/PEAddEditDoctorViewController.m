@@ -226,14 +226,8 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
                 }
             }
         }
-
-        NSError *saveError;
-        if ([self.managedObjectContext save:&saveError]) {
-            NSLog (@"Success");
-            [[PEGAManager sharedManager] trackNewDoctor];
-        } else {
-            NSLog(@"Cant save new doctor, error - %@", saveError.localizedDescription);
-        }
+        [[PECoreDataManager sharedManager] save];
+        [[PEGAManager sharedManager] trackNewDoctor];
         
         [self.navigationController popViewControllerAnimated:YES];
     } else {

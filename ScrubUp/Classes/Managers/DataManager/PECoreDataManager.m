@@ -28,6 +28,16 @@
     return coreDataManager;
 }
 
+//for async thread only
+- (instancetype)initCoreDataManager
+{
+    PECoreDataManager *dataManager = nil;
+    if (self = [super init]) {
+        dataManager = [[PECoreDataManager alloc] init];
+    }
+    return dataManager;
+}
+
 #pragma mark - CoreData
 
 - (NSManagedObjectContext*) managedObjectContext
@@ -107,6 +117,18 @@
 
 #pragma mark - Data Managment
 
+- (void)save
+{
+    [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
+    
+    NSError *error = nil;
+    if (![[[PECoreDataManager sharedManager] managedObjectContext] save:&error]) {
+        NSLog(@"Cant save data to DB - %@", error.localizedDescription);
+    }
+    
+    [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
+}
+
 + (void)removeFromDB:(PEObjectDescription *)deleteObjectDescription withManagedObject:(NSManagedObject *)managedObject
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:deleteObjectDescription.entityName];
@@ -119,10 +141,8 @@
     for (managedObject in result){
         if ([[managedObject valueForKeyPath:deleteObjectDescription.keyPath] isEqual:deleteObjectDescription.sortingParameter]) {
             [managedObject.managedObjectContext deleteObject:managedObject];
-            NSError *err;
-            if (![managedObject.managedObjectContext save:&err]){
-                NSLog(@"Error during deleting - %@", err.localizedDescription);
-            }
+
+            [[PECoreDataManager sharedManager] save];
         }
     }
 }

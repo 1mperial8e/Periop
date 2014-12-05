@@ -106,10 +106,8 @@
     if (self.specManager.photoObject) {
         [self.managedObjectContext deleteObject:self.specManager.photoObject];
     }
-    NSError *saveError;
-    if (![self.managedObjectContext save:&saveError]) {
-        NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
-    }
+    [[PECoreDataManager sharedManager] save];
+
 }
 
 - (IBAction)saveUpdateNote:(id)sender
@@ -143,10 +141,8 @@
         }
     }
 
-    NSError *saveError;
-    if (![self.managedObjectContext save:&saveError]){
-        NSLog(@"Cant add new Note - %@", saveError.localizedDescription);
-    }
+    [[PECoreDataManager sharedManager] save];
+
     
     [self.specManager.photoObjectsToSave removeAllObjects];
     self.specManager.currentNote = nil;

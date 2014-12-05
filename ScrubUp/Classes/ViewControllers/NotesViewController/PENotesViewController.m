@@ -193,18 +193,14 @@ static CGFloat const NVCNotesBackButtonNegativeOffcet = -8.0f;
     NSIndexPath *currentIndexPath = [self.tableViewNotes indexPathForCell:cell];
     if (self.specManager.isProcedureSelected) {
         self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
-        NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
-        if (![self.managedObjectContext save:&deleteError]) {
-            NSLog(@"Cant delete note from Procedure - %@", deleteError.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     } else {
         self.specManager.currentNote = (Note *)self.arrayWithSortedNotes[currentIndexPath.row];
-        NSError *deleteError;
         [self.managedObjectContext deleteObject:self.specManager.currentNote];
-        if (![self.managedObjectContext save:&deleteError]) {
-            NSLog(@"Cant delete note from Doctor - %@", deleteError.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     }
     [self updateDataSource];
     self.specManager.currentNote = nil;

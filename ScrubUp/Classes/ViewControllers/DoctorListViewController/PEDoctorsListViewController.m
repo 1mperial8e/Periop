@@ -282,10 +282,8 @@ static CGFloat const DLVCHeighForCell = 53.0f;
         [self.arrayWithAllDoctors removeObject:(Doctors *)(self.arrayWithAllDoctors[indexPath.row])];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
-    NSError *deleteError;
-    if (![self.managedObjectContext save:&deleteError]) {
-        NSLog(@"Cant remove doctor - %@", deleteError.localizedDescription);
-    }
+
+    [[PECoreDataManager sharedManager] save];
 }
 
 #pragma mark - Private

@@ -242,6 +242,7 @@
 		EDCD584A19B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD584819B8C1ED00EC7AF1 /* PEPatientPositioningViewController.xib */; };
 		EDCD585719B8C8B500EC7AF1 /* PENotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */; };
 		EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */; };
+		EDCFEDFE1A31A04D003ADA91 /* EquipmentsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCFEDFD1A31A04D003ADA91 /* EquipmentsTool.m */; };
 		EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */; };
 		EDD0598619BAC1F8007C0DE8 /* PEDoctorsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */; };
 		EDD21AD019EBB52400F343A2 /* ENT_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21ACF19EBB52400F343A2 /* ENT_Small_Inactive@2x.png */; };
@@ -1132,7 +1133,6 @@
 		EDE9CA1B19D4028700150754 /* General.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA1919D4028700150754 /* General.csv */; };
 		EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9CA1F19D402E900150754 /* PECsvParser.m */; };
 		EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA2119D4214F00150754 /* General_Tools.csv */; };
-		EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */; };
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
@@ -1445,6 +1445,8 @@
 		EDCD585419B8C8B500EC7AF1 /* PENotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENotesViewController.h; sourceTree = "<group>"; };
 		EDCD585519B8C8B500EC7AF1 /* PENotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENotesViewController.m; sourceTree = "<group>"; };
 		EDCD585619B8C8B500EC7AF1 /* PENotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PENotesViewController.xib; sourceTree = "<group>"; };
+		EDCFEDFC1A31A04D003ADA91 /* EquipmentsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentsTool.h; sourceTree = "<group>"; };
+		EDCFEDFD1A31A04D003ADA91 /* EquipmentsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentsTool.m; sourceTree = "<group>"; };
 		EDD0598219BAC1F8007C0DE8 /* PEDoctorsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorsListViewController.h; sourceTree = "<group>"; };
 		EDD0598319BAC1F8007C0DE8 /* PEDoctorsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorsListViewController.m; sourceTree = "<group>"; };
 		EDD0598419BAC1F8007C0DE8 /* PEDoctorsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorsListViewController.xib; sourceTree = "<group>"; };
@@ -2356,8 +2358,6 @@
 		EDE9CA1E19D402E900150754 /* PECsvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECsvParser.h; sourceTree = "<group>"; };
 		EDE9CA1F19D402E900150754 /* PECsvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECsvParser.m; sourceTree = "<group>"; };
 		EDE9CA2119D4214F00150754 /* General_Tools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General_Tools.csv; sourceTree = "<group>"; };
-		EDEACEF119CDC9F900286E06 /* EquipmentsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentsTool.h; sourceTree = "<group>"; };
-		EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentsTool.m; sourceTree = "<group>"; };
 		EDEACEFB19CDC9F900286E06 /* Preparation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preparation.h; sourceTree = "<group>"; };
 		EDEACEFC19CDC9F900286E06 /* Preparation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preparation.m; sourceTree = "<group>"; };
 		EDEC8EF919C9D22100066BA5 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
@@ -4698,10 +4698,10 @@
 				EDA9862719F8FD6900261473 /* Note.m */,
 				EDD4BDF019D2E43C0087D8CE /* Specialisation.h */,
 				EDD4BDF119D2E43C0087D8CE /* Specialisation.m */,
-				EDEACEF119CDC9F900286E06 /* EquipmentsTool.h */,
-				EDEACEF219CDC9F900286E06 /* EquipmentsTool.m */,
 				EDEACEFB19CDC9F900286E06 /* Preparation.h */,
 				EDEACEFC19CDC9F900286E06 /* Preparation.m */,
+				EDCFEDFC1A31A04D003ADA91 /* EquipmentsTool.h */,
+				EDCFEDFD1A31A04D003ADA91 /* EquipmentsTool.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -5867,7 +5867,6 @@
 				EDC368791A1DF2C100DA72AD /* PELabelConfiguration.m in Sources */,
 				EDC91ECF19B9C33E00212F24 /* PEEquipmentViewController.m in Sources */,
 				EDA7DFF219BAE5EA002A70E8 /* PEAboutUsViewController.m in Sources */,
-				EDEACF0219CDC9F900286E06 /* EquipmentsTool.m in Sources */,
 				842C8DFC19D57C2000D0DAC7 /* PEMediaSelect.m in Sources */,
 				EDC91EC919B9BBC000212F24 /* PEAddEditNoteViewController.m in Sources */,
 				EDC91ED519B9C9F700212F24 /* PEEquipmentCategoryTableViewCell.m in Sources */,
@@ -5922,6 +5921,7 @@
 				EDD5C9C619D0721F0086C9B5 /* PEOperationRoomCollectionViewCell.m in Sources */,
 				ED0D2FC319BA0F42001F8411 /* PECollectionViewCellItemCell.m in Sources */,
 				EDA9862B19F8FD6C00261473 /* Photo.m in Sources */,
+				EDCFEDFE1A31A04D003ADA91 /* EquipmentsTool.m in Sources */,
 				ED2D9D9C19F90A7E00B78F8D /* PEViewPhotoViewCollectionViewCell.m in Sources */,
 				EDCD583719B8B30800EC7AF1 /* PEPreperationViewController.m in Sources */,
 				ED21660C19CC3022005E821B /* ScrubUpDataBase.xcdatamodeld in Sources */,

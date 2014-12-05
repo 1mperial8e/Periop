@@ -370,11 +370,9 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
 {
     EquipmentsTool *eq = ((EquipmentsTool *)((NSArray *)self.arrayWithCategorisedToolsArrays[indexPathToDelete.section])[indexPathToDelete.row]);
     [self.specManager.currentProcedure removeEquipmentsObject:eq];
-    NSError *saveDeletedObjectsError;
     [self.managedObjectContext deleteObject:eq];
-    if(![self.managedObjectContext save:&saveDeletedObjectsError]) {
-        NSLog(@"Cant delete from DB, error : %@", saveDeletedObjectsError.localizedDescription);
-    }
+
+    [[PECoreDataManager sharedManager] save];
     if ([self.cellCurrentlyEditing containsObject:indexPathToDelete]) {
         [self.cellCurrentlyEditing removeObject:indexPathToDelete];
     }

@@ -18,6 +18,9 @@ typedef void(^ErorrResult)(NSError *error);
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (id)sharedManager;
+- (instancetype)initCoreDataManager;
+
+- (void)save;
 
 + (void)removeFromDB:(PEObjectDescription *)deleteObjectDescription withManagedObject:(NSManagedObject *)managedObject;
 + (NSArray *)getAllEntities:(PEObjectDescription *)getObjectDescription;

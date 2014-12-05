@@ -199,10 +199,8 @@ static NSString *const AVCCellName = @"albumCell";
         {
             isAdded = YES;
             [self.managedObjectContext deleteObject:newPhoto];
-            NSError *error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Cant remove dublicate %@", error.localizedDescription);
-            }
+
+            [[PECoreDataManager sharedManager] save];
         }
     }
     return isAdded;
@@ -242,10 +240,8 @@ static NSString *const AVCCellName = @"albumCell";
             newPhoto.operationRoom = self.specManager.currentProcedure.operationRoom;
             [self.specManager.currentProcedure.operationRoom addPhotoObject:newPhoto];
         }
-        NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     }
 }
 
@@ -257,10 +253,8 @@ static NSString *const AVCCellName = @"albumCell";
         newPhoto.equiomentTool = self.specManager.currentEquipment;
         newPhoto.photoNumber=@(0);
         [self.specManager.currentEquipment addPhotoObject:newPhoto];
-        NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Cant save chnages with photos operationRoom DB - %@", error.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     }
 }
 
@@ -270,10 +264,8 @@ static NSString *const AVCCellName = @"albumCell";
         newPhoto.patientPositioning = self.specManager.currentProcedure.patientPostioning;
         newPhoto.photoNumber=@([self.specManager.currentProcedure.patientPostioning.photo allObjects].count+1);
         [self.specManager.currentProcedure.patientPostioning addPhotoObject:newPhoto];
-        NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Cant save chnages with photos patientPostioning DB - %@", error.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     }
 }
 
@@ -286,10 +278,8 @@ static NSString *const AVCCellName = @"albumCell";
         newPhoto.doctor = self.specManager.currentDoctor;
         newPhoto.photoNumber = @0;
         self.specManager.currentDoctor.photo = newPhoto;
-        NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Cant save chnages with photos doctorsProfile DB - %@", error.localizedDescription);
-        }
+
+        [[PECoreDataManager sharedManager] save];
     }
 }
 

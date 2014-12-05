@@ -308,10 +308,8 @@ static NSInteger const PPTagView = 35;
         }
     }
     [self.swipedCells removeAllObjects];
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Cant delete patient positioning Step - %@", error.localizedDescription);
-    }
+
+    [[PECoreDataManager sharedManager] save];
     ((PEOperationTableViewCell *)cell).deleteButton.hidden = YES;
     [self refreshData];
 }
