@@ -49,6 +49,7 @@
 		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
 		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
 		84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B49319DC2E2400BF8D07 /* PENavigationController.m */; };
+		84B4769E1A319C42000EA23E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B4769D1A319C42000EA23E /* Settings.bundle */; };
 		84BA0AA219E557910054BFE5 /* plus_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9E19E557910054BFE5 /* plus_BTN_inactive@2x-1.png */; };
 		84BA0AA319E557910054BFE5 /* plus_BTN_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */; };
 		84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */; };
@@ -1216,6 +1217,7 @@
 		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
 		84B1B49219DC2E2400BF8D07 /* PENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENavigationController.h; sourceTree = "<group>"; };
 		84B1B49319DC2E2400BF8D07 /* PENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENavigationController.m; sourceTree = "<group>"; };
+		84B4769D1A319C42000EA23E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		84BA0A9E19E557910054BFE5 /* plus_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
 		84BA0A9F19E557910054BFE5 /* plus_BTN_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_BTN_active@2x.png"; sourceTree = "<group>"; };
 		84BA0AA019E557910054BFE5 /* mail_BTN_inactive@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_BTN_inactive@2x-1.png"; sourceTree = "<group>"; };
@@ -2595,6 +2597,7 @@
 				8474906D19B8459E0013C446 /* InfoPlist.strings */,
 				8474907019B8459E0013C446 /* main.m */,
 				8474907219B8459E0013C446 /* ScrubUp-Prefix.pch */,
+				84B4769D1A319C42000EA23E /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -5813,6 +5816,7 @@
 				EDE791E119ED5E4700A9C43B /* S0906T0706.jpg in Resources */,
 				ED3D1BCB19E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png in Resources */,
 				EDE7926819ED5E4800A9C43B /* S0901T0101.jpg in Resources */,
+				84B4769E1A319C42000EA23E /* Settings.bundle in Resources */,
 				EDE7907119ED5E4700A9C43B /* S0917T1102.jpg in Resources */,
 				ED9C69BB19C720E80022C1A8 /* Cardiothoracic_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE792F119ED5E4800A9C43B /* S0907T0802.jpg in Resources */,
