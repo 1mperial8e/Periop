@@ -168,16 +168,18 @@
 
     if (dictionaryURL.count) {
         for (NSString *uniqueKeyString in keys) {
-            if ([self isImageNeedToBeDownloadedForEquipmentWithKey:uniqueKeyString]) {
-                [self updatePhotoForSelectedEntityFrom:[dictionaryURL valueForKey:uniqueKeyString]];
+            if ([PEInternetStatusChecker isInternetAvaliable]) {
+                if ([self isImageNeedToBeDownloadedForEquipmentWithKey:uniqueKeyString]) {
+                    [self updatePhotoForSelectedEntityFrom:[dictionaryURL valueForKey:uniqueKeyString]];
+                }
+                if (self.isDictionaryURLsUpdated) {
+                    dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
+                    self.isDictionaryURLsUpdated = NO;
+                }
+                [dictionaryURL removeObjectForKey:uniqueKeyString];
+                [self saveObjectToUserDefaults:dictionaryURL isNew:NO];
+                NSLog(@"Need to update - %i entities", dictionaryURL.count);
             }
-            if (self.isDictionaryURLsUpdated) {
-                dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
-                self.isDictionaryURLsUpdated = NO;
-            }
-            [dictionaryURL removeObjectForKey:uniqueKeyString];
-            [self saveObjectToUserDefaults:dictionaryURL isNew:NO];
-            NSLog(@"Need to update - %i entities", dictionaryURL.count);
         }
     }
     dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
