@@ -8,6 +8,8 @@
 
 @interface PEImageDownloaderManager : NSObject
 
+@property (assign, nonatomic) BOOL isDownloadingActive;
+
 + (instancetype)sharedManager;
 - (void)startBackgroundAsyncImageDownloading;
 - (void)startAsyncDownloadingIfQueueCreated;
