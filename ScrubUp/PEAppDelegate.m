@@ -14,6 +14,9 @@
 #import "PECameraRollManager.h"
 #import "PEPurchaseManager.h"
 #import "PEGAManager.h"
+#import "Reachability.h"
+#import "PEImageDownloaderManager.h"
+#import "PEInternetStatusChecker.h"
 
 static NSString *const PESpecialisationControllerNibName = @"PESpecialisationViewController";
 static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";
@@ -24,7 +27,7 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.ScrubUp
 @interface PEAppDelegate()
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
-
+@property (strong, nonatomic)  Reachability *reachabilityObject;
 @end
 
 @implementation PEAppDelegate
@@ -32,6 +35,7 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.ScrubUp
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [PEPurchaseManager saveDefaultsToUserDefault:APDGeneralProductsIdentifier];
+    [self addReachabilityObserver];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -97,6 +101,23 @@ static NSString *const APDGeneralProductsIdentifier = @"com.Thinkmobiles.ScrubUp
         return [self topViewControllerWithRootViewController:presentedViewController];
     } else {
         return rootViewController;
+    }
+}
+
+#pragma mark - ReachabilityMonitoring
+
+- (void)addReachabilityObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:@"kReachabilityChangedNotification" object:nil];
+    self.reachabilityObject = [Reachability reachabilityForInternetConnection];
+    [self.reachabilityObject startNotifier];
+}
+
+- (void)checkNetworkStatus:(NSNotification *)notification
+{
+    NetworkStatus networkStatus = [self.reachabilityObject currentReachabilityStatus];
+    if ( networkStatus != NotReachable && ![PEImageDownloaderManager sharedManager].isDownloadingActive) {
+        [[PEImageDownloaderManager sharedManager] startAsyncDownloadingIfQueueCreated];
     }
 }
 

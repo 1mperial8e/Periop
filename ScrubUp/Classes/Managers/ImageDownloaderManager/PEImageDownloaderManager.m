@@ -147,11 +147,8 @@
             if ([PEInternetStatusChecker is3GInternetAvaliable]) {
                 if ([strongSelf is3GAllowedByUser]) {
                     [strongSelf prepareToDownloadImages];
-                } else {
-                    [strongSelf showAlertNo3GAllowed];
                 }
             }
-            [strongSelf showAlertNoInternetAvaliable];
         }
     });
 }
@@ -163,6 +160,7 @@
 
 - (void)prepareToDownloadImages
 {
+    self.isDownloadingActive = YES;
     NSMutableDictionary *dictionaryURL = [[self getDictionaryWithURL] mutableCopy];
     NSMutableArray *keys = [[dictionaryURL allKeys] mutableCopy];
 
@@ -186,6 +184,7 @@
     if (dictionaryURL.count) {
         [self startAsyncDownloadingIfQueueCreated];
     }
+    self.isDownloadingActive = NO;
 }
 
 - (void)setStartQuantityOfURLs
@@ -246,17 +245,6 @@
 - (NSString *)appName
 {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-}
-
-- (void)showAlertNo3GAllowed
-{
-    NSString *message = [NSString stringWithFormat:@"3G Internet accsess not allowed for %@. To allow, please go to settings and change permissions", [self appName]];
-    [[[UIAlertView alloc] initWithTitle:[self appName] message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
-}
-
-- (void)showAlertNoInternetAvaliable
-{
-    [[[UIAlertView alloc] initWithTitle:[self appName] message:@"No internet connection" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
 }
 
 #pragma mark - Notification
