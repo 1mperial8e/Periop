@@ -159,11 +159,9 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
     PEViewPhotoViewCollectionViewCell *cell = (PEViewPhotoViewCollectionViewCell *)[self.collectionViewPhoto cellForItemAtIndexPath:self.indexPathForCurrentItem];
     [self.collectionViewPhoto.collectionViewLayout invalidateLayout];
     
-    CGSize size;
+    CGSize size = CGSizeMake(self.view.bounds.size.height, self.view.bounds.size.width);
     if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0f) {
         size = CGSizeMake(self.view.bounds.size.height, self.view.bounds.size.width);
-    } else {
-        size = self.view.bounds.size;
     }
 
     [cell resizeCell:toInterfaceOrientation boundsParam:CGRectMake(0, 0, size.width, size.height)];

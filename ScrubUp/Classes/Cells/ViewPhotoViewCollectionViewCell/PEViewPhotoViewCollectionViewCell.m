@@ -71,7 +71,7 @@
     self.imageViewForSelectedPhoto.frame = contentsFrame;
     
     if (!CGPointEqualToPoint(self.contentOffset, CGPointZero)) {
-        self.photoScrollView.contentOffset = offset;
+//        self.photoScrollView.contentOffset = offset;
     }
     self.contentOffset = CGPointZero;
     
