@@ -247,12 +247,14 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
 {
     __weak PEViewPhotoViewController *weakSelf = self;
     if (self.isFullScreen) {
+        weakSelf.navigationController.interactivePopGestureRecognizer.enabled = YES;
         [UIView animateWithDuration:0.32 animations:^{
             weakSelf.viewContainer.alpha = 1;
             weakSelf.navigationController.navigationBar.alpha = 1;
             weakSelf.view.backgroundColor = [UIColor whiteColor];
         }];
     } else {
+        weakSelf.navigationController.interactivePopGestureRecognizer.enabled = NO;
         [UIView animateWithDuration:0.32 animations:^{
             weakSelf.viewContainer.alpha = 0;
             weakSelf.navigationController.navigationBar.alpha = 0;

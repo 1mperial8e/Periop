@@ -74,7 +74,7 @@
 
 - (void)prepareForBuying
 {
-    NSString *message = [NSString stringWithFormat:@"Would you like to purchase %@ for $1.99?", [self.specialisationInfo valueForKey:@"name"]];
+    NSString *message = [NSString stringWithFormat:@"Would you like to purchase %@ for US$1.99?", [self.specialisationInfo valueForKey:@"name"]];
     [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", @"Restore", nil] show];
 }
 

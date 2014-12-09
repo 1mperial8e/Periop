@@ -99,7 +99,6 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     self.specManager.photoObject = nil;
 }
 
@@ -229,6 +228,7 @@ static NSString *const AEDTPlaceHolderImage = @"Place_Holder";
         [[PECoreDataManager sharedManager] save];
         [[PEGAManager sharedManager] trackNewDoctor];
         
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:@"Empty fields" message:@"Please select at least one procedure for doctor" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
