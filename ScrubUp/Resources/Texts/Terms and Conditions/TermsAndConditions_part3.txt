@@ -66,7 +66,7 @@ The purpose of this Deed is to set out and formalise the terms and conditions up
 •	With the exception of “sensitive information” as defined in the Privacy Law and financial information, to disclose to third party companies for the purpose of selling advertising through the SUA interface only.
 •	The User understands that, notwithstanding that AT takes the most appropriate measures possible in the circumstances to ensure against such occurrences, other users of the SUA, advertisers and third party marketers with whom AT deals, or hackers or other cyber criminals or otherwise, may use the User’s information or content in a manner that breaches the Privacy Law or The AT Privacy Policy or this clause. The User downloads and / or uses the SUA knowing and accepting that this is a risk that the User assumes in full, and the User hereby forever releases and indemnifies in full AT for any such occurrence or any similar or like occurrence.
 •	Any act inconsistent with this clause on the Part of the User, including but not limited to a breach or the pursuit of a Claim in relation to the User’s personal information or the Privacy Law, gives AT an immediate right to terminate this Deed.
-•
+
 •	Defamatory, Offensive Use and other Tortious Actions
 •	The User warrants to AT that the User has familiarised itself, or will familiarise itself at the first available opportunity after downloading and prior to using the SUA, with the Defamation Law, and that it is not the responsibility of SUA to do so, in any way whatsoever, and that AT will not do so.
 •	The User hereby warrants to AT that it will not use the SUA or any content from the SUA in any way whatsoever that gives rise to an actual or potential breach or contravention of the Defamation Law.
@@ -77,7 +77,7 @@ The purpose of this Deed is to set out and formalise the terms and conditions up
 •	The User understands that, notwithstanding that AT takes the most appropriate measures possible in the circumstances to ensure against such occurrences, other users of the SUA, advertisers and third party marketers with whom AT deals, or hackers or other cyber criminals or otherwise, may use the User’s information or content in a manner that breaches the Defamation Law or this clause. The User downloads and / or uses the SUA knowing and accepting that this is a risk that the User assumes in full, and the User hereby forever releases and indemnifies in full AT for any such occurrence or any similar or like occurrence.
 •	Any act inconsistent with this clause on the Part of the User, including but not limited to a breach or the pursuit of a Claim in relation to the Defamation Law, gives AT an immediate right to terminate this Deed.
 •	The provisions of this clause apply in full, mutatis mutandis, with respect to other applicable Tortious Actions, as the case may be.
-•
+
 •	Intellectual Property
 •	The User warrants to AT that the User has familiarised itself, or will familiarise itself at the first available opportunity after downloading and prior to using the SUA, with the Intellectual Property Law, and that it is not the responsibility of SUA to do so, in any way whatsoever, and that AT will not do so.
 •	The User warrants that it will not use the Intellectual Property of AT for any purpose other than the direct use of the SUA in accordance with the provisions of this Deed, and that it will not use the SUA in any way whatsoever that infringes upon the Intellectual Property Law or the rights of others.
@@ -85,7 +85,7 @@ The purpose of this Deed is to set out and formalise the terms and conditions up
 •	The User acknowledges and agrees that, following clause 7a above, AT holds in full any and all title or right, whether legal or equitable, and whether existing or registered or not, in or to or in relation to, any Intellectual Property in any and all content the User may upload to the SUA platform, to the exclusion of all others.
 •	The User understands that the effect of clauses 7a and 7b above is that the User surrenders any Claim it would or may have otherwise had against AT, other users of the SUA, or the advertisers or third party marketers with whom AT deals, in relation to the Intellectual Property Law, and the User hereby forever releases and indemnifies in full AT in relation to any such Claim brought against AT, other users of the SUA, or the advertisers or third party marketers with whom AT deals.
 •	Any act inconsistent with this clause on the Part of the User, including but not limited to a breach or the pursuit of a Claim in relation to the Intellectual Property Law, gives AT an immediate right to terminate this Deed.
-•
+
 •	Prohibited Use and Tortious Actions
 •	The User warrants to AT that the User has familiarised itself, or will familiarise itself at the first available opportunity after downloading and prior to using the SUA, with the Consumer Law, that it is not the responsibility of SUA to do so, in any way whatsoever, and that AT will not do so.
 •	The User warrants that it will not, under any circumstances whatsoever, use the SUA for its own commercial purposes without the prior written consent of AT, with the exception of personal use in the course of fulfilment of employment obligations only.
@@ -108,7 +108,7 @@ The purpose of this Deed is to set out and formalise the terms and conditions up
 •	The User understands that, notwithstanding that AT takes the most appropriate measures possible in the circumstances to ensure against such occurrences, other users of the SUA, advertisers and third party marketers with whom AT deals, or hackers or other cyber criminals or otherwise, may use the User’s information or content in a manner that breaches the Consumer Law or this clause. The User downloads and / or uses the SUA knowing and accepting that this is a risk that the User assumes in full, and the User hereby forever releases and indemnifies in full AT for any such occurrence or any similar or like occurrence.
 •	Any act inconsistent with this clause on the Part of the User, including but not limited to a breach or the pursuit of a Claim in relation to the Consumer Law, gives AT an immediate right to terminate this Deed.
 •	The provisions of this clause apply in full, mutatis mutandis, with respect to other applicable Tortious Actions, as the case may be.
-•
+
 •	Indemnification
 The User expressly acknowledges and agrees that:
 •	AT may be relying on representations made and / or warranties given by other Parties in this Deed and that, as such, AT may, and may continue to, assume considerable risk, including but not limited to through the fulfilment of AT’s obligations in reliance upon the User’s warranties, that AT may not otherwise have endeavoured to assume in absence of the Parties’ execution of this Deed;
@@ -123,7 +123,7 @@ The User expressly acknowledges and agrees that:
 •	Relationship of the Parties
 •	Nothing in this Deed, and nothing in relation to the SUA or the operation or use of the SUA, is to be construed as constituting the Parties as partners, or as creating between the Parties the relationship of employer and employee, master and servant, or principal and agent, and no Party has (and must not represent that it has) any power, right or authority to bind the other, unless the contrary intention is expressed in the provisions of this Deed.
 •	No feedback, suggestion, content, comment or other contribution by the User that is subsequently acted upon by AT will be taken under any circumstances whatsoever to creating any entitlement whatsoever on the part of the User.
-•
+
 •	Variation
 •	The User may not vary the provisions of this Deed under any circumstances whatsoever.
 •	From time to time, AT may vary the provisions of this Deed. In the event that AT seeks to effect such a variation, the User will be provided with prior notice in a reasonable form nominated by AT. The User acknowledges and agrees that, in the event that the User does not agree with the proposed variations, the User will immediately cease any use of the SUA, and continued use of the SUA will be deemed to be an acceptance by the User of the variation.
@@ -142,13 +142,13 @@ Subject to any express terms of this Deed evincing a contrary intention, all of 
 
 •	Entire Agreement
 •	This Deed embodies the entire agreement between the Parties relating to the subject matter of this Deed, the SUA and the use or operation of the SUA in any way whatsoever, and this Deed supersedes and replaces any prior and / or contemporaneous agreements and understandings between the Parties in that regard.
-•
+
 •	Governing Law and Jurisdiction
 •	This Deed is governed by the law of New South Wales and the Parties:
 •	submit to the jurisdiction of its courts or tribunals and courts of appeal from those courts or tribunals ; and
 •	will not object to the exercise of jurisdiction by those courts or tribunals on any basis.
 •	For the avoidance of doubt, clause 16a above is intended to have the effect that any litigious dispute should be heard and determined by a court or tribunal in New South Wales, Australia, and according to the laws applicable in New South Wales, Australia.
-•
+
 •	Dispute Resolution
 •	If a dispute arises out of or relates to this Deed (including any dispute as to the meaning, performance, validity, subject matter, breach or termination of the Deed or as to any claim in tort, in equity or pursuant to any statute) (“Dispute”) a Party may not commence any court or arbitration proceedings relating to the Dispute unless it has complied with the following paragraphs of this clause, except where the Party seeks urgent interlocutory relief.
 •	A Party claiming that a Dispute has arisen under or in relation to this Deed must give written notice to the other Party specifying the nature of the Dispute.
@@ -159,21 +159,21 @@ Subject to any express terms of this Deed evincing a contrary intention, all of 
 •	The selection and compensation of the independent person required for such technique;
 •	The Parties must mediate the Dispute in accordance with the Mediation Rules of the Law Society of New South Wales and the President of the Law Society of New South Wales or the President's nominee will select the mediator and determine the mediator's remuneration.
 •	In the event the Dispute is not resolved by mediation within fourteen (14) days of written notice by one Party to the other of the Dispute (or such further period agreed in writing between the Parties), either Party may refer the Dispute to arbitration. The arbitrator shall be agreed between the Parties within ten (10) days of written notice of the referral by the referring Party to the other, or failing agreement such as appointed by the President of the Law Society of New South Wales or the President’s nominee.  In either case the arbitrator shall not be a person who has participated in an informal resolution procedure in respect of the Dispute.
-•
+
 •	External Circumstances
 •	The User understands that, in connection with the User’s download and / or use of the SUA, the User may be subject to additional terms and conditions imposed by the “Apple App Store”, “Android Market”, “Blackberry App World”, “Windows Marketplace” or any other system specific to the personal electronic device of the User. The User acknowledges and agrees that there exists privity between the User and such service providers, and that this in no way whatsoever is connected to AT. The User understands that this is outside of the control of AT and releases AT from any and all Claims relating to the subject matter of this clause. The User also agrees to continue to abide by any such terms and conditions, failing which the User agrees to immediately cease using the SUA.
 •	The User understands that the SUA may take some time to download and will attract additional costs levied by the User’s telecommunications service provider, particularly if the User is using the 3G or 4G network. The User understands that this is outside of the control of AT and releases AT from any and all Claims in relation thereto.
 •	The User also understands that there are other external circumstances outside of the control of AT, including but not limited to the safety or aspects of the websites or otherwise of various advertisers and other third parties associated with the SUA, and also releases AT from any and all Claims in relation thereto.
-•
+
 •	No Advice or Representations
 •	The User understands and agrees that AT makes no warranties or representations whatsoever regarding the functionality, performance, application, accuracy, truthfulness, usefulness or otherwise of the SUA, and the User releases AT from any Claims involving a contrary assertion or implication.
 •	The User understands and agrees that any content seen on the SUA, including advertisements by advertisers and information uploaded or distributed by other users, is not verified or endorsed by AT in any way whatsoever, and releases AT from any Claims involving a contrary assertion or implication.
 •	The User understands and agrees that any content posted by AT, advertisers or other third parties is not intended to be taken to be medical, professional, legal, financial or other advise, and also releases AT from any Claims involving a contrary assertion or implication.
-•
+
 •	Severance
 •	In the event of any covenant or other provision of this Deed being declared invalid, illegal, unlawful or otherwise being incapable of enforcement, all other covenants and provisions of this Deed shall nevertheless prevail and remain in full force and effect.
 •	In the event of any such provision being severed the Parties must endeavour to agree upon provisions in substitution for the severed provision that are not illegal and that substantially express the meaning of the severed provision.
-•
+
 •	Independent Advice
 •	The User acknowledges and represents to AT that the User has obtained, or has had the opportunity to obtain and has elected not to obtain, separate and independent legal, accounting and / or financial advice as to the terms of this Deed and as to any obligations, rights or liabilities that may arise under this Deed.
 •	AT relies on the acknowledgement and representation given in this clause by the User.
