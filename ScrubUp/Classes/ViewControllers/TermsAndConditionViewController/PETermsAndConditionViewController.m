@@ -21,11 +21,44 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 
 #pragma mark - LifeCycle
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self configureTextView];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     ((PENavigationController *)self.navigationController).titleLabel.text = TACTermsAndConditions;
+}
+
+#pragma mark - Private
+
+- (void)configureTextView
+{
+    NSString *mainContent = [self readFileSource];
+    if (mainContent.length) {
+        self.textView.attributedText = [self getFormattedString:mainContent];
+    } else {
+        NSLog(@"Cant read source file");
+    }
+}
+
+- (NSString *)readFileSource
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TermsAndConditions" ofType:@"txt"];
+    NSError *fileReadingError;
+    NSString *mainContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&fileReadingError];
+    return mainContent;
+}
+
+- (NSMutableAttributedString *)getFormattedString:(NSString *)string
+{
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{NSFontAttributeName : [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
 }
 
 #pragma mark - IBActions

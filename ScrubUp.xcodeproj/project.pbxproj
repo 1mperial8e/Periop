@@ -45,6 +45,7 @@
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
 		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
+		84A1B4381A38401800B17A58 /* TermsAndConditions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84A1B4371A38401800B17A58 /* TermsAndConditions.txt */; };
 		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
 		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
 		84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B49319DC2E2400BF8D07 /* PENavigationController.m */; };
@@ -1212,6 +1213,7 @@
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
 		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
+		84A1B4371A38401800B17A58 /* TermsAndConditions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions.txt; sourceTree = "<group>"; };
 		84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialCollectionViewCell.m; sourceTree = "<group>"; };
 		84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2613,6 +2615,14 @@
 			path = CameraRollManager;
 			sourceTree = "<group>";
 		};
+		84A1B4361A38401800B17A58 /* Terms and Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				84A1B4371A38401800B17A58 /* TermsAndConditions.txt */,
+			);
+			path = "Terms and Conditions";
+			sourceTree = "<group>";
+		};
 		84AF77A219DAEA77009F2B98 /* TutorialScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -3351,6 +3361,7 @@
 		EDDE417E1A1B8BC700534D15 /* Texts */ = {
 			isa = PBXGroup;
 			children = (
+				84A1B4361A38401800B17A58 /* Terms and Conditions */,
 				EDDE417F1A1B8BD600534D15 /* AboutUs */,
 			);
 			path = Texts;
@@ -5393,6 +5404,7 @@
 				ED9C698119C720E80022C1A8 /* Doctors_Tab_Inactive@2x.png in Resources */,
 				EDE7919E19ED5E4700A9C43B /* S0909T1001.jpg in Resources */,
 				EDE7930119ED5E4800A9C43B /* S0907T0708.jpg in Resources */,
+				84A1B4381A38401800B17A58 /* TermsAndConditions.txt in Resources */,
 				EDE791CA19ED5E4700A9C43B /* S0908T0704.jpg in Resources */,
 				EDE7915819ED5E4700A9C43B /* S0911T0802.jpg in Resources */,
 				EDE7902919ED5E4700A9C43B /* S0918T0603.jpg in Resources */,
@@ -6047,7 +6059,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "f0d3cbeb-09ad-4e89-b9f9-7bb56b90b537";
+				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6069,7 +6081,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "f0d3cbeb-09ad-4e89-b9f9-7bb56b90b537";
+				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
