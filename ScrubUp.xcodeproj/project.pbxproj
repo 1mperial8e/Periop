@@ -45,7 +45,6 @@
 		847E937B19CC47EF00665240 /* PECameraRollManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E937A19CC47EF00665240 /* PECameraRollManager.m */; };
 		8498C2AD19D065CC00ABEAB7 /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84D65BE719D03CFE001C6E5C /* MuseoSans-300.otf */; };
 		8498C2AF19D156AF00ABEAB7 /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */; };
-		84A1B4381A38401800B17A58 /* TermsAndConditions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84A1B4371A38401800B17A58 /* TermsAndConditions.txt */; };
 		84AF77B719DAEBBA009F2B98 /* PETutorialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */; };
 		84AF77B819DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */; };
 		84B1B49419DC2E2400BF8D07 /* PENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B49319DC2E2400BF8D07 /* PENavigationController.m */; };
@@ -250,6 +249,9 @@
 		EDD21AD219EBB53400F343A2 /* ENT_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */; };
 		EDD2966219EFC226002F4564 /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */; };
 		EDD2966319EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */; };
+		EDD3CC201A38A9D800B8A111 /* TermsAndConditions_part1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */; };
+		EDD3CC211A38A9D800B8A111 /* TermsAndConditions_part2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */; };
+		EDD3CC221A38A9D800B8A111 /* TermsAndConditions_part3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */; };
 		EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */; };
 		EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */; };
 		EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDF119D2E43C0087D8CE /* Specialisation.m */; };
@@ -1213,7 +1215,6 @@
 		847E937919CC47EF00665240 /* PECameraRollManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECameraRollManager.h; sourceTree = "<group>"; };
 		847E937A19CC47EF00665240 /* PECameraRollManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECameraRollManager.m; sourceTree = "<group>"; };
 		8498C2AE19D156AF00ABEAB7 /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
-		84A1B4371A38401800B17A58 /* TermsAndConditions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions.txt; sourceTree = "<group>"; };
 		84AF77B419DAEBBA009F2B98 /* PETutorialCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETutorialCollectionViewCell.m; sourceTree = "<group>"; };
 		84AF77B519DAEBBA009F2B98 /* PETutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PETutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		84AF77B619DAEBBA009F2B98 /* PETutorialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETutorialCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1458,6 +1459,9 @@
 		EDD2965F19EFC226002F4564 /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
 		EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
 		EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
+		EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part1.txt; sourceTree = "<group>"; };
+		EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part2.txt; sourceTree = "<group>"; };
+		EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part3.txt; sourceTree = "<group>"; };
 		EDD4BDEB19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorProfileCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2618,7 +2622,9 @@
 		84A1B4361A38401800B17A58 /* Terms and Conditions */ = {
 			isa = PBXGroup;
 			children = (
-				84A1B4371A38401800B17A58 /* TermsAndConditions.txt */,
+				EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */,
+				EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */,
+				EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */,
 			);
 			path = "Terms and Conditions";
 			sourceTree = "<group>";
@@ -5040,6 +5046,7 @@
 				EDE7912719ED5E4700A9C43B /* S0912T0705.jpg in Resources */,
 				EDE7912619ED5E4700A9C43B /* S0912T0704.jpg in Resources */,
 				ED3D1BCF19E5514A00929F64 /* General_Small_Inactive@2x.png in Resources */,
+				EDD3CC211A38A9D800B8A111 /* TermsAndConditions_part2.txt in Resources */,
 				EDE792EE19ED5E4800A9C43B /* S0907T0710.jpg in Resources */,
 				EDDE41901A1BA11F00534D15 /* Screen0-iphone5@2x.png in Resources */,
 				EDE7932119ED5E4800A9C43B /* S0905T0715.jpg in Resources */,
@@ -5347,6 +5354,7 @@
 				EDE792C119ED5E4800A9C43B /* S0903T0902.jpg in Resources */,
 				EDE7924F19ED5E4800A9C43B /* S0902T0701.jpg in Resources */,
 				EDE7919D19ED5E4700A9C43B /* S0909T0904.jpg in Resources */,
+				EDD3CC221A38A9D800B8A111 /* TermsAndConditions_part3.txt in Resources */,
 				EDE7914619ED5E4700A9C43B /* S0911T0701.jpg in Resources */,
 				EDE7912519ED5E4700A9C43B /* S0912T0702.jpg in Resources */,
 				EDE77E3C19ED5C7E00A9C43B /* S0907P02.jpg in Resources */,
@@ -5404,7 +5412,6 @@
 				ED9C698119C720E80022C1A8 /* Doctors_Tab_Inactive@2x.png in Resources */,
 				EDE7919E19ED5E4700A9C43B /* S0909T1001.jpg in Resources */,
 				EDE7930119ED5E4800A9C43B /* S0907T0708.jpg in Resources */,
-				84A1B4381A38401800B17A58 /* TermsAndConditions.txt in Resources */,
 				EDE791CA19ED5E4700A9C43B /* S0908T0704.jpg in Resources */,
 				EDE7915819ED5E4700A9C43B /* S0911T0802.jpg in Resources */,
 				EDE7902919ED5E4700A9C43B /* S0918T0603.jpg in Resources */,
@@ -5445,6 +5452,7 @@
 				EDE7921B19ED5E4700A9C43B /* S0904T0702.jpg in Resources */,
 				EDE792D919ED5E4800A9C43B /* S0907T0302.jpg in Resources */,
 				EDDE41911A1BA11F00534D15 /* Screen1-iphone5@2x.png in Resources */,
+				EDD3CC201A38A9D800B8A111 /* TermsAndConditions_part1.txt in Resources */,
 				EDE791FC19ED5E4700A9C43B /* S0906T0902.jpg in Resources */,
 				EDE790F719ED5E4700A9C43B /* S0913T0604.jpg in Resources */,
 				EDE791BA19ED5E4700A9C43B /* S0908T0602.jpg in Resources */,

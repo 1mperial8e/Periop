@@ -7,6 +7,9 @@
 //
 
 static NSString *const TACTermsAndConditions = @"Terms & Conditions";
+static NSString *const TACCaptionMain = @"DEED OF AGREEMENT FOR “SCRUBUP” USAGE – USER TERMS AND CONDITIONS \n\n";
+static NSString *const TACCaptionRecitals = @"RECITALS\n";
+static NSString *const TACCAptionAgreed = @"IT IS AGREED\n";
 
 #import "PETermsAndConditionViewController.h"
 #import "PEMenuViewController.h"
@@ -37,28 +40,50 @@ static NSString *const TACTermsAndConditions = @"Terms & Conditions";
 
 - (void)configureTextView
 {
-    NSString *mainContent = [self readFileSource];
-    if (mainContent.length) {
-        self.textView.attributedText = [self getFormattedString:mainContent];
-    } else {
-        NSLog(@"Cant read source file");
-    }
+    self.textView.attributedText = [self generateFormattedText];
 }
 
-- (NSString *)readFileSource
+- (NSString *)readTextPartFile:(NSString *)fileName
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TermsAndConditions" ofType:@"txt"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
     NSError *fileReadingError;
-    NSString *mainContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&fileReadingError];
-    return mainContent;
+    NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&fileReadingError];
+    return fileContent;
 }
 
 - (NSMutableAttributedString *)getFormattedString:(NSString *)string
 {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentCenter;
-    NSDictionary *attributes = @{NSFontAttributeName : [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
+    style.alignment = NSTextAlignmentJustified;
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
     return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
+}
+
+- (NSMutableAttributedString *)getFormattedCaption:(NSString *)string
+{
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
+}
+
+- (NSMutableAttributedString *)generateFormattedText
+{
+    NSMutableAttributedString *partOne = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part1"]];
+    NSMutableAttributedString *partTwo = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part2"]];
+    NSMutableAttributedString *partThree = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part3"]];
+    
+    NSMutableAttributedString *mainCaption = [self getFormattedCaption:TACCaptionMain];
+    NSMutableAttributedString *recitalsCaption = [self getFormattedCaption:TACCaptionRecitals];
+    NSMutableAttributedString *agreedCaption = [self getFormattedCaption:TACCAptionAgreed];
+    
+    [mainCaption appendAttributedString:partOne];
+    [mainCaption appendAttributedString:recitalsCaption];
+    [mainCaption appendAttributedString:partTwo];
+    [mainCaption appendAttributedString:agreedCaption];
+    [mainCaption appendAttributedString:partThree];
+    
+    return mainCaption;
 }
 
 #pragma mark - IBActions
