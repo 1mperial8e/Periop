@@ -176,7 +176,7 @@
                 }
                 [dictionaryURL removeObjectForKey:uniqueKeyString];
                 [self saveObjectToUserDefaults:dictionaryURL isNew:NO];
-                NSLog(@"Need to update - %i entities", dictionaryURL.count);
+              //  NSLog(@"Need to update - %i entities", dictionaryURL.count);
             }
         }
     }
@@ -230,7 +230,7 @@
             
             NSError *saveError;
             if (![[self.coreDataManager managedObjectContext] save:&saveError]) {
-                NSLog(@"Cant save photo to Equipment - %@", self.equipmentToUpdate.name);
+                NSLog(@"Cant save photo to Equipment - %@, %@", self.equipmentToUpdate.name, saveError.localizedDescription);
             } else {
                 NSLog(@"Entity  EquipmentTool - %@ updated", self.equipmentToUpdate.name);
             }

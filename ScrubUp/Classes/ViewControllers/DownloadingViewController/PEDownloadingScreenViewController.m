@@ -16,7 +16,7 @@
 #import "PECoreDataManager.h"
 #import "PEGAManager.h"
 
-@interface PEDownloadingScreenViewController () <UIAlertViewDelegate, IAPurchaseDelegate>
+@interface PEDownloadingScreenViewController () <UIAlertViewDelegate, IAPurchaseDelegate, PECsvParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -82,8 +82,11 @@
 {
     [self removePreviousData];
     
+    PECsvParser *parser = [[PECsvParser alloc] init];
+    parser.delegate = self;
+    
     if ([((NSString *)[self.specialisationInfo valueForKey:@"name"]) isEqualToString:@"General"]) {
-        PECsvParser *parser = [[PECsvParser alloc] init];
+        
         [parser parseCsvMainFile:@"General" csvToolsFile:@"General_Tools" specName:@"General"];
     } else {
         NSMutableArray *arrayWithPathToDelete = [[NSMutableArray alloc] init];
@@ -110,7 +113,6 @@
             }
         }
         
-        PECsvParser *parser = [[PECsvParser alloc] init];
         [parser parseCsvMainFile:@"mainSpec" csvToolsFile:@"toolSpec" specName:[self.specialisationInfo valueForKey:@"name"]];
         
         for (int i = 0; i < arrayWithPathToDelete.count; i++) {
@@ -123,8 +125,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
         [self.delegate dataDidChanged];
     }
-    
-    [self hideView];
     
     [[PEGAManager sharedManager] trackDownloadedSpecialisation:[self.specialisationInfo valueForKey:@"name"]];
 }
@@ -192,31 +192,32 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (!buttonIndex) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
-            [self.delegate dataDidChanged];
-        }
-        [self hideView];
-    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
-        [self downloadData];
-    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Purchase"]) {
-        [self downloadData];
-        return;
-        [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
-            if (success && products.count) {
-                for (SKProduct *product in products) {
-                    if ([product.productIdentifier isEqualToString:self.productIdentifier]) {
-                        [self.purchaseManager buyProduct:product];
-                        break;
-                    }
-                }
-            } else {
-                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-            }
-        }];
-    } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {
-        [self.purchaseManager restoreProductWithIdentifier:self.productIdentifier];
-    }
+    [self downloadData];
+//    if (!buttonIndex) {
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(dataDidChanged)]) {
+//            [self.delegate dataDidChanged];
+//        }
+//        [self hideView];
+//    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
+//        [self downloadData];
+//    } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Purchase"]) {
+//        [self downloadData];
+//        return;
+//        [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
+//            if (success && products.count) {
+//                for (SKProduct *product in products) {
+//                    if ([product.productIdentifier isEqualToString:self.productIdentifier]) {
+//                        [self.purchaseManager buyProduct:product];
+//                        break;
+//                    }
+//                }
+//            } else {
+//                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+//            }
+//        }];
+//    } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {
+//        [self.purchaseManager restoreProductWithIdentifier:self.productIdentifier];
+//    }
 }
 
 #pragma mark - Animations delegate
@@ -243,6 +244,18 @@
             [self hideView];
         }
     }
+}
+
+#pragma mark - PECsvParserDelegate
+
+- (void)newSpecialisationDidDownloaded
+{
+    NSLog(@"hide");
+    __weak PEDownloadingScreenViewController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf hideView];
+    });
+    
 }
 
 @end

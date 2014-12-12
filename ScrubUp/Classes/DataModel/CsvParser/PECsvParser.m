@@ -75,15 +75,11 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathMain] && [[NSFileManager defaultManager] fileExistsAtPath:filePathTools]) {
-        
-        [self.imageManager suspendAsyncQueue];
-        
+                
         self.quantityOfProcedures = [self getQuantityOfProcedure:filePathMain];
         Specialisation *newSpecialisation = [self parseToolsCSVFile:filePathTools specialisationName:specName];
         NSMutableArray *arrayWithProcWithoutTools = [self parseMainCSVFile:filePathMain];
         [self mergeAndSaveSpec:arrayWithProcWithoutTools specialisation:newSpecialisation];
-        
-        [self.imageManager resumeAsyncQueue];
         
     } else {
         NSLog(@"Files not Found!");
@@ -332,25 +328,38 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     }
     
     if (success) {
-        NSError *saveError;
-        [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
-        if ([self.managedObjectContext save:&saveError]) {
+        if ([self saveData]) {
             NSLog(@"Saving of parsed data from CSV succcess");
+            [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
             [self.managedObjectContext reset];
-            
             [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
             
+            if (self.delegate && [self.delegate respondsToSelector:@selector(newSpecialisationDidDownloaded)]){
+                [self.delegate newSpecialisationDidDownloaded];
+            } else {
+                NSLog(@"No response");
+            }
+
             __weak PECsvParser *weakSelf = self;
             dispatch_async(dispatch_queue_create("newQueue", NULL), ^{
                 [weakSelf.imageManager startAsyncDownloadingIfQueueCreated];
             });
-            
-        } else {
-            NSLog(@"Fail to save data from CSV - %@", saveError.localizedDescription);
         }
     } else {
         NSLog(@"Incorrect input data");
     }
+}
+
+- (BOOL)saveData
+{
+    [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
+    NSError *saveError;
+    [self.managedObjectContext save:&saveError];
+    if (saveError) {
+        NSLog(@"Fail to save data from CSV - %@", saveError.localizedDescription);
+    }
+    [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
+    return YES;
 }
 
 - (NSInteger)getQuantityOfProcedure:(NSString *)filePathMain

@@ -43,7 +43,7 @@ static NSInteger const TDVCViewTag = 35;
 @property (assign, nonatomic) BOOL isEdit;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PESpecialisationManager *specManager;
-@property (strong, nonatomic)NSMutableArray *sortedArrayWithPhotos;
+@property (strong, nonatomic) NSMutableArray *sortedArrayWithPhotos;
 
 @end
 
@@ -275,20 +275,23 @@ static NSInteger const TDVCViewTag = 35;
 
 - (void)asyncDownloadImageForCell:(PEOperationRoomCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger indexToDelete = indexPath.row;
+    NSArray *photoArray = self.sortedArrayWithPhotos;
     dispatch_queue_t myQueue = dispatch_queue_create("imageDownloadingQueue", NULL);
     __weak PEToolsDetailsViewController *weakSelf = self;
     dispatch_async(myQueue, ^{
+        
         PEToolsDetailsViewController *strongSelf = weakSelf;
-        NSURL *urlForImage = [NSURL URLWithString:((Photo *)strongSelf.sortedArrayWithPhotos[indexPath.row]).photoName];
+        NSURL *urlForImage = [NSURL URLWithString:((Photo *)photoArray[indexPath.row]).photoName];
         NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
         
         NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:strongSelf.managedObjectContext];
         Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:strongSelf.managedObjectContext];
         initPhoto.photoData = imageDataFromUrl;
-        initPhoto.photoName = ((Photo *)strongSelf.sortedArrayWithPhotos[indexPath.row]).photoName;
+        initPhoto.photoName = ((Photo *)photoArray[indexPath.row]).photoName;
         initPhoto.equiomentTool = strongSelf.specManager.currentEquipment;
         
-        [strongSelf.specManager.currentEquipment removePhotoObject:strongSelf.sortedArrayWithPhotos[indexPath.row]];
+        [strongSelf.specManager.currentEquipment removePhotoObject:photoArray[indexToDelete]];
         [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
 
         [[PECoreDataManager sharedManager] save];
