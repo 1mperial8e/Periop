@@ -193,7 +193,6 @@
 		ED9C69E319C720E80022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69E519C720E80022C1A8 /* Obstetric_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */; };
 		ED9C69EB19C720E80022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */; };
-		ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */; };
 		ED9C69F319C720E80022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */; };
 		ED9C69F519C720E80022C1A8 /* Orthopaedic_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */; };
 		ED9C69FB19C720E80022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */; };
@@ -1185,6 +1184,8 @@
 		EDF19F6D1A3F1D690086B8E7 /* Part3_5_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F6C1A3F1D690086B8E7 /* Part3_5_1.txt */; };
 		EDF19F6F1A3F1DC30086B8E7 /* Part3_10_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F6E1A3F1DC30086B8E7 /* Part3_10_0.txt */; };
 		EDF19F711A3F1E0C0086B8E7 /* Part3_16_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F701A3F1E0C0086B8E7 /* Part3_16_1.txt */; };
+		EDF19F741A3F32240086B8E7 /* Opthomology_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F721A3F32240086B8E7 /* Opthomology_Large.png */; };
+		EDF19F751A3F32240086B8E7 /* Opthomology_Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F731A3F32240086B8E7 /* Opthomology_Large@2x.png */; };
 		EDF3BB191A1DE185000F29FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB181A1DE185000F29FC /* Reachability.m */; };
 		EDF3BB1D1A1DE44C000F29FC /* PEInternetStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */; };
 		EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */; };
@@ -1422,7 +1423,6 @@
 		ED9C693F19C720E70022C1A8 /* Gynaecology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gynaecology_Specialisation_Icon_-_Small@2x.png"; path = "../Gynaecology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Large@2x.png"; path = "../Obstetric_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C694719C720E70022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Obstetric_Specialisation_Icon_-_Small@2x.png"; path = "../Obstetric_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
-		ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Large@2x.png"; path = "../Opthomology_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C694F19C720E70022C1A8 /* Opthomology_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Opthomology_Specialisation_Icon_-_Small@2x.png"; path = "../Opthomology_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
 		ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopaedic_Large@2x.png"; path = "../Orthopaedic_Large@2x.png"; sourceTree = "<group>"; };
 		ED9C695719C720E70022C1A8 /* Orthopeadic_Specialisation_Icon_-_Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Specialisation_Icon_-_Small@2x.png"; path = "../Orthopeadic_Specialisation_Icon_-_Small@2x.png"; sourceTree = "<group>"; };
@@ -2464,6 +2464,8 @@
 		EDF19F6C1A3F1D690086B8E7 /* Part3_5_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_5_1.txt; sourceTree = "<group>"; };
 		EDF19F6E1A3F1DC30086B8E7 /* Part3_10_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_10_0.txt; sourceTree = "<group>"; };
 		EDF19F701A3F1E0C0086B8E7 /* Part3_16_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_16_1.txt; sourceTree = "<group>"; };
+		EDF19F721A3F32240086B8E7 /* Opthomology_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Opthomology_Large.png; sourceTree = "<group>"; };
+		EDF19F731A3F32240086B8E7 /* Opthomology_Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Opthomology_Large@2x.png"; sourceTree = "<group>"; };
 		EDF3BB171A1DE185000F29FC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		EDF3BB181A1DE185000F29FC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EDF3BB1B1A1DE44C000F29FC /* PEInternetStatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInternetStatusChecker.h; sourceTree = "<group>"; };
@@ -3303,6 +3305,8 @@
 		EDD21ACA19EBB32100F343A2 /* SpecialisationIcons */ = {
 			isa = PBXGroup;
 			children = (
+				EDF19F721A3F32240086B8E7 /* Opthomology_Large.png */,
+				EDF19F731A3F32240086B8E7 /* Opthomology_Large@2x.png */,
 				84FE694419F11006008AD54C /* Cardiothoracic_logo.png */,
 				EDD629BE19F114AC003B9925 /* Gastrointestinal_logo.png */,
 				84FE694619F11006008AD54C /* Cosemetic_logo.png */,
@@ -3320,7 +3324,6 @@
 				ED9C693119C720E70022C1A8 /* General_Large@2x.png */,
 				ED9C693919C720E70022C1A8 /* Gynaecology_Large@2x.png */,
 				ED9C694119C720E70022C1A8 /* Obstetric_Large@2x.png */,
-				ED9C694919C720E70022C1A8 /* Opthomology_Large@2x.png */,
 				ED9C695119C720E70022C1A8 /* Orthopaedic_Large@2x.png */,
 				ED9C695919C720E70022C1A8 /* Plastic_Large@2x.png */,
 			);
@@ -5240,7 +5243,6 @@
 				ED9C699F19C720E80022C1A8 /* Overlay@2x.png in Resources */,
 				ED9C698319C720E80022C1A8 /* Edit@2x.png in Resources */,
 				ED0E644619EE558F00D32C64 /* delete_icon_white@2x.png in Resources */,
-				ED9C69ED19C720E80022C1A8 /* Opthomology_Large@2x.png in Resources */,
 				EDE7930919ED5E4800A9C43B /* S0905T0401.jpg in Resources */,
 				EDE791B519ED5E4700A9C43B /* S0908T0401.jpg in Resources */,
 				EDE790AD19ED5E4700A9C43B /* S0915T0504.jpg in Resources */,
@@ -5324,6 +5326,7 @@
 				EDE7905719ED5E4700A9C43B /* S0917T0710.jpg in Resources */,
 				EDE792BE19ED5E4800A9C43B /* S0903T0804.jpg in Resources */,
 				EDE7905219ED5E4700A9C43B /* S0917T0704.jpg in Resources */,
+				EDF19F751A3F32240086B8E7 /* Opthomology_Large@2x.png in Resources */,
 				EDE7911919ED5E4700A9C43B /* S0912T0201.jpg in Resources */,
 				EDE791BF19ED5E4700A9C43B /* S0908T0705.jpg in Resources */,
 				EDE7927619ED5E4800A9C43B /* S0901T0507.jpg in Resources */,
@@ -5336,6 +5339,7 @@
 				EDE7900119ED5E4700A9C43B /* S0919T0504.jpg in Resources */,
 				ED9C696719C720E80022C1A8 /* Album@2x.png in Resources */,
 				EDE790D619ED5E4700A9C43B /* S0914T0603.jpg in Resources */,
+				EDF19F741A3F32240086B8E7 /* Opthomology_Large.png in Resources */,
 				EDE7932D19ED5E4800A9C43B /* S0905T1108.jpg in Resources */,
 				EDE7926119ED5E4800A9C43B /* S0902T1101.jpg in Resources */,
 				ED9C698F19C720E80022C1A8 /* Menu_Dividers@2x.png in Resources */,
