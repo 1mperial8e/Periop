@@ -60,25 +60,24 @@ static NSInteger const TACLowerCaseASCIICode = 97;
 {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = aligment;
-    
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans700 size:13.5f],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans700 size:13.5f],
                                  NSParagraphStyleAttributeName : style};
-    
     NSMutableAttributedString *formattedCaption = [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
     return formattedCaption;
 }
 
 - (NSMutableAttributedString *)setBaseFormatToString:(NSString *)string
 {
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:[self baseAttributesForTextWithFont:FONT_MuseoSans300]];
+}
+
+- (NSDictionary *)baseAttributesForTextWithFont:(NSString *)fontName
+{
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = NSTextAlignmentJustified;
-    
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:fontName size:13.5f],
                                  NSParagraphStyleAttributeName : style};
-    
-    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
+    return attributes;
 }
 
 - (NSString *)readTextPartFile:(NSString *)fileName
@@ -106,12 +105,9 @@ static NSInteger const TACLowerCaseASCIICode = 97;
 {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = NSTextAlignmentLeft;
-    
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f],
                                  NSParagraphStyleAttributeName : style,
                                  NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-    
     return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
 }
 
@@ -167,15 +163,16 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     NSString *partTwo = [self readTextPartFile:fileName];
     NSArray *sentenses = [self textToSentenses:partTwo];
     NSInteger asciiCode = acsii;
-    NSMutableString *resultedString = [[NSMutableString alloc] init];
+    NSMutableAttributedString *resultedString = [[NSMutableAttributedString alloc] init];
     for (NSString *string in sentenses) {
-        NSMutableString *letterNumbering = [[NSString stringWithFormat:@"%c. \t", asciiCode] mutableCopy];
+        NSMutableString *letterNumbering = [[NSString stringWithFormat:@"%c.\t", asciiCode] mutableCopy];
         [letterNumbering appendString:string];
-        [resultedString appendString:letterNumbering];
+        NSMutableAttributedString *item = [self setBaseFormatToString:letterNumbering];
+        [item addAttributes:[self  baseAttributesForTextWithFont:FONT_MuseoSans700] range:NSMakeRange(0, 2)];
+        [resultedString appendAttributedString:item];
         asciiCode++;
     }
-    NSMutableAttributedString *formattedPartTwo = [self setBaseFormatToString:resultedString];
-    return formattedPartTwo;
+    return resultedString;
 }
 
 - (NSMutableAttributedString *)generatePartThree
@@ -184,6 +181,7 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_0" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_1"]];
+    [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_0_1" asciiCode:98]]; //from 'b'
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_2"]];
@@ -202,11 +200,13 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_6_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_6_2"]];
+    [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_6_3" asciiCode:103]]; //from 'g'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:5]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_7_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_7_2"]];
+    [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_7_3" asciiCode:100]]; //from 'd'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:6]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_8" asciiCode:TACLowerCaseASCIICode]];
@@ -214,15 +214,18 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_9_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_9_2"]];
+     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_9_3" asciiCode:100]]; //from 'd'
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_9_4"]];
+     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_9_5" asciiCode:101]]; //from 'e'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:8]];
     [mainContent appendAttributedString:[self setBaseFormatToString:[self readTextPartFile:@"Part3_10_0"]]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_10_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_10_2"]];
+     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_10_3" asciiCode:100]]; //from 'd'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:9]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_11" asciiCode:TACLowerCaseASCIICode]];
@@ -240,11 +243,13 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_16_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_17_1"]];
+     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_17_2" asciiCode:98]]; //from 'b'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:16]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_18_1" asciiCode:TACLowerCaseASCIICode]];
     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self romanNumberedListFromFile:@"Part3_18_2"]];
+     [mainContent appendAttributedString:[[NSAttributedString alloc] initWithString:TACEmptyString]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_18_3" asciiCode:101]]; //from 'e'
     [mainContent appendAttributedString:[self sublLevelStringAtIndex:17]];
     [mainContent appendAttributedString:[self alphabeticListFromFile:@"Part3_19" asciiCode:TACLowerCaseASCIICode]];
