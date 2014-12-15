@@ -1179,6 +1179,12 @@
 		EDF19F611A3EF2F40086B8E7 /* Part3_22.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */; };
 		EDF19F631A3EF3330086B8E7 /* Part3_23.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F621A3EF3330086B8E7 /* Part3_23.txt */; };
 		EDF19F651A3EF7B50086B8E7 /* Part3_2_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */; };
+		EDF19F671A3F1C940086B8E7 /* Part3_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F661A3F1C940086B8E7 /* Part3_0.txt */; };
+		EDF19F691A3F1CD70086B8E7 /* Part3_0_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F681A3F1CD70086B8E7 /* Part3_0_1.txt */; };
+		EDF19F6B1A3F1D310086B8E7 /* Part3_4_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F6A1A3F1D310086B8E7 /* Part3_4_1.txt */; };
+		EDF19F6D1A3F1D690086B8E7 /* Part3_5_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F6C1A3F1D690086B8E7 /* Part3_5_1.txt */; };
+		EDF19F6F1A3F1DC30086B8E7 /* Part3_10_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F6E1A3F1DC30086B8E7 /* Part3_10_0.txt */; };
+		EDF19F711A3F1E0C0086B8E7 /* Part3_16_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F701A3F1E0C0086B8E7 /* Part3_16_1.txt */; };
 		EDF3BB191A1DE185000F29FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB181A1DE185000F29FC /* Reachability.m */; };
 		EDF3BB1D1A1DE44C000F29FC /* PEInternetStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */; };
 		EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */; };
@@ -2452,6 +2458,12 @@
 		EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_22.txt; sourceTree = "<group>"; };
 		EDF19F621A3EF3330086B8E7 /* Part3_23.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_23.txt; sourceTree = "<group>"; };
 		EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_2_1.txt; sourceTree = "<group>"; };
+		EDF19F661A3F1C940086B8E7 /* Part3_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_0.txt; sourceTree = "<group>"; };
+		EDF19F681A3F1CD70086B8E7 /* Part3_0_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_0_1.txt; sourceTree = "<group>"; };
+		EDF19F6A1A3F1D310086B8E7 /* Part3_4_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_4_1.txt; sourceTree = "<group>"; };
+		EDF19F6C1A3F1D690086B8E7 /* Part3_5_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_5_1.txt; sourceTree = "<group>"; };
+		EDF19F6E1A3F1DC30086B8E7 /* Part3_10_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_10_0.txt; sourceTree = "<group>"; };
+		EDF19F701A3F1E0C0086B8E7 /* Part3_16_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_16_1.txt; sourceTree = "<group>"; };
 		EDF3BB171A1DE185000F29FC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		EDF3BB181A1DE185000F29FC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EDF3BB1B1A1DE44C000F29FC /* PEInternetStatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInternetStatusChecker.h; sourceTree = "<group>"; };
@@ -4871,6 +4883,12 @@
 				EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */,
 				EDF19F621A3EF3330086B8E7 /* Part3_23.txt */,
 				EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */,
+				EDF19F661A3F1C940086B8E7 /* Part3_0.txt */,
+				EDF19F681A3F1CD70086B8E7 /* Part3_0_1.txt */,
+				EDF19F6A1A3F1D310086B8E7 /* Part3_4_1.txt */,
+				EDF19F6C1A3F1D690086B8E7 /* Part3_5_1.txt */,
+				EDF19F6E1A3F1DC30086B8E7 /* Part3_10_0.txt */,
+				EDF19F701A3F1E0C0086B8E7 /* Part3_16_1.txt */,
 			);
 			path = Part3;
 			sourceTree = "<group>";
@@ -4969,6 +4987,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF19F6B1A3F1D310086B8E7 /* Part3_4_1.txt in Resources */,
 				EDE78FED19ED5E4700A9C43B /* S0920T1002.jpg in Resources */,
 				EDE7928319ED5E4800A9C43B /* S0901T0708.jpg in Resources */,
 				EDE791FA19ED5E4700A9C43B /* S0906T0703.jpg in Resources */,
@@ -5374,6 +5393,7 @@
 				EDE792E219ED5E4800A9C43B /* S0907T0507.JPG in Resources */,
 				EDE792E319ED5E4800A9C43B /* S0907T0508.jpg in Resources */,
 				EDCD57E819B8825A00EC7AF1 /* PESpecialisationCollectionCell.xib in Resources */,
+				EDF19F691A3F1CD70086B8E7 /* Part3_0_1.txt in Resources */,
 				EDE7915F19ED5E4700A9C43B /* S0910T0502.jpg in Resources */,
 				EDE7910219ED5E4700A9C43B /* S0913T0801.jpg in Resources */,
 				ED37903219F6A0C4001625EE /* S0301P01.jpg in Resources */,
@@ -5492,6 +5512,7 @@
 				EDE790FA19ED5E4700A9C43B /* S0913T0703.jpg in Resources */,
 				ED37903719F6A0C4001625EE /* S0802P01.jpg in Resources */,
 				EDE7908519ED5E4700A9C43B /* S0916T0704.jpg in Resources */,
+				EDF19F6D1A3F1D690086B8E7 /* Part3_5_1.txt in Resources */,
 				EDE7908B19ED5E4700A9C43B /* S0916T0711.jpg in Resources */,
 				EDE7912C19ED5E4700A9C43B /* S0912T0801.jpg in Resources */,
 				EDE7917E19ED5E4700A9C43B /* S0910T0504.jpg in Resources */,
@@ -5515,6 +5536,7 @@
 				EDE791F419ED5E4700A9C43B /* S0906T1106.jpg in Resources */,
 				ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */,
 				EDE7921F19ED5E4700A9C43B /* S0904T0706.jpg in Resources */,
+				EDF19F671A3F1C940086B8E7 /* Part3_0.txt in Resources */,
 				EDE7923F19ED5E4800A9C43B /* S0904T0903.jpg in Resources */,
 				EDE790B419ED5E4700A9C43B /* S0915T0702.jpg in Resources */,
 				EDE7931D19ED5E4800A9C43B /* S0905T0711.jpg in Resources */,
@@ -5808,6 +5830,7 @@
 				EDE7902F19ED5E4700A9C43B /* S0918T0802.jpg in Resources */,
 				ED37905019F6A0D2001625EE /* S0502P01.jpg in Resources */,
 				EDE7905A19ED5E4700A9C43B /* S0917T0717.jpg in Resources */,
+				EDF19F6F1A3F1DC30086B8E7 /* Part3_10_0.txt in Resources */,
 				EDE7902319ED5E4700A9C43B /* S0918T0302.jpg in Resources */,
 				EDE7924E19ED5E4800A9C43B /* S0902T0605.jpg in Resources */,
 				EDCD57DB19B874DE00EC7AF1 /* PEMenuViewController.xib in Resources */,
@@ -5839,6 +5862,7 @@
 				EDE7908119ED5E4700A9C43B /* S0916T0604.jpg in Resources */,
 				EDE7916A19ED5E4700A9C43B /* S0910T0705.JPG in Resources */,
 				EDF19F371A3EEBB50086B8E7 /* Part3_9_2.txt in Resources */,
+				EDF19F711A3F1E0C0086B8E7 /* Part3_16_1.txt in Resources */,
 				EDE77E3719ED5C7E00A9C43B /* S0903P01.jpg in Resources */,
 				EDE791D319ED5E4700A9C43B /* S0906T0505.jpg in Resources */,
 				ED9C69CB19C720E80022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png in Resources */,
