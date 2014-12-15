@@ -161,9 +161,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             newTool.createdDate = [NSDate date];
             newTool.uniqueKey = [self.imageManager uniqueKey];
             
-            [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:newTool.uniqueKey];
-            
-            [newProc addEquipmentsObject:newTool];
+            if (![newTool.name isEqualToString:@""] || ![newTool.type isEqualToString:@""]) {
+                [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:newTool.uniqueKey];
+                [newProc addEquipmentsObject:newTool];
+            }
             
             if (![colum[0] isEqualToString:@""]) {
                 newProc.procedureID = colum[0];

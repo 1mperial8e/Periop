@@ -7,12 +7,10 @@
 //
 
 static NSString *const TACTermsAndConditions = @"Terms & Conditions";
-static NSString *const TACCaptionMain = @"DEED OF AGREEMENT FOR “SCRUBUP” USAGE – USER TERMS AND CONDITIONS \n\n";
-static NSString *const TACCaptionRecitals = @"RECITALS\n";
-static NSString *const TACCAptionAgreed = @"IT IS AGREED\n";
 
 #import "PETermsAndConditionViewController.h"
 #import "PEMenuViewController.h"
+#import "PETermsAndCondition.h"
 
 @interface PETermsAndConditionViewController ()
 
@@ -40,50 +38,8 @@ static NSString *const TACCAptionAgreed = @"IT IS AGREED\n";
 
 - (void)configureTextView
 {
-    self.textView.attributedText = [self generateFormattedText];
-}
-
-- (NSString *)readTextPartFile:(NSString *)fileName
-{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
-    NSError *fileReadingError;
-    NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&fileReadingError];
-    return fileContent;
-}
-
-- (NSMutableAttributedString *)getFormattedString:(NSString *)string
-{
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentJustified;
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
-    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
-}
-
-- (NSMutableAttributedString *)getFormattedCaption:(NSString *)string
-{
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentCenter;
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:FONT_MuseoSans300 size:13.5f], NSParagraphStyleAttributeName : style};
-    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
-}
-
-- (NSMutableAttributedString *)generateFormattedText
-{
-    NSMutableAttributedString *partOne = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part1"]];
-    NSMutableAttributedString *partTwo = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part2"]];
-    NSMutableAttributedString *partThree = [self getFormattedString:[self readTextPartFile:@"TermsAndConditions_part3"]];
-    
-    NSMutableAttributedString *mainCaption = [self getFormattedCaption:TACCaptionMain];
-    NSMutableAttributedString *recitalsCaption = [self getFormattedCaption:TACCaptionRecitals];
-    NSMutableAttributedString *agreedCaption = [self getFormattedCaption:TACCAptionAgreed];
-    
-    [mainCaption appendAttributedString:partOne];
-    [mainCaption appendAttributedString:recitalsCaption];
-    [mainCaption appendAttributedString:partTwo];
-    [mainCaption appendAttributedString:agreedCaption];
-    [mainCaption appendAttributedString:partThree];
-    
-    return mainCaption;
+    PETermsAndCondition *termsAndContionGenerator = [[PETermsAndCondition alloc] init];    
+    self.textView.attributedText = [termsAndContionGenerator generateTermsAndConditionFormattedText];
 }
 
 #pragma mark - IBActions
