@@ -152,12 +152,12 @@
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWlB3VVlSY3lVVjg</string>
 	</dict>
-	<key>Opthomology</key>
+	<key>Ophthalmology</key>
 	<dict>
 		<key>specID</key>
 		<string>S04</string>
 		<key>name</key>
-		<string>Opthomology</string>
+		<string>Ophthalmology</string>
 		<key>photoName</key>
 		<string>Opthomology_Large</string>
 		<key>logo</key>

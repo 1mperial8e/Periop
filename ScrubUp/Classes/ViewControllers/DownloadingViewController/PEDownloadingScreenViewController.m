@@ -200,8 +200,6 @@
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
         [self downloadData];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Purchase"]) {
-        [self downloadData];
-        return;
         [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
             if (success && products.count) {
                 for (SKProduct *product in products) {

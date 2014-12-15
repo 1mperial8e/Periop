@@ -249,9 +249,6 @@
 		EDD21AD219EBB53400F343A2 /* ENT_Small_Active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD21AD119EBB53400F343A2 /* ENT_Small_Active@2x.png */; };
 		EDD2966219EFC226002F4564 /* PEAddEditStepViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */; };
 		EDD2966319EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */; };
-		EDD3CC201A38A9D800B8A111 /* TermsAndConditions_part1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */; };
-		EDD3CC211A38A9D800B8A111 /* TermsAndConditions_part2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */; };
-		EDD3CC221A38A9D800B8A111 /* TermsAndConditions_part3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */; };
 		EDD4BDED19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */; };
 		EDD4BDEF19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */; };
 		EDD4BDF219D2E43C0087D8CE /* Specialisation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD4BDF119D2E43C0087D8CE /* Specialisation.m */; };
@@ -1139,6 +1136,49 @@
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
+		EDF19F091A3EC48C0086B8E7 /* PETermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF19F081A3EC48C0086B8E7 /* PETermsAndCondition.m */; };
+		EDF19F0B1A3EC8AA0086B8E7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF19F0A1A3EC8AA0086B8E7 /* CoreText.framework */; };
+		EDF19F171A3ED8570086B8E7 /* TermsAndConditions_part3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F111A3ED8570086B8E7 /* TermsAndConditions_part3.txt */; };
+		EDF19F181A3ED8570086B8E7 /* TermsAndConditionsSubLevels1_part3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F121A3ED8570086B8E7 /* TermsAndConditionsSubLevels1_part3.txt */; };
+		EDF19F191A3ED8570086B8E7 /* TermsAndConditions_part1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F151A3ED8570086B8E7 /* TermsAndConditions_part1.txt */; };
+		EDF19F1B1A3ED87F0086B8E7 /* TermsAndConditions_part2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F1A1A3ED87F0086B8E7 /* TermsAndConditions_part2.txt */; };
+		EDF19F1D1A3EDE210086B8E7 /* Part3_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F1C1A3EDE210086B8E7 /* Part3_1.txt */; };
+		EDF19F1F1A3EE4F50086B8E7 /* Part3_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F1E1A3EE4F50086B8E7 /* Part3_2.txt */; };
+		EDF19F211A3EE6AC0086B8E7 /* Part3_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F201A3EE6AC0086B8E7 /* Part3_3.txt */; };
+		EDF19F231A3EE86B0086B8E7 /* Part3_4.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F221A3EE86B0086B8E7 /* Part3_4.txt */; };
+		EDF19F251A3EE8DA0086B8E7 /* Part3_5.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F241A3EE8DA0086B8E7 /* Part3_5.txt */; };
+		EDF19F271A3EE9540086B8E7 /* Part3_6_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F261A3EE9540086B8E7 /* Part3_6_1.txt */; };
+		EDF19F291A3EE98E0086B8E7 /* Part3_6_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F281A3EE98E0086B8E7 /* Part3_6_2.txt */; };
+		EDF19F2B1A3EE9E60086B8E7 /* Part3_6_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F2A1A3EE9E60086B8E7 /* Part3_6_3.txt */; };
+		EDF19F2D1A3EEA4F0086B8E7 /* Part3_7_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F2C1A3EEA4F0086B8E7 /* Part3_7_1.txt */; };
+		EDF19F2F1A3EEA880086B8E7 /* Part3_7_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F2E1A3EEA880086B8E7 /* Part3_7_2.txt */; };
+		EDF19F311A3EEAC80086B8E7 /* Part3_7_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F301A3EEAC80086B8E7 /* Part3_7_3.txt */; };
+		EDF19F331A3EEB290086B8E7 /* Part3_8.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F321A3EEB290086B8E7 /* Part3_8.txt */; };
+		EDF19F351A3EEB790086B8E7 /* Part3_9_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F341A3EEB790086B8E7 /* Part3_9_1.txt */; };
+		EDF19F371A3EEBB50086B8E7 /* Part3_9_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F361A3EEBB50086B8E7 /* Part3_9_2.txt */; };
+		EDF19F391A3EEBF40086B8E7 /* Part3_9_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F381A3EEBF40086B8E7 /* Part3_9_3.txt */; };
+		EDF19F3B1A3EEC220086B8E7 /* Part3_9_4.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F3A1A3EEC220086B8E7 /* Part3_9_4.txt */; };
+		EDF19F3D1A3EEC6B0086B8E7 /* Part3_9_5.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F3C1A3EEC6B0086B8E7 /* Part3_9_5.txt */; };
+		EDF19F3F1A3EECDB0086B8E7 /* Part3_10_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F3E1A3EECDB0086B8E7 /* Part3_10_1.txt */; };
+		EDF19F411A3EED0B0086B8E7 /* Part3_10_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F401A3EED0B0086B8E7 /* Part3_10_2.txt */; };
+		EDF19F431A3EED3A0086B8E7 /* Part3_10_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F421A3EED3A0086B8E7 /* Part3_10_3.txt */; };
+		EDF19F451A3EED790086B8E7 /* Part3_11.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F441A3EED790086B8E7 /* Part3_11.txt */; };
+		EDF19F471A3EEDC40086B8E7 /* Part3_12.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F461A3EEDC40086B8E7 /* Part3_12.txt */; };
+		EDF19F491A3EEF690086B8E7 /* Part3_13.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F481A3EEF690086B8E7 /* Part3_13.txt */; };
+		EDF19F4B1A3EEFA90086B8E7 /* Part3_14.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F4A1A3EEFA90086B8E7 /* Part3_14.txt */; };
+		EDF19F4D1A3EF05F0086B8E7 /* Part3_15.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F4C1A3EF05F0086B8E7 /* Part3_15.txt */; };
+		EDF19F4F1A3EF09F0086B8E7 /* Part3_16.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F4E1A3EF09E0086B8E7 /* Part3_16.txt */; };
+		EDF19F511A3EF0D80086B8E7 /* Part3_17_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F501A3EF0D80086B8E7 /* Part3_17_1.txt */; };
+		EDF19F531A3EF11E0086B8E7 /* Part3_17_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F521A3EF11E0086B8E7 /* Part3_17_2.txt */; };
+		EDF19F551A3EF17D0086B8E7 /* Part3_18_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F541A3EF17D0086B8E7 /* Part3_18_1.txt */; };
+		EDF19F571A3EF1B80086B8E7 /* Part3_18_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F561A3EF1B80086B8E7 /* Part3_18_2.txt */; };
+		EDF19F591A3EF1F40086B8E7 /* Part3_18_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F581A3EF1F40086B8E7 /* Part3_18_3.txt */; };
+		EDF19F5B1A3EF23E0086B8E7 /* Part3_19.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F5A1A3EF23E0086B8E7 /* Part3_19.txt */; };
+		EDF19F5D1A3EF2800086B8E7 /* Part3_20.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F5C1A3EF2800086B8E7 /* Part3_20.txt */; };
+		EDF19F5F1A3EF2BB0086B8E7 /* Part3_21.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F5E1A3EF2BB0086B8E7 /* Part3_21.txt */; };
+		EDF19F611A3EF2F40086B8E7 /* Part3_22.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */; };
+		EDF19F631A3EF3330086B8E7 /* Part3_23.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F621A3EF3330086B8E7 /* Part3_23.txt */; };
+		EDF19F651A3EF7B50086B8E7 /* Part3_2_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */; };
 		EDF3BB191A1DE185000F29FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB181A1DE185000F29FC /* Reachability.m */; };
 		EDF3BB1D1A1DE44C000F29FC /* PEInternetStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3BB1C1A1DE44C000F29FC /* PEInternetStatusChecker.m */; };
 		EDF3C82619D45F700006F641 /* SpecialisationPicsAndCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF3C82519D45F700006F641 /* SpecialisationPicsAndCode.plist */; };
@@ -1459,9 +1499,6 @@
 		EDD2965F19EFC226002F4564 /* PEAddEditStepViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddEditStepViewControllerViewController.h; sourceTree = "<group>"; };
 		EDD2966019EFC226002F4564 /* PEAddEditStepViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddEditStepViewControllerViewController.m; sourceTree = "<group>"; };
 		EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddEditStepViewControllerViewController.xib; sourceTree = "<group>"; };
-		EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part1.txt; sourceTree = "<group>"; };
-		EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part2.txt; sourceTree = "<group>"; };
-		EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part3.txt; sourceTree = "<group>"; };
 		EDD4BDEB19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDoctorProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		EDD4BDEC19D2DBD50087D8CE /* PEDoctorProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDoctorProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		EDD4BDEE19D2DBEC0087D8CE /* PEDoctorProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDoctorProfileCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2371,6 +2408,50 @@
 		EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		EDEC8EFC19C9D5B800066BA5 /* PEPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPurchaseManager.h; sourceTree = "<group>"; };
 		EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPurchaseManager.m; sourceTree = "<group>"; };
+		EDF19F071A3EC48C0086B8E7 /* PETermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PETermsAndCondition.h; sourceTree = "<group>"; };
+		EDF19F081A3EC48C0086B8E7 /* PETermsAndCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PETermsAndCondition.m; sourceTree = "<group>"; };
+		EDF19F0A1A3EC8AA0086B8E7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EDF19F111A3ED8570086B8E7 /* TermsAndConditions_part3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part3.txt; sourceTree = "<group>"; };
+		EDF19F121A3ED8570086B8E7 /* TermsAndConditionsSubLevels1_part3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditionsSubLevels1_part3.txt; sourceTree = "<group>"; };
+		EDF19F151A3ED8570086B8E7 /* TermsAndConditions_part1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part1.txt; sourceTree = "<group>"; };
+		EDF19F1A1A3ED87F0086B8E7 /* TermsAndConditions_part2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TermsAndConditions_part2.txt; sourceTree = "<group>"; };
+		EDF19F1C1A3EDE210086B8E7 /* Part3_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_1.txt; sourceTree = "<group>"; };
+		EDF19F1E1A3EE4F50086B8E7 /* Part3_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_2.txt; sourceTree = "<group>"; };
+		EDF19F201A3EE6AC0086B8E7 /* Part3_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_3.txt; sourceTree = "<group>"; };
+		EDF19F221A3EE86B0086B8E7 /* Part3_4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_4.txt; sourceTree = "<group>"; };
+		EDF19F241A3EE8DA0086B8E7 /* Part3_5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_5.txt; sourceTree = "<group>"; };
+		EDF19F261A3EE9540086B8E7 /* Part3_6_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_6_1.txt; sourceTree = "<group>"; };
+		EDF19F281A3EE98E0086B8E7 /* Part3_6_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_6_2.txt; sourceTree = "<group>"; };
+		EDF19F2A1A3EE9E60086B8E7 /* Part3_6_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_6_3.txt; sourceTree = "<group>"; };
+		EDF19F2C1A3EEA4F0086B8E7 /* Part3_7_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_7_1.txt; sourceTree = "<group>"; };
+		EDF19F2E1A3EEA880086B8E7 /* Part3_7_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_7_2.txt; sourceTree = "<group>"; };
+		EDF19F301A3EEAC80086B8E7 /* Part3_7_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_7_3.txt; sourceTree = "<group>"; };
+		EDF19F321A3EEB290086B8E7 /* Part3_8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_8.txt; sourceTree = "<group>"; };
+		EDF19F341A3EEB790086B8E7 /* Part3_9_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_9_1.txt; sourceTree = "<group>"; };
+		EDF19F361A3EEBB50086B8E7 /* Part3_9_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_9_2.txt; sourceTree = "<group>"; };
+		EDF19F381A3EEBF40086B8E7 /* Part3_9_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_9_3.txt; sourceTree = "<group>"; };
+		EDF19F3A1A3EEC220086B8E7 /* Part3_9_4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_9_4.txt; sourceTree = "<group>"; };
+		EDF19F3C1A3EEC6B0086B8E7 /* Part3_9_5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_9_5.txt; sourceTree = "<group>"; };
+		EDF19F3E1A3EECDB0086B8E7 /* Part3_10_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_10_1.txt; sourceTree = "<group>"; };
+		EDF19F401A3EED0B0086B8E7 /* Part3_10_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_10_2.txt; sourceTree = "<group>"; };
+		EDF19F421A3EED3A0086B8E7 /* Part3_10_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_10_3.txt; sourceTree = "<group>"; };
+		EDF19F441A3EED790086B8E7 /* Part3_11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_11.txt; sourceTree = "<group>"; };
+		EDF19F461A3EEDC40086B8E7 /* Part3_12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_12.txt; sourceTree = "<group>"; };
+		EDF19F481A3EEF690086B8E7 /* Part3_13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_13.txt; sourceTree = "<group>"; };
+		EDF19F4A1A3EEFA90086B8E7 /* Part3_14.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_14.txt; sourceTree = "<group>"; };
+		EDF19F4C1A3EF05F0086B8E7 /* Part3_15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_15.txt; sourceTree = "<group>"; };
+		EDF19F4E1A3EF09E0086B8E7 /* Part3_16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_16.txt; sourceTree = "<group>"; };
+		EDF19F501A3EF0D80086B8E7 /* Part3_17_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_17_1.txt; sourceTree = "<group>"; };
+		EDF19F521A3EF11E0086B8E7 /* Part3_17_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_17_2.txt; sourceTree = "<group>"; };
+		EDF19F541A3EF17D0086B8E7 /* Part3_18_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_18_1.txt; sourceTree = "<group>"; };
+		EDF19F561A3EF1B80086B8E7 /* Part3_18_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_18_2.txt; sourceTree = "<group>"; };
+		EDF19F581A3EF1F40086B8E7 /* Part3_18_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_18_3.txt; sourceTree = "<group>"; };
+		EDF19F5A1A3EF23E0086B8E7 /* Part3_19.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_19.txt; sourceTree = "<group>"; };
+		EDF19F5C1A3EF2800086B8E7 /* Part3_20.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_20.txt; sourceTree = "<group>"; };
+		EDF19F5E1A3EF2BB0086B8E7 /* Part3_21.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_21.txt; sourceTree = "<group>"; };
+		EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_22.txt; sourceTree = "<group>"; };
+		EDF19F621A3EF3330086B8E7 /* Part3_23.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_23.txt; sourceTree = "<group>"; };
+		EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Part3_2_1.txt; sourceTree = "<group>"; };
 		EDF3BB171A1DE185000F29FC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		EDF3BB181A1DE185000F29FC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EDF3BB1B1A1DE44C000F29FC /* PEInternetStatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInternetStatusChecker.h; sourceTree = "<group>"; };
@@ -2383,6 +2464,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF19F0B1A3EC8AA0086B8E7 /* CoreText.framework in Frameworks */,
 				8467E6791A022E9800B7D82D /* libz.dylib in Frameworks */,
 				8467E6771A022E8900B7D82D /* SystemConfiguration.framework in Frameworks */,
 				EDD7E81F19D81EE200BE7FA4 /* MessageUI.framework in Frameworks */,
@@ -2569,6 +2651,7 @@
 		8474906119B8459E0013C446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDF19F0A1A3EC8AA0086B8E7 /* CoreText.framework */,
 				8467E6781A022E9800B7D82D /* libz.dylib */,
 				8467E6761A022E8900B7D82D /* SystemConfiguration.framework */,
 				EDD7E81E19D81EE200BE7FA4 /* MessageUI.framework */,
@@ -2622,9 +2705,9 @@
 		84A1B4361A38401800B17A58 /* Terms and Conditions */ = {
 			isa = PBXGroup;
 			children = (
-				EDD3CC1D1A38A9D800B8A111 /* TermsAndConditions_part1.txt */,
-				EDD3CC1E1A38A9D800B8A111 /* TermsAndConditions_part2.txt */,
-				EDD3CC1F1A38A9D800B8A111 /* TermsAndConditions_part3.txt */,
+				EDF19F0F1A3ED8570086B8E7 /* Part3 */,
+				EDF19F131A3ED8570086B8E7 /* Part2 */,
+				EDF19F141A3ED8570086B8E7 /* Part1 */,
 			);
 			path = "Terms and Conditions";
 			sourceTree = "<group>";
@@ -3417,6 +3500,7 @@
 		EDDEDEF51A1C794700DEEFCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				EDF19F061A3EC4710086B8E7 /* TermsAndCondition */,
 				EDF3BB1A1A1DE432000F29FC /* InternetStatusChecker */,
 				EDF3BB161A1DE16E000F29FC /* Reachability */,
 				EDDEDEF61A1C795B00DEEFCD /* MailController */,
@@ -4736,6 +4820,77 @@
 			path = InAppPurchaseManager;
 			sourceTree = "<group>";
 		};
+		EDF19F061A3EC4710086B8E7 /* TermsAndCondition */ = {
+			isa = PBXGroup;
+			children = (
+				EDF19F071A3EC48C0086B8E7 /* PETermsAndCondition.h */,
+				EDF19F081A3EC48C0086B8E7 /* PETermsAndCondition.m */,
+			);
+			path = TermsAndCondition;
+			sourceTree = "<group>";
+		};
+		EDF19F0F1A3ED8570086B8E7 /* Part3 */ = {
+			isa = PBXGroup;
+			children = (
+				EDF19F111A3ED8570086B8E7 /* TermsAndConditions_part3.txt */,
+				EDF19F121A3ED8570086B8E7 /* TermsAndConditionsSubLevels1_part3.txt */,
+				EDF19F1C1A3EDE210086B8E7 /* Part3_1.txt */,
+				EDF19F1E1A3EE4F50086B8E7 /* Part3_2.txt */,
+				EDF19F201A3EE6AC0086B8E7 /* Part3_3.txt */,
+				EDF19F221A3EE86B0086B8E7 /* Part3_4.txt */,
+				EDF19F241A3EE8DA0086B8E7 /* Part3_5.txt */,
+				EDF19F261A3EE9540086B8E7 /* Part3_6_1.txt */,
+				EDF19F281A3EE98E0086B8E7 /* Part3_6_2.txt */,
+				EDF19F2A1A3EE9E60086B8E7 /* Part3_6_3.txt */,
+				EDF19F2C1A3EEA4F0086B8E7 /* Part3_7_1.txt */,
+				EDF19F2E1A3EEA880086B8E7 /* Part3_7_2.txt */,
+				EDF19F301A3EEAC80086B8E7 /* Part3_7_3.txt */,
+				EDF19F321A3EEB290086B8E7 /* Part3_8.txt */,
+				EDF19F341A3EEB790086B8E7 /* Part3_9_1.txt */,
+				EDF19F361A3EEBB50086B8E7 /* Part3_9_2.txt */,
+				EDF19F381A3EEBF40086B8E7 /* Part3_9_3.txt */,
+				EDF19F3A1A3EEC220086B8E7 /* Part3_9_4.txt */,
+				EDF19F3C1A3EEC6B0086B8E7 /* Part3_9_5.txt */,
+				EDF19F3E1A3EECDB0086B8E7 /* Part3_10_1.txt */,
+				EDF19F401A3EED0B0086B8E7 /* Part3_10_2.txt */,
+				EDF19F421A3EED3A0086B8E7 /* Part3_10_3.txt */,
+				EDF19F441A3EED790086B8E7 /* Part3_11.txt */,
+				EDF19F461A3EEDC40086B8E7 /* Part3_12.txt */,
+				EDF19F481A3EEF690086B8E7 /* Part3_13.txt */,
+				EDF19F4A1A3EEFA90086B8E7 /* Part3_14.txt */,
+				EDF19F4C1A3EF05F0086B8E7 /* Part3_15.txt */,
+				EDF19F4E1A3EF09E0086B8E7 /* Part3_16.txt */,
+				EDF19F501A3EF0D80086B8E7 /* Part3_17_1.txt */,
+				EDF19F521A3EF11E0086B8E7 /* Part3_17_2.txt */,
+				EDF19F541A3EF17D0086B8E7 /* Part3_18_1.txt */,
+				EDF19F561A3EF1B80086B8E7 /* Part3_18_2.txt */,
+				EDF19F581A3EF1F40086B8E7 /* Part3_18_3.txt */,
+				EDF19F5A1A3EF23E0086B8E7 /* Part3_19.txt */,
+				EDF19F5C1A3EF2800086B8E7 /* Part3_20.txt */,
+				EDF19F5E1A3EF2BB0086B8E7 /* Part3_21.txt */,
+				EDF19F601A3EF2F40086B8E7 /* Part3_22.txt */,
+				EDF19F621A3EF3330086B8E7 /* Part3_23.txt */,
+				EDF19F641A3EF7B50086B8E7 /* Part3_2_1.txt */,
+			);
+			path = Part3;
+			sourceTree = "<group>";
+		};
+		EDF19F131A3ED8570086B8E7 /* Part2 */ = {
+			isa = PBXGroup;
+			children = (
+				EDF19F1A1A3ED87F0086B8E7 /* TermsAndConditions_part2.txt */,
+			);
+			path = Part2;
+			sourceTree = "<group>";
+		};
+		EDF19F141A3ED8570086B8E7 /* Part1 */ = {
+			isa = PBXGroup;
+			children = (
+				EDF19F151A3ED8570086B8E7 /* TermsAndConditions_part1.txt */,
+			);
+			path = Part1;
+			sourceTree = "<group>";
+		};
 		EDF3BB161A1DE16E000F29FC /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -4826,6 +4981,7 @@
 				EDE7913419ED5E4700A9C43B /* S0912T1103.jpg in Resources */,
 				EDE792CE19ED5E4800A9C43B /* S0903T0702.jpg in Resources */,
 				EDDE41921A1BA11F00534D15 /* Screen2-iphone5@2x.png in Resources */,
+				EDF19F181A3ED8570086B8E7 /* TermsAndConditionsSubLevels1_part3.txt in Resources */,
 				ED37903019F6A0C4001625EE /* S0104TP01.jpg in Resources */,
 				EDE792F619ED5E4800A9C43B /* S0907T1002.jpg in Resources */,
 				EDE792BC19ED5E4800A9C43B /* S0903T0802.jpg in Resources */,
@@ -4841,6 +4997,7 @@
 				EDE790A219ED5E4700A9C43B /* S0916T0705.jpg in Resources */,
 				EDE7923919ED5E4700A9C43B /* S0904T0507.jpg in Resources */,
 				EDE7931E19ED5E4800A9C43B /* S0905T0712.jpg in Resources */,
+				EDF19F2B1A3EE9E60086B8E7 /* Part3_6_3.txt in Resources */,
 				ED9C699D19C720E80022C1A8 /* Notes_Tab_Inactive@2x.png in Resources */,
 				84BA0AA419E557910054BFE5 /* mail_BTN_inactive@2x-1.png in Resources */,
 				EDE791B619ED5E4700A9C43B /* S0908T0501.jpg in Resources */,
@@ -4868,6 +5025,7 @@
 				EDE7923C19ED5E4700A9C43B /* S0904T0714.jpg in Resources */,
 				EDE7910419ED5E4700A9C43B /* S0913T0904.jpg in Resources */,
 				EDE791FB19ED5E4700A9C43B /* S0906T0712.jpg in Resources */,
+				EDF19F331A3EEB290086B8E7 /* Part3_8.txt in Resources */,
 				EDE792F719ED5E4800A9C43B /* S0907T1003.jpg in Resources */,
 				ED0D30B519BA11B9001F8411 /* PEEditAddDoctorTableViewCell.xib in Resources */,
 				EDE7909C19ED5E4700A9C43B /* S0916T1107.jpg in Resources */,
@@ -4885,6 +5043,7 @@
 				EDE791DA19ED5E4700A9C43B /* S0906T0601.jpg in Resources */,
 				EDE7906E19ED5E4700A9C43B /* S0917T0716.jpg in Resources */,
 				EDE7930819ED5E4800A9C43B /* S0905T0303.jpg in Resources */,
+				EDF19F4D1A3EF05F0086B8E7 /* Part3_15.txt in Resources */,
 				EDCD585819B8C8B500EC7AF1 /* PENotesViewController.xib in Resources */,
 				EDE7918319ED5E4700A9C43B /* S0909T0201.jpg in Resources */,
 				EDE7924519ED5E4800A9C43B /* S0902T0303.jpg in Resources */,
@@ -4951,6 +5110,7 @@
 				EDE7904019ED5E4700A9C43B /* S0917T0501.jpg in Resources */,
 				EDE7916419ED5E4700A9C43B /* S0910T0601.jpg in Resources */,
 				EDE7930F19ED5E4800A9C43B /* S0905T0506.jpg in Resources */,
+				EDF19F5B1A3EF23E0086B8E7 /* Part3_19.txt in Resources */,
 				ED9C69D319C720E80022C1A8 /* ENT_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE7903319ED5E4700A9C43B /* S0918T1101.jpg in Resources */,
 				EDE77E4319ED5C7E00A9C43B /* S0914P01.jpg in Resources */,
@@ -4961,6 +5121,7 @@
 				EDE7907F19ED5E4700A9C43B /* S0916T0601.jpg in Resources */,
 				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
 				EDE790A119ED5E4700A9C43B /* S0916T0703.jpg in Resources */,
+				EDF19F5F1A3EF2BB0086B8E7 /* Part3_21.txt in Resources */,
 				EDE792A819ED5E4800A9C43B /* S0903T0507.jpg in Resources */,
 				EDE7900219ED5E4700A9C43B /* S0919T0505.jpg in Resources */,
 				ED9C697319C720E80022C1A8 /* Check_Active@2x.png in Resources */,
@@ -4992,6 +5153,7 @@
 				EDE7903719ED5E4700A9C43B /* S0918T0705.jpg in Resources */,
 				EDE792B019ED5E4800A9C43B /* S0903T0701.jpg in Resources */,
 				84FE695219F11006008AD54C /* General_logo.png in Resources */,
+				EDF19F511A3EF0D80086B8E7 /* Part3_17_1.txt in Resources */,
 				EDE7917519ED5E4700A9C43B /* S0910T1001.jpg in Resources */,
 				EDE791EC19ED5E4700A9C43B /* S0906T0903.jpg in Resources */,
 				ED9C697519C720E80022C1A8 /* Check_Inactive@2x.png in Resources */,
@@ -5017,6 +5179,7 @@
 				EDE7914319ED5E4700A9C43B /* S0911T0504.jpg in Resources */,
 				EDE792AD19ED5E4800A9C43B /* S0903T0603.jpg in Resources */,
 				EDCD57CD19B8741600EC7AF1 /* PEDownloadingScreenViewController.xib in Resources */,
+				EDF19F391A3EEBF40086B8E7 /* Part3_9_3.txt in Resources */,
 				EDE7929A19ED5E4800A9C43B /* S0903T0101.jpg in Resources */,
 				ED9C699919C720E80022C1A8 /* My_Specialisations_Inactive@2x.png in Resources */,
 				ED9C69A519C720E80022C1A8 /* Photo_Added@2x.png in Resources */,
@@ -5046,7 +5209,6 @@
 				EDE7912719ED5E4700A9C43B /* S0912T0705.jpg in Resources */,
 				EDE7912619ED5E4700A9C43B /* S0912T0704.jpg in Resources */,
 				ED3D1BCF19E5514A00929F64 /* General_Small_Inactive@2x.png in Resources */,
-				EDD3CC211A38A9D800B8A111 /* TermsAndConditions_part2.txt in Resources */,
 				EDE792EE19ED5E4800A9C43B /* S0907T0710.jpg in Resources */,
 				EDDE41901A1BA11F00534D15 /* Screen0-iphone5@2x.png in Resources */,
 				EDE7932119ED5E4800A9C43B /* S0905T0715.jpg in Resources */,
@@ -5063,6 +5225,7 @@
 				EDE7930919ED5E4800A9C43B /* S0905T0401.jpg in Resources */,
 				EDE791B519ED5E4700A9C43B /* S0908T0401.jpg in Resources */,
 				EDE790AD19ED5E4700A9C43B /* S0915T0504.jpg in Resources */,
+				EDF19F3B1A3EEC220086B8E7 /* Part3_9_4.txt in Resources */,
 				EDE7916019ED5E4700A9C43B /* S0910T0503.jpg in Resources */,
 				EDE7925B19ED5E4800A9C43B /* S0902T0801.jpg in Resources */,
 				ED37905619F6A0D2001625EE /* S1003P01.jpg in Resources */,
@@ -5071,6 +5234,7 @@
 				EDE791CE19ED5E4700A9C43B /* S0906T0302.jpg in Resources */,
 				EDE791A219ED5E4700A9C43B /* S0909T1105.jpg in Resources */,
 				EDD5C9C819D0727A0086C9B5 /* PEOperationRoomCollectionViewCell.xib in Resources */,
+				EDF19F251A3EE8DA0086B8E7 /* Part3_5.txt in Resources */,
 				EDE7911B19ED5E4700A9C43B /* S0912T0302.jpg in Resources */,
 				EDE790BB19ED5E4700A9C43B /* S0915T0709.jpg in Resources */,
 				EDE7907919ED5E4700A9C43B /* S0916T0502.jpg in Resources */,
@@ -5116,6 +5280,7 @@
 				EDE792D019ED5E4800A9C43B /* S0903T0708.jpg in Resources */,
 				ED9C69F519C720E80022C1A8 /* Orthopaedic_Large@2x.png in Resources */,
 				EDE7927519ED5E4800A9C43B /* S0901T0506.jpg in Resources */,
+				EDF19F1F1A3EE4F50086B8E7 /* Part3_2.txt in Resources */,
 				EDE790BA19ED5E4700A9C43B /* S0915T0708.jpg in Resources */,
 				ED9C69A919C720E80022C1A8 /* Procedures_Tab_Active@2x.png in Resources */,
 				EDE7912D19ED5E4700A9C43B /* S0912T0802.jpg in Resources */,
@@ -5248,6 +5413,7 @@
 				EDE7931919ED5E4800A9C43B /* S0905T0704.jpg in Resources */,
 				EDE78FD119ED5E4700A9C43B /* S0906T0510.jpg in Resources */,
 				EDE7901319ED5E4700A9C43B /* S0919T1101.jpg in Resources */,
+				EDF19F431A3EED3A0086B8E7 /* Part3_10_3.txt in Resources */,
 				EDE7913019ED5E4700A9C43B /* S0912T0903.jpg in Resources */,
 				EDD2966319EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib in Resources */,
 				EDE7908E19ED5E4700A9C43B /* S0916T0715.jpg in Resources */,
@@ -5268,6 +5434,7 @@
 				EDE7929B19ED5E4800A9C43B /* S0903T0201.jpg in Resources */,
 				EDE7928119ED5E4800A9C43B /* S0901T0706.jpg in Resources */,
 				EDE790B219ED5E4700A9C43B /* S0915T0603.jpg in Resources */,
+				EDF19F411A3EED0B0086B8E7 /* Part3_10_2.txt in Resources */,
 				EDE791B119ED5E4700A9C43B /* S0908T0301.jpg in Resources */,
 				EDE7909A19ED5E4700A9C43B /* S0916T1104.jpg in Resources */,
 				EDE792B619ED5E4800A9C43B /* S0903T0711.jpg in Resources */,
@@ -5288,6 +5455,7 @@
 				EDE7911219ED5E4700A9C43B /* S0913T0705.jpg in Resources */,
 				EDE791E319ED5E4700A9C43B /* S0906T0708.jpg in Resources */,
 				EDE790D819ED5E4700A9C43B /* S0914T0702.jpg in Resources */,
+				EDF19F471A3EEDC40086B8E7 /* Part3_12.txt in Resources */,
 				EDE791F619ED5E4700A9C43B /* S0906T0508.jpg in Resources */,
 				EDE78FE119ED5E4700A9C43B /* S0920T0704.jpg in Resources */,
 				EDE7923D19ED5E4700A9C43B /* S0904T0715.jpg in Resources */,
@@ -5306,6 +5474,7 @@
 				EDE790C719ED5E4700A9C43B /* S0915T0503.jpg in Resources */,
 				84FE695319F11006008AD54C /* Gynaecology_logo.png in Resources */,
 				EDE7912919ED5E4700A9C43B /* S0912T0707.jpg in Resources */,
+				EDF19F271A3EE9540086B8E7 /* Part3_6_1.txt in Resources */,
 				EDE7908A19ED5E4700A9C43B /* S0916T0710.jpg in Resources */,
 				EDE790A519ED5E4700A9C43B /* S0916T1106.jpg in Resources */,
 				EDE7917919ED5E4700A9C43B /* S0910T1104.jpg in Resources */,
@@ -5352,9 +5521,9 @@
 				EDE7916D19ED5E4700A9C43B /* S0910T0709.jpg in Resources */,
 				ED0D30BB19BA14E1001F8411 /* PEProceduresTableViewCell.xib in Resources */,
 				EDE792C119ED5E4800A9C43B /* S0903T0902.jpg in Resources */,
+				EDF19F531A3EF11E0086B8E7 /* Part3_17_2.txt in Resources */,
 				EDE7924F19ED5E4800A9C43B /* S0902T0701.jpg in Resources */,
 				EDE7919D19ED5E4700A9C43B /* S0909T0904.jpg in Resources */,
-				EDD3CC221A38A9D800B8A111 /* TermsAndConditions_part3.txt in Resources */,
 				EDE7914619ED5E4700A9C43B /* S0911T0701.jpg in Resources */,
 				EDE7912519ED5E4700A9C43B /* S0912T0702.jpg in Resources */,
 				EDE77E3C19ED5C7E00A9C43B /* S0907P02.jpg in Resources */,
@@ -5388,6 +5557,7 @@
 				EDE792E119ED5E4800A9C43B /* S0907T0506.jpg in Resources */,
 				EDE790BC19ED5E4700A9C43B /* S0915T0710.JPG in Resources */,
 				EDE7931019ED5E4800A9C43B /* S0905T0507.jpg in Resources */,
+				EDF19F651A3EF7B50086B8E7 /* Part3_2_1.txt in Resources */,
 				EDE7925719ED5E4800A9C43B /* S0902T0710.jpg in Resources */,
 				EDE7924819ED5E4800A9C43B /* S0902T0501.jpg in Resources */,
 				EDE790F319ED5E4700A9C43B /* S0913T0509.jpg in Resources */,
@@ -5396,6 +5566,7 @@
 				EDE790FB19ED5E4700A9C43B /* S0913T0704.jpg in Resources */,
 				EDE7917419ED5E4700A9C43B /* S0910T0903.jpg in Resources */,
 				EDE78FE519ED5E4700A9C43B /* S0920T0709.jpg in Resources */,
+				EDF19F491A3EEF690086B8E7 /* Part3_13.txt in Resources */,
 				ED37903819F6A0C4001625EE /* S0802P02.jpg in Resources */,
 				EDE7913E19ED5E4700A9C43B /* S0911T0303.jpg in Resources */,
 				ED9C69CD19C720E80022C1A8 /* ENT_Large@2x.png in Resources */,
@@ -5452,7 +5623,6 @@
 				EDE7921B19ED5E4700A9C43B /* S0904T0702.jpg in Resources */,
 				EDE792D919ED5E4800A9C43B /* S0907T0302.jpg in Resources */,
 				EDDE41911A1BA11F00534D15 /* Screen1-iphone5@2x.png in Resources */,
-				EDD3CC201A38A9D800B8A111 /* TermsAndConditions_part1.txt in Resources */,
 				EDE791FC19ED5E4700A9C43B /* S0906T0902.jpg in Resources */,
 				EDE790F719ED5E4700A9C43B /* S0913T0604.jpg in Resources */,
 				EDE791BA19ED5E4700A9C43B /* S0908T0602.jpg in Resources */,
@@ -5484,6 +5654,7 @@
 				EDE7915019ED5E4700A9C43B /* S0911T0801.jpg in Resources */,
 				EDE792AF19ED5E4800A9C43B /* S0903T0605.jpg in Resources */,
 				EDE7903C19ED5E4700A9C43B /* S0917T0302.jpg in Resources */,
+				EDF19F171A3ED8570086B8E7 /* TermsAndConditions_part3.txt in Resources */,
 				EDE7919719ED5E4700A9C43B /* S0909T0708.jpg in Resources */,
 				ED0E644819EE564D00D32C64 /* Gastrointestinal_Large@2x.png in Resources */,
 				EDE7900919ED5E4700A9C43B /* S0919T0706.jpg in Resources */,
@@ -5502,6 +5673,7 @@
 				EDE77E4719ED5C7E00A9C43B /* S0918P01.jpg in Resources */,
 				EDE792DE19ED5E4800A9C43B /* S0907T0503.jpg in Resources */,
 				ED9C697F19C720E80022C1A8 /* Doctors_Tab_Active@2x.png in Resources */,
+				EDF19F451A3EED790086B8E7 /* Part3_11.txt in Resources */,
 				EDE791C719ED5E4700A9C43B /* S0908T1103.jpg in Resources */,
 				EDE790DC19ED5E4700A9C43B /* S0914T0706.jpg in Resources */,
 				EDE792DD19ED5E4800A9C43B /* S0907T0502.jpg in Resources */,
@@ -5527,8 +5699,10 @@
 				EDE7918919ED5E4700A9C43B /* S0909T0501.jpg in Resources */,
 				EDE7917A19ED5E4700A9C43B /* S0910T1105.jpg in Resources */,
 				EDE790CF19ED5E4700A9C43B /* S0914T0302.jpg in Resources */,
+				EDF19F4B1A3EEFA90086B8E7 /* Part3_14.txt in Resources */,
 				EDE7902B19ED5E4700A9C43B /* S0918T0702.JPG in Resources */,
 				EDE790F619ED5E4700A9C43B /* S0913T0603.jpg in Resources */,
+				EDF19F551A3EF17D0086B8E7 /* Part3_18_1.txt in Resources */,
 				EDE7932C19ED5E4800A9C43B /* S0905T1105.jpg in Resources */,
 				EDE7909B19ED5E4700A9C43B /* S0916T1105.jpg in Resources */,
 				EDE7907B19ED5E4700A9C43B /* S0916T0504.jpg in Resources */,
@@ -5582,11 +5756,14 @@
 				EDE7916619ED5E4700A9C43B /* S0910T0701.jpg in Resources */,
 				ED37905819F6A0D2001625EE /* S1005P01.jpg in Resources */,
 				EDE7931819ED5E4800A9C43B /* S0905T0703.jpg in Resources */,
+				EDF19F2D1A3EEA4F0086B8E7 /* Part3_7_1.txt in Resources */,
+				EDF19F5D1A3EF2800086B8E7 /* Part3_20.txt in Resources */,
 				EDE792F819ED5E4800A9C43B /* S0907T1101.jpg in Resources */,
 				ED3D1BD419E5514A00929F64 /* Obstetric_Specialisation_Icon@2x.png in Resources */,
 				EDE7923019ED5E4700A9C43B /* S0904T1102.jpg in Resources */,
 				EDE790D319ED5E4700A9C43B /* S0914T0502.jpg in Resources */,
 				EDE7913A19ED5E4700A9C43B /* S0912T0703.jpg in Resources */,
+				EDF19F211A3EE6AC0086B8E7 /* Part3_3.txt in Resources */,
 				EDA7DFF919BAE853002A70E8 /* PETermsAndConditionViewController.xib in Resources */,
 				EDE7918F19ED5E4700A9C43B /* S0909T0602.jpg in Resources */,
 				EDE7906B19ED5E4700A9C43B /* S0917T0705.jpg in Resources */,
@@ -5597,6 +5774,8 @@
 				EDE7924319ED5E4800A9C43B /* S0902T0201.jpg in Resources */,
 				EDE7910F19ED5E4700A9C43B /* S0913T0506.JPG in Resources */,
 				ED9C69B119C720E80022C1A8 /* Take_Photo@2x.png in Resources */,
+				EDF19F3D1A3EEC6B0086B8E7 /* Part3_9_5.txt in Resources */,
+				EDF19F1B1A3ED87F0086B8E7 /* TermsAndConditions_part2.txt in Resources */,
 				EDE791D919ED5E4700A9C43B /* S0906T0512.jpg in Resources */,
 				EDE78FDC19ED5E4700A9C43B /* S0920T0604.jpg in Resources */,
 				EDE78FDA19ED5E4700A9C43B /* S0920T0601.jpg in Resources */,
@@ -5616,11 +5795,13 @@
 				ED9C69C319C720E80022C1A8 /* Gastrointestinal_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE7930419ED5E4800A9C43B /* S0907T1102.jpg in Resources */,
 				ED37905419F6A0D2001625EE /* S0901P03.jpg in Resources */,
+				EDF19F231A3EE86B0086B8E7 /* Part3_4.txt in Resources */,
 				EDE7917819ED5E4700A9C43B /* S0910T1103.jpg in Resources */,
 				EDE78FF919ED5E4700A9C43B /* S0919T0201.jpg in Resources */,
 				ED444B821A28B73D002C439D /* Place_Holder@2x.png in Resources */,
 				EDE7932019ED5E4800A9C43B /* S0905T0714.jpg in Resources */,
 				EDE7925A19ED5E4800A9C43B /* S0902T0714.jpg in Resources */,
+				EDF19F611A3EF2F40086B8E7 /* Part3_22.txt in Resources */,
 				EDE7915519ED5E4700A9C43B /* S0911T1003.jpg in Resources */,
 				EDE78FD419ED5E4700A9C43B /* S0920T0302.jpg in Resources */,
 				EDE7911019ED5E4700A9C43B /* S0913T0508.jpg in Resources */,
@@ -5646,15 +5827,18 @@
 				EDE791BC19ED5E4700A9C43B /* S0908T0701.jpg in Resources */,
 				EDE7902719ED5E4700A9C43B /* S0918T0503.jpg in Resources */,
 				ED9C69EB19C720E80022C1A8 /* Obstetric_Specialisation_Icon_-_Small@2x.png in Resources */,
+				EDF19F291A3EE98E0086B8E7 /* Part3_6_2.txt in Resources */,
 				EDE7915419ED5E4700A9C43B /* S0911T1002.jpg in Resources */,
 				EDE7906419ED5E4700A9C43B /* S0917T1103.jpg in Resources */,
 				EDE7915A19ED5E4700A9C43B /* S0910T0301.jpg in Resources */,
 				EDE791F519ED5E4700A9C43B /* S0906T0502.jpg in Resources */,
+				EDF19F591A3EF1F40086B8E7 /* Part3_18_3.txt in Resources */,
 				EDE792DA19ED5E4800A9C43B /* S0907T0303.jpg in Resources */,
 				EDE7918119ED5E4700A9C43B /* S0910T0708.jpg in Resources */,
 				ED9C69DB19C720E80022C1A8 /* General_Specialisation_Icon_-_Small@2x.png in Resources */,
 				EDE7908119ED5E4700A9C43B /* S0916T0604.jpg in Resources */,
 				EDE7916A19ED5E4700A9C43B /* S0910T0705.JPG in Resources */,
+				EDF19F371A3EEBB50086B8E7 /* Part3_9_2.txt in Resources */,
 				EDE77E3719ED5C7E00A9C43B /* S0903P01.jpg in Resources */,
 				EDE791D319ED5E4700A9C43B /* S0906T0505.jpg in Resources */,
 				ED9C69CB19C720E80022C1A8 /* Cosmetic_Specialisation_Icon_-_Small@2x.png in Resources */,
@@ -5664,6 +5848,7 @@
 				ED37901519F6A091001625EE /* S0707P01.jpg in Resources */,
 				EDE7912A19ED5E4700A9C43B /* S0912T0708.jpg in Resources */,
 				EDE7930219ED5E4800A9C43B /* S0907T0712.jpg in Resources */,
+				EDF19F191A3ED8570086B8E7 /* TermsAndConditions_part1.txt in Resources */,
 				EDE7925C19ED5E4800A9C43B /* S0902T0802.jpg in Resources */,
 				EDE7909719ED5E4700A9C43B /* S0916T1101.jpg in Resources */,
 				EDE77E3E19ED5C7E00A9C43B /* S0909P01.jpg in Resources */,
@@ -5692,7 +5877,9 @@
 				EDE7910019ED5E4700A9C43B /* S0913T0712.jpg in Resources */,
 				EDE7918C19ED5E4700A9C43B /* S0909T0504.jpg in Resources */,
 				EDE7910519ED5E4700A9C43B /* S0913T0905.jpg in Resources */,
+				EDF19F351A3EEB790086B8E7 /* Part3_9_1.txt in Resources */,
 				ED0D2FC019BA0F2F001F8411 /* CollectionViewCellItemCell.xib in Resources */,
+				EDF19F311A3EEAC80086B8E7 /* Part3_7_3.txt in Resources */,
 				EDE7917119ED5E4700A9C43B /* S0910T0802.jpg in Resources */,
 				84FBDD1019DAC323006C66DA /* PETutorialViewController.xib in Resources */,
 				EDE7903219ED5E4700A9C43B /* S0918T1002.jpg in Resources */,
@@ -5727,6 +5914,7 @@
 				EDE7908319ED5E4700A9C43B /* S0916T0701.jpg in Resources */,
 				EDE7903019ED5E4700A9C43B /* S0918T0901.jpg in Resources */,
 				EDE792CC19ED5E4800A9C43B /* S0903T0510.jpg in Resources */,
+				EDF19F4F1A3EF09F0086B8E7 /* Part3_16.txt in Resources */,
 				EDE7927E19ED5E4800A9C43B /* S0901T0703.jpg in Resources */,
 				EDE790BE19ED5E4700A9C43B /* S0915T0801.jpg in Resources */,
 				84FE695419F11006008AD54C /* Obstetric_logo.png in Resources */,
@@ -5768,6 +5956,7 @@
 				EDE7920719ED5E4700A9C43B /* S0904T0401.jpg in Resources */,
 				EDE7918B19ED5E4700A9C43B /* S0909T0503.jpg in Resources */,
 				EDE7900519ED5E4700A9C43B /* S0919T0701.jpg in Resources */,
+				EDF19F3F1A3EECDB0086B8E7 /* Part3_10_1.txt in Resources */,
 				EDE7916119ED5E4700A9C43B /* S0910T0505.jpg in Resources */,
 				EDE7922F19ED5E4700A9C43B /* S0904T1101.jpg in Resources */,
 				EDE7926D19ED5E4800A9C43B /* S0901T0304.jpg in Resources */,
@@ -5775,6 +5964,7 @@
 				EDE78FE719ED5E4700A9C43B /* S0920T0711.jpg in Resources */,
 				EDE790B719ED5E4700A9C43B /* S0915T0705.jpg in Resources */,
 				EDE78FE019ED5E4700A9C43B /* S0920T0703.jpg in Resources */,
+				EDF19F571A3EF1B80086B8E7 /* Part3_18_2.txt in Resources */,
 				EDE792EC19ED5E4800A9C43B /* S0907T0707.jpg in Resources */,
 				EDE790AB19ED5E4700A9C43B /* S0915T0501.jpg in Resources */,
 				EDE7928419ED5E4800A9C43B /* S0901T0709.jpg in Resources */,
@@ -5837,12 +6027,14 @@
 				EDE77E4519ED5C7E00A9C43B /* S0916P01.jpg in Resources */,
 				EDE7900419ED5E4700A9C43B /* S0919T0603.jpg in Resources */,
 				ED3D1BC919E5514A00929F64 /* Cardiothoracic_Small_Inactive@2x.png in Resources */,
+				EDF19F2F1A3EEA880086B8E7 /* Part3_7_2.txt in Resources */,
 				EDE7909F19ED5E4700A9C43B /* S0916T0508.jpg in Resources */,
 				EDE792FE19ED5E4800A9C43B /* S0907T0304.JPG in Resources */,
 				EDE7920619ED5E4700A9C43B /* S0904T0303.jpg in Resources */,
 				EDE790F919ED5E4700A9C43B /* S0913T0702.JPG in Resources */,
 				EDE790D719ED5E4700A9C43B /* S0914T0701.jpg in Resources */,
 				EDE77E4119ED5C7E00A9C43B /* S0912P01.jpg in Resources */,
+				EDF19F631A3EF3330086B8E7 /* Part3_23.txt in Resources */,
 				EDE791E219ED5E4700A9C43B /* S0906T0707.jpg in Resources */,
 				EDE791E119ED5E4700A9C43B /* S0906T0706.jpg in Resources */,
 				ED3D1BCB19E5514A00929F64 /* Gastrointestinal_Small_Inactive@2x.png in Resources */,
@@ -5860,6 +6052,7 @@
 				EDE7922319ED5E4700A9C43B /* S0904T0710.jpg in Resources */,
 				EDE78FEE19ED5E4700A9C43B /* S0920T1101.jpg in Resources */,
 				EDE7906A19ED5E4700A9C43B /* S0917T0514.jpg in Resources */,
+				EDF19F1D1A3EDE210086B8E7 /* Part3_1.txt in Resources */,
 				EDE7908219ED5E4700A9C43B /* S0916T0605.jpg in Resources */,
 				EDE7906F19ED5E4700A9C43B /* S0917T0720.jpg in Resources */,
 				EDE77E3B19ED5C7E00A9C43B /* S0907P01.jpg in Resources */,
@@ -5931,6 +6124,7 @@
 				ED0D2FAD19BA0367001F8411 /* PEDoctorsProfileTableViewCell.m in Sources */,
 				ED350F3119C0979500512663 /* PECoreDataManager.m in Sources */,
 				ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */,
+				EDF19F091A3EC48C0086B8E7 /* PETermsAndCondition.m in Sources */,
 				EDCD57CE19B8741600EC7AF1 /* PESpecialisationViewController.m in Sources */,
 				EDD0598519BAC1F8007C0DE8 /* PEDoctorsListViewController.m in Sources */,
 				842C8E0219D57C4C00D0DAC7 /* AVCamPreviewView.m in Sources */,

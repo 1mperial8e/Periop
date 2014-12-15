@@ -1,0 +1,5 @@
+copying, modifying, reproducing, selling, posting or transmitting any part or aspect of the SUA;
+uploading any content to the SUA, any other AT software or product or any AT website that contains any trojan, spyware, malware, robot, spider, script or any other like software, device, product or process with similar or like effect or capacity;
+attempt to or actually gain access to any aspect of the SUA, any other AT product or any AT website that is secure or otherwise not accessible from the standard SUA user interface and equivalent in such other software or website, as the case may be;
+attempt to or actually identify the source or underlying code, reverse engineer, search or harvest information from,  any aspect of the SUA, any other AT product or any AT website; or
+otherwise do anything likely to harm the commercial interest of AT or the experience of other Users of the SUA.
