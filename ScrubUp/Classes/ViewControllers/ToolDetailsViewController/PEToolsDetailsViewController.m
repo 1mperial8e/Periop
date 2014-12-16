@@ -249,10 +249,13 @@ static NSInteger const TDVCViewTag = 35;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (![self.specManager.currentEquipment.photo allObjects].count) {
+        return;
+    }
     if (((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData) {
         self.navigationController.navigationBar.translucent = YES;
         PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
-        if ([[self.specManager.currentEquipment.photo allObjects] count]) {
+        if ([self.specManager.currentEquipment.photo allObjects].count > indexPath.row) {
             viewPhotoControleller.photoToShow = self.sortedArrayWithPhotos[indexPath.row];
         }
         [self.navigationController pushViewController:viewPhotoControleller animated:YES];

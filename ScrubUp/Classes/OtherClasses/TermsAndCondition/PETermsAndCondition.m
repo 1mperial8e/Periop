@@ -165,7 +165,7 @@ static NSInteger const TACLowerCaseASCIICode = 97;
     NSInteger asciiCode = acsii;
     NSMutableAttributedString *resultedString = [[NSMutableAttributedString alloc] init];
     for (NSString *string in sentenses) {
-        NSMutableString *letterNumbering = [[NSString stringWithFormat:@"%c.\t", asciiCode] mutableCopy];
+        NSMutableString *letterNumbering = [[NSString stringWithFormat:@"%c.\t", (int)asciiCode] mutableCopy];
         [letterNumbering appendString:string];
         NSMutableAttributedString *item = [self setBaseFormatToString:letterNumbering];
         [item addAttributes:[self  baseAttributesForTextWithFont:FONT_MuseoSans700] range:NSMakeRange(0, 2)];

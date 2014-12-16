@@ -6289,7 +6289,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
+				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6311,7 +6311,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "f925c617-284a-4faf-895d-b0207f34128d";
+				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

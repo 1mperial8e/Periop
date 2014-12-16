@@ -186,7 +186,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     }
     
     if ([self.imageManager saveObjectToUserDefaults:self.dictionaryURL isNew:YES]) {
-        NSLog(@"Images URL for downloading saved successfully, q-ty - %i", self.dictionaryURL.count);
+        NSLog(@"Images URL for downloading saved successfully, q-ty - %i", (int)self.dictionaryURL.count);
     }
     
     return newSpecialisation;
