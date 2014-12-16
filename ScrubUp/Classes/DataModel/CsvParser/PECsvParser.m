@@ -132,6 +132,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             
             NSString *photoName = (NSString *)colum[6];
 
+            if ([photoName isEqualToString:@"S0804T0707"] || [photoName isEqualToString:@"S0808T0706"] || [photoName isEqualToString:@"S0807T0706"]){
+                
+            }
+            
             if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                 
                 UIImage *photo = [UIImage imageNamedFile:photoName];
@@ -149,6 +153,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
                     NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
                     Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:self.managedObjectContext];
                     initPhoto.photoName = [dicWithPicURL valueForKey:self.keyValue];
+                    if (!initPhoto.photoName) {
+                        self.keyValue = [NSString stringWithFormat:@"%@.JPG", photoName];
+                        initPhoto.photoName = [dicWithPicURL valueForKey:self.keyValue];
+                    }
                     initPhoto.equiomentTool = newTool;
                     [newTool addPhotoObject:initPhoto];
                 }

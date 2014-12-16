@@ -66,6 +66,7 @@
 		84FE695519F11006008AD54C /* Opthomology_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694B19F11006008AD54C /* Opthomology_logo.png */; };
 		84FE695619F11006008AD54C /* Orthopaedic_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694C19F11006008AD54C /* Orthopaedic_logo.png */; };
 		84FE695719F11006008AD54C /* Plastic_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694D19F11006008AD54C /* Plastic_logo.png */; };
+		ED0ACBD11A403D2B0038846C /* Head Ring 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED0ACBD01A403D2B0038846C /* Head Ring 2.jpg */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
 		ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2FA519B9FDF8001F8411 /* PEDoctorProfileViewController.m */; };
@@ -1286,6 +1287,7 @@
 		84FE694B19F11006008AD54C /* Opthomology_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Opthomology_logo.png; sourceTree = "<group>"; };
 		84FE694C19F11006008AD54C /* Orthopaedic_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orthopaedic_logo.png; sourceTree = "<group>"; };
 		84FE694D19F11006008AD54C /* Plastic_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plastic_logo.png; sourceTree = "<group>"; };
+		ED0ACBD01A403D2B0038846C /* Head Ring 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Head Ring 2.jpg"; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
 		ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddNewToolViewController.m; sourceTree = "<group>"; };
 		ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddNewToolViewController.xib; sourceTree = "<group>"; };
@@ -3644,6 +3646,7 @@
 		EDE77E4A19ED5C9800A9C43B /* PatientPositioning */ = {
 			isa = PBXGroup;
 			children = (
+				ED0ACBD01A403D2B0038846C /* Head Ring 2.jpg */,
 				ED37901319F6A091001625EE /* S0707P01.jpg */,
 				ED37901419F6A091001625EE /* PP1004P01.jpg */,
 			);
@@ -5155,6 +5158,7 @@
 				EDD21AD019EBB52400F343A2 /* ENT_Small_Inactive@2x.png in Resources */,
 				EDE790E719ED5E4700A9C43B /* S0914T0602.jpg in Resources */,
 				EDE791BD19ED5E4700A9C43B /* S0908T0702.jpg in Resources */,
+				ED0ACBD11A403D2B0038846C /* Head Ring 2.jpg in Resources */,
 				EDE7931519ED5E4800A9C43B /* S0905T0604.jpg in Resources */,
 				ED9C697719C720E80022C1A8 /* Close@2x.png in Resources */,
 				EDE7908919ED5E4700A9C43B /* S0916T0709.jpg in Resources */,
