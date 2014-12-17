@@ -67,6 +67,7 @@
 		84FE695619F11006008AD54C /* Orthopaedic_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694C19F11006008AD54C /* Orthopaedic_logo.png */; };
 		84FE695719F11006008AD54C /* Plastic_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FE694D19F11006008AD54C /* Plastic_logo.png */; };
 		ED0ACBD11A403D2B0038846C /* Head Ring 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED0ACBD01A403D2B0038846C /* Head Ring 2.jpg */; };
+		ED0AF4C91A41B31E0076E8F1 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = ED0AF4C81A41B31E0076E8F1 /* General_Tools.csv */; };
 		ED0D2FA119B9F3DE001F8411 /* PEAddNewToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */; };
 		ED0D2FA219B9F3DE001F8411 /* PEAddNewToolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */; };
 		ED0D2FA719B9FDF8001F8411 /* PEDoctorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0D2FA519B9FDF8001F8411 /* PEDoctorProfileViewController.m */; };
@@ -1132,7 +1133,6 @@
 		EDE7932F19ED5E4800A9C43B /* S0905T1110.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78FC519ED5E4700A9C43B /* S0905T1110.jpg */; };
 		EDE9CA1B19D4028700150754 /* General.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA1919D4028700150754 /* General.csv */; };
 		EDE9CA2019D402E900150754 /* PECsvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9CA1F19D402E900150754 /* PECsvParser.m */; };
-		EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */ = {isa = PBXBuildFile; fileRef = EDE9CA2119D4214F00150754 /* General_Tools.csv */; };
 		EDEACF0719CDC9F900286E06 /* Preparation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEACEFC19CDC9F900286E06 /* Preparation.m */; };
 		EDEC8EFB19C9D22100066BA5 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFA19C9D22100066BA5 /* IAPHelper.m */; };
 		EDEC8EFE19C9D5B800066BA5 /* PEPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEC8EFD19C9D5B800066BA5 /* PEPurchaseManager.m */; };
@@ -1288,6 +1288,7 @@
 		84FE694C19F11006008AD54C /* Orthopaedic_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orthopaedic_logo.png; sourceTree = "<group>"; };
 		84FE694D19F11006008AD54C /* Plastic_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plastic_logo.png; sourceTree = "<group>"; };
 		ED0ACBD01A403D2B0038846C /* Head Ring 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Head Ring 2.jpg"; sourceTree = "<group>"; };
+		ED0AF4C81A41B31E0076E8F1 /* General_Tools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General_Tools.csv; sourceTree = "<group>"; };
 		ED0D2F9E19B9F3DE001F8411 /* PEAddNewToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEAddNewToolViewController.h; sourceTree = "<group>"; };
 		ED0D2F9F19B9F3DE001F8411 /* PEAddNewToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEAddNewToolViewController.m; sourceTree = "<group>"; };
 		ED0D2FA019B9F3DE001F8411 /* PEAddNewToolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEAddNewToolViewController.xib; sourceTree = "<group>"; };
@@ -2409,7 +2410,6 @@
 		EDE9CA1919D4028700150754 /* General.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General.csv; sourceTree = "<group>"; };
 		EDE9CA1E19D402E900150754 /* PECsvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECsvParser.h; sourceTree = "<group>"; };
 		EDE9CA1F19D402E900150754 /* PECsvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECsvParser.m; sourceTree = "<group>"; };
-		EDE9CA2119D4214F00150754 /* General_Tools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = General_Tools.csv; sourceTree = "<group>"; };
 		EDEACEFB19CDC9F900286E06 /* Preparation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preparation.h; sourceTree = "<group>"; };
 		EDEACEFC19CDC9F900286E06 /* Preparation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preparation.m; sourceTree = "<group>"; };
 		EDEC8EF919C9D22100066BA5 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
@@ -4785,8 +4785,8 @@
 		EDE9CA1819D4027500150754 /* CSV */ = {
 			isa = PBXGroup;
 			children = (
+				ED0AF4C81A41B31E0076E8F1 /* General_Tools.csv */,
 				EDE9CA1919D4028700150754 /* General.csv */,
-				EDE9CA2119D4214F00150754 /* General_Tools.csv */,
 			);
 			path = CSV;
 			sourceTree = "<group>";
@@ -5145,6 +5145,7 @@
 				EDE7926E19ED5E4800A9C43B /* S0901T0401.jpg in Resources */,
 				EDE7907F19ED5E4700A9C43B /* S0916T0601.jpg in Resources */,
 				842C8E0A19D5AE7E00D0DAC7 /* sight_img@2x.png in Resources */,
+				ED0AF4C91A41B31E0076E8F1 /* General_Tools.csv in Resources */,
 				EDE790A119ED5E4700A9C43B /* S0916T0703.jpg in Resources */,
 				EDF19F5F1A3EF2BB0086B8E7 /* Part3_21.txt in Resources */,
 				EDE792A819ED5E4800A9C43B /* S0903T0507.jpg in Resources */,
@@ -5370,7 +5371,6 @@
 				ED37902D19F6A0C4001625EE /* S0101P01.jpg in Resources */,
 				EDE7914019ED5E4700A9C43B /* S0911T0501.jpg in Resources */,
 				EDE7919419ED5E4700A9C43B /* S0909T0704.jpg in Resources */,
-				EDE9CA2219D4214F00150754 /* General_Tools.csv in Resources */,
 				EDE7913B19ED5E4700A9C43B /* S0911T0201.jpg in Resources */,
 				EDE7925619ED5E4800A9C43B /* S0902T0709.jpg in Resources */,
 				EDE7927119ED5E4800A9C43B /* S0901T0502.jpg in Resources */,

@@ -115,7 +115,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     if (error) {
         NSLog(@"Cant read tools file - %@", error.localizedDescription);
     } else {
-        NSString *partOne = [lines stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *partOne = lines;
         NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         
         NSDictionary *dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
@@ -131,10 +131,6 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             EquipmentsTool *newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
             
             NSString *photoName = (NSString *)colum[6];
-
-            if ([photoName isEqualToString:@"S0804T0707"] || [photoName isEqualToString:@"S0808T0706"] || [photoName isEqualToString:@"S0807T0706"]){
-                
-            }
             
             if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                 
