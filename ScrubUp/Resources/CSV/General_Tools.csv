@@ -1,4 +1,4 @@
-S0901;Laparoscopic Inguinal Hernia Repair ;Gloves;Latex Free;7.5 ;2;S0901T0101
+﻿S0901;Laparoscopic Inguinal Hernia Repair ;Gloves;Latex Free;7.5 ;2;S0901T0101
 ;;Prep Solution;Povidone Iodine;;1;S0901T0201
 ;;Drapes;Major;;1;S0901T0301
 ;;Drapes;Medium ;;1;
@@ -19,7 +19,7 @@ S0901;Laparoscopic Inguinal Hernia Repair ;Gloves;Latex Free;7.5 ;2;S0901T0101
 ;;Holloware;Bowl/Basin Set;;1;
 ;;Holloware;Kidney dish;;1;S0901T0603
 ;;Holloware;Sharps dish;;1;S0901T0604
-;;Holloware;"Bowl 5""";;1;S0901T0605
+;;Holloware;Bowl 5";;1;S0901T0605
 ;;Disposables;Blade;11;1;S0901T0701
 ;;Disposables;Sponges;medium;1;S0901T0702
 ;;Disposables;Raytec;;1;S0901T0703
@@ -34,7 +34,7 @@ S0901;Laparoscopic Inguinal Hernia Repair ;Gloves;Latex Free;7.5 ;2;S0901T0101
 ;;Solutions;Lubricating Gel ;50mls;1;S0901T0802
 ;;Sutures;2/0 Vicryl; 26 t;1;S0901T0901
 ;;Sutures;3/0 Monocryl; 24 cc;1;S0901T0902
-;;Dressing;Steristrip;"1/2 """;1;S0901T1001
+;;Dressing;Steristrip;1/2 ";1;S0901T1001
 ;;Dressing;Opsite;small;4;S0901T1002
 ;;Equipment;Bovie/Diathermy unit with foot pedal;;;S0901T1101
 ;;Equipment;Light source;;;S0901T1102
@@ -42,7 +42,7 @@ S0901;Laparoscopic Inguinal Hernia Repair ;Gloves;Latex Free;7.5 ;2;S0901T0101
 ;;Equipment;Monitor;;;S0901T1104
 ;;Equipment;Co2 Gas Insufflation;;;S0901T1105
 ;;Equipment;Printer;;;
-;;Prosthesis;Hernia Mesh;"4""x6"" Polyprolene";1;
+;;Prosthesis;Hernia Mesh;4"x6" Polyprolene;1;
 S0902;Open Inguinal hernia Repair;Gloves;Latex Free;7.5 ;2;
 ;;Prep Solution;Povidone Iodine;250mls;1;S0902T0201
 ;;Drapes;Major;;1;S0902T0301
@@ -59,7 +59,7 @@ S0902;Open Inguinal hernia Repair;Gloves;Latex Free;7.5 ;2;
 ;;Holloware;Bowl/Basin Set;;1;
 ;;Holloware;Kidney dish;;1;S0902T0603
 ;;Holloware;Sharps dish;;1;S0902T0604
-;;Holloware;"Bowl 5""";;1;S0902T0605
+;;Holloware;Bowl 5";;1;S0902T0605
 ;;Disposables;Blade;15;1;S0902T0701
 ;;Disposables;Blade;10;1;S0902T0702
 ;;Disposables;Sponges;;1;S0902T0703
@@ -78,10 +78,10 @@ S0902;Open Inguinal hernia Repair;Gloves;Latex Free;7.5 ;2;
 ;;Solutions;Chlorhexidine;250mls;1;S0902T0802
 ;;Sutures;2/0 Vicryl; 26 t;2;S0902T0901
 ;;Sutures;3/0 Monocryl;24 cc;1;S0902T0902
-;;Dressing;Adhesive Strips;"1/2 """;1;S0902T1001
+;;Dressing;Adhesive Strips;1/2 ";1;S0902T1001
 ;;Dressing;Adhesive dressing;medium;1;S0902T1002
 ;;Equipment;Diathermy /Bovie Unit;;;S0902T1101
-;;Prosthesis;Hernia Mesh ;"Polyprolene 4'x 6""";1;
+;;Prosthesis;Hernia Mesh ;Polyprolene 4"x 6";1;
 S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;8;1;S0903T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0903T0201
 ;;Drapes;Major ;;1;S0903T0301
@@ -106,7 +106,7 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Holloware; Bowl/Basin set;;1;
 ;;Holloware;Kidney dish;;2;S0903T0603
 ;;Holloware;Sharps dish;;1;S0903T0604
-;;Holloware;"Bowl 5""";;1;S0903T0605
+;;Holloware;Bowl 5";;1;S0903T0605
 ;;Disposables;Blade;11;1;S0903T0701
 ;;Disposables;Sponges;medium;1;
 ;;Disposables;Raytec;;1;S0903T0703
@@ -131,7 +131,7 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Solutions;0.9%Sodium Chloride for injection;20mls;1;S0903T0805
 ;;Sutures;2/0 Vicryl; 26 tc;2;S0903T0901
 ;;Sutures;3/0 Monocryl; 24cc;1;S0903T0902
-;;Dressing;Steristrip;"1/2 """;1;S0903T1001
+;;Dressing;Steristrip;1/2 ";1;S0903T1001
 ;;Dressing;Opsite;large;1;S0903T1002
 ;;Equipment;Bovie/Diathermy unit with foot pedal;;1;S0903T1101
 ;;Equipment;Light source;;1;S0903T1102
@@ -143,7 +143,7 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Equipment;Specimen Container;;1;S0903T1108
 ;;Equipment;Pathology Form;;1;S0903T1109
 ;;Equipment;Specimen Bag;;1;S0903T1110
-S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8,5;2;S0904T0101
+S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8.5;2;S0904T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0904T0201
 ;;Drapes;Major;;1;S0904T0301
 ;;Drapes;Gowns;X Large;2;S0904T0302
@@ -159,8 +159,8 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8,5;2;S0904T010
 ;;Instrument Tray;Omnitract Tray 2;;1;S0904T0406
 ;;Extra Instruments/Equipment;Fritz Retractor;;2;S0904T0501
 ;;Extra Instruments/Equipment;Scalpel Handle long;;1;S0904T0502
-;;Extra Instruments/Equipment;Metzenbaum Scissors;"10""";1;S0904T0503
-;;Extra Instruments/Equipment;Debakeys;"10""";1;
+;;Extra Instruments/Equipment;Metzenbaum Scissors;10";1;S0904T0503
+;;Extra Instruments/Equipment;Debakeys;10";1;
 ;;Extra Instruments/Equipment;Duval Forceps;Long;2;
 ;;Extra Instruments/Equipment;Right Angled Forcep;long;1;S09040506
 ;;Extra Instruments/Equipment;Flexible Choleydochoscope (Standby);;1;
@@ -172,7 +172,7 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8,5;2;S0904T010
 ;;Holloware;Prep set;;2;S0904T0601
 ;;Holloware;Bowl/Basin Set;;2;
 ;;Holloware;Jug;;1;S0904T0603
-;;Holloware;"5"" Bowl";;1;S0904T0604
+;;Holloware;5" Bowl;;1;S0904T0604
 ;;Holloware;Sharps Dish;;1;S0904T0605
 ;;Disposables;Blades;15;1;S0904T0701
 ;;Disposables;Blades;10;1;S0904T0702
@@ -201,7 +201,7 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8,5;2;S0904T010
 ;;Sutures;2/0 Silk;24cc;1;S0904T0904
 ;;Sutures;0 Silk Ties;Long;1;
 ;;Dressing;Adhesive Dressing;large & small;1;S0904T1001
-;;Dressing;"Vac Drain 1/8""";High suction;1;
+;;Dressing;Vac Drain 1/8";High suction;1;
 ;;Equipment;Diathermy/Bovie Unit ;;1;S0904T1101
 ;;Equipment;Suction Unit;;1;S0904T1102
 ;;Equipment;Bovie/Diathermy Plume suction ;;1;
@@ -228,7 +228,7 @@ S0905;Laparoscopic Appendicectomy;Gloves;Microthin;8;1;
 ;;Extra Instruments/Equipment;Veress Needle;;1;S0905T0510
 ;;Holloware;Prep set;;2;S0905T0601
 ;;Holloware;Basin/Bowl Set;;1;
-;;Holloware;"5"" Bowl";;1;S0905T0603
+;;Holloware;5" Bowl;;1;S0905T0603
 ;;Holloware;Sharps Dish;;1;S0905T0604
 ;;Disposables;Lap Appendix Pack;;1;
 ;;Disposables;Blade;11;1;S0905T0702
@@ -250,7 +250,7 @@ S0905;Laparoscopic Appendicectomy;Gloves;Microthin;8;1;
 ;;Solutions;0.9% sodium Chloride;1000mls IV;1;S0905T0802
 ;;Sutures;2/0 Vicryl;26 tc;2;S0905T0901
 ;;Sutures;3/0 Monocryl;24 cc;2;
-;;Dressing;Steristrips;"1/2 """;1;S0905T1001
+;;Dressing;Steristrips;1/2 ";1;S0905T1001
 ;;Dressing;Opsite;small;4;S0905T1002
 ;;Equipment;Diathermy/Bovie with foot pedal;;1;S0905T1101
 ;;Equipment;Light source;;1;S0905T1102
@@ -270,7 +270,7 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Instrument Tray;General Tray;;1;S0906T0401
 ;;Extra Instruments/Equipment;Fritz Retractor;;2;S0906T0501
 ;;Extra Instruments/Equipment; Forceps;Russian-non crushing;1;
-;;Extra Instruments/Equipment; Moynihans;"12""";1;S0906T0503
+;;Extra Instruments/Equipment; Moynihans;12";1;S0906T0503
 ;;Extra Instruments/Equipment;Right Angled Forcep;Lahey medium;1;S0906T0505
 ;;Extra Instruments/Equipment;Roberts;;1;S09006T0506
 ;;Extra Instruments/Equipment;Babcocks;Medium;1;S0906T0507
@@ -283,7 +283,7 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Holloware;Prep set;;1;S0906T0601
 ;;Holloware; Bowl/Basin Set;;1;
 ;;Holloware;Jug;;1;S0906T0603
-;;Holloware;"5"" Bowl";;1;
+;;Holloware;5" Bowl;;1;
 ;;Holloware;Sharps Dish;;1;S0906T0605
 ;;Disposables;Blades;15;1;S0906T0701
 ;;Disposables;Blades;10;1;S0906T0702
@@ -308,14 +308,14 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Sutures;3/0 Monocryl;24cc;1;S0906T0905
 ;;Sutures;2/0 Chromic;26tc;2;
 ;;Dressing;Opsite;Medium;1;S0906T1001
-;;Dressing;"Vac Drain 1/8""";High suction;1;
+;;Dressing;Vac Drain 1/8";High suction;1;
 ;;Equipment;Diathermy/Bovie unit;;1;S0906T1101
 ;;Equipment;Suction Unit;;1;S0906T1102
 ;;Equipment;Plume Suction Unit;;1;
 ;;Equipment;Pathology form;;1;S0906T1104
 ;;Equipment;Specimen container;small-formalin;1;S0906T1105
 ;;Equipment;Specimen bag;;1;S0906T1106
-S0907;Mastectomy Simple;Gloves;Latex ;8,5;2;
+S0907; Mastectomy Simple;Gloves;Latex ;8.5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0907T0201
 ;;Drapes;Major Pack;;1;S0907T0301
 ;;Drapes;Gowns ;Large;2;S0907T0302
@@ -325,7 +325,7 @@ S0907;Mastectomy Simple;Gloves;Latex ;8,5;2;
 ;;Extra Instruments/Equipment;Light Handle;;2;S0907T0501
 ;;Extra Instruments/Equipment;Quiver/Instrument Holder;;1;S0907T0502
 ;;Extra Instruments/Equipment;Bovie/ Diathermy Pencil;;1;S0907T0503
-;;Extra Instruments/Equipment;Metzenbaum Scissors;"10""";1;S0907T0504
+;;Extra Instruments/Equipment;Metzenbaum Scissors;10";1;S0907T0504
 ;;Extra Instruments/Equipment;Right Angled Foceps;Lahey- Medium & Long;1;S0907T0505
 ;;Extra Instruments/Equipment;Debakey Forceps;Long;2;S0907T0506
 ;;Extra Instruments/Equipment;Moynihans ;Long;4;S0907T0507
@@ -361,7 +361,7 @@ S0907;Mastectomy Simple;Gloves;Latex ;8,5;2;
 ;;Equipment;Pathology Forms;;1;S0907T1104
 ;;Equipment;Specimen Bag;;1;S0907T1105
 ;;Equipment;Specimen container;Medium- Large;1;S0907T1106
-S0908;Excision of Skin Lesions;Gloves;Latex Free;8,5;2;
+S0908;Excision of Skin Lesions;Gloves;Latex Free;8.5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0908T0201
 ;;Prep Solution;Chlorhexidine;250mls;1;S0908T0202
 ;;Drapes;Minor Pack;;1;S0908T0301
@@ -386,7 +386,7 @@ S0908;Excision of Skin Lesions;Gloves;Latex Free;8,5;2;
 ;;Solutions;Chlorhexidine ;250 mls;1;S0908T0802
 ;;Sutures;3/0 Vicryl;26 cc;2;S0908T0901
 ;;Dressing;Adhesive Dressing;;3;S0908T1001
-;;Dressing;Adhesive Strips;"1/4 "" brown";1;S0908T1002
+;;Dressing;Adhesive Strips;1/4 " brown;1;S0908T1002
 ;;Equipment;Diathermy/Bovie unit ;;1;S09081101
 ;;Equipment;Pathology Form;;1;S0908T1102
 ;;Equipment;Specimen container; small/medium;1;S0908T1103
@@ -433,7 +433,7 @@ S0909;Laparotomy;Gloves;Latex Free;8;2;S0909T0101
 ;;Equipment;Specimen form;;;S0909T1104
 ;;Equipment;Specimen container;;;S0909T1105
 ;;Equipment;Specimen bag;;;S0909T1106
-S0910;Hook Wire Biopsy with Sentinel Node Dissection;Gloves;Latex Free;6,5;1;
+S0910;Hook Wire Biopsy with Sentinel Node Dissection;Gloves;Latex Free;6.5;1;
 ;;Gloves;Latex Free;7;1;
 ;;Prep Solution;Povidone Iodine;;1;S0910T0201
 ;;Drapes;Major ;;1;S0910T0301
@@ -473,7 +473,7 @@ S0910;Hook Wire Biopsy with Sentinel Node Dissection;Gloves;Latex Free;6,5;1;
 ;;Equipment;Pathology Forms;;1;S0910T1103
 ;;Equipment;Specimen container;medium;1;S0910T1104
 ;;Equipment;Specimen Bag;;1;S0910T1105
-S0911;Pilonidal Sinus Incision and Drainage of ;Gloves;Microthin;7,5;2;
+S0911;Pilonidal Sinus Incision and Drainage of ;Gloves;Microthin;7.5;2;
 ;;Prep Solution;Povidone Iodine;250mls;1;S0911T0201
 ;;Drapes;Major ;;1;S0911T0301
 ;;Drapes;Fenestrated;;1;S0911T0302
@@ -502,11 +502,11 @@ S0911;Pilonidal Sinus Incision and Drainage of ;Gloves;Microthin;7,5;2;
 ;;Solutions;0.5% Bupivicaine with adrenaline;10 mls;1;S0911T0803
 ;;Sutures;3/0 Vicryl;24 cc;1;S0911T0901
 ;;Dressing;White Gauze;;2;S0911T1001
-;;Dressing;Ribbon Gauze;"1/4 """;1;S0911T1002
+;;Dressing;Ribbon Gauze;1/4 ";1;S0911T1002
 ;;Dressing;Elastoplast;;1;S0911T1003
 ;;Equipment;Diathermy/Bovie unit;;1;S0911T1101
 ;;Prosthesis;;;;
-S0912;Breast Biopsy;Gloves;Dermaprene;7,5;1;
+S0912;Breast Biopsy;Gloves;Dermaprene;7.5;1;
 ;;Gloves;Latex free;8;1;
 ;;Prep Solution;Povidone Iodine;;1;S0912T0201
 ;;Drapes;Major ;;1;S0912T0301
@@ -540,7 +540,7 @@ S0912;Breast Biopsy;Gloves;Dermaprene;7,5;1;
 ;;Equipment;Pathology Forms;;1;S0912T1102
 ;;Equipment;Pathology Bag;;1;S0912T1103
 ;;Equipment;Specimen container;medium;1;S0912T1104
-S0913;Thyroidectomy Total;Gloves;Latex;7,5;1;S0913T0101
+S0913;Thyroidectomy Total;Gloves;Latex;7.5;1;S0913T0101
 ;;Prep Solution;Povidone Iodine;;1;S0913T0201
 ;;Drapes;Major Pack;;1;S0913T0301
 ;;Drapes;Gowns;Large;2;S0913T0302
@@ -550,7 +550,7 @@ S0913;Thyroidectomy Total;Gloves;Latex;7,5;1;S0913T0101
 ;;Extra Instruments/Equipment;Light Handle;;2;S0913T0501
 ;;Extra Instruments/Equipment;Diathermy/Bovie Pencil;;1;S0913T0502
 ;;Extra Instruments/Equipment;Quiver/Instrument Holder;;1;S0913T0503
-;;Extra Instruments/Equipment;Debakey Forceps;"8""";2;S0913T0504
+;;Extra Instruments/Equipment;Debakey Forceps;8";2;S0913T0504
 ;;Extra Instruments/Equipment;Frazier Sucker;10fg;1;
 ;;Extra Instruments/Equipment;Magnetic Instrument Mat;Medium;1;
 ;;Extra Instruments/Equipment;Hand activated Harmonic Scalpel;small;1;S0913T0507
@@ -580,7 +580,7 @@ S0913;Thyroidectomy Total;Gloves;Latex;7,5;1;S0913T0101
 ;;Sutures;3/0 Monocryl;24 cc;2;S0913T0903
 ;;Sutures;2/0 silk ;24 cc;1;S0913T0904
 ;;Sutures;2/0 Vicryl;29 tc;2;S0913T0905
-;;Dressing;Steristrips;"1/2 """;2;S0913T1001
+;;Dressing;Steristrips;1/2 ";2;S0913T1001
 ;;Dressing;Adhesive Dressing;small;1;S0913T1002
 ;;Dressing;Adhesive Dressing;medium;1;S0913T1003
 ;;Dressing;Suction Drain;Bellovac;1;
@@ -592,8 +592,8 @@ S0913;Thyroidectomy Total;Gloves;Latex;7,5;1;S0913T0101
 ;;Equipment;Specimen container;Small;1;S0913T1106
 ;;Equipment;Specimen Bag;;1;S0913T1107
 ;;Prosthesis;;;;
-S0914;Excision of Lipoma;Gloves;Latex free;6,5;1;S0914T0101
-;;Gloves;;7;1;S0914T0102
+S0914;Excision of Lipoma;Gloves;Latex free;6.5;1;S0914T0101
+;;Gloves;7;1;;S0914T0102
 ;;Prep Solution;Povidone Iodine;250mls;1;S0914T0201
 ;;Drapes;Major Pack;;1;S0914T0301
 ;;Drapes;Gowns;X Large;2;S0914T0302
@@ -637,7 +637,7 @@ S0915;Haemorrhoidectomy;Gloves;Latex Free;8;2;
 ;;Extra Instruments/Equipment;Toothed forceps;;1;S0915T0507
 ;;Holloware;Basin/Bowl Set;;1;
 ;;Holloware;Sharps Dish;;1;S0915T0602
-;;Holloware;"Bowl  5""";;1;S0915T0603
+;;Holloware;Bowl  5";;1;S0915T0603
 ;;Disposables;Blade;15;2;S0915T0701
 ;;Disposables;Raytec;;1;S0915T0702
 ;;Disposables;Sponges;Medium;1;S0915T0703
@@ -681,7 +681,7 @@ S0916;Laparoscopy;Gloves;Latex Free;7.5 ;2;
 ;;Holloware;Bowl;;1;
 ;;Holloware;Kidney dish;;1;S0916T0603
 ;;Holloware;Sharps dish;;1;S0916T0604
-;;Holloware;"Bowl 5""";;1;S0916T0605
+;;Holloware;Bowl 5";;1;S0916T0605
 ;;Disposables;Blade;11;1;S0916T0701
 ;;Disposables;Blade;10;1;S0916T0702
 ;;Disposables;Sponges;medium;1;
@@ -704,7 +704,7 @@ S0916;Laparoscopy;Gloves;Latex Free;7.5 ;2;
 ;;Solutions;0.5% Marcain with adrenaline 20mls;;1;S0916T0804
 ;;Sutures;2/0 Vicryl U;26 tc;2;S0916T0901
 ;;Sutures;3/0 Monocryl;24 cc;1;S0916T0902
-;;Dressing;Steristrip;"1/2 """;1;S0916T1001
+;;Dressing;Steristrip;1/2 ";1;S0916T1001
 ;;Dressing;Opsite;small;3;S0916T1002
 ;;Equipment;Diathermy/Bovie with foot pedal;;1;S0916T1101
 ;;Equipment;Light source;;1;S0916T1102
@@ -715,7 +715,7 @@ S0916;Laparoscopy;Gloves;Latex Free;7.5 ;2;
 ;;Equipment;Suction Unit;;1;S0916T1107
 ;;Equipment;Printer;;1;
 ;;Prosthesis;;;;
-S0917;Large Bowel Resection Open;Gloves;Latex Free;7,5;2;
+S0917;Large Bowel Resection Open;Gloves;Latex Free;7.5;2;
 ;;Prep Solution;Povidone Iodine;250mls;1;S0917T0201
 ;;Drapes;Laparotomy Pack;;1;S0917T0301
 ;;Drapes;Gowns;X Large;2;S0917T0302
@@ -772,7 +772,7 @@ S0917;Large Bowel Resection Open;Gloves;Latex Free;7,5;2;
 ;;Equipment;Specimen Container;Large;1;S0917T1104
 ;;Equipment;Pathology Form;;1;S0917T1105
 ;;Equipment;Specimen Bag;;1;S0917T1106
-S0918;Debridement and washout of wound;Gloves;latex free;6,5;1;S0918T0101
+S0918;Debridement and washout of wound;Gloves;latex free;6.5;1;S0918T0101
 ;;Prep Solution;Povidone Iodine;250mls;1;S0918T0201
 ;;Drapes;Major Pack;;1;S0918T0301
 ;;Drapes;Gowns;X Large;2;S0918T0302
@@ -788,19 +788,19 @@ S0918;Debridement and washout of wound;Gloves;latex free;6,5;1;S0918T0101
 ;;Disposables;Suction Tubing;;1;S0918T0702
 ;;Disposables;Yankeur Suction;;1;S0918T0703
 ;;Disposables;Blades;10;2;S0918T0704
-;;Disposables;Suction Drain (available);"1/8""";1;
+;;Disposables;Suction Drain (available);1/8";1;
 ;;Disposables;Needle Mat;;1;S0918T0705
 ;;Solutions;0.9% sodium chloride;500mls;1;S0918T0801
 ;;Solutions;Peroxide;250mls;1;S0918T0802
 ;;Sutures;2/0 silk ;24 cc;1;S0918T0901
-;;Dressing;Jelonet;"4""x6""";2;S0918T1001
+;;Dressing;Jelonet;4"x6";2;S0918T1001
 ;;Dressing;Gauze;;1;S0918T1002
 ;;Equipment;Suction Unit;;1;S0918T1101
 ;;Equipment;Pathology Forms;;1;S0918T1102
 ;;Equipment;Specimen Swab;;1;S0918T1103
 ;;Equipment;Specimen bag;;1;S0918T1104
 ;;Prosthesis;;;;
-S0919;Excision and drainage of abscess;Gloves;Dermaprene;7,5;1;
+S0919;Excision and drainage of abscess;Gloves;Dermaprene;7.5;1;
 ;;Gloves;Microthin;8;1;
 ;;Prep Solution;Povidone Iodine;250mls;1;S0919T0201
 ;;Drapes;Major ;;1;S0919T0301
@@ -820,7 +820,7 @@ S0919;Excision and drainage of abscess;Gloves;Dermaprene;7,5;1;
 ;;Disposables;Yankeur Suction;;1;S0919T0703
 ;;Disposables;Sponges/packs;medium;2;S0919T0705
 ;;Disposables;Raytec;;1;S0919T0706
-;;Disposables;Suction Drain (available);"1/8""";1;
+;;Disposables;Suction Drain (available);1/8";1;
 ;;Disposables;Blades;10;2;S0919T0708
 ;;Disposables;Needle Mat;;1;S0919T0709
 ;;Solutions;Chlorhexidine;500mls;1;S0919T0801
@@ -836,7 +836,7 @@ S0919;Excision and drainage of abscess;Gloves;Dermaprene;7,5;1;
 ;;Equipment;Specimen Bag;;1;S0919T1104
 ;;Equipment;Diathermy Unit/Bovie;;;S0919T1105
 ;;Prosthesis;;;;
-S0920;Femoral Hernia Repair of;Gloves;Latex Free;8,5;1;
+S0920;Femoral Hernia Repair of;Gloves;Latex Free;8.5;1;
 ;;Gloves;Microthin;8;1;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0920T0201
 ;;Drapes;Major;;1;S0920T0301
@@ -850,7 +850,7 @@ S0920;Femoral Hernia Repair of;Gloves;Latex Free;8,5;1;
 ;;Holloware;Bowl/Basin Set;;1;
 ;;Holloware;Kidney dish;;1;S0920T0603
 ;;Holloware;Sharps dish;;1;S0920T0604
-;;Holloware;"Bowl 5""";;1;S0920T0605
+;;Holloware;Bowl 5";;1;S0920T0605
 ;;Disposables;Blade;10;1;S0920T0701
 ;;Disposables;Blade;15;1;S0920T0702
 ;;Disposables;Sponges/packs;medium;1;S0920T0703
@@ -867,9 +867,9 @@ S0920;Femoral Hernia Repair of;Gloves;Latex Free;8,5;1;
 ;;Solutions;0.5% Marcain with Adrenaline;20mls;1;S0920T0802
 ;;Sutures;2/0 Vicryl; 26 tc;4;S0920T0901
 ;;Sutures;3/0 Monocryl;26 cc;2;S0920T0902
-;;Dressing;Adhesive strips;"1/2 """;2;S0920T1001
+;;Dressing;Adhesive strips;1/2 ";2;S0920T1001
 ;;Dressing;Adhesive Dressing;medium;2;S0920T1002
 ;;Equipment;Diathermy Unit/Bovie;;1;S0920T1101
 ;;Equipment;Plume Suction Unit;;1;
 ;;Equipment;Suction Unit;;1;S0920T1103
-;;Prosthesis;Hernia Mesh;"Polyprolene 6"" X 6""";1;
+;;Prosthesis;Hernia Mesh;Polyprolene 6" X 6";1;
