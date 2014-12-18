@@ -61,13 +61,11 @@
         NSLog(@"Found products %@ %@ %@", skProduct.productIdentifier, skProduct.localizedTitle, [self getFormattedLocalePrice:skProduct]);
     }
     self.completitionHadler (YES, skProducts);
-//    self.completitionHadler = nil;
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     NSLog(@"Failed to load list with products %@", error.localizedDescription);
     self.completitionHadler (NO, nil);
-//    self.completitionHadler = nil;
 }
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
