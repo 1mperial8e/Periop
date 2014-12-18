@@ -17,6 +17,7 @@
 #import "Reachability.h"
 #import "PEImageDownloaderManager.h"
 #import "PEInternetStatusChecker.h"
+#import "PEDownloadingScreenViewController.h"
 
 static NSString *const PESpecialisationControllerNibName = @"PESpecialisationViewController";
 static NSString *const PETermsAndConditionControllerNibName = @"PETermsAndConditionViewController";

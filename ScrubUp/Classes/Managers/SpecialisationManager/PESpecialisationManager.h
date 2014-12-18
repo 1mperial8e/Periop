@@ -30,6 +30,8 @@
 @property (strong, nonatomic) NSMutableSet *cellWithCheckedButtons;
 @property (strong, nonatomic) NSMutableSet *indexPathForCheckedButtons;
 
+@property (assign, nonatomic) BOOL isDownloadingEnded;
+
 + (id)sharedManager;
 
 @end

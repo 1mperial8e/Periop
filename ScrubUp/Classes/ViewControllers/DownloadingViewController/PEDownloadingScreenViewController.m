@@ -15,6 +15,7 @@
 #import "PEObjectDescription.h"
 #import "PECoreDataManager.h"
 #import "PEGAManager.h"
+#import "PESpecialisationManager.h"
 
 @interface PEDownloadingScreenViewController () <UIAlertViewDelegate, IAPurchaseDelegate, PECsvParserDelegate>
 
@@ -26,6 +27,8 @@
 @property (strong, nonatomic) NSString *productIdentifier;
 
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PECsvParser *parser;
+@property (strong, nonatomic) PESpecialisationManager * specManager;
 
 @end
 
@@ -40,6 +43,10 @@
     self.productIdentifier = [self.specialisationInfo valueForKey:@"productIdentifier"];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
     self.purchaseManager.delegate = (id)self;
+    self.specManager = [PESpecialisationManager sharedManager];
+    
+    self.parser = [[PECsvParser alloc] init];
+    self.parser.delegate = self;
     
     [self prepareForDownload];
 }
@@ -48,6 +55,42 @@
 {
     [super viewDidLayoutSubviews];
     [self showView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupAppNotification];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self removeNotifications];
+}
+
+#pragma Notifications
+
+- (void)setupAppNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)removeNotifications
+{
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Cant remove observers - %@", exception.debugDescription);
+    }
+}
+
+- (void)willEnterForeground
+{
+    if (self.specManager.isDownloadingEnded) {
+        [self dismissDownloadingScreen];
+    }
 }
 
 #pragma mark - Private
@@ -82,12 +125,9 @@
 {
     [self removePreviousData];
     
-    PECsvParser *parser = [[PECsvParser alloc] init];
-    parser.delegate = self;
-    
     if ([((NSString *)[self.specialisationInfo valueForKey:@"name"]) isEqualToString:@"General"]) {
         
-        [parser parseCsvMainFile:@"General" csvToolsFile:@"General_Tools" specName:@"General"];
+        [self.parser parseCsvMainFile:@"General" csvToolsFile:@"General_Tools" specName:@"General"];
     } else {
         NSMutableArray *arrayWithPathToDelete = [[NSMutableArray alloc] init];
         NSData *dataMain = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.specialisationInfo valueForKey:@"urlDownloadingMain"]]];
@@ -113,7 +153,7 @@
             }
         }
         
-        [parser parseCsvMainFile:@"mainSpec" csvToolsFile:@"toolSpec" specName:[self.specialisationInfo valueForKey:@"name"]];
+        [self.parser parseCsvMainFile:@"mainSpec" csvToolsFile:@"toolSpec" specName:[self.specialisationInfo valueForKey:@"name"]];
         
         for (int i = 0; i < arrayWithPathToDelete.count; i++) {
             NSError *error = nil;
@@ -247,12 +287,15 @@
 
 - (void)newSpecialisationDidDownloaded
 {
-    NSLog(@"hide");
+    [self dismissDownloadingScreen];
+}
+
+- (void)dismissDownloadingScreen
+{
     __weak PEDownloadingScreenViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf hideView];
     });
-    
 }
 
 @end

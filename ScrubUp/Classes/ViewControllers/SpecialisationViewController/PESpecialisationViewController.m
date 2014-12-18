@@ -9,8 +9,6 @@
 #import "PESpecialisationViewController.h"
 #import "PESpecialisationCollectionViewCell.h"
 #import "PEProcedureListViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "PECsvParser.h"
 #import "PESpecialisationManager.h"
 #import "PEObjectDescription.h"
 #import "PETutorialViewController.h"
@@ -90,17 +88,31 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
     ((PENavigationController *)self.navigationController).titleLabel.text = SVCSpecialisations;
     [self setSpecialisationsData];
     [self.collectionView reloadData];
-    [self.imageManager startBackgroundAsyncImageDownloading];
+    if (self.mySpecialisationsInfo.count > 1) {
+        [self.imageManager startBackgroundAsyncImageDownloading];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeNotifications];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Notifications
+
+- (void)removeNotifications
+{
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Cant remove observers from spec vc - %@", exception.debugDescription);
+    }
 }
 
 #pragma mark - IBActions
@@ -242,11 +254,11 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 - (void)setSpecialisationsData
 {
     self.mySpecialisationsInfo = [self avaliableSpecs];
+    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
     if (!self.mySpecialisationsInfo.count) {
         [self createDatabase];
         self.mySpecialisationsInfo = [self avaliableSpecs];
     }
-    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
 }
 
 - (NSArray *)avaliableSpecs

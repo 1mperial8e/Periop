@@ -315,7 +315,7 @@ S0906;Open Appendicectomy;Gloves;Latex;8;2;S0906T0101
 ;;Equipment;Pathology form;;1;S0906T1104
 ;;Equipment;Specimen container;small-formalin;1;S0906T1105
 ;;Equipment;Specimen bag;;1;S0906T1106
-S0907; Mastectomy Simple;Gloves;Latex ;8.5;2;
+S0907;Mastectomy Simple;Gloves;Latex ;8.5;2;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0907T0201
 ;;Drapes;Major Pack;;1;S0907T0301
 ;;Drapes;Gowns ;Large;2;S0907T0302
@@ -593,7 +593,7 @@ S0913;Thyroidectomy Total;Gloves;Latex;7.5;1;S0913T0101
 ;;Equipment;Specimen Bag;;1;S0913T1107
 ;;Prosthesis;;;;
 S0914;Excision of Lipoma;Gloves;Latex free;6.5;1;S0914T0101
-;;Gloves;7;1;;S0914T0102
+;;Gloves;Gloves;7;1;S0914T0102
 ;;Prep Solution;Povidone Iodine;250mls;1;S0914T0201
 ;;Drapes;Major Pack;;1;S0914T0301
 ;;Drapes;Gowns;X Large;2;S0914T0302
@@ -711,7 +711,7 @@ S0916;Laparoscopy;Gloves;Latex Free;7.5 ;2;
 ;;Equipment;Camera Source;;1;S0916T1103
 ;;Equipment;Monitor;;1;S0916T1104
 ;;Equipment;Gas Insufflation;;1;S0916T1105
-;;Equipment;Pressure bag;;1;
+;;Equipment;Pressure Bag/Device;;1;
 ;;Equipment;Suction Unit;;1;S0916T1107
 ;;Equipment;Printer;;1;
 ;;Prosthesis;;;;
@@ -836,7 +836,7 @@ S0919;Excision and drainage of abscess;Gloves;Dermaprene;7.5;1;
 ;;Equipment;Specimen Bag;;1;S0919T1104
 ;;Equipment;Diathermy Unit/Bovie;;;S0919T1105
 ;;Prosthesis;;;;
-S0920;Femoral Hernia Repair of;Gloves;Latex Free;8.5;1;
+S0920;Femoral Hernia Repair of;Gloves;Latex Free;8.5;2;
 ;;Gloves;Microthin;8;1;
 ;;Prep Solution;Povidone Iodine;250 mls;1;S0920T0201
 ;;Drapes;Major;;1;S0920T0301
