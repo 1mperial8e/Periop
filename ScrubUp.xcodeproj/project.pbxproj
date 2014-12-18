@@ -6263,7 +6263,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Roman Huti (5EWZN3DN9R)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6275,7 +6275,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
+				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6285,7 +6285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Roman Huti (5EWZN3DN9R)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6297,7 +6297,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
+				PROVISIONING_PROFILE = "4e189d42-91b3-4f69-92bf-30d1fa444b9a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

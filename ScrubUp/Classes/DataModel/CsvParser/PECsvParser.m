@@ -20,6 +20,7 @@
 #import "Specialisation.h"
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEImageDownloaderManager.h"
+#import "PESpecialisationManager.h"
 
 static NSInteger const CPDivideCounter = 5;
 static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
@@ -30,6 +31,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (assign, nonatomic) NSInteger quantityOfProcedures;
 @property (strong, nonatomic) PEImageDownloaderManager *imageManager;
+@property (strong, nonatomic) PESpecialisationManager *specManager;
 @property (copy, nonatomic) NSString *keyValue;
 @property (strong, nonatomic) NSMutableDictionary *dictionaryURL;
 
@@ -55,8 +57,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
         self.dictionaryURL = [NSMutableDictionary dictionary];
     }
     self.imageManager = [PEImageDownloaderManager sharedManager];
+    self.specManager = [PESpecialisationManager sharedManager];
     self.managedObjectContext = [[PECoreDataManager sharedManager] managedObjectContext];
 }
+
 
 #pragma mark - Public
 
@@ -75,7 +79,8 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathMain] && [[NSFileManager defaultManager] fileExistsAtPath:filePathTools]) {
-                
+        
+        self.specManager.isDownloadingEnded = NO;
         self.quantityOfProcedures = [self getQuantityOfProcedure:filePathMain];
         Specialisation *newSpecialisation = [self parseToolsCSVFile:filePathTools specialisationName:specName];
         NSMutableArray *arrayWithProcWithoutTools = [self parseMainCSVFile:filePathMain];
@@ -343,7 +348,11 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(newSpecialisationDidDownloaded)]){
-                [self.delegate newSpecialisationDidDownloaded];
+                if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+                    [self.delegate newSpecialisationDidDownloaded];
+                } else {
+                    self.specManager.isDownloadingEnded = YES;
+                }
             } else {
                 NSLog(@"No response");
             }
