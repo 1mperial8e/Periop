@@ -143,6 +143,7 @@
 		ED3D1BD819E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */; };
 		ED3D1BD919E5514A00929F64 /* Plastic_Small_Inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */; };
 		ED3D1BDA19E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */; };
+		ED3E55051A42CD9400767259 /* S0913T0903.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3E55041A42CD9400767259 /* S0913T0903.png */; };
 		ED444B801A28B73D002C439D /* Place_Holder.png in Resources */ = {isa = PBXBuildFile; fileRef = ED444B7D1A28B73D002C439D /* Place_Holder.png */; };
 		ED444B811A28B73D002C439D /* Place_Holder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED444B7E1A28B73D002C439D /* Place_Holder@3x.png */; };
 		ED444B821A28B73D002C439D /* Place_Holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED444B7F1A28B73D002C439D /* Place_Holder@2x.png */; };
@@ -598,7 +599,6 @@
 		EDE7910019ED5E4700A9C43B /* S0913T0712.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D7E19ED5E3F00A9C43B /* S0913T0712.jpg */; };
 		EDE7910119ED5E4700A9C43B /* S0913T0713.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D7F19ED5E3F00A9C43B /* S0913T0713.jpg */; };
 		EDE7910219ED5E4700A9C43B /* S0913T0801.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D8019ED5E3F00A9C43B /* S0913T0801.jpg */; };
-		EDE7910319ED5E4700A9C43B /* S0913T0903.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D8119ED5E3F00A9C43B /* S0913T0903.jpg */; };
 		EDE7910419ED5E4700A9C43B /* S0913T0904.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D8219ED5E3F00A9C43B /* S0913T0904.jpg */; };
 		EDE7910519ED5E4700A9C43B /* S0913T0905.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D8319ED5E3F00A9C43B /* S0913T0905.jpg */; };
 		EDE7910619ED5E4700A9C43B /* S0913T1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDE78D8419ED5E3F00A9C43B /* S0913T1001.jpg */; };
@@ -1374,6 +1374,7 @@
 		ED3D1BC619E5514A00929F64 /* Orthopeadic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orthopeadic_Specialisation_Icon@2x.png"; path = "../../Orthopeadic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
 		ED3D1BC719E5514A00929F64 /* Plastic_Small_Inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Small_Inactive@2x.png"; path = "../../Plastic_Small_Inactive@2x.png"; sourceTree = "<group>"; };
 		ED3D1BC819E5514A00929F64 /* Plastic_Specialisation_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plastic_Specialisation_Icon@2x.png"; path = "../../Plastic_Specialisation_Icon@2x.png"; sourceTree = "<group>"; };
+		ED3E55041A42CD9400767259 /* S0913T0903.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S0913T0903.png; sourceTree = "<group>"; };
 		ED444B7D1A28B73D002C439D /* Place_Holder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Place_Holder.png; sourceTree = "<group>"; };
 		ED444B7E1A28B73D002C439D /* Place_Holder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@3x.png"; sourceTree = "<group>"; };
 		ED444B7F1A28B73D002C439D /* Place_Holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Place_Holder@2x.png"; sourceTree = "<group>"; };
@@ -1871,7 +1872,6 @@
 		EDE78D7E19ED5E3F00A9C43B /* S0913T0712.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0712.jpg; sourceTree = "<group>"; };
 		EDE78D7F19ED5E3F00A9C43B /* S0913T0713.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0713.jpg; sourceTree = "<group>"; };
 		EDE78D8019ED5E3F00A9C43B /* S0913T0801.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0801.jpg; sourceTree = "<group>"; };
-		EDE78D8119ED5E3F00A9C43B /* S0913T0903.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0903.jpg; sourceTree = "<group>"; };
 		EDE78D8219ED5E3F00A9C43B /* S0913T0904.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0904.jpg; sourceTree = "<group>"; };
 		EDE78D8319ED5E3F00A9C43B /* S0913T0905.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T0905.jpg; sourceTree = "<group>"; };
 		EDE78D8419ED5E3F00A9C43B /* S0913T1001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S0913T1001.jpg; sourceTree = "<group>"; };
@@ -2911,7 +2911,6 @@
 			isa = PBXGroup;
 			children = (
 				EDE77DEF19ED5BFF00A9C43B /* GeneralSpecPhoto */,
-				EDD2A55C19DC045200A73C5E /* ToolsPhoto */,
 				84AF77A219DAEA77009F2B98 /* TutorialScreen */,
 				ED9C68BA19C720E60022C1A8 /* Assets - icons buttons */,
 				ED9C690F19C720E70022C1A8 /* Assets - Surgical Specialties */,
@@ -3400,21 +3399,6 @@
 				EDD2966119EFC226002F4564 /* PEAddEditStepViewControllerViewController.xib */,
 			);
 			path = AddEditStepViewController;
-			sourceTree = "<group>";
-		};
-		EDD2A55C19DC045200A73C5E /* ToolsPhoto */ = {
-			isa = PBXGroup;
-			children = (
-				EDD2A55D19DC046800A73C5E /* General */,
-			);
-			path = ToolsPhoto;
-			sourceTree = "<group>";
-		};
-		EDD2A55D19DC046800A73C5E /* General */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = General;
 			sourceTree = "<group>";
 		};
 		EDD4BDEA19D2DBBB0087D8CE /* PEDoctorProfileCollectionViewCell */ = {
@@ -4059,6 +4043,7 @@
 				EDE78D6B19ED5E3F00A9C43B /* S0913T0401.jpg */,
 				EDE78D6C19ED5E3F00A9C43B /* S0913T0402.jpg */,
 				EDE78D6D19ED5E3F00A9C43B /* S0913T0501.jpg */,
+				ED3E55041A42CD9400767259 /* S0913T0903.png */,
 				EDE78D6E19ED5E3F00A9C43B /* S0913T0502.jpg */,
 				EDE78D6F19ED5E3F00A9C43B /* S0913T0503.jpg */,
 				EDE78D7019ED5E3F00A9C43B /* S0913T0504.jpg */,
@@ -4078,7 +4063,6 @@
 				EDE78D7E19ED5E3F00A9C43B /* S0913T0712.jpg */,
 				EDE78D7F19ED5E3F00A9C43B /* S0913T0713.jpg */,
 				EDE78D8019ED5E3F00A9C43B /* S0913T0801.jpg */,
-				EDE78D8119ED5E3F00A9C43B /* S0913T0903.jpg */,
 				EDE78D8219ED5E3F00A9C43B /* S0913T0904.jpg */,
 				EDE78D8319ED5E3F00A9C43B /* S0913T0905.jpg */,
 				EDE78D8419ED5E3F00A9C43B /* S0913T1001.jpg */,
@@ -5500,6 +5484,7 @@
 				EDE7911319ED5E4700A9C43B /* S0913T0706.jpg in Resources */,
 				EDC91ECA19B9BBC000212F24 /* PEAddEditNoteViewController.xib in Resources */,
 				EDE790C719ED5E4700A9C43B /* S0915T0503.jpg in Resources */,
+				ED3E55051A42CD9400767259 /* S0913T0903.png in Resources */,
 				84FE695319F11006008AD54C /* Gynaecology_logo.png in Resources */,
 				EDE7912919ED5E4700A9C43B /* S0912T0707.jpg in Resources */,
 				EDF19F271A3EE9540086B8E7 /* Part3_6_1.txt in Resources */,
@@ -5761,7 +5746,6 @@
 				EDE7909619ED5E4700A9C43B /* S0916T1002.jpg in Resources */,
 				EDE792CA19ED5E4800A9C43B /* Cardiac Surgical.jpg in Resources */,
 				EDE791EF19ED5E4700A9C43B /* S0906T1001.jpg in Resources */,
-				EDE7910319ED5E4700A9C43B /* S0913T0903.jpg in Resources */,
 				EDE7921819ED5E4700A9C43B /* S0904T0604.jpg in Resources */,
 				EDE7916C19ED5E4700A9C43B /* S0910T0707.jpg in Resources */,
 				EDE78FD719ED5E4700A9C43B /* S0920T0501.JPG in Resources */,

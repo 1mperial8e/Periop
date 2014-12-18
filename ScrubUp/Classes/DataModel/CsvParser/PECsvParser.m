@@ -131,6 +131,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             EquipmentsTool *newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
             
             NSString *photoName = (NSString *)colum[6];
+            self.keyValue = nil;
             
             if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                 
@@ -166,8 +167,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             newTool.uniqueKey = [self.imageManager uniqueKey];
             
             if (![newTool.name isEqualToString:@""] || ![newTool.type isEqualToString:@""]) {
-                [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:newTool.uniqueKey];
                 [newProc addEquipmentsObject:newTool];
+                if (self.keyValue) {
+                    [self.dictionaryURL setValue:[dicWithPicURL valueForKey:self.keyValue] forKey:newTool.uniqueKey];
+                }
             }
             
             if (![colum[0] isEqualToString:@""]) {
