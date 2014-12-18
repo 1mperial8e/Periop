@@ -242,11 +242,11 @@ static NSString *const SVCSpecialisationCollectionCellIdentifier = @"Specialised
 - (void)setSpecialisationsData
 {
     self.mySpecialisationsInfo = [self avaliableSpecs];
+    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
     if (!self.mySpecialisationsInfo.count) {
         [self createDatabase];
         self.mySpecialisationsInfo = [self avaliableSpecs];
     }
-    self.moreSpecialisationsInfo = [self getSortedSpecialisationsInfo];
 }
 
 - (NSArray *)avaliableSpecs
