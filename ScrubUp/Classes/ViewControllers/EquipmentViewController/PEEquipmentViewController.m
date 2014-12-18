@@ -237,7 +237,7 @@ static CGFloat const EMinimumHeightOfCell = 47.0f;
     }
     
     self.specManager.currentEquipment = ((EquipmentsTool*)((NSArray*)self.arrayWithCategorisedToolsArrays[indexPath.section])[indexPath.row]);
-    if ([self.specManager.currentEquipment.photo allObjects].count) {
+    if ([self.specManager.currentEquipment.photo allObjects].count && ![UIImage imageWithData:((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData]) {
         [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
         [[PECoreDataManager sharedManager] save];
     }
