@@ -253,12 +253,12 @@ static NSInteger const TDVCViewTag = 35;
         return;
     }
     if (((Photo *)[self.specManager.currentEquipment.photo allObjects][0]).photoData) {
-        self.navigationController.navigationBar.translucent = YES;
-        PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
         if ([self.specManager.currentEquipment.photo allObjects].count > indexPath.row) {
+            self.navigationController.navigationBar.translucent = YES;
+            PEViewPhotoViewController *viewPhotoControleller = [[PEViewPhotoViewController alloc] initWithNibName:@"PEViewPhotoViewController" bundle:nil];
             viewPhotoControleller.photoToShow = self.sortedArrayWithPhotos[indexPath.row];
+            [self.navigationController pushViewController:viewPhotoControleller animated:YES];
         }
-        [self.navigationController pushViewController:viewPhotoControleller animated:YES];
     }
 }
 
@@ -288,22 +288,38 @@ static NSInteger const TDVCViewTag = 35;
         NSURL *urlForImage = [NSURL URLWithString:((Photo *)photoArray[indexPath.row]).photoName];
         NSData *imageDataFromUrl = [NSData dataWithContentsOfURL:urlForImage];
         
-        NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:strongSelf.managedObjectContext];
-        Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:strongSelf.managedObjectContext];
-        initPhoto.photoData = imageDataFromUrl;
-        initPhoto.photoName = ((Photo *)photoArray[indexPath.row]).photoName;
-        initPhoto.equiomentTool = strongSelf.specManager.currentEquipment;
-        
-        [strongSelf.specManager.currentEquipment removePhotoObject:photoArray[indexToDelete]];
-        [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
+        UIImage *tempImage = [UIImage imageWithData:imageDataFromUrl];
+        if (!tempImage) {
+            NSLog(@"Corrupted image! - deleting");
+            [self.managedObjectContext deleteObject:[self.specManager.currentEquipment.photo allObjects][0]];
+            [[PECoreDataManager sharedManager] save];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.activityIndicator stopAnimating];
+                PEOperationRoomCollectionViewCell *cell = [weakSelf.collectionView dequeueReusableCellWithReuseIdentifier:TDVCellIdentifier forIndexPath:indexPath];
+                cell.operationRoomImage.image = [UIImage imageNamedFile:TDVPlaceHolderImageName];
+                cell.operationRoomImage.frame = cell.bounds;
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            });
+            
+        } else {
+            NSEntityDescription *photoEntity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:strongSelf.managedObjectContext];
+            Photo *initPhoto = [[Photo alloc] initWithEntity:photoEntity insertIntoManagedObjectContext:strongSelf.managedObjectContext];
+            initPhoto.photoData = imageDataFromUrl;
+            initPhoto.photoName = ((Photo *)photoArray[indexPath.row]).photoName;
+            initPhoto.equiomentTool = strongSelf.specManager.currentEquipment;
+            
+            [strongSelf.specManager.currentEquipment removePhotoObject:photoArray[indexToDelete]];
+            [strongSelf.specManager.currentEquipment addPhotoObject:initPhoto];
 
-        [[PECoreDataManager sharedManager] save];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.activityIndicator stopAnimating];
-            cell.operationRoomImage.image = [UIImage imageWithData:imageDataFromUrl];;
-            NSLog(@"Image downloaded and saved to DB");
-        });
+            [[PECoreDataManager sharedManager] save];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.activityIndicator stopAnimating];
+                cell.operationRoomImage.image = [UIImage imageWithData:imageDataFromUrl];;
+                NSLog(@"Image downloaded and saved to DB");
+            });
+        }
     });
 }
 

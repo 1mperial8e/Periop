@@ -21,6 +21,7 @@
 #import "UIImage+ImageWithJPGFile.h"
 #import "PEImageDownloaderManager.h"
 #import "PESpecialisationManager.h"
+#import "PEInternetStatusChecker.h"
 
 static NSInteger const CPDivideCounter = 5;
 static NSString *const CPPlistSpecialisationPicsAndCode = @"SpecialisationPicsAndCode";
@@ -123,7 +124,10 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
         NSString *partOne = lines;
         NSString *partTwo = [partOne stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         
-        NSDictionary *dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
+        NSDictionary *dicWithPicURL = [NSDictionary dictionary];
+        if ([PEInternetStatusChecker isInternetAvaliable]) {
+            dicWithPicURL = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:CPPlistWithPhotosKey]]];
+        }
 
         NSArray *rows = [partTwo componentsSeparatedByString:@"\n"];
         for (int i = (int)(rows.count - 1); i >= 0; i--) {
@@ -346,16 +350,6 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             [[[PECoreDataManager sharedManager] persistentStoreCoordinator] lock];
             [self.managedObjectContext reset];
             [[[PECoreDataManager sharedManager] persistentStoreCoordinator] unlock];
-            
-            if (self.delegate && [self.delegate respondsToSelector:@selector(newSpecialisationDidDownloaded)]){
-                if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                    [self.delegate newSpecialisationDidDownloaded];
-                } else {
-                    self.specManager.isDownloadingEnded = YES;
-                }
-            } else {
-                NSLog(@"No response");
-            }
 
             __weak PECsvParser *weakSelf = self;
             dispatch_async(dispatch_queue_create("newQueue", NULL), ^{
@@ -364,6 +358,16 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
         }
     } else {
         NSLog(@"Incorrect input data");
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(newSpecialisationDidDownloaded)]){
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+            [self.delegate newSpecialisationDidDownloaded];
+        } else {
+            self.specManager.isDownloadingEnded = YES;
+        }
+    } else {
+        NSLog(@"No response");
     }
 }
 
