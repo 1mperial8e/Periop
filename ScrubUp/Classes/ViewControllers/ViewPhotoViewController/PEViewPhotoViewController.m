@@ -278,6 +278,7 @@ static NSString *const VPVCCellIdentifier = @"imageViewCell";
         cell = [[PEViewPhotoViewCollectionViewCell alloc] init];
     }
     UIImage *myImage = [UIImage imageWithData:((Photo *)self.arrayWithPhotoToShow[indexPath.row]).photoData];
+    
     CGSize size = myImage.size;
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         size.width = self.view.bounds.size.width;
