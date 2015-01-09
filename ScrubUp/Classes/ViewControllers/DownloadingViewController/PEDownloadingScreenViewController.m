@@ -240,21 +240,20 @@
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Yes"]) {
         [self downloadData];
     } else if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Purchase"]) {
-        [self downloadData];
-//        [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
-//            if (success && products.count) {
-//                for (SKProduct *product in products) {
-//                    if ([product.productIdentifier isEqualToString:self.productIdentifier]) {
-//                        [self.purchaseManager buyProduct:product];
-//                        break;
-//                    }
-//                }
-//            } else {
-//                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-//            }
-//        }];
-//    } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {
-//        [self.purchaseManager restoreProductWithIdentifier:self.productIdentifier];
+        [self.purchaseManager requestProductsWithCompletitonHelper:^(BOOL success, NSArray *products) {
+            if (success && products.count) {
+                for (SKProduct *product in products) {
+                    if ([product.productIdentifier isEqualToString:self.productIdentifier]) {
+                        [self.purchaseManager buyProduct:product];
+                        break;
+                    }
+                }
+            } else {
+                [[[UIAlertView alloc] initWithTitle:@"ScrubUp" message:@"Failed connect to iTunes Store." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            }
+        }];
+    } else if ([[alertView buttonTitleAtIndex:2] isEqualToString:@"Restore"]) {
+        [self.purchaseManager restoreProductWithIdentifier:self.productIdentifier];
     }
 }
 
