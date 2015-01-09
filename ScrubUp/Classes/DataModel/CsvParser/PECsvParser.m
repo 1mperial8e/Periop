@@ -252,7 +252,9 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
                     for (int i = 0; i < steps.count; i++) {
                         
                         NSString *photoName = (NSString *)steps[i];
-                        
+                        NSMutableString *name = [photoName mutableCopy];
+                        photoName = [name stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                        photoName = [photoName stringByReplacingOccurrencesOfString:@" " withString:@""];
                         if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
                             
                             UIImage *photo = [UIImage imageNamedFile:photoName];
