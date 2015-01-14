@@ -140,6 +140,7 @@ static NSString *const CPPlistWithPhotosKey = @"photosPLIST";
             EquipmentsTool *newTool = [[EquipmentsTool alloc] initWithEntity:toolEntity insertIntoManagedObjectContext:self.managedObjectContext];
             
             NSString *photoName = (NSString *)colum[6];
+
             self.keyValue = nil;
             
             if ([photoName rangeOfString:@"http"].location == NSNotFound && ![photoName isEqualToString:@""]) {
