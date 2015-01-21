@@ -89,7 +89,8 @@
 
 - (NSMutableDictionary *)getDictionaryWithURL
 {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary] mutableCopy];
+    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary];
+    return dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
 }
 
 - (NSString *)stringFromDate:(NSDate *)date
@@ -223,7 +224,7 @@
     if (self.equipmentToUpdate) {
         NSURL *imgURL = [NSURL URLWithString:stringURL];
         NSData *imageData = [NSData dataWithContentsOfURL:imgURL];
-        if (imageData) {
+        if (imageData && self.equipmentToUpdate.photo) {
             ((Photo *)[self.equipmentToUpdate.photo allObjects][0]).photoData = imageData;
             
             [self.coreDataManager.persistentStoreCoordinator lock];
