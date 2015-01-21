@@ -98,9 +98,10 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Extra Instruments/Equipment;Light Lead;;1;S0903T0505
 ;;Extra Instruments/Equipment;Laparoscope;10mm;1;S0903T0506
 ;;Extra Instruments/Equipment;Laparoscope;5mm;1;S0903T0507
-;;Extra Instruments/Equipment;Laparoscopic scissors ;;1;S0903T0508
+;;Extra Instruments/Equipment;Laparoscopic scissors;;1;S0903T0508
 ;;Extra Instruments/Equipment;Bipolar lead;;1;S0903T0509
 ;;Extra Instruments/Equipment;Laparoscopic Hook electrode;;1;S0903T0510
+;;Extra Instruments/Equipment;Laparoscopic Clip Applicator;;1;
 ;;Extra Instruments/Equipment;Retractors (Langenbeck);;2;S0903T0511
 ;;Holloware;Prep set;;1;S0903T0601
 ;;Holloware; Bowl/Basin set;;1;S0903T0602
@@ -119,6 +120,8 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Disposables;Syringes;20 mls;3;S0903T0710
 ;;Disposables;Drawing up needle;18g;2;S0903T0711
 ;;Disposables;Injection Needle;21g;1;S0903T0712
+;;Disposables;Haemoclip applicator;;1;
+;;Disposables;Haemoclips;Laparoscopic medium;1;
 ;;Disposables;Laparoscopic Sucker/Irrigator;;1;S0903T0713
 ;;Disposables;Sterile Label Pack;0.9% sodium Chloride, Contrast, Local;1;S0903T0714
 ;;Disposables;Antifog ;Fred;1;S0903T0715
@@ -168,6 +171,7 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8.5;2;S0904T010
 ;;Extra Instruments/Equipment;Quiver/Instrument Holder;;1;S0904T0510
 ;;Extra Instruments/Equipment;Needle Holder (heavy);Mayo Heager;2;S0904T0511
 ;;Extra Instruments/Equipment;Babcocks (long);;1;S0904T0512
+;;Extra Instruments/Equipment;Haemostats;Roberts;10;
 ;;Extra Instruments/Equipment;Roberts;;10;S0904T0513
 ;;Holloware;Prep set;;2;S0904T0601
 ;;Holloware;Bowl/Basin Set;;2;S0904T0602
@@ -238,7 +242,7 @@ S0905;Laparoscopic Appendicectomy;Gloves;Microthin;8;1;
 ;;Disposables;Raytec;;1;S0905T0706
 ;;Disposables;Suction/Irrigation;;1;S0905T0707
 ;;Disposables;Endoloop;;3;S0905T0708
-;;Disposables;Laparoscpic Scissors;;1;S0905T0709
+;;Disposables;Laparoscopic Scissors;;1;S0905T0709
 ;;Disposables;Endobag;5mm;1;S0905T0710
 ;;Disposables;Antifog;Fred;1;S0905T0711
 ;;Disposables;Syringe Luer lock;10 mls;1;S0905T0712
@@ -246,7 +250,7 @@ S0905;Laparoscopic Appendicectomy;Gloves;Microthin;8;1;
 ;;Disposables;Injection Needle;21g;1;S0905T0714
 ;;Disposables;Gas Tubing;;1;S0905T0715
 ;;Disposables;Needlemat;;1;S0905T0717
-;;Solutions;Local anaesthetic;Bupivicaine plain 10 mls;1;S0905T0801
+;;Solutions;Local anaesthetic;Bupivacaine plain 10 mls;1;S0905T0801
 ;;Solutions;0.9% sodium Chloride;1000mls IV;1;S0905T0802
 ;;Sutures;2/0 Vicryl;26 tc;2;S0905T0901
 ;;Sutures;3/0 Monocryl;24 cc;2;S0905T0902
@@ -342,7 +346,7 @@ S0907;Mastectomy Simple;Gloves;Latex ;8.5;2;S0901T0101
 ;;Disposables;Blades;10;1;S0907T0706
 ;;Disposables;Blades;15;1;S0907T0707
 ;;Disposables;Bovie/Diathermy Extension;medium;1;S0907T0708
-;;Disposables;Scratch pad/abrassive electrode cleaner;;1;S0907T0709
+;;Disposables;Scratch pad/abrasive electrode cleaner;;1;S0907T0709
 ;;Disposables;Needle mat;;1;S0907T0710
 ;;Disposables;Raytec;;1;S0907T0711
 ;;Disposables;Sponges/Packs;Medium;1;S0907T0712
@@ -404,7 +408,7 @@ S0909;Laparotomy;Gloves;Latex Free;8;2;S0909T0101
 ;;Extra Instruments/Equipment;Roberts;;5;S0909T0503
 ;;Extra Instruments/Equipment;Lahey;long;1;S0909T0504
 ;;Extra Instruments/Equipment;Deavers;;1;S0909T0505
-;;Extra Instruments/Equipment;Bowel clamps;crushing/soft;4;S0909T0506
+;;Extra Instruments/Equipment;Bowel clamps;Crushing;4;S0909T0506
 ;;Holloware;Basin/Bowl Set;;2;S0909T0601
 ;;Holloware;Sharps Dish;;1;S0909T0602
 ;;Holloware;Jug;;1;S0909T0603
@@ -499,7 +503,7 @@ S0911;Pilonidal Sinus Incision and Drainage of ;Gloves;Microthin;7.5;2;
 ;;Disposables;Injection Needle;21g;1;S0911T0710
 ;;Solutions;Peroxide;100mls;2;S0911T0801
 ;;Solutions;0.9% Sodium Chloride;500mls;1;S0911T0802
-;;Solutions;0.5% Bupivicaine with adrenaline;10 mls;1;S0911T0803
+;;Solutions;0.5% Bupivacaine with adrenaline;10 mls;1;S0911T0803
 ;;Sutures;3/0 Vicryl;24 cc;1;S0911T0901
 ;;Dressing;White Gauze;;2;S0911T1001
 ;;Dressing;Ribbon Gauze;1/4 ";1;S0911T1002
@@ -568,8 +572,8 @@ S0913;Thyroidectomy Total;Gloves;Latex;7.5;1;S0913T0101
 ;;Disposables;Vessel Loops- Red;Maxi ;1;S0913T0705
 ;;Disposables;Vessel Loops- Blue;Mini ;1;S0913T0706
 ;;Disposables;Bovie/ Diathermy tip;Insulated tip;1;S0913T0707
-;;Disposables;Hemoclip apllicator;small-blue;1;S0913T0708
-;;Disposables;Hemoclip apllicator;medium-yellow;1;S0913T0709
+;;Disposables;Hemoclip applicator;small;1;S0913T0708
+;;Disposables;Hemoclip applicator;medium;1;S0913T0709
 ;;Disposables;Harmonic Scalpel Blade;Hand held;1;S0913T0710
 ;;Disposables;Blades;10;1;S0913T0711
 ;;Disposables;Blades;15;1;S0913T0712
@@ -613,7 +617,7 @@ S0914;Excision of Lipoma;Gloves;Latex free;6.5;1;S0914T0101
 ;;Disposables;Injection Needle;21g;1;S0914T0706
 ;;Disposables;Drawing up needle;18g;1;S0914T0707
 ;;Disposables;Needle Mat;;1;S0914T0708
-;;Solutions;0.25% Bupivicaine with adrenaline;10mls;1;S0914T0801
+;;Solutions;0.25% Bupivacaine with adrenaline;10mls;1;S0914T0801
 ;;Solutions;Chlorhexidine;250mls;1;S0914T0802
 ;;Sutures;2/0 Vicryl undyed;24cc;1;S0914T0901
 ;;Dressing;Adhesive Dressing;medium;1;S0914T1001
@@ -694,7 +698,7 @@ S0916;Laparoscopy;Gloves;Latex Free;7.5 ;2;
 ;;Disposables;Injection Needle ;21g;1;S0916T0710
 ;;Disposables;Needle mat;;1;S0916T0711
 ;;Disposables;Disposable Pack;General Lap pack;1;S0916T0712
-;;Disposables;Laparoscpic sucker/irrigator;;1;S0916T0713
+;;Disposables;Laparoscopic sucker/irrigator;;1;S0916T0713
 ;;Disposables;Antifog solution;Fred;1;S0916T0714
 ;;Disposables;Laparoscopic Scissors;;1;S0916T0715
 ;;Disposables;Sterile Label pack;Local anaesthetic, sodium chloride;1;S0916T0716
@@ -858,7 +862,7 @@ S0920;Femoral Hernia Repair of;Gloves;Latex Free;8.5;2;
 ;;Disposables;Plastics;large;2;S0920T0705
 ;;Disposables;Needle mat;;1;S0920T0706
 ;;Disposables;Diathermy/Bovie Pencil;;1;S0920T0707
-;;Disposables;Scratch pad/abrassive electrode cleaner;;1;S0920T0708
+;;Disposables;Scratch pad/abrasive electrode cleaner;;1;S0920T0708
 ;;Disposables;Blunt Needle;18g;1;S0920T0709
 ;;Disposables;Injection Needle;23g;1;S0920T0710
 ;;Disposables;Syringe;20mls;1;S0920T0711
