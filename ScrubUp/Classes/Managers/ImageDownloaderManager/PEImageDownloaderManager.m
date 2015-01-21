@@ -80,16 +80,22 @@
         self.isDictionaryURLsUpdated = YES;
     }
     
+    NSLock *theLock = [[NSLock alloc] init];
+    [theLock lock];
     [[NSUserDefaults standardUserDefaults] setObject:newUrlsDictionary forKey:kLinkDictionary];
     if (![[NSUserDefaults standardUserDefaults] synchronize]) {
         NSLog(@"Cant save updated userDefaults");
     }
+    [theLock unlock];
     return YES;
 }
 
 - (NSMutableDictionary *)getDictionaryWithURL
 {
+    NSLock *theLock = [[NSLock alloc] init];
+    [theLock lock];
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:kLinkDictionary];
+    [theLock unlock];
     return dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
 }
 
