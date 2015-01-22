@@ -120,8 +120,8 @@ S0903;Laparoscopic Choleycystectomy & Operative Cholangiogram;Gloves;Dermaprene;
 ;;Disposables;Syringes;20 mls;3;S0903T0710
 ;;Disposables;Drawing up needle;18g;2;S0903T0711
 ;;Disposables;Injection Needle;21g;1;S0903T0712
-;;Disposables;Haemoclip applicator;;1;
-;;Disposables;Haemoclips;Laparoscopic medium;1;
+;;Disposables;Hemoclip applicator;;1;
+;;Disposables;Hemoclips;Laparoscopic medium;1;
 ;;Disposables;Laparoscopic Sucker/Irrigator;;1;S0903T0713
 ;;Disposables;Sterile Label Pack;0.9% sodium Chloride, Contrast, Local;1;S0903T0714
 ;;Disposables;Antifog ;Fred;1;S0903T0715
@@ -159,7 +159,7 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8.5;2;S0904T010
 ;;Instrument Tray;Abdominal Retractors;Harrington ;1;S0904T0403
 ;;Instrument Tray;Abdominal Retractors;Deavers;3;S0904T0404
 ;;Instrument Tray;Omni tract Tray 1;;1;S0904T0405
-;;Instrument Tray;Omnitract Tray 2;;1;S0904T0406
+;;Instrument Tray;Omni tract Tray 2;;1;S0904T0406
 ;;Extra Instruments/Equipment;Fritz Retractor;;2;S0904T0501
 ;;Extra Instruments/Equipment;Scalpel Handle long;;1;S0904T0502
 ;;Extra Instruments/Equipment;Metzenbaum Scissors;10";1;S0904T0503
@@ -171,7 +171,7 @@ S0904;Open Choleycystectomy with Cholangiogram;Gloves;Latex Free;8.5;2;S0904T010
 ;;Extra Instruments/Equipment;Quiver/Instrument Holder;;1;S0904T0510
 ;;Extra Instruments/Equipment;Needle Holder (heavy);Mayo Heager;2;S0904T0511
 ;;Extra Instruments/Equipment;Babcocks (long);;1;S0904T0512
-;;Extra Instruments/Equipment;Haemostats;Roberts;10;
+;;Extra Instruments/Equipment;Heamostats;Roberts;10;
 ;;Extra Instruments/Equipment;Roberts;;10;S0904T0513
 ;;Holloware;Prep set;;2;S0904T0601
 ;;Holloware;Bowl/Basin Set;;2;S0904T0602

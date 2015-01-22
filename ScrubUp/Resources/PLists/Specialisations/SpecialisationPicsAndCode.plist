@@ -23,9 +23,9 @@
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DUDJ4UnpWWmdSZGM</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DdDZXN1phekV4UFU</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWG8yWFhRT1RvRUE</string>
 		<key>photosPLIST</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DMG8zdVh1ellpbmc</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DRlNOLWdYQUM4eGM</string>
 	</dict>
 	<key>General</key>
 	<dict>
@@ -46,9 +46,9 @@
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.ScrubUp.S09General</string>
 		<key>urlDownloadingMain</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DYm9QZTlfUXRPeDQ</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DTEtqUWZudmYyaG8</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DdzJpYk5jdDRGZnc</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DYWgxNkI0TzZXX2c</string>
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWElyZzhVeFlzZDg</string>
 	</dict>
@@ -73,7 +73,7 @@
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71Dekw0Yjc3TzAwMWs</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DMndfZDdXeV9mWm8</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DamFGYUNwa1hMQUE</string>
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DVkFEVFlQOEZqUjQ</string>
 	</dict>
@@ -96,9 +96,9 @@
 		<key>productIdentifier</key>
 		<string>com.Thinkmobiles.ScrubUp.S07Plastic</string>
 		<key>urlDownloadingMain</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DVzc5NVFaTzQ2bXM</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWDRHemRlOG1fS2c</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DTUpYMFlCRlhSY3M</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71Dck5wYUZyTGI4Nlk</string>
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DRDBoV3ZSaEJ2dEk</string>
 	</dict>
@@ -123,7 +123,7 @@
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DcE5DZ1hJbzZKRmM</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWmdBcnRfQkE2YWM</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DY0tiYWN1NVR6czg</string>
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71Da1JROUJJZzZCSmM</string>
 	</dict>
@@ -173,7 +173,7 @@
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWWI1dWx5aVpTWVE</string>
 		<key>urlDownloadingTool</key>
-		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DUjFwODVNYnppc2s</string>
+		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DNHNQTlNZMjhGNG8</string>
 		<key>photosPLIST</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DQ0Z5VVFaQm5PZlk</string>
 	</dict>
