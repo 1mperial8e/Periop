@@ -4986,6 +4986,11 @@
 				CLASSPREFIX = PE;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Thinkmobiles;
+				TargetAttributes = {
+					8474905E19B8459E0013C446 = {
+						DevelopmentTeam = 82879N2EDR;
+					};
+				};
 			};
 			buildConfigurationList = 8474905A19B8459E0013C446 /* Build configuration list for PBXProject "ScrubUp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -6321,7 +6326,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6333,7 +6339,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6343,7 +6349,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrubUp/ScrubUp-Prefix.pch";
@@ -6355,7 +6362,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ScrubUp;
-				PROVISIONING_PROFILE = "d05e62d3-9805-41fc-a1a5-d8e486d4f079";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

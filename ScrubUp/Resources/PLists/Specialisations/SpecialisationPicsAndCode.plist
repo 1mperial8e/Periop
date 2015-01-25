@@ -19,7 +19,7 @@
 		<key>smallIconName</key>
 		<string>Gastrointestinal_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S10Gastrointestina</string>
+		<string>com.allistechnology.gastrointestina</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DUDJ4UnpWWmdSZGM</string>
 		<key>urlDownloadingTool</key>
@@ -44,7 +44,7 @@
 		<key>smallIconName</key>
 		<string>General_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S09General</string>
+		<string>com.allistechnology.general</string>
 		<key>urlDownloadingMain</key>
 		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DTEtqUWZudmYyaG8</string>
 		<key>urlDownloadingTool</key>
@@ -69,7 +69,7 @@
 		<key>smallIconName</key>
 		<string>Cosmetic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S08Cosmetic</string>
+		<string>com.allistechnology.cosmetic</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71Dekw0Yjc3TzAwMWs</string>
 		<key>urlDownloadingTool</key>
@@ -94,7 +94,7 @@
 		<key>smallIconName</key>
 		<string>Plastic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S07Plastic</string>
+		<string>com.allistechnology.plastic</string>
 		<key>urlDownloadingMain</key>
 		<string>https://drive.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWDRHemRlOG1fS2c</string>
 		<key>urlDownloadingTool</key>
@@ -119,7 +119,7 @@
 		<key>smallIconName</key>
 		<string>Orthopeadic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S06Orthopeadic</string>
+		<string>com.allistechnology.orthopeadic</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DcE5DZ1hJbzZKRmM</string>
 		<key>urlDownloadingTool</key>
@@ -144,7 +144,7 @@
 		<key>smallIconName</key>
 		<string>Cardiothoracic_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S05Cardiothoracic</string>
+		<string>com.allistechnology.cardiothoracic</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DcjAzMFk5QnhIWVk</string>
 		<key>urlDownloadingTool</key>
@@ -169,7 +169,7 @@
 		<key>smallIconName</key>
 		<string>Opthomology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S04Opthalmology</string>
+		<string>com.allistechnology.opthalmology</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DWWI1dWx5aVpTWVE</string>
 		<key>urlDownloadingTool</key>
@@ -194,7 +194,7 @@
 		<key>smallIconName</key>
 		<string>Obstetric_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S03Obstetric</string>
+		<string>com.allistechnology.obstetric</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71Dc0hvUEtZN2xUV1U</string>
 		<key>urlDownloadingTool</key>
@@ -219,7 +219,7 @@
 		<key>smallIconName</key>
 		<string>Gynaecology_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S02Gyneacology</string>
+		<string>com.allistechnology.gyneacology</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DakFTNWd3XzFhbm8</string>
 		<key>urlDownloadingTool</key>
@@ -244,7 +244,7 @@
 		<key>smallIconName</key>
 		<string>ENT_Specialisation_Icon_-_Small</string>
 		<key>productIdentifier</key>
-		<string>com.Thinkmobiles.ScrubUp.S01ENTENT</string>
+		<string>com.allistechnology.ent</string>
 		<key>urlDownloadingMain</key>
 		<string>https://docs.google.com/uc?export=download&amp;id=0B2IXbcZiM71DdkFuejhLUmVteW8</string>
 		<key>urlDownloadingTool</key>
